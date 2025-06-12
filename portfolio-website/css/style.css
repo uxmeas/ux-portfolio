@@ -19,6 +19,16 @@ body.loaded {
     overflow: visible; 
 }
 
+/* NEW: Apply sticky positioning to the HEADER element that wraps the nav */
+/* You will add the sticky classes to the <header> in index.html */
+/* This ensures the placeholder has the correct behavior */
+#navigation-placeholder {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+
 /* Style for active navigation link */
 .nav-link.active {
     font-weight: 600;
