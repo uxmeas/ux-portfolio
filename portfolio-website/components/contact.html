@@ -20,8 +20,15 @@
             <!-- Contact Form -->
             <div class="bg-white p-6 rounded-xl shadow-md">
                 <h3 class="text-2xl font-semibold text-wealthBlue mb-6">Send Me a Message</h3>
-                <form class="space-y-6" name="contact" method="POST" data-netlify="true" id="contactForm">
+                <form class="space-y-6" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+                    <!-- This hidden input is necessary for Netlify Forms to work with JS -->
                     <input type="hidden" name="form-name" value="contact" />
+                    <!-- This is the honeypot field for spam prevention -->
+                    <p class="hidden">
+                        <label>
+                          Don’t fill this out if you’re human: <input name="bot-field" />
+                        </label>
+                    </p>
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                         <input type="text" id="name" name="name" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-wealthBlue focus:border-wealthBlue" placeholder="Your Name" required>
