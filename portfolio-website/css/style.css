@@ -34,7 +34,7 @@ body.loaded {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #f8fafc;
+    background-color: #f8fafc; /* light background for preloader */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,31 +42,6 @@ body.loaded {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
-    /* Add important flag to ensure styles take precedence */
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: none;
-}
-
-#preloader.hide {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none;
-}
-
-/* Spinner animation */
-@keyframes spinner {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #e5e7eb;
-    border-top: 5px solid var(--wealth-blue);
-    border-radius: 50%;
-    animation: spinner 1s linear infinite;
 }
 
 #preloader.hide {
@@ -408,7 +383,7 @@ body.loaded {
 }
 
 /* Message Box Styles */
-#formMessageBox {
+.message-box {
     position: fixed;
     top: 2rem;
     right: 2rem;
@@ -424,17 +399,17 @@ body.loaded {
     font-weight: 500;
 }
 
-#formMessageBox.show {
+.message-box.show {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
 }
 
-#formMessageBox.success {
+.message-box.success {
     background: linear-gradient(135deg, #10b981, #059669); /* Tailwind emerald-500/600 */
 }
 
-#formMessageBox.error {
+.message-box.error {
     background: linear-gradient(135deg, #ef4444, #dc2626); /* Tailwind red-500/600 */
 }
 
