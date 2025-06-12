@@ -48,7 +48,14 @@
                     <div class="flex flex-col h-full">
                         <div class="carousel-container bg-gray-50">
                             <div id="modalImageSpinner" class="modal-image-spinner"></div>
-                            <div id="modalImageCarousel" class="carousel-images"></div>
+                            <img id="modalProjectImage" src="" alt="Project Image" class="carousel-image">
+                            <button id="prevImage" class="carousel-button carousel-button-left" aria-label="Previous Image">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="nextImage" class="carousel-button carousel-button-right" aria-label="Next Image">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div id="modalScreenIndicator" class="screen-indicator" aria-live="polite"></div>
                             <div id="modalScreenTitle" class="screen-title-overlay"></div>
                         </div>
                         <div id="modalThumbnailNav" class="thumbnail-nav-dots mt-2"></div>
@@ -64,6 +71,6 @@
     </div>
 
     <!-- Link to your custom JavaScript file -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>
