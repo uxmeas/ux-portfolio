@@ -15,7 +15,8 @@ body {
     overflow: hidden;
 }
 body.loaded {
-    overflow: auto; /* Restore scrollbar once loaded */
+    /* CORRECTED: Changed 'auto' to 'visible' to allow position:sticky to work correctly */
+    overflow: visible; 
 }
 
 /* Style for active navigation link */
