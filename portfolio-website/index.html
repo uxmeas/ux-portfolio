@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Meas | UX/UI Design Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link to your custom stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Preloader for initial page load -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation will be loaded here -->
+    <header id="navigation-placeholder"></header>
+
+    <!-- Main content sections will be loaded here -->
+    <main>
+        <div id="hero-placeholder"></div>
+        <div id="about-placeholder"></div>
+        <div id="work-placeholder"></div>
+        <div id="skills-placeholder"></div>
+        <div id="timeline-placeholder"></div>
+        <div id="recommendations-placeholder"></div>
+        <div id="contact-placeholder"></div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <footer id="footer-placeholder"></footer>
+    
+    <!-- Modals and other global elements remain here -->
+    <div id="modal-placeholder">
+        <div id="projectModal" class="modal-overlay">
+            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
+                <button class="close-button" id="closeModal" aria-label="Close project details modal">&times;</button>
+                <h2 id="modalProjectTitle" class="text-3xl lg:text-4xl font-bold text-gray-800 mb-2"></h2>
+                <p id="modalProjectClient" class="text-gray-600 text-base lg:text-lg mb-1"></p>
+                <div id="modalProjectTags" class="flex flex-wrap gap-2 mb-4"></div>
+                <div class="modal-main-grid">
+                    <div class="flex flex-col h-full">
+                        <div class="carousel-container bg-gray-50">
+                            <div id="modalImageSpinner" class="modal-image-spinner"></div>
+                            <div id="modalImageCarousel" class="carousel-images"></div>
+                            <div id="modalScreenTitle" class="screen-title-overlay"></div>
+                        </div>
+                        <div id="modalThumbnailNav" class="thumbnail-nav-dots mt-2"></div>
+                    </div>
+                    <div class="flex flex-col">
+                        <div id="modalProjectDescription" class="prose max-w-none text-gray-700"></div>
+                        <a id="modalBehanceLink" href="#" target="_blank" class="inline-block mt-4 px-6 py-3 bg-wealthBlue text-white rounded-md text-lg font-semibold hover:bg-wealthPurple transition duration-300 shadow-lg cta-button self-start">View Full Case Study on Behance &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="formMessageBox" class="message-box" role="alert" aria-live="assertive"></div>
+    </div>
+
+    <!-- Link to your custom JavaScript file -->
+    <script src="js/main.js"></script>
+</body>
+</html>
