@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentImageIndex = 0;
 
         // --- DOM ELEMENT SELECTORS ---
-        // We select these *after* components are loaded.
         const projectCards = document.querySelectorAll('.project-card');
         const projectModal = document.getElementById('projectModal');
         const closeModalButton = document.getElementById('closeModal');
@@ -291,14 +290,24 @@ document.addEventListener('DOMContentLoaded', () => {
         function showMessageBox(message, isError = false) {
             if (!formMessageBox) return;
             formMessageBox.textContent = message;
+            // CORRECTED: This now correctly preserves the base class `message-box`
             formMessageBox.className = 'message-box ' + (isError ? 'error show' : 'success show');
-            setTimeout(() => formMessageBox.classList.remove('show'), 5000);
+            setTimeout(() => {
+                // Also remove the specific state classes when hiding
+                formMessageBox.className = 'message-box';
+            }, 5000);
         }
         
         if (contactForm) {
             contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const formData = new FormData(contactForm);
+                // The 'bot-field' is part of the honeypot. If it has a value, it's likely a bot.
+                if (formData.get('bot-field')) {
+                    console.log('Honeypot field filled. Submission blocked.');
+                    return; // Silently fail for bots
+                }
+
                 try {
                     const response = await fetch('/', {
                         method: 'POST',
@@ -309,6 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         showMessageBox('Thank you! Your message has been sent.', false);
                         contactForm.reset();
                     } else {
+                        const errorText = await response.text();
+                        console.error('Form submission failed:', errorText);
                         showMessageBox('Oops! There was a problem sending your message.', true);
                     }
                 } catch (error) {
