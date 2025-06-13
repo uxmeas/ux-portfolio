@@ -1,25 +1,19 @@
 /* Custom CSS variables for consistent colors */
 :root {
-    --wealth-blue: #1b4a66;
-    --wealth-purple: #5c5286;
-    --wealth-green: #4ade80;
-    --wealth-orange: #f97316; /* Tailwind orange-500 */
-    --wealth-red: #ef4444; /* Tailwind red-500 */
-    /* NEW: Variables for interactive gradient */
-    --gradient-x: 50%;
-    --gradient-y: 50%;
+    --brand-purple: #635BFF;
+    --brand-dark-blue: #0A2540;
+    --brand-light-gray: #f6f9fc;
 }
 
 /* Custom styles for smooth scrolling and font */
 body {
     font-family: 'Inter', sans-serif;
     scroll-behavior: smooth;
-    /* Hide body overflow initially to prevent scrollbar during preloading */
-    overflow: hidden;
-    background-color: #f8fafc; /* Added a base background color */
+    background-color: var(--brand-light-gray); /* Use Stripe's light gray as the base */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
+/* This is no longer needed with the new structure, but kept for reference */
 body.loaded {
-    /* CORRECTED: Changed 'auto' to 'visible' to allow position:sticky to work correctly */
     overflow: visible; 
 }
 
@@ -34,7 +28,7 @@ body.loaded {
 /* Style for active navigation link */
 .nav-link.active {
     font-weight: 600;
-    color: var(--wealth-blue); /* wealthBlue for active link */
+    color: var(--brand-purple);
 }
 .nav-link.active::after {
     width: 100%;
@@ -64,7 +58,7 @@ body.loaded {
 
 .spinner {
     border: 8px solid #f3f3f3; /* Light grey */
-    border-top: 8px solid var(--wealth-blue); /* wealthBlue */
+    border-top: 8px solid var(--brand-purple);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -78,12 +72,12 @@ body.loaded {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 4px solid #f3f3f3;
-    border-top: 4px solid var(--wealth-blue); /* wealthBlue */
+    border-top: 4px solid var(--brand-purple);
     border-radius: 50%;
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
-    z-index: 10; /* Above image, below carousel buttons */
+    z-index: 10;
 }
 
 .carousel-button {
@@ -121,8 +115,8 @@ body.loaded {
     background: rgba(0, 0, 0, 0.7);
     color: white;
     padding: 0.5rem 1rem;
-    border-radius: 9999px; /* rounded-full */
-    font-size: 0.875rem; /* text-sm */
+    border-radius: 9999px;
+    font-size: 0.875rem;
     font-weight: 500;
     z-index: 5;
 }
@@ -139,7 +133,7 @@ body.loaded {
     font-weight: 600;
     font-size: 1rem;
     z-index: 5;
-    white-space: nowrap; /* Prevent text wrap */
+    white-space: nowrap;
     text-align: center;
 }
 
@@ -149,35 +143,33 @@ body.loaded {
     justify-content: center;
     gap: 0.5rem;
     padding: 1rem 0;
-    background-color: #f8f9fa; /* light gray background */
-    border-top: 1px solid #e5e7eb; /* gray-200 */
+    background-color: #f8f9fa;
+    border-top: 1px solid #e5e7eb;
 }
 
 .thumbnail-dot {
     width: 0.75rem;
     height: 0.75rem;
-    border-radius: 9999px; /* rounded-full */
-    background-color: #d1d5db; /* gray-400 */
+    border-radius: 9999px;
+    background-color: #d1d5db;
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .thumbnail-dot.active {
-    background-color: var(--wealth-blue); /* wealthBlue */
+    background-color: var(--brand-purple);
     transform: scale(1.2);
 }
 
 .thumbnail-dot:hover {
-    background-color: #9ca3af; /* gray-500 */
+    background-color: #9ca3af;
 }
-
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* Enhanced animations and effects */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -187,48 +179,40 @@ body.loaded {
     animation: float 6s ease-in-out infinite;
 }
 
-/* UPDATED: Interactive Hero Gradient */
+/* NEW: Stripe-inspired animated gradient background */
+@keyframes stripe-gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 .hero-bg {
-    background-color: #111827; /* A dark fallback color */
-    background-image: radial-gradient(
-        circle at var(--gradient-x) var(--gradient-y),
-        var(--wealth-blue),
-        #111827 40% /* Adjust the radius of the gradient */
-    );
-    transition: background 0.1s ease-out;
+    background: linear-gradient(-45deg, #e0e7ff, #c7d2fe, #a5b4fc, #818cf8);
+    background-size: 400% 400%;
+    animation: stripe-gradient 15s ease infinite;
 }
 
-/* UPDATED: Refined Glass Card */
-.glass-card {
-    backdrop-filter: blur(16px) saturate(180%);
-    background: rgba(31, 41, 55, 0.5); /* A slightly more opaque dark glass */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* UPDATED: Removed glassmorphism for a cleaner, Stripe-like card */
+.hero-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-
-/* Project Card specific styles */
 .project-card {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Faster transition */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
 }
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-.project-card:hover::before {
-    left: 100%;
-}
 .project-card:hover {
-    transform: translateY(-4px) scale(1.01); /* Made more subtle */
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* Made more subtle */
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Mobile Project Cards Carousel */
@@ -238,22 +222,22 @@ body.loaded {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     gap: 2rem;
-    padding-bottom: 1rem; /* Space for potential scrollbar */
-    margin-left: -1rem; /* Adjust for peeking first card */
+    padding-bottom: 1rem;
+    margin-left: -1rem;
     padding-left: 1rem;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
 }
 .work-carousel-container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+    display: none;
 }
 .work-carousel-container .project-card {
-    flex: 0 0 calc(85% - 1rem); /* Show one card with a peek of the next */
-    max-width: calc(85% - 1rem); /* Ensure consistent size */
+    flex: 0 0 calc(85% - 1rem);
+    max-width: calc(85% - 1rem);
     scroll-snap-align: start;
 }
 /* Reset for desktop */
-@media (min-width: 768px) { /* md breakpoint */
+@media (min-width: 768px) {
     .work-carousel-container {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -269,12 +253,12 @@ body.loaded {
         max-width: none;
     }
 }
-@media (min-width: 1024px) { /* lg breakpoint */
+@media (min-width: 1024px) {
     .work-carousel-container {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-@media (min-width: 1280px) { /* xl breakpoint */
+@media (min-width: 1280px) {
     .work-carousel-container {
         grid-template-columns: repeat(4, 1fr);
     }
@@ -303,36 +287,34 @@ body.loaded {
     visibility: visible;
 }
 .modal-overlay.show body {
-    overflow: hidden; /* Prevent body scrolling when modal is open */
+    overflow: hidden;
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    background: #ffffff;
     border-radius: 1rem;
-    padding: 1.5rem; /* Adjusted for better spacing on mobile */
+    padding: 1.5rem;
     width: 95%;
-    max-width: 1400px; /* Increased max-width */
+    max-width: 1400px;
     max-height: 95vh; 
-    overflow-y: hidden; /* Hide overall modal scrollbar */
+    overflow-y: hidden;
     position: relative;
     transform: scale(0.9) translateY(20px);
     transition: transform 0.3s ease;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
-    display: flex; /* Use flexbox for internal layout */
-    flex-direction: column; /* Stack children vertically */
+    display: flex;
+    flex-direction: column;
 }
 .modal-overlay.show .modal-content {
     transform: scale(1) translateY(0);
 }
 
-/* Specific styles for the two-column content area inside the modal */
-/* Make the main grid area take up remaining height */
 .modal-main-grid { 
     flex-grow: 1;
     display: grid;
-    grid-template-columns: 1fr; /* Default to single column on mobile */
-    gap: 1.5rem; /* Default gap */
-    overflow: hidden; /* Hide overflow of this grid container */
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    overflow: hidden;
 }
 
 .close-button {
@@ -341,7 +323,7 @@ body.loaded {
     right: 1.5rem;
     font-size: 2.5rem;
     font-weight: bold;
-    color: #6b7280; /* gray-500 */
+    color: #6b7280;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -350,24 +332,24 @@ body.loaded {
     transition: color 0.2s, transform 0.2s;
 }
 .close-button:hover {
-    color: #1f2937; /* gray-800 */
+    color: #1f2937;
     transform: rotate(90deg);
 }
 
-@media (min-width: 768px) { /* md breakpoint */
+@media (min-width: 768px) {
     .modal-content {
          padding: 2rem;
     }
     .modal-main-grid {
-        grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens and up */
-        gap: 2rem; /* Larger gap on desktop */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
     }
 }
-/* Make image and description containers flexible to fill height */
+
 .modal-main-grid > div {
     display: flex;
     flex-direction: column;
-    min-height: 0; /* Important for flex children in a flex/grid container */
+    min-height: 0;
 }
 
 .carousel-container {
@@ -383,7 +365,7 @@ body.loaded {
 .carousel-image {
     object-fit: contain;
     width: 100%;
-    height: 100%; /* Fill parent container */
+    height: 100%;
     opacity: 0;
     transition: opacity 0.4s ease-in-out;
 }
@@ -392,9 +374,9 @@ body.loaded {
 }
 
 #modalProjectDescription {
-    flex-grow: 1; /* Allow description to take available height */
-    overflow-y: auto; /* Allow scrolling only within the description if needed */
-    padding-right: 0.5rem; /* Add some padding for scrollbar if it appears */
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 0.5rem;
 }
 
 /* Message Box Styles */
@@ -421,25 +403,24 @@ body.loaded {
 }
 
 .message-box.success {
-    background: linear-gradient(135deg, #10b981, #059669); /* Tailwind emerald-500/600 */
+    background: linear-gradient(135deg, #10b981, #059669);
 }
 
 .message-box.error {
-    background: linear-gradient(135deg, #ef4444, #dc2626); /* Tailwind red-500/600 */
+    background: linear-gradient(135deg, #ef4444, #dc2626);
 }
 
-/* Adjusted skill-badge for no hover */
 .skill-badge {
     display: inline-block;
-    font-size: 0.875rem; /* text-sm */
-    font-weight: 500; /* font-medium */
-    padding: 0.5rem 1rem; /* px-4 py-2 */
-    border-radius: 9999px; /* rounded-full */
-    background-color: #f3f4f6; /* gray-100 for neutral background */
-    color: #1f2937; /* gray-800 for text */
-    box-shadow: none; /* Removed drop shadows */
-    transition: none; /* Removed all transitions for no hover effect */
-    transform: none; /* Ensure no transform on hover */
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    background-color: #f3f4f6;
+    color: #1f2937;
+    box-shadow: none;
+    transition: none;
+    transform: none;
 }
 
 
@@ -447,7 +428,7 @@ body.loaded {
 .nav-link {
     position: relative;
     overflow: hidden;
-    padding-bottom: 0.25rem; /* Space for the underline */
+    padding-bottom: 0.25rem;
 }
 
 .nav-link::after {
@@ -457,7 +438,7 @@ body.loaded {
     left: 0;
     width: 0;
     height: 2px;
-    background: linear-gradient(90deg, var(--wealth-blue), var(--wealth-purple));
+    background: var(--brand-purple);
     transition: width 0.3s ease;
 }
 
@@ -465,31 +446,13 @@ body.loaded {
     width: 100%;
 }
 
-/* CTA Button Shimmer Effect */
+/* CTA Button Styles */
 .cta-button {
-    position: relative;
-    overflow: hidden;
     transition: all 0.3s ease;
 }
-
-.cta-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s;
-}
-
-.cta-button:hover::before {
-    left: 100%;
-}
-
 .cta-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 20px rgba(99, 91, 255, 0.25);
 }
 
 /* Recommendation Card Styles */
@@ -497,65 +460,59 @@ body.loaded {
     background-color: white;
     border-radius: 1rem;
     padding: 2rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
 }
 
 .recommendation-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-/* TIMELINE REFACTOR: NEW STYLES */
+/* TIMELINE STYLES */
 .timeline-container {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
     padding: 40px 0;
 }
-/* The vertical line in the middle */
 .timeline-container::after {
     content: '';
     position: absolute;
     width: 4px;
-    background-color: #e5e7eb; /* gray-200 */
+    background-color: #e5e7eb;
     top: 0;
     bottom: 0;
     left: 50%;
     margin-left: -2px;
     border-radius: 2px;
 }
-/* Container around content */
 .timeline-item {
     padding: 10px 40px;
     position: relative;
     background-color: inherit;
     width: 50%;
 }
-/* The marker on the timeline */
 .timeline-item::after {
     content: '';
     position: absolute;
     width: 20px;
     height: 20px;
     right: -10px;
-    background: linear-gradient(45deg, var(--wealth-blue), var(--wealth-purple));
-    border: 4px solid white;
+    background: white;
+    border: 4px solid var(--brand-purple);
     top: 30px;
     border-radius: 50%;
     z-index: 1;
-    box-shadow: 0 0 10px rgba(92, 82, 134, 0.5);
+    box-shadow: 0 0 10px rgba(99, 91, 255, 0.5);
 }
-/* Place the item to the left */
 .timeline-left {
     left: 0;
 }
-/* Place the item to the right */
 .timeline-right {
     left: 50%;
 }
-/* Add arrows to the left item (pointing right) */
 .timeline-left .timeline-content::before {
     content: " ";
     height: 0;
@@ -568,7 +525,6 @@ body.loaded {
     border-width: 10px 0 10px 10px;
     border-color: transparent transparent transparent white;
 }
-/* Add arrows to the right item (pointing left) */
 .timeline-right .timeline-content::before {
     content: " ";
     height: 0;
@@ -581,24 +537,21 @@ body.loaded {
     border-width: 10px 10px 10px 0;
     border-color: transparent white transparent transparent;
 }
-/* Fix the marker for right-sided items */
 .timeline-right::after {
     left: -10px;
 }
-/* The actual content box */
 .timeline-content {
     padding: 2rem;
     background: white;
     position: relative;
     border-radius: 1rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .timeline-content:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
-/* Mobile/Tablet view */
 @media screen and (max-width: 768px) {
     .timeline-container::after {
         left: 31px;
@@ -607,9 +560,6 @@ body.loaded {
         width: 100%;
         padding-left: 70px;
         padding-right: 25px;
-    }
-    .timeline-item::before {
-        display: none; /* Hide the arrow connectors on mobile */
     }
     .timeline-left .timeline-content::before, .timeline-right .timeline-content::before {
          display: none;
@@ -623,44 +573,37 @@ body.loaded {
 }
 
 .timeline-year {
-    font-size: 0.9rem; font-weight: 700; color: var(--wealth-purple); margin-bottom: 0.25rem;
+    font-size: 0.9rem; font-weight: 700; color: var(--brand-purple); margin-bottom: 0.25rem;
     text-transform: uppercase; letter-spacing: 1px;
 }
 .timeline-title {
-    font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #1f2937; /* gray-800 */
+    font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #1f2937;
 }
 .timeline-role {
-    font-size: 1rem; color: #6b7280; /* gray-500 */ margin-bottom: 1rem; font-style: italic;
+    font-size: 1rem; color: #6b7280; margin-bottom: 1rem; font-style: italic;
 }
 .timeline-achievement {
-    background: #eff6ff; /* blue-50 */ border-radius: 0.75rem; padding: 1rem;
-    margin-top: 1rem; border-left: 4px solid var(--wealth-blue);
+    background: var(--brand-light-gray); border-radius: 0.75rem; padding: 1rem;
+    margin-top: 1rem; border-left: 4px solid var(--brand-purple);
 }
 .timeline-achievement-title {
-    font-weight: 600; color: var(--wealth-blue); margin-bottom: 0.25rem;
+    font-weight: 600; color: var(--brand-dark-blue); margin-bottom: 0.25rem;
 }
 .timeline-metric {
-    font-weight: 700; color: var(--wealth-blue);
-}
-.company-logo-circle {
-    width: 40px; height: 40px; background: var(--wealth-blue); border-radius: 10px;
-    display: inline-flex; align-items: center; justify-content: center;
-    color: white; font-weight: bold; margin-right: 15px; vertical-align: middle;
+    font-weight: 700; color: var(--brand-purple);
 }
 
-/* NEW: On-Scroll Animation Classes */
-.fade-in {
+/* On-Scroll Animation Classes */
+.fade-in, .slide-in-left, .slide-in-right {
     opacity: 0;
-    transition: opacity 1s ease-out;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .fade-in.is-visible {
     opacity: 1;
 }
 
 .slide-in-left {
-    opacity: 0;
     transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .slide-in-left.is-visible {
     opacity: 1;
@@ -668,9 +611,7 @@ body.loaded {
 }
 
 .slide-in-right {
-    opacity: 0;
     transform: translateX(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .slide-in-right.is-visible {
     opacity: 1;
