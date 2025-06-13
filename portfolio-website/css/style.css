@@ -5,6 +5,9 @@
     --wealth-green: #4ade80;
     --wealth-orange: #f97316; /* Tailwind orange-500 */
     --wealth-red: #ef4444; /* Tailwind red-500 */
+    /* NEW: Variables for interactive gradient */
+    --gradient-x: 50%;
+    --gradient-y: 50%;
 }
 
 /* Custom styles for smooth scrolling and font */
@@ -13,15 +16,14 @@ body {
     scroll-behavior: smooth;
     /* Hide body overflow initially to prevent scrollbar during preloading */
     overflow: hidden;
+    background-color: #f8fafc; /* Added a base background color */
 }
 body.loaded {
     /* CORRECTED: Changed 'auto' to 'visible' to allow position:sticky to work correctly */
     overflow: visible; 
 }
 
-/* NEW: Apply sticky positioning to the HEADER element that wraps the nav */
-/* You will add the sticky classes to the <header> in index.html */
-/* This ensures the placeholder has the correct behavior */
+/* Apply sticky positioning to the HEADER element that wraps the nav */
 #navigation-placeholder {
     position: sticky;
     top: 0;
@@ -181,27 +183,29 @@ body.loaded {
     50% { transform: translateY(-20px); }
 }
 
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 .floating-element {
     animation: float 6s ease-in-out infinite;
 }
 
+/* UPDATED: Interactive Hero Gradient */
 .hero-bg {
-    background: linear-gradient(-45deg, var(--wealth-blue), var(--wealth-purple), var(--wealth-blue), var(--wealth-purple));
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
+    background-color: #111827; /* A dark fallback color */
+    background-image: radial-gradient(
+        circle at var(--gradient-x) var(--gradient-y),
+        var(--wealth-blue),
+        #111827 40% /* Adjust the radius of the gradient */
+    );
+    transition: background 0.1s ease-out;
 }
 
+/* UPDATED: Refined Glass Card */
 .glass-card {
-    backdrop-filter: blur(16px);
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px) saturate(180%);
+    background: rgba(31, 41, 55, 0.5); /* A slightly more opaque dark glass */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
+
 
 /* Project Card specific styles */
 .project-card {
@@ -644,4 +648,32 @@ body.loaded {
     color: white; font-weight: bold; margin-right: 15px; vertical-align: middle;
 }
 
-/* END TIMELINE REFACTOR */
+/* NEW: On-Scroll Animation Classes */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+.fade-in.is-visible {
+    opacity: 1;
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.slide-in-left.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.slide-in-right.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
