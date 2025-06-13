@@ -83,7 +83,7 @@ body.loaded {
 .timeline-container::after {
     content: '';
     position: absolute;
-    width: 2px; /* Thinner line for a cleaner look */
+    width: 2px;
     background-color: #e5e7eb;
     top: 0;
     bottom: 0;
