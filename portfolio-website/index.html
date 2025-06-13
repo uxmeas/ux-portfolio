@@ -13,7 +13,7 @@
     <!-- Link to your custom stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-brand-light-gray text-gray-800">
     <!-- Preloader for initial page load -->
     <div id="preloader">
         <div class="spinner"></div>
@@ -41,12 +41,12 @@
         <div id="projectModal" class="modal-overlay">
             <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
                 <button class="close-button" id="closeModal" aria-label="Close project details modal">&times;</button>
-                <h2 id="modalProjectTitle" class="text-3xl lg:text-4xl font-bold text-gray-800 mb-2"></h2>
+                <h2 id="modalProjectTitle" class="text-3xl lg:text-4xl font-bold text-brand-dark-blue mb-2"></h2>
                 <p id="modalProjectClient" class="text-gray-600 text-base lg:text-lg mb-1"></p>
                 <div id="modalProjectTags" class="flex flex-wrap gap-2 mb-4"></div>
                 <div class="modal-main-grid">
                     <div class="flex flex-col h-full">
-                        <div class="carousel-container bg-gray-50">
+                        <div class="carousel-container bg-gray-100">
                             <div id="modalImageSpinner" class="modal-image-spinner"></div>
                             <img id="modalProjectImage" src="" alt="Project Image" class="carousel-image">
                             <button id="prevImage" class="carousel-button carousel-button-left" aria-label="Previous Image">
@@ -62,7 +62,7 @@
                     </div>
                     <div class="flex flex-col">
                         <div id="modalProjectDescription" class="prose max-w-none text-gray-700"></div>
-                        <a id="modalBehanceLink" href="#" target="_blank" class="inline-block mt-4 px-6 py-3 bg-wealthBlue text-white rounded-md text-lg font-semibold hover:bg-wealthPurple transition duration-300 shadow-lg cta-button self-start">View Full Case Study on Behance &rarr;</a>
+                        <a id="modalBehanceLink" href="#" target="_blank" class="inline-block mt-4 px-6 py-3 bg-brand-purple text-white rounded-md text-lg font-semibold hover:bg-brand-purple/90 transition duration-300 shadow-lg cta-button self-start">View Full Case Study &rarr;</a>
                     </div>
                 </div>
             </div>
