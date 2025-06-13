@@ -1,47 +1,40 @@
-<section id="contact" class="py-16 md:py-24 px-4 bg-gradient-to-br from-gray-50 to-blue-50">
-    <div class="container mx-auto px-4 sm:px-12 max-w-7xl">
-        <h2 class="text-4xl font-bold text-center mb-12 text-gray-800">Let's Connect</h2>
+
+<section id="contact" class="py-20 md:py-32 px-4 bg-brand-light-gray fade-in">
+    <div class="container mx-auto px-4 sm:px-12 max-w-4xl">
+        <h2 class="text-4xl font-bold text-center mb-12 text-brand-dark-blue">Let's Connect</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Contact Information -->
             <div>
-                <h3 class="text-2xl font-semibold text-wealthBlue mb-6">Contact Information</h3>
+                <h3 class="text-2xl font-semibold text-brand-dark-blue mb-6">Contact Information</h3>
                 <div class="space-y-4 text-lg text-gray-700">
-                    <p class="flex items-center"><i class="fas fa-envelope mr-3 text-wealthBlue"></i> Email: <a href="mailto:pheak@uxmeas.com" class="text-wealthBlue hover:underline">pheak@uxmeas.com</a></p>
-                    <p class="flex items-center"><i class="fas fa-clock mr-3 text-wealthBlue"></i> Availability: Available for full-time roles, Remote or Calgary-based.</p>
+                    <p class="flex items-center"><i class="fas fa-envelope mr-3 text-brand-purple"></i> Email: <a href="mailto:pheak@uxmeas.com" class="text-brand-purple hover:underline">pheak@uxmeas.com</a></p>
+                    <p class="flex items-center"><i class="fas fa-clock mr-3 text-brand-purple"></i> Availability: Available for full-time roles.</p>
                 </div>
-                <h3 class="text-2xl font-semibold text-wealthBlue mb-6 mt-8">Social & Portfolio Links</h3>
-                <div class="flex flex-wrap gap-6 text-wealthBlue">
-                    <a href="https://linkedin.com/in/uxmeas" target="_blank" class="hover:text-wealthPurple transition duration-300 text-3xl" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://behance.net/uxmeas" target="_blank" class="hover:text-wealthPurple transition duration-300 text-3xl" aria-label="Behance"><i class="fab fa-behance"></i></a>
-                    <a href="https://dribbble.com/uxmeas" target="_blank" class="hover:text-wealthPurple transition duration-300 text-3xl" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+                <h3 class="text-2xl font-semibold text-brand-dark-blue mb-6 mt-8">Social & Portfolio Links</h3>
+                <div class="flex flex-wrap gap-6 text-brand-dark-blue">
+                    <a href="https://linkedin.com/in/uxmeas" target="_blank" class="hover:text-brand-purple transition duration-300 text-3xl" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://behance.net/uxmeas" target="_blank" class="hover:text-brand-purple transition duration-300 text-3xl" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                    <a href="https://dribbble.com/uxmeas" target="_blank" class="hover:text-brand-purple transition duration-300 text-3xl" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
                 </div>
-                <a href="resume/Product%20Design%20Leader%20(2025-06-12).pdf" target="_blank" class="mt-8 inline-block px-6 py-3 bg-wealthBlue text-white rounded-md text-lg font-semibold hover:bg-wealthPurple transition duration-300 shadow-lg cta-button">Download My Resume (PDF)</a>
+                <a href="resume/Product%20Design%20Leader%20(2025-06-12).pdf" target="_blank" class="mt-8 inline-block px-6 py-3 bg-brand-dark-blue text-white rounded-md text-lg font-semibold hover:bg-black transition duration-300 shadow-lg cta-button">Download My Resume (PDF)</a>
             </div>
-            <!-- Contact Form -->
             <div class="bg-white p-6 rounded-xl shadow-md">
-                <h3 class="text-2xl font-semibold text-wealthBlue mb-6">Send Me a Message</h3>
+                <h3 class="text-2xl font-semibold text-brand-dark-blue mb-6">Send Me a Message</h3>
                 <form class="space-y-6" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
-                    <!-- This hidden input is necessary for Netlify Forms to work with JS -->
                     <input type="hidden" name="form-name" value="contact" />
-                    <!-- This is the honeypot field for spam prevention -->
-                    <p class="hidden">
-                        <label>
-                          Don’t fill this out if you’re human: <input name="bot-field" />
-                        </label>
-                    </p>
+                    <p class="hidden"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                        <input type="text" id="name" name="name" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-wealthBlue focus:border-wealthBlue" placeholder="Your Name" required>
+                        <input type="text" id="name" name="name" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-brand-purple focus:border-brand-purple" placeholder="Your Name" required>
                     </div>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                        <input type="email" id="email" name="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-wealthBlue focus:border-wealthBlue" placeholder="your.email@example.com" required>
+                        <input type="email" id="email" name="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-brand-purple focus:border-brand-purple" placeholder="your.email@example.com" required>
                     </div>
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                        <textarea id="message" name="message" rows="5" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-wealthBlue focus:border-wealthBlue" placeholder="Tell me about your project..." required></textarea>
+                        <textarea id="message" name="message" rows="5" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-brand-purple focus:border-brand-purple" placeholder="Tell me about your project..." required></textarea>
                     </div>
-                    <button type="submit" class="w-full px-6 py-3 bg-wealthBlue text-white rounded-md text-lg font-semibold hover:bg-wealthPurple transition duration-300 shadow-lg cta-button">Send Message</button>
+                    <button type="submit" class="w-full px-6 py-3 bg-brand-purple text-white rounded-md text-lg font-semibold hover:bg-brand-purple/90 transition duration-300 shadow-lg cta-button">Send Message</button>
                 </form>
             </div>
         </div>
