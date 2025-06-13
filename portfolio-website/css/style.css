@@ -72,142 +72,23 @@ body.loaded {
 .message-box{position:fixed;top:2rem;right:2rem;padding:1rem 1.5rem;border-radius:.75rem;box-shadow:0 10px 25px rgba(0,0,0,.15);z-index:9999;opacity:0;visibility:hidden;transform:translateX(100px);transition:all .4s cubic-bezier(.4,0,.2,1);color:#fff;font-weight:500}.message-box.show{opacity:1;visibility:visible;transform:translateX(0)}.message-box.success{background:linear-gradient(135deg,#10b981,#059669)}.message-box.error{background:linear-gradient(135deg,#ef4444,#dc2626)}
 
 
-/* === UPDATED TIMELINE STYLES START HERE === */
-.timeline-container {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px 0;
+/* === UPDATED: Carousel styles for Recommendation Cards === */
+.work-carousel-container .recommendation-card {
+    scroll-snap-align: start;
+    flex: 0 0 calc(90% - 1rem); /* Make cards slightly wider */
+    max-width: calc(90% - 1rem);
 }
-/* The main vertical line */
-.timeline-container::after {
-    content: '';
-    position: absolute;
-    width: 2px;
-    background-color: #e5e7eb;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -1px;
-    z-index: 1; /* Set the line to be in the back */
-}
-/* A single timeline item container */
-.timeline-item {
-    padding: 10px 40px;
-    position: relative;
-    background-color: inherit;
-    width: 50%;
-}
-/* The glowing marker on the line */
-.timeline-item::after {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    right: -8px; /* Correctly center on the line */
-    background: white;
-    border: 4px solid var(--brand-purple);
-    top: 35px;
-    border-radius: 50%;
-    z-index: 3; /* Set the marker to be on top of everything */
-    box-shadow: 0 0 20px rgba(99, 91, 255, 0.7);
-}
-/* Place the item to the left */
-.timeline-left {
-    left: 0;
-}
-/* Place the item to the right */
-.timeline-right {
-    left: 50%;
-}
-/* Fix the marker for right-sided items */
-.timeline-right::after {
-    left: -8px; /* Correctly center on the line */
-}
-
-/* The main content box for a timeline item */
-.timeline-content {
-    padding: 2rem;
-    background: white;
-    position: relative;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,.05), 0 2px 4px -2px rgba(0,0,0,.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    z-index: 2; /* Ensure content is below marker but above line */
-}
-.timeline-content:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,.07), 0 4px 6px -4px rgba(0,0,0,.07);
-}
-/* Add arrows to the left item (pointing right) */
-.timeline-left .timeline-content::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 28px;
-    width: 0;
-    z-index: 1;
-    right: -10px;
-    border: medium solid white;
-    border-width: 10px 0 10px 10px;
-    border-color: transparent transparent transparent white;
-}
-/* Add arrows to the right item (pointing left) */
-.timeline-right .timeline-content::before {
-    content: " ";
-    height: 0;
-    position: absolute;
-    top: 28px;
-    width: 0;
-    z-index: 1;
-    left: -10px;
-    border: medium solid white;
-    border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
+@media (min-width: 768px) {
+    /* Reset on desktop so it follows the grid layout */
+    .work-carousel-container .recommendation-card {
+        flex: 1 1 auto;
+        max-width: none;
+    }
 }
 
 
-/* Styles for text content within the timeline card */
-.timeline-year {
-    font-size: 0.9rem; font-weight: 700; color: var(--brand-purple); margin-bottom: 0.25rem;
-    text-transform: uppercase; letter-spacing: 1px;
-}
-.timeline-title {
-    font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #1f2937;
-}
-.timeline-role {
-    font-size: 1rem; color: #6b7280; margin-bottom: 1rem; font-style: italic;
-}
-.timeline-achievement {
-    background: var(--brand-light-gray); border-radius: 0.75rem; padding: 1rem;
-    margin-top: 1rem; border-left: 4px solid var(--brand-purple);
-}
-.timeline-achievement-title {
-    font-weight: 600; color: var(--brand-dark-blue); margin-bottom: 0.25rem;
-}
-.timeline-metric {
-    font-weight: 700; color: var(--brand-purple);
-}
-/* On mobile, revert to a left-aligned timeline */
-@media screen and (max-width: 768px) {
-    .timeline-container::after {
-        left: 31px;
-    }
-    .timeline-item, .timeline-left, .timeline-right {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 25px;
-        left: 0;
-    }
-    .timeline-left .timeline-content::before, .timeline-right .timeline-content::before {
-         display: none;
-    }
-    .timeline-left::after, .timeline-right::after {
-        left: 15px;
-    }
-}
-/* === UPDATED TIMELINE STYLES END HERE === */
-
+/* === TIMELINE STYLES === */
+.timeline-container{position:relative;max-width:1000px;margin:0 auto;padding:40px 0}.timeline-container::after{content:"";position:absolute;width:2px;background-color:#e5e7eb;top:0;bottom:0;left:50%;margin-left:-1px;z-index:1}.timeline-item{padding:10px 40px;position:relative;background-color:inherit;width:50%}.timeline-item::after{content:"";position:absolute;width:16px;height:16px;right:-8px;background:#fff;border:4px solid var(--brand-purple);top:35px;border-radius:50%;z-index:3;box-shadow:0 0 20px rgba(99,91,255,.7)}.timeline-left{left:0}.timeline-right{left:50%}.timeline-right::after{left:-8px}.timeline-content{padding:2rem;background:#fff;position:relative;border-radius:1rem;box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05);transition:transform .3s ease,box-shadow .3s ease;z-index:2}.timeline-content:hover{transform:translateY(-5px);box-shadow:0 10px 15px -3px rgba(0,0,0,.07),0 4px 6px -4px rgba(0,0,0,.07)}.timeline-left .timeline-content::before{content:" ";height:0;position:absolute;top:28px;width:0;z-index:1;right:-10px;border:10px solid transparent;border-left-color:#fff}.timeline-right .timeline-content::before{content:" ";height:0;position:absolute;top:28px;width:0;z-index:1;left:-10px;border:10px solid transparent;border-right-color:#fff}.timeline-year{font-size:.9rem;font-weight:700;color:var(--brand-purple);margin-bottom:.25rem;text-transform:uppercase;letter-spacing:1px}.timeline-title{font-size:1.5rem;font-weight:700;margin-bottom:.5rem;color:#1f2937}.timeline-role{font-size:1rem;color:#6b7280;margin-bottom:1rem;font-style:italic}.timeline-achievement{background:var(--brand-light-gray);border-radius:.75rem;padding:1rem;margin-top:1rem;border-left:4px solid var(--brand-purple)}.timeline-achievement-title{font-weight:600;color:var(--brand-dark-blue);margin-bottom:.25rem}.timeline-metric{font-weight:700;color:var(--brand-purple)}@media screen and (max-width:768px){.timeline-container::after{left:31px}.timeline-item,.timeline-left,.timeline-right{width:100%;padding-left:70px;padding-right:25px;left:0}.timeline-left .timeline-content::before,.timeline-right .timeline-content::before{display:none}.timeline-left::after,.timeline-right::after{left:15px}}
 
 /* On-Scroll Animation Classes */
 .fade-in, .slide-in-left, .slide-in-right {
