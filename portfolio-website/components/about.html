@@ -18,24 +18,37 @@
                     </p>
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-6">
-                <div class="bg-brand-light-gray p-6 rounded-xl">
-                    <div class="text-3xl font-bold text-brand-purple mb-2">15+</div>
-                    <div class="text-gray-700 font-medium">Years Experience</div>
+            
+            <!-- UPDATED: New structure for the "Design Leadership" graphic -->
+            <div class="about-graphic-container">
+                <div class="graphic-item leadership-center">
+                    <div class="graphic-icon"><i class="fas fa-star"></i></div>
+                    DESIGN LEADERSHIP
                 </div>
-                <div class="bg-brand-light-gray p-6 rounded-xl">
-                    <div class="text-3xl font-bold text-brand-purple mb-2">50+</div>
-                    <div class="text-gray-700 font-medium">Projects Completed</div>
+                <div class="graphic-item experience-box">
+                    <div class="graphic-number">15+</div>
+                    <div class="graphic-label">Experience</div>
                 </div>
-                <div class="bg-brand-light-gray p-6 rounded-xl">
-                    <div class="text-3xl font-bold text-brand-purple mb-2">10+</div>
-                    <div class="text-gray-700 font-medium">Design Systems</div>
+                <div class="graphic-item projects-box">
+                    <div class="graphic-number">50+</div>
+                    <div class="graphic-label">Projects</div>
                 </div>
-                <div class="bg-brand-light-gray p-6 rounded-xl">
-                    <div class="text-3xl font-bold text-brand-purple mb-2">5+</div>
-                    <div class="text-gray-700 font-medium">Teams Led</div>
+                <div class="graphic-item leadership-box">
+                    <div class="graphic-number">5+</div>
+                    <div class="graphic-label">Leadership</div>
                 </div>
+
+                <!-- SVG for connecting lines -->
+                <svg class="graphic-lines" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Line to 15+ -->
+                    <path d="M 200 110 Q 150 130 100 180" stroke="#d1d5db" stroke-width="2" fill="none" />
+                    <!-- Line to 50+ -->
+                    <path d="M 240 70 Q 280 80 320 60" stroke="#d1d5db" stroke-width="2" fill="none" />
+                    <!-- Line to 5+ -->
+                    <path d="M 240 110 Q 280 130 320 180" stroke="#d1d5db" stroke-width="2" fill="none" />
+                </svg>
             </div>
+
         </div>
     </div>
 </section>
