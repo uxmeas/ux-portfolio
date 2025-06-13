@@ -1,13 +1,12 @@
 // --- TAILWIND CONFIG ---
 // This config object is used by the Tailwind CSS CDN script.
-// It's a way to customize Tailwind's default theme without a build step.
 tailwind.config = {
     theme: {
         extend: {
             colors: {
-                wealthBlue: '#1b4a66',
-                wealthPurple: '#5c5286',
-                wealthGreen: '#4ade80',
+                'brand-purple': '#635BFF',
+                'brand-dark-blue': '#0A2540',
+                'brand-light-gray': '#f6f9fc',
             },
             fontFamily: {
                 inter: ['Inter', 'sans-serif'],
@@ -17,11 +16,9 @@ tailwind.config = {
 }
 
 // --- SITE SCRIPT ---
-// This function runs once the entire HTML document is loaded and ready.
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- COMPONENT LOADER ---
-    // Fetches HTML content from a file and injects it into a placeholder element.
     const loadComponent = async (path, placeholderId) => {
         try {
             const response = await fetch(path);
@@ -30,90 +27,20 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById(placeholderId).innerHTML = text;
         } catch (error) {
             console.error(`Error loading component ${path}:`, error);
-            // Optionally display an error message to the user in the placeholder
             document.getElementById(placeholderId).innerHTML = `<p class="text-center text-red-500">Failed to load section.</p>`;
         }
     };
 
     // --- INITIALIZATION ---
-    // This function will contain all the logic that needs to run AFTER the components are loaded.
     const initializeScripts = () => {
         console.log('All components loaded. Initializing scripts...');
 
         // --- GLOBAL DATA ---
         const projectsData = [
-            {
-                id: 'terracore-ai',
-                title: 'TerraCore AI: Mining Dashboards for Every Role',
-                client: 'TerraCore AI',
-                date: '2024',
-                duration: '12 weeks',
-                tags: ['Dashboard Design', 'Data Visualization', 'Enterprise UX', 'AI/ML Interface'],
-                behanceLink: 'https://www.behance.net/uxmeas',
-                screenTitles: ['Executive Overview', 'Operations Manager', 'Field Operator Mobile', 'Maintenance Scheduler'],
-                description: `
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">The Challenge</h3>
-                    <p class="mb-4">TerraCore AI needed role-specific dashboards for their mining operations platform. Each stakeholder—from executives to field operators—required different data views and interaction patterns to make informed decisions quickly.</p>
-                    <h3 class="text-2xl font-bold text-gray-800 my-4">My Role & Impact</h3>
-                    <p class="mb-4">Led end-to-end UX/UI design for 4 distinct dashboard interfaces, conducting user research with 12+ mining professionals and delivering a design system that reduced decision-making time by 40%.</p>
-                    <div class="grid grid-cols-2 gap-4 mt-4 text-center">
-                        <div class="p-4 bg-gray-100 rounded-lg"><div class="text-2xl font-bold text-wealthBlue">40%</div><div class="text-sm">Faster Decisions</div></div>
-                        <div class="p-4 bg-gray-100 rounded-lg"><div class="text-2xl font-bold text-wealthBlue">95%</div><div class="text-sm">User Satisfaction</div></div>
-                    </div>
-                `,
-                screenImages: [ 'images/terracore_ai/screen_one.jpg', 'images/terracore_ai/screen_two.jpg', 'images/terracore_ai/screen_three.jpg', 'images/terracore_ai/screen_four.jpg' ]
-            },
-            {
-                id: 'fintrust-capital',
-                title: 'FinTrust Capital / UI UX Design',
-                client: 'FinTrust Capital',
-                date: '2023',
-                duration: '8 weeks',
-                tags: ['Fintech UX', 'Product Design', 'Information Architecture', 'User Research'],
-                behanceLink: 'https://www.behance.net/uxmeas',
-                screenTitles: ['Dashboard', 'Portfolio', 'Transactions', 'Secure Login'],
-                description: `
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">The Challenge</h3>
-                    <p class="mb-4">FinTrust Capital required an intuitive and secure platform for financial management. The project focused on simplifying complex financial data into easily digestible interfaces and ensuring a seamless user journey from login to portfolio analysis.</p>
-                    <h3 class="text-2xl font-bold text-gray-800 my-4">My Role & Impact</h3>
-                    <p class="mb-4">I conducted extensive user research to understand the needs of both financial professionals and individual investors. I then developed wireframes, high-fidelity prototypes, and a comprehensive design system. My work contributed to a 25% improvement in user satisfaction and a 15% reduction in data entry errors.</p>
-                `,
-                screenImages: [ 'images/fintrust_capital/screen_one.jpg', 'images/fintrust_capital/screen_two.jpg', 'images/fintrust_capital/screen_three.jpg', 'images/fintrust_capital/screen_four.jpg' ]
-            },
-            {
-                id: 'remindry',
-                title: 'ReMindry: Intelligent Task Management',
-                client: 'Startup Project',
-                date: '2022',
-                duration: '10 weeks',
-                tags: ['Product Strategy', 'UX Research', 'Mobile App Design', 'AI Integration'],
-                behanceLink: 'https://www.behance.net/uxmeas',
-                screenTitles: ['Main Task List', 'Smart Scheduling', 'Notifications', 'Progress Tracking'],
-                description: `
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">The Challenge</h3>
-                    <p class="mb-4">ReMindry is a conceptual project to explore how AI and intuitive design could simplify daily planning. The goal was to reduce the mental load for users with busy schedules by creating a truly "smart" reminder app.</p>
-                    <h3 class="text-2xl font-bold text-gray-800 my-4">My Role & Impact</h3>
-                    <p class="mb-4">I led the product strategy, conducted competitive analysis, and designed the UI to prioritize clarity and ease of input. User testing of the interactive prototype revealed high satisfaction with the "smart scheduling" feature, validating the core concept.</p>
-                `,
-                screenImages: [ 'images/remindry/screen_one.jpg', 'images/remindry/screen_two.jpg', 'images/remindry/screen_three.jpg', 'images/remindry/screen_four.jpg' ]
-            },
-            {
-                id: 'katipult',
-                title: 'Katipult: Fintech UX & Strategy',
-                client: 'Katipult Technology Corp.',
-                date: '2021-2022',
-                duration: '1.5 years',
-                tags: ['UX Leadership', 'Design Systems', 'Fintech Platform', 'Growth Strategy'],
-                behanceLink: 'https://www.behance.net/uxmeas',
-                screenTitles: ['Investor Dashboard', 'Issuer Portal', 'Admin View', 'Design System'],
-                description: `
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">The Challenge</h3>
-                    <p class="mb-4">As a co-founder and UX leader, I spearheaded the UX vision and design operations for Katipult, a leading fintech platform for private markets. My focus was on enhancing user engagement, streamlining complex investment workflows, and building a scalable design foundation to support rapid growth.</p>
-                     <h3 class="text-2xl font-bold text-gray-800 my-4">My Role & Impact</h3>
-                    <p class="mb-4">I scaled the design team, introduced cross-functional design rituals, and co-founded the product vision for new modules. By building a centralized Figma design system, we improved consistency and reduced design-to-development handoff time by 40%, directly contributing to a 30% increase in platform engagement.</p>
-                `,
-                screenImages: [ 'images/katipult/screen_one.jpg', 'images/katipult/screen_two.jpg', 'images/katipult/screen_three.jpg', 'images/katipult/screen_four.jpg' ]
-            }
+            { id: 'terracore-ai', title: 'TerraCore AI: Mining Dashboards for Every Role', client: 'TerraCore AI', date: '2024', duration: '12 weeks', tags: ['Dashboard Design', 'Data Visualization', 'Enterprise UX', 'AI/ML Interface'], behanceLink: 'https://www.behance.net/uxmeas', screenTitles: ['Executive Overview', 'Operations Manager', 'Field Operator Mobile', 'Maintenance Scheduler'], description: `<h3 class="text-2xl font-bold text-brand-dark-blue mb-4">The Challenge</h3><p class="mb-4">TerraCore AI needed role-specific dashboards for their mining operations platform. Each stakeholder—from executives to field operators—required different data views and interaction patterns to make informed decisions quickly.</p><h3 class="text-2xl font-bold text-brand-dark-blue my-4">My Role & Impact</h3><p class="mb-4">Led end-to-end UX/UI design for 4 distinct dashboard interfaces, conducting user research with 12+ mining professionals and delivering a design system that reduced decision-making time by 40%.</p><div class="grid grid-cols-2 gap-4 mt-4 text-center"><div class="p-4 bg-brand-light-gray rounded-lg"><div class="text-2xl font-bold text-brand-purple">40%</div><div class="text-sm">Faster Decisions</div></div><div class="p-4 bg-brand-light-gray rounded-lg"><div class="text-2xl font-bold text-brand-purple">95%</div><div class="text-sm">User Satisfaction</div></div></div>`, screenImages: [ 'images/terracore_ai/screen_one.jpg', 'images/terracore_ai/screen_two.jpg', 'images/terracore_ai/screen_three.jpg', 'images/terracore_ai/screen_four.jpg' ] },
+            { id: 'fintrust-capital', title: 'FinTrust Capital / UI UX Design', client: 'FinTrust Capital', date: '2023', duration: '8 weeks', tags: ['Fintech UX', 'Product Design', 'Information Architecture', 'User Research'], behanceLink: 'https://www.behance.net/uxmeas', screenTitles: ['Dashboard', 'Portfolio', 'Transactions', 'Secure Login'], description: `<h3 class="text-2xl font-bold text-brand-dark-blue mb-4">The Challenge</h3><p class="mb-4">FinTrust Capital required an intuitive and secure platform for financial management. The project focused on simplifying complex financial data into easily digestible interfaces and ensuring a seamless user journey from login to portfolio analysis.</p><h3 class="text-2xl font-bold text-brand-dark-blue my-4">My Role & Impact</h3><p class="mb-4">I conducted extensive user research to understand the needs of both financial professionals and individual investors. I then developed wireframes, high-fidelity prototypes, and a comprehensive design system. My work contributed to a 25% improvement in user satisfaction and a 15% reduction in data entry errors.</p>`, screenImages: [ 'images/fintrust_capital/screen_one.jpg', 'images/fintrust_capital/screen_two.jpg', 'images/fintrust_capital/screen_three.jpg', 'images/fintrust_capital/screen_four.jpg' ] },
+            { id: 'remindry', title: 'ReMindry: Intelligent Task Management', client: 'Startup Project', date: '2022', duration: '10 weeks', tags: ['Product Strategy', 'UX Research', 'Mobile App Design', 'AI Integration'], behanceLink: 'https://www.behance.net/uxmeas', screenTitles: ['Main Task List', 'Smart Scheduling', 'Notifications', 'Progress Tracking'], description: `<h3 class="text-2xl font-bold text-brand-dark-blue mb-4">The Challenge</h3><p class="mb-4">ReMindry is a conceptual project to explore how AI and intuitive design could simplify daily planning. The goal was to reduce the mental load for users with busy schedules by creating a truly "smart" reminder app.</p><h3 class="text-2xl font-bold text-brand-dark-blue my-4">My Role & Impact</h3><p class="mb-4">I led the product strategy, conducted competitive analysis, and designed the UI to prioritize clarity and ease of input. User testing of the interactive prototype revealed high satisfaction with the "smart scheduling" feature, validating the core concept.</p>`, screenImages: [ 'images/remindry/screen_one.jpg', 'images/remindry/screen_two.jpg', 'images/remindry/screen_three.jpg', 'images/remindry/screen_four.jpg' ] },
+            { id: 'katipult', title: 'Katipult: Fintech UX & Strategy', client: 'Katipult Technology Corp.', date: '2021-2022', duration: '1.5 years', tags: ['UX Leadership', 'Design Systems', 'Fintech Platform', 'Growth Strategy'], behanceLink: 'https://www.behance.net/uxmeas', screenTitles: ['Investor Dashboard', 'Issuer Portal', 'Admin View', 'Design System'], description: `<h3 class="text-2xl font-bold text-brand-dark-blue mb-4">The Challenge</h3><p class="mb-4">As a co-founder and UX leader, I spearheaded the UX vision and design operations for Katipult, a leading fintech platform for private markets. My focus was on enhancing user engagement, streamlining complex investment workflows, and building a scalable design foundation to support rapid growth.</p><h3 class="text-2xl font-bold text-brand-dark-blue my-4">My Role & Impact</h3><p class="mb-4">I scaled the design team, introduced cross-functional design rituals, and co-founded the product vision for new modules. By building a centralized Figma design system, we improved consistency and reduced design-to-development handoff time by 40%, directly contributing to a 30% increase in platform engagement.</p>`, screenImages: [ 'images/katipult/screen_one.jpg', 'images/katipult/screen_two.jpg', 'images/katipult/screen_three.jpg', 'images/katipult/screen_four.jpg' ] }
         ];
 
         let currentProjectScreens = [];
@@ -290,10 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
         function showMessageBox(message, isError = false) {
             if (!formMessageBox) return;
             formMessageBox.textContent = message;
-            // CORRECTED: This now correctly preserves the base class `message-box`
             formMessageBox.className = 'message-box ' + (isError ? 'error show' : 'success show');
             setTimeout(() => {
-                // Also remove the specific state classes when hiding
                 formMessageBox.className = 'message-box';
             }, 5000);
         }
@@ -302,10 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
             contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const formData = new FormData(contactForm);
-                // The 'bot-field' is part of the honeypot. If it has a value, it's likely a bot.
                 if (formData.get('bot-field')) {
                     console.log('Honeypot field filled. Submission blocked.');
-                    return; // Silently fail for bots
+                    return; 
                 }
 
                 try {
@@ -328,6 +252,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+        
+        // --- ON-SCROLL ANIMATION LOGIC ---
+        const setupScrollAnimations = () => {
+            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(el => observer.observe(el));
+        };
+        
+        setupScrollAnimations();
     };
 
     // --- LOAD ALL COMPONENTS AND THEN INITIALIZE THE SCRIPTS ---
@@ -342,10 +285,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loadComponent('components/contact.html', 'contact-placeholder'),
         loadComponent('components/footer.html', 'footer-placeholder')
     ]).then(() => {
-        // Once all components are loaded, run the initialization script.
         initializeScripts();
         
-        // Hide preloader after everything is set up
         const preloader = document.getElementById('preloader');
         if (preloader) {
             preloader.classList.add('hide');
