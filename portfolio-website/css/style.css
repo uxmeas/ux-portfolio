@@ -353,33 +353,55 @@ body.loaded {
     }
 }
 
-/* Mobile optimizations - Full width with 16px padding */
+/* Mobile optimizations - Force full width consistency */
 @media (max-width: 1023px) {
-    /* Timeline container adjustments */
-    .relative.z-10 {
+    /* Reset the entire timeline section on mobile */
+    #timeline {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    #timeline .relative.z-10,
+    #timeline .max-w-5xl,
+    #timeline .mx-auto {
         margin-left: 0 !important;
         margin-right: 0 !important;
         max-width: none !important;
-        padding-left: 1rem !important; /* 16px */
-        padding-right: 1rem !important; /* 16px */
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
     
-    /* Force all timeline card containers to full width */
-    .relative.flex {
+    /* Force all flex containers to reset */
+    #timeline .relative.flex,
+    #timeline div[class*="justify-"] {
         padding-left: 0 !important;
         padding-right: 0 !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
+        justify-content: flex-start !important;
     }
     
-    /* Timeline cards - force consistent full width */
-    .timeline-card-compact {
-        max-width: none !important;
+    /* Timeline cards - nuclear option for consistency */
+    #timeline .timeline-card-compact,
+    #timeline .w-full.lg\\:w-5\\/12 {
         width: 100% !important;
+        max-width: 100% !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
-        padding: 1rem !important; /* 16px internal padding */
+        padding: 1rem !important;
         box-sizing: border-box !important;
+        flex: none !important;
+    }
+    
+    /* Remove all desktop-specific spacing */
+    #timeline div[style*="margin-left"],
+    #timeline div[style*="margin-right"],
+    #timeline div[style*="padding-left"],
+    #timeline div[style*="padding-right"] {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
     
     /* Hide timeline elements on mobile */
@@ -387,20 +409,21 @@ body.loaded {
         display: none !important;
     }
     
-    /* Mobile header adjustments */
-    .mb-12.md\\:mb-16.text-left {
-        margin-left: 0 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-    
-    /* Ensure no text-right on mobile */
+    /* Force left alignment */
     .lg\\:text-right {
         text-align: left !important;
     }
     
-    /* Reset any positioning styles on mobile */
     .lg\\:ml-auto {
         margin-left: 0 !important;
+    }
+    
+    /* Ensure no width restrictions anywhere */
+    #timeline * {
+        max-width: none !important;
+    }
+    
+    #timeline .timeline-card-compact {
+        max-width: 100% !important;
     }
 }
