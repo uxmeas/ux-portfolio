@@ -355,29 +355,52 @@ body.loaded {
 
 /* Mobile optimizations - Full width with 16px padding */
 @media (max-width: 1023px) {
+    /* Timeline container adjustments */
+    .relative.z-10 {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        max-width: none !important;
+        padding-left: 1rem !important; /* 16px */
+        padding-right: 1rem !important; /* 16px */
+    }
+    
+    /* Force all timeline card containers to full width */
+    .relative.flex {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    /* Timeline cards - force consistent full width */
     .timeline-card-compact {
-        max-width: none !important; /* Override any width constraints */
-        width: 100% !important; /* Force full width */
-        margin-left: 0 !important; /* Reset desktop margins */
-        margin-right: 0 !important; /* Reset desktop margins */
-        padding: 1rem; /* 16px padding */
+        max-width: none !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 1rem !important; /* 16px internal padding */
+        box-sizing: border-box !important;
     }
     
+    /* Hide timeline elements on mobile */
     .timeline-dot-glow {
-        display: none; /* Hide dots on mobile */
+        display: none !important;
     }
     
-    /* Mobile container adjustments */
-    .relative.flex.lg\\:justify-end,
-    .relative.flex.lg\\:justify-start {
+    /* Mobile header adjustments */
+    .mb-12.md\\:mb-16.text-left {
+        margin-left: 0 !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
     
-    /* Mobile timeline container full width */
-    .relative.z-10.max-w-5xl {
+    /* Ensure no text-right on mobile */
+    .lg\\:text-right {
+        text-align: left !important;
+    }
+    
+    /* Reset any positioning styles on mobile */
+    .lg\\:ml-auto {
         margin-left: 0 !important;
-        padding-left: 1rem;
-        padding-right: 1rem;
     }
 }
