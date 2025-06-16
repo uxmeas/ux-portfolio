@@ -203,3 +203,51 @@ body.loaded {
     background-color: #f1f5f9;
     border-color: #cbd5e1;
 }
+
+/* === MODERN TIMELINE STYLES === */
+.timeline-card {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(56, 178, 172, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.timeline-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(56, 178, 172, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.skill-pill-dark {
+    display: inline-block;
+    background-color: rgba(56, 178, 172, 0.1);
+    color: #22d3ee;
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(56, 178, 172, 0.2);
+    transition: all 0.15s ease;
+}
+
+.skill-pill-dark:hover {
+    background-color: rgba(56, 178, 172, 0.2);
+    border-color: rgba(56, 178, 172, 0.4);
+}
+
+/* Desktop connecting line positioning */
+@media (min-width: 768px) {
+    .timeline-card {
+        max-width: 500px;
+    }
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+    .timeline-card {
+        margin-bottom: 2rem;
+    }
+}
