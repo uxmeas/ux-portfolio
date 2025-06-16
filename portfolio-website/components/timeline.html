@@ -1,183 +1,147 @@
 <section id="timeline" class="py-20 md:py-32 px-4 bg-brand-dark-blue fade-in overflow-hidden">
     <div class="max-w-7xl mx-auto">
         <!-- Main Container with 2-column layout -->
-        <div class="grid lg:grid-cols-2 gap-12 items-start">
+        <div class="grid lg:grid-cols-5 gap-8 items-start">
             
-            <!-- Left Column: Timeline Content -->
-            <div class="relative">
+            <!-- Left Column: Timeline Content (3/5 width) -->
+            <div class="lg:col-span-3 relative">
                 <!-- Header Section -->
-                <div class="mb-12 md:mb-16">
-                    <p class="text-cyan-400 text-sm mb-3 font-medium">My Journey</p>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-white leading-tight">My Journey</h2>
+                <div class="mb-8 md:mb-12">
+                    <p class="text-cyan-400 text-sm mb-2 font-medium">My Journey</p>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white leading-tight">My Journey</h2>
                     <p class="text-base md:text-lg text-gray-300 leading-relaxed">
                         A chronological overview of my professional experience and key milestones.
                     </p>
                 </div>
 
                 <!-- Vertical connecting line (desktop only) -->
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-cyan-400 opacity-30" style="top: 200px; bottom: 100px;"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-cyan-400 opacity-30" style="top: 160px; bottom: 60px;"></div>
                 
                 <!-- Timeline dots -->
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 220px;"></div>
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 500px;"></div>
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 780px;"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 180px;"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 400px;"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 620px;"></div>
 
                 <!-- Timeline Items - Alternating Layout -->
-                <div class="space-y-8 lg:space-y-16">
+                <div class="space-y-6 lg:space-y-12">
                     
                     <!-- Item 1: Katipult (Right side on desktop) -->
-                    <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-start">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-6 items-start">
                         <div class="hidden lg:block"></div> <!-- Empty left column on desktop -->
-                        <div class="timeline-card">
+                        <div class="timeline-card-compact">
                             <!-- Date Badge -->
-                            <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
+                            <div class="inline-block bg-cyan-400 text-brand-dark-blue px-3 py-1.5 rounded-full text-xs font-bold mb-4">
                                 2014 - 2025
                             </div>
                             
                             <!-- Icon -->
-                            <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center mb-6">
-                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
                                 </svg>
                             </div>
 
                             <!-- Content -->
-                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Co-Founded & Scaled Fintech Startup to IPO</h3>
-                            <div class="mb-4">
-                                <p class="text-white font-semibold">Katipult (TSX: FUND)</p>
-                                <p class="text-gray-300 text-sm">Co-Founder, Head of UX, Board Member</p>
+                            <h3 class="text-lg md:text-xl font-bold text-white mb-2">Co-Founded & Scaled Fintech Startup to IPO</h3>
+                            <div class="mb-3">
+                                <p class="text-white font-semibold text-sm">Katipult (TSX: FUND)</p>
+                                <p class="text-gray-300 text-xs">Co-Founder, Head of UX, Board Member</p>
                             </div>
 
                             <!-- Metrics -->
-                            <div class="grid grid-cols-3 gap-3 mb-6">
-                                <div class="bg-cyan-400 text-brand-dark-blue p-3 rounded-lg text-center">
-                                    <div class="font-bold text-lg">$4B+</div>
+                            <div class="grid grid-cols-3 gap-2 mb-4">
+                                <div class="bg-cyan-400 text-brand-dark-blue p-2 rounded text-center">
+                                    <div class="font-bold text-sm">$4B+</div>
                                     <div class="text-xs">Capital Raised</div>
                                 </div>
-                                <div class="bg-cyan-400 text-brand-dark-blue p-3 rounded-lg text-center">
-                                    <div class="font-bold text-lg">176K+</div>
+                                <div class="bg-cyan-400 text-brand-dark-blue p-2 rounded text-center">
+                                    <div class="font-bold text-sm">176K+</div>
                                     <div class="text-xs">Investors</div>
                                 </div>
-                                <div class="bg-cyan-400 text-brand-dark-blue p-3 rounded-lg text-center">
-                                    <div class="font-bold text-lg">85+</div>
+                                <div class="bg-cyan-400 text-brand-dark-blue p-2 rounded text-center">
+                                    <div class="font-bold text-sm">85+</div>
                                     <div class="text-xs">Global Partners</div>
                                 </div>
                             </div>
 
-                            <!-- Achievements -->
-                            <div class="space-y-3 mb-6">
-                                <div class="flex items-start text-gray-300 text-sm">
-                                    <span class="text-cyan-400 mr-2">+</span>
-                                    <span>Built product from MVP to public company across 20+ countries</span>
-                                </div>
-                                <div class="flex items-start text-gray-300 text-sm">
-                                    <span class="text-cyan-400 mr-2">+</span>
-                                    <span>Led award-winning DealFlow platform UX (Banking Tech USA recognition)</span>
-                                </div>
-                                <div class="flex items-start text-gray-300 text-sm">
-                                    <span class="text-cyan-400 mr-2">+</span>
-                                    <span>Delivered redesign: +30% engagement, 20% churn reduction, 40% faster dev handoff</span>
-                                </div>
-                            </div>
-
                             <!-- Award Badge -->
-                            <div class="bg-yellow-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold inline-flex items-center mb-4">
-                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <div class="bg-yellow-400 text-brand-dark-blue px-3 py-1.5 rounded-full text-xs font-bold inline-flex items-center mb-3">
+                                <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                 </svg>
                                 EY Entrepreneur of the Year Finalist
                             </div>
 
                             <!-- Tags -->
-                            <div class="flex flex-wrap gap-2">
-                                <span class="skill-pill-dark">Fintech</span>
-                                <span class="skill-pill-dark">UX Strategy</span>
-                                <span class="skill-pill-dark">Product Leadership</span>
-                                <span class="skill-pill-dark">IPO</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-pill-dark-compact">Fintech</span>
+                                <span class="skill-pill-dark-compact">UX Strategy</span>
+                                <span class="skill-pill-dark-compact">Product Leadership</span>
+                                <span class="skill-pill-dark-compact">IPO</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Item 2: JOI Media (Left side on desktop) -->
-                    <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-start">
-                        <div class="timeline-card lg:text-right">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-6 items-start">
+                        <div class="timeline-card-compact lg:text-right">
                             <!-- Date Badge -->
-                            <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
+                            <div class="inline-block bg-cyan-400 text-brand-dark-blue px-3 py-1.5 rounded-full text-xs font-bold mb-4">
                                 2008 - 2014
                             </div>
                             
                             <!-- Icon -->
-                            <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center mb-6 lg:ml-auto">
-                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-4 lg:ml-auto">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                                 </svg>
                             </div>
 
                             <!-- Content -->
-                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Built Custom Platforms for Enterprise Clients</h3>
-                            <div class="mb-4">
-                                <p class="text-white font-semibold">JOI Media</p>
-                                <p class="text-gray-300 text-sm">Co-Founder & CPO</p>
-                            </div>
-
-                            <!-- Achievements -->
-                            <div class="space-y-3 mb-6">
-                                <div class="flex items-start text-gray-300 text-sm">
-                                    <span class="text-cyan-400 mr-2">+</span>
-                                    <span>Delivered platforms for Royal Bank, Cenovus & major enterprise clients</span>
-                                </div>
-                                <div class="flex items-start text-gray-300 text-sm">
-                                    <span class="text-cyan-400 mr-2">+</span>
-                                    <span>Created crowdfunding innovations that became foundation for next venture</span>
-                                </div>
+                            <h3 class="text-lg md:text-xl font-bold text-white mb-2">Built Custom Platforms for Enterprise Clients</h3>
+                            <div class="mb-3">
+                                <p class="text-white font-semibold text-sm">JOI Media</p>
+                                <p class="text-gray-300 text-xs">Co-Founder & CPO</p>
                             </div>
 
                             <!-- Tags -->
-                            <div class="flex flex-wrap gap-2 lg:justify-end">
-                                <span class="skill-pill-dark">Enterprise</span>
-                                <span class="skill-pill-dark">Custom Development</span>
-                                <span class="skill-pill-dark">Product Strategy</span>
+                            <div class="flex flex-wrap gap-1.5 lg:justify-end">
+                                <span class="skill-pill-dark-compact">Enterprise</span>
+                                <span class="skill-pill-dark-compact">Custom Development</span>
+                                <span class="skill-pill-dark-compact">Product Strategy</span>
                             </div>
                         </div>
                         <div class="hidden lg:block"></div> <!-- Empty right column on desktop -->
                     </div>
 
                     <!-- Item 3: ICOM (Right side on desktop) -->
-                    <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-start">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-6 items-start">
                         <div class="hidden lg:block"></div> <!-- Empty left column on desktop -->
-                        <div class="timeline-card">
+                        <div class="timeline-card-compact">
                             <!-- Date Badge -->
-                            <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
+                            <div class="inline-block bg-cyan-400 text-brand-dark-blue px-3 py-1.5 rounded-full text-xs font-bold mb-4">
                                 2003 - 2008
                             </div>
                             
                             <!-- Icon -->
-                            <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center mb-6">
-                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center mb-4">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                 </svg>
                             </div>
 
                             <!-- Content -->
-                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">UX Foundations in Enterprise Learning</h3>
-                            <div class="mb-4">
-                                <p class="text-white font-semibold">ICOM Productions</p>
-                                <p class="text-gray-300 text-sm">Lead Designer</p>
-                            </div>
-
-                            <!-- Achievements -->
-                            <div class="space-y-3 mb-6">
-                                <div class="flex items-start text-gray-300 text-sm">
-                                    <span class="text-cyan-400 mr-2">+</span>
-                                    <span>Designed interactive platforms for global enterprise adoption</span>
-                                </div>
+                            <h3 class="text-lg md:text-xl font-bold text-white mb-2">UX Foundations in Enterprise Learning</h3>
+                            <div class="mb-3">
+                                <p class="text-white font-semibold text-sm">ICOM Productions</p>
+                                <p class="text-gray-300 text-xs">Lead Designer</p>
                             </div>
 
                             <!-- Tags -->
-                            <div class="flex flex-wrap gap-2">
-                                <span class="skill-pill-dark">UX Design</span>
-                                <span class="skill-pill-dark">Enterprise Learning</span>
-                                <span class="skill-pill-dark">Interactive Design</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-pill-dark-compact">UX Design</span>
+                                <span class="skill-pill-dark-compact">Enterprise Learning</span>
+                                <span class="skill-pill-dark-compact">Interactive Design</span>
                             </div>
                         </div>
                     </div>
@@ -185,47 +149,45 @@
                 </div>
             </div>
 
-            <!-- Right Column: Decorative Globe Graphic -->
-            <div class="hidden lg:block relative">
+            <!-- Right Column: Globe Background Graphic (2/5 width) -->
+            <div class="hidden lg:block lg:col-span-2 relative">
                 <div class="sticky top-32">
-                    <!-- Globe Network Graphic -->
-                    <div class="relative w-full h-96">
-                        <!-- Background dots pattern -->
-                        <div class="absolute inset-0 opacity-20">
-                            <svg width="100%" height="100%" viewBox="0 0 400 400">
-                                <defs>
-                                    <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                        <circle cx="10" cy="10" r="1" fill="#22d3ee"/>
-                                    </pattern>
-                                </defs>
-                                <rect width="100%" height="100%" fill="url(#dots)"/>
-                            </svg>
-                        </div>
-                        
-                        <!-- Connection lines -->
-                        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
-                            <!-- Gradient definitions -->
+                    <!-- Globe Background Pattern -->
+                    <div class="relative w-full h-80 opacity-30">
+                        <!-- Globe wireframe -->
+                        <svg class="absolute inset-0 w-full h-full" viewBox="0 0 300 300">
                             <defs>
-                                <linearGradient id="line1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:1" />
-                                </linearGradient>
-                                <linearGradient id="line2" x1="0%" y1="100%" x2="100%" y2="0%">
-                                    <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
-                                    <stop offset="100%" style="stop-color:#22d3ee;stop-opacity:1" />
-                                </linearGradient>
+                                <radialGradient id="globeGradient" cx="50%" cy="30%" r="50%">
+                                    <stop offset="0%" style="stop-color:#22d3ee;stop-opacity:0.8" />
+                                    <stop offset="70%" style="stop-color:#0891b2;stop-opacity:0.4" />
+                                    <stop offset="100%" style="stop-color:#164e63;stop-opacity:0.1" />
+                                </radialGradient>
                             </defs>
                             
-                            <!-- Connection lines -->
-                            <path d="M50 50 Q200 150 350 100" stroke="url(#line1)" stroke-width="2" fill="none" opacity="0.7"/>
-                            <path d="M100 300 Q250 200 350 150" stroke="url(#line2)" stroke-width="2" fill="none" opacity="0.7"/>
-                            <path d="M350 200 L350 300" stroke="#22d3ee" stroke-width="2" fill="none" opacity="0.5"/>
+                            <!-- Globe base circle -->
+                            <circle cx="150" cy="150" r="120" fill="url(#globeGradient)" stroke="#22d3ee" stroke-width="1" opacity="0.3"/>
+                            
+                            <!-- Latitude lines -->
+                            <ellipse cx="150" cy="150" rx="120" ry="40" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.4"/>
+                            <ellipse cx="150" cy="150" rx="120" ry="80" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.4"/>
+                            <ellipse cx="150" cy="150" rx="120" ry="120" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.4"/>
+                            
+                            <!-- Longitude lines -->
+                            <ellipse cx="150" cy="150" rx="30" ry="120" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.4"/>
+                            <ellipse cx="150" cy="150" rx="60" ry="120" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.4"/>
+                            <ellipse cx="150" cy="150" rx="90" ry="120" fill="none" stroke="#22d3ee" stroke-width="0.5" opacity="0.4"/>
+                            
+                            <!-- Connection points -->
+                            <circle cx="90" cy="100" r="2" fill="#f97316" opacity="0.8"/>
+                            <circle cx="210" cy="80" r="2" fill="#22d3ee" opacity="0.8"/>
+                            <circle cx="180" cy="200" r="2" fill="#a855f7" opacity="0.8"/>
+                            <circle cx="120" cy="220" r="2" fill="#eab308" opacity="0.8"/>
+                            
+                            <!-- Subtle connecting lines -->
+                            <path d="M90 100 Q150 120 210 80" stroke="#f97316" stroke-width="1" fill="none" opacity="0.3"/>
+                            <path d="M210 80 Q195 140 180 200" stroke="#22d3ee" stroke-width="1" fill="none" opacity="0.3"/>
+                            <path d="M180 200 Q150 210 120 220" stroke="#a855f7" stroke-width="1" fill="none" opacity="0.3"/>
                         </svg>
-                        
-                        <!-- Connection nodes -->
-                        <div class="absolute top-12 right-12 w-4 h-4 bg-orange-400 rounded-full border-2 border-orange-300 shadow-lg"></div>
-                        <div class="absolute top-36 right-8 w-4 h-4 bg-cyan-400 rounded-full border-2 border-cyan-300 shadow-lg"></div>
-                        <div class="absolute bottom-20 right-12 w-4 h-4 bg-purple-400 rounded-full border-2 border-purple-300 shadow-lg"></div>
                     </div>
                 </div>
             </div>
