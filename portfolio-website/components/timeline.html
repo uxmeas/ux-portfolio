@@ -64,9 +64,9 @@
             </div>
 
             <!-- Timeline Content - Proper Alternating Layout -->
-            <div class="relative z-10 max-w-5xl mx-auto">
+            <div class="relative z-10 max-w-5xl mx-auto" style="margin-left: -30px;">
                 <!-- Header Section - Left Aligned -->
-                <div class="mb-12 md:mb-16 text-left">
+                <div class="mb-12 md:mb-16 text-left" style="margin-left: 30px;">
                     <p class="text-cyan-400 text-sm mb-2 font-medium">My Journey</p>
                     <h2 class="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white leading-tight">My Journey</h2>
                     <p class="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl">
@@ -77,25 +77,25 @@
                 <!-- Timeline Container -->
                 <div class="relative">
                     <!-- Vertical connecting line (desktop only) -->
-                    <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-cyan-400 opacity-40" style="top: 0; bottom: 0;"></div>
+                    <div class="hidden lg:block absolute w-0.5 bg-cyan-400 opacity-40" style="left: calc(50% - 15px); top: 0; bottom: 0;"></div>
                     
                     <!-- Timeline Items with proper spacing -->
                     <div class="space-y-16 lg:space-y-20">
                         
                         <!-- Item 1: Katipult (Right side on desktop) -->
-                        <div class="relative flex lg:justify-end">
-                            <!-- Timeline dot -->
-                            <div class="hidden lg:block absolute left-1/2 top-8 transform -translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full shadow-lg border-2 border-brand-dark-blue"></div>
+                        <div class="relative flex lg:justify-end" style="padding-right: 40px;">
+                            <!-- Timeline dot with glow -->
+                            <div class="hidden lg:block absolute w-4 h-4 bg-cyan-400 rounded-full border-2 border-brand-dark-blue timeline-dot-glow" style="left: calc(50% - 23px); top: 32px;"></div>
                             
-                            <div class="w-full lg:w-5/12 timeline-card-compact">
+                            <div class="w-full lg:w-5/12 timeline-card-compact" style="margin-left: 30px;">
                                 <!-- Date Badge -->
                                 <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
                                     2014 - 2025
                                 </div>
                                 
-                                <!-- Icon -->
-                                <div class="w-12 h-12 bg-brand-purple rounded-xl flex items-center justify-center mb-6 shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <!-- Icon - Outline Style -->
+                                <div class="w-12 h-12 bg-transparent border-2 border-white rounded-xl flex items-center justify-center mb-6">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                         <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
                                     </svg>
                                 </div>
@@ -158,19 +158,19 @@
                         </div>
 
                         <!-- Item 2: JOI Media (Left side on desktop) -->
-                        <div class="relative flex lg:justify-start">
-                            <!-- Timeline dot -->
-                            <div class="hidden lg:block absolute left-1/2 top-8 transform -translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full shadow-lg border-2 border-brand-dark-blue"></div>
+                        <div class="relative flex lg:justify-start" style="padding-left: 40px;">
+                            <!-- Timeline dot with glow -->
+                            <div class="hidden lg:block absolute w-4 h-4 bg-cyan-400 rounded-full border-2 border-brand-dark-blue timeline-dot-glow" style="left: calc(50% - 23px); top: 32px;"></div>
                             
-                            <div class="w-full lg:w-5/12 timeline-card-compact lg:text-right">
+                            <div class="w-full lg:w-5/12 timeline-card-compact lg:text-right" style="margin-right: 30px;">
                                 <!-- Date Badge -->
                                 <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
                                     2008 - 2014
                                 </div>
                                 
-                                <!-- Icon -->
-                                <div class="w-12 h-12 bg-brand-purple rounded-xl flex items-center justify-center mb-6 lg:ml-auto shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <!-- Icon - Outline Style -->
+                                <div class="w-12 h-12 bg-transparent border-2 border-white rounded-xl flex items-center justify-center mb-6 lg:ml-auto">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                         <path d="M19 7h-1V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1zM8 6h8v1H8V6zm8 15H8a1 1 0 0 1-1-1V9h10v11a1 1 0 0 1-1 1z"/>
                                         <path d="M12 11a2 2 0 1 0 2 2 2 2 0 0 0-2-2zm0 2z"/>
                                     </svg>
@@ -205,19 +205,19 @@
                         </div>
 
                         <!-- Item 3: ICOM (Right side on desktop) -->
-                        <div class="relative flex lg:justify-end">
-                            <!-- Timeline dot -->
-                            <div class="hidden lg:block absolute left-1/2 top-8 transform -translate-x-1/2 w-4 h-4 bg-cyan-400 rounded-full shadow-lg border-2 border-brand-dark-blue"></div>
+                        <div class="relative flex lg:justify-end" style="padding-right: 40px;">
+                            <!-- Timeline dot with glow -->
+                            <div class="hidden lg:block absolute w-4 h-4 bg-cyan-400 rounded-full border-2 border-brand-dark-blue timeline-dot-glow" style="left: calc(50% - 23px); top: 32px;"></div>
                             
-                            <div class="w-full lg:w-5/12 timeline-card-compact">
+                            <div class="w-full lg:w-5/12 timeline-card-compact" style="margin-left: 30px;">
                                 <!-- Date Badge -->
                                 <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
                                     2003 - 2008
                                 </div>
                                 
-                                <!-- Icon -->
-                                <div class="w-12 h-12 bg-brand-purple rounded-xl flex items-center justify-center mb-6 shadow-lg">
-                                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <!-- Icon - Outline Style -->
+                                <div class="w-12 h-12 bg-transparent border-2 border-white rounded-xl flex items-center justify-center mb-6">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
                                     </svg>
                                 </div>
