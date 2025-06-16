@@ -278,7 +278,7 @@ body.loaded {
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
     position: relative;
-    max-width: 450px; /* Optimal reading width */
+    max-width: 400px; /* Optimal reading width on desktop */
 }
 
 .timeline-card-compact:hover {
@@ -349,18 +349,35 @@ body.loaded {
 /* Desktop optimizations */
 @media (min-width: 1024px) {
     .timeline-card-compact {
-        max-width: 400px; /* Slightly smaller on desktop for better balance */
+        max-width: 400px; /* Optimal reading width on desktop */
     }
 }
 
-/* Mobile optimizations */
+/* Mobile optimizations - Full width with 16px padding */
 @media (max-width: 1023px) {
     .timeline-card-compact {
-        max-width: none; /* Full width on mobile */
-        margin-bottom: 1.5rem;
+        max-width: none !important; /* Override any width constraints */
+        width: 100% !important; /* Force full width */
+        margin-left: 0 !important; /* Reset desktop margins */
+        margin-right: 0 !important; /* Reset desktop margins */
+        padding: 1rem; /* 16px padding */
     }
     
     .timeline-dot-glow {
         display: none; /* Hide dots on mobile */
+    }
+    
+    /* Mobile container adjustments */
+    .relative.flex.lg\\:justify-end,
+    .relative.flex.lg\\:justify-start {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    
+    /* Mobile timeline container full width */
+    .relative.z-10.max-w-5xl {
+        margin-left: 0 !important;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
