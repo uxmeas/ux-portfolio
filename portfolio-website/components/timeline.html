@@ -1,54 +1,184 @@
-<section id="timeline" class="py-20 md:py-32 px-4 bg-brand-light-gray fade-in">
-    <div class="container mx-auto px-4 sm:px-12 max-w-7xl">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-brand-dark-blue">My Journey</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">A chronological overview of my professional experience and key milestones.</p>
-            <div class="w-24 h-1 bg-brand-purple mx-auto rounded-full mt-6"></div>
+<section id="timeline" class="py-20 md:py-32 px-2 md:px-4 bg-brand-dark-blue fade-in">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header Section -->
+        <div class="mb-12 md:mb-16">
+            <p class="text-cyan-400 text-sm mb-3 font-medium">My Journey</p>
+            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-white leading-tight">My Journey</h2>
+            <p class="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl">
+                A chronological overview of my professional experience<span class="md:hidden"> </span><span class="hidden md:inline"><br></span>and key milestones.
+            </p>
         </div>
-        <div class="timeline-container">
-            <!-- Item 1: Left -->
-            <div class="timeline-item timeline-left slide-in-left">
-                <div class="timeline-content">
-                    <div class="timeline-year">2014 - 2025</div>
-                    <h3 class="timeline-title">Katipult Technology Corp</h3>
-                    <p class="timeline-role">Co-Founder, CPO, Head of UX/UI, Board Member</p>
-                    <div class="timeline-achievement">
-                        <div class="timeline-achievement-title"><i class="fas fa-trophy mr-2 text-brand-purple/50"></i>EY Entrepreneur of the Year Finalist</div>
-                        <p class="text-gray-600 text-sm">Recognized for leadership and innovation in fintech.</p>
-                    </div>
-                    <div class="timeline-achievement">
-                        <div class="timeline-achievement-title"><i class="fas fa-chart-bar mr-2 text-brand-purple/50"></i>Public Company Success</div>
-                        <p class="text-gray-600 text-sm">Led transition from agency to <span class="timeline-metric">publicly listed SaaS company</span> (TSX: FUND).</p>
+
+        <!-- Timeline Container with Connecting Line -->
+        <div class="relative">
+            <!-- Vertical Line (Desktop Only) -->
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-cyan-400 opacity-30" style="top: 60px; bottom: 60px;"></div>
+            
+            <!-- Timeline Dots (Desktop Only) -->
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 80px;"></div>
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 600px;"></div>
+            <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="bottom: 80px;"></div>
+
+            <!-- Timeline Items -->
+            <div class="space-y-8 md:space-y-16">
+                
+                <!-- Item 1: Katipult (Right side on desktop, full width on mobile) -->
+                <div class="md:grid md:grid-cols-2 md:gap-8 items-start">
+                    <div class="hidden md:block"></div> <!-- Empty left column on desktop -->
+                    <div class="timeline-card">
+                        <!-- Date Badge -->
+                        <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
+                            2014 - 2025
+                        </div>
+                        
+                        <!-- Icon -->
+                        <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-content mb-6">
+                            <svg class="w-6 h-6 text-white mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                            </svg>
+                        </div>
+
+                        <!-- Content -->
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Co-Founded & Scaled Fintech Startup to IPO</h3>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold">Katipult (TSX: FUND)</p>
+                            <p class="text-gray-300 text-sm">Co-Founder, Head of UX, Board Member</p>
+                        </div>
+
+                        <!-- Metrics -->
+                        <div class="grid grid-cols-3 gap-3 mb-6">
+                            <div class="bg-cyan-400 text-brand-dark-blue p-3 rounded-lg text-center">
+                                <div class="font-bold text-lg">$4B+</div>
+                                <div class="text-xs">Capital Raised</div>
+                            </div>
+                            <div class="bg-cyan-400 text-brand-dark-blue p-3 rounded-lg text-center">
+                                <div class="font-bold text-lg">176K+</div>
+                                <div class="text-xs">Investors</div>
+                            </div>
+                            <div class="bg-cyan-400 text-brand-dark-blue p-3 rounded-lg text-center">
+                                <div class="font-bold text-lg">85+</div>
+                                <div class="text-xs">Global Partners</div>
+                            </div>
+                        </div>
+
+                        <!-- Achievements -->
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-start text-gray-300 text-sm">
+                                <span class="text-cyan-400 mr-2">+</span>
+                                <span>Built product from MVP to public company across 20+ countries</span>
+                            </div>
+                            <div class="flex items-start text-gray-300 text-sm">
+                                <span class="text-cyan-400 mr-2">+</span>
+                                <span>Led award-winning DealFlow platform UX (Banking Tech USA recognition)</span>
+                            </div>
+                            <div class="flex items-start text-gray-300 text-sm">
+                                <span class="text-cyan-400 mr-2">+</span>
+                                <span>Delivered redesign: +30% engagement, 20% churn reduction, 40% faster dev handoff</span>
+                            </div>
+                        </div>
+
+                        <!-- Award Badge -->
+                        <div class="bg-yellow-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold inline-flex items-center mb-4">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            EY Entrepreneur of the Year Finalist
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill-dark">Fintech</span>
+                            <span class="skill-pill-dark">UX Strategy</span>
+                            <span class="skill-pill-dark">Product Leadership</span>
+                            <span class="skill-pill-dark">IPO</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-             <!-- Item 2: Right -->
-             <div class="timeline-item timeline-right slide-in-right">
-                <div class="timeline-content">
-                    <div class="timeline-year">2008 - 2014</div>
-                    <h3 class="timeline-title">JOI Media Inc</h3>
-                    <p class="timeline-role">Founder, Chief Product Officer</p>
-                    <div class="timeline-achievement">
-                        <div class="timeline-achievement-title"><i class="fas fa-handshake mr-2 text-brand-purple/50"></i>Enterprise Client Success</div>
-                        <p class="text-gray-600 text-sm">Secured major clients including <span class="timeline-metric">Cenovus & Royal Bank</span>.</p>
+
+                <!-- Item 2: JOI Media (Left side on desktop) -->
+                <div class="md:grid md:grid-cols-2 md:gap-8 items-start">
+                    <div class="timeline-card md:text-right">
+                        <!-- Date Badge -->
+                        <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
+                            2008 - 2014
+                        </div>
+                        
+                        <!-- Icon -->
+                        <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center mb-6 md:ml-auto">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Content -->
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Built Custom Platforms for Enterprise Clients</h3>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold">JOI Media</p>
+                            <p class="text-gray-300 text-sm">Co-Founder & CPO</p>
+                        </div>
+
+                        <!-- Achievements -->
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-start text-gray-300 text-sm">
+                                <span class="text-cyan-400 mr-2">+</span>
+                                <span>Delivered platforms for Royal Bank, Cenovus & major enterprise clients</span>
+                            </div>
+                            <div class="flex items-start text-gray-300 text-sm">
+                                <span class="text-cyan-400 mr-2">+</span>
+                                <span>Created crowdfunding innovations that became foundation for next venture</span>
+                            </div>
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 md:justify-end">
+                            <span class="skill-pill-dark">Enterprise</span>
+                            <span class="skill-pill-dark">Custom Development</span>
+                            <span class="skill-pill-dark">Product Strategy</span>
+                        </div>
                     </div>
-                    <div class="timeline-achievement">
-                        <div class="timeline-achievement-title"><i class="fas fa-globe mr-2 text-brand-purple/50"></i>Social Impact</div>
-                        <p class="text-gray-600 text-sm">Co-founded initiative distributing <span class="timeline-metric">4,000+ essentials boxes annually</span>.</p>
+                    <div class="hidden md:block"></div> <!-- Empty right column on desktop -->
+                </div>
+
+                <!-- Item 3: ICOM (Right side on desktop) -->
+                <div class="md:grid md:grid-cols-2 md:gap-8 items-start">
+                    <div class="hidden md:block"></div> <!-- Empty left column on desktop -->
+                    <div class="timeline-card">
+                        <!-- Date Badge -->
+                        <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
+                            2003 - 2008
+                        </div>
+                        
+                        <!-- Icon -->
+                        <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Content -->
+                        <h3 class="text-xl md:text-2xl font-bold text-white mb-2">UX Foundations in Enterprise Learning</h3>
+                        <div class="mb-4">
+                            <p class="text-white font-semibold">ICOM Productions</p>
+                            <p class="text-gray-300 text-sm">Lead Designer</p>
+                        </div>
+
+                        <!-- Achievements -->
+                        <div class="space-y-3 mb-6">
+                            <div class="flex items-start text-gray-300 text-sm">
+                                <span class="text-cyan-400 mr-2">+</span>
+                                <span>Designed interactive platforms for global enterprise adoption</span>
+                            </div>
+                        </div>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-pill-dark">UX Design</span>
+                            <span class="skill-pill-dark">Enterprise Learning</span>
+                            <span class="skill-pill-dark">Interactive Design</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Item 3: Left -->
-            <div class="timeline-item timeline-left slide-in-left">
-                <div class="timeline-content">
-                    <div class="timeline-year">2003 - 2008</div>
-                    <h3 class="timeline-title">ICOM Productions</h3>
-                    <p class="timeline-role">Lead Interface Designer</p>
-                    <div class="timeline-achievement">
-                        <div class="timeline-achievement-title"><i class="fas fa-graduation-cap mr-2 text-brand-purple/50"></i>Foundation Building</div>
-                        <p class="text-gray-600 text-sm">Developed core UX expertise leading design for eLearning platforms.</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
