@@ -2,22 +2,31 @@
     <div class="max-w-7xl mx-auto">
         <!-- Main Container with globe background -->
         <div class="relative">
-            <!-- Large Right-Aligned Globe Background with Dots -->
+            <!-- Large Right-Aligned Globe Background with Gradient Dots -->
             <div class="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden">
-                <!-- Background dots pattern -->
-                <div class="absolute inset-0 opacity-15">
-                    <svg width="100%" height="100%" viewBox="0 0 800 800">
+                <!-- Background dots pattern with gradient -->
+                <div class="absolute inset-0">
+                    <svg width="100%" height="100%" viewBox="0 0 1200 800">
                         <defs>
                             <pattern id="dots" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse">
                                 <circle cx="12.5" cy="12.5" r="1.5" fill="#22d3ee"/>
                             </pattern>
+                            <!-- Gradient mask for dots - fades toward center -->
+                            <radialGradient id="dotGradient" cx="50%" cy="50%" r="60%">
+                                <stop offset="0%" style="stop-color:white;stop-opacity:0.05" />
+                                <stop offset="40%" style="stop-color:white;stop-opacity:0.15" />
+                                <stop offset="100%" style="stop-color:white;stop-opacity:0.25" />
+                            </radialGradient>
+                            <mask id="dotMask">
+                                <rect width="100%" height="100%" fill="url(#dotGradient)"/>
+                            </mask>
                         </defs>
-                        <rect width="100%" height="100%" fill="url(#dots)"/>
+                        <rect width="100%" height="100%" fill="url(#dots)" mask="url(#dotMask)"/>
                     </svg>
                 </div>
                 
                 <!-- Large Globe positioned to the right -->
-                <div class="absolute -top-20 -right-32 w-[600px] h-[600px] opacity-25">
+                <div class="absolute -top-20 -right-32 w-[600px] h-[600px] opacity-30">
                     <svg class="w-full h-full" viewBox="0 0 600 600">
                         <defs>
                             <radialGradient id="globeGradient" cx="40%" cy="30%" r="60%">
@@ -55,32 +64,32 @@
                 </div>
             </div>
 
-            <!-- Timeline Content -->
-            <div class="relative z-10 max-w-4xl mx-auto">
-                <!-- Header Section -->
-                <div class="mb-8 md:mb-12 text-center">
+            <!-- Timeline Content - 2 Column Layout -->
+            <div class="relative z-10 max-w-6xl mx-auto">
+                <!-- Header Section - Left Aligned -->
+                <div class="mb-8 md:mb-12 text-left">
                     <p class="text-cyan-400 text-sm mb-2 font-medium">My Journey</p>
                     <h2 class="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white leading-tight">My Journey</h2>
-                    <p class="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto">
+                    <p class="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl">
                         A chronological overview of my professional experience and key milestones.
                     </p>
                 </div>
 
                 <!-- Vertical connecting line (desktop only) -->
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-cyan-400 opacity-30" style="top: 160px; bottom: 60px;"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-cyan-400 opacity-40" style="top: 160px; bottom: 60px;"></div>
                 
                 <!-- Timeline dots -->
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 180px;"></div>
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 480px;"></div>
-                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full" style="top: 720px;"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full shadow-lg" style="top: 200px;"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full shadow-lg" style="top: 500px;"></div>
+                <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-cyan-400 rounded-full shadow-lg" style="top: 800px;"></div>
 
-                <!-- Timeline Items - Alternating Layout -->
-                <div class="space-y-6 lg:space-y-12">
+                <!-- Timeline Items - True 2-Column Alternating Layout -->
+                <div class="space-y-8 lg:space-y-16">
                     
                     <!-- Item 1: Katipult (Right side on desktop) -->
-                    <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-start">
-                        <div class="hidden lg:block"></div> <!-- Empty left column on desktop -->
-                        <div class="timeline-card-compact">
+                    <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-start">
+                        <div class="lg:col-span-5"></div> <!-- Empty left space -->
+                        <div class="lg:col-span-7 timeline-card-compact">
                             <!-- Date Badge -->
                             <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
                                 2014 - 2025
@@ -151,8 +160,8 @@
                     </div>
 
                     <!-- Item 2: JOI Media (Left side on desktop) -->
-                    <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-start">
-                        <div class="timeline-card-compact lg:text-right">
+                    <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-start">
+                        <div class="lg:col-span-7 timeline-card-compact lg:text-right">
                             <!-- Date Badge -->
                             <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
                                 2008 - 2014
@@ -174,12 +183,12 @@
 
                             <!-- Achievements -->
                             <div class="space-y-3 mb-6">
-                                <div class="flex items-start text-gray-300 text-sm">
-                                    <span class="text-cyan-400 mr-2">+</span>
+                                <div class="flex items-start text-gray-300 text-sm lg:flex-row-reverse lg:text-right">
+                                    <span class="text-cyan-400 ml-2 lg:ml-0 lg:mr-2">+</span>
                                     <span>Delivered platforms for Royal Bank, Cenovus & major enterprise clients</span>
                                 </div>
-                                <div class="flex items-start text-gray-300 text-sm">
-                                    <span class="text-cyan-400 mr-2">+</span>
+                                <div class="flex items-start text-gray-300 text-sm lg:flex-row-reverse lg:text-right">
+                                    <span class="text-cyan-400 ml-2 lg:ml-0 lg:mr-2">+</span>
                                     <span>Created crowdfunding innovations that became foundation for next venture</span>
                                 </div>
                             </div>
@@ -189,6 +198,54 @@
                                 <span class="skill-pill-dark">Enterprise</span>
                                 <span class="skill-pill-dark">Custom Development</span>
                                 <span class="skill-pill-dark">Product Strategy</span>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5"></div> <!-- Empty right space -->
+                    </div>
+
+                    <!-- Item 3: ICOM (Right side on desktop) -->
+                    <div class="lg:grid lg:grid-cols-12 lg:gap-8 items-start">
+                        <div class="lg:col-span-5"></div> <!-- Empty left space -->
+                        <div class="lg:col-span-7 timeline-card-compact">
+                            <!-- Date Badge -->
+                            <div class="inline-block bg-cyan-400 text-brand-dark-blue px-4 py-2 rounded-full text-sm font-bold mb-6">
+                                2003 - 2008
+                            </div>
+                            
+                            <!-- Icon -->
+                            <div class="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center mb-6">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                            </div>
+
+                            <!-- Content -->
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">UX Foundations in Enterprise Learning</h3>
+                            <div class="mb-4">
+                                <p class="text-white font-semibold">ICOM Productions</p>
+                                <p class="text-gray-300 text-sm">Lead Designer</p>
+                            </div>
+
+                            <!-- Achievements -->
+                            <div class="space-y-3 mb-6">
+                                <div class="flex items-start text-gray-300 text-sm">
+                                    <span class="text-cyan-400 mr-2">+</span>
+                                    <span>Designed interactive platforms for global enterprise adoption</span>
+                                </div>
+                            </div>
+
+                            <!-- Tags -->
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-pill-dark">UX Design</span>
+                                <span class="skill-pill-dark">Enterprise Learning</span>
+                                <span class="skill-pill-dark">Interactive Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>-dark">Product Strategy</span>
                             </div>
                         </div>
                         <div class="hidden lg:block"></div> <!-- Empty right column on desktop -->
