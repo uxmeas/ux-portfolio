@@ -427,3 +427,353 @@ body.loaded {
         max-width: 100% !important;
     }
 }
+
+/* Featured Work Section Styles */
+.featured-work {
+    padding: 80px 20px;
+    background: #fafafa;
+}
+
+.featured-work__container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.featured-work__header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.featured-work__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+.featured-work__subtitle {
+    font-size: 1.125rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.featured-work__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+.work-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.work-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+}
+
+.work-card__image {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.work-card__content {
+    padding: 32px 24px;
+}
+
+.work-card__category {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #e3f2fd;
+    color: #1976d2;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 16px;
+}
+
+.work-card__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.work-card__description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.work-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.work-card__tag {
+    padding: 4px 8px;
+    background: #f5f5f5;
+    color: #555;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.work-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #1976d2;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.work-card__cta:hover {
+    color: #1565c0;
+}
+
+.work-card__cta::after {
+    content: '→';
+    transition: transform 0.3s ease;
+}
+
+.work-card__cta:hover::after {
+    transform: translateX(4px);
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+    transform: scale(1);
+}
+
+.modal__header {
+    padding: 32px 32px 0;
+    position: relative;
+}
+
+.modal__close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.modal__close:hover {
+    background: #f5f5f5;
+}
+
+.modal__image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.modal__content {
+    padding: 0 32px 32px;
+}
+
+.modal__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+.modal__description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.modal__details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.modal__section {
+    padding: 24px;
+    background: #f9f9f9;
+    border-radius: 12px;
+}
+
+.modal__section-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 12px;
+}
+
+.modal__section-content {
+    color: #666;
+    line-height: 1.6;
+}
+
+.modal__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1976d2;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 24px;
+    transition: background-color 0.3s ease;
+}
+
+.modal__cta:hover {
+    background: #1565c0;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+    .featured-work {
+        padding: 120px 40px;
+    }
+    
+    .featured-work__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+    
+    .work-card__image {
+        height: 280px;
+    }
+    
+    .modal__details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .modal__content {
+        padding: 0 48px 48px;
+    }
+    
+    .modal__header {
+        padding: 48px 48px 0;
+    }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+    .featured-work {
+        padding: 140px 60px;
+    }
+    
+    .featured-work__title {
+        font-size: 3rem;
+    }
+    
+    .featured-work__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 48px;
+    }
+    
+    .work-card__image {
+        height: 320px;
+    }
+    
+    .work-card__content {
+        padding: 40px 32px;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1440px) {
+    .featured-work {
+        padding: 160px 80px;
+    }
+    
+    .featured-work__container {
+        max-width: 1400px;
+    }
+    
+    .work-card__image {
+        height: 360px;
+    }
+}
+
+/* Mobile Optimization */
+@media (max-width: 390px) {
+    .featured-work {
+        padding: 60px 16px;
+    }
+    
+    .featured-work__title {
+        font-size: 2rem;
+    }
+    
+    .work-card__content {
+        padding: 24px 20px;
+    }
+    
+    .modal__header {
+        padding: 24px 24px 0;
+    }
+    
+    .modal__content {
+        padding: 0 24px 24px;
+    }
+    
+    .modal__image {
+        height: 200px;
+    }
+}
