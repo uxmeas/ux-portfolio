@@ -73,14 +73,33 @@
             border-radius: 12px;
             overflow: hidden;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
             position: relative;
             will-change: transform, box-shadow;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            
+            /* Initial state for entrance animation */
+            opacity: 0;
+            transform: translateY(30px) translateZ(0);
+            animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) translateZ(0);
+            }
         }
 
         .project-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-12px) translateZ(0);
             box-shadow: 0 24px 56px rgba(0, 0, 0, 0.18);
         }
 
@@ -162,7 +181,7 @@
             cursor: pointer;
             opacity: 0;
             transform: translateY(8px);
-            transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             will-change: transform, opacity;
         }
 
@@ -177,12 +196,38 @@
         }
 
         .project-card__content {
-            padding: 32px 24px 24px;
-            position: relative;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 24px 24px 24px 24px;
+            height: 100px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .project-card:hover .project-card__content {
+            height: 160px;
+            background: linear-gradient(to top, 
+                rgba(255, 255, 255, 0.95) 0%, 
+                rgba(255, 255, 255, 0.9) 60%,
+                rgba(255, 255, 255, 0.7) 80%,
+                rgba(255, 255, 255, 0.3) 95%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            backdrop-filter: blur(10px);
+            padding: 24px 24px 24px 24px;
+            border-radius: 0;
         }
 
         .project-card__title {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 600;
             color: #1f2937;
             margin-bottom: 8px;
@@ -190,7 +235,7 @@
         }
 
         .project-card__description {
-            font-size: 16px;
+            font-size: 18px;
             color: #6b7280;
             line-height: 1.4;
             margin-bottom: 16px;
@@ -199,11 +244,11 @@
         /* Tags */
         .project-card__tags {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             flex-wrap: wrap;
             opacity: 0;
-            transform: translateY(8px);
-            transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1) 0.05s;
+            transform: translateY(12px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             will-change: transform, opacity;
         }
 
@@ -213,12 +258,14 @@
         }
 
         .project-card__tag {
-            background: #f3f4f6;
-            color: #6b7280;
-            padding: 6px 12px;
-            border-radius: 16px;
-            font-size: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            color: #4b5563;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: 500;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         /* Modal Styles */
@@ -436,6 +483,50 @@
                 scroll-snap-stop: always;
             }
             
+            /* Mobile cards show normal state until focused */
+            .project-card:not(.focused) .project-card__button {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            
+            .project-card:not(.focused) .project-card__tags {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            
+            .project-card:not(.focused) .project-card__content {
+                height: 80px;
+                padding: 16px 24px;
+                background: white;
+                border-radius: 0 0 12px 12px;
+            }
+            
+            /* Show active state when card is in focus */
+            .project-card.focused .project-card__button,
+            .project-card:hover .project-card__button {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .project-card.focused .project-card__tags,
+            .project-card:hover .project-card__tags {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .project-card.focused .project-card__content,
+            .project-card:hover .project-card__content {
+                height: 120px;
+                padding: 18px 24px;
+                background: linear-gradient(to top, 
+                    rgba(255, 255, 255, 0.95) 0%, 
+                    rgba(255, 255, 255, 0.8) 70%,
+                    rgba(255, 255, 255, 0.2) 90%,
+                    rgba(255, 255, 255, 0) 100%
+                );
+                border-radius: 0;
+            }
+            
             .featured-work__title {
                 font-size: 32px;
             }
@@ -446,7 +537,11 @@
             }
             
             .project-card__content {
-                padding: 24px 20px 20px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 24px 24px 24px 24px;
+                height: 100px;
+                border-radius: 0 0 12px 12px;
             }
             
             .project-card__title {
@@ -476,27 +571,35 @@
 
         /* Mobile Modal */
         @media (max-width: 768px) {
+            .modal-overlay {
+                align-items: flex-start;
+            }
+            
             .modal {
-                padding: 60px 20px 20px;
+                padding: 0;
+                max-width: 100%;
+                margin: 0;
             }
             
             .modal__header {
-                padding: 0 20px;
-                margin-bottom: 24px;
+                padding: 16px;
+                margin-bottom: 0;
+                background: rgba(0, 0, 0, 0.9);
             }
             
             .modal__title {
                 font-size: 24px;
             }
             
-            .modal__screen {
-                min-height: 400px;
-                border-radius: 16px !important;
-                margin-bottom: 2px;
+            .modal__screens {
+                width: 100%;
             }
             
-            .modal__screen:last-child {
+            .modal__screen {
+                min-height: 400px;
+                border-radius: 0 !important;
                 margin-bottom: 0;
+                width: 100%;
             }
             
             .modal__nav {
@@ -510,25 +613,15 @@
                 height: 40px;
                 font-size: 20px;
             }
-            
-            .modal__nav--prev {
-                left: 16px;
-                bottom: 16px;
-            }
-            
-            .modal__nav--next {
-                right: 16px;
-                bottom: 16px;
-            }
         }
 
         @media (max-width: 390px) {
             .modal {
-                padding: 50px 16px 16px;
+                padding: 0;
             }
             
             .modal__header {
-                padding: 0 16px;
+                padding: 16px;
             }
             
             .modal__title {
@@ -561,10 +654,10 @@
                     </div>
                     <div class="project-card__content">
                         <h3 class="project-card__title">TerraCore AI</h3>
-                        <p class="project-card__description">Mining Dashboards for Every</p>
+                        <p class="project-card__description">Mining Dashboards for Every Role</p>
                         <div class="project-card__tags">
-                            <span class="project-card__tag">Label</span>
-                            <span class="project-card__tag">Label</span>
+                            <span class="project-card__tag">UX/UI Design</span>
+                            <span class="project-card__tag">Data Viz</span>
                         </div>
                     </div>
                 </div>
@@ -577,10 +670,10 @@
                     </div>
                     <div class="project-card__content">
                         <h3 class="project-card__title">FinTrust Capital</h3>
-                        <p class="project-card__description">Financial Management</p>
+                        <p class="project-card__description">Financial Management Platform</p>
                         <div class="project-card__tags">
-                            <span class="project-card__tag">Label</span>
-                            <span class="project-card__tag">Label</span>
+                            <span class="project-card__tag">Fintech UX</span>
+                            <span class="project-card__tag">Product Design</span>
                         </div>
                     </div>
                 </div>
@@ -595,8 +688,8 @@
                         <h3 class="project-card__title">ReMindry</h3>
                         <p class="project-card__description">Intelligent Task Management</p>
                         <div class="project-card__tags">
-                            <span class="project-card__tag">Label</span>
-                            <span class="project-card__tag">Label</span>
+                            <span class="project-card__tag">Product Strategy</span>
+                            <span class="project-card__tag">UX Research</span>
                         </div>
                     </div>
                 </div>
@@ -611,8 +704,8 @@
                         <h3 class="project-card__title">Katipult</h3>
                         <p class="project-card__description">Fintech UX & Strategy</p>
                         <div class="project-card__tags">
-                            <span class="project-card__tag">Label</span>
-                            <span class="project-card__tag">Label</span>
+                            <span class="project-card__tag">UX Leadership</span>
+                            <span class="project-card__tag">Design Systems</span>
                         </div>
                     </div>
                 </div>
@@ -695,21 +788,16 @@
                 <div class="modal__screen project-card--terracore"></div>
             </div>
         </div>
-    </div>, 4.8-star app store rating, and 70% daily active user retention within first year of launch.
-                        </p>
-                    </div>
-                </div>
-                <a href="#" class="modal__cta">View Full Case Study →</a>
-            </div>
-        </div>
     </div>
 
     <!-- Katipult Modal -->
     <div class="modal-overlay" id="modal-katipult">
         <div class="modal">
             <button class="modal__close" onclick="closeModal('katipult')">&times;</button>
-            <div class="modal__image project-card--katipult"></div>
-            <div class="modal__content">
+            <button class="modal__nav modal__nav--prev" onclick="navigateProject('prev')">&larr;</button>
+            <button class="modal__nav modal__nav--next" onclick="navigateProject('next')">&rarr;</button>
+            
+            <div class="modal__header">
                 <h3 class="modal__title">Katipult: Fintech UX & Strategy</h3>
                 <div class="modal__tags">
                     <span class="modal__tag">E-commerce</span>
@@ -717,205 +805,48 @@
                     <span class="modal__tag">Conversion Optimization</span>
                     <span class="modal__tag">Mobile-First</span>
                 </div>
-                <p class="modal__description">
-                    Mobile-first fintech platform focused on seamless payment experiences, featuring innovative checkout flows, risk assessment tools, and conversion optimization strategies.
-                </p>
-                <div class="modal__details">
-                    <div class="modal__detail">
-                        <h4 class="modal__detail-title">Business Impact</h4>
-                        <p class="modal__detail-content">
-                            Reduced cart abandonment by 35%, increased mobile conversion rates by 28%, and improved approval rates through better UX design.
-                        </p>
-                    </div>
-                    <div class="modal__detail">
-                        <h4 class="modal__detail-title">Strategy</h4>
-                        <p class="modal__detail-content">
-                            Data-driven design approach combining user research, A/B testing, and behavioral analytics to optimize payment flows.
-                        </p>
-                    </div>
-                </div>
-                <a href="#" class="modal__cta">View Full Case Study →</a>
+            </div>
+            
+            <div class="modal__screens">
+                <div class="modal__screen project-card--katipult"></div>
+                <div class="modal__screen project-card--remindry"></div>
+                <div class="modal__screen project-card--fintrust"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // Touch gesture handling for mobile swipe
-        function initializeMobileSwipe() {
-            const grid = document.querySelector('.featured-work__grid');
-            if (!grid) return;
-
-            let isDown = false;
-            let startX;
-            let scrollLeft;
-
-            // Touch events
-            grid.addEventListener('touchstart', (e) => {
-                isDown = true;
-                startX = e.touches[0].pageX - grid.offsetLeft;
-                scrollLeft = grid.scrollLeft;
-                grid.style.scrollBehavior = 'auto';
-            });
-
-            grid.addEventListener('touchmove', (e) => {
-                if (!isDown) return;
-                e.preventDefault();
-                const x = e.touches[0].pageX - grid.offsetLeft;
-                const walk = (x - startX) * 2;
-                grid.scrollLeft = scrollLeft - walk;
-            });
-
-            grid.addEventListener('touchend', () => {
-                isDown = false;
-                grid.style.scrollBehavior = 'smooth';
-                
-                // Snap to nearest card
-                const cardWidth = grid.querySelector('.project-card').offsetWidth;
-                const gap = 16;
-                const totalCardWidth = cardWidth + gap;
-                const currentScroll = grid.scrollLeft;
-                const targetIndex = Math.round(currentScroll / totalCardWidth);
-                const targetScroll = targetIndex * totalCardWidth;
-                
-                grid.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Mouse events for desktop testing
-            grid.addEventListener('mousedown', (e) => {
-                if (window.innerWidth > 600) return;
-                isDown = true;
-                grid.classList.add('grabbing');
-                startX = e.pageX - grid.offsetLeft;
-                scrollLeft = grid.scrollLeft;
-                grid.style.scrollBehavior = 'auto';
-            });
-
-            grid.addEventListener('mouseleave', () => {
-                isDown = false;
-                grid.classList.remove('grabbing');
-            });
-
-            grid.addEventListener('mouseup', () => {
-                isDown = false;
-                grid.classList.remove('grabbing');
-                grid.style.scrollBehavior = 'smooth';
-            });
-
-            grid.addEventListener('mousemove', (e) => {
-                if (!isDown || window.innerWidth > 600) return;
-                e.preventDefault();
-                const x = e.pageX - grid.offsetLeft;
-                const walk = (x - startX) * 2;
-                grid.scrollLeft = scrollLeft - walk;
-            });
-        }
-
-        // Image loading handlers
-        function handleImageLoad(img) {
-            const container = img.closest('.project-card__image');
-            container.classList.remove('loading');
-            container.classList.add('loaded');
-            img.style.opacity = '1';
-        }
-
-        function handleImageError(img) {
-            const container = img.closest('.project-card__image');
-            container.classList.remove('loading');
-            // Keep placeholder visible on error
-            img.style.display = 'none';
-        }
-
-        function handleModalImageLoad(img) {
-            img.classList.remove('loading');
-        }
-
-        function handleModalImageError(img) {
-            img.classList.remove('loading');
-            img.style.background = '#f3f4f6';
-        }
-
-        // Preload images for better performance
-        function preloadImages() {
-            const imagesToPreload = [
-                'images/terracore_ai/terracore_ai_1_hero.png',
-                'images/terracore_ai/terracore_ai_2_challenge.png',
-                'images/terracore_ai/terracore_ai_3_user_personas.png',
-                'images/terracore_ai/terracore_ai_4_ux.png',
-                'images/terracore_ai/terracore_ai_5_ui.png'
-            ];
-
-            imagesToPreload.forEach(src => {
-                const img = new Image();
-                img.src = src;
-            });
-        }
-
-        // Modal functionality
-        function openModal(projectId) {
-            const modal = document.getElementById(`modal-${projectId}`);
-            if (modal) {
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-
-        function closeModal(projectId) {
-            const modal = document.getElementById(`modal-${projectId}`);
-            if (modal) {
-                modal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        }
-
-        function navigateProject(direction) {
-            // Project navigation logic would go here
-            console.log(`Navigate ${direction}`);
-        }
-
-        // Initialize everything when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            // Preload images
-            preloadImages();
+        // Enhanced mobile focus detection for card states
+        function initializeMobileFocus() {
+            if (window.innerWidth > 600) return;
             
-            // Initialize mobile swipe
-            initializeMobileSwipe();
-
-            // Close modal when clicking outside
-            document.querySelectorAll('.modal-overlay').forEach(overlay => {
-                overlay.addEventListener('click', (e) => {
-                    if (e.target === overlay) {
-                        overlay.classList.remove('active');
-                        document.body.style.overflow = 'auto';
+            const grid = document.querySelector('.featured-work__grid');
+            const cards = document.querySelectorAll('.project-card');
+            
+            function updateFocusedCard() {
+                const gridRect = grid.getBoundingClientRect();
+                const centerX = gridRect.left + gridRect.width / 2;
+                
+                let closestCard = null;
+                let closestDistance = Infinity;
+                
+                cards.forEach(card => {
+                    const cardRect = card.getBoundingClientRect();
+                    const cardCenterX = cardRect.left + cardRect.width / 2;
+                    const distance = Math.abs(centerX - cardCenterX);
+                    
+                    if (distance < closestDistance) {
+                        closestDistance = distance;
+                        closestCard = card;
                     }
                 });
-            });
-
-            // Close modal with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    document.querySelectorAll('.modal-overlay.active').forEach(modal => {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = 'auto';
-                    });
-                }
-            });
-
-            // Prevent button clicks from triggering card click
-            document.querySelectorAll('.project-card__button').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    // Get the parent card and trigger modal
-                    const card = button.closest('.project-card');
-                    if (card.classList.contains('project-card--terracore')) openModal('terracore');
-                    if (card.classList.contains('project-card--fintrust')) openModal('fintrust');
-                    if (card.classList.contains('project-card--remindry')) openModal('remindry');
-                    if (card.classList.contains('project-card--katipult')) openModal('katipult');
+                
+                // Update focused states
+                cards.forEach(card => {
+                    if (card === closestCard) {
+                        card.classList.add('focused');
+                    } else {
+                        card.classList.remove('focused');
+                    }
                 });
-            });
-        });
-    </script>
-</body>
-</html>
+            }
