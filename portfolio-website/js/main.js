@@ -298,3 +298,57 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error("A critical error occurred while loading page components.", error);
     });
 });
+
+// Featured Work Modal functionality
+function openModal(projectId) {
+    const modal = document.getElementById(`modal-${projectId}`);
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeModal(projectId) {
+    const modal = document.getElementById(`modal-${projectId}`);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// Initialize modal functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        }
+    });
+    
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
