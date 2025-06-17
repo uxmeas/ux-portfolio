@@ -1,43 +1,616 @@
-<section id="work" class="py-20 md:py-32 px-4 bg-brand-light-gray fade-in">
-    <div class="container mx-auto px-4 sm:px-12 max-w-7xl">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-brand-dark-blue">Featured Work</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">A selection of projects that showcase my expertise in fintech UX, design systems, and product strategy.</p>
-            <div class="w-24 h-1 bg-brand-purple mx-auto rounded-full mt-6"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Featured Work Component</title>
+    <style>
+        /* Featured Work Section Styles */
+        .featured-work {
+            padding: 80px 20px;
+            background: #fafafa;
+        }
+        
+        .featured-work__container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .featured-work__header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .featured-work__title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .featured-work__subtitle {
+            font-size: 1.125rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .featured-work__grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+        
+        .work-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+        }
+        
+        .work-card__image {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .work-card__content {
+            padding: 32px 24px;
+        }
+        
+        .work-card__category {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #e3f2fd;
+            color: #1976d2;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .work-card__title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .work-card__description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .work-card__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .work-card__tag {
+            padding: 4px 8px;
+            background: #f5f5f5;
+            color: #555;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+        
+        .work-card__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #1976d2;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .work-card__cta:hover {
+            color: #1565c0;
+        }
+        
+        .work-card__cta::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+        
+        .work-card__cta:hover::after {
+            transform: translateX(4px);
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: scale(1);
+        }
+        
+        .modal__header {
+            padding: 32px 32px 0;
+            position: relative;
+        }
+        
+        .modal__close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .modal__close:hover {
+            background: #f5f5f5;
+        }
+        
+        .modal__image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .modal__content {
+            padding: 0 32px 32px;
+        }
+        
+        .modal__title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+        
+        .modal__description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .modal__details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+        
+        .modal__section {
+            padding: 24px;
+            background: #f9f9f9;
+            border-radius: 12px;
+        }
+        
+        .modal__section-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .modal__section-content {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .modal__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1976d2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 24px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .modal__cta:hover {
+            background: #1565c0;
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .featured-work {
+                padding: 120px 40px;
+            }
+            
+            .featured-work__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .work-card__image {
+                height: 280px;
+            }
+            
+            .modal__details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .modal__content {
+                padding: 0 48px 48px;
+            }
+            
+            .modal__header {
+                padding: 48px 48px 0;
+            }
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .featured-work {
+                padding: 140px 60px;
+            }
+            
+            .featured-work__title {
+                font-size: 3rem;
+            }
+            
+            .featured-work__grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 48px;
+            }
+            
+            .work-card__image {
+                height: 320px;
+            }
+            
+            .work-card__content {
+                padding: 40px 32px;
+            }
+        }
+        
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+            .featured-work {
+                padding: 160px 80px;
+            }
+            
+            .featured-work__container {
+                max-width: 1400px;
+            }
+            
+            .work-card__image {
+                height: 360px;
+            }
+        }
+        
+        /* Mobile Optimization */
+        @media (max-width: 390px) {
+            .featured-work {
+                padding: 60px 16px;
+            }
+            
+            .featured-work__title {
+                font-size: 2rem;
+            }
+            
+            .work-card__content {
+                padding: 24px 20px;
+            }
+            
+            .modal__header {
+                padding: 24px 24px 0;
+            }
+            
+            .modal__content {
+                padding: 0 24px 24px;
+            }
+            
+            .modal__image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Featured Work Section -->
+    <section class="featured-work" id="featured-work">
+        <div class="featured-work__container">
+            <div class="featured-work__header">
+                <h2 class="featured-work__title">Featured Work</h2>
+                <p class="featured-work__subtitle">
+                    Explore my latest projects showcasing user-centered design solutions and innovative digital experiences.
+                </p>
+            </div>
+            
+            <div class="featured-work__grid">
+                <!-- Project 1: FinTrust Capital -->
+                <div class="work-card" onclick="openModal('fintrust')">
+                    <div class="work-card__image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="work-card__content">
+                        <span class="work-card__category">FinTech</span>
+                        <h3 class="work-card__title">FinTrust Capital</h3>
+                        <p class="work-card__description">
+                            Redesigned investment platform improving user engagement by 40% through intuitive dashboard design and streamlined onboarding.
+                        </p>
+                        <div class="work-card__tags">
+                            <span class="work-card__tag">UX Design</span>
+                            <span class="work-card__tag">UI Design</span>
+                            <span class="work-card__tag">Prototyping</span>
+                        </div>
+                        <a href="#" class="work-card__cta">View Case Study</a>
+                    </div>
+                </div>
+                
+                <!-- Project 2: Katipult -->
+                <div class="work-card" onclick="openModal('katipult')">
+                    <div class="work-card__image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="work-card__content">
+                        <span class="work-card__category">E-commerce</span>
+                        <h3 class="work-card__title">Katipult</h3>
+                        <p class="work-card__description">
+                            Mobile-first checkout experience reducing cart abandonment by 35% through simplified payment flows and trust indicators.
+                        </p>
+                        <div class="work-card__tags">
+                            <span class="work-card__tag">Mobile Design</span>
+                            <span class="work-card__tag">Conversion</span>
+                            <span class="work-card__tag">Research</span>
+                        </div>
+                        <a href="#" class="work-card__cta">View Case Study</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3: Remindry -->
+                <div class="work-card" onclick="openModal('remindry')">
+                    <div class="work-card__image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="work-card__content">
+                        <span class="work-card__category">Productivity</span>
+                        <h3 class="work-card__title">Remindry</h3>
+                        <p class="work-card__description">
+                            Smart reminder app with AI-powered scheduling that helps users stay organized and productive throughout their day.
+                        </p>
+                        <div class="work-card__tags">
+                            <span class="work-card__tag">Mobile App</span>
+                            <span class="work-card__tag">AI/ML</span>
+                            <span class="work-card__tag">User Research</span>
+                        </div>
+                        <a href="#" class="work-card__cta">View Case Study</a>
+                    </div>
+                </div>
+                
+                <!-- Project 4: Terracore AI -->
+                <div class="work-card" onclick="openModal('terracore')">
+                    <div class="work-card__image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                    <div class="work-card__content">
+                        <span class="work-card__category">AI/ML</span>
+                        <h3 class="work-card__title">Terracore AI</h3>
+                        <p class="work-card__description">
+                            Enterprise AI platform dashboard design focusing on data visualization and complex workflow management for technical users.
+                        </p>
+                        <div class="work-card__tags">
+                            <span class="work-card__tag">Enterprise</span>
+                            <span class="work-card__tag">Data Viz</span>
+                            <span class="work-card__tag">Complex UI</span>
+                        </div>
+                        <a href="#" class="work-card__cta">View Case Study</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="work-carousel-container md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <div class="project-card bg-white rounded-2xl shadow-md hover:shadow-xl cursor-pointer group" data-project-id="terracore-ai">
-                <div class="relative h-64 overflow-hidden rounded-t-2xl"><img src="images/terracore_ai/screen_one.jpg" alt="TerraCore AI" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1b4a66/ffffff?text=TerraCore+AI';"></div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-brand-dark-blue mb-2">TerraCore AI</h3>
-                    <p class="text-gray-600 mb-4">Mining Dashboards for Every Role</p>
-                    <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">UX/UI Design</span><span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Data Viz</span></div>
-                </div>
+    </section>
+    
+    <!-- Modal Overlays -->
+    <div class="modal-overlay" id="modal-fintrust">
+        <div class="modal">
+            <div class="modal__header">
+                <button class="modal__close" onclick="closeModal('fintrust')">&times;</button>
+                <div class="modal__image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
             </div>
-            <div class="project-card bg-white rounded-2xl shadow-md hover:shadow-xl cursor-pointer group" data-project-id="fintrust-capital">
-                <div class="relative h-64 overflow-hidden rounded-t-2xl"><img src="images/fintrust_capital/screen_one.jpg" alt="FinTrust Capital" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/5c5286/ffffff?text=FinTrust';"></div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-brand-dark-blue mb-2">FinTrust Capital</h3>
-                    <p class="text-gray-600 mb-4">Financial Management Platform</p>
-                    <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Fintech UX</span><span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Product Design</span></div>
+            <div class="modal__content">
+                <h3 class="modal__title">FinTrust Capital</h3>
+                <p class="modal__description">
+                    A comprehensive redesign of an investment platform that serves over 50,000 active users. The project focused on improving user engagement, simplifying complex financial data, and creating a more intuitive investment experience.
+                </p>
+                <div class="modal__details">
+                    <div class="modal__section">
+                        <h4 class="modal__section-title">Challenge</h4>
+                        <p class="modal__section-content">
+                            The existing platform had a 60% bounce rate and users struggled with complex navigation and overwhelming data presentation.
+                        </p>
+                    </div>
+                    <div class="modal__section">
+                        <h4 class="modal__section-title">Solution</h4>
+                        <p class="modal__section-content">
+                            Streamlined dashboard design with progressive disclosure, personalized insights, and simplified onboarding flow.
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="project-card bg-white rounded-2xl shadow-md hover:shadow-xl cursor-pointer group" data-project-id="remindry">
-                <div class="relative h-64 overflow-hidden rounded-t-2xl"><img src="images/remindry/screen_one.jpg" alt="ReMindry" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/4ade80/ffffff?text=ReMindry';"></div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-brand-dark-blue mb-2">ReMindry</h3>
-                    <p class="text-gray-600 mb-4">Intelligent Task Management</p>
-                    <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Product Strategy</span><span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">UX Research</span></div>
-                </div>
-            </div>
-            <div class="project-card bg-white rounded-2xl shadow-md hover:shadow-xl cursor-pointer group" data-project-id="katipult">
-                <div class="relative h-64 overflow-hidden rounded-t-2xl"><img src="images/katipult/screen_one.jpg" alt="Katipult" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/f97316/ffffff?text=Katipult';"></div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-brand-dark-blue mb-2">Katipult</h3>
-                    <p class="text-gray-600 mb-4">Fintech UX & Strategy</p>
-                    <div class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">UX Leadership</span><span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">Design Systems</span></div>
-                </div>
+                <a href="#" class="modal__cta">View Full Case Study →</a>
             </div>
         </div>
     </div>
-</section>
+    
+    <div class="modal-overlay" id="modal-katipult">
+        <div class="modal">
+            <div class="modal__header">
+                <button class="modal__close" onclick="closeModal('katipult')">&times;</button>
+                <div class="modal__image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+            </div>
+            <div class="modal__content">
+                <h3 class="modal__title">Katipult</h3>
+                <p class="modal__description">
+                    Mobile-first e-commerce checkout experience designed to reduce friction and increase conversion rates through simplified payment flows and enhanced trust signals.
+                </p>
+                <div class="modal__details">
+                    <div class="modal__section">
+                        <h4 class="modal__section-title">Impact</h4>
+                        <p class="modal__section-content">
+                            Reduced cart abandonment by 35% and increased mobile conversion rates by 28% within 3 months of launch.
+                        </p>
+                    </div>
+                    <div class="modal__section">
+                        <h4 class="modal__section-title">Key Features</h4>
+                        <p class="modal__section-content">
+                            One-click checkout, biometric authentication, and real-time shipping updates with clear cost breakdown.
+                        </p>
+                    </div>
+                </div>
+                <a href="#" class="modal__cta">View Full Case Study →</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="modal-remindry">
+        <div class="modal">
+            <div class="modal__header">
+                <button class="modal__close" onclick="closeModal('remindry')">&times;</button>
+                <div class="modal__image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+            </div>
+            <div class="modal__content">
+                <h3 class="modal__title">Remindry</h3>
+                <p class="modal__description">
+                    AI-powered reminder and productivity app that learns from user behavior to provide intelligent scheduling suggestions and context-aware notifications.
+                </p>
+                <div class="modal__details">
+                    <div class="modal__section">
+                        <h4 class="modal__section-title">Innovation</h4>
+                        <p class="modal__section-content">
+                            Machine learning algorithms analyze user patterns to suggest optimal reminder times and task prioritization.
+                        </p>
+                    </div>
+                    <div class="modal__section">
+                        <h4 class="modal__section-title">User Feedback</h4>
+                        <p class="modal__section-content">
+                            95% user satisfaction rate with 4.8 stars on app stores and 70% daily active user retention.
+                        </p>
+                    </div>
+                </div>
+                <a href="#" class="modal__cta">View Full Case Study →</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="modal-terracore">
+        <div class="modal">
+            <div class="modal__header">
+                <button class="modal__close" onclick="closeModal('terracore')">&times;</button>
+                <div class="modal__image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+            </div>
+            <div class="modal__content">
+                <h3 class="modal__title">Terracore AI</h3>
+                <p class="modal__description">
+                    Enterprise-grade AI platform interface designed for data scientists and ML engineers, featuring complex data visualization and workflow management capabilities.
+                </p>
+                <div class="modal__details">
+                    <div class="modal__section">
+                        <h4 class="modal__section-title">Complexity</h4>
+                        <p class="modal__section-content">
+                            Managed 12 different data types, 50+ visualization options, and complex permission systems across multiple user roles.
+                        </p>
+                    </div>
+                    <div class="modal__section">
+                        <h4 class="modal__section-title">Results</h4>
+                        <p class="modal__section-content">
+                            Reduced task completion time by 45% and improved user satisfaction scores from 3.2 to 4.6 out of 5.
+                        </p>
+                    </div>
+                </div>
+                <a href="#" class="modal__cta">View Full Case Study →</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Modal functionality
+        function openModal(projectId) {
+            const modal = document.getElementById(`modal-${projectId}`);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(projectId) {
+            const modal = document.getElementById(`modal-${projectId}`);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+        
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
