@@ -1,76 +1,294 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UX Meas | UX/UI Design Portfolio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome CDN for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Link to your custom stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crafting digital experiences that matter</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@900&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #2563eb;
+      --headline-color: #181c2a;
+      --body-color: #4b5563;
+      --badge-bg: #f6f9fb;
+      --badge-border: #abb5c5;
+      --badge-dot: #10b981;
+      --social-color: #4b5563;
+      --social-icon: #181c2a;
+      --bg-left: #f7fafd;
+      --bg-right: #fff;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(120deg, var(--bg-left) 0% 60%, var(--bg-right) 60% 100%);
+      min-height: 100vh;
+      font-family: 'Inter', Arial, sans-serif;
+      color: var(--body-color);
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main.splash {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      box-sizing: border-box;
+      width: 100%;
+      gap: 48px;
+    }
+    .splash-left {
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      z-index: 1;
+      max-width: 540px;
+      gap: 32px;
+    }
+    .badge {
+      display: flex;
+      align-items: center;
+      background: var(--badge-bg);
+      border: 1.5px solid var(--badge-border);
+      border-radius: 999px;
+      padding: 10px 24px 10px 16px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--body-color);
+      box-shadow: 0 1px 4px 0 rgba(24,28,42,0.03);
+      margin-bottom: 0;
+      gap: 10px;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .badge-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--badge-dot);
+      border-radius: 50%;
+      margin-right: 6px;
+      display: inline-block;
+      animation: pulse 1.2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+      70% { box-shadow: 0 0 0 8px rgba(16,185,129,0); }
+      100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    }
+    .headline {
+      font-family: 'Fraunces', serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--headline-color);
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: -1.5px;
+      text-align: left;
+    }
+    .subheadline {
+      font-size: 18px;
+      color: var(--body-color);
+      line-height: 1.6;
+      max-width: 440px;
+      text-align: left;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .cta-button {
+      background: var(--primary-blue);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 16px 48px;
+      border-radius: 10px;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 0;
+      box-shadow: 0 2px 8px 0 rgba(37,99,235,0.08);
+      transition: background 0.15s;
+      cursor: pointer;
+      text-align: center;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .cta-button:hover {
+      background: #174bbd;
+    }
+    .social {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 0;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--social-color);
+      font-size: 17px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.15s;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .social-link:hover {
+      color: var(--primary-blue);
+    }
+    .social-link svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--social-icon);
+      margin-right: 2px;
+      flex-shrink: 0;
+    }
+    .splash-right {
+      flex: 1 1 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      min-width: 0;
+    }
+    .splash-image {
+      width: 100%;
+      max-width: 520px;
+      height: auto;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+    }
+    @media (max-width: 1024px) {
+      main.splash {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 64px 24px;
+        gap: 32px;
+        max-width: 900px;
+      }
+      .splash-left {
+        max-width: 100%;
+        align-items: flex-start;
+        text-align: left;
+        gap: 24px;
+      }
+      .headline {
+        font-size: 52px;
+        letter-spacing: -1px;
+      }
+      .subheadline {
+        font-size: 16px;
+        max-width: 100%;
+      }
+      .splash-right {
+        justify-content: center;
+      }
+      .splash-image {
+        max-width: 340px;
+      }
+      .badge {
+        font-size: 15px;
+        padding: 10px 20px 10px 14px;
+      }
+      .badge-dot {
+        width: 11px;
+        height: 11px;
+        margin-right: 5px;
+      }
+      .cta-button {
+        font-size: 16px;
+        padding: 14px 32px;
+        border-radius: 8px;
+      }
+      .social {
+        gap: 12px;
+      }
+    }
+    @media (max-width: 600px) {
+      main.splash {
+        flex-direction: column;
+        padding: 32px 8px 0 8px;
+        gap: 0;
+        max-width: 100vw;
+      }
+      .splash-left {
+        align-items: flex-start;
+        text-align: left;
+        padding: 0 4px;
+        margin-bottom: 0;
+        max-width: 100%;
+        gap: 24px;
+      }
+      .headline {
+        font-size: 32px;
+        letter-spacing: -0.5px;
+      }
+      .subheadline {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      .cta-button {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 15px;
+        border-radius: 8px;
+      }
+      .splash-image {
+        max-width: 95vw;
+        margin-top: 32px;
+      }
+      .social {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      .badge {
+        font-size: 14px;
+        padding: 8px 12px 8px 10px;
+      }
+      .badge-dot {
+        width: 10px;
+        height: 10px;
+        margin-right: 4px;
+      }
+    }
+  </style>
 </head>
-<body class="bg-brand-light-gray text-gray-800">
-    <!-- Preloader for initial page load -->
-    <div id="preloader">
-        <div class="spinner"></div>
-    </div>
-
-    <!-- Navigation will be loaded here -->
-    <header id="navigation-placeholder"></header>
-
-    <!-- Main content sections will be loaded here -->
-    <main>
-        <div id="hero-placeholder"></div>
-        <div id="about-placeholder"></div>
-        <div id="work-placeholder"></div>
-        <div id="skills-placeholder"></div>
-        <div id="timeline-placeholder"></div>
-        <div id="recommendations-placeholder"></div>
-        <div id="contact-placeholder"></div>
-    </main>
-
-    <!-- Footer will be loaded here -->
-    <footer id="footer-placeholder"></footer>
-    
-    <!-- Modals and other global elements remain here -->
-    <div id="modal-placeholder">
-        <div id="projectModal" class="modal-overlay">
-            <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalProjectTitle">
-                <button class="close-button" id="closeModal" aria-label="Close project details modal">&times;</button>
-                <h2 id="modalProjectTitle" class="text-3xl lg:text-4xl font-bold text-brand-dark-blue mb-2"></h2>
-                <p id="modalProjectClient" class="text-gray-600 text-base lg:text-lg mb-1"></p>
-                <div id="modalProjectTags" class="flex flex-wrap gap-2 mb-4"></div>
-                <div class="modal-main-grid">
-                    <div class="flex flex-col h-full">
-                        <div class="carousel-container bg-gray-100">
-                            <div id="modalImageSpinner" class="modal-image-spinner"></div>
-                            <img id="modalProjectImage" src="" alt="Project Image" class="carousel-image">
-                            <button id="prevImage" class="carousel-button carousel-button-left" aria-label="Previous Image">
-                                <i class="fas fa-chevron-left"></i>
-                            </button>
-                            <button id="nextImage" class="carousel-button carousel-button-right" aria-label="Next Image">
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
-                            <div id="modalScreenIndicator" class="screen-indicator" aria-live="polite"></div>
-                            <div id="modalScreenTitle" class="screen-title-overlay"></div>
-                        </div>
-                        <div id="modalThumbnailNav" class="thumbnail-nav-dots mt-2"></div>
-                    </div>
-                    <div class="flex flex-col">
-                        <div id="modalProjectDescription" class="prose max-w-none text-gray-700"></div>
-                        <a id="modalBehanceLink" href="#" target="_blank" class="inline-block mt-4 px-6 py-3 bg-brand-purple text-white rounded-md text-lg font-semibold hover:bg-brand-purple/90 transition duration-300 shadow-lg cta-button self-start">View Full Case Study &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="formMessageBox" class="message-box" role="alert" aria-live="assertive"></div>
-    </div>
-
-    <!-- Link to your custom JavaScript file -->
-    <script src="js/main.js" defer></script>
+<body>
+  <main class="splash" aria-label="Splash page">
+    <section class="splash-left">
+      <div class="badge"><span class="badge-dot" aria-hidden="true"></span>Available for new projects</div>
+      <h1 class="headline">Crafting digital<br>experiences<br>that matter</h1>
+      <div class="subheadline">UX Designer focused on creating intuitive, user-centered digital products that solve real problems and delight users.</div>
+      <a href="mailto:pheak@uxmeas.com?subject=Let's%20work%20together" class="cta-button" aria-label="Contact Me">Contact Me</a>
+      <nav class="social" aria-label="Social links">
+        <a href="https://www.linkedin.com/in/uxmeas" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="images/vector-15.svg" alt="LinkedIn icon" class="social-icon" width="24" height="24" />
+          LinkedIn
+        </a>
+        <a href="https://www.behance.net/uxmeas" class="social-link" target="_blank" rel="noopener" aria-label="Behance">
+          <img src="images/behance-19.svg" alt="Behance icon" class="social-icon" width="24" height="24" />
+          Behance
+        </a>
+        <a href="https://www.dribbble.com/uxmeas" class="social-link" target="_blank" rel="noopener" aria-label="Dribbble">
+          <img src="images/vector-23.svg" alt="Dribbble icon" class="social-icon" width="24" height="24" />
+          Dribbble
+        </a>
+      </nav>
+    </section>
+    <section class="splash-right">
+      <img src="images/node-25.png" alt="Splash Illustration" class="splash-image" draggable="false" />
+    </section>
+  </main>
 </body>
 </html>
