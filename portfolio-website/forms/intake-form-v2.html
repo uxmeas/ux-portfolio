@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Project - UXMeas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --success: #10b981;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --border: #e5e7eb;
+            --bg-light: #f9fafb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text-primary);
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 4px;
+            background: var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 25%;
+            transition: width 0.3s ease;
+        }
+
+        /* Header */
+        .header {
+            padding: 40px 30px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .back-button:hover {
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Form Steps */
+        .form-step {
+            padding: 30px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .label-optional {
+            font-weight: 400;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Radio/Checkbox Groups */
+        .option-group {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option-card {
+            position: relative;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            background: rgba(59, 130, 246, 0.02);
+        }
+
+        .option-card input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .option-card input:checked + .option-content {
+            font-weight: 500;
+        }
+
+        .option-card input:checked ~ .option-check {
+            opacity: 1;
+        }
+
+        .option-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-check {
+            color: var(--primary);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .option-card input:checked ~ .option-card {
+            border-color: var(--primary);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        /* Budget Slider */
+        .budget-slider {
+            margin: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+        }
+
+        .budget-display {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 16px;
+        }
+
+        /* Navigation */
+        .form-navigation {
+            padding: 20px 30px 30px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Success State */
+        .success-state {
+            padding: 60px 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+        }
+
+        /* Mobile */
+        @media (max-width: 640px) {
+            .header {
+                padding: 30px 20px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .form-step {
+                padding: 20px;
+            }
+            
+            .form-navigation {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <a href="/" class="back-button">
+                ← Back to Portfolio
+            </a>
+            <h1>Let's Build Something Amazing</h1>
+            <p class="subtitle">Tell me about your project in just a few steps</p>
+        </div>
+
+        <!-- Form -->
+        <form id="intakeForm" name="project-intake" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="project-intake">
+            <p style="display:none;">
+                <label>Don't fill this out: <input name="bot-field"></label>
+            </p>
+
+            <!-- Step 1: Contact Info -->
+            <div class="form-step active" data-step="1">
+                <div class="form-group">
+                    <label for="name">What's your name? *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="company">Company <span class="label-optional">(optional)</span></label>
+                    <input type="text" id="company" name="company">
+                </div>
+            </div>
+
+            <!-- Step 2: Project Type -->
+            <div class="form-step" data-step="2">
+                <div class="form-group">
+                    <label>What type of project is this? *</label>
+                    <div class="option-group">
+                        <label class="option-card">
+                            <input type="radio" name="project_type" value="new-website" required>
+                            <div class="option-content">
+                                <span>🚀 New Website</span>
+                                <span class="option-check">✓</span>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="project_type" value="redesign" required>
+                            <div class="option-content">
+                                <span>✨ Website Redesign</span>
+                                <span class="option-check">✓</span>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="project_type" value="ux-design" required>
+                            <div class="option-content">
+                                <span>🎨 UX/UI Design</span>
+                                <span class="option-check">✓</span>
+                            </div>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="project_type" value="consultation" required>
+                            <div class="option-content">
+                                <span>💡 Consultation</span>
+                                <span class="option-check">✓</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Tell me more about your project *</label>
+                    <textarea id="description" name="description" required 
+                              placeholder="What are you looking to achieve? What's your business about?"></textarea>
+                </div>
+            </div>
+
+            <!-- Step 3: Budget & Timeline -->
+            <div class="form-step" data-step="3">
+                <div class="form-group">
+                    <label>What's your budget range? *</label>
+                    <div class="budget-slider">
+                        <input type="range" class="slider" id="budget" name="budget_range" 
+                               min="1" max="5" value="3" required>
+                        <div class="budget-display" id="budgetDisplay">$5k - $10k</div>
+                    </div>
+                    <input type="hidden" name="budget" id="budgetValue" value="$5k - $10k">
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">When do you need this completed? *</label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="">Select timeline</option>
+                        <option value="asap">ASAP (Rush job)</option>
+                        <option value="1-month">Within 1 month</option>
+                        <option value="2-months">Within 2 months</option>
+                        <option value="3-months">Within 3 months</option>
+                        <option value="flexible">I'm flexible</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Step 4: Additional Info -->
+            <div class="form-step" data-step="4">
+                <div class="form-group">
+                    <label for="referral">How did you hear about me?</label>
+                    <input type="text" id="referral" name="referral" 
+                           placeholder="LinkedIn, Google, referral, etc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Anything else you'd like to share?</label>
+                    <textarea id="message" name="message" 
+                              placeholder="Special requirements, questions, or just say hi!"></textarea>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="form-navigation">
+                <button type="button" class="btn btn-secondary" id="prevBtn" style="display:none;">
+                    Previous
+                </button>
+                <button type="button" class="btn btn-primary" id="nextBtn">
+                    Next
+                </button>
+            </div>
+        </form>
+
+        <!-- Success State -->
+        <div class="success-state" id="successState">
+            <div class="success-icon">✓</div>
+            <h2>Thank You!</h2>
+            <p class="subtitle">Your project request has been received. I'll get back to you within 24 hours.</p>
+            <a href="/" class="btn btn-primary" style="margin-top: 24px; display: inline-block; text-decoration: none;">
+                Back to Portfolio
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 4;
+        
+        const form = document.getElementById('intakeForm');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('progressBar');
+        const budgetSlider = document.getElementById('budget');
+        const budgetDisplay = document.getElementById('budgetDisplay');
+        const budgetValue = document.getElementById('budgetValue');
+
+        // Budget ranges
+        const budgetRanges = [
+            'Under $2.5k',
+            '$2.5k - $5k',
+            '$5k - $10k',
+            '$10k - $25k',
+            '$25k+'
+        ];
+
+        // Update budget display
+        budgetSlider.addEventListener('input', (e) => {
+            const value = e.target.value - 1;
+            budgetDisplay.textContent = budgetRanges[value];
+            budgetValue.value = budgetRanges[value];
+        });
+
+        // Navigation
+        function showStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+            
+            // Show current step
+            document.querySelector(`[data-step="${step}"]`).classList.add('active');
+            
+            // Update progress
+            progressBar.style.width = `${(step / totalSteps) * 100}%`;
+            
+            // Update buttons
+            prevBtn.style.display = step === 1 ? 'none' : 'block';
+            nextBtn.textContent = step === totalSteps ? 'Submit' : 'Next';
+            
+            // Focus first input
+            const firstInput = document.querySelector(`[data-step="${step}"] input, [data-step="${step}"] textarea`);
+            if (firstInput) firstInput.focus();
+        }
+
+        // Validate current step
+        function validateStep(step) {
+            const currentStepEl = document.querySelector(`[data-step="${step}"]`);
+            const requiredFields = currentStepEl.querySelectorAll('[required]');
+            
+            for (let field of requiredFields) {
+                if (!field.value) {
+                    field.focus();
+                    field.style.borderColor = '#ef4444';
+                    setTimeout(() => {
+                        field.style.borderColor = '';
+                    }, 3000);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // Next button
+        nextBtn.addEventListener('click', () => {
+            if (!validateStep(currentStep)) return;
+            
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                // Submit form
+                form.submit();
+            }
+        });
+
+        // Previous button
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+
+        // Handle form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!validateStep(currentStep)) return;
+            
+            // Disable submit button
+            nextBtn.disabled = true;
+            nextBtn.textContent = 'Sending...';
+            
+            try {
+                const formData = new FormData(form);
+                await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+                
+                // Show success
+                form.style.display = 'none';
+                document.getElementById('successState').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error:', error);
+                nextBtn.disabled = false;
+                nextBtn.textContent = 'Submit';
+                alert('Something went wrong. Please try again or email me directly.');
+            }
+        });
+
+        // Initialize
+        showStep(1);
+    </script>
+</body>
+</html>
