@@ -390,54 +390,12 @@
     </section>
   </main>
 
-  <!-- Simple CMS Editor -->
-  <script>
-    // Simple CMS functionality
-    if (window.location.search.includes('cms-login=true')) {
-      console.log('CMS mode activated');
-      
-      // Add edit functionality to CMS fields
-      document.addEventListener('DOMContentLoaded', function() {
-        const cmsFields = document.querySelectorAll('[data-cms-field]');
-        
-        cmsFields.forEach(field => {
-          field.style.cursor = 'pointer';
-          field.style.outline = '2px dashed rgba(37, 99, 235, 0.3)';
-          field.style.outlineOffset = '4px';
-          
-          field.addEventListener('click', function(e) {
-            e.preventDefault();
-            const fieldName = this.getAttribute('data-cms-field');
-            const currentText = this.textContent || this.innerHTML;
-            
-            const newText = prompt(`Edit ${fieldName}:`, currentText);
-            if (newText !== null && newText !== currentText) {
-              this.textContent = newText;
-              console.log(`Updated ${fieldName}: ${newText}`);
-              // In a full CMS, this would save to database
-            }
-          });
-        });
-        
-        // Add visual indicator
-        const indicator = document.createElement('div');
-        indicator.innerHTML = '✏️ CMS Edit Mode Active';
-        indicator.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: #3b82f6;
-          color: white;
-          padding: 10px 15px;
-          border-radius: 5px;
-          font-family: Inter, sans-serif;
-          font-size: 14px;
-          z-index: 1000;
-          box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        `;
-        document.body.appendChild(indicator);
-      });
-    }
+  <!-- CMS Editor Integration -->
+  <script src="cms-editor.js" 
+          data-site-id="uxmeas-portfolio"
+          data-supabase-url="https://jtmqdwtkyblrluexzwuj.supabase.co"
+          data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0bXFkd3RreWJscmx1ZXh6d3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0MTI5MzksImV4cCI6MjA2OTk4ODkzOX0.4KMKJYqKVVa1J68mk012M1WYUyQe91n8pj91MfDXVDc"
+          data-auth-key="cms-login">
   </script>
 </body>
 </html>
