@@ -162,17 +162,21 @@
                 
                 #cms-panel {
                     position: fixed;
-                    right: 0;
-                    top: 0;
-                    height: 100vh;
-                    width: 360px;
+                    right: 20px;
+                    top: 20px;
+                    height: calc(100vh - 40px);
+                    width: 320px;
+                    max-width: calc(100vw - 40px);
                     background: white;
-                    box-shadow: -2px 0 8px rgba(0,0,0,0.1);
-                    transform: translateX(100%);
-                    transition: transform 0.3s;
+                    border-radius: 12px;
+                    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+                    transform: translateX(calc(100% + 20px));
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
                     z-index: 10001;
                     display: flex;
                     flex-direction: column;
+                    border: 1px solid rgba(0,0,0,0.05);
+                    overflow: hidden;
                 }
                 
                 #cms-panel.open {
@@ -208,6 +212,31 @@
                     from { transform: translate(-50%, -100%); }
                     to { transform: translate(-50%, 0); }
                 }
+                
+                /* Hover states and interactions */
+                #cms-close:hover {
+                    background: #f3f4f6;
+                }
+                
+                #cms-save:hover {
+                    background: #2563eb;
+                }
+                
+                /* Mobile responsiveness */
+                @media (max-width: 768px) {
+                    #cms-panel {
+                        right: 10px;
+                        top: 10px;
+                        width: calc(100vw - 20px);
+                        height: calc(100vh - 20px);
+                        max-width: none;
+                    }
+                    
+                    #cms-editor {
+                        bottom: 10px;
+                        right: 10px;
+                    }
+                }
             `;
             document.head.appendChild(style);
         },
@@ -229,20 +258,20 @@
             const panel = document.createElement('div');
             panel.id = 'cms-panel';
             panel.innerHTML = `
-                <div style="padding: 16px 20px; border-bottom: 1px solid #e5e7eb; position: relative;">
-                    <h2 style="margin: 0; font-size: 18px; font-weight: 600;">Edit Content</h2>
-                    <button id="cms-close" style="position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer; padding: 4px;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div style="padding: 16px 20px; border-bottom: 1px solid #e5e7eb; position: relative; flex-shrink: 0;">
+                    <h2 style="margin: 0; font-size: 16px; font-weight: 600; color: #111827;">Edit Content</h2>
+                    <button id="cms-close" style="position: absolute; top: 16px; right: 16px; background: none; border: none; cursor: pointer; padding: 4px; border-radius: 4px; transition: background 0.2s;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
                     </button>
                 </div>
-                <div id="cms-fields" style="flex: 1; overflow-y: auto; padding: 20px 20px 16px;">
+                <div id="cms-fields" style="flex: 1; padding: 16px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px;">
                     <!-- Fields will be populated here -->
                 </div>
-                <div style="padding: 16px 20px; border-top: 1px solid #e5e7eb;">
-                    <button id="cms-save" style="width: 100%; padding: 10px; background: #3b82f6; color: white; border: none; border-radius: 6px; font-weight: 500; cursor: pointer; font-size: 14px;">
+                <div style="padding: 16px 20px; border-top: 1px solid #e5e7eb; flex-shrink: 0;">
+                    <button id="cms-save" style="width: 100%; padding: 12px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; font-size: 14px; transition: background 0.2s;">
                         Save Changes
                     </button>
                 </div>
@@ -292,15 +321,18 @@
             
             Object.entries(this.fields).forEach(([fieldId, element]) => {
                 const div = document.createElement('div');
-                div.style.marginBottom = '16px';
+                div.style.cssText = 'flex-shrink: 0;';
                 div.innerHTML = `
-                    <label style="display: block; font-size: 13px; font-weight: 500; margin-bottom: 4px; color: #374151;">
+                    <label style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #374151; text-transform: uppercase; letter-spacing: 0.05em;">
                         ${this.formatFieldName(fieldId)}
                     </label>
                     <input type="text" 
                            id="cms-input-${fieldId}"
                            value="${element.textContent.trim()}"
-                           style="width: 100%; padding: 8px 10px; border: 1px solid #e5e7eb; border-radius: 6px; font-size: 14px;">
+                           style="width: 100%; padding: 12px; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 14px; line-height: 1.4; box-sizing: border-box; transition: all 0.2s; font-family: inherit; background: #fafafa;"
+                           onkeydown="if(event.key==='Enter') this.blur()"
+                           onfocus="this.style.borderColor='#3b82f6'; this.style.background='white';"
+                           onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';">
                 `;
                 
                 const input = div.querySelector('input');
