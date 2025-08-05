@@ -267,10 +267,10 @@
 <body>
   <main class="splash" aria-label="Splash page">
     <section class="splash-left">
-      <div class="badge"><span class="badge-dot" aria-hidden="true"></span>Available for new projects</div>
-      <h1 class="headline">Crafting digital<br>experiences<br>that matter</h1>
-      <div class="subheadline">UX Designer focused on creating intuitive, user-centered digital products that solve real problems and delight users.</div>
-      <a href="mailto:pheak@uxmeas.com?subject=Let's%20work%20together" class="cta-button" aria-label="Contact Me">Contact Me</a>
+      <div class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-cms-field="badge-text">Available for new projects</span></div>
+      <h1 class="headline" data-cms-field="hero-title">Crafting digital<br>experiences<br>that matter</h1>
+      <div class="subheadline" data-cms-field="hero-subtitle">UX Designer focused on creating intuitive, user-centered digital products that solve real problems and delight users.</div>
+      <a href="mailto:pheak@uxmeas.com?subject=Let's%20work%20together" class="cta-button" aria-label="Contact Me"><span data-cms-field="cta-text">Contact Me</span></a>
       <nav class="social" aria-label="Social links">
         <a href="https://www.linkedin.com/in/uxmeas" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
           <img src="images/vector-15.svg" alt="LinkedIn icon" class="social-icon" width="24" height="24" />
@@ -290,5 +290,13 @@
       <img src="images/node-25.png" alt="Splash Illustration" class="splash-image" draggable="false" />
     </section>
   </main>
+
+  <!-- CMS Editor Integration -->
+  <script src="https://uxmeas.github.io/cms-builder/editor/editor-production.js" 
+          data-site-id="uxmeas-portfolio"
+          data-supabase-url="https://jtmqdwtkyblrluexzwuj.supabase.co"
+          data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0bXFkd3RreWJscmx1ZXh6d3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0MTI5MzksImV4cCI6MjA2OTk4ODkzOX0.4KMKJYqKVVa1J68mk012M1WYUyQe91n8pj91MfDXVDc"
+          data-auth-key="cms-login">
+  </script>
 </body>
 </html>
