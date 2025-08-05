@@ -122,6 +122,32 @@
     .cta-button:hover {
       background: #174bbd;
     }
+    
+    /* Dual CTA Styles */
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    
+    .cta-primary {
+      background-color: var(--primary-blue);
+      color: white;
+    }
+    
+    .cta-secondary {
+      background-color: transparent;
+      color: var(--headline-color);
+      border: 2px solid var(--badge-border);
+      padding: 14px 32px;
+    }
+    
+    .cta-secondary:hover {
+      background-color: var(--badge-bg);
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
     .social {
       display: flex;
       align-items: center;
@@ -270,7 +296,14 @@
       <div class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-cms-field="badge-text">Available for new projects</span></div>
       <h1 class="headline" data-cms-field="hero-title">Crafting digital<br>experiences<br>that matter</h1>
       <div class="subheadline" data-cms-field="hero-subtitle">UX Designer focused on creating intuitive, user-centered digital products that solve real problems and delight users.</div>
-      <a href="forms/intake-form-v2.html" class="cta-button" aria-label="Start Your Project"><span data-cms-field="cta-text">Start Your Project</span></a>
+      <div class="cta-group">
+        <a href="forms/intake-form-v2.html" class="cta-button cta-primary" aria-label="Start a Project">
+          <span data-cms-field="cta-text">Start a Project</span>
+        </a>
+        <a href="mailto:pheak@uxmeas.com?subject=Quick%20Question" class="cta-button cta-secondary" aria-label="Quick Question">
+          <span data-cms-field="cta-text-secondary">Quick Question?</span>
+        </a>
+      </div>
       <nav class="social" aria-label="Social links">
         <a href="https://www.linkedin.com/in/uxmeas" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
           <img src="images/vector-15.svg" alt="LinkedIn icon" class="social-icon" width="24" height="24" />
