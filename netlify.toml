@@ -3,6 +3,22 @@
 [build]
   publish = "."
 
+# Production context (main branch)
+[context.production]
+  environment = { NODE_ENV = "production" }
+
+# Staging/branch deploy context
+[context.branch-deploy]
+  environment = { NODE_ENV = "staging" }
+
+# Deploy preview context  
+[context.deploy-preview]
+  environment = { NODE_ENV = "preview" }
+
+# Specific staging branch configuration
+[context.staging]
+  environment = { NODE_ENV = "staging" }
+
 [[redirects]]
   from = "/*"
   to = "/index.html"

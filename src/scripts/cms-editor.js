@@ -322,17 +322,32 @@
             Object.entries(this.fields).forEach(([fieldId, element]) => {
                 const div = document.createElement('div');
                 div.style.cssText = 'flex-shrink: 0;';
+                
+                const content = element.textContent.trim();
+                const isLongContent = content.length > 50; // More than 50 characters = textarea
+                const inputType = isLongContent ? 'textarea' : 'input';
+                const inputHeight = isLongContent ? 'min-height: 80px; max-height: 120px; resize: vertical;' : '';
+                
                 div.innerHTML = `
                     <label style="display: block; font-size: 12px; font-weight: 600; margin-bottom: 8px; color: #374151; text-transform: uppercase; letter-spacing: 0.05em;">
                         ${this.formatFieldName(fieldId)}
+                        <span style="font-size: 10px; color: #9ca3af; text-transform: none; margin-left: 4px;">(${content.length} chars)</span>
                     </label>
-                    <input type="text" 
-                           id="cms-input-${fieldId}"
-                           value="${element.textContent.trim()}"
-                           style="width: 100%; padding: 12px; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 14px; line-height: 1.4; box-sizing: border-box; transition: all 0.2s; font-family: inherit; background: #fafafa;"
-                           onkeydown="if(event.key==='Enter') this.blur()"
-                           onfocus="this.style.borderColor='#3b82f6'; this.style.background='white';"
-                           onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';">
+                    ${inputType === 'textarea' ? 
+                        `<textarea id="cms-input-${fieldId}"
+                                  style="width: 100%; padding: 12px; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 14px; line-height: 1.5; box-sizing: border-box; transition: all 0.2s; font-family: inherit; background: #fafafa; ${inputHeight}"
+                                  onfocus="this.style.borderColor='#3b82f6'; this.style.background='white';"
+                                  onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';"
+                                  placeholder="Enter your content here...">${content}</textarea>` :
+                        `<input type="text" 
+                               id="cms-input-${fieldId}"
+                               value="${content}"
+                               style="width: 100%; padding: 12px; border: 1.5px solid #e5e7eb; border-radius: 8px; font-size: 14px; line-height: 1.4; box-sizing: border-box; transition: all 0.2s; font-family: inherit; background: #fafafa;"
+                               onkeydown="if(event.key==='Enter') this.blur()"
+                               onfocus="this.style.borderColor='#3b82f6'; this.style.background='white';"
+                               onblur="this.style.borderColor='#e5e7eb'; this.style.background='#fafafa';"
+                               placeholder="Enter text...">`
+                    }
                 `;
                 
                 const input = div.querySelector('input');
