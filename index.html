@@ -175,8 +175,8 @@
         </p>
       </div>
       
-      <!-- Portfolio Grid - 2 Cards -->
-      <div class="grid md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
+      <!-- Portfolio Grid - 3 Cards -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
         
         <!-- AKM Secure Card -->
         <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
@@ -204,6 +204,36 @@
               <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Enterprise</span>
               <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Security</span>
               <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">B2B SaaS</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- AKM V2 Reality Card -->
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('akm-v2')">
+          <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+            <img src="images/akm-homepage-device-1.png" 
+                 alt="AKM SecureKey V2" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-green-600 text-white text-xs font-semibold uppercase tracking-[0.5px]">
+                Reality Version
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-green-600">
+              <span class="text-2xl font-bold">Honest</span>
+              <span class="text-sm opacity-80">Case Study</span>
+            </div>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">AKM Secure (V2)</h3>
+            <p class="text-base text-body-color leading-[1.7] mb-4">
+              Reality-aligned version focusing on actual outcomes: investor-ready website delivered in 1 week.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Startup</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Fundraising</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Rapid Delivery</span>
             </div>
           </div>
         </div>
@@ -314,10 +344,11 @@
       document.body.style.overflow = 'hidden';
       
       // Load appropriate content
-      if (projectId === 'akm-secure') {
+      if (projectId === 'akm-secure' || projectId === 'akm-v2') {
         try {
-          // Fetch the HTML file
-          const response = await fetch('case-studies/akm-secure/akm-secure-exact-brand.html');
+          // Fetch the appropriate HTML file
+          const fileName = projectId === 'akm-v2' ? 'akm-secure-v2-reality.html' : 'akm-secure-exact-brand.html';
+          const response = await fetch(`case-studies/akm-secure/${fileName}`);
           const html = await response.text();
           
           // Parse the HTML
