@@ -179,8 +179,8 @@
       <div class="grid md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
         
         <!-- AKM Secure Card -->
-        <a href="case-studies/akm-secure/akm-secure-exact-brand.html" 
-           class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden block">
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('akm-secure')">
           <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
             <img src="images/terracore_ai/terracore_ai_1_hero.png" 
                  alt="AKM SecureKey" 
@@ -206,18 +206,18 @@
               <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">B2B SaaS</span>
             </div>
           </div>
-        </a>
+        </div>
         
         <!-- CMNS Card -->
-        <article class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
-                 onclick="openCaseStudy('cmns')">
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('cmns')">
           <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
             <img src="images/katipult/screen_one.jpg" 
                  alt="CMNS Platform" 
                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
             <div class="absolute top-4 right-4">
-              <span class="px-3 py-1.5 bg-primary-blue text-white text-xs font-semibold uppercase tracking-[0.5px]">
-                View Case Study
+              <span class="px-3 py-1.5 bg-gray-500 text-white text-xs font-semibold uppercase tracking-[0.5px]">
+                Coming Soon
               </span>
             </div>
           </div>
@@ -236,106 +236,122 @@
               <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Collaboration</span>
             </div>
           </div>
-        </article>
+        </div>
         
       </div>
     </div>
   </section>
   
   <!-- Case Study Modal -->
-  <div id="case-study-modal" class="fixed inset-0 z-[9999] hidden bg-white overflow-y-auto">
-    <button class="fixed top-6 right-6 z-[10000] w-12 h-12 bg-white border-2 border-gray-200 flex items-center justify-center cursor-pointer hover:bg-headline-color hover:border-headline-color hover:text-white hover:rotate-90 transition-all duration-200"
-            onclick="closeCaseStudy()">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M18 6L6 18M6 6l12 12"/>
-      </svg>
-    </button>
-    <div id="case-study-content" class="w-full min-h-screen">
-      <!-- Case study will be loaded here -->
+  <div id="case-study-modal" class="fixed inset-0 z-50 hidden">
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-black/95 backdrop-blur-sm" onclick="closeCaseStudyModal()"></div>
+    
+    <!-- Modal Content -->
+    <div class="relative w-full h-full overflow-y-auto">
+      <!-- Close Button -->
+      <button onclick="closeCaseStudyModal()" 
+              class="fixed top-6 right-6 z-[60] w-12 h-12 bg-white/10 backdrop-blur border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors group">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      
+      <!-- Back to Portfolio -->
+      <button onclick="closeCaseStudyModal()" 
+              class="fixed top-6 left-6 z-[60] px-4 py-2 bg-white/10 backdrop-blur border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-colors flex items-center gap-2 rounded-lg">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Back to Portfolio
+      </button>
+      
+      <!-- Case Study Content -->
+      <div id="case-study-content" class="relative bg-white min-h-screen">
+        <!-- Content loads here -->
+      </div>
     </div>
   </div>
   
-  <!-- Portfolio JavaScript -->
+  <!-- Case Study Scripts -->
   <script>
-    async function openCaseStudy(projectId) {
+    async function openCaseStudyModal(projectId) {
       const modal = document.getElementById('case-study-modal');
       const content = document.getElementById('case-study-content');
       
-      // Case study file mapping
-      const caseStudies = {
-        'akm-secure': 'case-studies/akm-secure/akm-secure-exact-brand.html',
-        'cmns': 'case-studies/cmns/cmns-case-study.html' // Add your CMNS case study file here
-      };
+      // Show modal with loading state
+      modal.classList.remove('hidden');
+      content.innerHTML = `
+        <div class="flex items-center justify-center min-h-screen bg-black">
+          <div class="text-center">
+            <div class="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-white/60">Loading case study...</p>
+          </div>
+        </div>
+      `;
       
-      const filePath = caseStudies[projectId];
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
       
-      if (filePath) {
+      // Load appropriate content
+      if (projectId === 'akm-secure') {
         try {
-          // Load the full case study HTML
-          const response = await fetch(filePath);
+          // Fetch the HTML file
+          const response = await fetch('case-studies/akm-secure/akm-secure-exact-brand.html');
           const html = await response.text();
           
-          // Parse and inject the HTML
+          // Parse the HTML
           const parser = new DOMParser();
           const doc = parser.parseFromString(html, 'text/html');
           
-          // Get all content
-          const styles = Array.from(doc.querySelectorAll('style, link[rel="stylesheet"]'))
-            .map(el => el.outerHTML).join('\n');
-          const scripts = Array.from(doc.querySelectorAll('script'))
-            .map(el => el.outerHTML).join('\n');
+          // Extract styles, scripts, and body content
+          const styles = Array.from(doc.querySelectorAll('style')).map(el => el.outerHTML).join('\n');
+          const externalStyles = Array.from(doc.querySelectorAll('link[rel="stylesheet"]')).map(el => el.outerHTML).join('\n');
           const bodyContent = doc.body.innerHTML;
           
+          // Create a container for the case study
           content.innerHTML = `
+            ${externalStyles}
             ${styles}
-            ${bodyContent}
-            ${scripts}
+            <div class="case-study-container bg-black">
+              ${bodyContent}
+            </div>
           `;
           
-          // Re-init any scripts
-          if (window.lucide) {
-            setTimeout(() => window.lucide.createIcons(), 100);
-          }
+          // Re-initialize any scripts needed (like Lucide icons)
+          setTimeout(() => {
+            if (window.lucide) {
+              lucide.createIcons();
+            }
+          }, 100);
           
         } catch (error) {
-          // Fallback to iframe
-          content.innerHTML = `<iframe src="${filePath}" class="w-full h-screen border-0"></iframe>`;
+          console.error('Error loading case study:', error);
+          // Fallback to direct navigation
+          window.location.href = 'case-studies/akm-secure/akm-secure-exact-brand.html';
         }
-      } else {
-        // Coming soon message with project-specific content
-        const projectInfo = {
-          'cmns': {
-            title: 'CMNS Platform',
-            description: 'Case study coming soon. This comprehensive platform design project streamlined content management and collaboration workflows for distributed teams.'
-          },
-          default: {
-            title: 'Coming Soon',
-            description: 'This case study is being prepared.'
-          }
-        };
-        
-        const info = projectInfo[projectId] || projectInfo.default;
-        
+      } else if (projectId === 'cmns') {
+        // Show coming soon for CMNS
         content.innerHTML = `
-          <div class="flex items-center justify-center min-h-screen text-center px-6">
-            <div class="max-w-[600px]">
-              <h2 class="font-fraunces text-5xl mb-4 text-headline-color">${info.title}</h2>
-              <p class="text-lg text-body-color leading-[1.8] mb-8">${info.description}</p>
-              <button onclick="closeCaseStudy()" class="px-8 py-3 bg-primary-blue text-white font-semibold cursor-pointer hover:opacity-90 transition-opacity">
+          <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-black">
+            <div class="text-center max-w-2xl px-6">
+              <div class="mb-8">
+                <i data-lucide="layers" class="w-24 h-24 text-white/20 mx-auto"></i>
+              </div>
+              <h2 class="font-fraunces text-5xl font-black text-white mb-4">CMNS Platform</h2>
+              <p class="text-xl text-white/70 mb-8 leading-relaxed">
+                Case study coming soon! This comprehensive platform design project 
+                streamlined content management and collaboration workflows for distributed teams.
+              </p>
+              <button onclick="closeCaseStudyModal()" 
+                      class="px-8 py-3 bg-white text-black font-semibold hover:bg-white/90 transition-colors">
                 Back to Portfolio
               </button>
             </div>
           </div>
         `;
+        // Re-initialize Lucide icons
+        setTimeout(() => lucide.createIcons(), 100);
       }
-      
-      // Show modal
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      window.scrollTo(0, 0);
     }
     
-    function closeCaseStudy() {
+    function closeCaseStudyModal() {
       const modal = document.getElementById('case-study-modal');
       modal.classList.add('hidden');
       document.body.style.overflow = '';
@@ -349,7 +365,10 @@
     // ESC key to close
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        closeCaseStudy();
+        const modal = document.getElementById('case-study-modal');
+        if (!modal.classList.contains('hidden')) {
+          closeCaseStudyModal();
+        }
       }
     });
   </script>
