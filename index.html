@@ -243,21 +243,21 @@
   </section>
   
   <!-- Case Study Modal -->
-  <div id="case-study-modal" class="fixed inset-0 z-50 hidden">
+  <div id="case-study-modal" class="fixed inset-0 z-[9999] hidden">
     <!-- Dark overlay -->
-    <div class="absolute inset-0 bg-black/95 backdrop-blur-sm" onclick="closeCaseStudyModal()"></div>
+    <div class="absolute inset-0 bg-black backdrop-blur-sm" onclick="closeCaseStudyModal()"></div>
     
     <!-- Modal Content -->
-    <div class="relative w-full h-full overflow-y-auto">
+    <div class="fixed inset-0 w-full h-full overflow-y-auto z-[10000]">
       <!-- Close Button -->
       <button onclick="closeCaseStudyModal()" 
-              class="fixed top-6 right-6 z-[60] w-12 h-12 bg-white/10 backdrop-blur border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors group">
+              class="fixed top-6 right-6 z-[10001] w-12 h-12 bg-white/10 backdrop-blur border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors group">
         <i data-lucide="x" class="w-6 h-6"></i>
       </button>
       
       <!-- Back to Portfolio -->
       <button onclick="closeCaseStudyModal()" 
-              class="fixed top-6 left-6 z-[60] px-4 py-2 bg-white/10 backdrop-blur border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-colors flex items-center gap-2 rounded-lg">
+              class="fixed top-6 left-6 z-[10001] px-4 py-2 bg-white/10 backdrop-blur border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-colors flex items-center gap-2 rounded-lg">
         <i data-lucide="arrow-left" class="w-4 h-4"></i>
         Back to Portfolio
       </button>
