@@ -5,32 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Strategic UX/UI Designer - Experience Design That Drives Growth | UXMeas</title>
   <meta name="description" content="Strategic UX/UI Designer who transforms user experiences into business results. From apps to websites to digital products - design that drives measurable growth.">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@900&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary-blue: #2563eb;
-      --headline-color: #181c2a;
-      --body-color: #4b5563;
-      --badge-bg: #f6f9fb;
-      --badge-border: #abb5c5;
-      --badge-dot: #10b981;
-      --social-color: #4b5563;
-      --social-icon: #181c2a;
-      --bg-left: #f7fafd;
-      --bg-right: #fff;
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    // Tailwind config to match original design exactly
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'fraunces': ['Fraunces', 'serif'],
+            'inter': ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'primary-blue': '#2563eb',
+            'headline-color': '#181c2a',
+            'body-color': '#4b5563',
+            'badge-bg': '#f6f9fb',
+            'badge-border': '#abb5c5',
+            'badge-dot': '#10b981',
+            'social-color': '#4b5563',
+            'social-icon': '#181c2a',
+            'bg-left': '#f7fafd',
+            'bg-right': '#ffffff',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.8s ease-out',
+            'fade-in-up': 'fadeInUp 0.8s ease-out',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeInUp: {
+              '0%': { 
+                opacity: '0',
+                transform: 'translateY(20px)'
+              },
+              '100%': { 
+                opacity: '1',
+                transform: 'translateY(0)'
+              },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
     }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(120deg, var(--bg-left) 0% 60%, var(--bg-right) 60% 100%);
-      min-height: 100vh;
-      font-family: 'Inter', Arial, sans-serif;
-      color: var(--body-color);
-      scroll-behavior: smooth;
+  </script>
+  
+  <style>
+    /* Custom gradient background to match original exactly */
+    body {
+      background: linear-gradient(120deg, #f7fafd 0% 60%, #ffffff 60% 100%);
+      position: relative;
     }
     
-    /* Subtle background texture */
+    /* Subtle texture overlay */
     body::before {
       content: '';
       position: fixed;
@@ -43,639 +83,177 @@
       pointer-events: none;
       z-index: 0;
     }
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    main.splash {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-      box-sizing: border-box;
-      width: 100%;
-      gap: 48px;
-    }
-    .splash-left {
-      flex: 1 1 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      z-index: 1;
-      max-width: 540px;
-      gap: 32px;
-    }
-    .badge {
-      display: flex;
-      align-items: center;
-      background: var(--badge-bg);
-      border: 1.5px solid var(--badge-border);
-      border-radius: 999px;
-      padding: 10px 24px 10px 16px;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--body-color);
-      box-shadow: 0 2px 8px 0 rgba(24,28,42,0.08);
-      margin-bottom: 0;
-      gap: 10px;
-      font-family: 'Inter', Arial, sans-serif;
-      animation: fadeInUp 0.8s ease-out 0.1s both;
-    }
-    .badge-dot {
-      width: 14px;
-      height: 14px;
-      background: var(--badge-dot);
-      border-radius: 50%;
-      margin-right: 6px;
-      display: inline-block;
-      animation: pulse 2s infinite;
-      box-shadow: 0 0 0 0 rgba(16,185,129,0.4);
-    }
-    @keyframes pulse {
-      0% { 
-        box-shadow: 0 0 0 0 rgba(16,185,129,0.4);
-        transform: scale(1);
-      }
-      50% { 
-        box-shadow: 0 0 0 6px rgba(16,185,129,0);
-        transform: scale(1.05);
-      }
-      100% { 
-        box-shadow: 0 0 0 0 rgba(16,185,129,0);
-        transform: scale(1);
-      }
-    }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .headline {
-      font-family: 'Fraunces', serif;
-      font-size: 64px;
-      font-weight: 900;
-      color: var(--headline-color);
-      line-height: 1.05;
-      margin: 0 0 24px 0;
-      letter-spacing: -1.5px;
-      text-align: left;
-      text-shadow: 0 1px 2px rgba(24, 28, 42, 0.1);
-      animation: fadeInUp 0.8s ease-out;
-    }
-    .subheadline {
-      font-size: 18px;
-      color: var(--body-color);
-      line-height: 1.6;
-      max-width: 440px;
-      text-align: left;
-      font-family: 'Inter', Arial, sans-serif;
-      margin-bottom: 32px;
-      animation: fadeInUp 0.8s ease-out 0.2s both;
-    }
-    .cta-button {
-      background: var(--primary-blue);
-      color: #fff;
-      font-size: 18px;
-      font-weight: 600;
-      padding: 16px 48px;
-      border-radius: 10px;
-      border: none;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 0;
-      box-shadow: 0 2px 8px 0 rgba(37,99,235,0.15);
-      transition: all 0.2s ease;
-      cursor: pointer;
-      text-align: center;
-      font-family: 'Inter', Arial, sans-serif;
-      position: relative;
-      transform: translateY(0);
-    }
-    .cta-button:hover {
-      background: #174bbd;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px 0 rgba(37,99,235,0.25);
-    }
-    .cta-button:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 8px 0 rgba(37,99,235,0.15);
-    }
     
-    /* Dual CTA Styles */
-    .cta-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 40px;
-      animation: fadeInUp 0.8s ease-out 0.3s both;
-    }
-    
-    .cta-primary {
-      background-color: var(--primary-blue);
-      color: white;
-    }
-    
-    .cta-secondary {
-      background-color: transparent;
-      color: var(--headline-color);
-      border: 2px solid var(--badge-border);
-      padding: 14px 32px;
-    }
-    
-    .cta-secondary:hover {
-      background-color: var(--badge-bg);
-      border-color: var(--primary-blue);
-      color: var(--primary-blue);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 16px 0 rgba(171,181,197,0.25);
-    }
-    .social {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-top: 0;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      animation: fadeInUp 0.8s ease-out 0.5s both;
-    }
-    .social-link {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--social-color);
-      font-size: 17px;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      font-family: 'Inter', Arial, sans-serif;
-      position: relative;
-    }
-    .social-link:hover {
-      color: var(--primary-blue);
-      transform: translateY(-1px);
-    }
-    .social-link:hover img {
-      transform: scale(1.1);
-    }
-    .social-link svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--social-icon);
-      margin-right: 2px;
-      flex-shrink: 0;
-      transition: transform 0.2s ease;
-    }
-    .social-link img {
-      width: 24px;
-      height: 24px;
-      transition: transform 0.2s ease;
-    }
-    .splash-right {
-      flex: 1 1 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 0;
-      min-width: 0;
-    }
-    .splash-image {
-      width: 100%;
-      max-width: 520px;
-      height: auto;
-      display: block;
-      user-select: none;
-      pointer-events: none;
-      filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.1));
-      animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-    @media (max-width: 1024px) {
-      main.splash {
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 64px 24px;
-        gap: 32px;
-        max-width: 900px;
-      }
-      .splash-left {
-        max-width: 100%;
-        align-items: flex-start;
-        text-align: left;
-        gap: 24px;
-      }
-      .headline {
-        font-size: 52px;
-        letter-spacing: -1px;
-      }
-      .subheadline {
-        font-size: 16px;
-        max-width: 100%;
-      }
-      .splash-right {
-        justify-content: center;
-      }
-      .splash-image {
-        max-width: 340px;
-      }
-      .badge {
-        font-size: 15px;
-        padding: 10px 20px 10px 14px;
-      }
-      .badge-dot {
-        width: 11px;
-        height: 11px;
-        margin-right: 5px;
-      }
-      .cta-button {
-        font-size: 16px;
-        padding: 14px 32px;
-        border-radius: 8px;
-      }
-      .social {
-        gap: 12px;
-      }
-    }
-    @media (max-width: 600px) {
-      main.splash {
-        flex-direction: column;
-        padding: 32px 8px 0 8px;
-        gap: 0;
-        max-width: 100vw;
-      }
-      .splash-left {
-        align-items: flex-start;
-        text-align: left;
-        padding: 0 4px;
-        margin-bottom: 0;
-        max-width: 100%;
-        gap: 24px;
-      }
-      .headline {
-        font-size: 32px;
-        letter-spacing: -0.5px;
-      }
-      .subheadline {
-        font-size: 15px;
-        line-height: 1.5;
-      }
-      .cta-button {
-        width: 100%;
-        padding: 14px 0;
-        font-size: 15px;
-        border-radius: 8px;
-      }
-      .splash-image {
-        max-width: 95vw;
-        margin-top: 32px;
-      }
-      .social {
-        gap: 8px;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-      }
-      .badge {
-        font-size: 14px;
-        padding: 8px 12px 8px 10px;
-      }
-      .badge-dot {
-        width: 10px;
-        height: 10px;
-        margin-right: 4px;
-      }
-    }
+    /* Animation delays */
+    .animation-delay-200 { animation-delay: 200ms; }
+    .animation-delay-300 { animation-delay: 300ms; }
+    .animation-delay-400 { animation-delay: 400ms; }
+    .animation-delay-500 { animation-delay: 500ms; }
   </style>
 </head>
-<body>
-  <main class="splash" aria-label="Splash page">
-    <section class="splash-left">
-      <div class="badge"><span class="badge-dot" aria-hidden="true"></span><span data-cms-field="badge-text">Available for new projects</span></div>
-      <h1 class="headline" data-cms-field="hero-title">I create experiences<br>that drive<br>business growth</h1>
-      <div class="subheadline" data-cms-field="hero-subtitle">Strategic UX/UI Designer who transforms user experiences into measurable results — from apps to websites to digital products.</div>
-      <div class="cta-group">
-        <a href="forms/intake-form-v2.html" class="cta-button cta-primary" aria-label="Start a Project">
-          <span data-cms-field="cta-text">Start My Project</span>
-        </a>
-        <a href="mailto:pheak@uxmeas.com?subject=Quick%20Question" class="cta-button cta-secondary" aria-label="Quick Question">
-          <span data-cms-field="cta-text-secondary">Chat First</span>
-        </a>
+<body class="min-h-screen font-inter text-body-color scroll-smooth">
+  
+  <!-- Hero Section - Matching Original Design -->
+  <main class="relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-screen px-6 lg:px-20 py-12 lg:py-0 max-w-[1400px] mx-auto">
+    
+    <!-- Left Content -->
+    <section class="flex-1 flex flex-col items-start justify-center gap-6 max-w-[640px] lg:pr-12">
+      
+      <!-- Available Badge -->
+      <div class="inline-flex items-center gap-2.5 px-5 py-3 bg-badge-bg border border-badge-border rounded-full animate-fade-in">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-badge-dot opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-badge-dot"></span>
+        </span>
+        <span class="text-[15px] font-medium text-headline-color">Available for projects</span>
       </div>
-      <nav class="social" aria-label="Social links">
-        <a href="https://www.linkedin.com/in/uxmeas" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <img src="images/vector-15.svg" alt="LinkedIn icon" class="social-icon" width="24" height="24" />
+      
+      <!-- Headline -->
+      <h1 class="font-fraunces text-[60px] lg:text-[70px] font-black text-headline-color leading-[1.1] tracking-[-2px] animate-fade-in-up animation-delay-200">
+        Strategic UX/UI Designer
+      </h1>
+      
+      <!-- Subheadline -->
+      <p class="text-[17px] leading-[1.7] text-body-color max-w-[540px] animate-fade-in-up animation-delay-300">
+        Welcome! I'm Meas - Experience Designer who transforms user experiences into business results. 
+        From apps to websites to digital products - I design experiences that drive measurable growth for 
+        companies at every stage.
+      </p>
+      
+      <!-- Social Links -->
+      <nav class="flex flex-wrap items-center gap-[18px] mt-2 animate-fade-in-up animation-delay-400">
+        <a href="https://linkedin.com/in/uxmeas" 
+           class="flex items-center gap-2 text-social-color text-[17px] font-medium hover:text-primary-blue hover:-translate-y-px transition-all duration-200"
+           target="_blank" 
+           rel="noopener" 
+           aria-label="LinkedIn">
+          <svg class="w-6 h-6 fill-social-icon" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
           LinkedIn
         </a>
-        <a href="https://www.behance.net/uxmeas" class="social-link" target="_blank" rel="noopener" aria-label="Behance">
-          <img src="images/behance-19.svg" alt="Behance icon" class="social-icon" width="24" height="24" />
+        <a href="https://www.behance.net/uxmeas" 
+           class="flex items-center gap-2 text-social-color text-[17px] font-medium hover:text-primary-blue hover:-translate-y-px transition-all duration-200"
+           target="_blank" 
+           rel="noopener" 
+           aria-label="Behance">
+          <img src="images/behance-19.svg" alt="Behance icon" class="w-6 h-6" width="24" height="24" />
           Behance
         </a>
-        <a href="https://www.dribbble.com/uxmeas" class="social-link" target="_blank" rel="noopener" aria-label="Dribbble">
-          <img src="images/vector-23.svg" alt="Dribbble icon" class="social-icon" width="24" height="24" />
+        <a href="https://www.dribbble.com/uxmeas" 
+           class="flex items-center gap-2 text-social-color text-[17px] font-medium hover:text-primary-blue hover:-translate-y-px transition-all duration-200"
+           target="_blank" 
+           rel="noopener" 
+           aria-label="Dribbble">
+          <img src="images/vector-23.svg" alt="Dribbble icon" class="w-6 h-6" width="24" height="24" />
           Dribbble
         </a>
       </nav>
     </section>
-    <section class="splash-right">
-      <img src="images/node-25.png" alt="Splash Illustration" class="splash-image" draggable="false" />
+    
+    <!-- Right Image -->
+    <section class="flex-1 flex items-center justify-center lg:justify-end mt-12 lg:mt-0">
+      <img src="images/node-25.png" 
+           alt="Splash Illustration" 
+           class="w-full max-w-[520px] h-auto select-none pointer-events-none drop-shadow-[0_10px_25px_rgba(0,0,0,0.1)] animate-fade-in-up animation-delay-400"
+           draggable="false" />
     </section>
   </main>
-
+  
   <!-- Portfolio Section -->
-  <section id="portfolio" class="portfolio-section">
-    <div class="portfolio-container">
-      <div class="portfolio-header">
-        <h2 class="portfolio-title">Selected Work</h2>
-        <p class="portfolio-subtitle">Click to view full case studies</p>
+  <section id="portfolio" class="relative z-10 py-20 px-6 bg-gradient-to-b from-white/0 to-[#f8fafb]">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-[60px]">
+        <h2 class="font-fraunces text-[48px] font-black text-headline-color mb-3 tracking-[-1px]">
+          Selected Work
+        </h2>
+        <p class="text-[18px] text-body-color">
+          Click to view full case studies
+        </p>
       </div>
       
-      <div class="portfolio-grid">
+      <!-- Portfolio Grid - 2 Cards -->
+      <div class="grid md:grid-cols-2 gap-10 max-w-[1000px] mx-auto">
+        
         <!-- AKM Secure Card -->
-        <article class="portfolio-card" onclick="openCaseStudy('akm-secure')">
-          <div class="card-image-wrapper">
-            <img src="images/terracore_ai/terracore_ai_1_hero.png" alt="AKM SecureKey" class="card-image">
-            <div class="card-overlay">
-              <span class="card-badge">View Case Study</span>
+        <article class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+                 onclick="openCaseStudy('akm-secure')">
+          <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+            <img src="images/terracore_ai/terracore_ai_1_hero.png" 
+                 alt="AKM SecureKey" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-primary-blue text-white text-xs font-semibold uppercase tracking-[0.5px]">
+                View Case Study
+              </span>
             </div>
           </div>
-          <div class="card-content">
-            <div class="card-metrics">
-              <span class="metric-value">+400%</span>
-              <span class="metric-label">Demo Requests</span>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-primary-blue">
+              <span class="text-2xl font-bold">+400%</span>
+              <span class="text-sm opacity-80">Demo Requests</span>
             </div>
-            <h3 class="card-title">AKM SecureKey</h3>
-            <p class="card-description">Enterprise security platform competing with Palantir & Anduril. Complete UX transformation in 4 weeks.</p>
-            <div class="card-tags">
-              <span>Enterprise</span>
-              <span>Security</span>
-              <span>B2B SaaS</span>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">AKM SecureKey</h3>
+            <p class="text-base text-body-color leading-relaxed mb-4">
+              Enterprise security platform competing with Palantir & Anduril. Complete UX transformation in 4 weeks.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Enterprise</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Security</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">B2B SaaS</span>
             </div>
           </div>
         </article>
         
         <!-- CMNS Card -->
-        <article class="portfolio-card" onclick="openCaseStudy('cmns')">
-          <div class="card-image-wrapper">
-            <img src="images/terracore_ai/terracore_ai_2_challenge.png" alt="CMNS Platform" class="card-image">
-            <div class="card-overlay">
-              <span class="card-badge">View Case Study</span>
+        <article class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+                 onclick="openCaseStudy('cmns')">
+          <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+            <img src="images/terracore_ai/terracore_ai_2_challenge.png" 
+                 alt="CMNS Platform" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-primary-blue text-white text-xs font-semibold uppercase tracking-[0.5px]">
+                View Case Study
+              </span>
             </div>
           </div>
-          <div class="card-content">
-            <div class="card-metrics">
-              <span class="metric-value">85%</span>
-              <span class="metric-label">User Adoption</span>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-primary-blue">
+              <span class="text-2xl font-bold">85%</span>
+              <span class="text-sm opacity-80">User Adoption</span>
             </div>
-            <h3 class="card-title">CMNS Platform</h3>
-            <p class="card-description">Content management and collaboration platform for modern teams. Simplified complex workflows.</p>
-            <div class="card-tags">
-              <span>Platform Design</span>
-              <span>CMS</span>
-              <span>Collaboration</span>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">CMNS Platform</h3>
+            <p class="text-base text-body-color leading-relaxed mb-4">
+              Content management and collaboration platform for modern teams. Simplified complex workflows.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Platform Design</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">CMS</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Collaboration</span>
             </div>
           </div>
         </article>
+        
       </div>
     </div>
   </section>
-
+  
   <!-- Case Study Modal -->
-  <div id="case-study-modal" class="case-study-modal">
-    <button class="modal-close" onclick="closeCaseStudy()">
+  <div id="case-study-modal" class="fixed inset-0 z-[9999] hidden bg-white overflow-y-auto">
+    <button class="fixed top-6 right-6 z-[10000] w-12 h-12 bg-white border-2 border-gray-200 flex items-center justify-center cursor-pointer hover:bg-headline-color hover:border-headline-color hover:text-white hover:rotate-90 transition-all duration-200"
+            onclick="closeCaseStudy()">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M18 6L6 18M6 6l12 12"/>
       </svg>
     </button>
-    <div id="case-study-content" class="case-study-content">
+    <div id="case-study-content" class="w-full min-h-screen">
       <!-- Case study will be loaded here -->
     </div>
   </div>
-
-  <!-- Portfolio Styles -->
-  <style>
-    /* Portfolio Section */
-    .portfolio-section {
-      padding: 80px 24px;
-      background: linear-gradient(180deg, var(--bg-right) 0%, #f8fafb 100%);
-      position: relative;
-    }
-    
-    .portfolio-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .portfolio-header {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    .portfolio-title {
-      font-family: 'Fraunces', serif;
-      font-size: 48px;
-      font-weight: 900;
-      color: var(--headline-color);
-      margin-bottom: 12px;
-      letter-spacing: -1px;
-    }
-    
-    .portfolio-subtitle {
-      font-size: 18px;
-      color: var(--body-color);
-    }
-    
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 40px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .portfolio-card {
-      background: white;
-      border: 1px solid #e5e7eb;
-      overflow: hidden;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
-    
-    .portfolio-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-      border-color: var(--primary-blue);
-    }
-    
-    .card-image-wrapper {
-      position: relative;
-      aspect-ratio: 16/10;
-      overflow: hidden;
-      background: #f3f4f6;
-    }
-    
-    .card-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-    
-    .portfolio-card:hover .card-image {
-      transform: scale(1.05);
-    }
-    
-    .card-overlay {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-    }
-    
-    .card-badge {
-      padding: 6px 12px;
-      background: var(--primary-blue);
-      color: white;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    
-    .card-content {
-      padding: 24px;
-    }
-    
-    .card-metrics {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 16px;
-      color: var(--primary-blue);
-    }
-    
-    .metric-value {
-      font-size: 24px;
-      font-weight: 700;
-    }
-    
-    .metric-label {
-      font-size: 14px;
-      opacity: 0.8;
-    }
-    
-    .card-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--headline-color);
-      margin-bottom: 8px;
-    }
-    
-    .card-description {
-      font-size: 16px;
-      color: var(--body-color);
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-    
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    
-    .card-tags span {
-      padding: 4px 12px;
-      background: var(--badge-bg);
-      border: 1px solid var(--badge-border);
-      font-size: 13px;
-      color: var(--body-color);
-    }
-    
-    /* Case Study Modal */
-    .case-study-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: white;
-      overflow-y: auto;
-    }
-    
-    .case-study-modal.active {
-      display: block;
-    }
-    
-    .modal-close {
-      position: fixed;
-      top: 24px;
-      right: 24px;
-      z-index: 10000;
-      width: 48px;
-      height: 48px;
-      background: white;
-      border: 2px solid #e5e7eb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-    
-    .modal-close:hover {
-      background: var(--headline-color);
-      border-color: var(--headline-color);
-      color: white;
-      transform: rotate(90deg);
-    }
-    
-    .case-study-content {
-      width: 100%;
-      min-height: 100vh;
-    }
-    
-    .case-study-content iframe {
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
-    
-    /* Responsive */
-    @media (max-width: 768px) {
-      .portfolio-section {
-        padding: 60px 16px;
-      }
-      
-      .portfolio-title {
-        font-size: 36px;
-      }
-      
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      
-      .card-title {
-        font-size: 20px;
-      }
-      
-      .modal-close {
-        top: 16px;
-        right: 16px;
-        width: 40px;
-        height: 40px;
-      }
-    }
-  </style>
-
+  
   <!-- Portfolio JavaScript -->
   <script>
     async function openCaseStudy(projectId) {
@@ -720,7 +298,7 @@
           
         } catch (error) {
           // Fallback to iframe
-          content.innerHTML = `<iframe src="${filePath}"></iframe>`;
+          content.innerHTML = `<iframe src="${filePath}" class="w-full h-screen border-0"></iframe>`;
         }
       } else {
         // Coming soon message with project-specific content
@@ -738,11 +316,11 @@
         const info = projectInfo[projectId] || projectInfo.default;
         
         content.innerHTML = `
-          <div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 24px;">
-            <div style="max-width: 600px;">
-              <h2 style="font-size: 48px; margin-bottom: 16px; color: var(--headline-color); font-family: 'Fraunces', serif;">${info.title}</h2>
-              <p style="font-size: 18px; color: var(--body-color); line-height: 1.6; margin-bottom: 32px;">${info.description}</p>
-              <button onclick="closeCaseStudy()" style="padding: 12px 32px; background: var(--primary-blue); color: white; border: none; cursor: pointer; font-size: 16px; font-weight: 600;">
+          <div class="flex items-center justify-center min-h-screen text-center px-6">
+            <div class="max-w-[600px]">
+              <h2 class="font-fraunces text-5xl mb-4 text-headline-color">${info.title}</h2>
+              <p class="text-lg text-body-color leading-relaxed mb-8">${info.description}</p>
+              <button onclick="closeCaseStudy()" class="px-8 py-3 bg-primary-blue text-white font-semibold cursor-pointer hover:opacity-90 transition-opacity">
                 Back to Portfolio
               </button>
             </div>
@@ -751,14 +329,14 @@
       }
       
       // Show modal
-      modal.classList.add('active');
+      modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
       window.scrollTo(0, 0);
     }
     
     function closeCaseStudy() {
       const modal = document.getElementById('case-study-modal');
-      modal.classList.remove('active');
+      modal.classList.add('hidden');
       document.body.style.overflow = '';
       
       // Clear content after animation
@@ -774,7 +352,7 @@
       }
     });
   </script>
-
+  
   <!-- CMS Editor Integration -->
   <script src="cms-editor.js" 
           data-site-id="uxmeas-portfolio"
@@ -782,5 +360,8 @@
           data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0bXFkd3RreWJscmx1ZXh6d3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0MTI5MzksImV4cCI6MjA2OTk4ODkzOX0.4KMKJYqKVVa1J68mk012M1WYUyQe91n8pj91MfDXVDc"
           data-auth-key="cms-login">
   </script>
+  
+  <!-- Forms Modal Integration -->
+  <script src="forms/modal-trigger.js"></script>
 </body>
 </html>
