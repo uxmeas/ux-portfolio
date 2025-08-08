@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Full Case Studies | UX Meas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        * {
+            border-radius: 0 !important;
+        }
+        
+        .portfolio-card {
+            cursor: pointer;
+            transition: all 0.2s linear;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Hide/show transitions */
+        .page-transition {
+            transition: opacity 0.3s ease;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s linear, box-shadow 0.2s linear;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Portfolio Grid View -->
+    <div id="portfolio-view" class="min-h-screen">
+        <!-- Header -->
+        <header class="sticky top-0 z-40 bg-black/95 backdrop-blur border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
+                <h1 class="text-2xl font-bold">Portfolio</h1>
+                <nav class="flex gap-4">
+                    <button class="px-4 py-2 text-sm uppercase tracking-wider hover:text-white/70 transition">All</button>
+                    <button class="px-4 py-2 text-sm uppercase tracking-wider hover:text-white/70 transition">Featured</button>
+                </nav>
+            </div>
+        </header>
+        
+        <!-- Hero -->
+        <section class="py-20 px-6">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="text-6xl lg:text-8xl font-bold mb-6" style="letter-spacing: -0.04em;">
+                    Strategic Design
+                </h2>
+                <p class="text-2xl text-white/70 font-light">
+                    Click any project to view the full case study
+                </p>
+            </div>
+        </section>
+        
+        <!-- Portfolio Grid -->
+        <section class="px-6 pb-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- AKM Secure Card -->
+                    <div class="portfolio-card group" onclick="openFullCaseStudy('akm-secure')">
+                        <div class="relative overflow-hidden bg-gradient-to-br from-gray-900 to-black border border-white/10">
+                            <div class="aspect-video relative">
+                                <img src="public/images/terracore_ai/terracore_ai_1_hero.png" 
+                                     alt="AKM Secure" 
+                                     class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span class="px-3 py-1 bg-green-500/20 border border-green-500/50 text-green-400 text-xs uppercase tracking-wider">
+                                    Full Case Study
+                                </span>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-8">
+                                <div class="flex items-center gap-2 text-white/50 mb-4">
+                                    <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                    <span class="text-xs uppercase tracking-wider">400% Growth</span>
+                                </div>
+                                <h3 class="text-3xl font-bold text-white mb-2">AKM SecureKey</h3>
+                                <p class="text-white/70">Enterprise Security Platform</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more portfolio cards here -->
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Full Case Study View (Hidden initially) -->
+    <div id="case-study-view" class="hidden">
+        <!-- Close Button -->
+        <button onclick="closeFullCaseStudy()" 
+                class="fixed top-6 right-6 z-50 w-14 h-14 bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors">
+            <i data-lucide="x" class="w-6 h-6 text-white"></i>
+        </button>
+        
+        <!-- Back to Portfolio -->
+        <button onclick="closeFullCaseStudy()" 
+                class="fixed top-6 left-6 z-50 px-4 py-2 bg-white/10 backdrop-blur border border-white/20 flex items-center gap-2 hover:bg-white/20 transition-colors">
+            <i data-lucide="arrow-left" class="w-4 h-4 text-white"></i>
+            <span class="text-sm uppercase tracking-wider">Back to Portfolio</span>
+        </button>
+        
+        <!-- Case Study Content Container -->
+        <div id="case-study-content">
+            <!-- Full case study will be loaded here -->
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        async function openFullCaseStudy(projectId) {
+            const portfolioView = document.getElementById('portfolio-view');
+            const caseStudyView = document.getElementById('case-study-view');
+            const contentContainer = document.getElementById('case-study-content');
+            
+            // Define case study file paths
+            const caseStudyFiles = {
+                'akm-secure': 'case-studies/akm-secure/akm-secure-exact-brand.html'
+            };
+            
+            const filePath = caseStudyFiles[projectId];
+            
+            if (filePath) {
+                try {
+                    // Fetch the full HTML file
+                    const response = await fetch(filePath);
+                    const html = await response.text();
+                    
+                    // Parse the HTML
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    
+                    // Extract all content (styles, scripts, body)
+                    const styles = Array.from(doc.querySelectorAll('style, link[rel="stylesheet"]'))
+                        .map(el => el.outerHTML).join('\n');
+                    const scripts = Array.from(doc.querySelectorAll('script'))
+                        .map(el => el.outerHTML).join('\n');
+                    const bodyContent = doc.body.innerHTML;
+                    
+                    // Inject the complete case study
+                    contentContainer.innerHTML = `
+                        ${styles}
+                        <div class="case-study-wrapper">
+                            ${bodyContent}
+                        </div>
+                        ${scripts}
+                    `;
+                    
+                    // Re-initialize Lucide icons for the case study
+                    if (window.lucide) {
+                        setTimeout(() => {
+                            window.lucide.createIcons();
+                        }, 100);
+                    }
+                    
+                    // Hide portfolio view, show case study
+                    portfolioView.classList.add('hidden');
+                    caseStudyView.classList.remove('hidden');
+                    
+                    // Scroll to top
+                    window.scrollTo(0, 0);
+                    
+                } catch (error) {
+                    console.error('Error loading case study:', error);
+                    
+                    // Fallback: Load in iframe
+                    contentContainer.innerHTML = `
+                        <iframe src="${filePath}" 
+                                class="w-full min-h-screen border-0"
+                                style="height: 100vh;">
+                        </iframe>
+                    `;
+                    
+                    portfolioView.classList.add('hidden');
+                    caseStudyView.classList.remove('hidden');
+                }
+            } else {
+                // If no HTML file exists, build from data (fallback)
+                contentContainer.innerHTML = buildCaseStudyFromData(projectId);
+                portfolioView.classList.add('hidden');
+                caseStudyView.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            }
+        }
+        
+        function closeFullCaseStudy() {
+            const portfolioView = document.getElementById('portfolio-view');
+            const caseStudyView = document.getElementById('case-study-view');
+            
+            caseStudyView.classList.add('hidden');
+            portfolioView.classList.remove('hidden');
+            
+            // Clear content after transition
+            setTimeout(() => {
+                document.getElementById('case-study-content').innerHTML = '';
+            }, 300);
+        }
+        
+        function buildCaseStudyFromData(projectId) {
+            // Fallback: Build case study from data if no HTML file
+            return `
+                <article class="min-h-screen bg-black text-white">
+                    <section class="py-32 px-6 text-center">
+                        <h1 class="text-6xl font-bold mb-4">Case Study Coming Soon</h1>
+                        <p class="text-xl text-white/70">This case study is being prepared.</p>
+                    </section>
+                </article>
+            `;
+        }
+        
+        // Handle ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const caseStudyView = document.getElementById('case-study-view');
+                if (!caseStudyView.classList.contains('hidden')) {
+                    closeFullCaseStudy();
+                }
+            }
+        });
+        
+        // Handle browser back button
+        window.addEventListener('popstate', (e) => {
+            const caseStudyView = document.getElementById('case-study-view');
+            if (!caseStudyView.classList.contains('hidden')) {
+                closeFullCaseStudy();
+            }
+        });
+    </script>
+</body>
+</html>
