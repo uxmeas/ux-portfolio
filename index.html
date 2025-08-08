@@ -275,13 +275,37 @@
       const modal = document.getElementById('case-study-modal');
       const content = document.getElementById('case-study-content');
       
-      // Show modal with loading state
+      // Show modal with skeleton loader
       modal.classList.remove('hidden');
       content.innerHTML = `
-        <div class="flex items-center justify-center min-h-screen bg-black">
-          <div class="text-center">
-            <div class="w-16 h-16 border-4 border-white/20 border-t-white rounded-full animate-spin mx-auto mb-4"></div>
-            <p class="text-white/60">Loading case study...</p>
+        <div class="min-h-screen bg-black">
+          <!-- Skeleton Loader -->
+          <div class="animate-pulse">
+            <!-- Hero skeleton -->
+            <div class="h-screen bg-gradient-to-b from-gray-900 to-black p-8">
+              <div class="max-w-6xl mx-auto">
+                <div class="h-8 bg-gray-800 w-48 mb-8"></div>
+                <div class="h-20 bg-gray-800 w-3/4 mb-4"></div>
+                <div class="h-16 bg-gray-800 w-2/3 mb-8"></div>
+                <div class="grid grid-cols-4 gap-4">
+                  <div class="h-32 bg-gray-800"></div>
+                  <div class="h-32 bg-gray-800"></div>
+                  <div class="h-32 bg-gray-800"></div>
+                  <div class="h-32 bg-gray-800"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Content skeleton -->
+            <div class="p-8">
+              <div class="max-w-4xl mx-auto">
+                <div class="h-12 bg-gray-800 w-1/3 mb-8"></div>
+                <div class="space-y-4">
+                  <div class="h-4 bg-gray-800 w-full"></div>
+                  <div class="h-4 bg-gray-800 w-5/6"></div>
+                  <div class="h-4 bg-gray-800 w-4/5"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       `;
@@ -305,7 +329,8 @@
           const externalStyles = Array.from(doc.querySelectorAll('link[rel="stylesheet"]')).map(el => el.outerHTML).join('\n');
           const bodyContent = doc.body.innerHTML;
           
-          // Create a container for the case study
+          // Create a container for the case study with fade-in animation
+          content.style.opacity = '0';
           content.innerHTML = `
             ${externalStyles}
             ${styles}
@@ -313,6 +338,12 @@
               ${bodyContent}
             </div>
           `;
+          
+          // Fade in the content
+          setTimeout(() => {
+            content.style.transition = 'opacity 0.3s ease';
+            content.style.opacity = '1';
+          }, 100);
           
           // Re-initialize any scripts needed (like Lucide icons)
           setTimeout(() => {
