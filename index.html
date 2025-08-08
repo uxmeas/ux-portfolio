@@ -390,6 +390,400 @@
     </section>
   </main>
 
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio-section">
+    <div class="portfolio-container">
+      <div class="portfolio-header">
+        <h2 class="portfolio-title">Selected Work</h2>
+        <p class="portfolio-subtitle">Click to view full case studies</p>
+      </div>
+      
+      <div class="portfolio-grid">
+        <!-- AKM Secure Card -->
+        <article class="portfolio-card" onclick="openCaseStudy('akm-secure')">
+          <div class="card-image-wrapper">
+            <img src="images/terracore_ai/terracore_ai_1_hero.png" alt="AKM SecureKey" class="card-image">
+            <div class="card-overlay">
+              <span class="card-badge">Full Case Study</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-metrics">
+              <span class="metric-value">+400%</span>
+              <span class="metric-label">Demo Requests</span>
+            </div>
+            <h3 class="card-title">AKM SecureKey</h3>
+            <p class="card-description">Enterprise security platform competing with Palantir & Anduril</p>
+            <div class="card-tags">
+              <span>Enterprise</span>
+              <span>Security</span>
+              <span>4-Week Build</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- TerraCore AI Card -->
+        <article class="portfolio-card" onclick="openCaseStudy('terracore')">
+          <div class="card-image-wrapper">
+            <img src="images/terracore_ai/terracore_ai_2_challenge.png" alt="TerraCore AI" class="card-image">
+            <div class="card-overlay">
+              <span class="card-badge">Coming Soon</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-metrics">
+              <span class="metric-value">90%</span>
+              <span class="metric-label">Faster Analysis</span>
+            </div>
+            <h3 class="card-title">TerraCore AI</h3>
+            <p class="card-description">AI-powered geospatial analytics platform</p>
+            <div class="card-tags">
+              <span>AI/ML</span>
+              <span>Data Viz</span>
+              <span>Enterprise</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Katipult Card -->
+        <article class="portfolio-card" onclick="openCaseStudy('katipult')">
+          <div class="card-image-wrapper">
+            <img src="images/katipult/screen_one.jpg" alt="Katipult" class="card-image">
+            <div class="card-overlay">
+              <span class="card-badge">Coming Soon</span>
+            </div>
+          </div>
+          <div class="card-content">
+            <div class="card-metrics">
+              <span class="metric-value">65%</span>
+              <span class="metric-label">Reduced Drop-off</span>
+            </div>
+            <h3 class="card-title">Katipult</h3>
+            <p class="card-description">Investment platform streamlining capital raising</p>
+            <div class="card-tags">
+              <span>FinTech</span>
+              <span>B2B</span>
+              <span>Platform</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study Modal -->
+  <div id="case-study-modal" class="case-study-modal">
+    <button class="modal-close" onclick="closeCaseStudy()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div id="case-study-content" class="case-study-content">
+      <!-- Case study will be loaded here -->
+    </div>
+  </div>
+
+  <!-- Portfolio Styles -->
+  <style>
+    /* Portfolio Section */
+    .portfolio-section {
+      padding: 80px 24px;
+      background: linear-gradient(180deg, var(--bg-right) 0%, #f8fafb 100%);
+      position: relative;
+    }
+    
+    .portfolio-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .portfolio-title {
+      font-family: 'Fraunces', serif;
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--headline-color);
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+    
+    .portfolio-subtitle {
+      font-size: 18px;
+      color: var(--body-color);
+    }
+    
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 32px;
+    }
+    
+    .portfolio-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      border-color: var(--primary-blue);
+    }
+    
+    .card-image-wrapper {
+      position: relative;
+      aspect-ratio: 16/10;
+      overflow: hidden;
+      background: #f3f4f6;
+    }
+    
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .portfolio-card:hover .card-image {
+      transform: scale(1.05);
+    }
+    
+    .card-overlay {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+    
+    .card-badge {
+      padding: 6px 12px;
+      background: var(--primary-blue);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .card-content {
+      padding: 24px;
+    }
+    
+    .card-metrics {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 16px;
+      color: var(--primary-blue);
+    }
+    
+    .metric-value {
+      font-size: 24px;
+      font-weight: 700;
+    }
+    
+    .metric-label {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    .card-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--headline-color);
+      margin-bottom: 8px;
+    }
+    
+    .card-description {
+      font-size: 16px;
+      color: var(--body-color);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .card-tags span {
+      padding: 4px 12px;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      font-size: 13px;
+      color: var(--body-color);
+    }
+    
+    /* Case Study Modal */
+    .case-study-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: white;
+      overflow-y: auto;
+    }
+    
+    .case-study-modal.active {
+      display: block;
+    }
+    
+    .modal-close {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      z-index: 10000;
+      width: 48px;
+      height: 48px;
+      background: white;
+      border: 2px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .modal-close:hover {
+      background: var(--headline-color);
+      border-color: var(--headline-color);
+      color: white;
+      transform: rotate(90deg);
+    }
+    
+    .case-study-content {
+      width: 100%;
+      min-height: 100vh;
+    }
+    
+    .case-study-content iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .portfolio-section {
+        padding: 60px 16px;
+      }
+      
+      .portfolio-title {
+        font-size: 36px;
+      }
+      
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      
+      .card-title {
+        font-size: 20px;
+      }
+      
+      .modal-close {
+        top: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  </style>
+
+  <!-- Portfolio JavaScript -->
+  <script>
+    async function openCaseStudy(projectId) {
+      const modal = document.getElementById('case-study-modal');
+      const content = document.getElementById('case-study-content');
+      
+      // Case study file mapping
+      const caseStudies = {
+        'akm-secure': 'case-studies/akm-secure/akm-secure-exact-brand.html',
+        'terracore': null, // Coming soon
+        'katipult': null   // Coming soon
+      };
+      
+      const filePath = caseStudies[projectId];
+      
+      if (filePath) {
+        try {
+          // Load the full case study HTML
+          const response = await fetch(filePath);
+          const html = await response.text();
+          
+          // Parse and inject the HTML
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          
+          // Get all content
+          const styles = Array.from(doc.querySelectorAll('style, link[rel="stylesheet"]'))
+            .map(el => el.outerHTML).join('\n');
+          const scripts = Array.from(doc.querySelectorAll('script'))
+            .map(el => el.outerHTML).join('\n');
+          const bodyContent = doc.body.innerHTML;
+          
+          content.innerHTML = `
+            ${styles}
+            ${bodyContent}
+            ${scripts}
+          `;
+          
+          // Re-init any scripts
+          if (window.lucide) {
+            setTimeout(() => window.lucide.createIcons(), 100);
+          }
+          
+        } catch (error) {
+          // Fallback to iframe
+          content.innerHTML = `<iframe src="${filePath}"></iframe>`;
+        }
+      } else {
+        // Coming soon message
+        content.innerHTML = `
+          <div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center;">
+            <div>
+              <h2 style="font-size: 48px; margin-bottom: 16px;">Coming Soon</h2>
+              <p style="font-size: 18px; color: var(--body-color);">This case study is being prepared.</p>
+              <button onclick="closeCaseStudy()" style="margin-top: 24px; padding: 12px 24px; background: var(--primary-blue); color: white; border: none; cursor: pointer;">
+                Back to Portfolio
+              </button>
+            </div>
+          </div>
+        `;
+      }
+      
+      // Show modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      window.scrollTo(0, 0);
+    }
+    
+    function closeCaseStudy() {
+      const modal = document.getElementById('case-study-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+      
+      // Clear content after animation
+      setTimeout(() => {
+        document.getElementById('case-study-content').innerHTML = '';
+      }, 300);
+    }
+    
+    // ESC key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeCaseStudy();
+      }
+    });
+  </script>
+
   <!-- CMS Editor Integration -->
   <script src="cms-editor.js" 
           data-site-id="uxmeas-portfolio"
