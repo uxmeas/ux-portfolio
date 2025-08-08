@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Portfolio - Professional System</title>
+    <meta name="description" content="Strategic UX Design & Product Leadership Portfolio">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/styles/portfolio-professional.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="portfolio-header">
+        <div class="header-container">
+            <h1 class="site-title">UX Portfolio</h1>
+            <nav class="header-nav">
+                <button class="filter-btn" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="featured">Featured</button>
+                <button class="filter-btn" data-filter="enterprise">Enterprise</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid -->
+    <main>
+        <div id="portfolio-grid">
+            <!-- Cards will be dynamically inserted here -->
+        </div>
+    </main>
+
+    <!-- Case Study Modal Container -->
+    <!-- Will be created dynamically by JavaScript -->
+
+    <!-- Scripts -->
+    <script src="src/scripts/portfolio-system.js"></script>
+    <script>
+        // Initialize the portfolio system
+        const portfolio = new PortfolioSystem({
+            dataSource: '/src/data/case-studies.json',
+            enableAnalytics: true,
+            enableRouter: true,
+            debug: true // Set to false in production
+        });
+
+        // Add filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                
+                // Update active state
+                document.querySelectorAll('.filter-btn').forEach(b => 
+                    b.classList.remove('active')
+                );
+                btn.classList.add('active');
+                
+                // Apply filter
+                if (filter === 'all') {
+                    portfolio.renderPortfolioGrid();
+                } else if (filter === 'featured') {
+                    portfolio.renderPortfolioGrid({ featured: true });
+                } else {
+                    portfolio.renderPortfolioGrid({ category: filter });
+                }
+            });
+        });
+
+        // Handle ESC key for closing modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                portfolio.closeCaseStudy();
+            }
+        });
+    </script>
+    
+    <style>
+        /* Additional inline styles for header */
+        .portfolio-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--color-gray-200);
+            background: var(--color-white);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-title {
+            font-size: var(--text-2xl);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        
+        .header-nav {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--color-gray-200);
+            color: var(--color-gray-600);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+        
+        .filter-btn.active {
+            background: var(--color-primary);
+            border-color: var(--color-primary);
+            color: var(--color-white);
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .header-nav {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .filter-btn {
+                flex: 1;
+                font-size: var(--text-sm);
+            }
+        }
+    </style>
+</body>
+</html>
