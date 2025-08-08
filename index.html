@@ -404,7 +404,7 @@
           <div class="card-image-wrapper">
             <img src="images/terracore_ai/terracore_ai_1_hero.png" alt="AKM SecureKey" class="card-image">
             <div class="card-overlay">
-              <span class="card-badge">Full Case Study</span>
+              <span class="card-badge">View Case Study</span>
             </div>
           </div>
           <div class="card-content">
@@ -413,57 +413,34 @@
               <span class="metric-label">Demo Requests</span>
             </div>
             <h3 class="card-title">AKM SecureKey</h3>
-            <p class="card-description">Enterprise security platform competing with Palantir & Anduril</p>
+            <p class="card-description">Enterprise security platform competing with Palantir & Anduril. Complete UX transformation in 4 weeks.</p>
             <div class="card-tags">
               <span>Enterprise</span>
               <span>Security</span>
-              <span>4-Week Build</span>
+              <span>B2B SaaS</span>
             </div>
           </div>
         </article>
         
-        <!-- TerraCore AI Card -->
-        <article class="portfolio-card" onclick="openCaseStudy('terracore')">
+        <!-- CMNS Card -->
+        <article class="portfolio-card" onclick="openCaseStudy('cmns')">
           <div class="card-image-wrapper">
-            <img src="images/terracore_ai/terracore_ai_2_challenge.png" alt="TerraCore AI" class="card-image">
+            <img src="images/terracore_ai/terracore_ai_2_challenge.png" alt="CMNS Platform" class="card-image">
             <div class="card-overlay">
-              <span class="card-badge">Coming Soon</span>
+              <span class="card-badge">View Case Study</span>
             </div>
           </div>
           <div class="card-content">
             <div class="card-metrics">
-              <span class="metric-value">90%</span>
-              <span class="metric-label">Faster Analysis</span>
+              <span class="metric-value">85%</span>
+              <span class="metric-label">User Adoption</span>
             </div>
-            <h3 class="card-title">TerraCore AI</h3>
-            <p class="card-description">AI-powered geospatial analytics platform</p>
+            <h3 class="card-title">CMNS Platform</h3>
+            <p class="card-description">Content management and collaboration platform for modern teams. Simplified complex workflows.</p>
             <div class="card-tags">
-              <span>AI/ML</span>
-              <span>Data Viz</span>
-              <span>Enterprise</span>
-            </div>
-          </div>
-        </article>
-        
-        <!-- Katipult Card -->
-        <article class="portfolio-card" onclick="openCaseStudy('katipult')">
-          <div class="card-image-wrapper">
-            <img src="images/katipult/screen_one.jpg" alt="Katipult" class="card-image">
-            <div class="card-overlay">
-              <span class="card-badge">Coming Soon</span>
-            </div>
-          </div>
-          <div class="card-content">
-            <div class="card-metrics">
-              <span class="metric-value">65%</span>
-              <span class="metric-label">Reduced Drop-off</span>
-            </div>
-            <h3 class="card-title">Katipult</h3>
-            <p class="card-description">Investment platform streamlining capital raising</p>
-            <div class="card-tags">
-              <span>FinTech</span>
-              <span>B2B</span>
-              <span>Platform</span>
+              <span>Platform Design</span>
+              <span>CMS</span>
+              <span>Collaboration</span>
             </div>
           </div>
         </article>
@@ -518,8 +495,10 @@
     
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
     
     .portfolio-card {
@@ -706,8 +685,7 @@
       // Case study file mapping
       const caseStudies = {
         'akm-secure': 'case-studies/akm-secure/akm-secure-exact-brand.html',
-        'terracore': null, // Coming soon
-        'katipult': null   // Coming soon
+        'cmns': 'case-studies/cmns/cmns-case-study.html' // Add your CMNS case study file here
       };
       
       const filePath = caseStudies[projectId];
@@ -745,13 +723,26 @@
           content.innerHTML = `<iframe src="${filePath}"></iframe>`;
         }
       } else {
-        // Coming soon message
+        // Coming soon message with project-specific content
+        const projectInfo = {
+          'cmns': {
+            title: 'CMNS Platform',
+            description: 'Case study coming soon. This comprehensive platform design project streamlined content management and collaboration workflows for distributed teams.'
+          },
+          default: {
+            title: 'Coming Soon',
+            description: 'This case study is being prepared.'
+          }
+        };
+        
+        const info = projectInfo[projectId] || projectInfo.default;
+        
         content.innerHTML = `
-          <div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center;">
-            <div>
-              <h2 style="font-size: 48px; margin-bottom: 16px;">Coming Soon</h2>
-              <p style="font-size: 18px; color: var(--body-color);">This case study is being prepared.</p>
-              <button onclick="closeCaseStudy()" style="margin-top: 24px; padding: 12px 24px; background: var(--primary-blue); color: white; border: none; cursor: pointer;">
+          <div style="display: flex; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 24px;">
+            <div style="max-width: 600px;">
+              <h2 style="font-size: 48px; margin-bottom: 16px; color: var(--headline-color); font-family: 'Fraunces', serif;">${info.title}</h2>
+              <p style="font-size: 18px; color: var(--body-color); line-height: 1.6; margin-bottom: 32px;">${info.description}</p>
+              <button onclick="closeCaseStudy()" style="padding: 12px 32px; background: var(--primary-blue); color: white; border: none; cursor: pointer; font-size: 16px; font-weight: 600;">
                 Back to Portfolio
               </button>
             </div>
