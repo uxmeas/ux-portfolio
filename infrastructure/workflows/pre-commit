@@ -1,0 +1,174 @@
+#!/bin/sh
+
+# Pre-commit hook for UX Portfolio
+# Runs quality checks before allowing commits
+
+set -e
+
+echo "🔍 Running pre-commit checks..."
+
+# Color codes for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Track if any checks fail
+CHECKS_FAILED=0
+
+# Function to handle check failures
+fail_check() {
+    echo "${RED}❌ $1${NC}"
+    CHECKS_FAILED=1
+}
+
+# Function to handle check success
+pass_check() {
+    echo "${GREEN}✅ $1${NC}"
+}
+
+# Function to handle warnings
+warn_check() {
+    echo "${YELLOW}⚠️ $1${NC}"
+}
+
+# Check if required tools are installed
+command -v node >/dev/null 2>&1 || { fail_check "Node.js is required but not installed"; exit 1; }
+command -v npm >/dev/null 2>&1 || { fail_check "npm is required but not installed"; exit 1; }
+
+# Get list of staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM)
+
+if [ -z "$STAGED_FILES" ]; then
+    warn_check "No staged files found"
+    exit 0
+fi
+
+echo "📁 Checking staged files:"
+echo "$STAGED_FILES" | sed 's/^/  - /'
+
+# Check 1: Lint JavaScript files
+JS_FILES=$(echo "$STAGED_FILES" | grep -E '\.(js)$' || true)
+if [ -n "$JS_FILES" ]; then
+    echo "\n🔧 Linting JavaScript files..."
+    if npm run lint:js -- --quiet $JS_FILES; then
+        pass_check "JavaScript linting passed"
+    else
+        fail_check "JavaScript linting failed"
+    fi
+else
+    echo "\n⏭️ No JavaScript files to lint"
+fi
+
+# Check 2: Lint CSS files
+CSS_FILES=$(echo "$STAGED_FILES" | grep -E '\.(css)$' || true)
+if [ -n "$CSS_FILES" ]; then
+    echo "\n🎨 Linting CSS files..."
+    if npm run lint:css -- --quiet $CSS_FILES; then
+        pass_check "CSS linting passed"
+    else
+        fail_check "CSS linting failed"
+    fi
+else
+    echo "\n⏭️ No CSS files to lint"
+fi
+
+# Check 3: Format check with Prettier
+FORMATTABLE_FILES=$(echo "$STAGED_FILES" | grep -E '\.(js|css|html|json|md)$' || true)
+if [ -n "$FORMATTABLE_FILES" ]; then
+    echo "\n✨ Checking code formatting..."
+    if npm run format:check -- $FORMATTABLE_FILES >/dev/null 2>&1; then
+        pass_check "Code formatting is consistent"
+    else
+        warn_check "Code formatting issues found - running auto-fix..."
+        npm run format -- $FORMATTABLE_FILES
+        
+        # Add the formatted files back to staging
+        echo "$FORMATTABLE_FILES" | xargs git add
+        pass_check "Code formatting fixed and re-staged"
+    fi
+else
+    echo "\n⏭️ No formattable files found"
+fi
+
+# Check 4: Validate HTML files
+HTML_FILES=$(echo "$STAGED_FILES" | grep -E '\.html$' || true)
+if [ -n "$HTML_FILES" ]; then
+    echo "\n🌐 Validating HTML structure..."
+    if npm run lint:html -- $HTML_FILES >/dev/null 2>&1; then
+        pass_check "HTML validation passed"
+    else
+        warn_check "HTML validation warnings found (not blocking)"
+    fi
+else
+    echo "\n⏭️ No HTML files to validate"
+fi
+
+# Check 5: Check for sensitive information
+echo "\n🔒 Checking for sensitive information..."
+SENSITIVE_PATTERNS="(password|secret|key|token|api_key|private)"
+if echo "$STAGED_FILES" | xargs grep -l -i -E "$SENSITIVE_PATTERNS" 2>/dev/null | grep -v -E '\.(md|txt)$' >/dev/null; then
+    fail_check "Potentially sensitive information found in staged files"
+    echo "  Please review files for passwords, API keys, or other secrets"
+else
+    pass_check "No sensitive information detected"
+fi
+
+# Check 6: File size check
+echo "\n📏 Checking file sizes..."
+LARGE_FILES=$(echo "$STAGED_FILES" | xargs ls -l 2>/dev/null | awk '$5 > 1048576 {print $9 " (" int($5/1024/1024) "MB)"}')
+if [ -n "$LARGE_FILES" ]; then
+    warn_check "Large files detected (>1MB):"
+    echo "$LARGE_FILES" | sed 's/^/    /'
+    echo "  Consider optimizing these files before committing"
+else
+    pass_check "All files are reasonably sized"
+fi
+
+# Check 7: Run quick tests on portfolio files
+PORTFOLIO_JS_FILES=$(echo "$STAGED_FILES" | grep -E '^src/.*\.js$' || true)
+if [ -n "$PORTFOLIO_JS_FILES" ]; then
+    echo "\n🧪 Running portfolio tests..."
+    if npm run test:headless >/dev/null 2>&1; then
+        pass_check "Portfolio tests passed"
+    else
+        warn_check "Portfolio tests failed (not blocking for development)"
+    fi
+else
+    echo "\n⏭️ No portfolio JavaScript files changed"
+fi
+
+# Check 8: Ensure package.json and package-lock.json are in sync
+if echo "$STAGED_FILES" | grep -q "package.json"; then
+    if echo "$STAGED_FILES" | grep -q "package-lock.json"; then
+        pass_check "package.json and package-lock.json are both staged"
+    else
+        warn_check "package.json modified but package-lock.json not staged"
+        echo "  Run 'npm install' to update lock file and stage it"
+    fi
+fi
+
+# Check 9: Prevent commits to main branch (if configured)
+BRANCH=$(git symbolic-ref HEAD | sed 's!refs\/heads\/!!')
+if [ "$BRANCH" = "main" ] || [ "$BRANCH" = "master" ]; then
+    if [ "${ALLOW_MAIN_COMMIT:-}" != "true" ]; then
+        warn_check "Committing directly to $BRANCH branch"
+        echo "  Set ALLOW_MAIN_COMMIT=true to override this warning"
+        echo "  Consider using feature branches for development"
+    fi
+fi
+
+# Final result
+echo "\n" 
+if [ $CHECKS_FAILED -eq 0 ]; then
+    echo "${GREEN}🎉 All pre-commit checks passed!${NC}"
+    echo "✅ Ready to commit"
+    exit 0
+else
+    echo "${RED}💥 Some pre-commit checks failed!${NC}"
+    echo "❌ Please fix the issues above before committing"
+    echo ""
+    echo "To skip these checks (not recommended), use:"
+    echo "  git commit --no-verify"
+    exit 1
+fi
