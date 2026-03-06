@@ -1,0 +1,93 @@
+AKM SECURE CASE STUDY - V2 (REALITY-ALIGNED)
+==============================================
+
+OPENING STATEMENT
+-----------------
+1-Week Build | Enterprise UX | Live Site
+
+AKM Secure: Transforming the Digital Presence of an OT Cybersecurity Startup
+
+Strategic UX transformation for a cybersecurity startup positioning itself alongside industry leaders like Palantir & Anduril.
+
+
+THE CHALLENGE
+-------------
+The Problem:
+• Legacy Wix site with inconsistent UX and messaging
+• Mobile experience was difficult to navigate and slow to load
+• Brand positioning didn't clearly speak to enterprise decision-makers
+• Visual design lacked distinction in a crowded cybersecurity market
+
+The Opportunity:
+• Present a digital presence that reflects the sophistication of their technology
+• Support capital-raising efforts with a credible, investor-ready website
+• Stand out visually against better-funded competitors
+• Lay the foundation for a scalable, conversion-focused site
+
+
+MY APPROACH
+-----------
+Step 1: Competitive Intelligence
+Reviewed 15+ cybersecurity leaders including Palantir, Anduril, and CrowdStrike to identify common trust-building patterns, visual standards, and mobile-first practices.
+
+Step 2: Visual Direction
+Developed a military-grade, institutional aesthetic with a pure monochromatic palette. Chose Inter typeface, sharp corners, and structured layouts to communicate strength and precision.
+
+Step 3: Conversion Architecture
+Designed user flows aimed at enterprise decision-makers with clear hero-to-problem storytelling, prominent trust signals, and multiple CTA entry points.
+
+
+THE DESIGN SYSTEM
+-----------------
+Aesthetic Principles:
+Pure black and white for high contrast and clarity, with zero-radius corners for a sharp, engineered feel. Function prioritized over decoration.
+
+Typography:
+Inter font family across all content. Bold for headlines, semibold for section headers, regular for body text, uppercase for labels.
+
+
+KEY FEATURES
+------------
+Homepage Hero:
+Applied the 6-second clarity rule with a direct value proposition and visible CTAs for different user intents.
+
+Mobile Experience:
+Touch-optimized navigation, thumb-friendly tap zones, and fast load times across devices. Fully responsive testing on 15+ device sizes.
+
+
+TECHNICAL IMPLEMENTATION
+------------------------
+• Built with Tailwind CSS for utility-first styling
+• Designed in Figma with a consistent design system
+• Achieved fast load performance and WCAG 2.1 AA accessibility standards
+• Optimized for both keyboard navigation and screen readers
+
+
+BUSINESS CONTEXT & IMPACT
+-------------------------
+• Delivered a professional, investor-ready website in 1 week as part of a small startup team (third hire for the project)
+• CEO described the redesign as "1000% better than what we had with Wix"
+• Website is now being used as a core asset in capital-raising conversations
+• Enhanced credibility to help position AKM Secure alongside major industry players
+
+
+CLIENT TESTIMONIAL
+------------------
+"This transformation gave us the digital presence our technology deserves. We're now able to present ourselves to investors and partners with confidence. The website has become a key part of our growth story."
+
+— CEO, AKM Secure
+
+
+CLOSING MESSAGE
+---------------
+Ready to compete with industry leaders — without their budget?
+
+I help startups transform their digital presence into a high-impact asset for growth and investor confidence.
+
+What I offer:
+• Enterprise UX expertise
+• Rapid turnaround
+• Investor-ready design systems
+• Available for discovery calls within 24 hours
+
+Contact: hello@uxmeas.com

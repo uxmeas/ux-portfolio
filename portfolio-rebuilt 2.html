@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - UX Meas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        * {
+            border-radius: 0 !important;
+        }
+        
+        .portfolio-card {
+            cursor: pointer;
+            transition: all 0.2s linear;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s linear, box-shadow 0.2s linear;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <!-- Main Portfolio Page -->
+    <div id="portfolio-page" class="min-h-screen">
+        <!-- Hero Section -->
+        <section class="relative py-32 px-6">
+            <div class="max-w-7xl mx-auto text-center">
+                <h1 class="text-6xl lg:text-8xl font-bold text-white mb-6" style="letter-spacing: -0.04em;">
+                    UX Portfolio
+                </h1>
+                <p class="text-2xl text-white/70 font-light">
+                    Strategic Design & Product Leadership
+                </p>
+            </div>
+        </section>
+        
+        <!-- Portfolio Grid -->
+        <section class="px-6 pb-32">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- AKM Secure Card -->
+                    <div class="portfolio-card group" onclick="showCaseStudy('akm-secure')">
+                        <div class="relative overflow-hidden bg-gradient-to-br from-gray-900 to-black border border-white/10">
+                            <div class="aspect-video relative">
+                                <img src="public/images/terracore_ai/terracore_ai_1_hero.png" 
+                                     alt="AKM Secure" 
+                                     class="w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 right-0 p-8">
+                                <div class="flex items-center gap-2 text-white/50 mb-4">
+                                    <i data-lucide="trending-up" class="w-4 h-4"></i>
+                                    <span class="text-xs uppercase tracking-wider">400% Growth</span>
+                                </div>
+                                <h3 class="text-3xl font-bold text-white mb-2">AKM SecureKey</h3>
+                                <p class="text-white/70">Enterprise Security Platform</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Add more cards here -->
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Case Study View (Hidden by default) -->
+    <div id="case-study-view" class="hidden">
+        <!-- Close Button -->
+        <button onclick="closeCaseStudy()" class="fixed top-8 right-8 z-50 w-14 h-14 bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center hover:bg-white/20 transition-colors">
+            <i data-lucide="x" class="w-6 h-6 text-white"></i>
+        </button>
+        
+        <!-- Case Study Content (Same structure as akm-secure-exact-brand.html) -->
+        <article id="case-study-content">
+            <!-- Content will be inserted here -->
+        </article>
+    </div>
+    
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        const caseStudies = {
+            'akm-secure': {
+                title: 'AKM Secure',
+                subtitle: 'Strategic UX transformation for a cybersecurity startup competing with Palantir & Anduril',
+                metrics: {
+                    primary: { value: '+400%', label: 'Demo Requests' },
+                    secondary: [
+                        { value: '+85%', label: 'Mobile Engagement' },
+                        { value: '+60%', label: 'Time on Site' },
+                        { value: '4 weeks', label: 'Time to Launch' }
+                    ]
+                },
+                badges: ['4-Week Build', 'Enterprise UX', 'Live Site'],
+                sections: [
+                    {
+                        title: 'The Challenge',
+                        content: `AKM Secure entered a market dominated by giants like Palantir and Anduril. 
+                                 Their revolutionary key management technology was powerful but too complex for 
+                                 non-technical decision makers to understand. They needed a complete transformation 
+                                 to compete at the enterprise level.`
+                    },
+                    {
+                        title: 'The Approach',
+                        content: `In just 4 weeks, we conducted rapid user research with 20+ CISOs, created 
+                                 intuitive visualizations for complex cryptographic concepts, and built a 
+                                 fully responsive platform that works flawlessly across all devices.`
+                    },
+                    {
+                        title: 'The Solution',
+                        content: `We transformed technical complexity into visual clarity through interactive 
+                                 demos, simplified onboarding flows, and trust-building security visualizations. 
+                                 Every design decision was made to reduce cognitive load while maintaining 
+                                 enterprise-grade sophistication.`
+                    },
+                    {
+                        title: 'The Impact',
+                        content: `Within 30 days of launch, AKM Secure saw a 400% increase in demo requests. 
+                                 Mobile engagement increased by 85%, with visitors spending 60% more time 
+                                 exploring the platform. The new design positioned them as a serious 
+                                 competitor in the enterprise security space.`
+                    }
+                ]
+            }
+        };
+        
+        function showCaseStudy(projectId) {
+            const study = caseStudies[projectId];
+            if (!study) return;
+            
+            // Hide portfolio page
+            document.getElementById('portfolio-page').classList.add('hidden');
+            document.getElementById('case-study-view').classList.remove('hidden');
+            
+            // Build case study HTML (matching akm-secure-exact-brand.html structure)
+            const contentHTML = `
+                <!-- Hero Section -->
+                <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50"></div>
+                    
+                    <div class="relative z-10 max-w-7xl mx-auto px-8 text-center">
+                        <!-- Badges -->
+                        <div class="flex flex-wrap justify-center gap-8 mb-12">
+                            ${study.badges.map((badge, i) => `
+                                <div class="flex items-center gap-2 text-white/70">
+                                    <span class="uppercase text-xs tracking-wider font-medium">${badge}</span>
+                                </div>
+                                ${i < study.badges.length - 1 ? '<div class="text-white/30">|</div>' : ''}
+                            `).join('')}
+                        </div>
+                        
+                        <!-- Title -->
+                        <h1 class="text-6xl lg:text-8xl font-bold mb-8 tracking-tight text-white" style="line-height: 1.1">
+                            ${study.title}:<br/>
+                            <span class="font-light">${study.metrics.primary.value} Increase</span><br/>
+                            <span class="text-5xl lg:text-6xl">in ${study.metrics.primary.label}</span>
+                        </h1>
+                        
+                        <p class="text-2xl text-white/70 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
+                            ${study.subtitle}
+                        </p>
+                        
+                        <!-- Metrics Grid -->
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                            <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-8 hover-lift">
+                                <div class="text-6xl font-bold text-white mb-2">${study.metrics.primary.value}</div>
+                                <div class="text-sm text-white/50 uppercase tracking-wider">${study.metrics.primary.label}</div>
+                            </div>
+                            ${study.metrics.secondary.map(metric => `
+                                <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-8 hover-lift">
+                                    <div class="text-6xl font-bold text-white mb-2">${metric.value}</div>
+                                    <div class="text-sm text-white/50 uppercase tracking-wider">${metric.label}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Content Sections -->
+                <div class="max-w-4xl mx-auto px-8 py-32">
+                    ${study.sections.map(section => `
+                        <section class="mb-24">
+                            <h2 class="text-5xl font-bold text-white mb-8" style="letter-spacing: -0.02em;">
+                                ${section.title}
+                            </h2>
+                            <p class="text-xl text-white/80 leading-relaxed font-light">
+                                ${section.content}
+                            </p>
+                        </section>
+                    `).join('')}
+                    
+                    <!-- CTA -->
+                    <div class="text-center pt-16 border-t border-white/10">
+                        <a href="https://www.akmsecure.com" target="_blank" 
+                           class="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold hover:bg-white/90 transition-colors">
+                            View Live Site
+                            <i data-lucide="external-link" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('case-study-content').innerHTML = contentHTML;
+            
+            // Re-initialize Lucide icons
+            lucide.createIcons();
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        function closeCaseStudy() {
+            document.getElementById('case-study-view').classList.add('hidden');
+            document.getElementById('portfolio-page').classList.remove('hidden');
+        }
+        
+        // ESC key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !document.getElementById('case-study-view').classList.contains('hidden')) {
+                closeCaseStudy();
+            }
+        });
+    </script>
+</body>
+</html>

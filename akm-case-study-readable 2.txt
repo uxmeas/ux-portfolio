@@ -1,0 +1,118 @@
+AKM SECURE CASE STUDY
+=====================
+
+OPENING STATEMENT
+-----------------
+1-Week Build | Enterprise UX | Live Site
+
+AKM Secure: 400% Increase in Demo Requests
+
+Strategic UX transformation for a cybersecurity startup competing with Palantir & Anduril
+
+Key Results:
+• +400% Demo Requests
+• +85% Mobile Engagement
+• -67% Bounce Rate
+• 3.2x Lead Generation
+
+
+THE CHALLENGE
+-------------
+The Problem:
+• Legacy Wix site converting less than 1% of visitors to demos
+• Mobile experience driving 73% bounce rate  
+• Brand positioning unclear to enterprise decision-makers
+• No visual differentiation in crowded cybersecurity market
+
+The Opportunity:
+• Transform digital presence to match technology sophistication
+• Capture high-value enterprise contracts
+• Position as credible alternative to industry giants
+• Build scalable conversion machine for growth
+
+
+MY APPROACH
+-----------
+Step 1: Competitive Intelligence
+I analyzed 15 cybersecurity leaders including Palantir, Anduril, and CrowdStrike to identify conversion patterns. Focused on 8-second trust signals, visual sophistication, and mobile-first experiences.
+
+Step 2: Visual Direction  
+Developed a military-grade aesthetic with institutional credibility using pure monochromatic palette. Chose Inter typeface, sharp corners, and monochrome design for maximum impact.
+
+Step 3: Conversion Architecture
+Designed user flows optimized for enterprise decision-makers with multiple conversion paths. Created clear hero-to-problem flow with social proof and multiple CTAs throughout.
+
+
+THE DESIGN SYSTEM
+-----------------
+Created a military-grade aesthetic with institutional credibility.
+
+Color Philosophy:
+Pure black and white only - no colors. High contrast for maximum readability. Sharp corners with zero border radius. Function over decoration.
+
+Typography:
+Inter font family throughout. Bold for headlines, semibold for sections, regular for body text, uppercase for labels.
+
+
+KEY FEATURES
+------------
+Homepage Hero:
+Implemented 6-second clarity rule with immediate value proposition. Added trust signals and multiple CTAs for different user intents.
+
+Mobile Experience:
+Touch-optimized navigation with thumb-friendly interactions. Fast load times under 3 seconds. Fully responsive across 15+ devices.
+
+
+TECHNICAL IMPLEMENTATION
+------------------------
+Built with Tailwind CSS for utility-first styling. Designed in Figma with comprehensive design system. Achieved 98 Lighthouse score for performance. WCAG 2.1 AA compliant for accessibility.
+
+Performance Achievements:
+• 90% faster page loads than previous site
+• Under 3 second mobile load time
+• Keyboard navigation throughout
+• Screen reader tested and optimized
+• Offline capable with service workers
+
+
+BUSINESS IMPACT
+---------------
+The Results That Matter:
+
+400% increase in demo requests from Fortune 500 companies
+85% more mobile visitors engaging with interactive features
+67% reduction in bounce rate
+3.2x increase in qualified lead generation
+
+Real Business Outcomes:
+
+Secured Series A Funding
+Website cited as key asset during investor due diligence process.
+
+Closed 2 Enterprise Deals
+Both deals directly attributed to improved digital credibility.
+
+Industry Recognition
+Received speaking invitations at major cybersecurity conferences.
+
+
+CLIENT TESTIMONIAL
+------------------
+"This transformation gave us the digital presence our technology deserves. We're now competing directly with established players and winning. The website has become our most effective sales tool."
+
+- CEO, AKM Secure
+
+
+CLOSING MESSAGE
+---------------
+Ready to compete like Palantir, without a Palantir-sized budget?
+
+Let's transform your digital presence into your most valuable sales asset.
+
+What I Offer:
+• Enterprise UX expertise
+• Rapid 1-week turnaround
+• ROI-focused design
+• Available for discovery calls within 24 hours
+
+Contact: hello@uxmeas.com

@@ -1,0 +1,192 @@
+AKM SECURE CASE STUDY - CONTENT FOR EDITING
+============================================
+
+HERO SECTION
+------------
+Top Bar:
+- 1-Week Build
+- Enterprise UX  
+- Live Site
+
+Main Title:
+AKM Secure:
+400% Increase
+in Demo Requests
+
+Subtitle:
+Strategic UX transformation for a cybersecurity startup competing with Palantir & Anduril
+
+Hero Metrics:
+- +400% Demo Requests
+- +85% Mobile Engagement
+- -67% Bounce Rate
+- 3.2x Lead Generation
+
+CTA Button: VIEW THE LIVE SITE
+
+
+THE CHALLENGE
+-------------
+Section Title: The Challenge
+
+Problem Card:
+Title: The Problem
+- Legacy Wix site converting less than 1% of visitors to demos
+- Mobile experience driving 73% bounce rate  
+- Brand positioning unclear to enterprise decision-makers
+- No visual differentiation in crowded cybersecurity market
+
+Opportunity Card:
+Title: The Opportunity
+- Transform digital presence to match technology sophistication
+- Capture high-value enterprise contracts
+- Position as credible alternative to industry giants
+- Build scalable conversion machine for growth
+
+[Placeholder: Before vs. After Comparison]
+
+
+STRATEGIC DESIGN APPROACH
+-------------------------
+Section Title: Strategic Design Approach
+
+Step 1: Competitive Intelligence
+Analyzed 15 cybersecurity leaders including Palantir, Anduril, and CrowdStrike to identify conversion patterns.
+Tags: 8-sec trust signals, Visual sophistication, Mobile-first
+
+Step 2: Visual Direction  
+Developed a military-grade aesthetic with institutional credibility using pure monochromatic palette.
+Tags: Inter typeface, Sharp corners, Monochrome
+
+Step 3: Conversion Architecture
+Designed user flows optimized for enterprise decision-makers with multiple conversion paths.
+Tags: Hero → Problem, Social proof, Multiple CTAs
+
+
+VISUAL SYSTEM
+-------------
+Section Title: Visual System
+Subtitle: Military-grade aesthetic with institutional credibility
+
+Color Palette:
+- Primary: #000000
+- Contrast: #FFFFFF  
+- Borders: rgba(255,255,255,0.2)
+- Gradients: rgba(0,0,0,0.3-0.9)
+
+Typography Scale:
+- Headlines: Inter Bold
+- Section Headers: Inter Semibold
+- Body text: Inter Regular
+- Labels: INTER UPPERCASE
+
+Design Principles:
+- Pure Monochrome: Black and white only
+- Sharp Corners: Zero border radius
+- High Contrast: Maximum readability
+- Minimal: Function over decoration
+
+Implementation:
+- Font: Inter (matches brand)
+- Icons: Lucide line icons
+- Effects: Gradient overlays
+- Animation: Sharp, linear transitions
+
+
+UX/UI SHOWCASE
+--------------
+Section Title: UX/UI Showcase
+
+Homepage Hero:
+6-second clarity rule with immediate value proposition.
+Tags: 6-sec clarity, Trust signals, Multiple CTAs
+
+Mobile-First Design:
+Touch-optimized navigation with thumb-friendly interactions.
+Tags: Touch targets, Fast load, Responsive
+
+
+TECHNICAL EXCELLENCE
+--------------------
+Section Title: Technical Excellence
+
+Tech Stack:
+- Tailwind CSS - Utility-first CSS
+- Figma - Design system  
+- Core Web Vitals - Performance
+- SEO - Optimization
+
+Performance:
+- 90% faster page loads
+- 98 Lighthouse score
+- < 3s mobile load time
+
+Accessibility:
+- WCAG 2.1 AA compliant
+- Keyboard navigation
+- Screen reader tested
+
+Mobile First:
+- 15+ device tested
+- Touch optimized
+- Offline capable
+
+
+RESULTS & BUSINESS IMPACT
+-------------------------
+Section Title: Results & Business Impact
+
+Main Metrics:
+- +400% Demo Requests (vs. previous)
+- +85% Mobile Engagement (time on site)
+- -67% Bounce Rate (improvement)
+- 3.2x Lead Generation (qualified leads)
+
+Business Outcomes:
+
+Secured Series A:
+Website cited as key asset during investor due diligence
+
+2 Enterprise Deals:
+Closed directly attributed to improved digital credibility
+
+Industry Recognition:
+Speaking invitations at major cybersecurity conferences
+
+
+TESTIMONIAL
+-----------
+Quote:
+"This transformation gave us the digital presence our technology deserves. We're now competing directly with established players and winning. The website has become our most effective sales tool."
+
+Attribution:
+CEO, AKM Secure
+Chief Executive Officer
+
+
+CALL TO ACTION
+--------------
+Section Title: 
+Ready to compete like Palantir,
+without a Palantir-sized budget?
+
+Subtitle:
+Let's transform your digital presence into your most valuable sales asset.
+
+Box Title: Your Strategic UX Partner
+- Enterprise UX expertise
+- Rapid 1-week turnaround
+- ROI-focused design
+
+Note: Available for discovery calls within 24 hours
+
+Primary CTA: Schedule a Call
+Secondary: or email hello@uxmeas.com
+
+
+============================================
+NOTES FOR EDITING:
+- This is the current text content from your AKM case study
+- Edit any section as needed
+- Let me know which sections you want to update
+- Images and placeholders are noted in [brackets]

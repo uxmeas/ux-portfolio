@@ -1,0 +1,213 @@
+/* Enhanced Portfolio Modal Styles */
+.enhanced-portfolio-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+}
+
+.enhanced-portfolio-modal.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.enhanced-portfolio-modal .modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.enhanced-portfolio-modal .modal-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.enhanced-portfolio-modal .modal-close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10001;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.enhanced-portfolio-modal .modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.modal-content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Iframe Mode Styles */
+.modal-iframe {
+  width: 100%;
+  height: 100vh;
+  border: none;
+  background: black;
+}
+
+/* Ajax Content Container */
+.ajax-content-container {
+  width: 100%;
+  min-height: 100vh;
+  background: black;
+  color: white;
+  position: relative;
+  isolation: isolate; /* Create new stacking context */
+}
+
+/* Native Case Study Styles (AKM-inspired) */
+.native-case-study {
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.native-case-study * {
+  border-radius: 0 !important; /* Sharp corners like AKM */
+}
+
+/* Gradient mesh background effect */
+.native-case-study .gradient-mesh {
+  background-image: 
+    radial-gradient(at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+    radial-gradient(at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%),
+    radial-gradient(at 40% 40%, rgba(255,255,255,0.02) 0%, transparent 50%);
+}
+
+/* Typography */
+.native-case-study h1 {
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+
+.native-case-study h2 {
+  letter-spacing: -0.02em;
+}
+
+/* Metric cards with sharp shadows */
+.native-case-study .metric-card {
+  transition: transform 0.2s linear, box-shadow 0.2s linear;
+}
+
+.native-case-study .metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Portfolio Card Updates for Display Mode */
+.portfolio-card[data-display-mode="iframe"] {
+  position: relative;
+}
+
+.portfolio-card[data-display-mode="iframe"]::after {
+  content: "Full Case Study";
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card[data-display-mode="iframe"]:hover::after {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .enhanced-portfolio-modal .modal-close {
+    top: 1rem;
+    right: 1rem;
+    width: 48px;
+    height: 48px;
+  }
+  
+  .native-case-study h1 {
+    font-size: 3rem;
+  }
+  
+  .native-case-study .metric-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Loading state */
+.modal-content-wrapper.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content-wrapper.loading::after {
+  content: "";
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Smooth scrolling for modal content */
+.modal-content-wrapper {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but keep functionality */
+.modal-content-wrapper::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.modal-content-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
