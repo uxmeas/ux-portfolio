@@ -222,34 +222,10 @@
         /* ── FOOTER ── */
         footer {
             background-color: var(--dark);
-            padding: 120px 40px 60px 40px;
+            padding: 60px 40px;
             border-top: 1px solid var(--border);
         }
         .footer-container { max-width: 1536px; margin: 0 auto; }
-        .footer-heading {
-            font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: var(--text);
-            margin-bottom: 12px; line-height: 1.05;
-            letter-spacing: -0.03em;
-            position: relative; display: inline-block;
-        }
-        .footer-heading-underline {
-            position: absolute; bottom: -20px; left: 0;
-            width: 80px; height: 2px; background-color: var(--white);
-        }
-        .footer-cta {
-            display: inline-block;
-            margin-top: 48px;
-            font-size: 16px;
-            font-weight: 500;
-            color: var(--dark);
-            background-color: var(--white);
-            padding: 14px 32px;
-            text-decoration: none;
-            letter-spacing: 0.05em;
-            transition: opacity 0.3s ease;
-        }
-        .footer-cta:hover { opacity: 0.85; }
-        .footer-spacer { height: 80px; }
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -277,6 +253,104 @@
             color: rgba(255, 255, 255, 0.5);
         }
 
+        /* ── CONTACT FORM ── */
+        .contact {
+            padding: 120px 40px;
+            background-color: var(--dark);
+            border-top: 1px solid var(--border);
+        }
+        .contact-container {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .contact .section-heading {
+            margin-bottom: 16px;
+        }
+        .contact-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--muted);
+            margin-bottom: 48px;
+            line-height: 1.6;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--dark-surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            transition: border-color 0.2s ease;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--dim);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--white);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact-submit {
+            display: inline-block;
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            transition: opacity 0.3s ease;
+            align-self: flex-start;
+        }
+        .contact-submit:hover { opacity: 0.85; }
+        .contact-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .contact-success {
+            display: none;
+            padding: 32px 0;
+        }
+        .contact-success p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--light);
+        }
+
+        @media (max-width: 768px) {
+            .contact { padding: 80px 20px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+
         /* ── FADE-IN ── */
         .fade-in {
             opacity: 0;
@@ -289,7 +363,7 @@
 
         /* ── ACTIVE/PRESSED STATES ── */
         .project-card:active { transform: scale(0.98); }
-        .footer-cta:active,
+        .contact-submit:active,
         .modal-nav button:active { opacity: 0.7; }
 
         /* ── REDUCED MOTION ── */
@@ -555,7 +629,7 @@
                 <a href="#about">About</a>
             </div>
             <div class="nav-contact">
-                <a href="mailto:hello@uxmeas.com">Contact</a>
+                <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
@@ -569,7 +643,7 @@
                 <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="https://www.behance.net/uxmeas" target="_blank" rel="noopener">Behance</a>
                 <a href="https://www.dribbble.com/uxmeas" target="_blank" rel="noopener">Dribbble</a>
-                <a href="forms/intake-form-v2.html">Start a Project</a>
+                <a href="#contact">Start a Project</a>
             </div>
         </div>
     </section>
@@ -625,16 +699,44 @@
         </div>
     </section>
 
+    <!-- CONTACT -->
+    <section id="contact" class="contact">
+        <div class="contact-container">
+            <h2 class="section-heading">Let's work together.</h2>
+            <p class="contact-subtitle">Have a project in mind? Send me a message and I'll get back to you within 24 hours.</p>
+
+            <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+                <input type="hidden" name="form-name" value="contact">
+                <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contactName">Name</label>
+                        <input type="text" id="contactName" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Email</label>
+                        <input type="email" id="contactEmail" name="email" required placeholder="you@company.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactMessage">Message</label>
+                    <textarea id="contactMessage" name="message" required placeholder="Tell me about your project" rows="5"></textarea>
+                </div>
+
+                <button type="submit" class="contact-submit">Send Message &rarr;</button>
+            </form>
+
+            <div class="contact-success" id="contactSuccess">
+                <p>Message sent. I'll be in touch soon.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
         <div class="footer-container">
-            <div class="footer-heading">
-                Let's work together
-                <div class="footer-heading-underline"></div>
-            </div>
-            <a href="forms/intake-form-v2.html" class="footer-cta">Start a Project &rarr;</a>
-
-            <div class="footer-spacer"></div>
 
             <div class="footer-grid">
                 <div class="footer-column">
@@ -920,6 +1022,30 @@
             const key = location.hash.replace('#project/', '');
             if (projects[key]) openModal(key);
         }
+
+        // ── CONTACT FORM ──
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('.contact-submit');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                const formData = new FormData(contactForm);
+                await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+                contactForm.style.display = 'none';
+                document.getElementById('contactSuccess').style.display = 'block';
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message →';
+                alert('Something went wrong. Email me at hello@uxmeas.com instead.');
+            }
+        });
     </script>
 </body>
 </html>
