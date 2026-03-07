@@ -42,6 +42,10 @@
             --border: rgba(250, 250, 250, 0.08);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        *:focus-visible {
+            outline: 2px solid var(--white);
+            outline-offset: 2px;
+        }
         html { scroll-behavior: smooth; }
 
         body {
@@ -280,6 +284,19 @@
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── ACTIVE/PRESSED STATES ── */
+        .project-card:active { transform: scale(0.98); }
+        .footer-cta:active,
+        .modal-nav button:active { opacity: 0.7; }
+
+        /* ── REDUCED MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
         }
 
         /* ── RESPONSIVE ── */
@@ -561,21 +578,21 @@
         <h2 class="section-heading">Selected work.</h2>
 
         <div class="projects-grid">
-            <div data-project="akm" class="project-card fade-in">
+            <div data-project="akm" class="project-card fade-in" tabindex="0" role="button" aria-label="View AKM SecureKey project">
                 <div class="project-image" style="background-color: #252525; background-image: url('images/akm-card.png');"></div>
                 <h3 class="project-title">AKM SecureKey</h3>
                 <p class="project-description">Brand identity, website design, and HubSpot migration for a cybersecurity company.</p>
                 <span class="project-meta">Brand · Web · CMS</span>
             </div>
 
-            <div data-project="katipult" class="project-card fade-in">
+            <div data-project="katipult" class="project-card fade-in" tabindex="0" role="button" aria-label="View Katipult project">
                 <div class="project-image" style="background-color: #1E293B; background-image: url('images/katipult-card.png');"></div>
                 <h3 class="project-title">Katipult</h3>
                 <p class="project-description">Co-founded. 3 people to 49+ and a public IPO. 11 years of product design, brand, and design systems.</p>
                 <span class="project-meta">Product · Design Systems · Fintech</span>
             </div>
 
-            <div data-project="mypick" class="project-card fade-in">
+            <div data-project="mypick" class="project-card fade-in" tabindex="0" role="button" aria-label="View MyPick.io project">
                 <div class="project-image" style="background-color: #0C1222; background-image: url('images/mypick-card.png');"></div>
                 <h3 class="project-title">MyPick.io</h3>
                 <p class="project-description">Visual elimination race game. Multiplayer rooms, real-time sync, designed and built end-to-end.</p>
@@ -757,23 +774,51 @@
         };
 
         let currentIndex = 0;
+        let triggerElement = null;
         const modal = document.getElementById('projectModal');
         const modalPanel = modal.querySelector('.modal-panel');
 
+        function getFocusableElements() {
+            return modalPanel.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+        }
+
+        function trapFocus(e) {
+            if (e.key !== 'Tab') return;
+            const focusable = getFocusableElements();
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+
         function openModal(key) {
+            triggerElement = document.activeElement;
             currentIndex = projectKeys.indexOf(key);
             modalPanel.classList.remove('modal-panel--navigating');
             renderModal();
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
             history.pushState({ project: key }, '', '#project/' + key);
+            modal.addEventListener('keydown', trapFocus);
+            setTimeout(() => modal.querySelector('.modal-close').focus(), 100);
         }
 
         function closeModal(pushState) {
             modal.classList.remove('active');
             document.body.style.overflow = '';
+            modal.removeEventListener('keydown', trapFocus);
             if (pushState !== false && location.hash.startsWith('#project/')) {
                 history.pushState(null, '', location.pathname);
+            }
+            if (triggerElement) {
+                triggerElement.focus();
+                triggerElement = null;
             }
         }
 
@@ -811,9 +856,15 @@
             modalPanel.scrollTop = 0;
         }
 
-        // Card click handlers
+        // Card click + keyboard handlers
         document.querySelectorAll('[data-project]').forEach(card => {
             card.addEventListener('click', () => openModal(card.dataset.project));
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(card.dataset.project);
+                }
+            });
         });
 
         // Close handlers
