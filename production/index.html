@@ -599,6 +599,13 @@
                 <span class="project-meta">Web App · Game · Multiplayer</span>
             </div>
 
+            <div data-project="relationsync" class="project-card fade-in" tabindex="0" role="button" aria-label="View RelationSync project">
+                <div class="project-image" style="background-color: #F9F7F2; background-image: url('images/relationsync-card.png');"></div>
+                <h3 class="project-title">RelationSync</h3>
+                <p class="project-description">Voice-first relationship memory app. 35 screens designed and prototyped with a collaborator.</p>
+                <span class="project-meta">Mobile App · Product Design · Collaboration</span>
+            </div>
+
         </div>
     </section>
 
@@ -715,7 +722,7 @@
         });
 
         // ── PROJECT MODAL SYSTEM ──
-        const projectKeys = ['akm', 'katipult', 'mypick'];
+        const projectKeys = ['akm', 'katipult', 'mypick', 'relationsync'];
         const projects = {
             akm: {
                 title: 'AKM SecureKey',
@@ -770,6 +777,24 @@
                     'Game mechanics design'
                 ],
                 links: [{ label: 'Play now', url: 'https://mypickio.netlify.app', external: true }]
+            },
+            relationsync: {
+                title: 'RelationSync',
+                tags: 'Mobile App · Product Design · Collaboration',
+                image: 'images/relationsync-card.png',
+                summary: 'A mobile app for capturing and reflecting on relationship memories. Voice-first journaling with AI summaries, calendar views, and personal insights. 35 screens designed and prototyped from scratch.',
+                role: 'Designer & Co-Developer',
+                timeline: '2026–Present',
+                team: '2 people (design + frontend / backend)',
+                deliverables: 'Mobile App Design, Component System, Interactive Prototype',
+                contributions: [
+                    'UX/UI design across 35 screens',
+                    'Component system (19 reusable components)',
+                    '7-screen onboarding flow design',
+                    'Interactive prototype with navigation flows',
+                    'Frontend development'
+                ],
+                links: []
             }
         };
 
