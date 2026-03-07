@@ -200,3 +200,14 @@ lighthouse-*.json
 
 # Local Netlify folder
 .netlify
+
+# Internal files (local only, never deploy)
+brand/
+internal/
+agents/
+specs/
+.claude/
+.specify/
+*.docx
+*.pptx
+*.csv

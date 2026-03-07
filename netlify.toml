@@ -1,7 +1,7 @@
 # Netlify configuration for UX Portfolio
 
 [build]
-  publish = "."
+  publish = "production"
 
 # Production context (main branch)
 [context.production]
