@@ -652,18 +652,39 @@
                 <span class="project-meta">Brand · Web · CMS</span>
             </div>
 
-            <div data-project="katipult" class="project-card fade-in" tabindex="0" role="button" aria-label="View Katipult project">
-                <div class="project-image" style="background-color: #1E293B; background-image: url('images/katipult-card.png');"></div>
-                <h3 class="project-title">Katipult</h3>
-                <p class="project-description">Co-founded. 3 people to 49+ and a public IPO. 11 years of product design, brand, and design systems.</p>
-                <span class="project-meta">Product · Design Systems · Fintech</span>
+            <div data-project="ksign" class="project-card fade-in" tabindex="0" role="button" aria-label="View KSign project">
+                <div class="project-image" style="background-color: #0F172A; background-image: url('images/ksign-card.png');"></div>
+                <h3 class="project-title">KSign</h3>
+                <p class="project-description">Electronic signature module for Katipult's DealFlow platform. Compliant document signing across 20 jurisdictions.</p>
+                <span class="project-meta">Product Design · Fintech · Feature Design</span>
+            </div>
+
+            <div data-project="onboarding" class="project-card fade-in" tabindex="0" role="button" aria-label="View Regulated Investor Onboarding project">
+                <div class="project-image" style="background-color: #0F172A; background-image: url('images/onboarding-card.png');"></div>
+                <h3 class="project-title">Regulated Investor Onboarding</h3>
+                <p class="project-description">KYC/AML compliance flows for enterprise clients including Markette Ventures and Canaccord Genuity.</p>
+                <span class="project-meta">Compliance UX · Enterprise · KYC/AML</span>
+            </div>
+
+            <div data-project="katipultbrand" class="project-card fade-in" tabindex="0" role="button" aria-label="View Brand Evolution project">
+                <div class="project-image" style="background-color: #1A1A2E; background-image: url('images/katipultbrand-card.png');"></div>
+                <h3 class="project-title">JOI Media to Katipult</h3>
+                <p class="project-description">13-year brand evolution from agency to fintech to public company. Three eras of identity, positioning, and design.</p>
+                <span class="project-meta">Brand Design · Strategy · Identity</span>
+            </div>
+
+            <div data-project="katipultipo" class="project-card fade-in" tabindex="0" role="button" aria-label="View Katipult IPO project">
+                <div class="project-image" style="background-color: #0A1628; background-image: url('images/katipultipo-card.png');"></div>
+                <h3 class="project-title">Katipult IPO</h3>
+                <p class="project-description">Investor relations materials and marketing collateral for Katipult's TSX Venture Exchange listing.</p>
+                <span class="project-meta">Investor Relations · IPO · Communications</span>
             </div>
 
             <div data-project="mypick" class="project-card fade-in" tabindex="0" role="button" aria-label="View MyPick.io project">
                 <div class="project-image" style="background-color: #0C1222; background-image: url('images/mypick-card.png');"></div>
                 <h3 class="project-title">MyPick.io</h3>
-                <p class="project-description">Visual elimination race game. Multiplayer rooms, real-time sync, designed and built end-to-end.</p>
-                <span class="project-meta">Web App · Game · Multiplayer</span>
+                <p class="project-description">Visual randomizer that turns list shuffling into a pixel car race. Cryptographically secure, designed and built end-to-end.</p>
+                <span class="project-meta">Web App · Canvas · Vanilla JS</span>
             </div>
 
             <div data-project="relationsync" class="project-card fade-in" tabindex="0" role="button" aria-label="View RelationSync project">
@@ -814,7 +835,7 @@
         });
 
         // ── PROJECT MODAL SYSTEM ──
-        const projectKeys = ['akm', 'katipult', 'mypick', 'relationsync'];
+        const projectKeys = ['akm', 'ksign', 'onboarding', 'katipultbrand', 'katipultipo', 'mypick', 'relationsync'];
         const projects = {
             akm: {
                 title: 'AKM SecureKey',
@@ -835,42 +856,122 @@
                 links: [{ label: 'View live', url: 'https://akmsecure.com', external: true }],
                 gallery: []
             },
-            katipult: {
-                title: 'Katipult',
-                tags: 'Product · Design Systems · Fintech',
-                image: 'images/katipult-card.png',
-                summary: 'Co-founded JOI Media in 2008 with two partners. Built the product, brand, and design systems as it grew from 3 people to 49+ employees, became Katipult, and went public on the TSX Venture Exchange.',
-                role: 'Co-Founder & Design Lead',
-                timeline: '2008–2019 (11 years)',
-                team: '3 → 49+ employees',
-                deliverables: 'Product, Brand, Design System, IPO Assets',
+            ksign: {
+                title: 'KSign',
+                tags: 'Product Design · Fintech · Feature Design',
+                image: 'images/ksign-card.png',
+                summary: 'Designed KSign, an electronic signature module within Katipult\'s DealFlow platform. Enabled compliant investment document signing across 20 jurisdictions as part of the award-winning private capital markets infrastructure.',
+                role: 'Co-Founder & Lead Product Designer',
+                timeline: 'Katipult era (2014–2023)',
+                team: 'Part of Katipult (3 → 49+ employees)',
+                deliverables: 'Signature Flow UX, Compliance Integration, Component System',
                 contributions: [
-                    'UX/UI design across all product iterations',
-                    'Design system architecture & component library',
-                    'Brand identity (multiple evolutions)',
-                    'Print & marketing collateral',
-                    'Investor relations materials & IPO design assets'
+                    'End-to-end signature flow UX for investment documents',
+                    'Regulatory compliance integration across 20 jurisdictions',
+                    'Part of design system powering 20+ white-label deployments',
+                    'Feature within Banking Tech USA award-winning DealFlow platform (2023 & 2024)',
+                    'Collaborated with legal and compliance teams on regulatory requirements'
                 ],
                 links: [],
+                gallery: [
+                    {
+                        label: 'Platform',
+                        bg: '#0F172A',
+                        images: [
+                            'images/katipult/screen_one.jpg',
+                            'images/katipult/screen_two.jpg'
+                        ]
+                    }
+                ]
+            },
+            onboarding: {
+                title: 'Regulated Investor Onboarding',
+                tags: 'Compliance UX · Enterprise · KYC/AML',
+                image: 'images/onboarding-card.png',
+                summary: 'Designed KYC/AML-compliant investor onboarding flows for enterprise clients including Markette Ventures and Canaccord Genuity. Turned hours of regulatory paperwork into streamlined digital experiences within Katipult\'s platform.',
+                role: 'Lead Product Designer',
+                timeline: 'Katipult era',
+                team: 'Part of Katipult (3 → 49+ employees)',
+                deliverables: 'KYC Flows, AML Compliance, Investor Accreditation UX',
+                contributions: [
+                    'KYC (Know Your Customer) onboarding flow design',
+                    'AML (Anti-Money Laundering) compliance workflow integration',
+                    'Investor accreditation and document verification UX',
+                    'Onboarding for Markette Ventures and Canaccord Genuity',
+                    'Reduced onboarding friction while maintaining regulatory compliance'
+                ],
+                links: [{ label: 'NCFA dealer partnership', url: 'https://ncfacanada.org/katipult-announces-investment-dealer-partnership/', external: true }],
+                gallery: [
+                    {
+                        label: 'Platform',
+                        bg: '#0F172A',
+                        images: [
+                            'images/katipult/screen_three.jpg',
+                            'images/katipult/screen_four.jpg'
+                        ]
+                    }
+                ]
+            },
+            katipultbrand: {
+                title: 'JOI Media to Katipult',
+                tags: 'Brand Design · Strategy · Identity',
+                image: 'images/katipultbrand-card.png',
+                summary: 'Designed and evolved the brand identity across three eras: agency (JOI Media, 2008), early product (Katipult crowdfunding), and institutional fintech (DealFlow platform). Named Canada\'s Most Innovative Fintech Company by NCFA. EY Entrepreneur of the Year 2017 finalist.',
+                role: 'Co-Founder & Creative Director',
+                timeline: '2008–2022 (13+ years)',
+                team: '3 → 49+ employees',
+                deliverables: 'Brand Identity, Logo Systems, Marketing Positioning',
+                contributions: [
+                    'Three complete brand identity systems (JOI Media, Katipult, DealFlow)',
+                    'Logo evolution across agency, product, and enterprise eras',
+                    'Marketing positioning for Canada\'s Most Innovative Fintech (NCFA)',
+                    'EY Entrepreneur of the Year 2017 finalist campaign materials',
+                    'RBC Emerging Enterprise of the Year award-era branding',
+                    'Singapore FinTech Festival award presentation materials ($100K prize)'
+                ],
+                links: [
+                    { label: 'Calgary Herald (2012)', url: 'https://calgaryherald.com/technology/startup-of-the-week-katipult', external: true }
+                ],
+                gallery: []
+            },
+            katipultipo: {
+                title: 'Katipult IPO',
+                tags: 'Investor Relations · IPO · Communications',
+                image: 'images/katipultipo-card.png',
+                summary: 'Designed investor relations materials and marketing collateral supporting Katipult\'s IPO on the TSX Venture Exchange (TSXV: FUND), raising CAD $1.6M in November 2017. TMX listing ceremony in January 2018.',
+                role: 'Co-Founder & Design Lead',
+                timeline: '2017–2018',
+                team: 'Part of Katipult leadership',
+                deliverables: 'Investor Materials, Pitch Positioning, IPO Collateral',
+                contributions: [
+                    'Investor pitch materials and positioning for TSXV listing',
+                    'IPO marketing collateral (CAD $1.6M raised, November 2017)',
+                    'TSX Venture Exchange listing ceremony presence (January 2018)',
+                    'Featured in Crowdfund Insider, Globe and Mail, Ivey Business School',
+                    'Design assets for InvestmentPitch Media company overview'
+                ],
+                links: [
+                    { label: 'Crowdfund Insider', url: 'https://www.crowdfundinsider.com/2017/11/124547-canadian-fintech-katipult-becomes-public-company/', external: true }
+                ],
                 gallery: []
             },
             mypick: {
                 title: 'MyPick.io',
-                tags: 'Web App · Game · Multiplayer',
+                tags: 'Web App · Canvas · Vanilla JS',
                 image: 'images/mypick-card.png',
-                summary: 'Visual elimination race game built end-to-end. Multiplayer rooms with real-time sync via Supabase Realtime. Solo and multiplayer modes with 25 teams, dynamic camera, 24 sound effects.',
+                summary: 'A visual randomizer that makes list shuffling entertaining. Enter names, watch pixel cars race for 15-45 seconds, and get a cryptographically secure random order. Built for fantasy drafts, team picks, and group decisions. Pure vanilla JavaScript with Canvas 2D, zero dependencies.',
                 role: 'Designer & Developer',
                 timeline: '2025–Present',
                 team: 'Solo (design & dev)',
-                deliverables: 'Web App, Game Engine, Multiplayer',
+                deliverables: 'Web App, Game Engine, Sound Design',
                 contributions: [
-                    'Full UX/UI design',
-                    'Frontend development (vanilla JS, ES6 modules)',
-                    'Multiplayer architecture (Supabase Realtime)',
-                    'Privacy compliance (GDPR/CCPA)',
-                    'Game mechanics design'
+                    'Full UX/UI design and pixel art',
+                    'Canvas 2D game engine (vanilla JS, ES6 modules)',
+                    'Cryptographic randomness via Web Crypto API',
+                    '27 integrated sound effects',
+                    'Responsive design across all screen sizes'
                 ],
-                links: [{ label: 'Play now', url: 'https://mypickio.netlify.app', external: true }],
+                links: [{ label: 'Try it', url: 'https://mypickio.netlify.app', external: true }],
                 gallery: []
             },
             relationsync: {
