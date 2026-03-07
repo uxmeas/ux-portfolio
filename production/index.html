@@ -766,6 +766,9 @@
                 modal.classList.remove('active');
                 document.body.style.overflow = '';
             }
+            if (location.hash.startsWith('#project/')) {
+                history.replaceState(null, '', location.pathname);
+            }
         });
 
         // Open modal if URL has #project/xxx on load
