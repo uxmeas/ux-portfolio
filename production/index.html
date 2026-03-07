@@ -363,8 +363,7 @@
 
         /* ── ACTIVE/PRESSED STATES ── */
         .project-card:active { transform: scale(0.98); }
-        .contact-submit:active,
-        .modal-nav button:active { opacity: 0.7; }
+        .contact-submit:active { opacity: 0.7; }
 
         /* ── REDUCED MOTION ── */
         @media (prefers-reduced-motion: reduce) {
@@ -407,9 +406,7 @@
             inset: 0;
             background: rgba(0, 0, 0, 0.92);
             z-index: 1001;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow-y: auto;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -423,41 +420,17 @@
             border: 1px solid var(--border);
             max-width: 960px;
             width: calc(100% - 40px);
-            max-height: 85vh;
-            overflow-y: auto;
+            margin: 40px auto;
             padding: 48px;
             position: relative;
             opacity: 0;
             transform: translateY(16px);
-            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s,
-                        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.05s;
+            transition: opacity 0.35s var(--ease-out-expo) 0.05s,
+                        transform 0.35s var(--ease-out-expo) 0.05s;
         }
         .modal-overlay.active .modal-panel {
             opacity: 1;
             transform: translateY(0);
-        }
-        .modal-panel > * {
-            opacity: 0;
-            transform: translateY(12px);
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .modal-overlay.active .modal-panel > *:nth-child(1) { transition-delay: 0.1s; }
-        .modal-overlay.active .modal-panel > *:nth-child(2) { transition-delay: 0.14s; }
-        .modal-overlay.active .modal-panel > *:nth-child(3) { transition-delay: 0.18s; }
-        .modal-overlay.active .modal-panel > *:nth-child(4) { transition-delay: 0.24s; }
-        .modal-overlay.active .modal-panel > *:nth-child(5) { transition-delay: 0.30s; }
-        .modal-overlay.active .modal-panel > *:nth-child(6) { transition-delay: 0.36s; }
-        .modal-overlay.active .modal-panel > *:nth-child(7) { transition-delay: 0.42s; }
-        .modal-overlay.active .modal-panel > *:nth-child(8) { transition-delay: 0.48s; }
-        .modal-overlay.active .modal-panel > *:nth-child(9) { transition-delay: 0.54s; }
-        .modal-overlay.active .modal-panel > * {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .modal-panel--navigating > * {
-            transition-delay: 0s !important;
-            transition-duration: 0.15s !important;
         }
         .modal-hero {
             width: calc(100% + 96px);
@@ -468,19 +441,23 @@
             background-color: #252525;
         }
         .modal-close {
-            position: absolute;
+            position: fixed;
             top: 20px;
             right: 20px;
-            background: none;
-            border: none;
+            background: rgba(17, 17, 17, 0.8);
+            border: 1px solid var(--border);
             color: var(--muted);
             font-size: 24px;
             cursor: pointer;
-            padding: 8px;
+            padding: 8px 12px;
             line-height: 1;
-            transition: color 0.2s;
+            z-index: 1002;
+            transition: color 0.2s, border-color 0.2s;
         }
-        .modal-close:hover { color: var(--white); }
+        .modal-close:hover {
+            color: var(--white);
+            border-color: var(--white);
+        }
         .modal-tags {
             font-size: 12px;
             font-weight: 500;
@@ -503,12 +480,13 @@
             color: var(--light);
             line-height: 1.7;
             margin-bottom: 32px;
+            max-width: 680px;
         }
         .modal-details {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(4, 1fr);
             gap: 24px;
-            margin-bottom: 32px;
+            margin-bottom: 40px;
             padding: 24px 0;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
@@ -527,6 +505,43 @@
             color: var(--light);
             line-height: 1.4;
         }
+
+        /* Gallery sections */
+        .modal-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 0 -48px 40px -48px;
+        }
+        .modal-gallery-section {
+            padding: 48px;
+        }
+        .modal-gallery-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 24px;
+        }
+        .modal-gallery-images {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .modal-gallery-images img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* Single image: full width */
+        .modal-gallery-images--1 img { width: 100%; }
+        /* 2 images side by side */
+        .modal-gallery-images--2 img { width: calc(50% - 12px); }
+        /* 3 images side by side */
+        .modal-gallery-images--3 img { width: calc(33.333% - 16px); }
+
         .modal-contributions {
             margin-bottom: 32px;
         }
@@ -562,9 +577,6 @@
             border-radius: 50%;
         }
         .modal-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
             padding-top: 24px;
             border-top: 1px solid var(--border);
         }
@@ -582,40 +594,20 @@
             transition: opacity 0.2s;
         }
         .modal-links a:hover { opacity: 0.7; }
-        .modal-nav {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        .modal-nav button {
-            background: none;
-            border: 1px solid var(--border);
-            color: var(--muted);
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: border-color 0.2s, color 0.2s;
-        }
-        .modal-nav button:hover {
-            border-color: var(--white);
-            color: var(--white);
-        }
-        .modal-counter {
-            font-size: 13px;
-            font-weight: 300;
-            color: var(--dim);
-        }
 
         @media (max-width: 768px) {
-            .modal-panel { padding: 32px 20px; }
+            .modal-panel { padding: 32px 20px; margin: 20px auto; }
             .modal-hero { width: calc(100% + 40px); margin: -32px -20px 24px -20px; }
             .modal-title { font-size: 24px; }
-            .modal-details { grid-template-columns: 1fr; gap: 16px; }
-            .modal-footer { flex-direction: column; gap: 20px; align-items: flex-start; }
+            .modal-details { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .modal-gallery { margin: 0 -20px 32px -20px; }
+            .modal-gallery-section { padding: 32px 20px; }
+            .modal-gallery-images { flex-direction: column; }
+            .modal-gallery-images--2 img,
+            .modal-gallery-images--3 img { width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .modal-details { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -773,17 +765,13 @@
             <h3 class="modal-title" id="modalTitle"></h3>
             <p class="modal-summary" id="modalSummary"></p>
             <div class="modal-details" id="modalDetails"></div>
+            <div class="modal-gallery" id="modalGallery"></div>
             <div class="modal-contributions">
                 <h4>Key Contributions</h4>
                 <ul id="modalContributions"></ul>
             </div>
             <div class="modal-footer">
                 <div class="modal-links" id="modalLinks"></div>
-                <div class="modal-nav">
-                    <button id="modalPrev" aria-label="Previous project">&#8592;</button>
-                    <span class="modal-counter" id="modalCounter"></span>
-                    <button id="modalNext" aria-label="Next project">&#8594;</button>
-                </div>
             </div>
         </div>
     </div>
@@ -844,7 +832,8 @@
                     'Print collateral (tear sheets, business cards)',
                     'Brand guidelines documentation'
                 ],
-                links: [{ label: 'View live', url: 'https://akmsecure.com', external: true }]
+                links: [{ label: 'View live', url: 'https://akmsecure.com', external: true }],
+                gallery: []
             },
             katipult: {
                 title: 'Katipult',
@@ -862,7 +851,8 @@
                     'Print & marketing collateral',
                     'Investor relations materials & IPO design assets'
                 ],
-                links: []
+                links: [],
+                gallery: []
             },
             mypick: {
                 title: 'MyPick.io',
@@ -880,7 +870,8 @@
                     'Privacy compliance (GDPR/CCPA)',
                     'Game mechanics design'
                 ],
-                links: [{ label: 'Play now', url: 'https://mypickio.netlify.app', external: true }]
+                links: [{ label: 'Play now', url: 'https://mypickio.netlify.app', external: true }],
+                gallery: []
             },
             relationsync: {
                 title: 'RelationSync',
@@ -898,7 +889,8 @@
                     'Interactive prototype with navigation flows',
                     'Frontend development'
                 ],
-                links: []
+                links: [],
+                gallery: []
             }
         };
 
@@ -929,7 +921,6 @@
         function openModal(key) {
             triggerElement = document.activeElement;
             currentIndex = projectKeys.indexOf(key);
-            modalPanel.classList.remove('modal-panel--navigating');
             renderModal();
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -951,12 +942,6 @@
             }
         }
 
-        function navigateModal(dir) {
-            modalPanel.classList.add('modal-panel--navigating');
-            currentIndex = (currentIndex + dir + projectKeys.length) % projectKeys.length;
-            renderModal();
-        }
-
         function renderModal() {
             const key = projectKeys[currentIndex];
             const p = projects[key];
@@ -972,17 +957,30 @@
                 .map(([label, value]) => `<div><div class="modal-detail-label">${label}</div><div class="modal-detail-value">${value}</div></div>`)
                 .join('');
 
+            // Gallery sections
+            const galleryEl = document.getElementById('modalGallery');
+            if (p.gallery && p.gallery.length) {
+                galleryEl.innerHTML = p.gallery.map(section => `
+                    <div class="modal-gallery-section" style="background: ${section.bg}">
+                        <div class="modal-gallery-label">${section.label}</div>
+                        <div class="modal-gallery-images modal-gallery-images--${section.images.length}">
+                            ${section.images.map(img => `<img src="${img}" alt="${section.label}" loading="lazy">`).join('')}
+                        </div>
+                    </div>
+                `).join('');
+                galleryEl.style.display = '';
+            } else {
+                galleryEl.style.display = 'none';
+            }
+
             document.getElementById('modalContributions').innerHTML =
                 p.contributions.map(c => `<li>${c}</li>`).join('');
 
             document.getElementById('modalLinks').innerHTML =
                 p.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label} &rarr;</a>`).join('');
 
-            document.getElementById('modalCounter').textContent =
-                (currentIndex + 1) + ' / ' + projectKeys.length;
-
             history.replaceState({ project: key }, '', '#project/' + key);
-            modalPanel.scrollTop = 0;
+            modal.scrollTop = 0;
         }
 
         // Card click + keyboard handlers
@@ -1002,13 +1000,7 @@
         document.addEventListener('keydown', (e) => {
             if (!modal.classList.contains('active')) return;
             if (e.key === 'Escape') closeModal();
-            if (e.key === 'ArrowLeft') navigateModal(-1);
-            if (e.key === 'ArrowRight') navigateModal(1);
         });
-
-        // Prev/Next buttons
-        document.getElementById('modalPrev').addEventListener('click', () => navigateModal(-1));
-        document.getElementById('modalNext').addEventListener('click', () => navigateModal(1));
 
         // Handle browser back button
         window.addEventListener('popstate', () => {
