@@ -15,7 +15,7 @@
     <meta name="theme-color" content="#111111">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -35,11 +35,19 @@
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: 'Space Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: var(--dark);
             color: var(--text);
+            font-weight: 300;
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        /* ── MZM LABS TYPOGRAPHY SYSTEM ── */
+        h1, h2, h3, h4 {
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            font-weight: 700;
         }
 
         /* ── NAVIGATION ── */
@@ -74,16 +82,17 @@
             display: flex; gap: 48px; flex: 1; align-items: center;
         }
         .nav-links a {
-            font-size: 18px; font-weight: 300; color: var(--text);
+            font-size: 14px; font-weight: 300; color: var(--text);
             text-decoration: none; transition: opacity 0.3s ease;
-            padding-bottom: 2px;
+            padding-bottom: 2px; letter-spacing: 0.05em;
         }
         .nav-links a:hover { border-bottom: 1px solid var(--white); color: var(--white); }
         .nav-contact { margin-left: auto; }
         .nav-contact a {
-            font-size: 18px; font-weight: 300; color: var(--white);
+            font-size: 14px; font-weight: 300; color: var(--white);
             text-decoration: none; transition: opacity 0.3s ease;
             border-bottom: 1px solid var(--white); padding-bottom: 2px;
+            letter-spacing: 0.05em;
         }
         .nav-contact a:hover { opacity: 0.7; }
 
@@ -97,7 +106,8 @@
         }
         .hero-content { max-width: 1536px; width: 100%; }
         .hero h1 {
-            font-size: 96px; font-weight: 700; line-height: 100px;
+            font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 700; line-height: 1.05;
+            letter-spacing: -0.03em;
             color: var(--text); margin-bottom: 24px; max-width: 900px;
         }
         .hero-subtitle {
@@ -124,7 +134,8 @@
             background-color: var(--dark);
         }
         .section-heading {
-            font-size: 48px; font-weight: 700; color: var(--text);
+            font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: var(--text);
+            letter-spacing: -0.03em; line-height: 1.05;
             margin-bottom: 80px; max-width: 1536px;
             margin-left: auto; margin-right: auto;
         }
@@ -159,9 +170,9 @@
             margin-bottom: 16px; line-height: 1.4;
         }
         .project-meta {
-            font-size: 14px; font-weight: 400;
+            font-size: 12px; font-weight: 500;
             color: rgba(255, 255, 255, 0.5);
-            text-transform: uppercase; letter-spacing: 0.5px;
+            text-transform: uppercase; letter-spacing: 0.2em;
         }
 
         /* ── ABOUT ── */
@@ -185,8 +196,9 @@
         }
         .footer-container { max-width: 1536px; margin: 0 auto; }
         .footer-heading {
-            font-size: 80px; font-weight: 700; color: var(--text);
-            margin-bottom: 12px; line-height: 1;
+            font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: var(--text);
+            margin-bottom: 12px; line-height: 1.05;
+            letter-spacing: -0.03em;
             position: relative; display: inline-block;
         }
         .footer-heading-underline {
@@ -200,10 +212,10 @@
             gap: 60px; margin-bottom: 60px;
         }
         .footer-column h3 {
-            font-size: 14px; font-weight: 700;
+            font-size: 12px; font-weight: 500;
             color: var(--white);
             margin-bottom: 24px;
-            text-transform: uppercase; letter-spacing: 0.5px;
+            text-transform: uppercase; letter-spacing: 0.2em;
         }
         .footer-column a {
             display: block; font-size: 16px; font-weight: 700;
@@ -235,37 +247,27 @@
         @media (max-width: 1024px) {
             .projects-grid { grid-template-columns: 1fr; gap: 60px; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-            .hero h1 { font-size: 64px; line-height: 70px; }
-            .hero-subtitle { font-size: 32px; line-height: 40px; }
         }
 
         @media (max-width: 768px) {
             nav { padding: 0 20px; }
             .nav-logo { font-size: 16px; margin-right: 40px; }
             .nav-links { gap: 24px; flex-wrap: wrap; }
-            .nav-links a, .nav-contact a { font-size: 14px; }
             .hero { padding: 100px 20px 0 20px; }
-            .hero h1 { font-size: 48px; line-height: 54px; margin-bottom: 16px; }
-            .hero-subtitle { font-size: 24px; line-height: 32px; }
+            .hero h1 { margin-bottom: 16px; }
             .projects { padding: 100px 20px; }
-            .section-heading { font-size: 36px; margin-bottom: 60px; }
+            .section-heading { margin-bottom: 60px; }
             .projects-grid { gap: 40px; }
             .project-title { font-size: 24px; }
             .project-description { font-size: 16px; }
             .about { padding: 100px 20px; }
             .about-paragraph { font-size: 18px; }
             footer { padding: 80px 20px 40px 20px; }
-            .footer-heading { font-size: 48px; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-            .footer-column h3 { font-size: 12px; }
         }
 
         @media (max-width: 480px) {
-            .hero h1 { font-size: 36px; line-height: 42px; }
-            .hero-subtitle { font-size: 20px; line-height: 28px; }
-            .section-heading { font-size: 28px; }
             .project-title { font-size: 20px; }
-            .footer-heading { font-size: 36px; }
         }
     </style>
 </head>
