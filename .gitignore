@@ -206,6 +206,7 @@ brand/
 internal/
 agents/
 specs/
+katipult/
 .claude/
 .specify/
 *.docx
