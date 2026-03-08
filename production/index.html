@@ -533,7 +533,10 @@
         /* ── Modal sections — full-bleed within panel ── */
         .m-section {
             width: 100%;
-            padding: 64px 60px;
+            padding: 100px 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
         /* ── Label bar (3 labels with 1px dividers, matching .pen) ── */
@@ -578,10 +581,10 @@
 
         /* ── Hero section — matches .pen layout exactly ── */
         .m-hero {
-            padding: 64px 60px 48px;
+            padding: 80px 120px 60px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 32px;
         }
         .m-hero--center { text-align: center; align-items: center; }
         .m-hero__logo {
@@ -604,6 +607,7 @@
             font-weight: 400;
             color: var(--cs-text-muted);
             line-height: 1.6;
+            max-width: 680px;
         }
         .m-hero__stats {
             display: flex;
@@ -675,6 +679,7 @@
         }
         .m-two-col__right {
             flex: 1;
+            max-width: 680px;
         }
 
         /* ── Section typography (matching .pen Inter styles) ── */
@@ -698,6 +703,7 @@
             font-weight: 400;
             color: var(--cs-text-muted);
             line-height: 1.7;
+            max-width: 680px;
         }
         .m-section__highlight {
             font-family: 'Inter', 'Space Grotesk', sans-serif;
