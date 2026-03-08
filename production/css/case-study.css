@@ -1,0 +1,666 @@
+/* ── CASE STUDY SECTION LIBRARY ──
+   Modular section system for Behance-style case studies.
+   All classes use .cs- prefix. Colors via --cs-* tokens per project. */
+
+/* ── DEFAULT TOKENS (overridden per case study fragment) ── */
+.cs {
+    --cs-accent: #3B82F6;
+    --cs-accent-muted: #1E3A5F;
+    --cs-bg-primary: #111111;
+    --cs-bg-alt: #1A1A1A;
+    --cs-bg-deep: #0A0A0A;
+    --cs-stat-color: #34D399;
+    --cs-text: #FFFFFF;
+    --cs-text-secondary: #E2E8F0;
+    --cs-text-muted: #94A3B8;
+    --cs-text-dim: #64748B;
+    --cs-border: #1E293B;
+    --cs-label-color: #64748B;
+    --cs-error: #F87171;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── PANEL OVERRIDE ── */
+.modal-panel--casestudy {
+    padding: 0 !important;
+    background: var(--cs-bg-primary) !important;
+    border-color: rgba(255,255,255,0.06) !important;
+}
+
+/* ── LOADING SKELETON ── */
+.cs-loading {
+    padding: 64px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.cs-loading__bar {
+    height: 16px;
+    background: linear-gradient(90deg, #1A1A1A 25%, #2A2A2A 50%, #1A1A1A 75%);
+    background-size: 200% 100%;
+    animation: cs-shimmer 1.5s infinite;
+    border-radius: 4px;
+}
+@keyframes cs-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ── BASE SECTION ── */
+.cs-section {
+    padding: 64px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.cs-section--primary { background: var(--cs-bg-primary); }
+.cs-section--alt { background: var(--cs-bg-alt); }
+.cs-section--deep { background: var(--cs-bg-deep); }
+.cs-section--hero {
+    background: var(--cs-bg-primary);
+    padding: 64px 48px 64px 48px;
+}
+.cs-section--cta {
+    background: var(--cs-bg-deep);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cs-section--bleed {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* ── LABEL BAR ── */
+.cs-label-bar {
+    display: flex;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cs-label-color);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 32px;
+}
+.cs-label-bar span {
+    white-space: nowrap;
+}
+.cs-label-bar .cs-label-sep {
+    color: rgba(255,255,255,0.15);
+}
+
+/* ── TWO-COLUMN LAYOUT ── */
+.cs-two-col {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 48px;
+    align-items: start;
+}
+.cs-two-col__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cs-text);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+.cs-two-col__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.cs-two-col__body p {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--cs-text-muted);
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ── HERO TITLE ── */
+.cs-hero__title {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--cs-text);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    max-width: 720px;
+    margin-bottom: 40px;
+}
+
+/* ── STATS ROW ── */
+.cs-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+.cs-stat {
+    padding: 24px 0;
+    border-top: 1px solid var(--cs-border);
+}
+.cs-stat__number {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--cs-text);
+    line-height: 1;
+    letter-spacing: -1.5px;
+    margin-bottom: 6px;
+}
+.cs-stat__number--accent {
+    color: var(--cs-stat-color);
+}
+.cs-stat__label {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--cs-text-muted);
+}
+
+/* ── HERO IMAGE AREA ── */
+.cs-hero-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: var(--cs-bg-alt);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 40px;
+}
+.cs-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ── FULL-WIDTH GALLERY ── */
+.cs-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.cs-gallery__row {
+    display: flex;
+    gap: 2px;
+}
+.cs-gallery__row img {
+    flex: 1;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+/* ── INLINE METRICS (within two-col body) ── */
+.cs-inline-metrics {
+    display: flex;
+    gap: 32px;
+    margin-top: 4px;
+}
+.cs-inline-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.cs-inline-metric__number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--cs-error);
+    letter-spacing: -1px;
+    line-height: 1;
+}
+.cs-inline-metric__label {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--cs-text-muted);
+}
+
+/* ── GOALS LIST ── */
+.cs-goals {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.cs-goals__label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cs-label-color);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+}
+.cs-goals__item {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--cs-text-secondary);
+    padding: 4px 0;
+}
+
+/* ── DIVIDER ── */
+.cs-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--cs-border);
+    border: none;
+    margin: 0;
+}
+
+/* ── RESULT CARDS ── */
+.cs-results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.cs-result-card {
+    background: var(--cs-bg-primary);
+    border: 1px solid var(--cs-border);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.cs-result-card__number {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--cs-stat-color);
+    letter-spacing: -2px;
+    line-height: 1;
+}
+.cs-result-card__title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cs-text);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+.cs-result-card__desc {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--cs-text-muted);
+    line-height: 1.5;
+}
+
+/* ── RESULTS INTRO ── */
+.cs-results-intro {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--cs-text);
+    line-height: 1.4;
+    letter-spacing: -0.3px;
+    max-width: 680px;
+    margin-bottom: 40px;
+}
+
+/* ── USER FLOW ── */
+.cs-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 0;
+}
+.cs-flow__node {
+    background: var(--cs-bg-primary);
+    border: 1px solid var(--cs-border);
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cs-text-secondary);
+    text-align: center;
+    min-width: 140px;
+}
+.cs-flow__node--start,
+.cs-flow__node--end {
+    background: var(--cs-accent-muted);
+    border-color: var(--cs-accent);
+    color: var(--cs-text);
+    font-weight: 600;
+}
+.cs-flow__node--decision {
+    background: transparent;
+    border: 2px solid var(--cs-accent);
+    transform: rotate(0deg);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--cs-accent);
+}
+.cs-flow__arrow {
+    font-size: 18px;
+    color: var(--cs-text-dim);
+    flex-shrink: 0;
+}
+.cs-flow__row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* ── CTA ── */
+.cs-cta__title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cs-text);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+.cs-cta__subtitle {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--cs-text-muted);
+    margin-bottom: 24px;
+}
+.cs-cta__links {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+.cs-cta__btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: opacity 0.2s;
+    font-family: inherit;
+}
+.cs-cta__btn:hover { opacity: 0.85; }
+.cs-cta__btn--primary {
+    background: var(--cs-text);
+    color: var(--cs-bg-deep);
+}
+.cs-cta__btn--secondary {
+    background: transparent;
+    color: var(--cs-text);
+    border: 1px solid var(--cs-text-dim);
+}
+.cs-cta__footer {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--cs-text-dim);
+}
+.cs-cta__footer a {
+    color: var(--cs-text-dim);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+.cs-cta__footer a:hover {
+    border-bottom-color: var(--cs-text-dim);
+}
+
+/* ── NAV DOTS ── */
+.cs-nav {
+    position: sticky;
+    top: 20px;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+    padding: 12px 8px;
+    margin-right: -8px;
+}
+.cs-nav__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+}
+.cs-nav__dot:hover {
+    background: rgba(255,255,255,0.4);
+}
+.cs-nav__dot--active {
+    background: var(--cs-text);
+    transform: scale(1.3);
+}
+
+/* ── ABOUT CLIENT (Brand Showcase) ── */
+.cs-about {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 48px;
+    align-items: start;
+}
+.cs-about__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cs-label-color);
+}
+.cs-about__text {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--cs-text-secondary);
+    line-height: 1.6;
+}
+.cs-meta-table {
+    display: flex;
+    flex-direction: column;
+}
+.cs-meta-row {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--cs-border);
+}
+.cs-meta-row:last-child { border-bottom: none; }
+.cs-meta-row__label {
+    width: 160px;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cs-label-color);
+}
+.cs-meta-row__value {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--cs-text-secondary);
+}
+
+/* ── MOODBOARD ── */
+.cs-moodboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+.cs-moodboard__tile {
+    aspect-ratio: 16/10;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--cs-bg-alt);
+}
+.cs-moodboard__tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ── TYPOGRAPHY SPECIMEN ── */
+.cs-type-specimen {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 32px;
+}
+.cs-type-specimen__display {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--cs-text);
+    letter-spacing: -2px;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+.cs-type-specimen__name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cs-text-muted);
+    margin-bottom: 24px;
+}
+.cs-type-weight {
+    font-size: 13px;
+    color: var(--cs-text-muted);
+    padding: 4px 0;
+}
+.cs-color-palette {
+    display: flex;
+    gap: 8px;
+}
+.cs-color-swatch {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.cs-color-swatch__block {
+    height: 80px;
+    border-radius: 6px;
+}
+.cs-color-swatch__hex {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--cs-text-muted);
+}
+
+/* ── HERO STATEMENT ── */
+.cs-hero-statement {
+    text-align: center;
+    padding: 80px 48px;
+}
+.cs-hero-statement__text {
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--cs-text);
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+}
+.cs-hero-statement__sub {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--cs-text-muted);
+}
+
+/* ── DEVICE MOCKUPS ── */
+.cs-devices {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 16px;
+}
+.cs-device {
+    background: var(--cs-bg-alt);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cs-device--laptop {
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+}
+.cs-device--phone {
+    border-radius: 16px;
+    aspect-ratio: 9/19;
+}
+.cs-device img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.cs-device-phones {
+    display: flex;
+    gap: 12px;
+}
+.cs-device-phones .cs-device--phone {
+    flex: 1;
+}
+
+/* ── CARD GRID (UX Audit) ── */
+.cs-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+}
+.cs-card {
+    background: var(--cs-bg-primary);
+    border: 1px solid var(--cs-border);
+    padding: 24px;
+    border-radius: 4px;
+}
+.cs-card__title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cs-text);
+    margin-bottom: 8px;
+}
+.cs-card__body {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--cs-text-muted);
+    line-height: 1.5;
+}
+
+/* ── TABLE (Journey Maps, HMW) ── */
+.cs-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.cs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.cs-table th {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cs-label-color);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--cs-border);
+    white-space: nowrap;
+}
+.cs-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--cs-text-muted);
+    vertical-align: top;
+    line-height: 1.5;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .cs-section { padding: 40px 20px; }
+    .cs-section--hero { padding: 40px 20px; }
+    .cs-hero__title { font-size: 26px; }
+    .cs-two-col { grid-template-columns: 1fr; gap: 24px; }
+    .cs-two-col__title { font-size: 22px; }
+    .cs-stats { grid-template-columns: 1fr; gap: 16px; }
+    .cs-stat__number { font-size: 32px; }
+    .cs-results { grid-template-columns: 1fr; gap: 12px; }
+    .cs-result-card__number { font-size: 36px; }
+    .cs-results-intro { font-size: 18px; }
+    .cs-nav { display: none; }
+    .cs-gallery__row { flex-direction: column; }
+    .cs-about { grid-template-columns: 1fr; gap: 16px; }
+    .cs-type-specimen { grid-template-columns: 1fr; }
+    .cs-type-specimen__display { font-size: 48px; }
+    .cs-devices { grid-template-columns: 1fr; }
+    .cs-hero-statement { padding: 48px 20px; }
+    .cs-hero-statement__text { font-size: 32px; }
+    .cs-cta__links { flex-direction: column; align-items: center; gap: 12px; }
+    .cs-moodboard { grid-template-columns: repeat(2, 1fr); }
+    .cs-flow__row { flex-wrap: wrap; }
+    .cs-flow__node { min-width: 120px; font-size: 12px; padding: 10px 14px; }
+    .cs-inline-metrics { flex-direction: column; gap: 16px; }
+}
+@media (max-width: 480px) {
+    .cs-section { padding: 32px 16px; }
+    .cs-cards { grid-template-columns: 1fr; }
+    .cs-moodboard { grid-template-columns: 1fr; }
+    .cs-label-bar { flex-wrap: wrap; }
+}
