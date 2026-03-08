@@ -1,0 +1,63 @@
+# Multi-stage Dockerfile for UX Portfolio Local Development
+# This container supports both static portfolio and Next.js case study generator
+
+FROM node:18-alpine as base
+
+# Install system dependencies
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    make \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    musl-dev \
+    giflib-dev \
+    pixman-dev \
+    pangomm-dev \
+    libjpeg-turbo-dev \
+    freetype-dev
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY src/tools/case-study-generator/package*.json ./case-study-generator/
+
+# Install dependencies for both projects
+RUN npm install
+RUN cd case-study-generator && npm install
+
+# Copy source code
+COPY . .
+
+# Expose ports
+# 8000 - Static portfolio server
+# 3000 - Next.js development server
+# 3001 - Webpack dev server hot reload
+EXPOSE 8000 3000 3001
+
+# Development stage
+FROM base as development
+
+# Install global development tools
+RUN npm install -g \
+    @lighthouse-ci/cli \
+    @axe-core/cli \
+    eslint \
+    prettier \
+    http-server \
+    nodemon
+
+# Create non-root user for security
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nextjs -u 1001 -G nodejs
+
+# Change ownership of app directory
+RUN chown -R nextjs:nodejs /app
+USER nextjs
+
+# Default command starts both servers
+CMD ["npm", "run", "dev:all"]

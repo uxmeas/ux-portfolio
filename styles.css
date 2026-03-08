@@ -19,7 +19,7 @@
   --font-family-helvetica-neue: 'Helvetica Neue', sans-serif;
   --font-family-fraunces: 'Fraunces', serif;
   --font-family-roboto: 'Roboto', sans-serif;
-  --font-family-inter: 'Inter', Arial, sans-serif;
+  --font-family-inter: 'Space Grotesk', Arial, sans-serif;
   --Foundation/brand/brand-50: rgba(237, 237, 252, 1);
   --Foundation /brand/brand-100: rgba(200, 198, 247, 1);
   --Foundation /brand/brand-200: rgba(174, 170, 243, 1);
@@ -523,7 +523,7 @@ img {
 }
 .splash-html-mobile-1 .text-16, .splash-html-mobile-1 .text-20, .splash-html-mobile-1 .text-24 {
   font-size: 15px;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Space Grotesk', Arial, sans-serif;
   color: #3f4b66;
   font-weight: 400;
 }
@@ -598,7 +598,7 @@ img {
   border-radius: 32px;
   padding: 8px 18px;
   font-size: 15px;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Space Grotesk', Arial, sans-serif;
   color: #3f4b66;
   box-shadow: 0 2px 8px 0 rgba(24,28,42,0.04);
 }
@@ -626,7 +626,7 @@ img {
   text-align: left;
 }
 .text-8 {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Space Grotesk', Arial, sans-serif;
   font-size: 15px;
   color: #425466;
   margin-bottom: 24px;
@@ -648,7 +648,7 @@ img {
   background: #174bbd;
 }
 .text-10 {
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Space Grotesk', Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
   color: #fff;
@@ -678,7 +678,7 @@ img {
 }
 .text-16, .text-20, .text-24 {
   font-size: 15px;
-  font-family: 'Inter', Arial, sans-serif;
+  font-family: 'Space Grotesk', Arial, sans-serif;
   color: #3f4b66;
   font-weight: 400;
 }

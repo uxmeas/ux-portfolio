@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - UX Meas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Portfolio card styles */
+        .portfolio-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Modal styles */
+        .case-study-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: black;
+            overflow-y: auto;
+        }
+        
+        .case-study-modal.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Close button */
+        .modal-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 10000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        /* Case study content styles (from akm-secure-exact-brand.html) */
+        .case-study-content * {
+            border-radius: 0 !important;
+        }
+        
+        .gradient-mesh {
+            background-image: 
+                radial-gradient(at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(at 40% 40%, rgba(255,255,255,0.02) 0%, transparent 50%);
+        }
+        
+        .transition-sharp {
+            transition: all 0.2s linear;
+        }
+        
+        .tracking-tighter {
+            letter-spacing: -0.04em;
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s linear, box-shadow 0.2s linear;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Portfolio Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h1 class="text-5xl font-bold text-center mb-4">My Work</h1>
+            <p class="text-xl text-gray-600 text-center mb-16">Click to view case study</p>
+            
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- AKM Secure Card -->
+                <div class="portfolio-card bg-white rounded-lg overflow-hidden shadow-lg" onclick="openCaseStudy('akm-secure')">
+                    <div class="aspect-video bg-gradient-to-br from-black via-gray-900 to-black relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <img src="public/images/terracore_ai/terracore_ai_1_hero.png" alt="AKM Secure" class="w-full h-full object-cover opacity-50">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white text-2xl font-bold">AKM SecureKey</h3>
+                            <p class="text-white/80">400% increase in demo requests</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm">Enterprise</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm">Security</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-700 text-sm">4-Week Build</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add more portfolio cards here -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Case Study Modal -->
+    <div id="case-study-modal" class="case-study-modal">
+        <button class="modal-close" onclick="closeCaseStudy()">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+            </svg>
+        </button>
+        
+        <div class="case-study-content">
+            <!-- Case study content will be inserted here -->
+        </div>
+    </div>
+    
+    <script>
+        // Portfolio data with case study content
+        const caseStudies = {
+            'akm-secure': {
+                // We'll either load the HTML file or use this structure
+                useExternalFile: true,
+                fileUrl: 'case-studies/akm-secure/akm-secure-exact-brand.html',
+                // Or use inline content with same structure as the HTML file
+                content: null
+            }
+        };
+        
+        async function openCaseStudy(projectId) {
+            const modal = document.getElementById('case-study-modal');
+            const contentContainer = modal.querySelector('.case-study-content');
+            const caseStudy = caseStudies[projectId];
+            
+            if (!caseStudy) return;
+            
+            if (caseStudy.useExternalFile && caseStudy.fileUrl) {
+                // Option 1: Load the existing HTML file
+                try {
+                    const response = await fetch(caseStudy.fileUrl);
+                    const html = await response.text();
+                    
+                    // Extract body content from the HTML
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    
+                    // Get all styles and body content
+                    const styles = doc.head.querySelectorAll('style, link[rel="stylesheet"]');
+                    const scripts = doc.head.querySelectorAll('script');
+                    const bodyContent = doc.body.innerHTML;
+                    
+                    // Inject into modal
+                    contentContainer.innerHTML = `
+                        ${Array.from(styles).map(s => s.outerHTML).join('')}
+                        ${Array.from(scripts).map(s => s.outerHTML).join('')}
+                        ${bodyContent}
+                    `;
+                    
+                    // Re-initialize Lucide icons if present
+                    if (window.lucide) {
+                        window.lucide.createIcons();
+                    }
+                } catch (error) {
+                    console.error('Error loading case study:', error);
+                    // Fallback to iframe
+                    contentContainer.innerHTML = `
+                        <iframe src="${caseStudy.fileUrl}" class="w-full h-screen border-0"></iframe>
+                    `;
+                }
+            } else if (caseStudy.content) {
+                // Option 2: Use inline content
+                contentContainer.innerHTML = caseStudy.content;
+            }
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeCaseStudy() {
+            const modal = document.getElementById('case-study-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Clear content
+            setTimeout(() => {
+                modal.querySelector('.case-study-content').innerHTML = '';
+            }, 300);
+        }
+        
+        // ESC key to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeCaseStudy();
+            }
+        });
+    </script>
+</body>
+</html>

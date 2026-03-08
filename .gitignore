@@ -1,0 +1,215 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js
+.next/
+out/
+next-env.d.ts
+
+# Build outputs
+dist/
+build/
+.cache/
+
+# Testing
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+infrastructure/testing/lighthouse-reports/
+infrastructure/testing/accessibility-reports/
+infrastructure/testing/performance-reports/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# Temporary folders
+tmp/
+temp/
+
+# Editor directories and files
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Backup files
+*.backup
+*.bak
+*.orig
+
+# Compressed files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Image optimization cache
+.imageopt-cache/
+
+# Lighthouse CI cache
+.lighthouseci/
+
+# Generated documentation
+docs/generated/
+
+# Local development files
+.local/
+*.local
+
+# Deployment artifacts
+deploy/
+staging/
+
+# Secrets and sensitive data
+secrets/
+*.pem
+*.key
+*.crt
+*.p12
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache files
+.cache/
+*.cache
+
+# Development tools
+.vscode-test/
+.history/
+
+# Ignore generated case studies in development
+case-studies/generated-*
+
+# Ignore optimized assets during development
+public/assets/optimized/
+images/optimized/
+
+# Ignore temporary HTML files
+*.tmp.html
+*.temp.html
+
+# Ignore screenshot files from testing
+screenshots/
+test-screenshots/
+
+# Lock files (keep one, ignore others)
+yarn.lock
+pnpm-lock.yaml
+# Keep: package-lock.json
+
+# Performance monitoring files
+*.perf
+lighthouse-*.html
+lighthouse-*.json
+
+# CSS processing files
+*.css.map
+
+# Source map files
+*.js.map
+*.css.map
+
+# Backup of original files
+*.original
+*.backup.*
+
+# Local Netlify folder
+.netlify
+
+# Internal files (local only, never deploy)
+brand/
+internal/
+agents/
+specs/
+/katipult/
+!production/images/katipult/
+.claude/
+.specify/
+*.docx
+*.pptx
+*.csv

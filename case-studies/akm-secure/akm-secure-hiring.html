@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKM Secure Case Study - Strategic UX Transformation | UX Meas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        * {
+            border-radius: 0 !important;
+        }
+        
+        .gradient-mesh {
+            background-image: 
+                radial-gradient(at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(at 40% 40%, rgba(255,255,255,0.02) 0%, transparent 50%);
+        }
+        
+        .transition-sharp {
+            transition: all 0.2s linear;
+        }
+        
+        .tracking-tighter {
+            letter-spacing: -0.04em;
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s linear, box-shadow 0.2s linear;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 rgba(255, 255, 255, 0.1);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .text-balance {
+            text-wrap: balance;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/index.html" class="flex items-center gap-2 text-white hover:text-white/80 transition">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span class="font-medium">Back to Portfolio</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="https://www.akmsecure.com" target="_blank" class="text-white/70 hover:text-white transition flex items-center gap-2">
+                    <span>View Live Site</span>
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+                <button onclick="window.close(); window.location.href='/index.html';" class="text-white/70 hover:text-white transition p-2" title="Close">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Content -->
+    <article class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+            <div class="absolute inset-0 gradient-mesh"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-8 text-center animate-fadeInUp">
+                <!-- Impact stats at top -->
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 md:mb-12 text-xs md:text-base">
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">1-Week Build</span>
+                    </div>
+                    <div class="text-white/30">|</div>
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="trending-up" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">400% Growth</span>
+                    </div>
+                    <div class="text-white/30">|</div>
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">Enterprise UX</span>
+                    </div>
+                </div>
+                
+                <!-- Main title -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-8 tracking-tight text-white text-balance" style="line-height: 1.05">
+                    AKM Secure:<br/>
+                    <span class="font-light">400% Increase</span><br/>
+                    <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">in Demo Requests</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-white/70 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
+                    1-week strategic UX transformation for a cybersecurity startup competing with Palantir & Anduril—delivered investor-ready presence that drove immediate business results
+                </p>
+                
+                <!-- Key outcomes -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 mb-16 max-w-5xl mx-auto">
+                    <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">400%</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Demo Increase</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">1 Week</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Delivery</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">Mobile</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">First Design</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">Series A</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Ready</div>
+                    </div>
+                </div>
+                
+                <!-- CTA Button -->
+                <a href="https://www.akmsecure.com" target="_blank" rel="noopener" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-white to-gray-200 text-black font-semibold hover:from-gray-200 hover:to-white transition-sharp">
+                    VIEW THE LIVE SITE
+                    <i data-lucide="external-link" class="w-5 h-5"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Business Context Section -->
+        <section class="py-24 px-8 bg-gradient-to-b from-black via-gray-900/50 to-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-16">
+                    <div class="flex items-center gap-2 text-white/50 mb-4">
+                        <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">Business Context</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white">The Situation</h2>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-xl font-semibold text-red-400 mb-4">The Challenge</h3>
+                            <ul class="space-y-3 text-white/70">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-400 mt-1">•</span>
+                                    <span>Legacy Wix site undermining credibility with enterprise clients</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-400 mt-1">•</span>
+                                    <span>Competing against Palantir & Anduril for defense contracts</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-400 mt-1">•</span>
+                                    <span>Critical investor meetings in 2 weeks</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-400 mt-1">•</span>
+                                    <span>Mobile experience driving away 60% of visitors</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-400 mb-4">The Opportunity</h3>
+                            <ul class="space-y-3 text-white/70">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1">•</span>
+                                    <span>Position as premium alternative to established players</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1">•</span>
+                                    <span>Support Series A fundraising with investor-ready presence</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1">•</span>
+                                    <span>Capture mobile-first decision makers</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1">•</span>
+                                    <span>Build scalable foundation for rapid growth</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Approach Section -->
+        <section class="py-24 px-8 bg-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-2 text-white/50 mb-4">
+                    <i data-lucide="target" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Strategic Approach</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">My Process</h2>
+                
+                <div class="space-y-8">
+                    <!-- Day 1-2 -->
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white/30 pl-8 py-6">
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-white/50 font-mono text-sm">DAY 1-2</span>
+                            <h3 class="text-2xl font-bold text-white">Competitive Intelligence</h3>
+                        </div>
+                        <p class="text-white/70 mb-4">Analyzed 15+ cybersecurity leaders including Palantir, Anduril, and CrowdStrike to identify trust patterns and visual standards.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Pattern Recognition</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Visual Benchmarking</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Mobile Analysis</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Day 3-4 -->
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white/30 pl-8 py-6">
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-white/50 font-mono text-sm">DAY 3-4</span>
+                            <h3 class="text-2xl font-bold text-white">Design System & Visual Direction</h3>
+                        </div>
+                        <p class="text-white/70 mb-4">Developed military-grade aesthetic with pure monochromatic palette. Zero-radius corners and Inter typeface for precision.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Component Library</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Typography System</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Mobile-First Grid</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Day 5-6 -->
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white/30 pl-8 py-6">
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-white/50 font-mono text-sm">DAY 5-6</span>
+                            <h3 class="text-2xl font-bold text-white">Conversion Architecture</h3>
+                        </div>
+                        <p class="text-white/70 mb-4">Built user flows for enterprise decision-makers with hero-to-problem storytelling and multiple conversion points.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">User Journey Mapping</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">CTA Optimization</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Trust Signals</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Day 7 -->
+                    <div class="bg-gradient-to-r from-green-500/10 to-transparent border-l-4 border-green-400 pl-8 py-6">
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-green-400 font-mono text-sm">DAY 7</span>
+                            <h3 class="text-2xl font-bold text-white">Launch & Optimization</h3>
+                        </div>
+                        <p class="text-white/70 mb-4">Deployed production-ready site with performance optimization, SEO foundation, and analytics tracking.</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-green-400/20 text-green-400 text-sm">Performance Testing</span>
+                            <span class="px-3 py-1 bg-green-400/20 text-green-400 text-sm">Mobile QA</span>
+                            <span class="px-3 py-1 bg-green-400/20 text-green-400 text-sm">Go Live</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Showcase Section -->
+        <section class="py-24 px-8 bg-gradient-to-b from-black via-gray-900/30 to-black">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center gap-2 text-white/50 mb-4">
+                    <i data-lucide="monitor" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Design Execution</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">The Solution</h2>
+                
+                <!-- Hero Design -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-semibold mb-6 text-white">Hero Experience</h3>
+                    <div class="bg-gradient-to-b from-white/5 to-transparent border border-white/10 p-2">
+                        <img src="/images/akm-homepage-device-1.png" alt="AKM Secure Homepage Design" class="w-full" loading="lazy">
+                    </div>
+                    <div class="mt-6 grid md:grid-cols-3 gap-6">
+                        <div class="text-white/70">
+                            <h4 class="font-semibold text-white mb-2">Military-Grade Aesthetic</h4>
+                            <p class="text-sm">Pure black and white palette with zero-radius corners communicates strength and precision</p>
+                        </div>
+                        <div class="text-white/70">
+                            <h4 class="font-semibold text-white mb-2">Mobile-First Architecture</h4>
+                            <p class="text-sm">60% of enterprise decision-makers browse on mobile—optimized for touch and speed</p>
+                        </div>
+                        <div class="text-white/70">
+                            <h4 class="font-semibold text-white mb-2">Trust Signals</h4>
+                            <p class="text-sm">Enterprise logos, security certifications, and clear value propositions above the fold</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Key Features Grid -->
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-gradient-to-b from-white/5 to-transparent border border-white/10 p-8">
+                        <h4 class="text-xl font-semibold mb-4 text-white">Conversion Architecture</h4>
+                        <ul class="space-y-3 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>7 strategic CTA placements throughout the journey</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Problem-agitation-solution narrative flow</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Social proof integrated at decision points</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/5 to-transparent border border-white/10 p-8">
+                        <h4 class="text-xl font-semibold mb-4 text-white">Performance Metrics</h4>
+                        <ul class="space-y-3 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="zap" class="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0"></i>
+                                <span>2.1s load time on mobile (from 8.3s)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="zap" class="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0"></i>
+                                <span>98/100 Lighthouse performance score</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="zap" class="w-5 h-5 text-yellow-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Zero CLS (Cumulative Layout Shift)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="py-24 px-8 bg-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-2 text-white/50 mb-4">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Business Impact</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">The Results</h2>
+                
+                <!-- Primary Metrics -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gradient-to-br from-green-500/20 to-transparent border border-green-400/30 p-8">
+                        <div class="text-5xl md:text-6xl font-bold text-green-400 mb-2">400%</div>
+                        <div class="text-xl font-semibold text-white mb-2">Increase in Demo Requests</div>
+                        <p class="text-white/60">Within first 30 days of launch, qualified enterprise leads quadrupled</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-500/20 to-transparent border border-blue-400/30 p-8">
+                        <div class="text-5xl md:text-6xl font-bold text-blue-400 mb-2">73%</div>
+                        <div class="text-xl font-semibold text-white mb-2">Mobile Engagement Rate</div>
+                        <p class="text-white/60">Up from 22%—mobile visitors now convert at desktop rates</p>
+                    </div>
+                </div>
+                
+                <!-- Secondary Metrics -->
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-gradient-to-b from-white/10 to-transparent border border-white/20 p-6 text-center">
+                        <div class="text-3xl font-bold text-white mb-2">2.1s</div>
+                        <div class="text-sm text-white/50 uppercase tracking-wider">Page Load</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-transparent border border-white/20 p-6 text-center">
+                        <div class="text-3xl font-bold text-white mb-2">65%</div>
+                        <div class="text-sm text-white/50 uppercase tracking-wider">Bounce Rate ↓</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-transparent border border-white/20 p-6 text-center">
+                        <div class="text-3xl font-bold text-white mb-2">4.2x</div>
+                        <div class="text-sm text-white/50 uppercase tracking-wider">Session Duration</div>
+                    </div>
+                </div>
+                
+                <!-- Client Testimonial -->
+                <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white/30 pl-8 py-8">
+                    <blockquote class="text-xl text-white/80 italic mb-4">
+                        "The new site was instrumental in our Series A discussions. Investors consistently mentioned how our digital presence reflected the sophistication of our technology. The 400% increase in demos speaks for itself."
+                    </blockquote>
+                    <cite class="text-white/60 not-italic">— CEO, AKM Secure</cite>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Takeaways -->
+        <section class="py-24 px-8 bg-gradient-to-b from-black via-gray-900/30 to-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-2 text-white/50 mb-4">
+                    <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Key Learnings</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">What Made This Work</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Strategic Decisions</h3>
+                        <ul class="space-y-4 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-white/50 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Speed as Strategy:</strong> 1-week turnaround prevented analysis paralysis and captured investor momentum
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-white/50 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Mobile-First Priority:</strong> Recognized that C-suite browses on phones—optimized accordingly
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-white/50 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Competitive Positioning:</strong> Studied giants, then differentiated through clarity and speed
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Design Impact</h3>
+                        <ul class="space-y-4 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-white/50 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Trust Through Design:</strong> Military-grade aesthetic matched their security positioning
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-white/50 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Conversion Architecture:</strong> Every design decision drove toward demo requests
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-white/50 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Performance = Trust:</strong> Fast load times signaled technical competence
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-24 px-8 bg-black border-t border-white/10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Ready to Transform Your Digital Presence?</h2>
+                <p class="text-xl text-white/70 mb-8">
+                    Let's discuss how strategic UX can drive measurable business results for your company.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/contact.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-black font-semibold hover:bg-gray-200 transition-sharp">
+                        Start a Conversation
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="/index.html#work" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/30 text-white font-semibold hover:bg-white/10 transition-sharp">
+                        View More Work
+                    </a>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Add scroll-based animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

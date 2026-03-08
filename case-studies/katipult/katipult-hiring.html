@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katipult Case Study - 11-Year Journey to Acquisition | UX Meas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&display=swap');
+        body { 
+            font-family: 'Space Grotesk', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        * {
+            border-radius: 0 !important;
+        }
+        
+        .gradient-mesh {
+            background-image: 
+                radial-gradient(at 20% 80%, rgba(99,102,241,0.05) 0%, transparent 50%),
+                radial-gradient(at 80% 20%, rgba(99,102,241,0.03) 0%, transparent 50%),
+                radial-gradient(at 40% 40%, rgba(99,102,241,0.02) 0%, transparent 50%);
+        }
+        
+        .transition-sharp {
+            transition: all 0.2s linear;
+        }
+        
+        .tracking-tighter {
+            letter-spacing: -0.04em;
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s linear, box-shadow 0.2s linear;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 rgba(99, 102, 241, 0.1);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .text-balance {
+            text-wrap: balance;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/index.html" class="flex items-center gap-2 text-white hover:text-white/80 transition">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span class="font-medium">Back to Portfolio</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="https://www.katipult.com" target="_blank" class="text-white/70 hover:text-white transition flex items-center gap-2">
+                    <span>View Company</span>
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+                <button onclick="window.close(); window.location.href='/index.html';" class="text-white/70 hover:text-white transition p-2" title="Close">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Content -->
+    <article class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-black to-black"></div>
+            <div class="absolute inset-0 gradient-mesh"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-8 text-center animate-fadeInUp">
+                <!-- Impact stats at top -->
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 md:mb-12 text-xs md:text-base">
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">11-Year Journey</span>
+                    </div>
+                    <div class="text-white/30">|</div>
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="users" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">Head of UX/UI</span>
+                    </div>
+                    <div class="text-white/30">|</div>
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="trophy" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">Acquired 2025</span>
+                    </div>
+                </div>
+                
+                <!-- Main title -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-8 tracking-tight text-white text-balance" style="line-height: 1.05">
+                    Katipult:<br/>
+                    <span class="font-light">From Startup MVP</span><br/>
+                    <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">to $100M+ Acquisition</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-white/70 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
+                    Led design transformation of private capital markets platform from agency to product-led SaaS, driving 30% engagement increase and successful acquisition by Markette Ventures
+                </p>
+                
+                <!-- Key outcomes -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 mb-16 max-w-5xl mx-auto">
+                    <div class="bg-gradient-to-b from-indigo-500/20 to-black border border-indigo-400/30 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">30%</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Engagement ↑</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-indigo-500/20 to-black border border-indigo-400/30 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">20%</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Churn ↓</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-indigo-500/20 to-black border border-indigo-400/30 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">40%</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Dev Time ↓</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-indigo-500/20 to-black border border-indigo-400/30 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-2xl md:text-3xl font-bold text-white mb-1 md:mb-2">20+</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">White Labels</div>
+                    </div>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#impact" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-semibold hover:from-indigo-600 hover:to-indigo-700 transition-sharp">
+                        VIEW THE IMPACT
+                        <i data-lucide="arrow-down" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Context & Challenge Section -->
+        <section class="py-24 px-8 bg-gradient-to-b from-black via-gray-900/50 to-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-16">
+                    <div class="flex items-center gap-2 text-indigo-400/70 mb-4">
+                        <i data-lucide="briefcase" class="w-5 h-5"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">Context & Challenge</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white">The Private Capital Problem</h2>
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <div>
+                            <h3 class="text-xl font-semibold text-red-400 mb-4">Industry Pain Points</h3>
+                            <ul class="space-y-3 text-white/70">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-400 mt-1">•</span>
+                                    <span>Manual, paper-based processes slowing capital raising</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-400 mt-1">•</span>
+                                    <span>Fragmented tools for issuers, dealers, and investors</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-400 mt-1">•</span>
+                                    <span>Heavy compliance burden (KYC/AML) creating bottlenecks</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-red-400 mt-1">•</span>
+                                    <span>Weeks-long investor onboarding processes</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-green-400 mb-4">The Vision</h3>
+                            <ul class="space-y-3 text-white/70">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1">•</span>
+                                    <span>Unified SaaS platform for entire private placement lifecycle</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1">•</span>
+                                    <span>Digital-first workflows from origination to compliance</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1">•</span>
+                                    <span>Enterprise-grade security with consumer-grade UX</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-green-400 mt-1">•</span>
+                                    <span>White-label capability for institutional clients</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Role & Leadership Section -->
+        <section class="py-24 px-8 bg-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-2 text-indigo-400/70 mb-4">
+                    <i data-lucide="star" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Leadership Impact</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">My Role as Head of UX/UI</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gradient-to-r from-indigo-500/10 to-transparent border-l-4 border-indigo-400 pl-8 py-6">
+                        <h3 class="text-2xl font-bold text-white mb-3">Strategic Leadership</h3>
+                        <ul class="space-y-2 text-white/70">
+                            <li>• Defined UX vision aligned with business goals</li>
+                            <li>• Led 95% of feature design across all modules</li>
+                            <li>• Presented to investors supporting funding rounds</li>
+                            <li>• Drove product strategy with C-suite</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-indigo-500/10 to-transparent border-l-4 border-indigo-400 pl-8 py-6">
+                        <h3 class="text-2xl font-bold text-white mb-3">Team Building</h3>
+                        <ul class="space-y-2 text-white/70">
+                            <li>• Built and managed design team of 2 FTE + specialists</li>
+                            <li>• Established design culture and processes</li>
+                            <li>• Mentored junior designers to senior level</li>
+                            <li>• Scaled design capacity without sacrificing quality</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-b from-indigo-500/5 to-transparent border border-indigo-400/20 p-8">
+                    <h3 class="text-2xl font-bold text-white mb-6">Key Achievements</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-400 mb-2">40%</div>
+                            <div class="text-sm text-white/60">Reduced dev handoff time through design system</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-400 mb-2">20+</div>
+                            <div class="text-sm text-white/60">White-label deployments with consistent UX</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-400 mb-2">3x</div>
+                            <div class="text-sm text-white/60">Demo requests after marketing redesign</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process & Methodology Section -->
+        <section class="py-24 px-8 bg-gradient-to-b from-black via-gray-900/30 to-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-2 text-indigo-400/70 mb-4">
+                    <i data-lucide="target" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Process & Methodology</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">Strategic Design Process</h2>
+                
+                <div class="space-y-8">
+                    <!-- Research Phase -->
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white/30 pl-8 py-6">
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-white/50 font-mono text-sm">PHASE 1</span>
+                            <h3 class="text-2xl font-bold text-white">Research & Discovery</h3>
+                        </div>
+                        <p class="text-white/70 mb-4">Deep-dive into private capital workflows and compliance requirements</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Stakeholder Interviews</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">KYC/AML Analysis</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Competitive Research</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">User Journey Mapping</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Design Phase -->
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white/30 pl-8 py-6">
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-white/50 font-mono text-sm">PHASE 2</span>
+                            <h3 class="text-2xl font-bold text-white">Design & Systems</h3>
+                        </div>
+                        <p class="text-white/70 mb-4">Built scalable design system and modular UI architecture</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Information Architecture</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Component Library</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Wireframing</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Prototyping</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Implementation Phase -->
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white/30 pl-8 py-6">
+                        <div class="flex items-center gap-4 mb-3">
+                            <span class="text-white/50 font-mono text-sm">PHASE 3</span>
+                            <h3 class="text-2xl font-bold text-white">Implementation & Scale</h3>
+                        </div>
+                        <p class="text-white/70 mb-4">Partnered with engineering to deliver enterprise-grade features</p>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Dev Handoff</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Compliance Integration</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">White-Label System</span>
+                            <span class="px-3 py-1 bg-white/10 text-white/70 text-sm">Performance Testing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Delivered Section -->
+        <section class="py-24 px-8 bg-black">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center gap-2 text-indigo-400/70 mb-4">
+                    <i data-lucide="package" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Product Suite</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">Solutions & Features Delivered</h2>
+                
+                <!-- Product Modules Grid -->
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-gradient-to-b from-indigo-500/10 to-transparent border border-indigo-400/20 p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="database" class="w-6 h-6 text-indigo-400"></i>
+                            <h3 class="text-2xl font-semibold text-white">DealFlow Core</h3>
+                        </div>
+                        <ul class="space-y-3 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Centralized hub for offerings and investors</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Digital subscription agreements</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Automated KYC/AML workflows</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-b from-indigo-500/10 to-transparent border border-indigo-400/20 p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="megaphone" class="w-6 h-6 text-indigo-400"></i>
+                            <h3 class="text-2xl font-semibold text-white">DealFlow Marketing</h3>
+                        </div>
+                        <ul class="space-y-3 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Personalized investor campaigns</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Engagement analytics dashboard</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>CRM integration & automation</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-b from-indigo-500/10 to-transparent border border-indigo-400/20 p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="building-2" class="w-6 h-6 text-indigo-400"></i>
+                            <h3 class="text-2xl font-semibold text-white">DealFlow Institutional</h3>
+                        </div>
+                        <ul class="space-y-3 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>White-label enterprise portals</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Advanced permissions & compliance</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Multi-entity management</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gradient-to-b from-indigo-500/10 to-transparent border border-indigo-400/20 p-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <i data-lucide="trending-up" class="w-6 h-6 text-indigo-400"></i>
+                            <h3 class="text-2xl font-semibold text-white">Alternative Investments</h3>
+                        </div>
+                        <ul class="space-y-3 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Real estate & private equity workflows</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Capital calls & distributions</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check" class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Performance reporting suite</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Design System Impact -->
+                <div class="bg-gradient-to-r from-indigo-500/20 to-transparent border border-indigo-400/30 p-8">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Design System Impact</h3>
+                    <div class="grid md:grid-cols-4 gap-6 text-center">
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-400 mb-2">200+</div>
+                            <div class="text-sm text-white/60">UI Components</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-400 mb-2">40%</div>
+                            <div class="text-sm text-white/60">Faster Development</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-400 mb-2">20+</div>
+                            <div class="text-sm text-white/60">White Labels</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-indigo-400 mb-2">100%</div>
+                            <div class="text-sm text-white/60">Consistency</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results & Impact Section -->
+        <section id="impact" class="py-24 px-8 bg-gradient-to-b from-black via-gray-900/30 to-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-2 text-indigo-400/70 mb-4">
+                    <i data-lucide="trending-up" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Business Impact</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">Results & Outcomes</h2>
+                
+                <!-- Primary Metrics -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div class="bg-gradient-to-br from-green-500/20 to-transparent border border-green-400/30 p-8">
+                        <div class="text-5xl md:text-6xl font-bold text-green-400 mb-2">30%</div>
+                        <div class="text-xl font-semibold text-white mb-2">Engagement Increase</div>
+                        <p class="text-white/60">Users spending more time on platform, completing more actions</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-500/20 to-transparent border border-blue-400/30 p-8">
+                        <div class="text-5xl md:text-6xl font-bold text-blue-400 mb-2">20%</div>
+                        <div class="text-xl font-semibold text-white mb-2">Churn Reduction</div>
+                        <p class="text-white/60">Improved retention through better UX and feature adoption</p>
+                    </div>
+                </div>
+                
+                <!-- Secondary Metrics -->
+                <div class="grid md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-gradient-to-b from-white/10 to-transparent border border-white/20 p-6 text-center">
+                        <div class="text-3xl font-bold text-white mb-2">35%</div>
+                        <div class="text-sm text-white/50 uppercase tracking-wider">Adoption Rate ↑</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-transparent border border-white/20 p-6 text-center">
+                        <div class="text-3xl font-bold text-white mb-2">3x</div>
+                        <div class="text-sm text-white/50 uppercase tracking-wider">Demo Requests</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-transparent border border-white/20 p-6 text-center">
+                        <div class="text-3xl font-bold text-white mb-2">Hours→Minutes</div>
+                        <div class="text-sm text-white/50 uppercase tracking-wider">Onboarding Time</div>
+                    </div>
+                </div>
+                
+                <!-- Acquisition Highlight -->
+                <div class="bg-gradient-to-r from-indigo-500/10 to-transparent border-l-4 border-indigo-400 pl-8 py-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <i data-lucide="trophy" class="w-6 h-6 text-yellow-400"></i>
+                        <h3 class="text-2xl font-bold text-white">Ultimate Validation: Acquisition</h3>
+                    </div>
+                    <p class="text-xl text-white/80 mb-4">
+                        Successful acquisition by <strong class="text-white">Markette Ventures (2025)</strong> validated 11 years of product and design excellence
+                    </p>
+                    <ul class="space-y-2 text-white/70">
+                        <li>• Positioned as credible alternative to legacy competitors</li>
+                        <li>• Design-led differentiation in commoditized market</li>
+                        <li>• Scalable platform ready for next growth phase</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reflections Section -->
+        <section class="py-24 px-8 bg-black">
+            <div class="max-w-5xl mx-auto">
+                <div class="flex items-center gap-2 text-indigo-400/70 mb-4">
+                    <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                    <span class="uppercase text-xs tracking-wider font-medium">Key Learnings</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 text-white">Reflections on 11 Years</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Leadership Lessons</h3>
+                        <ul class="space-y-4 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-indigo-400 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Design Systems Scale Impact:</strong> 40% dev time reduction multiplied across years = massive ROI
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-indigo-400 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Compliance ≠ Bad UX:</strong> Embedded KYC/AML seamlessly without friction
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-indigo-400 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">White-Label Strategy:</strong> One platform, 20+ brands, consistent quality
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-white">Technical Excellence</h3>
+                        <ul class="space-y-4 text-white/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-indigo-400 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Modular Architecture:</strong> Component-based design enabled rapid scaling
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-indigo-400 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Cross-Functional Partnership:</strong> Deep engineering collaboration accelerated delivery
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-indigo-400 mt-0.5 flex-shrink-0"></i>
+                                <div>
+                                    <strong class="text-white">Data-Driven Iteration:</strong> Analytics informed every design decision
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Career Impact Statement -->
+                <div class="bg-gradient-to-b from-indigo-500/10 to-transparent border border-indigo-400/20 p-8 text-center">
+                    <blockquote class="text-xl text-white/80 italic mb-4 max-w-3xl mx-auto">
+                        "This 11-year journey transformed me from a service-based designer to a product leader who can build teams, systems, and scalable solutions that drive real business outcomes."
+                    </blockquote>
+                    <p class="text-white/60">— The capstone of my career, proving design leadership drives acquisition value</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-24 px-8 bg-black border-t border-white/10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">Ready for a Design Leader Who Delivers Results?</h2>
+                <p class="text-xl text-white/70 mb-8">
+                    Let's discuss how strategic UX leadership can transform your product and drive measurable growth.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/contact.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-500 text-white font-semibold hover:bg-indigo-600 transition-sharp">
+                        Start a Conversation
+                        <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                    </a>
+                    <a href="/index.html#work" class="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/30 text-white font-semibold hover:bg-white/10 transition-sharp">
+                        View More Work
+                    </a>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Add scroll-based animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeInUp');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

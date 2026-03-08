@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategic UX/UI Designer - Experience Design That Drives Growth | UXMeas</title>
+  <meta name="description" content="Strategic UX/UI Designer who transforms user experiences into business results. From apps to websites to digital products - design that drives measurable growth.">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@900&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    // Tailwind config to match original design exactly
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'fraunces': ['Fraunces', 'serif'],
+            'inter': ['Inter', 'sans-serif'],
+          },
+          colors: {
+            'primary-blue': '#2563eb',
+            'headline-color': '#181c2a',
+            'body-color': '#4b5563',
+            'badge-bg': '#f6f9fb',
+            'badge-border': '#abb5c5',
+            'badge-dot': '#10b981',
+            'social-color': '#4b5563',
+            'social-icon': '#181c2a',
+            'bg-left': '#f7fafd',
+            'bg-right': '#ffffff',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.8s ease-out',
+            'fade-in-up': 'fadeInUp 0.8s ease-out',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            fadeInUp: {
+              '0%': { 
+                opacity: '0',
+                transform: 'translateY(20px)'
+              },
+              '100%': { 
+                opacity: '1',
+                transform: 'translateY(0)'
+              },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    /* Custom gradient background to match original exactly */
+    body {
+      background: linear-gradient(120deg, #f7fafd 0% 60%, #ffffff 60% 100%);
+      position: relative;
+    }
+    
+    /* Subtle texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0);
+      background-size: 20px 20px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    /* Animation delays */
+    .animation-delay-200 { animation-delay: 200ms; }
+    .animation-delay-300 { animation-delay: 300ms; }
+    .animation-delay-400 { animation-delay: 400ms; }
+    .animation-delay-500 { animation-delay: 500ms; }
+  </style>
+</head>
+<body class="min-h-screen font-inter text-body-color scroll-smooth">
+  
+  <!-- Hero Section - Matching Original Design -->
+  <main class="relative z-10 flex flex-col lg:flex-row items-center justify-between min-h-screen px-6 lg:px-12 py-12 lg:py-0 max-w-[1600px] mx-auto">
+    
+    <!-- Left Content -->
+    <section class="flex-1 flex flex-col items-start justify-center gap-5 sm:gap-6 max-w-[640px] lg:pr-12">
+      
+      <!-- Available Badge -->
+      <div class="inline-flex items-center gap-2.5 px-5 py-3 bg-badge-bg border border-badge-border rounded-full animate-fade-in">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-badge-dot opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-badge-dot"></span>
+        </span>
+        <span class="text-[14px] sm:text-[15px] font-medium text-headline-color">Available for projects</span>
+      </div>
+      
+      <!-- Headline -->
+      <h1 class="font-fraunces text-[42px] sm:text-[52px] lg:text-[64px] font-black text-headline-color leading-[1.1] tracking-[-2px] animate-fade-in-up animation-delay-200">
+        I Help Businesses<br>Grow 3X Faster
+      </h1>
+      
+      <!-- Subheadline -->
+      <p class="text-[16px] sm:text-[17px] leading-[1.7] text-body-color max-w-[540px] animate-fade-in-up animation-delay-300">
+        I'm Meas - a strategic UX/UI Designer with 11+ years of experience helping businesses achieve 
+        400% increases in conversions. From startups to enterprises, I create designs that turn visitors 
+        into customers and drive real business results.
+      </p>
+      
+      <!-- Social Links -->
+      <nav class="flex flex-wrap items-center gap-3 sm:gap-[18px] mt-2 animate-fade-in-up animation-delay-400">
+        <a href="https://linkedin.com/in/uxmeas" 
+           class="flex items-center gap-2 text-social-color text-[15px] sm:text-[17px] font-medium hover:text-primary-blue hover:-translate-y-px transition-all duration-200"
+           target="_blank" 
+           rel="noopener" 
+           aria-label="LinkedIn">
+          <i data-lucide="linkedin" class="w-6 h-6"></i>
+          LinkedIn
+        </a>
+        <a href="https://www.behance.net/uxmeas" 
+           class="flex items-center gap-2 text-social-color text-[15px] sm:text-[17px] font-medium hover:text-primary-blue hover:-translate-y-px transition-all duration-200"
+           target="_blank" 
+           rel="noopener" 
+           aria-label="Behance">
+          <i data-lucide="globe" class="w-6 h-6"></i>
+          Behance
+        </a>
+        <a href="https://www.dribbble.com/uxmeas" 
+           class="flex items-center gap-2 text-social-color text-[15px] sm:text-[17px] font-medium hover:text-primary-blue hover:-translate-y-px transition-all duration-200"
+           target="_blank" 
+           rel="noopener" 
+           aria-label="Dribbble">
+          <i data-lucide="dribbble" class="w-6 h-6"></i>
+          Dribbble
+        </a>
+      </nav>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap gap-4 mt-8 animate-fade-in-up animation-delay-500">
+        <a href="forms/intake-form-v2.html" 
+           class="inline-flex items-center gap-2 px-6 py-3 bg-primary-blue text-white font-semibold rounded-full hover:bg-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl">
+          Start Your Project
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#portfolio" 
+           class="inline-flex items-center gap-2 px-6 py-3 bg-white text-headline-color font-semibold rounded-full border-2 border-gray-200 hover:border-primary-blue transition-all duration-200">
+          View Case Studies
+          <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </a>
+        <a href="mailto:hello@uxmeas.com" 
+           class="inline-flex items-center gap-2 px-6 py-3 border-2 border-gray-300 text-headline-color font-semibold rounded-full hover:border-primary-blue hover:text-primary-blue transition-all duration-200">
+          Get in Touch
+          <i data-lucide="mail" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </section>
+    
+    <!-- Right Creative Visual -->
+    <section class="flex-1 flex items-center justify-center lg:justify-end mt-12 lg:mt-0">
+      <div class="relative w-full max-w-[520px] h-[400px] lg:h-[500px] animate-fade-in-up animation-delay-400 hidden md:block">
+        <!-- Animated gradient background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-blue/10 via-purple-500/10 to-green-500/10 rounded-full blur-3xl animate-float"></div>
+        
+        <!-- Floating elements container -->
+        <div class="relative w-full h-full">
+          <!-- Central figure silhouette -->
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-64 bg-gradient-to-b from-gray-800 to-gray-900 rounded-full opacity-10"></div>
+          
+          <!-- Floating design tools -->
+          <div class="absolute top-10 left-10 animate-float animation-delay-200">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg shadow-xl flex items-center justify-center text-white">
+              <i data-lucide="figma" class="w-8 h-8"></i>
+            </div>
+          </div>
+          
+          <!-- Hockey elements -->
+          <div class="absolute top-20 right-12 animate-float animation-delay-300" style="animation-duration: 7s;">
+            <div class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-full shadow-xl flex items-center justify-center text-white">
+              🏒
+            </div>
+          </div>
+          
+          <!-- Tablet pen -->
+          <div class="absolute bottom-32 left-16 animate-float animation-delay-400" style="animation-duration: 8s;">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg shadow-xl flex items-center justify-center text-white">
+              <i data-lucide="pen-tool" class="w-6 h-6"></i>
+            </div>
+          </div>
+          
+          <!-- Code brackets -->
+          <div class="absolute top-40 left-1/3 animate-float animation-delay-500" style="animation-duration: 9s;">
+            <div class="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-lg shadow-xl flex items-center justify-center text-white font-mono text-xl">
+              &lt;/&gt;
+            </div>
+          </div>
+          
+          <!-- Mobile device -->
+          <div class="absolute bottom-20 right-20 animate-float" style="animation-duration: 6s;">
+            <div class="w-10 h-16 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg shadow-xl flex items-center justify-center text-white">
+              <i data-lucide="smartphone" class="w-5 h-8"></i>
+            </div>
+          </div>
+          
+          <!-- Design palette -->
+          <div class="absolute top-1/2 right-8 animate-float animation-delay-300" style="animation-duration: 10s;">
+            <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-full shadow-xl flex items-center justify-center text-white">
+              <i data-lucide="palette" class="w-6 h-6"></i>
+            </div>
+          </div>
+          
+          <!-- Hockey glove emoji -->
+          <div class="absolute bottom-40 left-1/2 animate-float animation-delay-200" style="animation-duration: 11s;">
+            <div class="text-3xl drop-shadow-xl">
+              🥊
+            </div>
+          </div>
+          
+          <!-- Layers icon -->
+          <div class="absolute top-32 left-2/3 animate-float animation-delay-400" style="animation-duration: 7.5s;">
+            <div class="w-11 h-11 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg shadow-xl flex items-center justify-center text-white">
+              <i data-lucide="layers" class="w-5 h-5"></i>
+            </div>
+          </div>
+          
+          <!-- Trophy for achievements -->
+          <div class="absolute bottom-16 left-8 animate-float animation-delay-500" style="animation-duration: 8.5s;">
+            <div class="text-2xl drop-shadow-xl">
+              🏆
+            </div>
+          </div>
+          
+          <!-- Lightning bolt for speed -->
+          <div class="absolute top-16 left-1/2 animate-float" style="animation-duration: 6.5s;">
+            <div class="w-10 h-10 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full shadow-xl flex items-center justify-center text-white">
+              <i data-lucide="zap" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Client Results & Trust Section -->
+  <section class="relative z-10 py-16 px-6 bg-gradient-to-b from-white to-[#f8fafb]">
+    <div class="max-w-[1400px] mx-auto">
+      
+      <!-- Results Banner -->
+      <div class="bg-primary-blue text-white p-8 rounded-2xl mb-16">
+        <div class="text-center">
+          <h2 class="font-fraunces text-3xl lg:text-4xl font-black mb-4">
+            Real Results for Real Businesses
+          </h2>
+          <p class="text-lg opacity-90 mb-8 max-w-3xl mx-auto">
+            I don't just design pretty interfaces. I create strategic solutions that drive measurable growth.
+          </p>
+          
+          <!-- Key Stats Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div>
+              <div class="text-5xl font-black mb-2">400%</div>
+              <div class="text-sm uppercase tracking-wider opacity-90">Increase in Demo Requests</div>
+              <div class="text-xs opacity-75 mt-1">AKM SecureKey</div>
+            </div>
+            <div>
+              <div class="text-5xl font-black mb-2">3X</div>
+              <div class="text-sm uppercase tracking-wider opacity-90">Conversion Rate Boost</div>
+              <div class="text-xs opacity-75 mt-1">Average Client Result</div>
+            </div>
+            <div>
+              <div class="text-5xl font-black mb-2">$2M+</div>
+              <div class="text-sm uppercase tracking-wider opacity-90">Acquisition Exit</div>
+              <div class="text-xs opacity-75 mt-1">Katipult (Client Success)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services Overview -->
+      <div class="mb-16">
+        <h3 class="font-fraunces text-2xl lg:text-3xl font-black text-headline-color mb-8 text-center">
+          How I Help Businesses Grow
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- UX Audit Service -->
+          <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-4">🔍</div>
+            <h4 class="font-bold text-lg text-headline-color mb-2">UX Audit & Strategy</h4>
+            <p class="text-body-color text-sm mb-4">
+              Comprehensive analysis of your current site with actionable recommendations to boost conversions.
+            </p>
+            <div class="flex items-baseline gap-2 mb-3">
+              <span class="text-2xl font-bold text-primary-blue">$2,500</span>
+              <span class="text-sm text-body-color">2-day turnaround</span>
+            </div>
+            <a href="forms/intake-form-v2.html" class="inline-block w-full text-center bg-primary-blue text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              Get Started
+            </a>
+          </div>
+          
+          <!-- Website Design Service -->
+          <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow relative">
+            <div class="absolute top-4 right-4 bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-semibold">
+              MOST POPULAR
+            </div>
+            <div class="text-3xl mb-4">🚀</div>
+            <h4 class="font-bold text-lg text-headline-color mb-2">Website Redesign</h4>
+            <p class="text-body-color text-sm mb-4">
+              Complete website transformation focused on conversions, user experience, and business growth.
+            </p>
+            <div class="flex items-baseline gap-2 mb-3">
+              <span class="text-2xl font-bold text-primary-blue">$15,000</span>
+              <span class="text-sm text-body-color">2-week delivery</span>
+            </div>
+            <a href="forms/intake-form-v2.html" class="inline-block w-full text-center bg-primary-blue text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              Get Started
+            </a>
+          </div>
+          
+          <!-- Custom Project -->
+          <div class="bg-white p-6 rounded-xl border border-gray-200 hover:shadow-lg transition-shadow">
+            <div class="text-3xl mb-4">✨</div>
+            <h4 class="font-bold text-lg text-headline-color mb-2">Custom Project</h4>
+            <p class="text-body-color text-sm mb-4">
+              App design, product strategy, or ongoing UX support tailored to your specific needs.
+            </p>
+            <div class="flex items-baseline gap-2 mb-3">
+              <span class="text-2xl font-bold text-primary-blue">Custom</span>
+              <span class="text-sm text-body-color">Let's discuss</span>
+            </div>
+            <a href="forms/intake-form-v2.html" class="inline-block w-full text-center bg-primary-blue text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+              Get Quote
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Indicators -->
+      <div class="bg-white p-8 rounded-xl border border-gray-200">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div>
+            <div class="text-3xl font-black text-headline-color">11+</div>
+            <div class="text-sm text-body-color">Years Experience</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-headline-color">50+</div>
+            <div class="text-sm text-body-color">Projects Delivered</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-headline-color">100%</div>
+            <div class="text-sm text-body-color">Client Satisfaction</div>
+          </div>
+          <div>
+            <div class="text-3xl font-black text-headline-color">24hr</div>
+            <div class="text-sm text-body-color">Response Time</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center mt-12">
+        <p class="text-lg text-body-color mb-6">
+          Ready to transform your business with strategic design?
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="forms/intake-form-v2.html" class="bg-primary-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center gap-2">
+            Start Your Project
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+          <a href="#portfolio" class="bg-white text-headline-color px-8 py-4 rounded-lg font-semibold border-2 border-gray-200 hover:border-primary-blue transition-colors inline-flex items-center justify-center gap-2">
+            View Case Studies
+            <i data-lucide="chevron-down" class="w-5 h-5"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="relative z-10 py-20 px-6 bg-gradient-to-b from-white/0 to-[#f8fafb]">
+    <div class="max-w-[1600px] mx-auto">
+      
+      <!-- Section Header -->
+      <div class="text-left mb-8 sm:mb-12 lg:mb-[60px]">
+        <h2 class="font-fraunces text-[32px] sm:text-[40px] lg:text-[48px] font-black text-headline-color mb-2 sm:mb-3 tracking-[-1px]">
+          Selected Work
+        </h2>
+        <p class="text-[16px] sm:text-[18px] text-body-color">
+          Click to view full case studies
+        </p>
+      </div>
+      
+      <!-- Portfolio Grid - 3 Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 max-w-[1600px] mx-auto">
+        
+        <!-- AKM Secure Card -->
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('akm-secure')">
+          <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+            <img src="images/terracore_ai/terracore_ai_1_hero.png" 
+                 alt="AKM SecureKey" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-primary-blue text-white text-xs font-semibold uppercase tracking-[0.5px]">
+                View Case Study
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-primary-blue">
+              <span class="text-2xl font-bold">+400%</span>
+              <span class="text-sm opacity-80">Demo Requests</span>
+            </div>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">AKM SecureKey</h3>
+            <p class="text-base text-body-color leading-[1.7] mb-4">
+              Enterprise security platform competing with Palantir & Anduril. Complete UX transformation in 1 week.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Enterprise</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Security</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">B2B SaaS</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Katipult Card -->
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('katipult')">
+          <div class="relative aspect-[16/10] bg-gradient-to-br from-indigo-600 to-indigo-900 overflow-hidden">
+            <img src="images/katipult/screen_one.jpg" 
+                 alt="Katipult Platform" 
+                 class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-yellow-500 text-black text-xs font-bold uppercase tracking-[0.5px]">
+                11 Years → Exit
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-indigo-600">
+              <span class="text-2xl font-bold">Acquired</span>
+              <span class="text-sm opacity-80">2025</span>
+            </div>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">Katipult Technology</h3>
+            <p class="text-base text-body-color leading-[1.7] mb-4">
+              Head of UX/UI for 11 years. Led design from startup to acquisition, 30% engagement increase.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">FinTech</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Leadership</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Exit</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- AKM V2 Reality Card -->
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('akm-v2')">
+          <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+            <img src="images/akm-homepage-device-1.png" 
+                 alt="AKM SecureKey V2" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-green-600 text-white text-xs font-semibold uppercase tracking-[0.5px]">
+                Reality Version
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-green-600">
+              <span class="text-2xl font-bold">Honest</span>
+              <span class="text-sm opacity-80">Case Study</span>
+            </div>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">AKM Secure (V2)</h3>
+            <p class="text-base text-body-color leading-[1.7] mb-4">
+              Reality-aligned version focusing on actual outcomes: investor-ready website delivered in 1 week.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Startup</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Fundraising</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Rapid Delivery</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- AKM Unified (Hiring-Optimized) Card -->
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('akm-hiring')">
+          <div class="relative aspect-[16/10] bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
+            <img src="images/akm-homepage-device-1.png" 
+                 alt="AKM SecureKey Unified" 
+                 class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-gradient-to-r from-green-500 to-blue-500 text-white text-xs font-bold uppercase tracking-[0.5px]">
+                BEST VERSION
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-blue-600">
+              <span class="text-2xl font-bold">Unified</span>
+              <span class="text-sm opacity-80">Hiring-Ready</span>
+            </div>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">AKM Secure (Best)</h3>
+            <p class="text-base text-body-color leading-[1.7] mb-4">
+              Best of both: 400% demo increase + 1-week build. Optimized for hiring managers.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">400% Growth</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">1-Week Build</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Series A</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- CMNS Card -->
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('cmns')">
+          <div class="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+            <img src="images/katipult/screen_one.jpg" 
+                 alt="CMNS Platform" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-gray-500 text-white text-xs font-semibold uppercase tracking-[0.5px]">
+                Coming Soon
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-primary-blue">
+              <span class="text-2xl font-bold">85%</span>
+              <span class="text-sm opacity-80">User Adoption</span>
+            </div>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">CMNS Platform</h3>
+            <p class="text-base text-body-color leading-[1.7] mb-4">
+              Content management and collaboration platform for modern teams. Simplified complex workflows.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Platform Design</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">CMS</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Collaboration</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- MyPick.io Card -->
+        <div class="group bg-white border border-gray-200 shadow-sm hover:shadow-2xl hover:-translate-y-1 hover:border-primary-blue transition-all duration-300 cursor-pointer overflow-hidden"
+             onclick="openCaseStudyModal('mypick')">
+          <div class="relative aspect-[16/10] bg-gradient-to-br from-green-500 via-yellow-500 to-red-500 overflow-hidden">
+            <div class="absolute inset-0 bg-black/30"></div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="text-center">
+                <div class="text-white font-bold text-3xl mb-2">🎲</div>
+                <div class="text-white font-bold text-xl">MyPick.io</div>
+              </div>
+            </div>
+            <div class="absolute top-4 right-4">
+              <span class="px-3 py-1.5 bg-green-500 text-white text-xs font-bold uppercase tracking-[0.5px]">
+                Live Tool
+              </span>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-baseline gap-2 mb-4 text-green-600">
+              <span class="text-2xl font-bold">Crypto</span>
+              <span class="text-sm opacity-80">Secure Random</span>
+            </div>
+            <h3 class="text-2xl font-bold text-headline-color mb-2">MyPick.io</h3>
+            <p class="text-base text-body-color leading-[1.7] mb-4">
+              Visual randomizer tool. Better alternative to Random.org and duck races. Crypto-secure.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Randomizer</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Crypto-Secure</span>
+              <span class="px-3 py-1 bg-badge-bg border border-badge-border text-[13px] text-body-color">Visual UX</span>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Process & Methodology Section -->
+  <section class="relative z-10 py-20 px-6 bg-white">
+    <div class="max-w-[1400px] mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="font-fraunces text-3xl lg:text-4xl font-black text-headline-color mb-4">
+          My Proven Process
+        </h2>
+        <p class="text-lg text-body-color max-w-3xl mx-auto">
+          Every project follows a strategic, data-driven approach designed to maximize ROI and minimize risk
+        </p>
+      </div>
+
+      <!-- Process Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
+        <!-- Step 1 -->
+        <div class="relative">
+          <div class="bg-primary-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg mb-4">
+            1
+          </div>
+          <h3 class="font-bold text-lg text-headline-color mb-2">Discovery & Research</h3>
+          <p class="text-body-color text-sm">
+            Deep dive into your business, users, and competition to uncover opportunities
+          </p>
+          <div class="hidden md:block absolute top-6 left-full w-full h-0.5 bg-gray-200 -z-10"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative">
+          <div class="bg-primary-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg mb-4">
+            2
+          </div>
+          <h3 class="font-bold text-lg text-headline-color mb-2">Strategy & Planning</h3>
+          <p class="text-body-color text-sm">
+            Define clear objectives, user flows, and success metrics aligned with business goals
+          </p>
+          <div class="hidden md:block absolute top-6 left-full w-full h-0.5 bg-gray-200 -z-10"></div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative">
+          <div class="bg-primary-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg mb-4">
+            3
+          </div>
+          <h3 class="font-bold text-lg text-headline-color mb-2">Design & Iterate</h3>
+          <p class="text-body-color text-sm">
+            Create high-fidelity designs with rapid prototyping and user testing
+          </p>
+          <div class="hidden md:block absolute top-6 left-full w-full h-0.5 bg-gray-200 -z-10"></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div>
+          <div class="bg-primary-blue text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg mb-4">
+            4
+          </div>
+          <h3 class="font-bold text-lg text-headline-color mb-2">Launch & Optimize</h3>
+          <p class="text-body-color text-sm">
+            Deploy with confidence, measure results, and continuously improve performance
+          </p>
+        </div>
+      </div>
+
+      <!-- Why Choose Me -->
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-8 lg:p-12 rounded-2xl">
+        <h3 class="font-fraunces text-2xl lg:text-3xl font-black text-headline-color mb-8 text-center">
+          Why Businesses Choose Me
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="flex gap-4">
+            <div class="text-2xl flex-shrink-0">⚡</div>
+            <div>
+              <h4 class="font-semibold text-headline-color mb-1">Fast Turnaround</h4>
+              <p class="text-sm text-body-color">2-week delivery for most projects. No endless revisions.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <div class="text-2xl flex-shrink-0">📊</div>
+            <div>
+              <h4 class="font-semibold text-headline-color mb-1">Data-Driven</h4>
+              <p class="text-sm text-body-color">Every decision backed by research and user testing.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <div class="text-2xl flex-shrink-0">💼</div>
+            <div>
+              <h4 class="font-semibold text-headline-color mb-1">Business-Focused</h4>
+              <p class="text-sm text-body-color">Design that drives revenue, not just looks pretty.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <div class="text-2xl flex-shrink-0">🎯</div>
+            <div>
+              <h4 class="font-semibold text-headline-color mb-1">Results Guaranteed</h4>
+              <p class="text-sm text-body-color">Average 3X conversion increase or your money back.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <div class="text-2xl flex-shrink-0">🤝</div>
+            <div>
+              <h4 class="font-semibold text-headline-color mb-1">True Partnership</h4>
+              <p class="text-sm text-body-color">Direct communication, no account managers.</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-4">
+            <div class="text-2xl flex-shrink-0">🚀</div>
+            <div>
+              <h4 class="font-semibold text-headline-color mb-1">Growth Expertise</h4>
+              <p class="text-sm text-body-color">11+ years helping startups scale to acquisition.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA in Process Section -->
+        <div class="text-center mt-10">
+          <a href="forms/intake-form-v2.html" class="inline-block bg-primary-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            Get Your Free UX Consultation
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="relative z-10 py-20 px-6 bg-gradient-to-br from-primary-blue to-blue-700">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-fraunces text-[36px] sm:text-[44px] lg:text-[52px] font-black text-white mb-4 tracking-[-1px]">
+        Ready to 3X Your Conversions?
+      </h2>
+      <p class="text-[18px] sm:text-[20px] text-white/90 mb-8 max-w-2xl mx-auto">
+        Limited spots available for Q1 2025. Book your free consultation today 
+        and let's discuss how to transform your business.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="forms/intake-form-v2.html" 
+           class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary-blue font-semibold rounded-full hover:bg-gray-100 transition-all duration-200 shadow-xl">
+          Book Free Consultation
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+        <a href="public/resume/product_design_leader_(2025-06-12).pdf" 
+           download
+           class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-200">
+          Download Resume
+          <i data-lucide="download" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer class="relative z-10 py-12 px-6 bg-gray-900 text-white">
+    <div class="max-w-[1600px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <!-- About Column -->
+        <div>
+          <h3 class="font-bold text-lg mb-4">About</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Strategic UX/UI Designer with 11+ years of experience transforming complex problems into elegant solutions. 
+            Specializing in enterprise SaaS, fintech, and emerging technologies.
+          </p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#portfolio" class="text-gray-400 hover:text-white transition">Portfolio</a></li>
+            <li><a href="/case-studies/katipult/katipult-hiring.html" class="text-gray-400 hover:text-white transition">Katipult Case Study</a></li>
+            <li><a href="/case-studies/akm-secure/akm-secure-hiring.html" class="text-gray-400 hover:text-white transition">AKM Secure Case Study</a></li>
+            <li><a href="https://mypick.io" target="_blank" class="text-gray-400 hover:text-white transition">MyPick.io Project</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h3 class="font-bold text-lg mb-4">Get in Touch</h3>
+          <ul class="space-y-2">
+            <li class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-gray-400"></i>
+              <a href="mailto:hello@uxmeas.com" class="text-gray-400 hover:text-white transition">hello@uxmeas.com</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="linkedin" class="w-4 h-4 text-gray-400"></i>
+              <a href="https://linkedin.com/in/uxmeas" target="_blank" class="text-gray-400 hover:text-white transition">LinkedIn</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="globe" class="w-4 h-4 text-gray-400"></i>
+              <a href="https://www.behance.net/uxmeas" target="_blank" class="text-gray-400 hover:text-white transition">Behance</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="dribbble" class="w-4 h-4 text-gray-400"></i>
+              <a href="https://www.dribbble.com/uxmeas" target="_blank" class="text-gray-400 hover:text-white transition">Dribbble</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <!-- Bottom Bar -->
+      <div class="pt-8 border-t border-gray-800">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p class="text-gray-400 text-sm">
+            © 2025 UX Meas. All rights reserved.
+          </p>
+          <div class="flex items-center gap-6">
+            <a href="#" class="text-gray-400 hover:text-white text-sm transition">Privacy</a>
+            <a href="#" class="text-gray-400 hover:text-white text-sm transition">Terms</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Case Study Modal -->
+  <div id="case-study-modal" class="fixed inset-0 z-[9999] hidden">
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-black backdrop-blur-sm" onclick="closeCaseStudyModal()"></div>
+    
+    <!-- Modal Content -->
+    <div class="fixed inset-0 w-full h-full overflow-y-auto z-[10000]">
+      <!-- Close Button -->
+      <button onclick="closeCaseStudyModal()" 
+              class="fixed top-6 right-6 z-[10001] w-12 h-12 bg-white/10 backdrop-blur border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors group">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      
+      <!-- Back to Portfolio -->
+      <button onclick="closeCaseStudyModal()" 
+              class="fixed top-6 left-6 z-[10001] px-4 py-2 bg-white/10 backdrop-blur border border-white/20 text-white text-sm font-medium hover:bg-white/20 transition-colors flex items-center gap-2 rounded-lg">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+        Back to Portfolio
+      </button>
+      
+      <!-- Case Study Content -->
+      <div id="case-study-content" class="relative min-h-screen">
+        <!-- Content loads here -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Case Study Scripts -->
+  <script>
+    async function openCaseStudyModal(projectId) {
+      const modal = document.getElementById('case-study-modal');
+      const content = document.getElementById('case-study-content');
+      
+      // Show modal with skeleton loader
+      modal.classList.remove('hidden');
+      content.innerHTML = `
+        <div class="min-h-screen bg-black">
+          <!-- Skeleton Loader -->
+          <div class="animate-pulse">
+            <!-- Hero skeleton -->
+            <div class="h-screen bg-gradient-to-b from-gray-900 to-black p-8">
+              <div class="max-w-[1600px] mx-auto">
+                <div class="h-8 bg-gray-800 w-48 mb-8"></div>
+                <div class="h-20 bg-gray-800 w-3/4 mb-4"></div>
+                <div class="h-16 bg-gray-800 w-2/3 mb-8"></div>
+                <div class="grid grid-cols-4 gap-4">
+                  <div class="h-32 bg-gray-800"></div>
+                  <div class="h-32 bg-gray-800"></div>
+                  <div class="h-32 bg-gray-800"></div>
+                  <div class="h-32 bg-gray-800"></div>
+                </div>
+              </div>
+            </div>
+            <!-- Content skeleton -->
+            <div class="p-8">
+              <div class="max-w-4xl mx-auto">
+                <div class="h-12 bg-gray-800 w-1/3 mb-8"></div>
+                <div class="space-y-4">
+                  <div class="h-4 bg-gray-800 w-full"></div>
+                  <div class="h-4 bg-gray-800 w-5/6"></div>
+                  <div class="h-4 bg-gray-800 w-4/5"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+      
+      // Load appropriate content
+      if (projectId === 'akm-secure' || projectId === 'akm-v2' || projectId === 'akm-hiring') {
+        try {
+          // Fetch the appropriate HTML file
+          let fileName;
+          if (projectId === 'akm-v2') {
+            fileName = 'akm-secure-v2-reality.html';
+          } else if (projectId === 'akm-hiring') {
+            fileName = 'akm-secure-hiring.html';
+          } else {
+            fileName = 'akm-secure-exact-brand.html';
+          }
+          const response = await fetch(`case-studies/akm-secure/${fileName}`);
+          const html = await response.text();
+          
+          // Parse the HTML
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          
+          // Extract styles, scripts, and body content
+          const styles = Array.from(doc.querySelectorAll('style')).map(el => el.outerHTML).join('\n');
+          const externalStyles = Array.from(doc.querySelectorAll('link[rel="stylesheet"]')).map(el => el.outerHTML).join('\n');
+          const bodyContent = doc.body.innerHTML;
+          
+          // Create a container for the case study with fade-in animation
+          content.style.opacity = '0';
+          content.innerHTML = `
+            ${externalStyles}
+            ${styles}
+            <div class="case-study-wrapper" style="background: black; color: white; min-height: 100vh;">
+              ${bodyContent}
+            </div>
+          `;
+          
+          // Fade in the content
+          setTimeout(() => {
+            content.style.transition = 'opacity 0.3s ease';
+            content.style.opacity = '1';
+          }, 100);
+          
+          // Re-initialize any scripts needed (like Lucide icons)
+          setTimeout(() => {
+            if (window.lucide) {
+              lucide.createIcons();
+            }
+          }, 100);
+          
+        } catch (error) {
+          console.error('Error loading case study:', error);
+          // Fallback to direct navigation
+          window.location.href = 'case-studies/akm-secure/akm-secure-exact-brand.html';
+        }
+      } else if (projectId === 'katipult') {
+        try {
+          const response = await fetch(`case-studies/katipult/katipult-hiring.html`);
+          const html = await response.text();
+          
+          // Parse the HTML
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          
+          // Extract styles, scripts, and body content
+          const styles = Array.from(doc.querySelectorAll('style')).map(el => el.outerHTML).join('\n');
+          const externalStyles = Array.from(doc.querySelectorAll('link[rel="stylesheet"]')).map(el => el.outerHTML).join('\n');
+          const bodyContent = doc.body.innerHTML;
+          
+          // Create a container for the case study with fade-in animation
+          content.style.opacity = '0';
+          content.innerHTML = `
+            ${externalStyles}
+            ${styles}
+            <div class="case-study-wrapper" style="background: black; color: white; min-height: 100vh;">
+              ${bodyContent}
+            </div>
+          `;
+          
+          // Fade in the content
+          setTimeout(() => {
+            content.style.transition = 'opacity 0.3s ease';
+            content.style.opacity = '1';
+          }, 100);
+          
+          // Re-initialize any scripts needed (like Lucide icons)
+          setTimeout(() => {
+            if (window.lucide) {
+              lucide.createIcons();
+            }
+          }, 200);
+        } catch (error) {
+          console.error('Error loading case study:', error);
+          window.location.href = 'case-studies/katipult/katipult-hiring.html';
+        }
+      } else if (projectId === 'mypick') {
+        try {
+          const response = await fetch(`case-studies/mypick/mypick-hiring.html`);
+          const html = await response.text();
+          
+          // Parse the HTML
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          
+          // Extract styles, scripts, and body content
+          const styles = Array.from(doc.querySelectorAll('style')).map(el => el.outerHTML).join('\n');
+          const externalStyles = Array.from(doc.querySelectorAll('link[rel="stylesheet"]')).map(el => el.outerHTML).join('\n');
+          const bodyContent = doc.body.innerHTML;
+          
+          // Create a container for the case study with fade-in animation
+          content.style.opacity = '0';
+          content.innerHTML = `
+            ${externalStyles}
+            ${styles}
+            <div class="case-study-wrapper" style="background: black; color: white; min-height: 100vh;">
+              ${bodyContent}
+            </div>
+          `;
+          
+          // Fade in the content
+          setTimeout(() => {
+            content.style.transition = 'opacity 0.3s ease';
+            content.style.opacity = '1';
+          }, 100);
+          
+          // Re-initialize any scripts needed (like Lucide icons)
+          setTimeout(() => {
+            if (window.lucide) {
+              lucide.createIcons();
+            }
+          }, 200);
+        } catch (error) {
+          console.error('Error loading case study:', error);
+          window.location.href = 'case-studies/mypick/mypick-hiring.html';
+        }
+      } else if (projectId === 'cmns') {
+        // Show coming soon for CMNS
+        content.innerHTML = `
+          <div class="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-black">
+            <div class="text-center max-w-2xl px-6">
+              <div class="mb-8">
+                <i data-lucide="layers" class="w-24 h-24 text-white/20 mx-auto"></i>
+              </div>
+              <h2 class="font-fraunces text-5xl font-black text-white mb-4">CMNS Platform</h2>
+              <p class="text-xl text-white/70 mb-8 leading-relaxed">
+                Case study coming soon! This comprehensive platform design project 
+                streamlined content management and collaboration workflows for distributed teams.
+              </p>
+              <button onclick="closeCaseStudyModal()" 
+                      class="px-8 py-3 bg-white text-black font-semibold hover:bg-white/90 transition-colors">
+                Back to Portfolio
+              </button>
+            </div>
+          </div>
+        `;
+        // Re-initialize Lucide icons
+        setTimeout(() => lucide.createIcons(), 100);
+      }
+    }
+    
+    function closeCaseStudyModal() {
+      const modal = document.getElementById('case-study-modal');
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      
+      // Clear content after animation
+      setTimeout(() => {
+        document.getElementById('case-study-content').innerHTML = '';
+      }, 300);
+    }
+    
+    // ESC key to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const modal = document.getElementById('case-study-modal');
+        if (!modal.classList.contains('hidden')) {
+          closeCaseStudyModal();
+        }
+      }
+    });
+  </script>
+  
+  <!-- Initialize Lucide Icons -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+  
+  <!-- CMS Editor Integration -->
+  <script src="cms-editor.js" 
+          data-site-id="uxmeas-portfolio"
+          data-supabase-url="https://jtmqdwtkyblrluexzwuj.supabase.co"
+          data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp0bXFkd3RreWJscmx1ZXh6d3VqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ0MTI5MzksImV4cCI6MjA2OTk4ODkzOX0.4KMKJYqKVVa1J68mk012M1WYUyQe91n8pj91MfDXVDc"
+          data-auth-key="cms-login">
+  </script>
+  
+  <!-- Forms Modal Integration -->
+  <script src="forms/modal-trigger.js"></script>
+</body>
+</html>
