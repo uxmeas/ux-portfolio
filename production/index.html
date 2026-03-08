@@ -9,8 +9,12 @@
     <meta property="og:description" content="Co-founded a company that went public. 16 years of design. Now building products at MZM Labs.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://uxmeas.com">
+    <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://uxmeas.com/images/og-image.png">
     <link rel="canonical" href="https://uxmeas.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    <link rel="preload" as="image" href="images/katipult/nb2-compliance-hero.webp" type="image/webp">
 
     <meta name="theme-color" content="#111111">
 
@@ -170,10 +174,15 @@
         .project-image {
             width: 100%; aspect-ratio: 16/10;
             margin-bottom: 32px;
-            background-size: cover; background-position: center;
             border-radius: 4px;
             position: relative;
             overflow: hidden;
+        }
+        .project-image picture { display: contents; }
+        .project-image img {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center;
+            display: block;
         }
         .project-image::after {
             content: 'View project \2192';
@@ -1203,35 +1212,35 @@
 
         <div class="projects-grid">
             <div data-project="compliance" class="project-card fade-in" tabindex="0" role="button" aria-label="View Compliance UX project">
-                <div class="project-image" style="background-color: #0F172A; background-image: url('images/katipult/nb2-compliance-hero.png');"></div>
+                <div class="project-image" style="background-color: #0F172A"><picture><source srcset="images/katipult/nb2-compliance-hero.webp" type="image/webp"><img src="images/katipult/nb2-compliance-hero.png" alt="Compliance UX" width="768" height="480" fetchpriority="high"></picture></div>
                 <h3 class="project-title">Compliance UX</h3>
                 <p class="project-description">Redesigned investor onboarding from fax machines to 12-minute digital flows across 20+ jurisdictions.</p>
                 <span class="project-meta">Compliance · Fintech · Enterprise</span>
             </div>
 
             <div data-project="dealflow" class="project-card fade-in" tabindex="0" role="button" aria-label="View Katipult DealFlow project">
-                <div class="project-image" style="background-color: #0F172A; background-image: url('images/katipult/nb2-dealflow-hero.png');"></div>
+                <div class="project-image" style="background-color: #0F172A"><picture><source srcset="images/katipult/nb2-dealflow-hero.webp" type="image/webp"><img src="images/katipult/nb2-dealflow-hero.png" alt="Katipult DealFlow" width="768" height="480" loading="lazy"></picture></div>
                 <h3 class="project-title">Katipult DealFlow</h3>
                 <p class="project-description">Co-founded in 2008. Designed every screen for 15 years. 3 people to 49+, IPO, and two industry awards.</p>
                 <span class="project-meta">Product Design · Fintech · IPO</span>
             </div>
 
             <div data-project="akm" class="project-card fade-in" tabindex="0" role="button" aria-label="View AKM SecureKey project">
-                <div class="project-image" style="background-color: #252525; background-image: url('images/akm-card.png');"></div>
+                <div class="project-image" style="background-color: #252525"><picture><source srcset="images/akm-card.webp" type="image/webp"><img src="images/akm-card.png" alt="AKM SecureKey" width="768" height="480" loading="lazy"></picture></div>
                 <h3 class="project-title">AKM SecureKey</h3>
-                <p class="project-description">A cybersecurity startup needed to look as secure as their product. Built the entire brand solo.</p>
+                <p class="project-description">A cybersecurity startup needed to look as secure as their product. Built their entire brand solo.</p>
                 <span class="project-meta">Brand · Web · CMS</span>
             </div>
 
             <div data-project="relationsync" class="project-card fade-in" tabindex="0" role="button" aria-label="View RelationSync project">
-                <div class="project-image" style="background-color: #1A1625; background-image: url('images/relationsync/nb2-home-v2-grounded.png');"></div>
+                <div class="project-image" style="background-color: #1A1625"><picture><source srcset="images/relationsync/nb2-home-v2-grounded.webp" type="image/webp"><img src="images/relationsync/nb2-home-v2-grounded.png" alt="RelationSync" width="768" height="480" loading="lazy"></picture></div>
                 <h3 class="project-title">RelationSync</h3>
-                <p class="project-description">Most apps want your attention. This one helps you pay attention to people. 35 screens from scratch.</p>
+                <p class="project-description">Most apps want your attention. This one helps you pay attention to people.</p>
                 <span class="project-meta">Mobile App · Product Design · Collaboration</span>
             </div>
 
             <div data-project="mypick" class="project-card fade-in" tabindex="0" role="button" aria-label="View MyPick.io project">
-                <div class="project-image" style="background-color: #0C1222; background-image: url('images/mypick-card.png');"></div>
+                <div class="project-image" style="background-color: #0C1222"><picture><source srcset="images/mypick-card.webp" type="image/webp"><img src="images/mypick-card.png" alt="MyPick.io" width="768" height="480" loading="lazy"></picture></div>
                 <h3 class="project-title">MyPick.io</h3>
                 <p class="project-description">Random number generators are boring. I built a pixel car race instead. Zero dependencies, pure Canvas 2D.</p>
                 <span class="project-meta">Web App · Canvas · Vanilla JS</span>
@@ -1515,7 +1524,7 @@
                     ${labelBar('Katipult', 'Compliance UX', 'Fintech')}
                     <img class="m-hero__logo" src="images/katipult/logos/katipult-logo-white.png" alt="Katipult">
                     <h2 class="m-hero__title">Compliance UX for Private Capital Markets</h2>
-                    <p class="m-hero__subtitle">I redesigned how investors get approved in regulated markets. What used to take days of paperwork and fax machines now takes under 12 minutes, across 20+ jurisdictions.</p>
+                    <p class="m-hero__subtitle">I redesigned how investors get approved in regulated markets. What used to take days of paperwork and fax machines now takes minutes, across 20+ jurisdictions.</p>
                     <div class="m-hero__stats">
                         <div class="m-hero__stat"><div class="m-hero__stat-num">&lt; 12 min</div><div class="m-hero__stat-label">Average onboarding time</div></div>
                         <div class="m-hero__stat"><div class="m-hero__stat-num">20+</div><div class="m-hero__stat-label">Jurisdictions supported</div></div>
@@ -1564,7 +1573,7 @@
                     ${labelBar('Method', 'Approach', 'Fintech')}
                     ${twoCol(
                         `<h3 class="m-section__title">DESIGN<br>APPROACH</h3>`,
-                        `<p class="m-section__desc">I spent weeks with compliance officers and real investors mapping the regulatory landscape. 20+ jurisdictions don't simplify themselves. The approach: progressive disclosure. Show investors only what they need, when they need it. Hide the complexity without hiding the compliance.</p>
+                        `<p class="m-section__desc">I spent weeks with compliance officers and real investors mapping the regulatory landscape. 20+ jurisdictions, each with different requirements. The approach: progressive disclosure. Show investors only what they need, when they need it. Hide the complexity without hiding the compliance.</p>
                         <div class="m-steps">
                             <div class="m-step"><div class="m-step__num">01</div><div class="m-step__title">Regulatory Mapping</div><div class="m-step__desc">Mapped KYC/AML requirements across 20+ jurisdictions</div></div>
                             <div class="m-step"><div class="m-step__num">02</div><div class="m-step__title">Flow Design</div><div class="m-step__desc">Progressive disclosure for complex compliance steps</div></div>
@@ -1887,7 +1896,7 @@
                     ${twoCol(
                         `<h3 class="m-section__title">ABOUT THE<br>PRODUCT</h3>`,
                         `<p class="m-section__desc" style="color: #9B8AAF">People forget the details that matter most. Not the big events, but the small ones. What someone said at dinner. How a conversation made you feel. RelationSync captures those moments through voice, then uses AI to make them searchable and meaningful over time.</p>
-                        <p class="m-section__desc" style="color: #9B8AAF; margin-top: 20px">I own all design and frontend development. 35 screens from scratch, 19 reusable components, a 7-screen onboarding flow, and a full design system built in Pencil.</p>`
+                        <p class="m-section__desc" style="color: #9B8AAF; margin-top: 20px">I own all design and frontend development. Every screen, every component, every interaction state. The design system and onboarding flow were built from scratch in Pencil.</p>`
                     )}
                 </div>`;
 
