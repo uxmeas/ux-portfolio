@@ -8,6 +8,13 @@
 [context.production]
   environment = { NODE_ENV = "production" }
 
+# Redirect www to apex
+[[redirects]]
+  from = "https://www.uxmeas.com/*"
+  to = "https://uxmeas.com/:splat"
+  status = 301
+  force = true
+
 # Staging/branch deploy context
 [context.branch-deploy]
   environment = { NODE_ENV = "staging" }
@@ -27,6 +34,8 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
 [[headers]]
   for = "/images/*"
