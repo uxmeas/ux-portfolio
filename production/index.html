@@ -116,6 +116,62 @@
         }
         .nav-contact a:hover { opacity: 0.7; }
 
+        /* ── HAMBURGER MENU ── */
+        .nav-hamburger {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            margin-left: auto;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .nav-hamburger svg { display: block; }
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            top: 75px;
+            background: rgba(17, 17, 17, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            padding: 48px 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-overlay a {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 0;
+            letter-spacing: 0.02em;
+            transition: opacity 0.2s;
+        }
+        .mobile-menu-overlay a:hover { opacity: 0.6; }
+        .mobile-menu-overlay .mobile-menu-divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 16px 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-hamburger { display: flex; }
+            .nav-links, .nav-contact { display: none; }
+        }
+
         /* ── HERO ── */
         .hero {
             height: 100vh;
@@ -1190,8 +1246,19 @@
             <div class="nav-contact">
                 <a href="#contact">Contact</a>
             </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            </button>
         </div>
     </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <a href="#projects" class="mobile-menu-link">Projects</a>
+        <a href="#about" class="mobile-menu-link">About</a>
+        <div class="mobile-menu-divider"></div>
+        <a href="#contact" class="mobile-menu-link">Contact</a>
+    </div>
 
     <!-- HERO TEXT -->
     <section class="hero">
@@ -1344,6 +1411,44 @@
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        // Mobile hamburger menu
+        (function() {
+            const hamburger = document.getElementById('navHamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>';
+            const closeIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>';
+            let isOpen = false;
+
+            function toggleMenu() {
+                isOpen = !isOpen;
+                mobileMenu.classList.toggle('active', isOpen);
+                hamburger.innerHTML = isOpen ? closeIcon : menuIcon;
+                hamburger.setAttribute('aria-expanded', isOpen);
+                hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            function closeMenu() {
+                if (!isOpen) return;
+                isOpen = false;
+                mobileMenu.classList.remove('active');
+                hamburger.innerHTML = menuIcon;
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open menu');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+
+            mobileMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+        })();
 
         // Fade-in on scroll
         const observer = new IntersectionObserver((entries) => {
