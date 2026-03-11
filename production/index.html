@@ -116,6 +116,62 @@
         }
         .nav-contact a:hover { opacity: 0.7; }
 
+        /* ── HAMBURGER MENU ── */
+        .nav-hamburger {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            margin-left: auto;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .nav-hamburger svg { display: block; }
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            top: 75px;
+            background: rgba(17, 17, 17, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            padding: 48px 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-overlay a {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--white);
+            text-decoration: none;
+            padding: 16px 0;
+            letter-spacing: 0.02em;
+            transition: opacity 0.2s;
+        }
+        .mobile-menu-overlay a:hover { opacity: 0.6; }
+        .mobile-menu-overlay .mobile-menu-divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 16px 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-hamburger { display: flex; }
+            .nav-links, .nav-contact { display: none; }
+        }
+
         /* ── HERO ── */
         .hero {
             height: 100vh;
@@ -1190,8 +1246,19 @@
             <div class="nav-contact">
                 <a href="#contact">Contact</a>
             </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            </button>
         </div>
     </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <a href="#projects" class="mobile-menu-link">Projects</a>
+        <a href="#about" class="mobile-menu-link">About</a>
+        <div class="mobile-menu-divider"></div>
+        <a href="#contact" class="mobile-menu-link">Contact</a>
+    </div>
 
     <!-- HERO TEXT -->
     <section class="hero">
@@ -1243,8 +1310,8 @@
             <div data-project="mypick" class="project-card fade-in" tabindex="0" role="button" aria-label="View MyPick.io project">
                 <div class="project-image" style="background-color: #0C1222"><picture><source srcset="images/mypick-card.webp" type="image/webp"><img src="images/mypick-card.png" alt="MyPick.io" width="768" height="480" loading="lazy"></picture></div>
                 <h3 class="project-title">MyPick.io</h3>
-                <p class="project-description">Random number generators are boring. I built a pixel car race instead. Zero dependencies, pure Canvas 2D.</p>
-                <span class="project-meta">Web App · Canvas · Vanilla JS</span>
+                <p class="project-description">Visual randomizer that turns list shuffling into a pixel car race. 4 terrains, 4 weather conditions, ElevenLabs audio, mechanical failures. Zero dependencies.</p>
+                <span class="project-meta">Web App · Canvas · Vanilla JS · ElevenLabs</span>
             </div>
         </div>
     </section>
@@ -1344,6 +1411,44 @@
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
+
+        // Mobile hamburger menu
+        (function() {
+            const hamburger = document.getElementById('navHamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>';
+            const closeIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>';
+            let isOpen = false;
+
+            function toggleMenu() {
+                isOpen = !isOpen;
+                mobileMenu.classList.toggle('active', isOpen);
+                hamburger.innerHTML = isOpen ? closeIcon : menuIcon;
+                hamburger.setAttribute('aria-expanded', isOpen);
+                hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            function closeMenu() {
+                if (!isOpen) return;
+                isOpen = false;
+                mobileMenu.classList.remove('active');
+                hamburger.innerHTML = menuIcon;
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open menu');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+
+            mobileMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+        })();
 
         // Fade-in on scroll
         const observer = new IntersectionObserver((entries) => {
@@ -1612,7 +1717,7 @@
                         <p class="m-section__subtitle">Electronic Signature Module</p>`,
                         `<p class="m-section__desc">When investors commit capital, they need to sign. KSign is the signature module I designed for that step. Subscription agreements, regulatory disclosures, accreditation documents. Compliant across 20 jurisdictions, part of the platform that won Banking Tech USA twice.</p>
                         <div style="padding-top: 16px">
-                            <div class="m-goal-item">&rarr;  End-to-end signature flow for investment documents</div>
+                            <div class="m-goal-item">&rarr;  Full signature flow for investment documents</div>
                             <div class="m-goal-item">&rarr;  Regulatory compliance integration across 20 jurisdictions</div>
                             <div class="m-goal-item">&rarr;  Part of design system powering 20+ white-label deployments</div>
                             <div class="m-goal-item">&rarr;  Banking Tech USA award-winning platform (2023 &amp; 2024)</div>
@@ -1772,7 +1877,7 @@
                     ${labelBar('AKMSecure', 'Brand &middot; Web &middot; CMS', 'Cybersecurity')}
                     <img class="m-hero__logo" src="images/akmsecure/logos/akm-logo-light.png" alt="AKMSecure" style="width: 240px">
                     <h2 class="m-hero__title">AKMSecure</h2>
-                    <p class="m-hero__subtitle" style="color: #8B8B8B">A cybersecurity startup needed to look as secure as their product. I built everything — brand, website, print, CMS — by myself.</p>
+                    <p class="m-hero__subtitle" style="color: #8B8B8B">A cybersecurity startup needed to look as secure as their product. I built everything. Brand, website, print, CMS. All of it.</p>
                     <div class="m-hero__stats">
                         <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #FFFFFF; font-size: 28px">Full Brand</div><div class="m-hero__stat-label">Identity system from scratch</div></div>
                         <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #FFFFFF; font-size: 28px">Website</div><div class="m-hero__stat-label">Design &amp; development</div></div>
@@ -2011,11 +2116,12 @@
                 html += `<div class="m-hero m-hero--center m-reveal" style="background: #0A0A0A">
                     ${dotLabel('01 — HERO')}
                     <h2 class="m-hero__title" style="font-size: 56px">MyPick.io</h2>
-                    <p class="m-hero__subtitle" style="color: #7AE582; text-align: center">Random number generators work. They're also boring. I built a pixel car elimination race that makes group decisions feel like an event. Zero dependencies, pure Canvas 2D, cryptographically fair.</p>
+                    <p class="m-hero__subtitle" style="color: #7AE582; text-align: center">Random number generators work. They're also boring. MyPick.io turns list shuffling into a pixel car race across 4 terrain environments and 4 weather conditions. Mechanical failures create real drama. A dynamic camera follows the leader. 17 ElevenLabs audio files layer terrain ambient, weather effects, and announcer calls. Zero dependencies, pure Canvas 2D, cryptographically fair.</p>
                     <div class="m-hero__stats" style="justify-content: center; gap: 48px">
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">27</div><div class="m-hero__stat-label">Sound Effects</div></div>
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">4</div><div class="m-hero__stat-label">Terrains</div></div>
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">4</div><div class="m-hero__stat-label">Weather</div></div>
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">17</div><div class="m-hero__stat-label">Audio Files</div></div>
                         <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">0</div><div class="m-hero__stat-label">Dependencies</div></div>
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">8</div><div class="m-hero__stat-label">Car Colors</div></div>
                     </div>
                     <div class="m-hero__screenshot" style="width: 800px; max-width: 100%"><img src="images/mypick-card.png" alt="MyPick.io" loading="eager" style="height: 450px; border-radius: 12px"></div>
                 </div>`;
@@ -2026,12 +2132,12 @@
                     ${twoCol(
                         `<h3 class="m-section__title" style="line-height: 1.2">THE PROBLEM WITH<br>RANDOMIZERS</h3>`,
                         `<p class="m-section__desc" style="color: #7AE582">Every group decision has a dead moment. Someone pulls out their phone, opens a random number generator, taps a button, reads a number. Nobody watches. Nobody remembers.</p>
-                        <p class="m-section__desc" style="color: #5A8F60; margin-top: 16px; font-size: 15px">I wanted that moment to be the best part. MyPick.io turns it into a pixel car elimination race with sound effects, dynamic camera, and real tension. Built from scratch in vanilla JS and Canvas 2D. Zero dependencies because I wanted to own every pixel.</p>`
+                        <p class="m-section__desc" style="color: #5A8F60; margin-top: 16px; font-size: 15px">I wanted that moment to be the best part. MyPick.io turns it into a pixel car race across 4 terrain environments (Stadium, Neon, Desert, Retro) with 4 weather conditions (Clear, Rain, Snow, Night) creating 16 unique race combinations. Mechanical failures add real drama. Cars break down, slow down, then recover with an adrenaline boost. 17 ElevenLabs audio files layer terrain ambient, weather effects, and announcer calls with smart ducking. Billboard ads line the track with impression tracking. Built from scratch in vanilla JS and Canvas 2D. Zero dependencies because I wanted to own every pixel.</p>`
                     )}
                     <div class="m-meta-row" style="margin-top: 24px">
-                        <div><div class="m-meta__label">ROLE</div><div class="m-meta__value">Solo Creator</div></div>
-                        <div><div class="m-meta__label">STACK</div><div class="m-meta__value">Vanilla JS, Canvas 2D</div></div>
-                        <div><div class="m-meta__label">STATUS</div><div class="m-meta__value">Production v1.0.1</div></div>
+                        <div><div class="m-meta__label">ROLE</div><div class="m-meta__value">Solo Creator (Design + Engineering)</div></div>
+                        <div><div class="m-meta__label">STACK</div><div class="m-meta__value">Vanilla JS, Canvas 2D, Web Crypto API, ElevenLabs</div></div>
+                        <div><div class="m-meta__label">STATUS</div><div class="m-meta__value">Production v2.9.1</div></div>
                         <div><div class="m-meta__label">YEAR</div><div class="m-meta__value">2025&ndash;2026</div></div>
                     </div>
                 </div>`;
@@ -2044,17 +2150,17 @@
                         <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
                             <div class="m-step__num" style="font-size: 32px; color: #39FF14">01</div>
                             <div class="m-step__title" style="font-size: 16px; font-weight: 600">Add Your Picks</div>
-                            <div class="m-step__desc" style="color: #5A8F60">Enter team names, food options, draft picks. Up to 25 entries.</div>
+                            <div class="m-step__desc" style="color: #5A8F60">Enter team names, food options, draft picks. Up to 25 entries. Choose your terrain and weather.</div>
                         </div>
                         <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
                             <div class="m-step__num" style="font-size: 32px; color: #39FF14">02</div>
                             <div class="m-step__title" style="font-size: 16px; font-weight: 600">Start the Race</div>
-                            <div class="m-step__desc" style="color: #5A8F60">Pixel cars race across the screen. Dynamic camera follows the leader.</div>
+                            <div class="m-step__desc" style="color: #5A8F60">Pixel cars race across Stadium, Neon, Desert, or Retro tracks. Rain and snow affect speed. Mechanical failures create drama. Dynamic camera follows the leader.</div>
                         </div>
                         <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
                             <div class="m-step__num" style="font-size: 32px; color: #39FF14">03</div>
                             <div class="m-step__title" style="font-size: 16px; font-weight: 600">Winner Revealed</div>
-                            <div class="m-step__desc" style="color: #5A8F60">Last car standing wins. Fireworks, sound effects, and celebration.</div>
+                            <div class="m-step__desc" style="color: #5A8F60">Finish line appears at 88%. Cars sprint. 3.5s victory celebration with confetti and fanfare.</div>
                         </div>
                     </div>
                 </div>`;
@@ -2071,18 +2177,22 @@
                 // Section 5 — Visual Direction
                 html += `<div class="m-section m-reveal" style="background: #0D1A0D">
                     ${dotLabel('05 — VISUAL DIRECTION')}
-                    <h3 class="m-section__title">WHERE WE'RE HEADED</h3>
-                    <p class="m-section__desc" style="color: #7AE582; margin-top: 16px">v1 proved the concept works. People gather around the screen. The next version adds weather systems, night mode, and billboard ads along the track. Pushing from "fun tool" to "memorable experience."</p>
+                    <h3 class="m-section__title">WHAT I SHIPPED</h3>
+                    <p class="m-section__desc" style="color: #7AE582; margin-top: 16px">v2.9.1 ships the full experience. 4 terrain environments, each with distinct procedural scenery and color palettes. Stadium has crowd lights and banners. Neon has synth glow and city signs. Desert has dunes and heat haze. Retro has 8-bit trees and pixel clouds. 4 weather conditions layer on top with rain particles, snow, and night mode lighting. Each terrain-weather combo has unique speed modifiers and failure rates.</p>
+                    <p class="m-section__desc" style="color: #5A8F60; margin-top: 16px; font-size: 15px">17 ElevenLabs audio files bring each environment to life. Terrain-specific ambient audio, weather sound layers, and a condition announcer that calls out track conditions at race start. Billboard ads line the track with impression tracking. A finish line reveal at 88% triggers a sprint finale. Mobile DPR scaling keeps pixel art crisp on every device. Built solo. Design and code.</p>
                 </div>`;
 
-                // Section 6 — Features (placeholder cards)
+                // Section 6 — Features
                 html += `<div class="m-section m-reveal" style="background: #0A0A0A">
                     ${dotLabel('06 — FEATURES')}
                     <h3 class="m-section__title">WHAT I BUILT</h3>
                     <div class="m-results" style="margin-top: 32px">
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">27</div><div class="m-result-card__title">Sound Effects</div><div class="m-result-card__desc" style="color: #5A8F60">Custom audio for every race event</div></div>
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">0</div><div class="m-result-card__title">Dependencies</div><div class="m-result-card__desc" style="color: #5A8F60">Pure vanilla JS. Zero frameworks.</div></div>
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">8</div><div class="m-result-card__title">Car Colors</div><div class="m-result-card__desc" style="color: #5A8F60">Pixel art with unique color assignments</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">4</div><div class="m-result-card__title">Terrains</div><div class="m-result-card__desc" style="color: #5A8F60">Stadium, Neon, Desert, Retro. Each with procedural scenery and distinct color palettes.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">4</div><div class="m-result-card__title">Weather</div><div class="m-result-card__desc" style="color: #5A8F60">Clear, Rain, Snow, Night. Terrain-specific speed modifiers and failure rates.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">17</div><div class="m-result-card__title">Audio Files</div><div class="m-result-card__desc" style="color: #5A8F60">ElevenLabs terrain ambient, weather layers, announcer calls with smart ducking.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">16</div><div class="m-result-card__title">Combos</div><div class="m-result-card__desc" style="color: #5A8F60">4 terrains x 4 weather conditions. Every race feels different.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">8</div><div class="m-result-card__title">Car Colors</div><div class="m-result-card__desc" style="color: #5A8F60">Pixel art sprites with shadows, top-down perspective.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">Crypto</div><div class="m-result-card__title">Secure</div><div class="m-result-card__desc" style="color: #5A8F60">Web Crypto API for truly random, unbiased results.</div></div>
                     </div>
                 </div>`;
 
