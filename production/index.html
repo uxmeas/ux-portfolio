@@ -119,7 +119,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 40px;
+            padding: 0 32px;
             z-index: 1000;
             transition: background-color 0.3s ease;
         }
@@ -131,7 +131,7 @@
             display: flex;
             align-items: center;
             width: 100%;
-            max-width: 1536px;
+            max-width: 1440px;
         }
         .nav-logo {
             font-size: 18px; font-weight: 900; color: var(--white);
@@ -216,11 +216,11 @@
         .hero {
             height: 100vh;
             display: flex; flex-direction: column; justify-content: flex-start;
-            padding: 120px 40px 0 40px;
+            padding: 120px 32px 0 32px;
             background-color: var(--dark);
             align-items: center;
         }
-        .hero-content { max-width: 1536px; width: 100%; }
+        .hero-content { max-width: 1440px; width: 100%; }
         .hero h1 {
             font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 700; line-height: 1.05;
             letter-spacing: -0.03em;
@@ -246,20 +246,20 @@
 
         /* ── PROJECTS ── */
         .projects {
-            padding: 160px 40px;
+            padding: 160px 32px;
             background-color: var(--dark);
         }
         .section-heading {
             font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: var(--text);
             letter-spacing: -0.03em; line-height: 1.05;
-            margin-bottom: 80px; max-width: 1536px;
+            margin-bottom: 80px; max-width: 1440px;
             margin-left: auto; margin-right: auto;
         }
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 80px;
-            max-width: 1536px;
+            max-width: 1440px;
             margin: 0 auto;
         }
         .project-card {
@@ -314,11 +314,11 @@
 
         /* ── ABOUT ── */
         .about {
-            padding: 100px 40px;
+            padding: 100px 32px;
             background-color: var(--dark);
             border-top: 1px solid var(--border);
         }
-        .about-content { max-width: 1536px; margin: 0 auto; }
+        .about-content { max-width: 1440px; margin: 0 auto; }
         .about-text { display: flex; flex-direction: column; gap: 48px; }
         .about-paragraph {
             font-size: 20px; font-weight: 300; line-height: 1.8;
@@ -328,10 +328,10 @@
         /* ── FOOTER ── */
         footer {
             background-color: var(--dark);
-            padding: 60px 40px;
+            padding: 60px 32px;
             border-top: 1px solid var(--border);
         }
-        .footer-container { max-width: 1536px; margin: 0 auto; }
+        .footer-container { max-width: 1440px; margin: 0 auto; }
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -361,7 +361,7 @@
 
         /* ── CONTACT FORM ── */
         .contact {
-            padding: 120px 40px;
+            padding: 120px 32px;
             background-color: var(--dark);
             border-top: 1px solid var(--border);
         }
@@ -453,7 +453,7 @@
         }
 
         @media (max-width: 768px) {
-            .contact { padding: 80px 20px; }
+            .contact { padding: 80px 24px; }
             .form-row { grid-template-columns: 1fr; }
         }
 
@@ -486,23 +486,28 @@
         }
 
         @media (max-width: 768px) {
-            nav { padding: 0 20px; }
+            nav { padding: 0 24px; }
             .nav-logo { font-size: 16px; margin-right: 40px; }
             .nav-links { gap: 24px; flex-wrap: wrap; }
-            .hero { padding: 100px 20px 0 20px; }
+            .hero { padding: 100px 24px 0 24px; }
             .hero h1 { margin-bottom: 16px; }
-            .projects { padding: 100px 20px; }
+            .projects { padding: 100px 24px; }
             .section-heading { margin-bottom: 60px; }
             .projects-grid { gap: 40px; }
             .project-title { font-size: 24px; }
             .project-description { font-size: 16px; }
-            .about { padding: 100px 20px; }
+            .about { padding: 100px 24px; }
             .about-paragraph { font-size: 18px; }
-            footer { padding: 80px 20px 40px 20px; }
+            footer { padding: 80px 24px 40px 24px; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
         }
 
         @media (max-width: 480px) {
+            nav { padding: 0 16px; }
+            .hero { padding: 100px 16px 0 16px; }
+            .projects { padding: 100px 16px; }
+            .about { padding: 100px 16px; }
+            footer { padding: 80px 16px 40px 16px; }
             .project-title { font-size: 20px; }
         }
 
