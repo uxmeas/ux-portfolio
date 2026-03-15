@@ -184,8 +184,9 @@
             </div>
             
             <div class="contact-info">
-                <p><a href="mailto:hello@uxmeas.com" style="color: #3B82F6; text-decoration: none;">hello@uxmeas.com</a></p>
+                <p><a href="#" class="eml eml-show" data-u="hello" data-d="uxmeas.com" style="color: #3B82F6; text-decoration: none;"></a></p>
             </div>
+            <script>document.querySelectorAll('.eml').forEach(function(a){var addr=a.dataset.u+'@'+a.dataset.d;if(a.classList.contains('eml-show'))a.textContent=addr;a.addEventListener('click',function(e){e.preventDefault();window.location='mailto:'+addr})});</script>
         </div>
     </div>
     
