@@ -1342,8 +1342,7 @@
             <h2 class="section-heading">Let's work together.</h2>
             <p class="contact-subtitle">Have a project in mind? Send me a message and I'll get back to you within 24 hours.</p>
 
-            <form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
-                <input type="hidden" name="form-name" value="contact">
+            <form id="contactForm" class="contact-form">
                 <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
 
                 <div class="form-row">
@@ -2252,27 +2251,44 @@
             if (projectKeys.includes(key)) openModal(key);
         }
 
-        // ── CONTACT FORM ──
+        // ── CONTACT FORM (Resend via Netlify Function) ──
         const contactForm = document.getElementById('contactForm');
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = contactForm.querySelector('.contact-submit');
+
+            // Honeypot check
+            const hp = contactForm.querySelector('[name="bot-field"]');
+            if (hp && hp.value) return;
+
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
 
+            const data = {
+                name: contactForm.querySelector('#contactName').value.replace(/[^\x20-\x7E]/g, ''),
+                email: contactForm.querySelector('#contactEmail').value.replace(/[^\x20-\x7E]/g, ''),
+                message: contactForm.querySelector('#contactMessage').value.replace(/[^\x20-\x7E\n\r]/g, ''),
+                honeypot: hp ? hp.value : ''
+            };
+
             try {
-                const formData = new FormData(contactForm);
-                await fetch('/', {
+                const res = await fetch('/.netlify/functions/contact', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
                 });
-                contactForm.style.display = 'none';
-                document.getElementById('contactSuccess').style.display = 'block';
+                const result = await res.json();
+
+                if (result.success) {
+                    contactForm.style.display = 'none';
+                    document.getElementById('contactSuccess').style.display = 'block';
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message \u2192';
+                }
             } catch (err) {
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Send Message →';
-                alert('Something went wrong. Try the email in the footer instead.');
+                submitBtn.textContent = 'Send Message \u2192';
             }
         });
 

@@ -43,7 +43,6 @@ export default async (request: Request) => {
   const errors: Record<string, string> = {};
   if (!name || name.trim().length === 0) errors.name = "Name is required";
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = "Please enter a valid email address";
-  if (!need) errors.need = "Please select what you need";
   if (!message || message.trim().length < 10) errors.message = "Message must be at least 10 characters";
 
   if (Object.keys(errors).length > 0) {
@@ -55,7 +54,7 @@ export default async (request: Request) => {
   const lines = [
     `Name: ${safeName}`,
     `Email: ${email}`,
-    `Need: ${need}`,
+    ...(need ? [`Need: ${need}`] : []),
     "",
     message,
   ];
