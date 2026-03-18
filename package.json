@@ -47,6 +47,8 @@
     "test:all": "npm run test:portfolio && npm run test:accessibility && npm run test:performance && npm run test:links",
     "test:portfolio": "node test-portfolio.js",
     "test:headless": "HEADLESS=true node test-portfolio.js",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
     "test:accessibility": "axe --dir . --dest infrastructure/testing/accessibility-reports",
     "test:performance": "npm run test:lighthouse",
     "test:lighthouse": "lhci autorun --config=infrastructure/config/lighthouse.config.js",

@@ -2,6 +2,7 @@
 
 [build]
   publish = "production"
+  functions = "netlify/functions"
 
 # Production context (main branch)
 [context.production]
