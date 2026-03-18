@@ -68,8 +68,8 @@ export default async (request: Request) => {
         Authorization: `Bearer ${Netlify.env.get("RESEND_API_KEY") || process.env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "Pheak Meas <hello@mzmlabs.com>",
-        to: ["hello@mzmlabs.com"],
+        from: "Pheak Meas <hello@uxmeas.com>",
+        to: ["hello@uxmeas.com"],
         reply_to: email,
         subject: `New inquiry: ${safeName} — ${need}`,
         text: lines.join("\n"),
