@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docs to Design — Design Engine for Figma — UX Meas</title>
+    <meta name="description" content="Designed and built a Figma plugin that transforms documents into production-ready layouts. Research-driven wizard flow with 7 file format parsers, zero dependencies, under 10KB bundle.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Docs to Design — Design Engine for Figma — UX Meas">
+    <meta property="og:description" content="Designed and built a Figma plugin that transforms documents into production-ready layouts. 7 formats, zero dependencies, under 10KB.">
+    <meta property="og:image" content="https://uxmeas.com/images/d2d/screenshots/docstodesign-1.png">
+    <meta property="og:type" content="article">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@1.6.0/dist/umd/lucide.min.js" defer></script>
+
+    <!-- Portfolio CSS -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=block" as="style">
+    <link rel="stylesheet" href="../../css/portfolio.css">
+
+    <!-- Page-specific styles (tokens + layout) -->
+    <style>
+        /* ── Token Overrides (D2D / Docs to Design) ── */
+        :root {
+            /* D2D Brand Colors */
+            --bg-deep: #0C0C0C;
+            --bg-card: #161616;
+            --bg-surface: #222222;
+
+            --text-primary: #F0F0F2;
+            --text-secondary: #94A3B8;
+            --text-muted: #969CA5;
+
+            --copper: #D4915E;
+            --copper-dark: #D17848;
+            --teal: #2A8F8A;
+            --teal-primary: #34B8A8;
+            --seafoam: #5EDDB8;
+            --navy: #1E2D3D;
+            --steel: #3A5A6E;
+
+            --border: #2A2A2A;
+
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ── Reset & Base ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            background: #0C0C0C;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── Section Container ── */
+        .cs-section {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--space-section-y) var(--space-side);
+        }
+
+        .cs-section__inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        /* ── Pill Badge (Copper accent) ── */
+        .pill-badge {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-label);
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--copper);
+            border: 1px solid var(--copper);
+            border-radius: 20px;
+            padding: 6px 20px;
+            text-transform: uppercase;
+        }
+
+        /* ── Typography ── */
+        .cs-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-section);
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .cs-body {
+            font-size: var(--type-body);
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .cs-caption {
+            font-size: var(--type-caption);
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* ── Column layouts inherited from portfolio.css ── */
+
+        /* ── Decorative Gradient Line ── */
+        .gradient-line {
+            width: 200px;
+            height: 2px;
+            margin: 0 auto;
+            background: var(--copper);
+            border-radius: 1px;
+        }
+
+        /* ── Discovery Cards (3-col grid) ── */
+        .discovery-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .discovery-card {
+            background: var(--bg-card);
+            border-radius: 6px;
+            padding: 32px 24px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .discovery-card__label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-label);
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--copper);
+        }
+
+        .discovery-card__title {
+            font-size: var(--type-body);
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .discovery-card__desc {
+            font-size: var(--type-caption);
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* ── Step Cards (5-col grid) ── */
+        .step-cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .step-card {
+            background: var(--bg-card);
+            border-radius: 6px;
+            padding: 24px 20px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .step-card__badge {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--copper);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--copper);
+        }
+
+        .step-card__name {
+            font-size: var(--type-body);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .step-card__desc {
+            font-size: var(--type-caption);
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── Phone Pair ── */
+        .phone-pair {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .phone-frame {
+            width: 220px;
+            background: var(--bg-card);
+            border: 3px solid var(--border);
+            border-radius: 24px;
+            padding: 12px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+        }
+
+        .phone-frame img {
+            width: 100%;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        /* ── 1/3 + 2/3 Layout ── */
+        .cols-1-2 {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .cols-1-2 .col-copy {
+            flex: 0 0 380px;
+            min-width: 0;
+        }
+
+        .cols-1-2 .col-graphic {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* ── Tablet Frame ── */
+        .tablet-frame {
+            max-width: 480px;
+            background: var(--bg-card);
+            border: 3px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+        }
+
+        .tablet-frame img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        /* ── Color Swatches ── */
+        .swatch-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .swatch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .swatch__color {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .swatch__name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-label);
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+        }
+
+        .swatch__hex {
+            font-family: 'Inter', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* ── Results Layout ── */
+        .results-layout {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: flex-start;
+        }
+
+        .results-left {
+            width: 380px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .results-right {
+            flex: 1;
+        }
+
+        .results-stat-cards {
+            display: flex;
+            gap: 16px;
+        }
+
+        .results-stat-card {
+            flex: 1;
+            background: var(--bg-card);
+            border-radius: 6px;
+            padding: 24px 20px;
+            border: 1px solid var(--border);
+            min-height: 64px;
+        }
+
+        .results-stat-card__number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-stat);
+            font-weight: 700;
+            color: var(--seafoam);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .results-stat-card__label {
+            font-size: var(--type-caption);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .results-stat-card__desc {
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .results-screenshot {
+            border: 3px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+        }
+
+        .results-screenshot img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        /* ── Device Mockups ── */
+        .device-mockup {
+            border: 3px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+        }
+
+        .device-mockup img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        /* ── Floating Screen (elevated + rotated slightly) ── */
+        .floating-screen {
+            border: 3px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow:
+                0 32px 80px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(212, 149, 106, 0.08);
+            background: var(--bg-card);
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+
+        .floating-screen:hover {
+            transform: translateY(-4px);
+        }
+
+        .floating-screen img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        /* ── Discovery floating screen ── */
+        .discovery-visual {
+            margin-top: 16px;
+        }
+
+        /* ── CTA Footer ── */
+        .cta-footer {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cta-footer__next-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-subtitle);
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+        }
+
+        .cta-footer__title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-section);
+            font-weight: 700;
+            color: var(--copper);
+            letter-spacing: -0.5px;
+        }
+
+        .cta-footer__desc {
+            font-size: var(--type-body);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .cta-btn {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-body);
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 14px 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-out-expo);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cta-btn--primary {
+            background: var(--teal-primary);
+            color: var(--bg-deep);
+            border: 2px solid transparent;
+        }
+
+        .cta-btn--primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(52, 184, 168, 0.3);
+        }
+
+        .cta-btn--outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .cta-btn--outline:hover {
+            border-color: var(--text-muted);
+        }
+
+
+        /* ═══════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════ */
+        .hero {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--space-hero-top) var(--space-side) 0;
+            min-height: 1330px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Label bar */
+        .hero__label-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero__logo img {
+            height: 36px;
+            width: auto;
+            opacity: 0.85;
+        }
+
+        .hero__tags {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-label);
+            font-weight: 600;
+            letter-spacing: 4px;
+            color: var(--copper);
+        }
+
+        .hero__meta {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* Hero title */
+        .hero__title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-hero);
+            font-weight: 700;
+            color: var(--text-primary);
+            text-align: center;
+            letter-spacing: -1px;
+            margin-top: var(--space-sm);
+        }
+
+        /* Stats row */
+        .hero__stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: var(--space-lg);
+        }
+
+        .hero__stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero__stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: var(--type-stat);
+            font-weight: 700;
+            color: var(--seafoam);
+            line-height: 1;
+        }
+
+        .hero__stat-label {
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* Subtitle */
+        .hero__subtitle {
+            font-size: var(--type-subtitle);
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+            margin-top: var(--space-md);
+        }
+
+        /* Device mockup */
+        .hero__device {
+            margin-top: var(--space-xl);
+            width: 1200px;
+            max-width: 100%;
+        }
+
+        .hero__device img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            :root {
+                --space-side: 48px;
+                --space-section-y: 72px;
+            }
+
+            .cols-graphic,
+            .cols-graphic--reverse,
+            .cols-1-2,
+            .results-layout {
+                flex-direction: column;
+            }
+
+            .cols-graphic .col-copy,
+            .cols-1-2 .col-copy,
+            .results-left {
+                width: 100%;
+                max-width: 100%;
+                flex: none;
+            }
+
+            .hero__stats { gap: 40px; }
+            .hero__device { width: 100%; }
+            .hero { min-height: auto; }
+
+            .step-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .discovery-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .results-stat-cards {
+                flex-wrap: wrap;
+            }
+
+            .phone-pair {
+                gap: 16px;
+            }
+
+            .phone-frame {
+                width: 180px;
+            }
+
+            .tablet-frame {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --space-side: 24px;
+                --space-section-y: 56px;
+            }
+
+            .hero__label-bar {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .hero__stats {
+                flex-direction: column;
+                gap: 24px;
+                align-items: center;
+            }
+
+            .step-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .discovery-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .results-stat-cards {
+                flex-direction: column;
+            }
+
+            .cols-graphic--reverse {
+                flex-direction: column;
+            }
+
+            .swatch-row {
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-btn { width: 100%; }
+
+            .phone-pair {
+                gap: 12px;
+            }
+
+            .phone-frame {
+                width: 150px;
+                padding: 8px;
+                border-radius: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --space-side: 16px;
+            }
+
+            .phone-frame {
+                width: 130px;
+            }
+        }
+    </style>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9HVVW1GBEC');
+    </script>
+</head>
+<body>
+<div class="page-loader"></div>
+
+    <!-- Top Bar -->
+    <nav class="cs-nav">
+        <a href="../../portfolio.html" class="cs-nav__back">&larr; Back to Portfolio</a><a href="../../portfolio.html" class="cs-nav__logo">UX MEAS</a>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 1: HERO
+         ═══════════════════════════════════════ -->
+    <section class="hero" aria-label="Hero">
+        <!-- Label Bar -->
+        <div class="hero__label-bar">
+            <div class="hero__logo">
+                <img src="../../images/d2d/branding/d2d-lockup-inline-dark.svg" alt="Docs to Design" width="220" height="22" loading="eager">
+            </div>
+            <div class="hero__tags">DESIGN ENGINE &middot; FIGMA PLUGIN &middot; MZM LABS</div>
+            <div class="hero__meta">2025-2026</div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="hero__title">Docs to Design</h1>
+
+        <!-- Stats -->
+        <div class="hero__stats">
+            <div class="hero__stat">
+                <span class="hero__stat-number">Seconds</span>
+                <span class="hero__stat-label">Document to Layout</span>
+            </div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">&lt; 10KB</span>
+                <span class="hero__stat-label">Plugin Bundle Size</span>
+            </div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">7</span>
+                <span class="hero__stat-label">File Formats Supported</span>
+            </div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">5</span>
+                <span class="hero__stat-label">Wizard Steps</span>
+            </div>
+        </div>
+
+        <!-- Subtitle -->
+        <p class="hero__subtitle">A Figma plugin that transforms documents into production-ready designs in seconds. Upload any file, configure your brand, and generate polished layouts without ever starting from a blank canvas.</p>
+
+        <!-- Device Mockup -->
+        <div class="hero__device device-mockup device-composited">
+            <img src="../../images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design plugin interface showing the design generation workflow" width="1200" height="740" loading="eager">
+        </div>
+    </section>
+
+
+    <!-- ── Gradient Line ── -->
+    <div class="gradient-line" role="presentation"></div>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 2: THE CHALLENGE
+         1/3 copy — 2/3 floating screen
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="The Challenge">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">THE CHALLENGE</span>
+
+            <div class="cols-graphic">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 24px;">The Universal Pain Point</h2>
+                    <p class="cs-body">Every designer has received a Word doc, a PDF, or a Google Doc and thought: "Now I have to rebuild all of this in Figma." Content extraction is tedious, error-prone, and eats hours that should go toward actual design work. Designers copy-paste text block by block, reformat headings, recreate tables, and manually place images. The content is already structured in the source document, but that structure gets lost the moment a designer opens a blank frame.</p>
+                </div>
+                <div class="col-graphic floating-screen">
+                    <img src="../../images/d2d/screenshots/plugin-step-1-upload.png" alt="Document upload step in the Docs to Design wizard" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3: THREE DISCOVERIES
+         Cards + floating screen below
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Three Discoveries">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">THREE DISCOVERIES</span>
+            <h2 class="cs-title">What the Research Revealed</h2>
+
+            <div class="discovery-cards">
+                <div class="discovery-card">
+                    <span class="discovery-card__label">DISCOVERY 01</span>
+                    <h3 class="discovery-card__title">Structure already exists in the source file</h3>
+                    <p class="discovery-card__desc">Documents carry semantic hierarchy through headings, lists, tables, and metadata. Designers manually flatten this structure when copy-pasting, then spend time rebuilding it. A parser that preserves document hierarchy eliminates the reconstruction step entirely.</p>
+                </div>
+                <div class="discovery-card">
+                    <span class="discovery-card__label">DISCOVERY 02</span>
+                    <h3 class="discovery-card__title">Brand application is the real bottleneck</h3>
+                    <p class="discovery-card__desc">Extracting text is only half the problem. The other half is applying the right fonts, colors, and spacing to match brand guidelines. Most designers spend more time on formatting than on content transfer. Baking brand tokens into the generation step removes the bottleneck.</p>
+                </div>
+                <div class="discovery-card">
+                    <span class="discovery-card__label">DISCOVERY 03</span>
+                    <h3 class="discovery-card__title">Figma plugins must be razor-light</h3>
+                    <p class="discovery-card__desc">Plugin performance directly affects adoption. A plugin that takes more than 2 seconds to open gets abandoned. Staying under 10KB for the bundle, using zero external dependencies, and deferring heavy parsing to Web Workers means the plugin opens instantly and never blocks the Figma canvas.</p>
+                </div>
+            </div>
+
+            <!-- Floating screen below cards -->
+            <div class="discovery-visual">
+                <div class="floating-screen">
+                    <img src="../../images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design plugin UI showing the full design workflow" width="1200" height="740" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── Gradient Line ── -->
+    <div class="gradient-line" role="presentation"></div>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4: THE WIZARD
+         Cards + phone pair (step 1 + step 3)
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="The Wizard">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">THE WIZARD</span>
+
+            <!-- 1/3 copy + 2/3 phone pair -->
+            <div class="cols-1-2">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">Five Steps, Zero Friction</h2>
+                    <p class="cs-body">The entire workflow lives inside a compact 480 x 600px panel. Each step advances with a single action. No modals, no popups, no context switching. The wizard guides designers from raw document to finished layout in under 30 seconds.</p>
+                </div>
+                <div class="col-graphic">
+                    <div class="phone-pair">
+                        <div class="phone-frame">
+                            <img src="../../images/d2d/screenshots/plugin-step-1-upload.png" alt="Step 1: Upload document" width="440" height="600" loading="lazy">
+                        </div>
+                        <div class="phone-frame">
+                            <img src="../../images/d2d/screenshots/plugin-step-3-complete.png" alt="Step 3: Completed generation" width="440" height="600" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step cards: full-width row below -->
+            <div class="step-cards">
+                <div class="step-card">
+                    <div class="step-card__badge">01</div>
+                    <div class="step-card__name">Upload</div>
+                    <p class="step-card__desc">Drag and drop any supported file. The parser auto-detects format and extracts structured content, headings, body text, lists, and tables.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-card__badge">02</div>
+                    <div class="step-card__name">Preview</div>
+                    <p class="step-card__desc">See the extracted content mapped into a structured outline. Verify headings, sections, and hierarchy before any design is generated.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-card__badge">03</div>
+                    <div class="step-card__name">Configure</div>
+                    <p class="step-card__desc">Choose your brand theme, layout template, and spacing preferences. Typography, colors, and component styles apply automatically from your brand tokens.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-card__badge">04</div>
+                    <div class="step-card__name">Generate</div>
+                    <p class="step-card__desc">One click creates the full layout on your Figma canvas. Frames, text layers, and auto-layout are all properly structured and named.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-card__badge">05</div>
+                    <div class="step-card__name">Refine</div>
+                    <p class="step-card__desc">The generated design is fully editable native Figma. Adjust, extend, and polish as needed. Nothing is locked or flattened.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 5: COMPACT PRO
+         2/3 tablet zigzag + 1/3 copy
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Compact Pro">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">COMPACT PRO</span>
+
+            <div class="cols-graphic cols-graphic--reverse">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">Designing for 480 x 600px</h2>
+                    <p class="cs-body" style="margin-bottom: 24px;">Figma plugins live in a constrained panel. Every pixel must earn its place. The interface uses vertical stacking, collapsible sections, and progressive disclosure to fit a five-step wizard into a space smaller than a mobile screen.</p>
+                    <p class="cs-body">Touch targets are sized for precision. Labels are terse but clear. Visual hierarchy relies on spacing and weight, never on color alone. The result is a plugin that feels spacious despite its compact footprint.</p>
+                </div>
+                <div class="col-graphic">
+                    <div class="tablet-frame">
+                        <img src="../../images/d2d/screenshots/plugin-step-2-configure.png" alt="Configuration step showing brand settings in the compact plugin panel" width="960" height="720" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── Gradient Line ── -->
+    <div class="gradient-line" role="presentation"></div>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 6: BRAND IDENTITY
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Brand Identity">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">BRAND IDENTITY</span>
+            <h2 class="cs-title" style="margin-bottom: 8px;">Copper to Teal</h2>
+            <p class="cs-body" style="max-width: 720px;">The brand palette bridges the warmth of document creation with the precision of design tooling. Copper anchors the identity with craftsmanship and warmth. Teal signals technical reliability and forward motion. Seafoam provides accent energy for interactive states and data highlights.</p>
+
+            <div class="swatch-row">
+                <div class="swatch">
+                    <div class="swatch__color" style="background: #D4915E;"></div>
+                    <span class="swatch__name">COPPER</span>
+                    <span class="swatch__hex">#D4915E</span>
+                </div>
+                <div class="swatch">
+                    <div class="swatch__color" style="background: #D17848;"></div>
+                    <span class="swatch__name">COPPER DARK</span>
+                    <span class="swatch__hex">#D17848</span>
+                </div>
+                <div class="swatch">
+                    <div class="swatch__color" style="background: #34B8A8;"></div>
+                    <span class="swatch__name">TEAL</span>
+                    <span class="swatch__hex">#34B8A8</span>
+                </div>
+                <div class="swatch">
+                    <div class="swatch__color" style="background: #2A8F8A;"></div>
+                    <span class="swatch__name">TEAL DEEP</span>
+                    <span class="swatch__hex">#2A8F8A</span>
+                </div>
+                <div class="swatch">
+                    <div class="swatch__color" style="background: #5EDDB8;"></div>
+                    <span class="swatch__name">SEAFOAM</span>
+                    <span class="swatch__hex">#5EDDB8</span>
+                </div>
+                <div class="swatch">
+                    <div class="swatch__color" style="background: #0C0C0C;"></div>
+                    <span class="swatch__name">DEEP BLACK</span>
+                    <span class="swatch__hex">#0C0C0C</span>
+                </div>
+                <div class="swatch">
+                    <div class="swatch__color" style="background: #161616;"></div>
+                    <span class="swatch__name">SURFACE</span>
+                    <span class="swatch__hex">#161616</span>
+                </div>
+                <div class="swatch">
+                    <div class="swatch__color" style="background: #F0F0F2;"></div>
+                    <span class="swatch__name">PRIMARY TEXT</span>
+                    <span class="swatch__hex">#F0F0F2</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 7: RESULTS & IMPACT
+         1/3 stats — 2/3 floating screen
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Results and Impact">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">RESULTS &amp; IMPACT</span>
+
+            <div class="results-layout">
+                <div class="results-left">
+                    <h2 class="cs-title">The Numbers That Proved It Worked</h2>
+
+                    <div class="results-stat-cards">
+                        <div class="results-stat-card">
+                            <div class="results-stat-card__number">Seconds</div>
+                            <div class="results-stat-card__label">Generation Time</div>
+                            <p class="results-stat-card__desc">Full layout from raw document in under 30 seconds.</p>
+                        </div>
+                        <div class="results-stat-card">
+                            <div class="results-stat-card__number">&lt; 10KB</div>
+                            <div class="results-stat-card__label">Bundle Size</div>
+                            <p class="results-stat-card__desc">Zero dependencies. Instant plugin load time.</p>
+                        </div>
+                    </div>
+
+                    <div class="results-stat-cards">
+                        <div class="results-stat-card">
+                            <div class="results-stat-card__number">7</div>
+                            <div class="results-stat-card__label">File Formats</div>
+                            <p class="results-stat-card__desc">DOCX, PDF, TXT, MD, CSV, HTML, and PPTX support.</p>
+                        </div>
+                        <div class="results-stat-card">
+                            <div class="results-stat-card__number">0</div>
+                            <div class="results-stat-card__label">Dependencies</div>
+                            <p class="results-stat-card__desc">Pure vanilla JS. No npm packages, no build chain bloat.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-right">
+                    <div class="floating-screen">
+                        <img src="../../images/d2d/screenshots/plugin-step-3-complete.png" alt="Completed design generation showing the finished layout output" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ── Gradient Line ── -->
+    <div class="gradient-line" role="presentation"></div>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 8: CTA FOOTER
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Next Case Study">
+        <div class="cs-section__inner reveal">
+            <div class="cta-footer">
+                <span class="cta-footer__next-label">NEXT CASE STUDY</span>
+                <h2 class="cta-footer__title">Compliance UX for Private Capital Markets</h2>
+                <p class="cta-footer__desc">KYC/AML-compliant investor onboarding and electronic signature flows across 20+ jurisdictions. Reduced onboarding from days to minutes.</p>
+                <div class="cta-buttons">
+                    <a href="../compliance-ux/" class="cta-btn cta-btn--primary">VIEW COMPLIANCE UX</a>
+                    <a href="../../portfolio.html" class="cta-btn cta-btn--outline">BACK TO PORTFOLIO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Initialize Lucide Icons + Scroll Reveal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+        });
+
+        // Scroll reveal (fires once per element)
+        var revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+    </script>
+
+<script>
+window.addEventListener("load", function() { var l = document.querySelector(".page-loader"); if (l) l.classList.add("hidden"); });
+document.querySelectorAll("img[loading=\"lazy\"]").forEach(function(img) { if (img.complete) img.classList.add("loaded"); else img.addEventListener("load", function() { this.classList.add("loaded"); }); });
+</script>
+</body>
+</html>

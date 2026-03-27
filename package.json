@@ -99,6 +99,7 @@
     "case-study:build": "cd src/tools/case-study-generator && npm run build",
 
     "// === DEVELOPMENT SETUP ===": "",
+    "prepare": "test -d .git && cp infrastructure/workflows/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit || true",
     "setup": "npm run setup:all",
     "setup:all": "npm install && npm run case-study:install && npm run setup:git-hooks && npm run setup:env",
     "setup:git-hooks": "cp infrastructure/workflows/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",

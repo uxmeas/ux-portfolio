@@ -32,7 +32,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="https://unpkg.com/lucide@1.6.0/dist/umd/lucide.min.js"></script>
 
     <style>
         /* ══════════════════════════════════════════════════════
@@ -102,7 +102,7 @@
             display: flex;
             align-items: center;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1440px;
         }
         .nav-logo {
             font-family: 'Bebas Neue', sans-serif;
@@ -305,7 +305,7 @@
 
         /* ── SECTION COMMON ── */
         .section-container {
-            max-width: 1200px;
+            max-width: 1440px;
             margin: 0 auto;
             padding: 0 32px;
         }
@@ -653,7 +653,7 @@
             border-top: 1px solid var(--border);
         }
         .footer-inner {
-            max-width: 1200px;
+            max-width: 1440px;
             margin: 0 auto;
             padding: 0 32px;
             display: flex;
@@ -768,13 +768,15 @@
             transform: translateY(0);
         }
         .modal-close {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            width: 35px;
-            height: 35px;
-            background: rgb(48, 48, 48);
-            border: 1px solid transparent;
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 100px;
             color: white;
             font-size: 16px;
@@ -787,7 +789,7 @@
             transition: background 0.2s;
         }
         .modal-close:hover {
-            background: dimgray;
+            background: rgba(255, 255, 255, 0.24);
         }
 
         /* ── Per-project theme tokens (from .pen designs) ── */
@@ -1461,7 +1463,7 @@
 
         @media (max-width: 768px) {
             .modal-panel { width: 100%; margin: 0; border-radius: 0; min-height: 100vh; }
-            .modal-close { top: 10px; right: 10px; position: fixed; }
+            .modal-close { top: 10px; right: 10px; }
             .m-section { padding: 48px 24px; }
             .m-hero { padding: 48px 24px 32px; }
             .m-hero__title { font-size: 32px; }
@@ -1740,6 +1742,7 @@
 
             <div class="contact-form-wrap reveal" id="contact-form">
                 <form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
                     <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
 
                     <div class="form-row">
@@ -1783,9 +1786,9 @@
 
     <!-- ════════════════════ PROJECT MODAL ════════════════════ -->
     <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label="Project details">
+        <button class="modal-close" aria-label="Close">&times;</button>
         <div class="modal-panel">
             <div class="m-loader"><div class="m-loader__bar"></div></div>
-            <button class="modal-close" aria-label="Close">&times;</button>
             <div id="modalContent"></div>
         </div>
     </div>

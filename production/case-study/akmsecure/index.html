@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKMSecure — Brand, Web, CMS &amp; Cybersecurity — UX Meas</title>
+    <meta name="description" content="Shipped a complete brand identity, responsive website, and CMS integration for a cybersecurity consultancy. Led discovery, design system creation, and production build. Brand to browser in 8 weeks.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AKMSecure — Brand, Web &amp; CMS — UX Meas">
+    <meta property="og:description" content="Shipped brand identity, responsive website, and CMS integration for a cybersecurity consultancy. Brand to browser in 8 weeks.">
+    <meta property="og:image" content="https://uxmeas.com/images/akmsecure/homepage-real.png">
+    <meta property="og:type" content="article">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+
+    <!-- Portfolio CSS -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=block" as="style">
+    <link rel="stylesheet" href="../../css/portfolio.css">
+
+    <!-- Page-specific styles -->
+    <style>
+        /* ── AKMSecure Token Overrides ── */
+        :root {
+            --cs-accent: #9CA3AF;
+            --cs-accent-hover: #B0B7C0;
+            --bg-deep: #0A0A0A;
+            --bg-card: #141414;
+            --bg-surface: #181818;
+            --gold: #9CA3AF;
+            --text-muted: #969CA5;
+            --border: #252525;
+        }
+
+        /* ── Reset & Base ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            background: #0A0A0A;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── Section Container ── */
+        .cs-section {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--space-section-y) var(--space-side);
+        }
+
+        .cs-section__inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        /* ── Pill Badge (grey accent) ── */
+        .pill-badge {
+            display: inline-block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-label);
+            letter-spacing: 4px;
+            color: var(--cs-accent);
+            border: 1px solid var(--cs-accent);
+            border-radius: 20px;
+            padding: 6px 20px;
+            text-transform: uppercase;
+        }
+
+        /* ── Typography ── */
+        .cs-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-section);
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .cs-body {
+            font-size: var(--type-body);
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .cs-caption {
+            font-size: var(--type-caption);
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* ── Column layouts inherited from portfolio.css ── */
+        /* .cols-1-2 is AKM-specific (uses cols-graphic pattern) */
+        .cols-1-2 {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        .cols-1-2 .col-copy { flex: 0 0 380px; min-width: 0; }
+        .cols-1-2 .col-graphic { flex: 1; min-width: 0; }
+
+        /* ── Device Mockups ── */
+        .device-mockup {
+            border: 3px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .device-mockup img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .device-mockup--no-border {
+            border: none;
+        }
+
+        .device-mockup--float {
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ── Phone Mockups ── */
+        .phone-pair {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .phone-frame {
+            width: 220px;
+            border: 3px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        .phone-frame img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        .phone-frame--offset {
+            transform: translateY(-24px);
+        }
+
+        /* ── Floating Screen (for Typography section) ── */
+        .floating-screen {
+            border: 3px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+        }
+
+        .floating-screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+
+        /* ═══════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════ */
+        .hero {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--space-hero-top) var(--space-side) 0;
+            min-height: 1330px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Label bar */
+        .hero__label-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero__logo img {
+            height: 36px;
+            width: auto;
+            opacity: 0.85;
+        }
+
+        .hero__tags {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-label);
+            letter-spacing: 4px;
+            color: var(--cs-accent);
+        }
+
+        .hero__meta {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        /* Hero title */
+        .hero__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-hero);
+            color: var(--text-primary);
+            text-align: center;
+            letter-spacing: 2px;
+            margin-top: var(--space-sm);
+        }
+
+        /* Stats row */
+        .hero__stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: var(--space-lg);
+        }
+
+        .hero__stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero__stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-stat);
+            color: var(--cs-accent);
+            line-height: 1;
+            letter-spacing: 1px;
+        }
+
+        .hero__stat-label {
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* Subtitle */
+        .hero__subtitle {
+            font-size: var(--type-subtitle);
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+            margin-top: var(--space-md);
+        }
+
+        /* Device mockup */
+        .hero__device {
+            margin-top: var(--space-xl);
+            width: 1200px;
+            max-width: 100%;
+        }
+
+        .hero__device img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+
+        /* ═══════════════════════════════════════
+           ABOUT THE CLIENT
+           ═══════════════════════════════════════ */
+        .scope-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .scope-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .scope-item__bullet {
+            flex-shrink: 0;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--cs-accent);
+            margin-top: 9px;
+        }
+
+        .scope-item__text {
+            font-size: var(--type-body);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .meta-row {
+            display: flex;
+            gap: 48px;
+            margin-top: var(--space-md);
+            padding-top: var(--space-sm);
+            border-top: 1px solid var(--border);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-item__label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-label);
+            letter-spacing: 3px;
+            color: var(--cs-accent);
+        }
+
+        .meta-item__value {
+            font-size: var(--type-caption);
+            color: var(--text-primary);
+        }
+
+
+        /* ═══════════════════════════════════════
+           BRAND STATEMENT
+           ═══════════════════════════════════════ */
+        .brand-statement {
+            text-align: center;
+            padding: 120px var(--space-side);
+        }
+
+        .brand-statement__text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 64px;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .brand-statement__sub {
+            font-size: var(--type-subtitle);
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+
+        /* ═══════════════════════════════════════
+           TYPOGRAPHY & COLOR
+           ═══════════════════════════════════════ */
+        .type-specimen {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .type-sample {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 32px 28px;
+        }
+
+        .type-sample__display {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .type-sample__name {
+            font-size: var(--type-caption);
+            color: var(--cs-accent);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .type-sample__weights {
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 12px;
+        }
+
+        .color-swatch {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .color-swatch__block {
+            height: 80px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+        }
+
+        .color-swatch__label {
+            font-size: var(--type-label);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .color-swatch__hex {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Typography section: stacked layout with floating screen */
+        .type-color-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+        }
+
+        .type-color-grid__top {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: flex-start;
+        }
+
+        .type-color-grid__top > * { flex: 1; }
+
+        .type-color-grid__screen {
+            margin-top: var(--space-lg);
+        }
+
+
+        /* ═══════════════════════════════════════
+           CTA FOOTER
+           ═══════════════════════════════════════ */
+        .cta-footer {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cta-footer__next-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-subtitle);
+            color: var(--text-muted);
+            letter-spacing: 3px;
+        }
+
+        .cta-footer__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-section);
+            color: var(--cs-accent);
+            letter-spacing: 1px;
+        }
+
+        .cta-footer__desc {
+            font-size: var(--type-body);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .cta-btn {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-body);
+            letter-spacing: 2px;
+            padding: 14px 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cta-btn--primary {
+            background: var(--cs-accent);
+            color: var(--bg-deep);
+            border: 2px solid var(--cs-accent);
+        }
+
+        .cta-btn--primary:hover {
+            background: var(--cs-accent-hover);
+            border-color: var(--cs-accent-hover);
+        }
+
+        .cta-btn--outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .cta-btn--outline:hover {
+            border-color: var(--text-muted);
+        }
+
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            :root {
+                --space-side: 48px;
+                --space-section-y: 72px;
+            }
+
+            .cols-1-2 {
+                flex-direction: column;
+            }
+
+            .cols-1-2 .col-copy {
+                width: 100%;
+                flex: none;
+            }
+
+            .hero__stats { gap: 40px; }
+            .hero__device { width: 100%; }
+            .hero { min-height: auto; }
+            .brand-statement__text { font-size: 48px; }
+
+            .meta-row { flex-wrap: wrap; gap: 24px; }
+            .color-palette { flex-wrap: wrap; }
+            .color-swatch { min-width: calc(50% - 6px); }
+
+            .type-color-grid__top {
+                flex-direction: column;
+            }
+
+            .phone-pair {
+                gap: 24px;
+            }
+
+            .phone-frame {
+                width: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --space-side: 24px;
+                --space-section-y: 56px;
+            }
+
+            .hero__label-bar {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .hero__stats {
+                flex-direction: column;
+                gap: 24px;
+                align-items: center;
+            }
+
+            .cols-graphic--reverse {
+                flex-direction: column;
+            }
+
+            .brand-statement {
+                padding: 64px var(--space-side);
+            }
+
+            .brand-statement__text { font-size: 36px; }
+
+            .meta-row {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .color-palette {
+                flex-direction: column;
+            }
+
+            .color-swatch {
+                min-width: 100%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-btn { width: 100%; }
+
+            .phone-pair {
+                gap: 16px;
+            }
+
+            .phone-frame {
+                width: 150px;
+            }
+
+            .phone-frame--offset {
+                transform: translateY(-16px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --space-side: 16px;
+            }
+
+            .phone-frame {
+                width: 130px;
+                border-radius: 14px;
+            }
+        }
+    </style>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9HVVW1GBEC');
+    </script>
+</head>
+<body>
+<div class="page-loader"></div>
+
+    <!-- Top Bar -->
+    <nav class="cs-nav">
+        <a href="../../portfolio.html" class="cs-nav__back">&larr; Back to Portfolio</a><a href="../../portfolio.html" class="cs-nav__logo">UX MEAS</a>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 1: HERO
+         ═══════════════════════════════════════ -->
+    <section class="hero" aria-label="Hero">
+        <!-- Label Bar -->
+        <div class="hero__label-bar">
+            <div class="hero__logo">
+                <img src="../../images/akmsecure/logos/akm-logo-white.png" alt="AKMSecure" width="140" height="40" loading="eager">
+            </div>
+            <div class="hero__tags">AKMSECURE &middot; BRAND &middot; WEB &middot; CMS &middot; CYBERSECURITY</div>
+            <div class="hero__meta">Design Consultant &middot; 2024&ndash;2025</div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="hero__title">AKMSECURE</h1>
+
+        <!-- Stats -->
+        <div class="hero__stats">
+            <div class="hero__stat">
+                <span class="hero__stat-number">FULL BRAND</span>
+                <span class="hero__stat-label">Identity System</span>
+            </div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">WEBSITE</span>
+                <span class="hero__stat-label">Responsive Build</span>
+            </div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">HUBSPOT</span>
+                <span class="hero__stat-label">CMS Integration</span>
+            </div>
+        </div>
+
+        <!-- Subtitle -->
+        <p class="hero__subtitle">When a cybersecurity consultancy needed to look as secure as the systems they protect, we built everything from logo to launch -- brand identity, responsive website, and HubSpot CMS -- in one cohesive engagement.</p>
+
+        <!-- Device Mockup -->
+        <div class="hero__device device-mockup device-composited">
+            <img src="../../images/akmsecure/hero-website.png" alt="AKMSecure homepage displayed on a MacBook" width="1200" height="740" loading="eager">
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 2: ABOUT THE CLIENT
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="About the Client">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">ABOUT THE CLIENT</span>
+
+            <div class="cols-1-2">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">A CYBERSECURITY FIRM THAT NEEDED TO LOOK THE PART</h2>
+                    <p class="cs-body" style="margin-bottom: 16px;">AKMSecure helps mid-market companies lock down their infrastructure, but their brand told a different story. A dated visual identity, no web presence, and inconsistent collateral meant prospects were second-guessing credibility before a single conversation.</p>
+                    <p class="cs-body" style="margin-bottom: 16px;">We delivered a complete brand system -- logo, colour palette, typography, and guidelines -- then carried it across a responsive marketing site and into print collateral they hand out at industry events.</p>
+
+                    <div class="meta-row">
+                        <div class="meta-item">
+                            <span class="meta-item__label">ROLE</span>
+                            <span class="meta-item__value">Design Consultant</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-item__label">STACK</span>
+                            <span class="meta-item__value">HTML / CSS / HubSpot</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-item__label">YEAR</span>
+                            <span class="meta-item__value">2024 &ndash; 2025</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-graphic">
+                    <div class="phone-pair">
+                        <div class="phone-frame">
+                            <img src="../../images/akmsecure/homepage-real.png" alt="AKMSecure mobile homepage view" width="220" height="440" loading="lazy">
+                        </div>
+                        <div class="phone-frame phone-frame--offset">
+                            <img src="../../images/akmsecure/about-real.png" alt="AKMSecure mobile about page view" width="220" height="440" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3: BRAND STATEMENT
+         ═══════════════════════════════════════ -->
+    <section class="brand-statement" aria-label="Brand Statement">
+        <h2 class="brand-statement__text">Security starts with identity.</h2>
+        <p class="brand-statement__sub">Before AKMSecure could protect their clients, they needed a brand that projected authority, precision, and trust from the first impression.</p>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4: TYPOGRAPHY & COLOR
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Typography and Color">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">TYPOGRAPHY &amp; COLOR</span>
+
+            <div class="type-color-grid">
+                <div class="type-color-grid__top">
+                    <div>
+                        <h2 class="cs-title" style="margin-bottom: 24px;">TYPE SYSTEM</h2>
+                        <div class="type-specimen">
+                            <div class="type-sample">
+                                <div class="type-sample__display" style="font-family: 'Inter', sans-serif;">Aa</div>
+                                <div class="type-sample__name">Inter</div>
+                                <div class="type-sample__weights">Regular 400 &middot; Medium 500 &middot; Semibold 600 &middot; Bold 700</div>
+                            </div>
+                            <p class="cs-body">Inter serves as the primary typeface across web and print. Its neutrality and wide weight range give the brand flexibility without sacrificing readability at small sizes on dense service pages.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="cs-title" style="margin-bottom: 24px;">COLOUR PALETTE</h2>
+                        <div class="color-palette">
+                            <div class="color-swatch">
+                                <div class="color-swatch__block" style="background: #1B2A4A;"></div>
+                                <span class="color-swatch__label">Navy</span>
+                                <span class="color-swatch__hex">#1B2A4A</span>
+                            </div>
+                            <div class="color-swatch">
+                                <div class="color-swatch__block" style="background: #C8102E;"></div>
+                                <span class="color-swatch__label">Red</span>
+                                <span class="color-swatch__hex">#C8102E</span>
+                            </div>
+                            <div class="color-swatch">
+                                <div class="color-swatch__block" style="background: #F5F5F5;"></div>
+                                <span class="color-swatch__label">Light Grey</span>
+                                <span class="color-swatch__hex">#F5F5F5</span>
+                            </div>
+                            <div class="color-swatch">
+                                <div class="color-swatch__block" style="background: #FFFFFF; border: 1px solid #252525;"></div>
+                                <span class="color-swatch__label">White</span>
+                                <span class="color-swatch__hex">#FFFFFF</span>
+                            </div>
+                        </div>
+                        <p class="cs-body" style="margin-top: 24px;">Navy anchors the palette with authority. Red provides controlled energy for CTAs and alert states. Grey and white give the layouts room to breathe across long-scroll service pages.</p>
+                    </div>
+                </div>
+
+                <!-- Floating screen showing brand/platform -->
+                <div class="type-color-grid__screen">
+                    <div class="floating-screen">
+                        <img src="../../images/akmsecure/platform-real.png" alt="AKMSecure brand system and colour palette in context" width="1200" height="680" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 5: WEBSITE
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Website">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">WEBSITE</span>
+
+            <div class="cols-graphic">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">RESPONSIVE MARKETING SITE</h2>
+                    <p class="cs-body" style="margin-bottom: 16px;">The website positions AKMSecure as a credible, approachable cybersecurity partner. Service-first architecture surfaces key offerings within one scroll, while trust indicators and certifications reinforce expertise without jargon.</p>
+                    <p class="cs-caption">6 pages &middot; Mobile-first &middot; HubSpot CMS</p>
+                </div>
+                <div class="col-graphic device-mockup device-mockup--float">
+                    <img src="../../images/akmsecure/homepage-real.png" alt="AKMSecure website homepage" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 6: PRINT COLLATERAL
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Print Collateral">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">PRINT COLLATERAL</span>
+
+            <div class="cols-graphic cols-graphic--reverse">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">BRANDED PRINT MATERIALS</h2>
+                    <p class="cs-body" style="margin-bottom: 16px;">Business cards, letterhead, and document templates carry the brand into physical touchpoints. Every piece uses the same colour system and typographic hierarchy established for the website, ensuring a cohesive presence from screen to print.</p>
+                    <p class="cs-caption">Business cards &middot; Letterhead &middot; Document templates</p>
+                </div>
+                <div class="col-graphic device-mockup device-mockup--float">
+                    <img src="../../images/akmsecure/print-collateral.png" alt="AKMSecure print collateral including business cards and letterhead" width="800" height="600" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 7: CTA FOOTER
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Next Case Study">
+        <div class="cs-section__inner reveal">
+            <div class="cta-footer">
+                <span class="pill-badge">NEXT PROJECT</span>
+                <span class="cta-footer__next-label">NEXT CASE STUDY</span>
+                <h2 class="cta-footer__title">DOCS TO DESIGN</h2>
+                <p class="cta-footer__desc">A Figma plugin that transforms documents into production-ready designs in seconds. Upload any file, configure your brand, and generate polished layouts without starting from scratch.</p>
+                <div class="cta-buttons">
+                    <a href="../docs-to-design/" class="cta-btn cta-btn--primary">VIEW DOCS TO DESIGN</a>
+                    <a href="../../portfolio.html" class="cta-btn cta-btn--outline">BACK TO PORTFOLIO</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Scroll Reveal -->
+<script>
+    var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+</script>
+
+<script>
+window.addEventListener("load", function() { var l = document.querySelector(".page-loader"); if (l) l.classList.add("hidden"); });
+document.querySelectorAll("img[loading=\"lazy\"]").forEach(function(img) { if (img.complete) img.classList.add("loaded"); else img.addEventListener("load", function() { this.classList.add("loaded"); }); });
+</script>
+</body>
+</html>

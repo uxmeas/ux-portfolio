@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="844" viewBox="0 0 390 844" fill="none">
+  <!-- Phone frame -->
+  <rect x="1" y="1" width="388" height="842" rx="40" stroke="#2A3545" stroke-width="1.5"/>
+
+  <!-- Status bar -->
+  <rect x="30" y="16" width="60" height="4" rx="2" fill="#2A3545" fill-opacity="0.15"/>
+  <rect x="300" y="16" width="60" height="4" rx="2" fill="#2A3545" fill-opacity="0.15"/>
+
+  <!-- Nav bar -->
+  <rect x="20" y="36" width="350" height="36" rx="4" fill="#2A3545" fill-opacity="0.08"/>
+  <rect x="32" y="48" width="16" height="12" rx="2" fill="#2A3545" fill-opacity="0.15"/>
+  <rect x="140" y="50" width="80" height="8" rx="3" fill="#2A3545" fill-opacity="0.2"/>
+  <circle cx="320" cy="54" r="12" fill="#2A3545" fill-opacity="0.1"/>
+  <circle cx="350" cy="54" r="12" fill="#2A3545" fill-opacity="0.1"/>
+
+  <!-- "Total Portfolio Value" label -->
+  <rect x="28" y="90" width="140" height="6" rx="3" fill="#2A3545" fill-opacity="0.1"/>
+
+  <!-- Large value block -->
+  <rect x="28" y="108" width="260" height="28" rx="4" fill="#2A3545" fill-opacity="0.12"/>
+
+  <!-- Trend line -->
+  <rect x="28" y="148" width="180" height="6" rx="3" fill="#2A3545" fill-opacity="0.08"/>
+
+  <!-- Sparkline placeholder -->
+  <path d="M250 100 Q270 95 285 105 Q300 115 315 100 Q330 85 350 90" stroke="#2A3545" stroke-width="1.5" opacity="0.2" fill="none"/>
+
+  <!-- Tab row (1D 1W 1M 1Y All) -->
+  <rect x="28" y="172" width="40" height="22" rx="6" stroke="#2A3545" stroke-width="1" opacity="0.2"/>
+  <rect x="76" y="172" width="40" height="22" rx="6" stroke="#2A3545" stroke-width="1" opacity="0.2"/>
+  <rect x="124" y="172" width="40" height="22" rx="6" stroke="#2A3545" stroke-width="1" opacity="0.2"/>
+  <rect x="172" y="172" width="36" height="22" rx="6" fill="#2A3545" fill-opacity="0.1" stroke="#2A3545" stroke-width="1" opacity="0.3"/>
+  <rect x="216" y="172" width="40" height="22" rx="6" stroke="#2A3545" stroke-width="1" opacity="0.2"/>
+
+  <!-- "For you" label -->
+  <rect x="28" y="218" width="60" height="8" rx="3" fill="#2A3545" fill-opacity="0.12"/>
+
+  <!-- Promo card 1 -->
+  <rect x="28" y="240" width="334" height="60" rx="10" stroke="#2A3545" stroke-width="1" opacity="0.25"/>
+  <circle cx="58" cy="270" r="16" fill="#2A3545" fill-opacity="0.06"/>
+  <rect x="84" y="258" width="160" height="8" rx="3" fill="#2A3545" fill-opacity="0.12"/>
+  <rect x="84" y="274" width="240" height="6" rx="3" fill="#2A3545" fill-opacity="0.07"/>
+
+  <!-- Promo card 2 -->
+  <rect x="28" y="312" width="334" height="60" rx="10" stroke="#2A3545" stroke-width="1" opacity="0.25"/>
+  <circle cx="58" cy="342" r="16" fill="#2A3545" fill-opacity="0.06"/>
+  <rect x="84" y="330" width="140" height="8" rx="3" fill="#2A3545" fill-opacity="0.12"/>
+  <rect x="84" y="346" width="220" height="6" rx="3" fill="#2A3545" fill-opacity="0.07"/>
+
+  <!-- Promo card 3 -->
+  <rect x="28" y="384" width="334" height="60" rx="10" stroke="#2A3545" stroke-width="1" opacity="0.25"/>
+  <circle cx="58" cy="414" r="16" fill="#2A3545" fill-opacity="0.06"/>
+  <rect x="84" y="402" width="180" height="8" rx="3" fill="#2A3545" fill-opacity="0.12"/>
+  <rect x="84" y="418" width="200" height="6" rx="3" fill="#2A3545" fill-opacity="0.07"/>
+
+  <!-- 2x2 Stat card grid -->
+  <!-- Top-left -->
+  <rect x="28" y="468" width="164" height="110" rx="10" stroke="#2A3545" stroke-width="1" opacity="0.3"/>
+  <rect x="44" y="484" width="80" height="5" rx="2" fill="#2A3545" fill-opacity="0.1"/>
+  <rect x="44" y="500" width="100" height="18" rx="3" fill="#2A3545" fill-opacity="0.12"/>
+  <rect x="44" y="528" width="120" height="5" rx="2" fill="#2A3545" fill-opacity="0.07"/>
+  <rect x="44" y="542" width="60" height="5" rx="2" fill="#2A3545" fill-opacity="0.07"/>
+
+  <!-- Top-right -->
+  <rect x="200" y="468" width="162" height="110" rx="10" stroke="#2A3545" stroke-width="1" opacity="0.3"/>
+  <rect x="216" y="484" width="80" height="5" rx="2" fill="#2A3545" fill-opacity="0.1"/>
+  <rect x="216" y="500" width="60" height="18" rx="3" fill="#2A3545" fill-opacity="0.12"/>
+  <rect x="216" y="528" width="110" height="5" rx="2" fill="#2A3545" fill-opacity="0.07"/>
+
+  <!-- Bottom-left -->
+  <rect x="28" y="588" width="164" height="110" rx="10" stroke="#2A3545" stroke-width="1" opacity="0.3"/>
+  <rect x="44" y="604" width="80" height="5" rx="2" fill="#2A3545" fill-opacity="0.1"/>
+  <rect x="44" y="620" width="80" height="18" rx="3" fill="#2A3545" fill-opacity="0.12"/>
+  <rect x="44" y="648" width="120" height="5" rx="2" fill="#2A3545" fill-opacity="0.07"/>
+  <rect x="44" y="662" width="50" height="5" rx="2" fill="#2A3545" fill-opacity="0.07"/>
+
+  <!-- Bottom-right -->
+  <rect x="200" y="588" width="162" height="110" rx="10" stroke="#2A3545" stroke-width="1" opacity="0.3"/>
+  <rect x="216" y="604" width="80" height="5" rx="2" fill="#2A3545" fill-opacity="0.1"/>
+  <rect x="216" y="620" width="70" height="18" rx="3" fill="#2A3545" fill-opacity="0.12"/>
+  <rect x="216" y="648" width="100" height="5" rx="2" fill="#2A3545" fill-opacity="0.07"/>
+  <rect x="216" y="662" width="50" height="5" rx="2" fill="#2A3545" fill-opacity="0.07"/>
+
+  <!-- Home indicator -->
+  <rect x="145" y="810" width="100" height="4" rx="2" fill="#2A3545" fill-opacity="0.15"/>
+</svg>

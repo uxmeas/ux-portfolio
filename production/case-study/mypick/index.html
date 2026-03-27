@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPick.io — Visual Elimination Race Game — UX Meas</title>
+    <meta name="description" content="Designed and built a visual randomizer using elimination race mechanics. 25 teams, multiplayer sync, dynamic camera, and 24 integrated sound effects. Solo passion project shipped to production.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="MyPick.io — Elimination Race Game — UX Meas">
+    <meta property="og:description" content="Designed and built a visual randomizer using elimination race mechanics. Solo passion project shipped to production.">
+    <meta property="og:image" content="https://uxmeas.com/images/mypick/hero-race.png">
+    <meta property="og:type" content="article">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
+
+    <!-- Portfolio CSS -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=block" as="style">
+    <link rel="stylesheet" href="../../css/portfolio.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@1.6.0/dist/umd/lucide.min.js" defer></script>
+
+    <!-- Page-specific styles -->
+    <style>
+        /* ── MyPick Token Overrides ── */
+        :root {
+            --cs-accent: #22D3EE;
+            --cs-accent-hover: #67E8F9;
+            --bg-deep: #0A0A10;
+            --bg-card: #111118;
+            --bg-surface: #18182A;
+            --gold: #22D3EE;
+            --text-muted: #969CA5;
+            --border: #252540;
+        }
+
+        /* ── Reset & Base ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-secondary);
+            background: #0A0A10;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img { max-width: 100%; height: auto; display: block; }
+        a { color: inherit; text-decoration: none; }
+
+        /* ── Section Container ── */
+        .cs-section {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--space-section-y) var(--space-side);
+        }
+
+        .cs-section__inner {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        /* ── Pill Badge ── */
+        .pill-badge {
+            display: inline-block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-label);
+            letter-spacing: 4px;
+            color: var(--cs-accent);
+            border: 1px solid var(--cs-accent);
+            border-radius: 20px;
+            padding: 6px 20px;
+            text-transform: uppercase;
+        }
+
+        /* ── Typography ── */
+        .cs-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-section);
+            color: var(--text-primary);
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .cs-body {
+            font-size: var(--type-body);
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .cs-caption {
+            font-size: var(--type-caption);
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* ── Column layouts ── */
+        .cols-text {
+            display: flex;
+            gap: var(--space-xl);
+        }
+        .cols-text .col-left { flex: 1; }
+        .cols-text .col-right { flex: 1; }
+
+        .cols-graphic {
+            display: flex;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+        .cols-graphic .col-copy { flex: 0 0 380px; min-width: 0; }
+        .cols-graphic .col-graphic { flex: 1; min-width: 0; }
+
+        .cols-graphic--reverse {
+            flex-direction: row-reverse;
+        }
+
+        /* ── Device Mockups ── */
+        .device-mockup {
+            border: 3px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .device-mockup img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .device-composited {
+            border: none;
+        }
+
+        .device-mockup--float {
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ── Metric Cards ── */
+        .metric-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .metric-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 32px 24px;
+            text-align: center;
+        }
+
+        .metric-card__number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-stat);
+            color: var(--cs-accent);
+            line-height: 1;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .metric-card__label {
+            font-size: var(--type-body);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .metric-card__desc {
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── Step Cards ── */
+        .step-cards {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .step-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 24px 20px;
+        }
+
+        .step-card__badge {
+            width: 36px;
+            height: 36px;
+            border: 2px solid var(--cs-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-body);
+            color: var(--cs-accent);
+            margin-bottom: 12px;
+        }
+
+        .step-card__time {
+            font-size: var(--type-label);
+            color: var(--cs-accent);
+            margin-bottom: 8px;
+        }
+
+        .step-card__name {
+            font-size: var(--type-body);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .step-card__desc {
+            font-size: var(--type-caption);
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── Feature List ── */
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .feature-item__icon {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            color: var(--cs-accent);
+            margin-top: 2px;
+        }
+
+        .feature-item__text {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .feature-item__title {
+            font-size: var(--type-body);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .feature-item__desc {
+            font-size: var(--type-caption);
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* ── Gallery ── */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .gallery-item {
+            border: 3px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        /* ── Testimonial ── */
+        .testimonial {
+            padding-top: var(--space-lg);
+        }
+
+        .testimonial__line {
+            width: 80px;
+            height: 3px;
+            background: var(--cs-accent);
+            margin-bottom: 24px;
+        }
+
+        .testimonial__quote {
+            font-size: var(--type-subtitle);
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.6;
+            max-width: 700px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial__attribution {
+            font-size: var(--type-caption);
+            font-weight: 500;
+            color: var(--cs-accent);
+        }
+
+        /* ── HMW Card ── */
+        .hmw-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 32px 28px;
+        }
+
+        .hmw-card__label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-label);
+            letter-spacing: 3px;
+            color: var(--cs-accent);
+            margin-bottom: 16px;
+        }
+
+        .hmw-card__text {
+            font-size: var(--type-subtitle);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        /* ── Meta Row ── */
+        .meta-row {
+            display: flex;
+            gap: 48px;
+            margin-top: var(--space-md);
+            padding-top: var(--space-sm);
+            border-top: 1px solid var(--border);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-item__label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-label);
+            letter-spacing: 3px;
+            color: var(--cs-accent);
+        }
+
+        .meta-item__value {
+            font-size: var(--type-caption);
+            color: var(--text-primary);
+        }
+
+
+        /* ═══════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════ */
+        .hero {
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--space-hero-top) var(--space-side) 0;
+            min-height: 1330px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero__label-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero__logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px;
+            color: var(--cs-accent);
+            letter-spacing: 2px;
+        }
+
+        .hero__tags {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-label);
+            letter-spacing: 4px;
+            color: var(--cs-accent);
+        }
+
+        .hero__meta {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .hero__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-hero);
+            color: var(--text-primary);
+            text-align: center;
+            letter-spacing: 2px;
+            margin-top: var(--space-sm);
+        }
+
+        .hero__stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin-top: var(--space-lg);
+        }
+
+        .hero__stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero__stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-stat);
+            color: var(--cs-accent);
+            line-height: 1;
+            letter-spacing: 1px;
+        }
+
+        .hero__stat-label {
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .hero__subtitle {
+            font-size: var(--type-subtitle);
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.6;
+            margin-top: var(--space-md);
+        }
+
+        .hero__device {
+            margin-top: var(--space-xl);
+            width: 1200px;
+            max-width: 100%;
+        }
+
+        .hero__device img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+
+        /* ═══════════════════════════════════════
+           CTA FOOTER
+           ═══════════════════════════════════════ */
+        .cta-footer {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .cta-footer__divider {
+            width: 120px;
+            height: 2px;
+            background: var(--cs-accent);
+        }
+
+        .cta-footer__next-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-subtitle);
+            color: var(--text-muted);
+            letter-spacing: 3px;
+        }
+
+        .cta-footer__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-section);
+            color: var(--cs-accent);
+            letter-spacing: 1px;
+        }
+
+        .cta-footer__desc {
+            font-size: var(--type-body);
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .cta-btn {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: var(--type-body);
+            letter-spacing: 2px;
+            padding: 14px 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cta-btn--primary {
+            background: var(--cs-accent);
+            color: var(--bg-deep);
+            border: 2px solid var(--cs-accent);
+        }
+
+        .cta-btn--primary:hover {
+            background: var(--cs-accent-hover);
+            border-color: var(--cs-accent-hover);
+        }
+
+        .cta-btn--outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .cta-btn--outline:hover {
+            border-color: var(--text-muted);
+        }
+
+        .cta-footer__watermark {
+            font-size: var(--type-label);
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            margin-top: 24px;
+        }
+
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            :root {
+                --space-side: 48px;
+                --space-section-y: 72px;
+            }
+
+            .cols-text,
+            .cols-graphic {
+                flex-direction: column;
+            }
+
+            .cols-graphic--reverse {
+                flex-direction: column;
+            }
+
+            .cols-graphic .col-copy {
+                width: 100%;
+                flex: none;
+            }
+
+            .hero__stats { gap: 40px; }
+            .hero__device { width: 100%; }
+            .hero { min-height: auto; }
+
+            .step-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .metric-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .meta-row { flex-wrap: wrap; gap: 24px; }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --space-side: 24px;
+                --space-section-y: 56px;
+            }
+
+            .hero__label-bar {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .hero__stats {
+                flex-direction: column;
+                gap: 24px;
+                align-items: center;
+            }
+
+            .step-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item img {
+                height: auto;
+            }
+
+            .meta-row {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-btn { width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --space-side: 16px;
+            }
+        }
+    </style>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9HVVW1GBEC');
+    </script>
+</head>
+<body>
+<div class="page-loader"></div>
+
+    <!-- Top Bar -->
+    <nav class="cs-nav">
+        <a href="../../portfolio.html" class="cs-nav__back">&larr; Back to Portfolio</a><a href="../../portfolio.html" class="cs-nav__logo">UX MEAS</a>
+    </nav>
+
+    <!-- ═══════════════════════════════════════
+         SECTION 1: HERO
+         ═══════════════════════════════════════ -->
+    <section class="hero" aria-label="Hero">
+        <!-- Label Bar -->
+        <div class="hero__label-bar">
+            <div class="hero__logo">MYPICK.IO</div>
+            <div class="hero__tags">GAME DESIGN &middot; MULTIPLAYER &middot; REALTIME SYNC</div>
+            <div class="hero__meta">Solo Designer &amp; Builder &middot; 2025&ndash;2026</div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="hero__title">MYPICK.IO</h1>
+
+        <!-- Stats -->
+        <div class="hero__stats">
+            <div class="hero__stat">
+                <span class="hero__stat-number">25</span>
+                <span class="hero__stat-label">Max Teams Per Race</span>
+            </div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">100%</span>
+                <span class="hero__stat-label">Multiplayer Sync</span>
+            </div>
+            <div class="hero__stat">
+                <span class="hero__stat-number">v2.6</span>
+                <span class="hero__stat-label">Production Release</span>
+            </div>
+        </div>
+
+        <!-- Subtitle -->
+        <p class="hero__subtitle">A visual elimination race game that turns random selection into spectacle. Think Kahoot meets Mario Kart&nbsp;&mdash; built from scratch as a solo passion project, shipped to production with real-time multiplayer.</p>
+
+        <!-- Device Mockup -->
+        <div class="hero__device device-mockup device-mockup--float">
+            <img src="../../images/mypick/hero-race.png" alt="MyPick.io elimination race in progress showing teams competing on a dynamic track" width="1200" height="740" loading="eager">
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 2: CHALLENGE
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="The Challenge">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">THE CHALLENGE</span>
+
+            <div class="cols-text">
+                <div class="col-left">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">RANDOM SELECTION IS BORING. WHAT IF IT WASN&rsquo;T?</h2>
+                    <p class="cs-body">Every classroom, meeting, and game night uses the same tired tools: spinners, dice rolls, name pickers. They work, but they&rsquo;re forgettable. There&rsquo;s no anticipation, no shared experience, no moment worth&nbsp;watching.</p>
+                </div>
+                <div class="col-right">
+                    <p class="cs-body">I wanted to build something that makes random selection feel like an event. An elimination race where you watch your pick compete in real time, cheer as others get knocked out, and share the drama with everyone in the&nbsp;room.</p>
+                    <p class="cs-body" style="margin-top: 16px;">The design challenge: make it instantly understandable, visually exciting, and playable by anyone from a 10-year-old to a&nbsp;CEO.</p>
+                </div>
+            </div>
+
+            <div class="metric-cards">
+                <div class="metric-card">
+                    <div class="metric-card__number">0</div>
+                    <div class="metric-card__label">Existing Products</div>
+                    <div class="metric-card__desc">No visual elimination race randomizer existed in any app store or&nbsp;platform</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-card__number">&lt;2MIN</div>
+                    <div class="metric-card__label">Setup Target</div>
+                    <div class="metric-card__desc">From landing to first race must take under two minutes for any&nbsp;user</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-card__number">10+</div>
+                    <div class="metric-card__label">Viewer Scale</div>
+                    <div class="metric-card__desc">Multiplayer rooms need to sync host and viewers with zero perceptible&nbsp;lag</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 3: DESIGN APPROACH
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Design Approach">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">DESIGN APPROACH</span>
+
+            <div class="cols-text">
+                <div class="col-left">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">GAME UX MEETS UTILITY</h2>
+                    <p class="cs-body">The core insight: a randomizer doesn&rsquo;t need to feel like a tool. It needs to feel like a game. I studied elimination-style games (Mario Kart, Fall Guys, Survivor) to understand what creates&nbsp;tension.</p>
+                    <p class="cs-body" style="margin-top: 16px;">The answer: progressive elimination plus a camera that follows the leader. When the field narrows and the camera tightens, even a random outcome feels&nbsp;earned.</p>
+                </div>
+                <div class="col-right">
+                    <div class="hmw-card">
+                        <div class="hmw-card__label">HOW MIGHT WE</div>
+                        <div class="hmw-card__text">Turn a mundane random selection into a shared spectator experience that builds anticipation, creates memorable moments, and works across any group&nbsp;size?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="meta-row">
+                <div class="meta-item">
+                    <span class="meta-item__label">ROLE</span>
+                    <span class="meta-item__value">Designer &amp; Developer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-item__label">STACK</span>
+                    <span class="meta-item__value">Vanilla JS / Canvas / Supabase Realtime</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-item__label">YEAR</span>
+                    <span class="meta-item__value">2025 &ndash; 2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-item__label">TYPE</span>
+                    <span class="meta-item__value">Solo Passion Project</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 4: USER FLOW
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="User Flow">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">USER FLOW</span>
+
+            <div class="cols-graphic">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">SETUP TO WINNER IN&nbsp;SECONDS</h2>
+                    <p class="cs-body">The flow prioritises speed. Name your teams, set the timer, and the race begins. No accounts, no onboarding, no&nbsp;friction.</p>
+                    <p class="cs-body" style="margin-top: 16px;">For multiplayer, a 6-character room code gets viewers connected instantly. The host controls the race; viewers watch in perfect&nbsp;sync.</p>
+                </div>
+                <div class="col-graphic">
+                    <div class="device-mockup device-mockup--float">
+                        <img src="../../images/mypick/setup-screen.png" alt="MyPick.io setup screen showing team configuration and race settings" width="756" height="480" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-cards">
+                <div class="step-card">
+                    <div class="step-card__badge">1</div>
+                    <div class="step-card__time">5 sec</div>
+                    <div class="step-card__name">Add Teams</div>
+                    <div class="step-card__desc">Type names or paste a list. Up to 25&nbsp;teams.</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-card__badge">2</div>
+                    <div class="step-card__time">3 sec</div>
+                    <div class="step-card__name">Set Timer</div>
+                    <div class="step-card__desc">15&ndash;120 seconds. Shorter races, faster&nbsp;drama.</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-card__badge">3</div>
+                    <div class="step-card__time">1 sec</div>
+                    <div class="step-card__name">Start Race</div>
+                    <div class="step-card__desc">Full-screen with dynamic camera and sound&nbsp;effects.</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-card__badge">4</div>
+                    <div class="step-card__time">15&ndash;120s</div>
+                    <div class="step-card__name">Elimination</div>
+                    <div class="step-card__desc">Teams drop off one by one. Camera follows the&nbsp;leader.</div>
+                </div>
+                <div class="step-card">
+                    <div class="step-card__badge">5</div>
+                    <div class="step-card__time">Instant</div>
+                    <div class="step-card__name">Winner</div>
+                    <div class="step-card__desc">Celebration screen with confetti and sound&nbsp;fanfare.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 5: MULTIPLAYER (ZIGZAG)
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Multiplayer System">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">MULTIPLAYER</span>
+
+            <div class="cols-graphic cols-graphic--reverse">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 16px;">REAL-TIME SYNC ACROSS EVERY&nbsp;DEVICE</h2>
+                    <p class="cs-body" style="margin-bottom: 24px;">The multiplayer system uses an authoritative host pattern over Supabase Realtime. One host runs the race; viewers receive state updates and render&nbsp;locally.</p>
+
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <i data-lucide="key" class="feature-item__icon"></i>
+                            <div class="feature-item__text">
+                                <span class="feature-item__title">Room Codes</span>
+                                <span class="feature-item__desc">6-character codes (e.g. ABC123) for instant lobby&nbsp;access</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="lock" class="feature-item__icon"></i>
+                            <div class="feature-item__text">
+                                <span class="feature-item__title">Host Lock</span>
+                                <span class="feature-item__desc">Viewers lock to first host, persists across page&nbsp;refresh</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="wifi" class="feature-item__icon"></i>
+                            <div class="feature-item__text">
+                                <span class="feature-item__title">Disconnect Handling</span>
+                                <span class="feature-item__desc">Presence-based with 7s/12s thresholds for graceful&nbsp;recovery</span>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i data-lucide="gauge" class="feature-item__icon"></i>
+                            <div class="feature-item__text">
+                                <span class="feature-item__title">100% Sync Accuracy</span>
+                                <span class="feature-item__desc">Authoritative host pattern ensures identical race state across all&nbsp;viewers</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-graphic">
+                    <div class="device-mockup device-mockup--float">
+                        <img src="../../images/mypick/real-racing.png" alt="MyPick.io multiplayer race in progress with teams competing in real-time" width="756" height="480" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 6: UI SHOWCASE
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="UI Showcase">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">UI SHOWCASE</span>
+
+            <h2 class="cs-title">EVERY FRAME IS THE&nbsp;GAME</h2>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="../../images/mypick/real-homepage.png" alt="MyPick.io homepage with team setup interface" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../../images/mypick/real-midrace.png" alt="Mid-race view showing elimination in progress with dynamic camera" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../../images/mypick/real-racing.png" alt="Full race view with all teams competing on the track" loading="lazy">
+                </div>
+                <div class="gallery-item">
+                    <img src="../../images/mypick/real-winner.png" alt="Winner celebration screen with confetti and final results" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 7: RESULTS
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Results and Impact">
+        <div class="cs-section__inner reveal">
+            <span class="pill-badge">RESULTS &amp; IMPACT</span>
+
+            <div class="cols-graphic">
+                <div class="col-copy">
+                    <h2 class="cs-title" style="margin-bottom: 24px;">SHIPPED AND&nbsp;LIVE</h2>
+
+                    <div class="metric-cards" style="grid-template-columns: 1fr;">
+                        <div class="metric-card" style="text-align: left;">
+                            <div class="metric-card__number">24</div>
+                            <div class="metric-card__label">Integrated Sound Effects</div>
+                            <div class="metric-card__desc">Custom audio for race events, eliminations, and&nbsp;celebrations</div>
+                        </div>
+                        <div class="metric-card" style="text-align: left;">
+                            <div class="metric-card__number">v2.6</div>
+                            <div class="metric-card__label">Production Release</div>
+                            <div class="metric-card__desc">Full feature set including billboards, weather, and night&nbsp;mode</div>
+                        </div>
+                        <div class="metric-card" style="text-align: left;">
+                            <div class="metric-card__number">&lt;100ms</div>
+                            <div class="metric-card__label">Multiplayer Latency</div>
+                            <div class="metric-card__desc">Real-time sync across host and all connected&nbsp;viewers</div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial">
+                        <div class="testimonial__line"></div>
+                        <p class="testimonial__quote">Built entirely as a solo project &mdash; design, architecture, frontend, backend, and deployment. Proof that one person with a clear vision can ship something&nbsp;real.</p>
+                        <span class="testimonial__attribution">Personal reflection</span>
+                    </div>
+                </div>
+                <div class="col-graphic">
+                    <div class="device-mockup device-mockup--float">
+                        <img src="../../images/mypick/real-winner.png" alt="Winner celebration screen showing the final race result" width="756" height="480" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         SECTION 8: CTA FOOTER
+         ═══════════════════════════════════════ -->
+    <section class="cs-section" aria-label="Next Case Study">
+        <div class="cs-section__inner">
+            <div class="cta-footer">
+                <div class="cta-footer__divider"></div>
+                <span class="cta-footer__next-label">NEXT CASE STUDY</span>
+                <a href="../compliance-ux/" class="cta-footer__title">COMPLIANCE UX FOR PRIVATE CAPITAL&nbsp;MARKETS</a>
+                <p class="cta-footer__desc">Shipped regulatory-compliant investor onboarding across 20+ jurisdictions. KYC/AML verification, accreditation checks, and electronic signatures. Reduced onboarding from days to 12&nbsp;minutes.</p>
+                <div class="cta-buttons">
+                    <a href="../compliance-ux/" class="cta-btn cta-btn--primary">VIEW CASE STUDY</a>
+                    <a href="../../portfolio.html" class="cta-btn cta-btn--outline">ALL WORK</a>
+                </div>
+                <span class="cta-footer__watermark">uxmeas.com</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Lucide init + scroll reveal -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+
+            // Page loader
+            const loader = document.querySelector('.page-loader');
+            if (loader) {
+                requestAnimationFrame(() => { loader.style.opacity = '0'; });
+                setTimeout(() => loader.remove(), 400);
+            }
+
+            // Scroll reveal
+            const reveals = document.querySelectorAll('.reveal');
+            if (!reveals.length) return;
+
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('revealed');
+                        io.unobserve(e.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            reveals.forEach(el => io.observe(el));
+        });
+    </script>
+</body>
+</html>
