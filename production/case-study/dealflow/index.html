@@ -1,1317 +1,663 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DealFlow — Enterprise Investment Management Platform | UX Meas</title>
-    <meta name="description" content="Owned product design for a capital markets platform from startup to IPO (TSX-V). Deal management, portfolio tracking, and investor relations shipped across web and mobile. $50M+ in private placements processed.">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="DealFlow — Enterprise Investment Management | UX Meas">
-    <meta property="og:description" content="Owned product design from startup to IPO (TSX-V). Deal management, investor relations, $50M+ in private placements.">
-    <meta property="og:image" content="https://uxmeas.com/images/devices/MacBook Pro Katipult Dark (DealFlow).png">
-    <meta property="og:type" content="article">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-
-    <!-- Styles -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=block" as="style">
-    <link rel="stylesheet" href="../../css/portfolio.css">
-
-    <!-- Critical inline CSS for page loader -->
-    <style>
-        /* Token overrides for DealFlow (from .pen) */
-        :root {
-            --gold: #F96815;
-            --bg-deep: #0A1628;
-            --text-muted: #64748B;
-        }
-
-        body {
-            margin: 0;
-            background: #0A1628;
-            color: var(--text-primary, #F0F0F2);
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Page Loader */
-        .cs-pageloader {
-            position: fixed; inset: 0; z-index: 9999;
-            background: #0A1628;
-            display: flex; align-items: center; justify-content: center;
-            transition: opacity 0.5s ease;
-        }
-        .cs-pageloader.done { opacity: 0; pointer-events: none; }
-        .cs-pageloader__inner { width: 300px; display: flex; flex-direction: column; gap: 16px; }
-        .cs-pageloader__bar {
-            height: 12px; border-radius: 6px;
-            background: #1A2030;
-        }
-        @keyframes cs-shimmer {
-            0%   { background-position: -300px 0; }
-            100% { background-position: 300px 0; }
-        }
-
-        /* ===========================
-           LAYOUT SYSTEM
-           =========================== */
-
-        .cs-page {
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        .cs-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: var(--space-section-y, 100px) var(--space-side, 120px);
-            position: relative;
-        }
-
-        .cs-section__inner {
-            width: 100%;
-            max-width: 1440px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* ===========================
-           SECTION BACKGROUNDS
-           =========================== */
-
-        .cs-section--hero {
-            min-height: 1330px;
-            background: #0A1628;
-            padding-top: 100px;
-        }
-
-        /* Per-section backgrounds from .pen design */
-        .cs-section--a {
-            background: #0F1D2F;
-        }
-
-        .cs-section--b {
-            background: #111827;
-        }
-
-        /* Additional section backgrounds matching .pen */
-        [data-section="competitors"] { background: #0A1628; }
-        [data-section="investor"]    { background: #131B2E; }
-        [data-section="equity"]      { background: #0F1D2F; }
-        [data-section="results"]     { background: #060E1A; }
-        [data-section="cta"]         { background: #071320; }
-
-        /* Body background from .pen design */
-        .cs-page {
-            background: #0A1628;
-        }
-
-        /* ===========================
-           PILL BADGES
-           =========================== */
-
-        .cs-pill {
-            display: inline-flex;
-            align-items: center;
-            border: 1px solid var(--gold, #F96815);
-            border-radius: 20px;
-            padding: 6px 20px;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-label, 14px);
-            color: var(--gold, #F96815);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            width: fit-content;
-        }
-
-        /* ===========================
-           LABEL BAR (Hero)
-           =========================== */
-
-        .cs-label-bar {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            width: 100%;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-label, 14px);
-            color: var(--text-muted, #969CA5);
-            letter-spacing: 4px;
-        }
-
-        .cs-label-bar__left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .cs-label-bar__center {
-            flex: 1;
-            text-align: center;
-            color: var(--text-muted, #969CA5);
-        }
-
-        .cs-label-bar__right {
-            flex-shrink: 0;
-            text-align: right;
-            color: var(--text-muted, #969CA5);
-        }
-
-        .cs-label-bar__logo {
-            height: 20px;
-            width: auto;
-            opacity: 0.7;
-        }
-
-        /* ===========================
-           HERO
-           =========================== */
-
-        .cs-hero__title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-hero, 80px);
-            color: var(--text-primary, #F0F0F2);
-            letter-spacing: 2px;
-            line-height: 1;
-            margin: 0;
-            text-align: center;
-        }
-
-        .cs-hero__stats {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .cs-hero__stat {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-stat, 64px);
-            color: var(--gold, #F96815);
-            line-height: 1.1;
-            text-align: center;
-        }
-
-        .cs-hero__stat-label {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-label, 14px);
-            color: var(--text-muted, #969CA5);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-top: -4px;
-        }
-
-        .cs-hero__subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-subtitle, 22px);
-            color: var(--text-secondary, #94A3B8);
-            line-height: 1.6;
-            text-align: center;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        .cs-hero__device {
-            width: 100%;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .cs-hero__device img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* ===========================
-           TWO-COLUMN LAYOUTS
-           =========================== */
-
-        .cs-cols-text {
-            display: flex;
-            gap: var(--space-xl, 64px);
-            align-items: flex-start;
-        }
-
-        .cs-cols-text__left,
-        .cs-cols-text__right {
-            flex: 1;
-        }
-
-        .cs-cols-graphic {
-            display: flex;
-            gap: var(--space-xl, 64px);
-            align-items: center;
-        }
-
-        .cs-cols-graphic--reverse {
-            flex-direction: row-reverse;
-        }
-
-        .cs-col-copy {
-            width: 380px;
-            flex-shrink: 0;
-        }
-
-        .cs-col-graphic {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* ===========================
-           TYPOGRAPHY
-           =========================== */
-
-        .cs-section-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-section, 56px);
-            color: var(--text-primary, #F0F0F2);
-            letter-spacing: 1px;
-            line-height: 1.1;
-            margin: 0;
-        }
-
-        .cs-body {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-body, 18px);
-            color: var(--text-secondary, #94A3B8);
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        .cs-subtitle {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-subtitle, 22px);
-            color: var(--text-secondary, #94A3B8);
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .cs-caption {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-caption, 16px);
-            color: var(--text-muted, #969CA5);
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        /* ===========================
-           STAT CARDS
-           =========================== */
-
-        .cs-stat-cards {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .cs-stat-card {
-            background: var(--bg-surface, #1F2937);
-            border-radius: 6px;
-            padding: 32px 24px;
-        }
-
-        .cs-stat-card__number {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-stat, 64px);
-            color: var(--gold, #F96815);
-            line-height: 1;
-        }
-
-        .cs-stat-card__title {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-body, 18px);
-            font-weight: 600;
-            color: var(--text-primary, #F0F0F2);
-            margin-top: 8px;
-        }
-
-        .cs-stat-card__desc {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-label, 14px);
-            color: var(--text-muted, #969CA5);
-            margin-top: 4px;
-        }
-
-        /* ===========================
-           DEVICE FRAMES (Screenshots)
-           =========================== */
-
-        .cs-device-tablet {
-            border-radius: 20px;
-            border: 3px solid var(--border, #2A3545);
-            overflow: hidden;
-            display: block;
-            max-width: 100%;
-        }
-
-        .cs-device-tablet img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        .cs-device-phone {
-            width: 195px;
-            height: 420px;
-            border-radius: 8px;
-            border: 3px solid var(--border, #2A3545);
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .cs-device-phone img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: top;
-        }
-
-        .cs-phone-pair {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .cs-device-desktop {
-            border-radius: 8px;
-            border: 3px solid var(--border, #2A3545);
-            overflow: hidden;
-            display: block;
-            max-width: 100%;
-        }
-
-        .cs-device-desktop img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        /* ===========================
-           RESEARCH TABLE
-           =========================== */
-
-        .cs-research-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-
-        .cs-research-table th {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-label, 14px);
-            color: var(--gold, #F96815);
-            letter-spacing: 4px;
-            text-align: left;
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border, #2A3545);
-        }
-
-        .cs-research-table th:first-child {
-            width: 260px;
-        }
-
-        .cs-research-table td {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-caption, 16px);
-            color: var(--text-secondary, #94A3B8);
-            padding: 24px;
-            border-bottom: 1px solid rgba(42, 53, 69, 0.4);
-            vertical-align: top;
-            line-height: 1.5;
-        }
-
-        .cs-research-table td:first-child {
-            font-weight: 600;
-            color: var(--text-primary, #F0F0F2);
-            width: 260px;
-        }
-
-        .cs-research-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Column gap via padding */
-        .cs-research-table th + th,
-        .cs-research-table td + td {
-            padding-left: 32px;
-        }
-
-        /* ===========================
-           HMW CALLOUT
-           =========================== */
-
-        .cs-hmw-card {
-            background: var(--bg-surface, #1F2937);
-            border: 2px solid var(--gold, #F96815);
-            border-radius: 8px;
-            padding: 40px 32px;
-        }
-
-        .cs-hmw-card__label {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-label, 14px);
-            color: var(--gold, #F96815);
-            letter-spacing: 4px;
-            margin-bottom: 16px;
-        }
-
-        .cs-hmw-card__text {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-subtitle, 22px);
-            color: var(--text-primary, #F0F0F2);
-            line-height: 1.5;
-            font-weight: 500;
-        }
-
-        /* ===========================
-           COMPETITOR CARDS
-           =========================== */
-
-        .cs-competitor-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-
-        .cs-competitor-card {
-            background: var(--bg-surface, #1F2937);
-            border: 1px solid var(--border, #2A3545);
-            border-radius: 6px;
-            padding: 32px 24px;
-        }
-
-        .cs-competitor-card__name {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-subtitle, 22px);
-            color: var(--text-primary, #F0F0F2);
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .cs-competitor-card__desc {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-body, 18px);
-            color: var(--text-secondary, #94A3B8);
-            line-height: 1.6;
-        }
-
-        /* ===========================
-           DESIGN DECISION CALLOUT
-           =========================== */
-
-        .cs-design-decision {
-            margin-top: 32px;
-        }
-
-        .cs-design-decision__label {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-label, 14px);
-            color: var(--gold, #F96815);
-            letter-spacing: 4px;
-            margin-bottom: 8px;
-        }
-
-        .cs-design-decision__text {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-caption, 16px);
-            color: var(--text-secondary, #94A3B8);
-            line-height: 1.6;
-        }
-
-        /* ===========================
-           RESULTS STAT ROW
-           =========================== */
-
-        .cs-results-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .cs-result-stat {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            background: var(--bg-surface, #1F2937);
-            border-radius: 6px;
-            padding: 16px 24px;
-            height: 64px;
-        }
-
-        .cs-result-stat__number {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-section, 56px);
-            color: var(--gold, #F96815);
-            line-height: 1;
-            width: 130px;
-            flex-shrink: 0;
-        }
-
-        .cs-result-stat__label {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-body, 18px);
-            font-weight: 600;
-            color: var(--text-primary, #F0F0F2);
-        }
-
-        .cs-result-stat__desc {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-label, 14px);
-            color: var(--text-muted, #969CA5);
-        }
-
-        /* ===========================
-           CTA FOOTER
-           =========================== */
-
-        .cs-cta {
-            text-align: center;
-            padding-top: 80px;
-            padding-bottom: 120px;
-        }
-
-        .cs-cta__divider {
-            width: 80px;
-            height: 3px;
-            background: var(--gold, #F96815);
-            margin: 0 auto 48px;
-        }
-
-        .cs-cta__label {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-caption, 16px);
-            color: var(--text-muted, #969CA5);
-            margin-bottom: 16px;
-        }
-
-        .cs-cta__title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: var(--type-section, 56px);
-            color: var(--gold, #F96815);
-            letter-spacing: 1px;
-            line-height: 1.1;
-            margin: 0 0 16px;
-        }
-
-        .cs-cta__desc {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-body, 18px);
-            color: var(--text-secondary, #94A3B8);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-
-        .cs-cta__buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cs-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 32px;
-            border-radius: 6px;
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-caption, 16px);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: none;
-        }
-
-        .cs-btn--gold {
-            background: var(--gold, #F96815);
-            color: #141419;
-        }
-
-        .cs-btn--gold:hover,
-        .cs-btn--gold:focus-visible {
-            background: #D4AD2E;
-            transform: translateY(-1px);
-        }
-
-        .cs-btn--outline {
-            background: transparent;
-            color: var(--text-secondary, #94A3B8);
-            border: 1px solid var(--border, #2A3545);
-        }
-
-        .cs-btn--outline:hover,
-        .cs-btn--outline:focus-visible {
-            color: var(--text-primary, #F0F0F2);
-            border-color: var(--text-muted, #969CA5);
-        }
-
-        /* ===========================
-           SPACING UTILITIES
-           =========================== */
-
-        .cs-mt-16 { margin-top: 16px; }
-        .cs-mt-24 { margin-top: 24px; }
-        .cs-mt-32 { margin-top: var(--space-sm, 32px); }
-        .cs-mt-40 { margin-top: var(--space-md, 40px); }
-        .cs-mt-48 { margin-top: var(--space-lg, 48px); }
-        .cs-mt-64 { margin-top: var(--space-xl, 64px); }
-
-        .cs-gap-lg { gap: var(--space-lg, 48px); }
-        .cs-gap-xl { gap: var(--space-xl, 64px); }
-
-        /* ===========================
-           REVEAL ANIMATION
-           =========================== */
-
-        .cs-reveal {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .cs-reveal--visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===========================
-           RESPONSIVE
-           =========================== */
-
-        @media (max-width: 1024px) {
-            .cs-section {
-                padding: 80px 48px;
-            }
-
-            .cs-hero__title {
-                font-size: 56px;
-            }
-
-            .cs-hero__stat {
-                font-size: 48px;
-            }
-
-            .cs-section-title {
-                font-size: 40px;
-            }
-
-            .cs-cols-graphic {
-                flex-direction: column;
-                gap: 40px;
-            }
-
-            .cs-cols-graphic--reverse {
-                flex-direction: column;
-            }
-
-            .cs-col-copy {
-                width: 100%;
-            }
-
-            .cs-cols-text {
-                flex-direction: column;
-                gap: 32px;
-            }
-
-            .cs-competitor-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .cs-result-stat__number {
-                font-size: 40px;
-                width: 100px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .cs-section {
-                padding: 64px 24px;
-            }
-
-            .cs-section--hero {
-                min-height: auto;
-                padding-top: 80px;
-            }
-
-            .cs-hero__title {
-                font-size: 44px;
-            }
-
-            .cs-hero__stat {
-                font-size: 40px;
-            }
-
-            .cs-hero__subtitle {
-                font-size: 18px;
-            }
-
-            .cs-section-title {
-                font-size: 32px;
-            }
-
-            .cs-nav {
-                display: none;
-            }
-
-            .cs-label-bar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
-            }
-
-            .cs-label-bar__center,
-            .cs-label-bar__right {
-                text-align: left;
-            }
-
-            .cs-competitor-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cs-phone-pair {
-                gap: 16px;
-            }
-
-            .cs-device-phone {
-                width: 150px;
-                height: 320px;
-            }
-
-            .cs-research-table {
-                display: block;
-                overflow-x: auto;
-            }
-
-            .cs-result-stat {
-                flex-direction: column;
-                align-items: flex-start;
-                height: auto;
-                padding: 20px 24px;
-            }
-
-            .cs-result-stat__number {
-                width: auto;
-            }
-
-            .cs-cta__title {
-                font-size: 36px;
-            }
-
-            .cs-cta__buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .cs-section {
-                padding: 48px 16px;
-            }
-
-            .cs-hero__title {
-                font-size: 36px;
-            }
-
-            .cs-hero__stat {
-                font-size: 32px;
-            }
-
-            .cs-section-title {
-                font-size: 28px;
-            }
-
-            .cs-device-phone {
-                width: 130px;
-                height: 280px;
-            }
-
-            .cs-stat-card__number {
-                font-size: 48px;
-            }
-        }
-
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            .cs-reveal {
-                opacity: 1;
-                transform: none;
-                transition: none;
-            }
-            .cs-pageloader__bar {
-                animation: none;
-            }
-        }
-    </style>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-9HVVW1GBEC');
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DealFlow Investment Platform — Pheak Meas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: #141419; color: #F0F0F2; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --bg-card: #1A2030;
+      --bg-deep: #141419;
+      --bg-surface: #1F2937;
+      --border: #2A3545;
+      --gold: #D4915E;
+      --gold-light: #F5E6D8;
+      --gold-muted: #8B6E52;
+      --text-primary: #F0F0F2;
+      --text-secondary: #9298A0;
+      --text-muted: #969CA5;
+      --stat-label: #CBD5E1;
+    }
+
+    body {
+      background:
+        radial-gradient(ellipse 800px 600px at 20% 10%, #243352 0%, transparent 60%),
+        radial-gradient(ellipse 600px 500px at 80% 50%, #243352 0%, transparent 60%),
+        #141419;
+    }
+
+    .page-wrap { width: 100%; max-width: 1440px; margin: 0 auto; overflow: hidden; }
+
+    /* === COMMON === */
+    .badge {
+      display: inline-block;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 6px 20px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 56px;
+      letter-spacing: 1px;
+      line-height: 1.05;
+      color: var(--text-primary);
+    }
+    .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+    .btn-primary {
+      display: inline-block;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: #141419;
+      background: var(--gold);
+      padding: 16px 40px;
+    }
+    .btn-secondary {
+      display: inline-block;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 16px 40px;
+    }
+
+    /* === NAV === */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 120px;
+    }
+    .nav__logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+    }
+    .nav__links { display: flex; gap: 40px; list-style: none; }
+    .nav__links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .nav__links a.nav--accent { color: var(--gold); }
+
+    /* === CS SECTION === */
+    .cs-section {
+      padding: 100px 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+
+    /* === HERO === */
+    .cs-hero {
+      padding: 100px 120px 60px 120px;
+      min-height: 1330px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .cs-hero__logo img { height: 34px; width: 140px; object-fit: contain; }
+    .cs-hero__tags {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--gold);
+    }
+    .cs-hero__headline {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 80px;
+      letter-spacing: -1px;
+      line-height: 0.95;
+      color: var(--text-primary);
+    }
+    .cs-hero__stats {
+      display: flex;
+      gap: 64px;
+      margin-top: 16px;
+    }
+    .cs-hero__stat-number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 64px;
+      letter-spacing: -1px;
+      line-height: 0.9;
+      color: var(--gold);
+    }
+    .cs-hero__stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--stat-label);
+    }
+    .cs-hero__subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cs-hero__laptop {
+      width: 1200px;
+      max-width: 100%;
+      margin: 40px auto 0;
+    }
+    .cs-hero__laptop img { width: 100%; height: 740px; object-fit: cover; border-radius: 8px; }
+
+    /* === TWO-COL === */
+    .cs-two-col {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+
+    /* === METRIC CARD === */
+    .metric-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 120px;
+    }
+    .metric-card__number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 28px;
+      color: var(--gold);
+    }
+    .metric-card__text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    /* === STAT BADGE (stacked) === */
+    .stat-badge {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .stat-badge__number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 28px;
+      color: var(--gold);
+    }
+    .stat-badge__text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    /* === DEVICE FRAMES === */
+    .device-ipad {
+      width: 376px;
+      height: 502px;
+      border-radius: 10px;
+      border: 3px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .device-ipad img { width: 100%; height: 100%; object-fit: cover; }
+    .device-phone {
+      width: 195px;
+      height: 420px;
+      border-radius: 8px;
+      border: 3px solid var(--border);
+      overflow: hidden;
+    }
+    .device-phone img { width: 100%; height: 100%; object-fit: cover; }
+    .phone-pair {
+      display: flex;
+      gap: 24px;
+    }
+
+    /* === HMW CARD === */
+    .hmw-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      padding: 32px 40px;
+    }
+    .hmw-card__label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .hmw-card__text {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* === RESEARCH TABLE === */
+    .research-table { width: 100%; border-collapse: collapse; }
+    .research-table th {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: var(--gold);
+      background: var(--bg-surface);
+      padding: 16px 32px;
+      text-align: left;
+    }
+    .research-table td {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      background: var(--bg-card);
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    .research-table th:first-child { width: 260px; }
+
+    /* === COMPETITOR GRID === */
+    .competitor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .competitor-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 24px 32px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .competitor-card__name {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .competitor-card__desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+    .competitor-card__tag {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-top: auto;
+    }
+
+    /* === FEATURE LIST === */
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .feature-list li {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      padding-left: 24px;
+      position: relative;
+    }
+    .feature-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* === RESULTS SCREENSHOT === */
+    .floating-screenshot {
+      height: 400px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.19);
+    }
+    .floating-screenshot img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* === CTA FOOTER === */
+    .cta-footer {
+      padding: 100px 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      text-align: center;
+      background: #141419;
+    }
+    .cta-footer__divider {
+      width: 120px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .cta-footer__next-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--gold);
+    }
+    .cta-footer__next-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 56px;
+      letter-spacing: 1px;
+      line-height: 1.05;
+      color: var(--text-primary);
+    }
+  </style>
 </head>
 <body>
+  <div class="page-wrap">
 
-<!-- Page Loader -->
-<div class="cs-pageloader" aria-hidden="true">
-    <div class="cs-pageloader__inner">
-        <div class="cs-pageloader__bar" style="width: 100%"></div>
-        <div class="cs-pageloader__bar" style="width: 80%"></div>
-        <div class="cs-pageloader__bar" style="width: 60%"></div>
-    </div>
-</div>
+    <!-- NAV -->
+    <nav class="nav">
+      <a class="nav__logo" href="portfolio-v2.html">UX MEAS</a>
+      <ul class="nav__links">
+        <li><a href="portfolio-v2.html">WORK</a></li>
+        <li><a href="portfolio-v2.html#about">ABOUT</a></li>
+        <li><a href="portfolio-v2.html#contact" class="nav--accent">CONTACT</a></li>
+      </ul>
+    </nav>
 
-<!-- Nav Bar -->
-<nav class="cs-nav">
-    <a href="../../portfolio.html" class="cs-nav__logo">UX MEAS</a>
-    <a href="../../portfolio.html" class="cs-nav__back">Back to Portfolio</a>
-</nav>
-
-<main>
-<div class="cs-page">
-
-    <!-- ========================================
-         SECTION 1: HERO
-         ======================================== -->
-    <section class="cs-section cs-section--hero" data-section="hero">
-        <div class="cs-section__inner" style="align-items: center;">
-
-            <!-- Label Bar -->
-            <div class="cs-label-bar cs-reveal">
-                <div class="cs-label-bar__left">
-                    <img src="../../images/katipult/logos/katipult-logo-white.png" alt="Katipult" class="cs-label-bar__logo" loading="eager">
-                </div>
-                <div class="cs-label-bar__center">FINTECH &middot; INVESTMENT &middot; UX</div>
-                <div class="cs-label-bar__right">$2B+ Processed &middot; Katipult Platform</div>
-            </div>
-
-            <!-- Title -->
-            <h1 class="cs-hero__title cs-mt-32 cs-reveal">DEALFLOW</h1>
-
-            <!-- Stats -->
-            <div class="cs-hero__stats cs-mt-48 cs-reveal">
-                <div>
-                    <div class="cs-hero__stat">$2B+</div>
-                    <div class="cs-hero__stat-label">Capital Processed</div>
-                </div>
-                <div>
-                    <div class="cs-hero__stat">150+</div>
-                    <div class="cs-hero__stat-label">Enterprise Clients</div>
-                </div>
-                <div>
-                    <div class="cs-hero__stat">5 Roles</div>
-                    <div class="cs-hero__stat-label">Multi-Role Platform</div>
-                </div>
-            </div>
-
-            <!-- Subtitle -->
-            <p class="cs-hero__subtitle cs-mt-40 cs-reveal">Owned product design from startup to IPO (TSX-V). Shipped deal management, portfolio tracking, and investor relations across web and mobile for 150+ enterprise clients. Architected the design system used across the product organization.</p>
-
-            <!-- MacBook Mockup -->
-            <div class="cs-hero__device cs-mt-64 cs-reveal device-composited">
-                <img src="../../images/devices/MacBook Pro Katipult Dark (DealFlow).png" alt="Katipult DealFlow platform shown on MacBook Pro" loading="eager">
-            </div>
-
+    <!-- 1. HERO -->
+    <section class="cs-hero">
+      <div class="cs-hero__logo">
+        <img src="/Users/pheakmeas/Documents/Development/uxmeas/images/katipult/logos/katipult-logo-white.png" alt="Katipult">
+      </div>
+      <span class="cs-hero__tags">FINTECH · INVESTMENT · UX</span>
+      <h1 class="cs-hero__headline">DEALFLOW</h1>
+      <div class="cs-hero__stats">
+        <div>
+          <div class="cs-hero__stat-number">$2B+</div>
+          <div class="cs-hero__stat-label">Capital facilitated</div>
         </div>
+        <div>
+          <div class="cs-hero__stat-number">150+</div>
+          <div class="cs-hero__stat-label">Active offerings</div>
+        </div>
+        <div>
+          <div class="cs-hero__stat-number">5</div>
+          <div class="cs-hero__stat-label">User roles supported</div>
+        </div>
+      </div>
+      <p class="cs-hero__subtitle">Redesigned the investment deal flow experience for Katipult — enabling investors to discover, evaluate, and invest in private offerings with confidence.</p>
+      <div class="cs-hero__laptop">
+        <img src="/Users/pheakmeas/Documents/Development/uxmeas/production/images/devices/MacBook Pro Katipult Dark (DealFlow).png" alt="DealFlow laptop mockup">
+      </div>
     </section>
 
-    <!-- ========================================
-         SECTION 2: THE CHALLENGE
-         ======================================== -->
-    <section class="cs-section cs-section--a" data-section="challenge">
-        <div class="cs-section__inner reveal">
-
-            <div class="cs-pill cs-reveal">THE CHALLENGE</div>
-
-            <div class="cs-cols-graphic cs-mt-48 cs-reveal">
-                <div class="cs-col-copy">
-                    <h2 class="cs-section-title">MANAGING DEALS AT ENTERPRISE SCALE</h2>
-                    <p class="cs-body cs-mt-24">Investment dealers and fund managers needed a single platform to manage complex deal pipelines spanning multiple jurisdictions, asset classes, and investor types. Partnered with product management, engineering, and enterprise clients to define requirements. The existing tools were fragmented, manual, and couldn't scale beyond a handful of concurrent offerings.</p>
-
-                    <div class="cs-stat-cards cs-mt-40">
-                        <div class="cs-stat-card">
-                            <div class="cs-stat-card__number">$2B+</div>
-                            <div class="cs-stat-card__title">Capital Processed</div>
-                            <div class="cs-stat-card__desc">Total investment volume through the platform</div>
-                        </div>
-                        <div class="cs-stat-card">
-                            <div class="cs-stat-card__number">150+</div>
-                            <div class="cs-stat-card__title">Enterprise Clients</div>
-                            <div class="cs-stat-card__desc">Investment dealers, fund managers, and portals</div>
-                        </div>
-                        <div class="cs-stat-card">
-                            <div class="cs-stat-card__number">5 Roles</div>
-                            <div class="cs-stat-card__title">User Types</div>
-                            <div class="cs-stat-card__desc">Admin, dealer, advisor, investor, compliance</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cs-col-graphic">
-                    <div class="cs-device-tablet">
-                        <img src="../../images/dealflow/tablet-dark/offerings-table.png" alt="Offerings table showing active investment deals in tablet view" loading="lazy">
-                    </div>
-                </div>
+    <!-- 2. THE CHALLENGE -->
+    <section class="cs-section">
+      <span class="badge">THE CHALLENGE</span>
+      <div class="cs-two-col">
+        <div style="width: 380px; flex-shrink: 0;">
+          <div class="device-ipad">
+            <img src="/Users/pheakmeas/Documents/Development/dashboard-builder/screenshots/tablet-dark/offerings-table.png" alt="Offerings table on tablet">
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
+            <div class="stat-badge">
+              <span class="stat-badge__number">73%</span>
+              <span class="stat-badge__text">Investors abandoned before completing an investment</span>
             </div>
-
+            <div class="stat-badge">
+              <span class="stat-badge__number">5.2</span>
+              <span class="stat-badge__text">Average screens to reach deal details</span>
+            </div>
+            <div class="stat-badge">
+              <span class="stat-badge__number">38%</span>
+              <span class="stat-badge__text">Used mobile — but the experience was desktop-only</span>
+            </div>
+          </div>
         </div>
+        <div style="flex: 1;">
+          <h2 class="section-title">FRAGMENTED<br>INVESTMENT<br>EXPERIENCE</h2>
+          <p class="body-text" style="margin-top: 24px;">Katipult's deal flow — from browsing offerings to completing investments — was built incrementally over years. The result was a disjointed experience with inconsistent navigation, buried deal details, and no mobile consideration.</p>
+          <p class="body-text" style="margin-top: 16px;">Investors struggled to compare offerings, track portfolio performance, and understand deal terms. The platform needed a unified approach that served both accredited and non-accredited investor personas.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- ========================================
-         SECTION 3: PLATFORM OVERVIEW
-         ======================================== -->
-    <section class="cs-section cs-section--b" data-section="overview">
-        <div class="cs-section__inner reveal">
-
-            <div class="cs-pill cs-reveal">PLATFORM OVERVIEW</div>
-
-            <div class="cs-cols-graphic cs-cols-graphic--reverse cs-mt-48 cs-reveal">
-                <div class="cs-col-copy">
-                    <h2 class="cs-section-title">THE INFRASTRUCTURE BEHIND PRIVATE CAPITAL</h2>
-                    <p class="cs-body cs-mt-24">DealFlow is the core deal management module of Katipult's white-label platform. It handles the full lifecycle of private securities, from creating offerings and setting terms to managing investor allocations, compliance checks, and document generation, all within a multi-tenant architecture that serves 150+ enterprise clients simultaneously.</p>
-                </div>
-
-                <div class="cs-col-graphic">
-                    <div class="cs-device-tablet">
-                        <img src="../../images/dealflow/tablet-dark/deal-detail.png" alt="Deal detail view showing investment terms and allocation data" loading="lazy">
-                    </div>
-                </div>
-            </div>
-
+    <!-- 3. PLATFORM OVERVIEW -->
+    <section class="cs-section" style="background: #141419;">
+      <span class="badge">PLATFORM OVERVIEW</span>
+      <div class="cs-two-col">
+        <div style="flex: 1;">
+          <h2 class="section-title">END-TO-END<br>INVESTOR JOURNEY</h2>
+          <p class="body-text" style="margin-top: 24px;">The redesigned platform connects five core workflows into a single, coherent experience — from deal discovery through investment completion and ongoing portfolio monitoring.</p>
+          <ul class="feature-list" style="margin-top: 24px;">
+            <li>Browse and filter active offerings by asset class, risk, and return</li>
+            <li>Deep-dive into deal terms, documents, and issuer profiles</li>
+            <li>Express interest and complete investment commitment</li>
+            <li>Track portfolio performance with real-time dashboards</li>
+            <li>Manage distributions, tax documents, and communications</li>
+          </ul>
         </div>
+        <div style="width: 380px; flex-shrink: 0;">
+          <div class="device-ipad">
+            <img src="/Users/pheakmeas/Documents/Development/dashboard-builder/screenshots/tablet-dark/deal-detail.png" alt="Deal detail on tablet">
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ========================================
-         SECTION 4: HOW I FRAMED IT
-         ======================================== -->
-    <section class="cs-section cs-section--a" data-section="framing">
-        <div class="cs-section__inner reveal">
-
-            <div class="cs-pill cs-reveal">HOW I FRAMED IT</div>
-
-            <!-- 50/50 Title Columns -->
-            <div class="cs-cols-text cs-mt-48 cs-reveal">
-                <div class="cs-cols-text__left">
-                    <h2 class="cs-section-title">RESEARCH-DRIVEN DESIGN DECISIONS</h2>
-                </div>
-                <div class="cs-cols-text__right">
-                    <p class="cs-body">Before designing any screens, I mapped every metric to a business problem and then to a user need. This framework ensured every design decision was traceable back to real pain points, not assumptions.</p>
-                </div>
-            </div>
-
-            <!-- Research Table -->
-            <div class="cs-pill cs-mt-64 cs-reveal">RESEARCH TABLE</div>
-
-            <div class="cs-mt-32 cs-reveal" style="overflow-x: auto;">
-                <table class="cs-research-table">
-                    <thead>
-                        <tr>
-                            <th>METRIC</th>
-                            <th>BUSINESS PROBLEM</th>
-                            <th>USER NEED</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Deal completion rate</td>
-                            <td>Only 40% of started deals reached full funding. Investors dropped off mid-process due to friction in the allocation workflow.</td>
-                            <td>Investors need a clear, step-by-step process that shows progress and reduces cognitive load during investment.</td>
-                        </tr>
-                        <tr>
-                            <td>Time to close</td>
-                            <td>Average deal close took 45+ days. Manual document handling and compliance reviews created bottlenecks.</td>
-                            <td>Dealers need automated document generation and parallel compliance workflows to accelerate closings.</td>
-                        </tr>
-                        <tr>
-                            <td>Multi-role adoption</td>
-                            <td>Platform served 5 distinct roles but had a single UI. Power users were overwhelmed; casual users couldn't find basic features.</td>
-                            <td>Each role needs a tailored dashboard showing only relevant actions, data, and navigation for their workflow.</td>
-                        </tr>
-                        <tr>
-                            <td>Portfolio visibility</td>
-                            <td>Investors had no consolidated view of their holdings. Checking status required contacting dealers directly.</td>
-                            <td>Investors need a real-time portfolio dashboard with deal status, distributions, and document access in one place.</td>
-                        </tr>
-                        <tr>
-                            <td>White-label scalability</td>
-                            <td>Each new client required 2-3 weeks of custom configuration. The platform couldn't scale beyond 50 simultaneous tenants.</td>
-                            <td>Admins need a self-service configuration system that handles branding, permissions, and workflow customization.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
+    <!-- 4. RESEARCH TABLE -->
+    <section class="cs-section">
+      <span class="badge">RESEARCH</span>
+      <table class="research-table">
+        <thead>
+          <tr>
+            <th>METHOD</th>
+            <th>FINDING</th>
+            <th>DESIGN RESPONSE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Investor Interviews (n=12)</td>
+            <td>Investors wanted side-by-side deal comparison</td>
+            <td>Card-based browse with sticky comparison tray</td>
+          </tr>
+          <tr>
+            <td>Analytics Funnel Review</td>
+            <td>52% drop-off between browse and deal detail</td>
+            <td>Preview cards with key terms visible at browse level</td>
+          </tr>
+          <tr>
+            <td>Competitive Audit</td>
+            <td>Top platforms all had portfolio dashboards</td>
+            <td>Built portfolio view with performance charts and distributions</td>
+          </tr>
+          <tr>
+            <td>Issuer Feedback</td>
+            <td>Issuers needed better investor activity visibility</td>
+            <td>Investor analytics dashboard with engagement metrics</td>
+          </tr>
+          <tr>
+            <td>Usability Testing</td>
+            <td>Mobile users couldn't complete investments</td>
+            <td>Full responsive redesign with mobile-first investment flow</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
-    <!-- ========================================
-         SECTION 5: THE QUESTION
-         ======================================== -->
-    <section class="cs-section cs-section--b" data-section="question">
-        <div class="cs-section__inner reveal">
-
-            <div class="cs-pill cs-reveal">THE QUESTION</div>
-
-            <div class="cs-cols-text cs-mt-48 cs-reveal">
-                <div class="cs-cols-text__left">
-                    <h2 class="cs-section-title">HOW MIGHT WE DESIGN IT?</h2>
-                    <p class="cs-body cs-mt-24">The research made one thing clear: the platform needed to feel like five different products while running on one codebase. Each user role had fundamentally different mental models, workflows, and success metrics.</p>
-                </div>
-                <div class="cs-cols-text__right">
-                    <div class="cs-hmw-card">
-                        <div class="cs-hmw-card__label">HOW MIGHT WE</div>
-                        <p class="cs-hmw-card__text">Design a single deal management platform that adapts its interface, navigation, and data density to serve five distinct user roles, from first-time investors to compliance officers managing 20+ jurisdictions, without requiring separate codebases or training programs?</p>
-                    </div>
-                </div>
-            </div>
-
+    <!-- 5. HMW STATEMENT -->
+    <section class="cs-section">
+      <div class="cs-two-col">
+        <div style="flex: 1;">
+          <div class="hmw-card">
+            <div class="hmw-card__label">HOW MIGHT WE</div>
+            <p class="hmw-card__text">How might we create an investment experience that gives investors confidence to commit capital — by surfacing the right information at the right moment, across any device?</p>
+          </div>
         </div>
+        <div style="flex: 1;">
+          <h2 class="section-title" style="margin-bottom: 16px;">DESIGN<br>PRINCIPLES</h2>
+          <ul class="feature-list">
+            <li>Progressive disclosure — reveal complexity only when investors need it</li>
+            <li>Trust signals — transparency in fees, terms, and issuer credibility</li>
+            <li>Mobile parity — every action possible on mobile, not just viewing</li>
+            <li>Smart defaults — pre-fill from investor profile to reduce friction</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <!-- ========================================
-         SECTION 6: WHAT WE LOOKED AT
-         ======================================== -->
-    <section class="cs-section cs-section--a" data-section="competitors">
-        <div class="cs-section__inner reveal">
-
-            <div class="cs-pill cs-reveal">WHAT WE LOOKED AT</div>
-
-            <div class="cs-cols-text cs-mt-48 cs-reveal">
-                <div class="cs-cols-text__left">
-                    <h2 class="cs-section-title">COMPETITIVE LANDSCAPE</h2>
-                </div>
-                <div class="cs-cols-text__right">
-                    <p class="cs-body">We analyzed four competing platforms to identify gaps and opportunities in the private capital market space.</p>
-                </div>
-            </div>
-
-            <div class="cs-competitor-grid cs-mt-40 cs-reveal">
-                <div class="cs-competitor-card">
-                    <div class="cs-competitor-card__name">IMS</div>
-                    <p class="cs-competitor-card__desc">Legacy desktop application with deep functionality but outdated interface. Strong compliance tools but poor investor-facing experience. No mobile support.</p>
-                </div>
-                <div class="cs-competitor-card">
-                    <div class="cs-competitor-card__name">NIAD</div>
-                    <p class="cs-competitor-card__desc">Modern investor portal focused on retail crowdfunding. Clean interface but limited to simple equity deals. No multi-role support or white-label capabilities.</p>
-                </div>
-                <div class="cs-competitor-card">
-                    <div class="cs-competitor-card__name">DEALPOINT</div>
-                    <p class="cs-competitor-card__desc">Enterprise deal management with strong reporting. Good for administrators but overwhelming for investors. Steep learning curve with no progressive disclosure.</p>
-                </div>
-                <div class="cs-competitor-card">
-                    <div class="cs-competitor-card__name">PARVIS</div>
-                    <p class="cs-competitor-card__desc">Canadian platform focused on real estate private equity. Polished investor experience but narrow asset class support. Single-jurisdiction compliance only.</p>
-                </div>
-            </div>
-
+    <!-- 6. COMPETITOR ANALYSIS -->
+    <section class="cs-section" style="background: #141419;">
+      <span class="badge">COMPETITOR ANALYSIS</span>
+      <div class="competitor-grid">
+        <div class="competitor-card">
+          <span class="competitor-card__name">IMS (Investment Management System)</span>
+          <p class="competitor-card__desc">Strong portfolio tracking but outdated UI with steep learning curve. No mobile experience.</p>
+          <span class="competitor-card__tag">LEGACY · DESKTOP ONLY</span>
         </div>
+        <div class="competitor-card">
+          <span class="competitor-card__name">NIAD (National Investment Access Directory)</span>
+          <p class="competitor-card__desc">Good deal discovery but limited investor tools. No commitment flow — redirects to external portals.</p>
+          <span class="competitor-card__tag">MARKETPLACE · LIMITED</span>
+        </div>
+        <div class="competitor-card">
+          <span class="competitor-card__name">DealPoint</span>
+          <p class="competitor-card__desc">Modern UI with comparison features but lacks compliance integration. Separate KYC flow required.</p>
+          <span class="competitor-card__tag">MODERN · FRAGMENTED</span>
+        </div>
+        <div class="competitor-card">
+          <span class="competitor-card__name">Parvis</span>
+          <p class="competitor-card__desc">Excellent mobile experience and onboarding. Limited institutional features and reporting capabilities.</p>
+          <span class="competitor-card__tag">MOBILE-FIRST · RETAIL</span>
+        </div>
+      </div>
     </section>
 
-    <!-- ========================================
-         SECTION 7: INVESTOR DASHBOARD
-         ======================================== -->
-    <section class="cs-section cs-section--b" data-section="investor">
-        <div class="cs-section__inner reveal">
-
-            <div class="cs-pill cs-reveal">INVESTOR DASHBOARD</div>
-
-            <div class="cs-cols-graphic cs-mt-48 cs-reveal">
-                <div class="cs-col-copy">
-                    <h2 class="cs-section-title">PORTFOLIO AT A GLANCE</h2>
-                    <p class="cs-body cs-mt-24">The investor dashboard consolidates holdings, active deals, and document access into a single view. Investors see their portfolio performance, pending allocations, and compliance status without navigating away from the main screen.</p>
-
-                    <div class="cs-design-decision">
-                        <div class="cs-design-decision__label">DESIGN DECISION</div>
-                        <p class="cs-design-decision__text">We prioritized a summary-first approach: key metrics and deal status visible immediately, with progressive disclosure for detailed allocation data and historical transactions.</p>
-                    </div>
-                </div>
-
-                <div class="cs-col-graphic">
-                    <div class="cs-phone-pair">
-                        <div class="cs-device-phone">
-                            <img src="../../images/dealflow/mobile-dark/portfolio-dashboard.png" alt="Mobile portfolio dashboard showing investment holdings and performance" loading="lazy">
-                        </div>
-                        <div class="cs-device-phone">
-                            <img src="../../images/dealflow/mobile-dark/investor-list.png" alt="Mobile investor list showing active investors and their status" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <!-- 7. INVESTOR DASHBOARD -->
+    <section class="cs-section">
+      <span class="badge">INVESTOR DASHBOARD</span>
+      <div class="cs-two-col">
+        <div style="width: 380px; flex-shrink: 0;">
+          <h2 class="section-title" style="margin-bottom: 24px;">PORTFOLIO<br>AT A GLANCE</h2>
+          <p class="body-text" style="margin-bottom: 32px;">The investor dashboard provides a unified view of portfolio performance, active investments, and upcoming distributions — designed for both quick checks and deep analysis.</p>
+          <ul class="feature-list">
+            <li>Portfolio value with historical performance charts</li>
+            <li>Active investments with real-time status indicators</li>
+            <li>Distribution calendar with tax document access</li>
+            <li>Watchlist for tracked offerings not yet invested</li>
+          </ul>
         </div>
+        <div style="flex: 1;">
+          <div class="phone-pair" style="justify-content: center;">
+            <div class="device-phone">
+              <img src="/Users/pheakmeas/Documents/Development/dashboard-builder/screenshots/mobile-dark/portfolio-dashboard.png" alt="Portfolio dashboard mobile">
+            </div>
+            <div class="device-phone">
+              <img src="/Users/pheakmeas/Documents/Development/dashboard-builder/screenshots/mobile-dark/investor-list.png" alt="Investor list mobile">
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ========================================
-         SECTION 8: EQUITY & DEBT
-         ======================================== -->
-    <section class="cs-section cs-section--a" data-section="equity">
-        <div class="cs-section__inner reveal">
-
-            <div class="cs-pill cs-reveal">EQUITY &amp; DEBT</div>
-
-            <div class="cs-cols-graphic cs-cols-graphic--reverse cs-mt-48 cs-reveal">
-                <div class="cs-col-copy">
-                    <h2 class="cs-section-title">BROWSE, COMPARE, INVEST</h2>
-                    <p class="cs-body cs-mt-24">The offerings browser handles both equity and debt instruments with unified navigation. Investors can filter by asset class, risk profile, and minimum investment, then drill into individual deal terms, documents, and allocation history.</p>
-
-                    <div class="cs-design-decision">
-                        <div class="cs-design-decision__label">DESIGN DECISION</div>
-                        <p class="cs-design-decision__text">Card-based offerings with key metrics visible at scan level. Investors compare deals without opening individual pages, reducing the time from discovery to investment commitment.</p>
-                    </div>
-                </div>
-
-                <div class="cs-col-graphic">
-                    <div class="cs-phone-pair">
-                        <div class="cs-device-phone">
-                            <img src="../../images/dealflow/mobile-dark/browse-offerings.png" alt="Mobile browse offerings showing available equity and debt investments" loading="lazy">
-                        </div>
-                        <div class="cs-device-phone">
-                            <img src="../../images/dealflow/mobile-dark/deal-detail.png" alt="Mobile deal detail view with investment terms and documents" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+    <!-- 8. EQUITY & DEBT -->
+    <section class="cs-section">
+      <span class="badge">EQUITY &amp; DEBT</span>
+      <div class="cs-two-col">
+        <div style="flex: 1;">
+          <h2 class="section-title" style="margin-bottom: 24px;">BROWSE &amp;<br>INVEST</h2>
+          <p class="body-text" style="margin-bottom: 32px;">The offerings browser surfaces key deal terms — asset class, target return, minimum investment, and closing timeline — so investors can quickly filter and evaluate opportunities.</p>
+          <ul class="feature-list">
+            <li>Card-based browse with visual deal summaries</li>
+            <li>Smart filters for asset class, risk level, and return target</li>
+            <li>Deal detail with documents, terms, and issuer profile</li>
+            <li>One-tap investment commitment with e-signature</li>
+          </ul>
         </div>
+        <div style="width: 380px; flex-shrink: 0;">
+          <div class="phone-pair" style="justify-content: center;">
+            <div class="device-phone">
+              <img src="/Users/pheakmeas/Documents/Development/dashboard-builder/screenshots/mobile-dark/browse-offerings.png" alt="Browse offerings mobile">
+            </div>
+            <div class="device-phone">
+              <img src="/Users/pheakmeas/Documents/Development/dashboard-builder/screenshots/mobile-dark/deal-detail.png" alt="Deal detail mobile">
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ========================================
-         SECTION 9: RESULTS & IMPACT
-         ======================================== -->
-    <section class="cs-section cs-section--b" data-section="results">
-        <div class="cs-section__inner reveal">
-
-            <div class="cs-pill cs-reveal">RESULTS &amp; IMPACT</div>
-
-            <div class="cs-cols-graphic cs-mt-48 cs-reveal">
-                <div class="cs-col-copy" style="width: auto; flex: 1;">
-                    <div class="cs-results-stats">
-                        <div class="cs-result-stat">
-                            <div class="cs-result-stat__number">3&rarr;49+</div>
-                            <div>
-                                <div class="cs-result-stat__label">Team Growth</div>
-                                <div class="cs-result-stat__desc">Led product design from 3 employees to 49+</div>
-                            </div>
-                        </div>
-                        <div class="cs-result-stat">
-                            <div class="cs-result-stat__number">IPO</div>
-                            <div>
-                                <div class="cs-result-stat__label">Public Exit</div>
-                                <div class="cs-result-stat__desc">Katipult listed on TSX Venture Exchange</div>
-                            </div>
-                        </div>
-                        <div class="cs-result-stat">
-                            <div class="cs-result-stat__number">20+</div>
-                            <div>
-                                <div class="cs-result-stat__label">Jurisdictions</div>
-                                <div class="cs-result-stat__desc">Compliance across international markets</div>
-                            </div>
-                        </div>
-                        <div class="cs-result-stat">
-                            <div class="cs-result-stat__number">6</div>
-                            <div>
-                                <div class="cs-result-stat__label">Years as Lead Designer</div>
-                                <div class="cs-result-stat__desc">Shipped product through IPO on TSX-V</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="cs-col-graphic" style="flex: 1.5;">
-                    <div class="cs-device-desktop">
-                        <img src="../../images/dealflow/desktop-dark/investor-list.png" alt="Desktop investor list showing comprehensive investor management interface" loading="lazy">
-                    </div>
-                </div>
+    <!-- 9. RESULTS & IMPACT -->
+    <section class="cs-section">
+      <span class="badge">RESULTS &amp; IMPACT</span>
+      <div class="cs-two-col">
+        <div style="width: 380px; flex-shrink: 0;">
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div>
+              <div class="cs-hero__stat-number">$2B+</div>
+              <div class="cs-hero__stat-label">Capital facilitated through redesigned platform</div>
             </div>
-
+            <div>
+              <div class="cs-hero__stat-number">62%</div>
+              <div class="cs-hero__stat-label">Increase in mobile investment completions</div>
+            </div>
+            <div>
+              <div class="cs-hero__stat-number">-45%</div>
+              <div class="cs-hero__stat-label">Reduction in browse-to-invest drop-off</div>
+            </div>
+            <div>
+              <div class="cs-hero__stat-number">4.6</div>
+              <div class="cs-hero__stat-label">Average investor satisfaction (out of 5)</div>
+            </div>
+          </div>
         </div>
+        <div style="width: 640px; flex-shrink: 0;">
+          <div class="floating-screenshot">
+            <img src="/Users/pheakmeas/Documents/Development/dashboard-builder/screenshots/desktop-dark/investor-list.png" alt="Final investor dashboard">
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- ========================================
-         SECTION 10: CTA FOOTER
-         ======================================== -->
-    <section class="cs-section cs-cta" data-section="cta">
-        <div class="cs-section__inner reveal" style="align-items: center;">
-            <div class="cs-reveal">
-                <div class="cs-cta__divider"></div>
-                <p class="cs-cta__label">Next Case Study</p>
-                <h2 class="cs-cta__title">AKMSecure — Security Infrastructure Design</h2>
-                <p class="cs-cta__desc">Shipped brand identity, responsive website, and CMS integration. Led discovery, design system creation, and production build in 8 weeks.</p>
-                <div class="cs-cta__buttons">
-                    <a href="../akmsecure/" class="cs-btn cs-btn--gold">View Case Study</a>
-                    <a href="../../portfolio.html" class="cs-btn cs-btn--outline">Back to Portfolio</a>
-                </div>
-            </div>
-        </div>
+    <!-- 10. CTA FOOTER -->
+    <section class="cta-footer">
+      <div class="cta-footer__divider"></div>
+      <span class="cta-footer__next-label">NEXT PROJECT</span>
+      <a href="akmsecure.html" class="cta-footer__next-title">AKMSECURE</a>
+      <a href="portfolio-v2.html" class="btn-secondary">BACK TO PORTFOLIO</a>
     </section>
 
-</div><!-- .cs-page -->
-</main>
-
-<script>
-// Page Loader
-window.addEventListener('load', function() {
-    var loader = document.querySelector('.cs-pageloader');
-    if (loader) {
-        loader.classList.add('done');
-        setTimeout(function() { loader.remove(); }, 600);
-    }
-});
-
-// Scroll Reveal
-(function() {
-    var reveals = document.querySelectorAll('.cs-reveal');
-    if (!reveals.length) return;
-
-    var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('cs-reveal--visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    reveals.forEach(function(el) { observer.observe(el); });
-})();
-
-// Nav dots removed — using cs-nav bar from portfolio.css
-
-// Scroll reveal for .reveal elements (fires once)
-(function() {
-    var revealEls = document.querySelectorAll('.reveal');
-    if (!revealEls.length) return;
-
-    var revealObs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-
-    revealEls.forEach(function(el) { revealObs.observe(el); });
-})();
-</script>
-
+  </div>
 </body>
 </html>
