@@ -44,7 +44,8 @@
 
     /* === BADGE (pill) === */
     .badge {
-      display: inline-block;
+      display: block;
+      width: max-content;
       font-family: 'Bebas Neue', cursive;
       font-size: 14px;
       letter-spacing: 6px;
@@ -127,7 +128,7 @@
     .cs-hero { padding: 100px 120px 60px; display: flex; flex-direction: column; }
     .cs-hero__top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
     .cs-hero__logo img { height: 34px; width: 140px; object-fit: contain; }
-    .cs-hero__tags { display: flex; gap: 8px; justify-content: center; align-items: center; flex: 1; }
+    .cs-hero__tags { display: flex; gap: 8px; justify-content: center; align-items: center; padding-top: 16px; }
     .cs-hero__tags span { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 4px; color: var(--gold); }
     .cs-hero__tags .dot { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-muted); letter-spacing: 0; }
     .cs-hero__meta { display: flex; gap: 24px; justify-content: flex-end; align-items: center; flex: 1; }
@@ -208,9 +209,41 @@
     .flow-card__desc { font-size: 16px; line-height: 1.5; color: var(--text-muted); }
 
     /* === DEVICE FRAMES === */
-    .device-ipad { width: 376px; height: 502px; border-radius: 10px; border: 3px solid var(--border); overflow: hidden; }
-    .device-ipad img { width: 100%; height: 100%; object-fit: cover; }
-    .device-phone img { width: 100%; height: 480px; object-fit: contain; }
+    .device-ipad {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      border: 6px solid #1a1a2e;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+      overflow: hidden;
+      margin: 0 auto;
+      background: #0A0F1A;
+    }
+    .device-ipad img { width: 100%; height: auto; display: block; }
+    .device-phone {
+      width: 170px;
+      aspect-ratio: 9 / 19;
+      border-radius: 22px;
+      border: 6px solid #1a1a2e;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+      overflow: hidden;
+      background: #0A0F1A;
+    }
+    .device-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .phone-pair {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: center;
+    }
+    .device-browser {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      overflow: hidden;
+    }
+    .device-browser img { width: 100%; height: 100%; object-fit: contain; background: #0A0F1A; }
 
     /* === FEATURES LIST === */
     .features-list { display: flex; flex-direction: column; gap: 20px; padding-top: 32px; }
@@ -279,7 +312,7 @@
       .cs-hero__stats { flex-direction: column; gap: 24px; }
       .cs-hero__stat-number { font-size: 48px; }
       .cs-hero__laptop-wrap img { height: auto; }
-      .device-ipad { width: 100%; height: auto; aspect-ratio: 376/502; }
+      .device-ipad { max-width: 100%; }
     }
   </style>
 </head>
@@ -288,11 +321,11 @@
 
     <!-- NAV -->
     <nav class="nav">
-      <a class="nav__logo" href="portfolio-v2.html">UX MEAS</a>
+      <a class="nav__logo" href="../../">UX MEAS</a>
       <ul class="nav__links">
-        <li><a href="portfolio-v2.html">WORK</a></li>
-        <li><a href="portfolio-v2.html#about">ABOUT</a></li>
-        <li><a href="portfolio-v2.html#contact" class="nav--accent">CONTACT</a></li>
+        <li><a href="../../">WORK</a></li>
+        <li><a href="../../#about">ABOUT</a></li>
+        <li><a href="../../#contact" class="nav--accent">CONTACT</a></li>
       </ul>
     </nav>
 
@@ -301,13 +334,6 @@
       <div class="cs-hero__top">
         <div class="cs-hero__logo">
           <img src="../../images/katipult/logos/katipult-logo-white.png" alt="Katipult">
-        </div>
-        <div class="cs-hero__tags">
-          <span>FINTECH</span>
-          <span class="dot">&middot;</span>
-          <span>COMPLIANCE</span>
-          <span class="dot">&middot;</span>
-          <span>UX</span>
         </div>
         <div class="cs-hero__meta">
           <span>20+ Jurisdictions</span>
@@ -318,6 +344,13 @@
 
       <div class="cs-hero__title-wrap">
         <h1 class="cs-hero__headline">Compliance UX</h1>
+        <div class="cs-hero__tags">
+          <span>FINTECH</span>
+          <span class="dot">&middot;</span>
+          <span>COMPLIANCE</span>
+          <span class="dot">&middot;</span>
+          <span>UX</span>
+        </div>
       </div>
 
       <div class="cs-hero__stats">
@@ -340,7 +373,7 @@
       </div>
 
       <div class="cs-hero__laptop-wrap">
-        <img src="../../images/devices/MacBook Pro Katipult (Compliance UX).png" alt="Compliance UX laptop mockup">
+        <img src="../../images/case-studies/compliance-ux/hero-laptop.png" alt="Compliance UX laptop mockup">
       </div>
     </section>
 
@@ -427,9 +460,14 @@
           <p class="body-text" style="margin-top: 32px;">From 45 minutes of paperwork to a streamlined 12-minute digital flow. Every screen designed to reduce cognitive load while maintaining full regulatory compliance.</p>
           <p class="body-text" style="margin-top: 24px;">The flow guides investors through five progressive stages. Each stage validates before advancing, so users never encounter dead ends or surprise requirements.</p>
         </div>
-        <div class="cs-col-fill">
-          <div class="device-phone">
-            <img src="../../images/devices/2 Phone Katipult (Compliance UX).png" alt="Phone mockup — compliance flow">
+        <div class="cs-col-fill" style="display:flex; justify-content:center; align-items:center;">
+          <div class="phone-pair">
+            <div class="device-phone">
+              <img src="../../images/case-studies/compliance-ux/userflow-phones-1.png" alt="KYC onboarding step 1">
+            </div>
+            <div class="device-phone">
+              <img src="../../images/case-studies/compliance-ux/userflow-phones-2.png" alt="KYC onboarding step 2">
+            </div>
           </div>
         </div>
       </div>
@@ -485,7 +523,7 @@
       <div class="cs-two-col">
         <div class="cs-col-fill" style="display:flex;align-items:center;justify-content:center;">
           <div class="device-ipad">
-            <img src="../../images/katipult/confirm-order-signing.png" alt="KSign ceremony on iPad">
+            <img src="../../images/case-studies/compliance-ux/ksign-ipad.png" alt="KSign ceremony on iPad">
           </div>
         </div>
         <div class="cs-col-right--380">
@@ -532,18 +570,18 @@
 
       <div class="gallery-row">
         <div class="gallery-item">
-          <img src="../../images/katipult/v2/v2-kyc-personal-info.png" alt="KYC Personal Information">
+          <img src="../../images/case-studies/compliance-ux/showcase-1.png" alt="KYC Personal Information">
         </div>
         <div class="gallery-item">
-          <img src="../../images/katipult/v2/v2-kyc-document-upload.png" alt="KYC Document Upload">
+          <img src="../../images/case-studies/compliance-ux/showcase-2.png" alt="KYC Document Upload">
         </div>
       </div>
       <div class="gallery-row">
         <div class="gallery-item">
-          <img src="../../images/katipult/v2/v2-kyc-selfie.png" alt="KYC Selfie Verification">
+          <img src="../../images/case-studies/compliance-ux/showcase-3.png" alt="KYC Selfie Verification">
         </div>
         <div class="gallery-item">
-          <img src="../../images/katipult/v2/v2-kyc-accreditation.png" alt="KYC Accreditation">
+          <img src="../../images/case-studies/compliance-ux/showcase-4.png" alt="KYC Accreditation">
         </div>
       </div>
     </section>
@@ -573,7 +611,7 @@
         </div>
         <div class="cs-col-fill">
           <div class="floating-screenshot">
-            <img src="../../images/compliance/desktop-light/compliance-overview.png" alt="Compliance Overview Dashboard">
+            <img src="../../images/case-studies/compliance-ux/results-dashboard.png" alt="Compliance Overview Dashboard">
           </div>
         </div>
       </div>
@@ -584,7 +622,7 @@
       <div class="cta-footer__divider"></div>
       <h2 class="section-title">Next Case Study</h2>
       <span class="cta-footer__sub">DealFlow — Startup to IPO</span>
-      <p class="cta-footer__desc">Owned product design from startup to IPO. Deal management, portfolio tracking, and investor relations shipped across web and mobile. $50M+ processed.</p>
+      <p class="cta-footer__desc">Owned product design from startup to IPO (TSX-V). Deal management, portfolio tracking, and investor relations shipped across web and mobile. $2B+ processed.</p>
       <div class="cta-footer__buttons">
         <a href="/case-study/dealflow/" class="btn-primary">VIEW DEALFLOW CASE STUDY</a>
         <a href="/" class="btn-secondary">BACK TO PORTFOLIO</a>

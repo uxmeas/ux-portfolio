@@ -40,11 +40,23 @@
         #141419;
     }
 
-    .page-wrap { width: 100%; max-width: 1440px; margin: 0 auto; overflow: hidden; }
+    .page-wrap {
+      width: 100%; max-width: 1440px; margin: 0 auto; overflow: hidden;
+      background:
+        radial-gradient(circle 700px at 60% 6%, #243352 0%, transparent 100%),
+        radial-gradient(circle 700px at 25% 20%, #1E2D45 0%, transparent 100%),
+        radial-gradient(circle 700px at 75% 35%, #243352 0%, transparent 100%),
+        radial-gradient(circle 700px at 30% 50%, #1E2D45 0%, transparent 100%),
+        radial-gradient(circle 700px at 70% 65%, #243352 0%, transparent 100%),
+        radial-gradient(circle 700px at 40% 80%, #1E2D45 0%, transparent 100%),
+        radial-gradient(circle 700px at 50% 93%, #243352 0%, transparent 100%),
+        #141419;
+    }
 
     /* === COMMON === */
     .badge {
-      display: inline-block;
+      display: block;
+      width: max-content;
       font-family: 'Bebas Neue', cursive;
       font-size: 14px;
       letter-spacing: 6px;
@@ -122,6 +134,8 @@
       min-height: 1330px;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      text-align: center;
       gap: 32px;
     }
     .cs-hero__logo img { height: 34px; width: 140px; object-fit: contain; }
@@ -142,6 +156,7 @@
       display: flex;
       gap: 64px;
       margin-top: 16px;
+      justify-content: center;
     }
     .cs-hero__stat-number {
       font-family: 'Bebas Neue', cursive;
@@ -226,25 +241,31 @@
 
     /* === DEVICE FRAMES === */
     .device-ipad {
-      width: 376px;
-      height: 502px;
-      border-radius: 10px;
-      border: 3px solid var(--border);
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      border: 6px solid #1a1a2e;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
       overflow: hidden;
-      flex-shrink: 0;
+      margin: 0 auto;
+      background: #0A0F1A;
     }
-    .device-ipad img { width: 100%; height: 100%; object-fit: cover; }
+    .device-ipad img { width: 100%; height: auto; display: block; }
     .device-phone {
-      width: 195px;
-      height: 420px;
-      border-radius: 8px;
-      border: 3px solid var(--border);
+      width: 170px;
+      aspect-ratio: 9 / 19;
+      border-radius: 22px;
+      border: 6px solid #1a1a2e;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
       overflow: hidden;
+      background: #0A0F1A;
     }
-    .device-phone img { width: 100%; height: 100%; object-fit: cover; }
+    .device-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
     .phone-pair {
       display: flex;
       gap: 24px;
+      justify-content: center;
+      align-items: center;
     }
 
     /* === HMW CARD === */
@@ -384,6 +405,112 @@
       line-height: 1.05;
       color: var(--text-primary);
     }
+    .cta-footer__desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 600px;
+    }
+    .cta-footer__buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .cta-footer__site {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 24px;
+    }
+
+    /* === BREADCRUMB BAR === */
+    .cs-hero__breadcrumbs {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .cs-hero__breadcrumbs-left {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--gold);
+    }
+    .cs-hero__breadcrumbs-center {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-align: center;
+    }
+    .cs-hero__breadcrumbs-right {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: var(--text-primary);
+    }
+    .cs-hero__logo {
+      display: block;
+      max-width: 140px;
+      margin: 0 0 16px 0;
+    }
+
+    /* === DESIGN DECISION CALLOUT === */
+    .design-decision {
+      background: var(--bg-surface);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 6px 6px 0;
+      padding: 20px 24px;
+      margin-top: 24px;
+    }
+    .design-decision__label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .design-decision__text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* === RESULT STAT CARD (compact 64px) === */
+    .result-stat {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .result-stat__number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 24px;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .result-stat__text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    /* === THREE STAT CARDS ROW === */
+    .stat-cards-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .stat-cards-row .metric-card {
+      flex: 1;
+    }
   </style>
 </head>
 <body>
@@ -391,38 +518,39 @@
 
     <!-- NAV -->
     <nav class="nav">
-      <a class="nav__logo" href="portfolio-v2.html">UX MEAS</a>
+      <a class="nav__logo" href="../../">UX MEAS</a>
       <ul class="nav__links">
-        <li><a href="portfolio-v2.html">WORK</a></li>
-        <li><a href="portfolio-v2.html#about">ABOUT</a></li>
-        <li><a href="portfolio-v2.html#contact" class="nav--accent">CONTACT</a></li>
+        <li><a href="../../">WORK</a></li>
+        <li><a href="../../#about">ABOUT</a></li>
+        <li><a href="../../#contact" class="nav--accent">CONTACT</a></li>
       </ul>
     </nav>
 
     <!-- 1. HERO -->
-    <section class="cs-hero">
-      <div class="cs-hero__logo">
-        <img src="../../images/katipult/logos/katipult-logo-white.png" alt="Katipult">
+    <section class="cs-hero" style="text-align: center; align-items: center;">
+      <div class="cs-hero__breadcrumbs">
+        <img class="cs-hero__logo" src="../../images/katipult/logos/katipult-logo-white.png" alt="Katipult">
+        <span class="cs-hero__breadcrumbs-right">$2B+ Processed · Katipult Platform</span>
       </div>
-      <span class="cs-hero__tags">FINTECH · INVESTMENT · UX</span>
-      <h1 class="cs-hero__headline">DEALFLOW</h1>
-      <div class="cs-hero__stats">
+      <h1 class="cs-hero__headline" style="font-size: 80px; letter-spacing: -1px;">DEALFLOW</h1>
+      <span class="cs-hero__tags" style="margin-top: -16px;">FINTECH · INVESTMENT · UX</span>
+      <div class="cs-hero__stats" style="justify-content: center;">
         <div>
           <div class="cs-hero__stat-number">$2B+</div>
-          <div class="cs-hero__stat-label">Capital facilitated</div>
+          <div class="cs-hero__stat-label">processed</div>
         </div>
         <div>
           <div class="cs-hero__stat-number">150+</div>
-          <div class="cs-hero__stat-label">Active offerings</div>
+          <div class="cs-hero__stat-label">completed offerings</div>
         </div>
         <div>
-          <div class="cs-hero__stat-number">5</div>
-          <div class="cs-hero__stat-label">User roles supported</div>
+          <div class="cs-hero__stat-number">5 ROLES</div>
+          <div class="cs-hero__stat-label">permission types</div>
         </div>
       </div>
-      <p class="cs-hero__subtitle">Redesigned the investment deal flow experience for Katipult — enabling investors to discover, evaluate, and invest in private offerings with confidence.</p>
+      <p class="cs-hero__subtitle">Owned product design from startup to IPO (TSX-V). Shipped deal management, portfolio tracking, and investor relations across web and mobile for 150+ enterprise clients. Architected the design system used across the product organization.</p>
       <div class="cs-hero__laptop">
-        <img src="../../images/devices/MacBook Pro Katipult Dark (DealFlow).png" alt="DealFlow laptop mockup">
+        <img src="../../images/case-studies/dealflow/hero-laptop.png" alt="DealFlow laptop mockup">
       </div>
     </section>
 
@@ -431,140 +559,138 @@
       <span class="badge">THE CHALLENGE</span>
       <div class="cs-two-col">
         <div style="width: 380px; flex-shrink: 0;">
-          <div class="device-ipad">
-            <img src="../../images/katipult/v2/v2-offerings-table.png" alt="Offerings table on tablet">
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
-            <div class="stat-badge">
-              <span class="stat-badge__number">73%</span>
-              <span class="stat-badge__text">Investors abandoned before completing an investment</span>
-            </div>
-            <div class="stat-badge">
-              <span class="stat-badge__number">5.2</span>
-              <span class="stat-badge__text">Average screens to reach deal details</span>
-            </div>
-            <div class="stat-badge">
-              <span class="stat-badge__number">38%</span>
-              <span class="stat-badge__text">Used mobile — but the experience was desktop-only</span>
-            </div>
-          </div>
+          <h2 class="section-title" style="margin-bottom: 24px;">Managing deals at enterprise scale</h2>
+          <p class="body-text">Katipult is a private capital platform that manages billions in transactions across equity, debt, and fund structures. What started as an internal admin tool evolved into a white-label infrastructure serving investment dealers, exempt market dealers, and fund managers globally.</p>
+          <p class="body-text" style="margin-top: 16px;">The platform needed to scale from startup tooling to enterprise-grade deal management -- handling complex permission models, multi-jurisdiction compliance, and real-time portfolio tracking.</p>
         </div>
         <div style="flex: 1;">
-          <h2 class="section-title">FRAGMENTED<br>INVESTMENT<br>EXPERIENCE</h2>
-          <p class="body-text" style="margin-top: 24px;">Katipult's deal flow — from browsing offerings to completing investments — was built incrementally over years. The result was a disjointed experience with inconsistent navigation, buried deal details, and no mobile consideration.</p>
-          <p class="body-text" style="margin-top: 16px;">Investors struggled to compare offerings, track portfolio performance, and understand deal terms. The platform needed a unified approach that served both accredited and non-accredited investor personas.</p>
+          <div class="device-ipad" style="width: 100%; height: auto;">
+            <img src="../../images/case-studies/dealflow/challenge-ipad.png" alt="Offerings table on tablet">
+          </div>
+        </div>
+      </div>
+      <div class="stat-cards-row">
+        <div class="metric-card">
+          <span class="metric-card__number">$2B+</span>
+          <span class="metric-card__text">Transactions processed</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-card__number">150+</span>
+          <span class="metric-card__text">Completed offerings managed</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-card__number">5 ROLES</span>
+          <span class="metric-card__text">Distinct permission types</span>
         </div>
       </div>
     </section>
 
     <!-- 3. PLATFORM OVERVIEW -->
-    <section class="cs-section" style="background: #141419;">
+    <section class="cs-section" style="background: var(--bg-deep);">
       <span class="badge">PLATFORM OVERVIEW</span>
       <div class="cs-two-col">
         <div style="flex: 1;">
-          <h2 class="section-title">END-TO-END<br>INVESTOR JOURNEY</h2>
-          <p class="body-text" style="margin-top: 24px;">The redesigned platform connects five core workflows into a single, coherent experience — from deal discovery through investment completion and ongoing portfolio monitoring.</p>
-          <ul class="feature-list" style="margin-top: 24px;">
-            <li>Browse and filter active offerings by asset class, risk, and return</li>
-            <li>Deep-dive into deal terms, documents, and issuer profiles</li>
-            <li>Express interest and complete investment commitment</li>
-            <li>Track portfolio performance with real-time dashboards</li>
-            <li>Manage distributions, tax documents, and communications</li>
-          </ul>
+          <div class="device-ipad" style="width: 100%; height: auto;">
+            <img src="../../images/case-studies/dealflow/platform-ipad.png" alt="Deal detail on tablet">
+          </div>
         </div>
         <div style="width: 380px; flex-shrink: 0;">
-          <div class="device-ipad">
-            <img src="../../images/katipult/v2/v2-deal-detail.png" alt="Deal detail on tablet">
-          </div>
+          <h2 class="section-title" style="margin-bottom: 24px;">The infrastructure behind private capital</h2>
+          <p class="body-text">Katipult powers investment dealers like Canaccord Genuity and TMX Group, providing white-label infrastructure for private capital transactions across equity, debt, and fund structures.</p>
+          <p class="body-text" style="margin-top: 16px;">Co-founded as JOI Media in 2008, the company grew from 3 to 49+ employees and completed an IPO on the TSX Venture Exchange. I owned product design throughout that journey -- from early-stage startup through public listing.</p>
         </div>
       </div>
     </section>
 
-    <!-- 4. RESEARCH TABLE -->
+    <!-- 4. HOW I FRAMED IT -->
     <section class="cs-section">
-      <span class="badge">RESEARCH</span>
-      <table class="research-table">
+      <span class="badge">HOW I FRAMED IT</span>
+      <div class="cs-two-col">
+        <div style="width: 380px; flex-shrink: 0;">
+          <h2 class="section-title" style="margin-bottom: 24px;">Research-driven design decisions</h2>
+        </div>
+        <div style="flex: 1;">
+          <p class="body-text">Private capital infrastructure has no obvious design precedent. Before touching a single screen, I mapped the business problem to market reality.</p>
+        </div>
+      </div>
+      <div style="margin-top: 16px;">
+        <span class="badge">RESEARCH TABLE</span>
+      </div>
+      <table class="research-table" style="margin-top: 24px;">
         <thead>
           <tr>
-            <th>METHOD</th>
-            <th>FINDING</th>
-            <th>DESIGN RESPONSE</th>
+            <th>METRIC</th>
+            <th>BUSINESS PROBLEM</th>
+            <th>USER NEED</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Investor Interviews (n=12)</td>
-            <td>Investors wanted side-by-side deal comparison</td>
-            <td>Card-based browse with sticky comparison tray</td>
+            <td>20+ white-label deployments</td>
+            <td>Each deployment requires custom branding, compliance rules, and asset class configuration</td>
+            <td>Dealers need a platform that looks and feels like their own brand</td>
           </tr>
           <tr>
-            <td>Analytics Funnel Review</td>
-            <td>52% drop-off between browse and deal detail</td>
-            <td>Preview cards with key terms visible at browse level</td>
+            <td>150+ target accounts</td>
+            <td>Enterprise sales cycle requires demonstrable flexibility across deal types</td>
+            <td>Admins need to configure offerings without developer intervention</td>
           </tr>
           <tr>
-            <td>Competitive Audit</td>
-            <td>Top platforms all had portfolio dashboards</td>
-            <td>Built portfolio view with performance charts and distributions</td>
+            <td>6 regulatory jurisdictions</td>
+            <td>Compliance requirements vary dramatically across markets</td>
+            <td>Investors need jurisdiction-appropriate KYC flows and disclosures</td>
           </tr>
           <tr>
-            <td>Issuer Feedback</td>
-            <td>Issuers needed better investor activity visibility</td>
-            <td>Investor analytics dashboard with engagement metrics</td>
+            <td>Canaccord, TMX, etc.</td>
+            <td>Enterprise clients demand institutional-grade security and audit trails</td>
+            <td>Dealers need confidence that the platform meets their compliance standards</td>
           </tr>
           <tr>
-            <td>Usability Testing</td>
-            <td>Mobile users couldn't complete investments</td>
-            <td>Full responsive redesign with mobile-first investment flow</td>
+            <td>KYC drop-off rate</td>
+            <td>Incomplete verification blocks investment commitments and revenue</td>
+            <td>Investors need a clear, guided path through identity verification</td>
           </tr>
         </tbody>
       </table>
     </section>
 
-    <!-- 5. HMW STATEMENT -->
+    <!-- 5. THE QUESTION -->
     <section class="cs-section">
-      <div class="cs-two-col">
+      <span class="badge">THE QUESTION</span>
+      <div class="cs-two-col" style="margin-top: 8px;">
+        <div style="width: 380px; flex-shrink: 0;">
+          <h2 class="section-title" style="margin-bottom: 24px;">How might we design it?</h2>
+          <p class="body-text">The research table revealed a core tension: enterprise dealers need deep configurability, but investors need simplicity. The HMW statement frames the design challenge that guided every decision across the platform.</p>
+        </div>
         <div style="flex: 1;">
           <div class="hmw-card">
             <div class="hmw-card__label">HOW MIGHT WE</div>
-            <p class="hmw-card__text">How might we create an investment experience that gives investors confidence to commit capital — by surfacing the right information at the right moment, across any device?</p>
+            <p class="hmw-card__text">How might we design white-label private capital infrastructure flexible enough to serve 3 asset classes, 6 markets, and 20+ regulatory jurisdictions -- so that any investment dealer can deploy a fully compliant, branded investor experience without custom development?</p>
           </div>
-        </div>
-        <div style="flex: 1;">
-          <h2 class="section-title" style="margin-bottom: 16px;">DESIGN<br>PRINCIPLES</h2>
-          <ul class="feature-list">
-            <li>Progressive disclosure — reveal complexity only when investors need it</li>
-            <li>Trust signals — transparency in fees, terms, and issuer credibility</li>
-            <li>Mobile parity — every action possible on mobile, not just viewing</li>
-            <li>Smart defaults — pre-fill from investor profile to reduce friction</li>
-          </ul>
         </div>
       </div>
     </section>
 
-    <!-- 6. COMPETITOR ANALYSIS -->
-    <section class="cs-section" style="background: #141419;">
-      <span class="badge">COMPETITOR ANALYSIS</span>
-      <div class="competitor-grid">
+    <!-- 6. WHAT WE LOOKED AT -->
+    <section class="cs-section" style="background: var(--bg-deep);">
+      <span class="badge">WHAT WE LOOKED AT</span>
+      <p class="body-text" style="max-width: 800px;">We studied the competitive landscape across private capital platforms, exempt market infrastructure, and emerging retail investment tools to identify gaps and opportunities.</p>
+      <div class="competitor-grid" style="margin-top: 16px;">
         <div class="competitor-card">
-          <span class="competitor-card__name">IMS (Investment Management System)</span>
-          <p class="competitor-card__desc">Strong portfolio tracking but outdated UI with steep learning curve. No mobile experience.</p>
-          <span class="competitor-card__tag">LEGACY · DESKTOP ONLY</span>
+          <span class="competitor-card__name">IMS</span>
+          <p class="competitor-card__desc">Strong portfolio tracking but outdated UI with steep learning curve. No mobile experience. Desktop-only architecture limits dealer adoption.</p>
         </div>
         <div class="competitor-card">
-          <span class="competitor-card__name">NIAD (National Investment Access Directory)</span>
-          <p class="competitor-card__desc">Good deal discovery but limited investor tools. No commitment flow — redirects to external portals.</p>
-          <span class="competitor-card__tag">MARKETPLACE · LIMITED</span>
+          <span class="competitor-card__name">NIAD</span>
+          <p class="competitor-card__desc">Good deal discovery but limited investor tools. No commitment flow -- redirects to external portals for actual transactions.</p>
         </div>
         <div class="competitor-card">
           <span class="competitor-card__name">DealPoint</span>
-          <p class="competitor-card__desc">Modern UI with comparison features but lacks compliance integration. Separate KYC flow required.</p>
-          <span class="competitor-card__tag">MODERN · FRAGMENTED</span>
+          <p class="competitor-card__desc">Modern UI with comparison features but lacks compliance integration. Separate KYC flow required, breaking the investment journey.</p>
         </div>
         <div class="competitor-card">
           <span class="competitor-card__name">Parvis</span>
-          <p class="competitor-card__desc">Excellent mobile experience and onboarding. Limited institutional features and reporting capabilities.</p>
-          <span class="competitor-card__tag">MOBILE-FIRST · RETAIL</span>
+          <p class="competitor-card__desc">Excellent mobile experience and onboarding. Limited institutional features and reporting capabilities for enterprise dealers.</p>
         </div>
       </div>
     </section>
@@ -572,24 +698,22 @@
     <!-- 7. INVESTOR DASHBOARD -->
     <section class="cs-section">
       <span class="badge">INVESTOR DASHBOARD</span>
-      <div class="cs-two-col">
+      <div class="cs-two-col" style="align-items: center;">
         <div style="width: 380px; flex-shrink: 0;">
-          <h2 class="section-title" style="margin-bottom: 24px;">PORTFOLIO<br>AT A GLANCE</h2>
-          <p class="body-text" style="margin-bottom: 32px;">The investor dashboard provides a unified view of portfolio performance, active investments, and upcoming distributions — designed for both quick checks and deep analysis.</p>
-          <ul class="feature-list">
-            <li>Portfolio value with historical performance charts</li>
-            <li>Active investments with real-time status indicators</li>
-            <li>Distribution calendar with tax document access</li>
-            <li>Watchlist for tracked offerings not yet invested</li>
-          </ul>
+          <h2 class="section-title" style="margin-bottom: 24px;">Portfolio performance at a glance</h2>
+          <p class="body-text">The investor dashboard gives users a single view of their holdings, returns, and activity across all offerings. Designed to surface the most important information first -- total portfolio value, recent distributions, and pending actions.</p>
+          <div class="design-decision">
+            <div class="design-decision__label">DESIGN DECISION</div>
+            <p class="design-decision__text">Used a modular card layout so dealers could configure which metrics appear for their investors. Some dealers show IRR, others show simple returns -- the system adapts to each deployment.</p>
+          </div>
         </div>
-        <div style="flex: 1;">
-          <div class="phone-pair" style="justify-content: center;">
+        <div style="flex: 1; display: flex; justify-content: center;">
+          <div class="phone-pair">
             <div class="device-phone">
-              <img src="../../images/katipult/v2/v2-portfolio-dashboard.png" alt="Portfolio dashboard mobile">
+              <img src="../../images/case-studies/dealflow/dashboard-phone-1.png" alt="Portfolio dashboard mobile">
             </div>
             <div class="device-phone">
-              <img src="../../images/katipult/v2/v2-investor-profile.png" alt="Investor list mobile">
+              <img src="../../images/case-studies/dealflow/dashboard-phone-2.png" alt="Investor profile mobile">
             </div>
           </div>
         </div>
@@ -599,25 +723,23 @@
     <!-- 8. EQUITY & DEBT -->
     <section class="cs-section">
       <span class="badge">EQUITY &amp; DEBT</span>
-      <div class="cs-two-col">
-        <div style="flex: 1;">
-          <h2 class="section-title" style="margin-bottom: 24px;">BROWSE &amp;<br>INVEST</h2>
-          <p class="body-text" style="margin-bottom: 32px;">The offerings browser surfaces key deal terms — asset class, target return, minimum investment, and closing timeline — so investors can quickly filter and evaluate opportunities.</p>
-          <ul class="feature-list">
-            <li>Card-based browse with visual deal summaries</li>
-            <li>Smart filters for asset class, risk level, and return target</li>
-            <li>Deal detail with documents, terms, and issuer profile</li>
-            <li>One-tap investment commitment with e-signature</li>
-          </ul>
+      <div class="cs-two-col" style="align-items: center;">
+        <div style="flex: 1; display: flex; justify-content: center;">
+          <div class="phone-pair">
+            <div class="device-phone">
+              <img src="../../images/case-studies/dealflow/equity-phone-1.png" alt="Browse offerings mobile">
+            </div>
+            <div class="device-phone">
+              <img src="../../images/case-studies/dealflow/equity-phone-2.png" alt="Deal detail mobile">
+            </div>
+          </div>
         </div>
         <div style="width: 380px; flex-shrink: 0;">
-          <div class="phone-pair" style="justify-content: center;">
-            <div class="device-phone">
-              <img src="../../images/katipult/v2/v2-browse-offerings.png" alt="Browse offerings mobile">
-            </div>
-            <div class="device-phone">
-              <img src="../../images/katipult/v2/v2-deal-detail.png" alt="Deal detail mobile">
-            </div>
+          <h2 class="section-title" style="margin-bottom: 24px;">Multi-asset deal management</h2>
+          <p class="body-text">The browse experience handles equity offerings, debt instruments, and fund structures through a single unified interface. Investors can filter by asset class, risk profile, minimum investment, and closing timeline.</p>
+          <div class="design-decision">
+            <div class="design-decision__label">DESIGN DECISION</div>
+            <p class="design-decision__text">Built a unified browse UI that adapts its display fields based on asset class. Equity shows share price and valuation, debt shows yield and maturity, funds show NAV and distribution schedule -- all within the same card pattern.</p>
           </div>
         </div>
       </div>
@@ -627,29 +749,27 @@
     <section class="cs-section">
       <span class="badge">RESULTS &amp; IMPACT</span>
       <div class="cs-two-col">
-        <div style="width: 380px; flex-shrink: 0;">
-          <div style="display: flex; flex-direction: column; gap: 24px;">
-            <div>
-              <div class="cs-hero__stat-number">$2B+</div>
-              <div class="cs-hero__stat-label">Capital facilitated through redesigned platform</div>
-            </div>
-            <div>
-              <div class="cs-hero__stat-number">62%</div>
-              <div class="cs-hero__stat-label">Increase in mobile investment completions</div>
-            </div>
-            <div>
-              <div class="cs-hero__stat-number">-45%</div>
-              <div class="cs-hero__stat-label">Reduction in browse-to-invest drop-off</div>
-            </div>
-            <div>
-              <div class="cs-hero__stat-number">4.6</div>
-              <div class="cs-hero__stat-label">Average investor satisfaction (out of 5)</div>
-            </div>
+        <div style="width: 380px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px;">
+          <div class="result-stat">
+            <span class="result-stat__number">3&#8594;49+</span>
+            <span class="result-stat__text">Team growth over 15 years</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-stat__number">IPO</span>
+            <span class="result-stat__text">TSX Venture Exchange listed</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-stat__number">20+</span>
+            <span class="result-stat__text">White-label deployments globally</span>
+          </div>
+          <div class="result-stat">
+            <span class="result-stat__number">6</span>
+            <span class="result-stat__text">Markets across 4 continents</span>
           </div>
         </div>
         <div style="width: 640px; flex-shrink: 0;">
           <div class="floating-screenshot">
-            <img src="../../images/katipult/v2/v2-investor-profile.png" alt="Final investor dashboard">
+            <img src="../../images/case-studies/dealflow/results-browser.png" alt="Investor profile browser view">
           </div>
         </div>
       </div>
@@ -658,9 +778,14 @@
     <!-- 10. CTA FOOTER -->
     <section class="cta-footer">
       <div class="cta-footer__divider"></div>
-      <span class="cta-footer__next-label">NEXT PROJECT</span>
-      <a href="/case-study/akmsecure/" class="cta-footer__next-title">AKMSECURE</a>
-      <a href="/" class="btn-secondary">BACK TO PORTFOLIO</a>
+      <span class="cta-footer__next-label">NEXT CASE STUDY</span>
+      <h2 class="cta-footer__next-title">Compliance UX -- 45 Minutes to 12</h2>
+      <p class="cta-footer__desc">Redesigned KYC onboarding for Katipult's investment platform. Cut completion time from 45 minutes to under 12, with 85% completion rate.</p>
+      <div class="cta-footer__buttons">
+        <a href="../compliance-ux/" class="btn-primary">VIEW COMPLIANCE UX CASE STUDY</a>
+        <a href="../../" class="btn-secondary">BACK TO PORTFOLIO</a>
+      </div>
+      <span class="cta-footer__site">uxmeas.com</span>
     </section>
 
   </div>

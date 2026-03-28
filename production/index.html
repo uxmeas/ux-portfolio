@@ -427,6 +427,27 @@
             color: var(--text-muted);
             opacity: 0.5;
         }
+        .work-card--ghost {
+            opacity: 0.35;
+            cursor: default;
+            pointer-events: none;
+        }
+        .work-card--ghost .work-card__thumb {
+            animation: none;
+            background: var(--bg-surface);
+        }
+        .work-card--ghost .work-card__thumb img { display: none; }
+        .work-card--ghost .work-card__coming {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            padding: 4px 16px;
+            width: max-content;
+            margin-top: auto;
+        }
         /* "More Coming" card */
         .work-card--more {
             border-style: dashed;
@@ -498,7 +519,7 @@
             padding-top: 48px;
             border-top: 1px solid var(--border);
         }
-        .about-stat {}
+        .about-stat { text-align: center; }
         .about-stat__num {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 48px;
@@ -768,6 +789,15 @@
             cursor: default;
             opacity: 0;
             transform: translateY(16px);
+            background:
+                radial-gradient(circle 700px at 60% 6%, #243352 0%, transparent 100%),
+                radial-gradient(circle 700px at 25% 20%, #1E2D45 0%, transparent 100%),
+                radial-gradient(circle 700px at 75% 35%, #243352 0%, transparent 100%),
+                radial-gradient(circle 700px at 30% 50%, #1E2D45 0%, transparent 100%),
+                radial-gradient(circle 700px at 70% 65%, #243352 0%, transparent 100%),
+                radial-gradient(circle 700px at 40% 80%, #1E2D45 0%, transparent 100%),
+                radial-gradient(circle 700px at 50% 93%, #243352 0%, transparent 100%),
+                #141419;
             transition: opacity 0.35s var(--ease-out-expo) 0.05s,
                         transform 0.35s var(--ease-out-expo) 0.05s;
             position: relative;
@@ -1600,106 +1630,56 @@
                     </div>
                 </div>
 
-                <!-- Row 2 -->
-                <div data-project="akm" class="work-card reveal" tabindex="0" role="button" aria-label="View AKMSecure case study">
-                    <div class="work-card__thumb" style="background-color: #252525">
-                        <picture><source srcset="images/akm-card.webp" type="image/webp"><img src="images/akm-card.png" alt="AKMSecure" width="768" height="480" loading="lazy"></picture>
-                    </div>
+                <!-- Row 2 — Ghost shells (coming soon) -->
+                <div class="work-card work-card--ghost reveal" aria-hidden="true">
+                    <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">BRAND &middot; WEB &middot; HUBSPOT</span>
                         <h3 class="work-card__title">AKMSecure</h3>
-                        <p class="work-card__desc">A cybersecurity startup needed to look as secure as their product. Brand identity, website design, and HubSpot CMS — solo.</p>
-                        <div class="work-card__process">
-                            <span class="work-card__process-tag">Research</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Design</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Build</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Ship</span>
-                        </div>
+                        <p class="work-card__desc">Brand identity, responsive website, and CMS integration for a cybersecurity startup.</p>
+                        <span class="work-card__coming">COMING SOON</span>
                     </div>
                 </div>
 
-                <div data-project="relationsync" class="work-card reveal" tabindex="0" role="button" aria-label="View RelationSync case study">
-                    <div class="work-card__thumb" style="background-color: #1A1625">
-                        <picture><source srcset="images/relationsync/nb2-home-v2-grounded.webp" type="image/webp"><img src="images/relationsync/nb2-home-v2-grounded.png" alt="RelationSync" width="768" height="480" loading="lazy"></picture>
-                    </div>
+                <div class="work-card work-card--ghost reveal" aria-hidden="true">
+                    <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">MOBILE APP &middot; PRODUCT DESIGN &middot; COLLABORATION</span>
                         <h3 class="work-card__title">RelationSync</h3>
-                        <p class="work-card__desc">Most apps want your attention. This one helps you pay attention to people. 35 screens, 19 components, voice-first journaling.</p>
-                        <div class="work-card__process">
-                            <span class="work-card__process-tag">Research</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Design</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Systems</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Ship</span>
-                        </div>
+                        <p class="work-card__desc">Voice-first journaling app. 35 screens, 19 components, AI summaries.</p>
+                        <span class="work-card__coming">COMING SOON</span>
                     </div>
                 </div>
 
-                <!-- Row 3 -->
-                <div data-project="mypick" class="work-card reveal" tabindex="0" role="button" aria-label="View MyPick.io case study">
-                    <div class="work-card__thumb" style="background-color: #0C1222">
-                        <picture><source srcset="images/mypick-card.webp" type="image/webp"><img src="images/mypick-card.png" alt="MyPick.io" width="768" height="480" loading="lazy"></picture>
-                    </div>
+                <!-- Row 3 — Ghost shells -->
+                <div class="work-card work-card--ghost reveal" aria-hidden="true">
+                    <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">WEB APP &middot; GAME &middot; SIDE PROJECT</span>
                         <h3 class="work-card__title">MyPick.io</h3>
-                        <p class="work-card__desc">Turned a boring randomizer into a pixel car race. 4 terrains, 4 weather conditions, mechanical failures. Live product, zero dependencies.</p>
-                        <div class="work-card__process">
-                            <span class="work-card__process-tag">Design</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Build</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Ship</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Iterate</span>
-                        </div>
+                        <p class="work-card__desc">Pixel car race randomizer. 4 terrains, mechanical failures, zero dependencies.</p>
+                        <span class="work-card__coming">COMING SOON</span>
                     </div>
                 </div>
 
-                <div data-project="docstodesign" class="work-card reveal" tabindex="0" role="button" aria-label="View Docs to Design case study">
-                    <div class="work-card__thumb" style="background-color: #0C0C0C">
-                        <img src="images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design" width="768" height="480" loading="lazy">
-                    </div>
+                <div class="work-card work-card--ghost reveal" aria-hidden="true">
+                    <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">FIGMA PLUGIN &middot; AUTOMATION &middot; SIDE PROJECT</span>
                         <h3 class="work-card__title">Docs to Design</h3>
-                        <p class="work-card__desc">A Figma plugin that converts Word documents into styled Figma designs. Upload, pick a style, get auto-layout frames with proper typography.</p>
-                        <div class="work-card__process">
-                            <span class="work-card__process-tag">Design</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Build</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Ship</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Iterate</span>
-                        </div>
+                        <p class="work-card__desc">Figma plugin that converts Word documents into styled designs.</p>
+                        <span class="work-card__coming">COMING SOON</span>
                     </div>
                 </div>
 
-                <!-- Row 4 -->
-                <div data-project="isoblock" class="work-card reveal" tabindex="0" role="button" aria-label="View IsoBlock case study">
-                    <div class="work-card__thumb" style="background-color: #121212">
-                        <img src="images/isoblock/isoblock-hero.png" alt="IsoBlock" width="768" height="480" loading="lazy">
-                    </div>
+                <!-- Row 4 — Ghost shell -->
+                <div class="work-card work-card--ghost reveal" aria-hidden="true">
+                    <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">FIGMA PLUGIN &middot; ISOMETRIC &middot; SIDE PROJECT</span>
                         <h3 class="work-card__title">IsoBlock</h3>
-                        <p class="work-card__desc">A Figma plugin for creating isometric shapes. 15 primitives, 5 surface presets, keyboard-driven workflow. One-click isometric design.</p>
-                        <div class="work-card__process">
-                            <span class="work-card__process-tag">Design</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Build</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Ship</span>
-                            <span class="work-card__process-arrow">&rarr;</span>
-                            <span class="work-card__process-tag">Iterate</span>
-                        </div>
+                        <p class="work-card__desc">Isometric shape creation plugin. 15 primitives, 5 surface presets.</p>
+                        <span class="work-card__coming">COMING SOON</span>
                     </div>
                 </div>
             </div>
@@ -1713,7 +1693,7 @@
 
             <div class="about-top reveal">
                 <div class="about-left">
-                    <h2 class="about-name">Pheak Meas</h2>
+                    <h2 class="about-name">UX Meas</h2>
                     <p class="about-title">Product Designer & Builder</p>
                 </div>
                 <div class="about-right">
@@ -1815,8 +1795,8 @@
     <!-- ════════════════════ FOOTER ════════════════════ -->
     <footer>
         <div class="footer-inner">
-            <span class="footer-logo">PHEAK MEAS</span>
-            <span class="footer-copy">&copy; 2026 Pheak Meas. All rights reserved.</span>
+            <span class="footer-logo">UX MEAS</span>
+            <span class="footer-copy">&copy; 2026 UX Meas. All rights reserved.</span>
             <div class="footer-links">
                 <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener">LinkedIn</a>
                 <a href="https://uxmeas.com">uxmeas.com</a>
