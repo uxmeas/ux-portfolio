@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case study: Owned product design from startup to IPO at Katipult. Deal management, portfolio tracking, and investor relations across web and mobile.">
+  <meta property="og:title" content="DealFlow — Case Study — UX Meas">
+  <meta property="og:description" content="Case study: Owned product design from startup to IPO at Katipult. Deal management, portfolio tracking, and investor relations across web and mobile.">
+  <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
+  <meta property="og:url" content="https://uxmeas.com/case-study/dealflow/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
   <title>DealFlow Investment Platform — Pheak Meas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,15 +50,6 @@
 
     .page-wrap {
       width: 100%; max-width: 1440px; margin: 0 auto; overflow: hidden;
-      background:
-        radial-gradient(circle 700px at 60% 6%, #243352 0%, transparent 100%),
-        radial-gradient(circle 700px at 25% 20%, #1E2D45 0%, transparent 100%),
-        radial-gradient(circle 700px at 75% 35%, #243352 0%, transparent 100%),
-        radial-gradient(circle 700px at 30% 50%, #1E2D45 0%, transparent 100%),
-        radial-gradient(circle 700px at 70% 65%, #243352 0%, transparent 100%),
-        radial-gradient(circle 700px at 40% 80%, #1E2D45 0%, transparent 100%),
-        radial-gradient(circle 700px at 50% 93%, #243352 0%, transparent 100%),
-        #141419;
     }
 
     /* === COMMON === */
@@ -86,6 +85,7 @@
       color: #141419;
       background: var(--gold);
       padding: 16px 40px;
+      border-radius: 6px;
     }
     .btn-secondary {
       display: inline-block;
@@ -96,6 +96,7 @@
       background: transparent;
       border: 1px solid var(--border);
       padding: 16px 40px;
+      border-radius: 6px;
     }
 
     /* === NAV === */
@@ -131,7 +132,7 @@
     /* === HERO === */
     .cs-hero {
       padding: 100px 120px 60px 120px;
-      min-height: 1330px;
+      min-height: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -511,7 +512,43 @@
     .stat-cards-row .metric-card {
       flex: 1;
     }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 48px; padding-right: 48px; }
+      .cs-two-col { flex-direction: column; gap: 32px; }
+      .cs-two-col > div[style] { width: 100% !important; flex-shrink: 1 !important; }
+      .cs-hero__headline { font-size: 56px; }
+      .section-title { font-size: 40px; }
+      .competitor-grid { grid-template-columns: 1fr; }
+      .research-table th:first-child { width: auto; }
+      .research-table th, .research-table td { padding: 16px 20px; font-size: 13px; }
+      .cs-hero__laptop { width: 100%; }
+      .cs-hero__laptop img { height: auto; }
+      .stat-cards-row { flex-wrap: wrap; }
+      .cs-hero { min-height: auto; }
+    }
+    @media (max-width: 640px) {
+      .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 24px; padding-right: 24px; }
+      .cs-hero { padding-top: 48px; padding-bottom: 40px; min-height: auto; }
+      .cs-hero__headline { font-size: 40px; }
+      .cs-hero__stats { flex-direction: column; gap: 24px; }
+      .cs-hero__stat-number { font-size: 48px; }
+      .phone-pair { flex-direction: column; align-items: center; }
+      .device-phone { width: 140px; }
+      .competitor-grid { grid-template-columns: 1fr; }
+      .research-table th, .research-table td { padding: 12px 16px; font-size: 12px; }
+      .research-table th:first-child { width: auto; }
+      .cta-footer__next-title { font-size: 36px; }
+      .floating-screenshot { height: 260px; }
+      .hmw-card { padding: 24px; }
+      .metric-card { height: auto; }
+      .stat-cards-row { flex-direction: column; }
+    }
   </style>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9HVVW1GBEC');</script>
 </head>
 <body>
   <div class="page-wrap">
