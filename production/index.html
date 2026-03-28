@@ -771,26 +771,27 @@
         .modal-close {
             position: fixed;
             top: 16px;
-            right: 16px;
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 100px;
-            color: white;
-            font-size: 16px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 24px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             line-height: 1;
             z-index: 1002;
-            transition: background 0.2s;
+            transition: color 0.2s;
         }
         .modal-close:hover {
-            background: rgba(255, 255, 255, 0.24);
+            color: rgba(255, 255, 255, 1);
+        }
+        .modal-close:focus {
+            outline: none;
         }
 
         /* ── Per-project theme tokens (from .pen designs) ── */
@@ -1996,14 +1997,14 @@
             });
         }
 
-        function openModal(key) {
+        async function openModal(key) {
             triggerElement = document.activeElement;
             currentIndex = projectKeys.indexOf(key);
-            renderModal();
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
             history.pushState({ project: key }, '', '#project/' + key);
             modal.addEventListener('keydown', trapFocus);
+            await renderModal();
             setTimeout(() => {
                 modal.querySelector('.modal-close').focus();
                 initModalReveal();
@@ -2025,878 +2026,96 @@
             }
         }
 
-        // ── Helper: Build label bar ──
-        function labelBar(l1, l2, l3) {
-            return `<div class="m-label-bar">
-                <span>${l1}</span>
-                <span class="m-label-bar__divider"></span>
-                <span>${l2}</span>
-                <span class="m-label-bar__divider"></span>
-                <span>${l3}</span>
-            </div>`;
-        }
-
-        // ── Helper: Dot label ──
-        function dotLabel(text) {
-            return `<div class="m-label-dot">
-                <span class="m-label-dot__dot"></span>
-                <span class="m-label-dot__text">${text}</span>
-            </div>`;
-        }
-
-        // ── Helper: Gallery row ──
-        function galleryRow(images, height, label) {
-            const count = images.length;
-            return `<div class="m-reveal">
-                ${label ? labelBar(label[0] || '', label[1] || '', label[2] || '') : ''}
-                <div class="m-gallery m-gallery--${count}${height ? ' m-gallery--row' : ''}"${height ? ` style="height:${height}px"` : ''}>
-                    ${images.map(img => `<div class="m-gallery__item"><div class="m-img-wrap"><img src="${img}" alt="" loading="lazy"></div></div>`).join('')}
-                </div>
-            </div>`;
-        }
-
-        // ── Helper: Two-column section ──
-        function twoCol(titleHtml, rightHtml) {
-            return `<div class="m-two-col">
-                <div class="m-two-col__left">${titleHtml}</div>
-                <div class="m-two-col__right">${rightHtml}</div>
-            </div>`;
-        }
-
-        // ── Helper: Results cards ──
-        function resultCards(cards, introTitle, introDesc) {
-            return `<div class="m-reveal">
-                ${introTitle ? `<h3 class="m-section__title">${introTitle}</h3>` : ''}
-                ${introDesc ? `<p class="m-section__desc" style="margin: 16px 0 32px">${introDesc}</p>` : ''}
-                <div class="m-results">${cards.map(c => `
-                    <div class="m-result-card">
-                        <div class="m-result-card__num">${c.num}</div>
-                        <div class="m-result-card__title">${c.title}</div>
-                        <div class="m-result-card__desc">${c.desc}</div>
-                    </div>`).join('')}
-                </div>
-            </div>`;
-        }
+        // ── Slug map: project keys to case study folder names ──
+        const slugMap = {
+            'compliance': 'compliance-ux',
+            'dealflow': 'dealflow',
+            'akm': 'akmsecure',
+            'relationsync': 'relationsync',
+            'mypick': 'mypick',
+            'docstodesign': 'docs-to-design',
+            'isoblock': 'isoblock'
+        };
 
         // ══════════════════════════════════════════════════════
-        // RENDER MODAL — Case study content (preserved from v1)
+        // RENDER MODAL — Fetch-based case study loading
         // ══════════════════════════════════════════════════════
-        function renderModal() {
+        const csStyleCache = {};
+        const csHtmlCache = {};
+
+        async function renderModal() {
             const key = projectKeys[currentIndex];
             const content = document.getElementById('modalContent');
-            let html = '';
+            const slug = slugMap[key];
 
             modalPanel.className = 'modal-panel cs--' + key;
 
-            if (key === 'compliance') {
-                html += `<div class="m-hero m-reveal" style="background: #0A1628">
-                    ${labelBar('Katipult', 'Compliance UX', 'Fintech')}
-                    <img class="m-hero__logo" src="images/katipult/logos/katipult-logo-white.png" alt="Katipult">
-                    <h2 class="m-hero__title">Compliance UX for Private Capital Markets</h2>
-                    <p class="m-hero__subtitle">Led redesign of how investors get approved in regulated markets. What used to take days of paperwork and fax machines now takes minutes, across 20+ jurisdictions.</p>
-                    <div class="m-hero__stats">
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">&lt; 12 min</div><div class="m-hero__stat-label">Average onboarding time</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">20+</div><div class="m-hero__stat-label">Jurisdictions supported</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">85%</div><div class="m-hero__stat-label">Completion rate</div></div>
-                    </div>
-                    <div class="m-hero__screenshot"><img src="images/katipult/nb2-compliance-hero.png" alt="Compliance UX Platform" loading="eager"></div>
-                </div>`;
+            // Show loading state
+            content.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:400px"><div class="m-loader" style="position:relative;width:200px"><div class="m-loader__bar"></div></div></div>';
 
-                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
-                    ${labelBar('Katipult', 'Business Context', 'Fintech')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">BUSINESS<br>CONTEXT</h3>`,
-                        `<p class="m-section__desc">Katipult powers private capital markets infrastructure. Investment dealers, fund managers, and crowdfunding portals rely on it for investor onboarding, deal flow, and compliance. The platform handles real money, real regulations, and real consequences for getting it wrong.</p>
-                        <p class="m-section__highlight">The goal: satisfy regulators in 20+ jurisdictions while keeping investors from abandoning the process.</p>
-                        <div style="padding-top: 24px">
-                            <div class="m-goals-label">PROJECT GOALS</div>
-                            <div class="m-goal-item">&rarr;  Design KYC/AML-compliant onboarding flows</div>
-                            <div class="m-goal-item">&rarr;  Support accreditation across 20+ jurisdictions</div>
-                            <div class="m-goal-item">&rarr;  Reduce drop-off during document verification</div>
-                            <div class="m-goal-item">&rarr;  White-label ready for enterprise clients</div>
-                        </div>`
-                    )}
-                </div>`;
+            try {
+                let bodyHtml, styleHtml;
 
-                html += `<div class="m-section m-reveal" style="background: #0A1628">
-                    ${labelBar('Challenge', 'Problem', 'Fintech')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">PROBLEM<br>STATEMENT</h3>`,
-                        `<p class="m-section__desc">Investors were faxing documents. Compliance teams were drowning in manual reviews. The onboarding experience was scattered across email, physical mail, and phone calls. Industry research showed the severity of the problem.</p>
-                        <div class="m-metrics">
-                            <div class="m-metric"><div class="m-metric__num">65%</div><div class="m-metric__label">KYC drop-off rate without guided onboarding <span style="font-size: 10px; color: #64748B; display: block; font-weight: 400; margin-top: 4px">Industry benchmark (Persona / Onfido, pre-2017)</span></div></div>
-                            <div class="m-metric"><div class="m-metric__num">3–5 days</div><div class="m-metric__label">Manual KYC verification time <span style="font-size: 10px; color: #64748B; display: block; font-weight: 400; margin-top: 4px">Industry baseline for manual document review</span></div></div>
-                        </div>
-                        <div style="padding-top: 16px">
-                            <div class="m-pain-item">&#10005;  Manual document collection via email and fax</div>
-                            <div class="m-pain-item">&#10005;  No visibility into onboarding progress</div>
-                            <div class="m-pain-item">&#10005;  Compliance teams overwhelmed with manual reviews</div>
-                        </div>`
-                    )}
-                </div>`;
+                if (csHtmlCache[slug]) {
+                    bodyHtml = csHtmlCache[slug];
+                    styleHtml = csStyleCache[slug];
+                } else {
+                    const res = await fetch('/case-study/' + slug + '/index.html');
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    const html = await res.text();
 
-                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
-                    ${labelBar('Method', 'Approach', 'Fintech')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">DESIGN<br>APPROACH</h3>`,
-                        `<p class="m-section__desc">Spent weeks alongside compliance officers and real investors mapping the regulatory landscape. 20+ jurisdictions, each with different requirements. The approach: progressive disclosure. Show investors only what they need, when they need it. Hide the complexity without hiding the compliance.</p>
-                        <div class="m-steps">
-                            <div class="m-step"><div class="m-step__num">01</div><div class="m-step__title">Regulatory Mapping</div><div class="m-step__desc">Mapped KYC/AML requirements across 20+ jurisdictions</div></div>
-                            <div class="m-step"><div class="m-step__num">02</div><div class="m-step__title">Flow Design</div><div class="m-step__desc">Progressive disclosure for complex compliance steps</div></div>
-                            <div class="m-step"><div class="m-step__num">03</div><div class="m-step__title">Validation</div><div class="m-step__desc">Tested with real investors and compliance officers</div></div>
-                        </div>`
-                    )}
-                </div>`;
+                    // Parse the fetched HTML
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
 
-                html += `<div class="m-section m-reveal" style="background: #0A1628">
-                    ${labelBar('Process', 'User Flow', 'Fintech')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">USER<br>FLOW</h3>`,
-                        `<p class="m-section__desc">Five core steps, but no two investors see the same flow. The system adapts per jurisdiction. A Canadian accredited investor skips steps that a US retail investor must complete. The design challenge was making a branching flow feel linear.</p>
-                        <p style="font-size: 13px; font-weight: 600; color: #F96815; margin-top: 12px">5 core steps  &middot;  20+ jurisdiction variants</p>`
-                    )}
-                    <div class="m-flow" style="margin-top: 32px">
-                        <span class="m-flow__node" style="background: #5d2de6">Sign Up</span>
-                        <span class="m-flow__arrow">&rarr;</span>
-                        <span class="m-flow__node" style="background: #0d4270">Identity<br>Verification</span>
-                        <span class="m-flow__arrow">&rarr;</span>
-                        <span class="m-flow__node" style="background: #0d4270">Accreditation</span>
-                        <span class="m-flow__arrow">&rarr;</span>
-                        <span class="m-flow__node" style="background: #0d4270">Document<br>Upload</span>
-                        <span class="m-flow__arrow">&rarr;</span>
-                        <span class="m-flow__node" style="background: #F96815">Approved</span>
-                    </div>
-                </div>`;
+                    // Extract styles from the case study page
+                    const styles = doc.querySelectorAll('style');
+                    styleHtml = '';
+                    styles.forEach(function(s) { styleHtml += s.innerHTML; });
 
-                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
-                    ${labelBar('Feature', 'KSign', 'E-Signatures')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">KSIGN</h3>
-                        <p class="m-section__subtitle">Electronic Signature Module</p>`,
-                        `<p class="m-section__desc">When investors commit capital, they need to sign. KSign is the signature module designed specifically for that step. Subscription agreements, regulatory disclosures, accreditation documents. Compliant across 20 jurisdictions, part of the platform that went public on the TSX Venture Exchange.</p>
-                        <div style="padding-top: 16px">
-                            <div class="m-goal-item">&rarr;  Full signature flow for investment documents</div>
-                            <div class="m-goal-item">&rarr;  Regulatory compliance integration across 20 jurisdictions</div>
-                            <div class="m-goal-item">&rarr;  Part of design system powering 20+ white-label deployments</div>
-                            <div class="m-goal-item">&rarr;  Part of platform deployed across 20+ white-label instances globally</div>
-                        </div>`
-                    )}
-                    ${galleryRow(['images/katipult/v2/v2-offerings-table.png', 'images/katipult/v2/v2-deal-detail.png'], 280)}
-                </div>`;
+                    // Extract body content, excluding nav
+                    const pageWrap = doc.querySelector('.page-wrap');
+                    if (pageWrap) {
+                        // Remove the nav element — we don't want it in the modal
+                        const nav = pageWrap.querySelector('nav');
+                        if (nav) nav.remove();
+                        bodyHtml = pageWrap.innerHTML;
+                    } else {
+                        // Fallback: grab everything from body
+                        bodyHtml = doc.body.innerHTML;
+                    }
 
-                html += `<div class="m-section m-reveal" style="background: #0A1628">
-                    ${labelBar('Outcome', 'UI Showcase', 'Fintech')}
-                    <h3 class="m-section__title">UI SHOWCASE</h3>
-                    ${galleryRow(['images/katipult/v2/v2-kyc-personal-info.png', 'images/katipult/v2/v2-kyc-document-upload.png'], 320)}
-                    <div style="margin-top: 16px">
-                    ${galleryRow(['images/katipult/v2/v2-kyc-accreditation.png', 'images/katipult/v2/v2-kyc-verified.png'], 320)}
-                    </div>
-                </div>`;
+                    // Fix relative image/asset paths to be absolute
+                    var basePath = '/case-study/' + slug + '/';
+                    bodyHtml = bodyHtml.replace(/src="(?!https?:\/\/|\/|data:)([^"]+)"/g, 'src="' + basePath + '$1"');
+                    bodyHtml = bodyHtml.replace(/href="(?!https?:\/\/|\/|#|mailto:|javascript:)([^"]+)"/g, 'href="' + basePath + '$1"');
 
-                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
-                    ${labelBar('Outcome', 'Results', 'Impact')}
-                    ${resultCards([
-                        { num: '85%', title: 'Completion Rate', desc: 'Guided, step-by-step onboarding. Investors complete KYC without abandoning mid-flow.' },
-                        { num: '< 12 min', title: 'Average Onboarding', desc: 'Down from days of manual paperwork, email chains, and fax-based document collection.' },
-                        { num: '20+', title: 'Jurisdictions', desc: 'Single flow adapts to regulatory requirements per region. No duplicate builds.' },
-                        { num: '20+', title: 'White-Label Deployments', desc: 'Same compliance flow running across every client instance — each branded differently.' }
-                    ], 'RESULTS & IMPACT', 'The design goal: make a regulated, multi-jurisdictional process feel like a consumer product. Minutes instead of days. Guided instead of abandoned.')}
-                </div>`;
+                    // Cache for instant navigation between projects
+                    csHtmlCache[slug] = bodyHtml;
+                    csStyleCache[slug] = styleHtml;
+                }
 
-                html += `<div class="m-section" style="background: #071320; padding: 64px 60px">
-                    <div class="m-cta">
-                        <div class="m-cta__line"></div>
-                        <div class="m-cta__title">Compliance UX for Private Capital Markets</div>
-                        <div class="m-cta__subtitle">Katipult  &middot;  Co-Founder &amp; Lead Product Designer  &middot;  2014&ndash;2023</div>
-                        <div class="m-cta__buttons">
-                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" onclick="closeModal()">Get in Touch</a>
-                        </div>
-                        <div class="m-cta__footer">uxmeas.com</div>
-                    </div>
-                </div>`;
+                // Inject scoped styles (avoid duplicates)
+                var styleId = 'cs-style--' + slug;
+                if (!document.getElementById(styleId) && styleHtml) {
+                    var styleEl = document.createElement('style');
+                    styleEl.id = styleId;
+                    styleEl.textContent = styleHtml;
+                    document.head.appendChild(styleEl);
+                }
 
-            } else if (key === 'dealflow') {
-                html += `<div class="m-hero m-reveal" style="background: #0A1628">
-                    ${labelBar('Katipult', 'Product Design', 'Private Capital')}
-                    <img class="m-hero__logo" src="images/katipult/logos/katipult-logo.png" alt="Katipult">
-                    <h2 class="m-hero__title">Katipult DealFlow Platform</h2>
-                    <p class="m-hero__subtitle">Co-founded in 2008. Led product design across every screen the platform shipped for 15 years. Grew from 3 people to 49+, went public on the TSX Venture Exchange.</p>
-                    <div class="m-hero__stats">
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">49+</div><div class="m-hero__stat-label">Employees at peak</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">IPO</div><div class="m-hero__stat-label">Public company (TSX-V)</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">20+</div><div class="m-hero__stat-label">White-label deployments</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">15 yrs</div><div class="m-hero__stat-label">As design lead</div></div>
-                    </div>
-                    <div class="m-hero__screenshot"><img src="images/katipult/nb2-dealflow-hero.png" alt="DealFlow Platform" loading="eager"></div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
-                    ${labelBar('Subject', 'Platform', 'Private Capital')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">PLATFORM<br>OVERVIEW</h3>`,
-                        `<p class="m-section__desc">Katipult is the infrastructure behind private capital markets. Investment dealers like Canaccord and TMX use it to run the full deal lifecycle: onboarding investors, managing commitments, closing deals, and staying compliant.</p>
-                        <p class="m-section__desc" style="margin-top: 24px">Co-founded as JOI Media in 2008. Led every design decision from day one — screens, flows, and components across the full platform. When you're the design lead at a startup, you own the whole surface.</p>`
-                    )}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #071320">
-                    ${labelBar('Process', 'Research', 'Framework')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">HOW I<br>FRAMED IT</h3>`,
-                        `<p class="m-section__desc">Private capital infrastructure has no obvious design precedent. Before touching a single screen, I mapped the business problem to market reality. Each design decision traces back to a real constraint.</p>`
-                    )}
-                    <div style="overflow-x: auto; margin-top: 8px">
-                        <table style="width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 13px">
-                            <thead>
-                                <tr>
-                                    <th style="text-align: left; padding: 12px 16px; background: #0F1D2F; color: #3B82F6; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #1E293B; width: 28%">Metric</th>
-                                    <th style="text-align: left; padding: 12px 16px; background: #0F1D2F; color: #3B82F6; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #1E293B; width: 36%">Business Problem</th>
-                                    <th style="text-align: left; padding: 12px 16px; background: #0F1D2F; color: #3B82F6; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #1E293B; width: 36%">User Need</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #F1F5F9; vertical-align: top; line-height: 1.5">20+ white-label deployments across 6 markets</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">A single confusing screen multiplies across every client&rsquo;s investor base simultaneously</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">A design system consistent enough to white-label but flexible enough that each dealer feels it&rsquo;s built for them</td></tr>
-                                <tr><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #F1F5F9; vertical-align: top; line-height: 1.5">321 target accounts across equity, debt &amp; lending</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">Market fragmented &mdash; each asset class runs on different tools and different workflows</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">One platform for all deal types, without retraining staff between modules</td></tr>
-                                <tr><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #F1F5F9; vertical-align: top; line-height: 1.5">6 markets, 20+ regulatory jurisdictions</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">Every country has different securities law. Custom builds don&rsquo;t scale internationally</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">White-label that configures compliance rules per deployment, not per country build</td></tr>
-                                <tr><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #F1F5F9; vertical-align: top; line-height: 1.5">Deployed for: SVX (Canada), Markette (Canada), Canaccord, Raymond James, Cormark, Red Cloud</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">Niche expertise is hard to communicate to dealers without real-world proof</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">Case studies in their asset class showing the platform deployed, not just pitched</td></tr>
-                                <tr><td style="padding: 14px 16px; color: #F1F5F9; vertical-align: top; line-height: 1.5">65% avg KYC drop-off without guided onboarding <span style="font-size: 11px; color: #64748B">(industry benchmark)</span></td><td style="padding: 14px 16px; color: #94A3B8; vertical-align: top; line-height: 1.5">Poor onboarding drives investors away before they commit capital, revenue is lost</td><td style="padding: 14px 16px; color: #94A3B8; vertical-align: top; line-height: 1.5">Step-by-step KYC with plain-language explanations that builds confidence, not friction</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0A1628">
-                    ${labelBar('Process', 'North Star', 'Strategy')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">THE<br>QUESTION</h3>`,
-                        `<p class="m-section__desc" style="color: #64748B; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px">How might we&hellip;</p>
-                        <p style="font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.6; color: #F1F5F9; font-weight: 500">Design white-label private capital infrastructure flexible enough to serve 3 asset classes, 6 markets, and 20+ regulatory jurisdictions &mdash; so that any investment dealer can deploy a fully compliant, branded investor experience without custom development?</p>
-                        <div style="margin-top: 32px; padding: 20px 24px; background: #0F1D2F; border-left: 3px solid #F96815; border-radius: 4px">
-                            <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.6; margin: 0">This question shaped every design decision from 2014 onward. Not &ldquo;what looks good&rdquo; but &ldquo;what makes a dealer confident enough to sign a $250K contract and trust us with their investors?&rdquo;</p>
-                        </div>`
-                    )}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
-                    ${labelBar('Process', 'Competitor Analysis', 'Market')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">WHAT WE<br>LOOKED AT</h3>`,
-                        `<p class="m-section__desc">No direct 1:1 competitor existed. I studied adjacent platforms to identify what gaps Katipult could own, and what opportunities to borrow from.</p>`
-                    )}
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 8px">
-                        <div style="background: #0A1628; border: 1px solid #1E293B; border-radius: 8px; padding: 24px"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px"><div style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; flex-shrink: 0"></div><span style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #EF4444">Gap Identified</span></div><div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #F1F5F9; margin-bottom: 6px">Carta</div><div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #64748B; margin-bottom: 12px">Equity Management &middot; USA</div><p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.5; margin: 0">Equity-only. No debt, no lending, no KYC compliance layer. Clean cap table UI was a benchmark for information density &mdash; we learned from its data clarity.</p></div>
-                        <div style="background: #0A1628; border: 1px solid #1E293B; border-radius: 8px; padding: 24px"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px"><div style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; flex-shrink: 0"></div><span style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #EF4444">Gap Identified</span></div><div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #F1F5F9; margin-bottom: 6px">AngelList</div><div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #64748B; margin-bottom: 12px">Venture Capital &middot; USA</div><p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.5; margin: 0">Venture-stage equity only. No regulatory compliance outside the US, no white-label model. Confirmed the gap: no platform served multi-jurisdiction regulated dealers.</p></div>
-                        <div style="background: #0A1628; border: 1px solid #1E293B; border-radius: 8px; padding: 24px"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px"><div style="width: 8px; height: 8px; border-radius: 50%; background: #34D399; flex-shrink: 0"></div><span style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #34D399">Opportunity</span></div><div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #F1F5F9; margin-bottom: 6px">Persona / Onfido</div><div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #64748B; margin-bottom: 12px">KYC Identity Verification &middot; Global</div><p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.5; margin: 0">Best-in-class step-by-step ID verification flow. Progressive disclosure per verification step informed Katipult&rsquo;s KYC flow design &mdash; treating accreditation like a guided journey, not a form dump.</p></div>
-                        <div style="background: #0A1628; border: 1px solid #1E293B; border-radius: 8px; padding: 24px"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px"><div style="width: 8px; height: 8px; border-radius: 50%; background: #34D399; flex-shrink: 0"></div><span style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #34D399">Opportunity</span></div><div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #F1F5F9; margin-bottom: 6px">SVX</div><div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #64748B; margin-bottom: 12px">Impact Investing &middot; Canada &middot; Early Client</div><p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.5; margin: 0">Early Katipult client. Canada-only, impact-focused. White-label on Katipult infrastructure. Proved the regulated white-label model before scaling to larger dealers like Canaccord, Raymond James, and Cormark.</p></div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0A1628">
-                    ${labelBar('Module', 'Investor Dashboard', 'Data Viz')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">INVESTOR<br>DASHBOARD</h3>`,
-                        `<p class="m-section__desc">Investors managing private capital need to see their money clearly. Designed the dashboard that shows portfolio performance, distributions, and documents in real-time. White-label theming deployed across 20+ client instances, each with unique branding on shared architecture.</p>
-                        <div style="padding-top: 16px">
-                            <div class="m-goal-item">&rarr;  Portfolio overview with real-time investment tracking</div>
-                            <div class="m-goal-item">&rarr;  Data visualization for returns, distributions, commitments</div>
-                            <div class="m-goal-item">&rarr;  Document vault and reporting interface</div>
-                        </div>
-                        <div style="margin-top: 24px; padding: 20px 24px; background: #071320; border-left: 3px solid #3B82F6; border-radius: 4px">
-                            <div style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #3B82F6; margin-bottom: 8px">Design Decision</div>
-                            <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.6; margin: 0">Chose modular card layout over full-page tables because dealers white-label for investors with varying financial literacy. A card-first hierarchy lets each client configure what their investors see first, without code changes.</p>
-                        </div>`
-                    )}
-                    ${galleryRow(['images/katipult/v2/v2-investor-profile.png', 'images/katipult/v2/v2-kyc-accreditation.png'], 320)}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
-                    ${labelBar('Module', 'Equity &amp; Debt', 'Deal Flow')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">EQUITY &amp;<br>DEBT</h3>`,
-                        `<p class="m-section__desc">Every deal type has different rules. Equity raises work differently from debt offerings, and hybrid structures combine both. Designed the flows that handle all three within the same interface, so dealers don't need separate tools for each.</p>
-                        <div style="padding-top: 16px">
-                            <div class="m-goal-item">&rarr;  Deal creation and offering page design</div>
-                            <div class="m-goal-item">&rarr;  Investor commitment and subscription flow</div>
-                            <div class="m-goal-item">&rarr;  Allocation and closing workflow</div>
-                        </div>
-                        <div style="margin-top: 24px; padding: 20px 24px; background: #071320; border-left: 3px solid #3B82F6; border-radius: 4px">
-                            <div style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #3B82F6; margin-bottom: 8px">Design Decision</div>
-                            <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.6; margin: 0">Same offering browse UI for equity and debt &mdash; only form fields change per type. This cut development time and made training easier for dealer admin staff who manage multiple asset classes in the same day.</p>
-                        </div>`
-                    )}
-                    ${galleryRow(['images/katipult/v2/v2-browse-offerings.png', 'images/katipult/v2/v2-issuers-overview.png'], 320)}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0A1628">
-                    ${labelBar('Module', 'Lending', 'Credit')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">LENDING<br>PLATFORM</h3>`,
-                        `<p class="m-section__desc">Katipult started in equity. When they expanded into lending, designed the entire loan lifecycle from scratch. Borrower applications, lender review, servicing, and repayment tracking. The constraint: it had to feel native to the existing platform, not bolted on.</p>
-                        <div style="padding-top: 16px">
-                            <div class="m-goal-item">&rarr;  Borrower application and document submission</div>
-                            <div class="m-goal-item">&rarr;  Lender review and approval workflow</div>
-                            <div class="m-goal-item">&rarr;  Loan servicing with repayment tracking</div>
-                        </div>`
-                    )}
-                    ${galleryRow(['images/katipult/v2/v2-manage-users.png', 'images/katipult/v2/v2-documentation-hub.png'], 320)}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
-                    ${labelBar('System', 'Design System', 'White-Label')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">DESIGN<br>SYSTEM</h3>`,
-                        `<p class="m-section__desc">One design system. 20+ client brands. Cormark, Canaccord, TMX. Each instance looks completely different but shares the same architecture underneath. Built the theming layer that made this possible.</p>
-                        <div style="padding-top: 16px">
-                            <div class="m-goal-item">&rarr;  Themeable component library across all modules</div>
-                            <div class="m-goal-item">&rarr;  Client-specific branding with shared architecture</div>
-                            <div class="m-goal-item">&rarr;  Responsive across desktop and tablet</div>
-                        </div>`
-                    )}
-                    ${galleryRow(['images/katipult/v2/v2-dashboard-light.png', 'images/katipult/v2/v2-offerings-table.png'], 320)}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0A1628">
-                    ${labelBar('Subject', 'Results', 'Impact')}
-                    ${resultCards([
-                        { num: '3 &rarr; 49+', title: 'Team Growth', desc: 'Co-founded as JOI Media in 2008. Scaled to 49+ employees over 15 years.' },
-                        { num: 'IPO', title: 'Public Company', desc: 'Listed on TSX Venture Exchange. EY Entrepreneur of the Year finalist 2017.' },
-                        { num: '20+', title: 'White-Label Deployments', desc: 'Platform running for Canaccord, Raymond James, Cormark, Red Cloud, and more.' },
-                        { num: '6', title: 'Markets', desc: 'Canada, USA, UK, Australia, Hong Kong, Singapore — one design system across all.' }
-                    ], 'RESULTS & IMPACT', 'Started in a basement. Led product design from day one. 15 years later: a public company with infrastructure running for some of Canada\'s largest investment dealers.')}
-                </div>`;
-
-                html += `<div class="m-section" style="background: #071320; padding: 64px 60px">
-                    <div class="m-cta">
-                        <div class="m-cta__line" style="background: #F96815"></div>
-                        <div class="m-cta__title">Katipult DealFlow Platform</div>
-                        <div class="m-cta__subtitle">Design Co-Founder  &middot;  2008&ndash;2023  &middot;  JOI Media &rarr; Katipult &rarr; IPO</div>
-                        <div class="m-cta__buttons">
-                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" style="background: #F96815" onclick="closeModal()">Get in Touch</a>
-                        </div>
-                        <div class="m-cta__footer">uxmeas.com</div>
-                    </div>
-                </div>`;
-
-            } else if (key === 'akm') {
-                html += `<div class="m-hero m-reveal" style="background: #0B0B0B">
-                    ${labelBar('AKMSecure', 'Brand &middot; Web &middot; CMS', 'Cybersecurity')}
-                    <img class="m-hero__logo" src="images/akmsecure/logos/akm-logo-light.png" alt="AKMSecure" style="width: 240px">
-                    <h2 class="m-hero__title">AKMSecure</h2>
-                    <p class="m-hero__subtitle" style="color: #8B8B8B">A cybersecurity startup needed to look as secure as their product. Owned design and development from brand to deployment. Brand, website, print, CMS.</p>
-                    <div class="m-hero__stats">
-                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #FFFFFF; font-size: 28px">Full Brand</div><div class="m-hero__stat-label">Identity system from scratch</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #FFFFFF; font-size: 28px">Website</div><div class="m-hero__stat-label">Design &amp; development</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #FFFFFF; font-size: 28px">HubSpot</div><div class="m-hero__stat-label">CMS migration</div></div>
-                    </div>
-                    <div class="m-hero__screenshot"><img src="images/akmsecure/homepage-real.png" alt="AKMSecure Website" loading="eager"></div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #F5F5F5">
-                    ${labelBar('Client', 'About', 'Cybersecurity')}
-                    ${twoCol(
-                        `<h3 class="m-section__title" style="color: #0B0B0B">ABOUT<br>THE CLIENT</h3>`,
-                        `<p class="m-section__desc" style="color: #555555">AKMSecure sells identity authentication to enterprises. Their product prevents breaches. But without a brand, they looked like every other cybersecurity vendor with a dark website and a padlock icon. They needed to stand apart.</p>
-                        <div style="padding-top: 16px">
-                            <div class="m-goals-label" style="color: #888888">SCOPE OF WORK</div>
-                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  Brand identity and logo design</div>
-                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  Brand guidelines documentation</div>
-                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  Website design and development</div>
-                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  HubSpot CMS migration</div>
-                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  Print collateral (tear sheets, business cards)</div>
-                        </div>`
-                    )}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0B0B0B; padding: 140px 120px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px">
-                    <h2 style="font-family: 'Inter', sans-serif; font-size: 80px; font-weight: 700; color: #FFFFFF; line-height: 1.1">Security starts<br>with identity.</h2>
-                    <p style="font-family: 'Inter', sans-serif; font-size: 16px; color: #6B6B6B; line-height: 1.6">&mdash; brand, trust, and credibility before code</p>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #F5F5F5">
-                    ${labelBar('Brand', 'Visual System', 'Identity')}
-                    <h3 class="m-section__title" style="color: #0B0B0B">TYPOGRAPHY & COLOR</h3>
-                    <p class="m-section__desc" style="color: #555555; margin-top: 16px; margin-bottom: 16px">Dark palette, minimal color. In cybersecurity, restraint signals competence. One accent color (deep red) for warnings and CTAs. Everything else stays neutral.</p>
-                    <div class="m-type-color" style="margin-top: 32px">
-                        <div class="m-type-color__col">
-                            <div class="m-type-label" style="color: #888888">PRIMARY TYPEFACE</div>
-                            <div style="font-size: 32px; font-weight: 700; color: #0B0B0B; margin-bottom: 16px">Inter</div>
-                            <div style="font-size: 14px; color: #555555; line-height: 2">400 Regular &mdash; Body text, standard content</div>
-                            <div style="font-size: 14px; color: #333333; font-weight: 500; line-height: 2">500 Medium &mdash; Labels and navigation</div>
-                            <div style="font-size: 14px; color: #1A1A1A; font-weight: 600; line-height: 2">600 Semi-Bold &mdash; Section headings, UI labels</div>
-                            <div style="font-size: 14px; color: #0B0B0B; font-weight: 700; line-height: 2">700 Bold &mdash; Page titles, hero text</div>
-                        </div>
-                        <div class="m-type-color__col">
-                            <div class="m-type-label">COLOR PALETTE</div>
-                            <div class="m-color-row" style="margin-bottom: 8px">
-                                <div class="m-color-swatch" style="background: #0B0B0B; color: #6B6B6B; border: 1px solid #2B2B2B">#0B0B0B</div>
-                                <div class="m-color-swatch" style="background: #1A1A1A; color: #8B8B8B">#1A1A1A</div>
-                                <div class="m-color-swatch" style="background: #2B2B2B; color: #ADADAD">#2B2B2B</div>
-                                <div class="m-color-swatch" style="background: #6B6B6B; color: #fff">#6B6B6B</div>
-                                <div class="m-color-swatch" style="background: #ADADAD; color: #0B0B0B">#ADADAD</div>
-                                <div class="m-color-swatch" style="background: #F2F2F2; color: #0B0B0B">#F2F2F2</div>
-                            </div>
-                            <div class="m-color-row">
-                                <div class="m-color-swatch" style="background: #991b1b; color: #fff">#991b1b</div>
-                                <div class="m-color-swatch" style="background: #3D3D3D; color: #ADADAD">#3D3D3D</div>
-                                <div class="m-color-swatch" style="background: #8B8B8B; color: #0B0B0B">#8B8B8B</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #111111">
-                    ${labelBar('Deliverable', 'Website', 'Design &amp; Dev')}
-                    <h3 class="m-section__title">WEBSITE</h3>
-                    <p class="m-section__desc" style="margin-top: 16px; margin-bottom: 16px">Designed and built from scratch. No template. The site needed to communicate technical credibility to enterprise buyers without looking like every other security vendor. Wrote the copy, designed the pages, and handled the HubSpot CMS migration.</p>
-                    <div style="margin-top: 32px">
-                        <div class="m-img-wrap" style="height: 400px"><img src="images/akmsecure/homepage-full.png" alt="AKM Homepage" loading="lazy" style="height: 100%; object-fit: cover"></div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0B0B0B">
-                    ${labelBar('Deliverable', 'Print', 'Collateral')}
-                    <h3 class="m-section__title">PRINT COLLATERAL</h3>
-                    <p class="m-section__desc" style="margin-top: 16px; margin-bottom: 16px">Physical materials for trade shows and sales meetings. Same brand system, adapted for print. The tear sheet became their primary leave-behind at conferences.</p>
-                    <div class="m-results" style="margin-top: 32px">
-                        <div class="m-result-card" style="height: 280px; display: flex; align-items: center; justify-content: center; color: #6B6B6B; font-size: 13px">Tear Sheet</div>
-                        <div class="m-result-card" style="height: 280px; display: flex; align-items: center; justify-content: center; color: #6B6B6B; font-size: 13px">Business Card</div>
-                        <div class="m-result-card" style="height: 280px; display: flex; align-items: center; justify-content: center; color: #6B6B6B; font-size: 13px">Letterhead</div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section" style="background: #0B0B0B; padding: 64px 60px">
-                    <div class="m-cta">
-                        <div class="m-cta__line" style="background: #991b1b"></div>
-                        <div class="m-cta__title">AKMSecure</div>
-                        <div class="m-cta__subtitle">Brand &amp; Web Designer  &middot;  Solo (design &amp; dev)  &middot;  2025</div>
-                        <div class="m-cta__buttons">
-                            <a href="https://akmsecure.com" target="_blank" rel="noopener" class="m-cta__btn m-cta__btn--primary" style="background: #FFFFFF; color: #0B0B0B">Visit Site</a>
-                            <a href="#contact" class="m-cta__btn m-cta__btn--ghost" onclick="closeModal()" style="color: #8B8B8B">Get in Touch</a>
-                        </div>
-                        <div class="m-cta__footer">uxmeas.com</div>
-                    </div>
-                </div>`;
-
-            } else if (key === 'relationsync') {
-                html += `<div class="m-hero m-hero--center m-reveal" style="background: #1A1220">
-                    ${labelBar('RelationSync', 'Mobile App', 'Product Design')}
-                    <h2 class="m-hero__title">RelationSync</h2>
-                    <p class="m-hero__subtitle" style="color: #9B8AAF; text-align: center">Most apps want your attention. This one wants you to pay attention to the people around you.</p>
-                    <div class="m-hero__stats" style="justify-content: center; gap: 48px">
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num" style="color: #8B6FC0">35</div><div class="m-hero__stat-label">Screens</div></div>
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num" style="color: #8B6FC0">19</div><div class="m-hero__stat-label">Components</div></div>
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num" style="color: #8B6FC0">7</div><div class="m-hero__stat-label">Onboarding</div></div>
-                    </div>
-                    <div class="m-hero__phones">
-                        <div class="m-hero__phone m-hero__phone--side"><img src="images/relationsync/nb2-calendar-v2.png" alt="Calendar" loading="eager"></div>
-                        <div class="m-hero__phone m-hero__phone--center"><img src="images/relationsync/nb2-home-v2-grounded.png" alt="Home" loading="eager"></div>
-                        <div class="m-hero__phone m-hero__phone--side"><img src="images/relationsync/nb2-voice-recorder.png" alt="Voice Recorder" loading="eager"></div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #130E1A">
-                    ${labelBar('Context', 'Product', 'Mobile App')}
-                    ${twoCol(
-                        `<h3 class="m-section__title">ABOUT THE<br>PRODUCT</h3>`,
-                        `<p class="m-section__desc" style="color: #9B8AAF">People forget the details that matter most. Not the big events, but the small ones. What someone said at dinner. How a conversation made you feel. RelationSync captures those moments through voice, then uses AI to make them searchable and meaningful over time.</p>
-                        <p class="m-section__desc" style="color: #9B8AAF; margin-top: 20px">Leading design and frontend development alongside a backend engineering partner. Every screen, every component, every interaction state. The design system and onboarding flow were built from scratch in Pencil.</p>`
-                    )}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #1A1220">
-                    ${labelBar('Feature', 'Voice Journal', 'Core')}
-                    <div class="m-spotlight">
-                        <div class="m-spotlight__phone"><img src="images/relationsync/nb2-voice-recorder.png" alt="Voice Recorder" loading="lazy"></div>
-                        <div>
-                            <h3 class="m-section__title">VOICE-FIRST<br>JOURNALING</h3>
-                            <p class="m-section__desc" style="color: #9B8AAF; margin-top: 20px">Recording a memory should be faster than typing a text. Tap, talk, done. AI handles the rest: transcription, summaries, relationship tagging, and mood tracking. The hard part was making it feel effortless.</p>
-                            <div style="padding-top: 16px">
-                                <div class="m-goal-item">&rarr;  One-tap voice recording</div>
-                                <div class="m-goal-item">&rarr;  AI-powered transcription and summarization</div>
-                                <div class="m-goal-item">&rarr;  Automatic relationship tagging</div>
-                                <div class="m-goal-item">&rarr;  Mood and sentiment tracking</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0F0A16">
-                    ${dotLabel('DESIGN PHILOSOPHY')}
-                    <h3 class="m-section__title" style="line-height: 1.2">Designing for intimacy,<br>not engagement metrics.</h3>
-                    <p class="m-section__desc" style="color: #9B8AAF; margin-top: 24px">Every social app optimizes for time-on-screen. RelationSync optimizes for time well spent. No likes. No followers. No feed. The best session is the one where you record a memory in 30 seconds and close the app.</p>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #130E1A">
-                    ${labelBar('Flow', 'Onboarding', '7 Screens')}
-                    <h3 class="m-section__title">ONBOARDING FLOW</h3>
-                    <p class="m-section__desc" style="color: #9B8AAF; margin-top: 16px">The first 60 seconds decide whether someone keeps the app. This onboarding gets users to record their first memory before asking for a single permission.</p>
-                    <div class="m-onboarding-flow" style="margin-top: 24px">
-                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-1-welcome.png" alt="Welcome" loading="lazy"></div>
-                        <span class="m-onboarding-arrow">&rarr;</span>
-                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-2-voice.png" alt="Voice" loading="lazy"></div>
-                        <span class="m-onboarding-arrow">&rarr;</span>
-                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-3-reflect.png" alt="Reflect" loading="lazy"></div>
-                        <span class="m-onboarding-arrow">&rarr;</span>
-                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-4-timecapsule.png" alt="Time Capsule" loading="lazy"></div>
-                        <span class="m-onboarding-arrow">&rarr;</span>
-                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-5-mic.png" alt="Mic Permission" loading="lazy"></div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #1A1220">
-                    ${dotLabel('05 — SCREEN GALLERY')}
-                    <h3 class="m-section__title">KEY SCREENS</h3>
-                    <p class="m-section__desc" style="color: #9B8AAF; margin-top: 16px">Every screen designed in Pencil. The visual language had to feel warm and private. No sharp edges, no aggressive CTAs. Soft purples, rounded corners, and generous whitespace.</p>
-                    ${galleryRow(['images/relationsync/nb2-home-v2-grounded.png', 'images/relationsync/nb2-calendar-v2.png', 'images/relationsync/nb2-voice-recorder.png'], 0)}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0F0A16">
-                    ${dotLabel('VISUAL IDENTITY')}
-                    <h3 class="m-section__title">COLOR & TYPOGRAPHY</h3>
-                    <div class="m-type-color" style="margin-top: 32px">
-                        <div class="m-type-color__col">
-                            <div class="m-type-label" style="color: #7C5FA6">COLOR SWATCHES</div>
-                            <div class="m-color-row" style="margin-bottom: 8px">
-                                <div class="m-color-swatch" style="background: #1A1220; color: #9B8AAF; border: 1px solid #2D2040">#1A1220</div>
-                                <div class="m-color-swatch" style="background: #2A1F35; color: #9B8AAF">#2A1F35</div>
-                                <div class="m-color-swatch" style="background: #8B6FC0; color: #fff">#8B6FC0</div>
-                            </div>
-                            <div class="m-color-row">
-                                <div class="m-color-swatch" style="background: #FA8D7D; color: #1A1220">#FA8D7D</div>
-                                <div class="m-color-swatch" style="background: #4DD785; color: #1A1220">#4DD785</div>
-                                <div class="m-color-swatch" style="background: #F2F0F5; color: #1A1220">#F2F0F5</div>
-                            </div>
-                        </div>
-                        <div class="m-type-color__col">
-                            <div class="m-type-label" style="color: #7C5FA6">TYPOGRAPHY</div>
-                            <div style="font-size: 28px; font-weight: 700; color: #F2F0F5; margin-bottom: 12px">Inter</div>
-                            <div style="font-size: 13px; color: #9B8AAF; line-height: 2">Primary: Inter 400-700</div>
-                            <div style="font-size: 13px; color: #9B8AAF; line-height: 2">Headings: 700 Bold, 1.1 line-height</div>
-                            <div style="font-size: 13px; color: #9B8AAF; line-height: 2">Body: 400 Regular, 1.7 line-height</div>
-                        </div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #130E1A">
-                    ${dotLabel('06 — DESIGN SYSTEM')}
-                    <h3 class="m-section__title">COMPONENT LIBRARY</h3>
-                    <p class="m-section__desc" style="color: #9B8AAF; margin-top: 16px">A personal project still needs a system. 19 components with shared spacing tokens, color variables, and interaction states. Built to scale if the app does, but lean enough to move fast right now.</p>
-                    <div class="m-comp-grid" style="margin-top: 32px">
-                        <div class="m-comp-card">Button</div>
-                        <div class="m-comp-card">Input</div>
-                        <div class="m-comp-card">Card</div>
-                        <div class="m-comp-card">Nav Bar</div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section" style="background: #1A1220; padding: 80px 60px">
-                    <div class="m-cta">
-                        <div class="m-cta__title" style="font-size: 32px">Want to see more?</div>
-                        <div class="m-cta__subtitle" style="color: #9B8AAF">RelationSync is an ongoing personal project. Full interactive prototype and component library designed in Pencil.</div>
-                        <div class="m-cta__buttons">
-                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" style="background: #7C5FA6; width: 200px" onclick="closeModal()">Get in Touch</a>
-                            <a href="#work" class="m-cta__btn m-cta__btn--ghost" style="color: #9B8AAF; width: 200px; border: 1px solid #3D3748; border-radius: 8px" onclick="closeModal()">View All Projects</a>
-                        </div>
-                        <div class="m-cta__footer" style="color: #4A3660">&copy; 2026 Pheak &mdash; Product Designer &amp; Builder</div>
-                    </div>
-                </div>`;
-
-            } else if (key === 'mypick') {
-                html += `<div class="m-hero m-hero--center m-reveal" style="background: #0A0A0A">
-                    ${dotLabel('01 — HERO')}
-                    <h2 class="m-hero__title" style="font-size: 56px">MyPick.io</h2>
-                    <p class="m-hero__subtitle" style="color: #7AE582; text-align: center">Random number generators work. They're also boring. MyPick.io turns list shuffling into a pixel car race across 4 terrain environments and 4 weather conditions. Mechanical failures create real drama. A dynamic camera follows the leader. 17 custom audio tracks layer terrain ambient, weather effects, and announcer calls. Zero dependencies, pure Canvas 2D, cryptographically fair.</p>
-                    <div class="m-hero__stats" style="justify-content: center; gap: 48px">
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">4</div><div class="m-hero__stat-label">Terrains</div></div>
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">4</div><div class="m-hero__stat-label">Weather</div></div>
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">17</div><div class="m-hero__stat-label">Audio Files</div></div>
-                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">0</div><div class="m-hero__stat-label">Dependencies</div></div>
-                    </div>
-                    <div class="m-hero__screenshot" style="width: 800px; max-width: 100%"><img src="images/mypick-card.png" alt="MyPick.io" loading="eager" style="height: 450px; border-radius: 12px"></div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0D1A0D">
-                    ${dotLabel('02 — CONTEXT')}
-                    ${twoCol(
-                        `<h3 class="m-section__title" style="line-height: 1.2">THE PROBLEM WITH<br>RANDOMIZERS</h3>`,
-                        `<p class="m-section__desc" style="color: #7AE582">Every group decision has a dead moment. Someone pulls out their phone, opens a random number generator, taps a button, reads a number. Nobody watches. Nobody remembers.</p>
-                        <p class="m-section__desc" style="color: #5A8F60; margin-top: 16px; font-size: 15px">That moment should be the best part. MyPick.io turns it into a pixel car race across 4 terrain environments (Stadium, Neon, Desert, Retro) with 4 weather conditions (Clear, Rain, Snow, Night) creating 16 unique race combinations. Mechanical failures add real drama. Cars break down, slow down, then recover with an adrenaline boost. 17 custom audio tracks layer terrain ambient, weather effects, and announcer calls with smart ducking. Billboard ads line the track with impression tracking. Built from scratch in vanilla JS and Canvas 2D. Zero dependencies. Every pixel is intentional.</p>`
-                    )}
-                    <div class="m-meta-row" style="margin-top: 24px">
-                        <div><div class="m-meta__label">ROLE</div><div class="m-meta__value">Solo Creator (Design + Engineering)</div></div>
-                        <div><div class="m-meta__label">STACK</div><div class="m-meta__value">Canvas 2D, Web Crypto API, Custom Audio</div></div>
-                        <div><div class="m-meta__label">STATUS</div><div class="m-meta__value">Production v2.9.1</div></div>
-                        <div><div class="m-meta__label">YEAR</div><div class="m-meta__value">2025&ndash;2026</div></div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0A0A0A">
-                    ${dotLabel('03 — HOW IT WORKS')}
-                    <h3 class="m-section__title">THE RACE MECHANIC</h3>
-                    <div class="m-steps" style="margin-top: 32px">
-                        <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
-                            <div class="m-step__num" style="font-size: 32px; color: #39FF14">01</div>
-                            <div class="m-step__title" style="font-size: 16px; font-weight: 600">Add Your Picks</div>
-                            <div class="m-step__desc" style="color: #5A8F60">Enter team names, food options, draft picks. Up to 25 entries. Choose your terrain and weather.</div>
-                        </div>
-                        <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
-                            <div class="m-step__num" style="font-size: 32px; color: #39FF14">02</div>
-                            <div class="m-step__title" style="font-size: 16px; font-weight: 600">Start the Race</div>
-                            <div class="m-step__desc" style="color: #5A8F60">Pixel cars race across Stadium, Neon, Desert, or Retro tracks. Rain and snow affect speed. Mechanical failures create drama. Dynamic camera follows the leader.</div>
-                        </div>
-                        <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
-                            <div class="m-step__num" style="font-size: 32px; color: #39FF14">03</div>
-                            <div class="m-step__title" style="font-size: 16px; font-weight: 600">Winner Revealed</div>
-                            <div class="m-step__desc" style="color: #5A8F60">Finish line appears at 88%. Cars sprint. 3.5s victory celebration with confetti and fanfare.</div>
-                        </div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0D1A0D">
-                    ${dotLabel('04 — THE PRODUCT')}
-                    <h3 class="m-section__title">THE PRODUCT</h3>
-                    <div style="margin-top: 32px">
-                        <div class="m-img-wrap" style="height: 400px"><img src="images/mypick-card.png" alt="MyPick.io Product" loading="lazy" style="height: 100%; object-fit: cover"></div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0D1A0D">
-                    ${dotLabel('05 — VISUAL DIRECTION')}
-                    <h3 class="m-section__title">WHAT SHIPPED</h3>
-                    <p class="m-section__desc" style="color: #7AE582; margin-top: 16px">v2.9.1 ships the full experience. 4 terrain environments, each with distinct procedural scenery and color palettes. Stadium has crowd lights and banners. Neon has synth glow and city signs. Desert has dunes and heat haze. Retro has 8-bit trees and pixel clouds. 4 weather conditions layer on top with rain particles, snow, and night mode lighting. Each terrain-weather combo has unique speed modifiers and failure rates.</p>
-                    <p class="m-section__desc" style="color: #5A8F60; margin-top: 16px; font-size: 15px">17 custom audio tracks bring each environment to life. Terrain-specific ambient audio, weather sound layers, and a condition announcer that calls out track conditions at race start. Billboard ads line the track with impression tracking. A finish line reveal at 88% triggers a sprint finale. Mobile DPR scaling keeps pixel art crisp on every device. Built solo. Design and code.</p>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0A0A0A">
-                    ${dotLabel('06 — FEATURES')}
-                    <h3 class="m-section__title">THE BUILD</h3>
-                    <div class="m-results" style="margin-top: 32px">
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">4</div><div class="m-result-card__title">Terrains</div><div class="m-result-card__desc" style="color: #5A8F60">Stadium, Neon, Desert, Retro. Each with procedural scenery and distinct color palettes.</div></div>
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">4</div><div class="m-result-card__title">Weather</div><div class="m-result-card__desc" style="color: #5A8F60">Clear, Rain, Snow, Night. Terrain-specific speed modifiers and failure rates.</div></div>
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">17</div><div class="m-result-card__title">Audio Files</div><div class="m-result-card__desc" style="color: #5A8F60">Terrain ambient, weather layers, announcer calls with smart ducking.</div></div>
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">16</div><div class="m-result-card__title">Combos</div><div class="m-result-card__desc" style="color: #5A8F60">4 terrains x 4 weather conditions. Every race feels different.</div></div>
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">8</div><div class="m-result-card__title">Car Colors</div><div class="m-result-card__desc" style="color: #5A8F60">Pixel art sprites with shadows, top-down perspective.</div></div>
-                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">Crypto</div><div class="m-result-card__title">Secure</div><div class="m-result-card__desc" style="color: #5A8F60">Web Crypto API for truly random, unbiased results.</div></div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section" style="background: #0D1A0D; padding: 80px 60px">
-                    <div class="m-cta">
-                        <div class="m-cta__title" style="font-size: 32px">Try it yourself</div>
-                        <div class="m-cta__subtitle" style="color: #7AE582">MyPick.io is live and free. Enter your picks and start a race.</div>
-                        <div class="m-cta__buttons">
-                            <a href="https://mypick.io" target="_blank" rel="noopener" class="m-cta__btn m-cta__btn--primary" style="background: #39FF14; color: #0A0A0A; width: 200px">Try MyPick.io</a>
-                            <a href="#contact" class="m-cta__btn m-cta__btn--ghost" style="color: #7AE582; width: 200px; border: 1px solid #1E3A1E; border-radius: 8px" onclick="closeModal()">Get in Touch</a>
-                        </div>
-                        <div class="m-cta__footer" style="color: #2A4A2A">&copy; 2026 Pheak &mdash; Product Designer &amp; Builder</div>
-                    </div>
-                </div>`;
-
-            } else if (key === 'docstodesign') {
-                html += `<div class="m-hero m-reveal" style="background: #0C0C0C">
-                    ${labelBar('MZM Labs', 'Figma Plugin', 'Automation')}
-                    <img class="m-hero__logo" src="images/d2d/branding/d2d-lockup-inline-light.svg" alt="Docs to Design" style="height: 32px">
-                    <h2 class="m-hero__title">Turning Word Documents into Figma Designs</h2>
-                    <p class="m-hero__subtitle">A Figma plugin that converts .docx files into styled Figma designs. Upload a Word document, pick a style preset, and get auto-layout frames with proper typography hierarchy. Built for designers who inherit content in Word format.</p>
-                    <div class="m-hero__stats">
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">Seconds</div><div class="m-hero__stat-label">Conversion time</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">&lt; 10KB</div><div class="m-hero__stat-label">Bundle size</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">7</div><div class="m-hero__stat-label">Text Styles</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num">5</div><div class="m-hero__stat-label">Wizard Steps</div></div>
-                    </div>
-                    <div class="m-hero__screenshot"><img src="images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design Plugin" loading="eager"></div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #161616">
-                    ${labelBar('Context', 'Challenge', 'Problem')}
-                    ${twoCol(
-                        '<h3 class="m-section__title">THE<br>CHALLENGE</h3>',
-                        '<p class="m-section__desc">Designers inherit content in Word documents. Pasting into Figma means losing all structure. Headings become body text. Lists flatten. Tables disappear. The manual process of reformatting a 20-page document takes hours of tedious, error-prone work.</p>' +
-                        '<p class="m-section__highlight" style="margin-top: 16px">The gap between Word and Figma was a workflow problem hiding in plain sight.</p>'
-                    )}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0C0C0C">
-                    ${labelBar('Insight', 'Discovery', 'Research')}
-                    <h3 class="m-section__title">THREE DISCOVERIES</h3>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px">
-                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px">
-                            <div style="color: #D4956A; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px">ONE-CLICK > CONFIG</div>
-                            <p style="color: #94A3B8; font-size: 14px; line-height: 1.6">Designers don&rsquo;t want configuration screens. They want to drop a file and see results. Every setting I removed made the plugin better.</p>
-                        </div>
-                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px">
-                            <div style="color: #D4956A; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px">PLUGIN UI DISCIPLINE</div>
-                            <p style="color: #94A3B8; font-size: 14px; line-height: 1.6">A Figma plugin panel is 300px wide. That constraint forced me to rethink every interaction. No sidebars. No tabs. Just a vertical flow.</p>
-                        </div>
-                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px">
-                            <div style="color: #D4956A; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px">DUAL-LAYER PARSING</div>
-                            <p style="color: #94A3B8; font-size: 14px; line-height: 1.6">Word documents have two layers of structure: the visual formatting and the semantic markup. Parsing both gives you accurate Figma output.</p>
-                        </div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #161616">
-                    ${labelBar('Process', 'Wizard', 'Flow')}
-                    ${twoCol(
-                        '<h3 class="m-section__title">THE<br>WIZARD</h3>',
-                        '<p class="m-section__desc">Five steps from Word document to styled Figma design. Each step handles one clear decision. No configuration screens, no settings panels. Just forward momentum.</p>'
-                    )}
-                    <div class="m-flow" style="margin-top: 32px">
-                        <span class="m-flow__node" style="background: #D4956A">01 Upload</span>
-                        <span class="m-flow__arrow">&rarr;</span>
-                        <span class="m-flow__node" style="background: #2A8F8A">02 Preview</span>
-                        <span class="m-flow__arrow">&rarr;</span>
-                        <span class="m-flow__node" style="background: #2A8F8A">03 Style</span>
-                        <span class="m-flow__arrow">&rarr;</span>
-                        <span class="m-flow__node" style="background: #2A8F8A">04 Generate</span>
-                        <span class="m-flow__arrow">&rarr;</span>
-                        <span class="m-flow__node" style="background: #5EDDB8">05 Done</span>
-                    </div>
-                    ${galleryRow(['images/d2d/screenshots/plugin-step-1-upload.png', 'images/d2d/screenshots/plugin-step-2-configure.png', 'images/d2d/screenshots/plugin-step-3-complete.png'], 240)}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0C0C0C">
-                    ${labelBar('Design', 'Compact Pro', 'Constraints')}
-                    ${twoCol(
-                        '<h3 class="m-section__title">COMPACT<br>PRO</h3><p class="m-section__subtitle">Designing for 480 x 600px</p>',
-                        '<p class="m-section__desc">Figma plugin panels are 300-480px wide and 600px tall. Every pixel matters. I built a complete design system for this constraint: compact inputs, stacked controls, icon-only toggles, and a type scale that stays readable at 11px.</p>' +
-                        '<p class="m-section__highlight" style="margin-top: 16px">The constraint became the product&rsquo;s personality. Dense, precise, zero wasted space.</p>'
-                    )}
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #161616">
-                    ${labelBar('Brand', 'Identity', 'Visual')}
-                    ${twoCol(
-                        '<h3 class="m-section__title">BRAND<br>IDENTITY</h3>',
-                        '<p class="m-section__desc">The copper-to-teal gradient is the brand story. Copper represents the raw input &mdash; a Word document. Unformatted, unstructured. Teal represents the output &mdash; a styled Figma design. Clean, structured, ready to ship. The gradient connects them. Transformation in a single visual.</p>'
-                    )}
-                    <div style="display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap">
-                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #D4956A"></div>
-                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #2A8F8A"></div>
-                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #5EDDB8"></div>
-                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #0C0C0C; border: 1px solid #333"></div>
-                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #222222"></div>
-                    </div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #0C0C0C">
-                    ${labelBar('Outcome', 'Results', 'Impact')}
-                    ${resultCards([
-                        { num: 'Seconds', title: 'Conversion Time', desc: 'What used to take hours of manual formatting now happens in seconds.' },
-                        { num: '< 10KB', title: 'Bundle Size', desc: 'Lean plugin. No bloated dependencies. Fast install, instant load.' },
-                        { num: '7', title: 'Text Styles', desc: 'Auto-generated from document hierarchy. Heading 1 through body text.' },
-                        { num: '0', title: 'Crashes', desc: 'Zero crashes on 50+ documents tested. Graceful error handling throughout.' }
-                    ], 'RESULTS & IMPACT', 'From hours of manual formatting to seconds of automated conversion. The plugin handles the tedious work so designers can focus on design.')}
-                </div>`;
-
-                html += `<div class="m-section" style="background: #080808; padding: 64px 60px">
-                    <div class="m-cta">
-                        <div class="m-cta__line" style="background: linear-gradient(90deg, #D4956A, #2A8F8A)"></div>
-                        <div class="m-cta__title">Docs to Design</div>
-                        <div class="m-cta__subtitle">MZM Labs &middot; Solo Designer &amp; Developer &middot; 2025&ndash;2026</div>
-                        <div class="m-cta__buttons">
-                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" onclick="closeModal()">Get in Touch</a>
-                        </div>
-                        <div class="m-cta__footer">uxmeas.com</div>
-                    </div>
-                </div>`;
-
-            } else if (key === 'isoblock') {
-                html += `<div class="m-hero m-reveal" style="background: #121212">
-                    ${labelBar('MZM Labs', 'Figma Plugin', 'Isometric')}
-                    <h2 class="m-hero__title" style="color: #8ecae6">IsoBlock</h2>
-                    <p class="m-hero__subtitle">A Figma plugin for creating isometric shapes. 15 shape primitives, 5 surface presets, elliptical shadows, and a keyboard-driven workflow. One-click isometric design without leaving Figma.</p>
-                    <div class="m-hero__stats">
-                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #8ecae6">15</div><div class="m-hero__stat-label">Shape Primitives</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #8ecae6">5</div><div class="m-hero__stat-label">Surface Presets</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #8ecae6">30+</div><div class="m-hero__stat-label">Keyboard Shortcuts</div></div>
-                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #8ecae6">0</div><div class="m-hero__stat-label">Dependencies</div></div>
-                    </div>
-                    <div class="m-hero__screenshot"><img src="images/isoblock/isoblock-hero.png" alt="IsoBlock Plugin" loading="eager"></div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #1E1E1E">
-                    ${labelBar('Context', 'Problem', 'Isometric')}
-                    ${twoCol(
-                        '<h3 class="m-section__title">THE<br>PROBLEM</h3><p class="m-section__subtitle" style="color: #8ecae6">Why isometric is hard in Figma</p>',
-                        '<p class="m-section__desc">Creating isometric shapes in Figma means manual rotation, skewing, and alignment for every single element. Designers resort to importing pre-made SVGs or spending hours on geometric calculations. There was no native way to create, customize, and iterate on isometric designs directly in Figma.</p>' +
-                        '<p class="m-section__highlight" style="margin-top: 16px; color: #8ecae6">IsoBlock turns isometric design from a math problem into a creative tool.</p>'
-                    )}
-                    <div class="m-img-wrap" style="margin-top: 24px"><img src="images/isoblock/isoblock-problem.png" alt="The Problem" loading="lazy"></div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #161616">
-                    ${labelBar('Feature', 'Shapes', 'Core')}
-                    <h3 class="m-section__title" style="color: #8ecae6">SHAPE PRIMITIVES</h3>
-                    <p class="m-section__desc" style="margin-top: 16px">15 shapes organized in three categories. Basic primitives for everyday use, structural shapes for architecture and diagrams, and diagram shapes for flowcharts and presentations. Each rendered with the three-tone isometric color system.</p>
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px">
-                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px; border: 1px solid #023047">
-                            <div style="color: #8ecae6; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 8px">BASIC</div>
-                            <div style="color: #F1F5F9; font-size: 20px; font-weight: 600; margin-bottom: 8px">6 Primitives</div>
-                            <p style="color: #94A3B8; font-size: 13px; line-height: 1.5">Cube, Cylinder, Pyramid, Diamond, Stairs, Ramp</p>
-                        </div>
-                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px; border: 1px solid #023047">
-                            <div style="color: #219ebc; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 8px">STRUCTURAL</div>
-                            <div style="color: #F1F5F9; font-size: 20px; font-weight: 600; margin-bottom: 8px">5 Shapes</div>
-                            <p style="color: #94A3B8; font-size: 13px; line-height: 1.5">Wall, Floor, L-Shape, T-Shape, Corner</p>
-                        </div>
-                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px; border: 1px solid #023047">
-                            <div style="color: #023047; background: #8ecae6; display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 8px">DIAGRAM</div>
-                            <div style="color: #F1F5F9; font-size: 20px; font-weight: 600; margin-bottom: 8px">4 Shapes</div>
-                            <p style="color: #94A3B8; font-size: 13px; line-height: 1.5">Arrow, Connector, Label, Platform</p>
-                        </div>
-                    </div>
-                    <div class="m-img-wrap" style="margin-top: 24px"><img src="images/isoblock/isoblock-shape-primitives.png" alt="Shape Primitives" loading="lazy"></div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #121212">
-                    ${labelBar('Feature', 'Surfaces', 'Rendering')}
-                    ${twoCol(
-                        '<h3 class="m-section__title" style="color: #8ecae6">SURFACE<br>PRESETS</h3>',
-                        '<p class="m-section__desc">Five rendering styles applied to any shape. Each preset controls how light interacts with the three isometric faces, creating distinct visual treatments from a single shape.</p>' +
-                        '<div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap">' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Flat</span>' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Matte</span>' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Glossy</span>' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Metallic</span>' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Pastel</span>' +
-                        '</div>'
-                    )}
-                    <div class="m-img-wrap" style="margin-top: 24px"><img src="images/isoblock/isoblock-surface-presets.png" alt="Surface Presets" loading="lazy"></div>
-                </div>`;
-
-                html += `<div class="m-section m-reveal" style="background: #1E1E1E">
-                    ${labelBar('Feature', 'Plugin UI', 'Interface')}
-                    ${twoCol(
-                        '<h3 class="m-section__title" style="color: #8ecae6">PLUGIN UI</h3><p class="m-section__subtitle">Vertical sidebar, 300px wide</p>',
-                        '<p class="m-section__desc">Shape selector with icon grid. Color picker with hex input and HSL sliders. Shadow controls with angle and blur. Keyboard shortcut indicators on every action. Dark theme matching Figma&rsquo;s native UI.</p>' +
-                        '<div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap">' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Icon Grid (15)</span>' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">HSL Picker</span>' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Shadow System</span>' +
-                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Shortcuts</span>' +
-                        '</div>'
-                    )}
-                    <div class="m-img-wrap" style="margin-top: 24px"><img src="images/isoblock/isoblock-plugin-ui.png" alt="Plugin UI" loading="lazy"></div>
-                </div>`;
-
-                html += `<div class="m-section" style="background: #121212; padding: 64px 60px">
-                    <div class="m-cta">
-                        <div class="m-cta__line" style="background: linear-gradient(90deg, #8ecae6, #219ebc, #023047)"></div>
-                        <div class="m-cta__title" style="color: #8ecae6">IsoBlock</div>
-                        <div class="m-cta__subtitle">MZM Labs &middot; Solo Designer &amp; Developer &middot; 2025&ndash;2026</div>
-                        <div class="m-cta__buttons">
-                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" style="background: #8ecae6; color: #023047" onclick="closeModal()">Get in Touch</a>
-                        </div>
-                        <div class="m-cta__footer">uxmeas.com</div>
-                    </div>
-                </div>`;
+                content.innerHTML = bodyHtml;
+            } catch (err) {
+                content.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;min-height:400px;padding:48px"><p style="color:#999;font-size:16px">Failed to load case study. <a href="/case-study/' + slug + '/" style="color:var(--accent);text-decoration:underline">View standalone page</a></p></div>';
             }
 
-            content.innerHTML = html;
             history.replaceState({ project: key }, '', '#project/' + key);
             modal.scrollTop = 0;
         }
+
+        // Dead code cleaned — inline templates and helpers (labelBar, dotLabel,
+        // galleryRow, twoCol, resultCards) removed. Case studies now load via fetch
+        // from /case-study/{slug}/index.html.
 
         // ── Card click + keyboard handlers ──
         document.querySelectorAll('[data-project]').forEach(card => {
