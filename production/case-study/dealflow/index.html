@@ -26,9 +26,16 @@
 
     <!-- Critical inline CSS for page loader -->
     <style>
+        /* Token overrides for DealFlow (from .pen) */
+        :root {
+            --gold: #F96815;
+            --bg-deep: #0A1628;
+            --text-muted: #64748B;
+        }
+
         body {
             margin: 0;
-            background: var(--bg-deep, #141419);
+            background: #0A1628;
             color: var(--text-primary, #F0F0F2);
             font-family: 'Inter', sans-serif;
         }
@@ -36,7 +43,7 @@
         /* Page Loader */
         .cs-pageloader {
             position: fixed; inset: 0; z-index: 9999;
-            background: #141419;
+            background: #0A1628;
             display: flex; align-items: center; justify-content: center;
             transition: opacity 0.5s ease;
         }
@@ -82,21 +89,29 @@
 
         .cs-section--hero {
             min-height: 1330px;
-            background: transparent;
+            background: #0A1628;
             padding-top: 100px;
         }
 
+        /* Per-section backgrounds from .pen design */
         .cs-section--a {
-            background: transparent;
+            background: #0F1D2F;
         }
 
         .cs-section--b {
-            background: transparent;
+            background: #111827;
         }
 
-        /* Body gradient - multi-layer radials */
+        /* Additional section backgrounds matching .pen */
+        [data-section="competitors"] { background: #0A1628; }
+        [data-section="investor"]    { background: #131B2E; }
+        [data-section="equity"]      { background: #0F1D2F; }
+        [data-section="results"]     { background: #060E1A; }
+        [data-section="cta"]         { background: #071320; }
+
+        /* Body background from .pen design */
         .cs-page {
-            background: #141419;
+            background: #0A1628;
         }
 
         /* ===========================
@@ -106,12 +121,12 @@
         .cs-pill {
             display: inline-flex;
             align-items: center;
-            border: 1px solid var(--gold, #C9A227);
+            border: 1px solid var(--gold, #F96815);
             border-radius: 20px;
             padding: 6px 20px;
             font-family: 'Bebas Neue', sans-serif;
             font-size: var(--type-label, 14px);
-            color: var(--gold, #C9A227);
+            color: var(--gold, #F96815);
             letter-spacing: 4px;
             text-transform: uppercase;
             width: fit-content;
@@ -181,7 +196,7 @@
         .cs-hero__stat {
             font-family: 'Bebas Neue', sans-serif;
             font-size: var(--type-stat, 64px);
-            color: var(--gold, #C9A227);
+            color: var(--gold, #F96815);
             line-height: 1.1;
             text-align: center;
         }
@@ -310,7 +325,7 @@
         .cs-stat-card__number {
             font-family: 'Bebas Neue', sans-serif;
             font-size: var(--type-stat, 64px);
-            color: var(--gold, #C9A227);
+            color: var(--gold, #F96815);
             line-height: 1;
         }
 
@@ -348,9 +363,9 @@
         }
 
         .cs-device-phone {
-            width: 220px;
-            height: 480px;
-            border-radius: 20px;
+            width: 195px;
+            height: 420px;
+            border-radius: 8px;
             border: 3px solid var(--border, #2A3545);
             overflow: hidden;
             flex-shrink: 0;
@@ -398,7 +413,7 @@
         .cs-research-table th {
             font-family: 'Bebas Neue', sans-serif;
             font-size: var(--type-label, 14px);
-            color: var(--gold, #C9A227);
+            color: var(--gold, #F96815);
             letter-spacing: 4px;
             text-align: left;
             padding: 16px 24px;
@@ -441,7 +456,7 @@
 
         .cs-hmw-card {
             background: var(--bg-surface, #1F2937);
-            border: 2px solid var(--gold, #C9A227);
+            border: 2px solid var(--gold, #F96815);
             border-radius: 8px;
             padding: 40px 32px;
         }
@@ -449,7 +464,7 @@
         .cs-hmw-card__label {
             font-family: 'Bebas Neue', sans-serif;
             font-size: var(--type-label, 14px);
-            color: var(--gold, #C9A227);
+            color: var(--gold, #F96815);
             letter-spacing: 4px;
             margin-bottom: 16px;
         }
@@ -505,7 +520,7 @@
         .cs-design-decision__label {
             font-family: 'Bebas Neue', sans-serif;
             font-size: var(--type-label, 14px);
-            color: var(--gold, #C9A227);
+            color: var(--gold, #F96815);
             letter-spacing: 4px;
             margin-bottom: 8px;
         }
@@ -540,7 +555,7 @@
         .cs-result-stat__number {
             font-family: 'Bebas Neue', sans-serif;
             font-size: var(--type-section, 56px);
-            color: var(--gold, #C9A227);
+            color: var(--gold, #F96815);
             line-height: 1;
             width: 130px;
             flex-shrink: 0;
@@ -572,7 +587,7 @@
         .cs-cta__divider {
             width: 80px;
             height: 3px;
-            background: var(--gold, #C9A227);
+            background: var(--gold, #F96815);
             margin: 0 auto 48px;
         }
 
@@ -586,7 +601,7 @@
         .cs-cta__title {
             font-family: 'Bebas Neue', sans-serif;
             font-size: var(--type-section, 56px);
-            color: var(--gold, #C9A227);
+            color: var(--gold, #F96815);
             letter-spacing: 1px;
             line-height: 1.1;
             margin: 0 0 16px;
@@ -624,7 +639,7 @@
         }
 
         .cs-btn--gold {
-            background: var(--gold, #C9A227);
+            background: var(--gold, #F96815);
             color: #141419;
         }
 
@@ -774,8 +789,8 @@
             }
 
             .cs-device-phone {
-                width: 160px;
-                height: 350px;
+                width: 150px;
+                height: 320px;
             }
 
             .cs-research-table {
@@ -822,8 +837,8 @@
             }
 
             .cs-device-phone {
-                width: 140px;
-                height: 300px;
+                width: 130px;
+                height: 280px;
             }
 
             .cs-stat-card__number {
