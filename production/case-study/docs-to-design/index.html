@@ -1,1076 +1,746 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docs to Design — Design Engine for Figma — UX Meas</title>
-    <meta name="description" content="Designed and built a Figma plugin that transforms documents into production-ready layouts. Research-driven wizard flow with 7 file format parsers, zero dependencies, under 10KB bundle.">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Docs to Design — Design Engine for Figma — UX Meas">
-    <meta property="og:description" content="Designed and built a Figma plugin that transforms documents into production-ready layouts. 7 formats, zero dependencies, under 10KB.">
-    <meta property="og:image" content="https://uxmeas.com/images/d2d/screenshots/docstodesign-1.png">
-    <meta property="og:type" content="article">
-
-    <!-- Favicon -->
-    <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=block" rel="stylesheet">
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@1.6.0/dist/umd/lucide.min.js" defer></script>
-
-    <!-- Portfolio CSS -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=block" as="style">
-    <link rel="stylesheet" href="../../css/portfolio.css">
-
-    <!-- Page-specific styles (tokens + layout) -->
-    <style>
-        /* ── Token Overrides (D2D / Docs to Design) ── */
-        :root {
-            /* D2D Brand Colors */
-            --bg-deep: #0C0C0C;
-            --bg-card: #161616;
-            --bg-surface: #222222;
-
-            --text-primary: #F0F0F2;
-            --text-secondary: #94A3B8;
-            --text-muted: #969CA5;
-
-            --copper: #D4915E;
-            --copper-dark: #D17848;
-            --teal: #2A8F8A;
-            --teal-primary: #34B8A8;
-            --seafoam: #5EDDB8;
-            --navy: #1E2D3D;
-            --steel: #3A5A6E;
-
-            --border: #2A2A2A;
-
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        /* ── Reset & Base ── */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-secondary);
-            background: #0C0C0C;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        img { max-width: 100%; height: auto; display: block; }
-        a { color: inherit; text-decoration: none; }
-
-        /* ── Section Container ── */
-        .cs-section {
-            width: 100%;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: var(--space-section-y) var(--space-side);
-        }
-
-        .cs-section__inner {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-lg);
-        }
-
-        /* ── Pill Badge (Copper accent) ── */
-        .pill-badge {
-            display: inline-block;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-label);
-            font-weight: 600;
-            letter-spacing: 4px;
-            color: var(--copper);
-            border: 1px solid var(--copper);
-            border-radius: 20px;
-            padding: 6px 20px;
-            text-transform: uppercase;
-        }
-
-        /* ── Typography ── */
-        .cs-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-section);
-            font-weight: 700;
-            color: var(--text-primary);
-            letter-spacing: -0.5px;
-            line-height: 1.1;
-        }
-
-        .cs-body {
-            font-size: var(--type-body);
-            line-height: 1.7;
-            color: var(--text-secondary);
-        }
-
-        .cs-caption {
-            font-size: var(--type-caption);
-            line-height: 1.6;
-            color: var(--text-muted);
-        }
-
-        /* ── Column layouts inherited from portfolio.css ── */
-
-        /* ── Decorative Gradient Line ── */
-        .gradient-line {
-            width: 200px;
-            height: 2px;
-            margin: 0 auto;
-            background: var(--copper);
-            border-radius: 1px;
-        }
-
-        /* ── Discovery Cards (3-col grid) ── */
-        .discovery-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .discovery-card {
-            background: var(--bg-card);
-            border-radius: 6px;
-            padding: 32px 24px;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .discovery-card__label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-label);
-            font-weight: 600;
-            letter-spacing: 4px;
-            color: var(--copper);
-        }
-
-        .discovery-card__title {
-            font-size: var(--type-body);
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.4;
-        }
-
-        .discovery-card__desc {
-            font-size: var(--type-caption);
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        /* ── Step Cards (5-col grid) ── */
-        .step-cards {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 16px;
-        }
-
-        .step-card {
-            background: var(--bg-card);
-            border-radius: 6px;
-            padding: 24px 20px;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .step-card__badge {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border: 2px solid var(--copper);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--copper);
-        }
-
-        .step-card__name {
-            font-size: var(--type-body);
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .step-card__desc {
-            font-size: var(--type-caption);
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        /* ── Phone Pair ── */
-        .phone-pair {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .phone-frame {
-            width: 220px;
-            background: var(--bg-card);
-            border: 3px solid var(--border);
-            border-radius: 24px;
-            padding: 12px;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-        }
-
-        .phone-frame img {
-            width: 100%;
-            border-radius: 12px;
-            object-fit: cover;
-        }
-
-        /* ── 1/3 + 2/3 Layout ── */
-        .cols-1-2 {
-            display: flex;
-            gap: var(--space-xl);
-            align-items: center;
-        }
-
-        .cols-1-2 .col-copy {
-            flex: 0 0 380px;
-            min-width: 0;
-        }
-
-        .cols-1-2 .col-graphic {
-            flex: 1;
-            min-width: 0;
-        }
-
-        /* ── Tablet Frame ── */
-        .tablet-frame {
-            max-width: 480px;
-            background: var(--bg-card);
-            border: 3px solid var(--border);
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-        }
-
-        .tablet-frame img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        /* ── Color Swatches ── */
-        .swatch-row {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .swatch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .swatch__color {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .swatch__name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-label);
-            font-weight: 600;
-            color: var(--text-primary);
-            letter-spacing: 2px;
-        }
-
-        .swatch__hex {
-            font-family: 'Inter', monospace;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* ── Results Layout ── */
-        .results-layout {
-            display: flex;
-            gap: var(--space-xl);
-            align-items: flex-start;
-        }
-
-        .results-left {
-            width: 380px;
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .results-right {
-            flex: 1;
-        }
-
-        .results-stat-cards {
-            display: flex;
-            gap: 16px;
-        }
-
-        .results-stat-card {
-            flex: 1;
-            background: var(--bg-card);
-            border-radius: 6px;
-            padding: 24px 20px;
-            border: 1px solid var(--border);
-            min-height: 64px;
-        }
-
-        .results-stat-card__number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-stat);
-            font-weight: 700;
-            color: var(--seafoam);
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-
-        .results-stat-card__label {
-            font-size: var(--type-caption);
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 4px;
-        }
-
-        .results-stat-card__desc {
-            font-size: var(--type-label);
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        .results-screenshot {
-            border: 3px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-        }
-
-        .results-screenshot img {
-            width: 100%;
-            object-fit: contain;
-        }
-
-        /* ── Device Mockups ── */
-        .device-mockup {
-            border: 3px solid var(--border);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
-        }
-
-        .device-mockup img {
-            width: 100%;
-            object-fit: contain;
-        }
-
-        /* ── Floating Screen (elevated + rotated slightly) ── */
-        .floating-screen {
-            border: 3px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow:
-                0 32px 80px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(212, 149, 106, 0.08);
-            background: var(--bg-card);
-            transition: transform 0.6s var(--ease-out-expo);
-        }
-
-        .floating-screen:hover {
-            transform: translateY(-4px);
-        }
-
-        .floating-screen img {
-            width: 100%;
-            object-fit: contain;
-        }
-
-        /* ── Discovery floating screen ── */
-        .discovery-visual {
-            margin-top: 16px;
-        }
-
-        /* ── CTA Footer ── */
-        .cta-footer {
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .cta-footer__next-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-subtitle);
-            font-weight: 500;
-            color: var(--text-muted);
-            letter-spacing: 3px;
-        }
-
-        .cta-footer__title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-section);
-            font-weight: 700;
-            color: var(--copper);
-            letter-spacing: -0.5px;
-        }
-
-        .cta-footer__desc {
-            font-size: var(--type-body);
-            color: var(--text-secondary);
-            max-width: 600px;
-            line-height: 1.7;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 16px;
-            margin-top: 16px;
-        }
-
-        .cta-btn {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-body);
-            font-weight: 600;
-            letter-spacing: 1px;
-            padding: 14px 36px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s var(--ease-out-expo);
-            display: inline-block;
-            text-align: center;
-        }
-
-        .cta-btn--primary {
-            background: var(--teal-primary);
-            color: var(--bg-deep);
-            border: 2px solid transparent;
-        }
-
-        .cta-btn--primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(52, 184, 168, 0.3);
-        }
-
-        .cta-btn--outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border);
-        }
-
-        .cta-btn--outline:hover {
-            border-color: var(--text-muted);
-        }
-
-
-        /* ═══════════════════════════════════════
-           HERO SECTION
-           ═══════════════════════════════════════ */
-        .hero {
-            width: 100%;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: var(--space-hero-top) var(--space-side) 0;
-            min-height: 1330px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        /* Label bar */
-        .hero__label-bar {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .hero__logo img {
-            height: 36px;
-            width: auto;
-            opacity: 0.85;
-        }
-
-        .hero__tags {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-label);
-            font-weight: 600;
-            letter-spacing: 4px;
-            color: var(--copper);
-        }
-
-        .hero__meta {
-            font-family: 'Inter', sans-serif;
-            font-size: var(--type-label);
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-
-        /* Hero title */
-        .hero__title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-hero);
-            font-weight: 700;
-            color: var(--text-primary);
-            text-align: center;
-            letter-spacing: -1px;
-            margin-top: var(--space-sm);
-        }
-
-        /* Stats row */
-        .hero__stats {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            margin-top: var(--space-lg);
-        }
-
-        .hero__stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .hero__stat-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: var(--type-stat);
-            font-weight: 700;
-            color: var(--seafoam);
-            line-height: 1;
-        }
-
-        .hero__stat-label {
-            font-size: var(--type-label);
-            color: var(--text-muted);
-            text-align: center;
-            letter-spacing: 1px;
-        }
-
-        /* Subtitle */
-        .hero__subtitle {
-            font-size: var(--type-subtitle);
-            color: var(--text-secondary);
-            text-align: center;
-            max-width: 800px;
-            line-height: 1.6;
-            margin-top: var(--space-md);
-        }
-
-        /* Device mockup */
-        .hero__device {
-            margin-top: var(--space-xl);
-            width: 1200px;
-            max-width: 100%;
-        }
-
-        .hero__device img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-
-
-        /* ═══════════════════════════════════════
-           RESPONSIVE
-           ═══════════════════════════════════════ */
-        @media (max-width: 1024px) {
-            :root {
-                --space-side: 48px;
-                --space-section-y: 72px;
-            }
-
-            .cols-graphic,
-            .cols-graphic--reverse,
-            .cols-1-2,
-            .results-layout {
-                flex-direction: column;
-            }
-
-            .cols-graphic .col-copy,
-            .cols-1-2 .col-copy,
-            .results-left {
-                width: 100%;
-                max-width: 100%;
-                flex: none;
-            }
-
-            .hero__stats { gap: 40px; }
-            .hero__device { width: 100%; }
-            .hero { min-height: auto; }
-
-            .step-cards {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .discovery-cards {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .results-stat-cards {
-                flex-wrap: wrap;
-            }
-
-            .phone-pair {
-                gap: 16px;
-            }
-
-            .phone-frame {
-                width: 180px;
-            }
-
-            .tablet-frame {
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            :root {
-                --space-side: 24px;
-                --space-section-y: 56px;
-            }
-
-            .hero__label-bar {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center;
-            }
-
-            .hero__stats {
-                flex-direction: column;
-                gap: 24px;
-                align-items: center;
-            }
-
-            .step-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .discovery-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .results-stat-cards {
-                flex-direction: column;
-            }
-
-            .cols-graphic--reverse {
-                flex-direction: column;
-            }
-
-            .swatch-row {
-                justify-content: center;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .cta-btn { width: 100%; }
-
-            .phone-pair {
-                gap: 12px;
-            }
-
-            .phone-frame {
-                width: 150px;
-                padding: 8px;
-                border-radius: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            :root {
-                --space-side: 16px;
-            }
-
-            .phone-frame {
-                width: 130px;
-            }
-        }
-    </style>
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-9HVVW1GBEC');
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs to Design — Figma Plugin Case Study — Pheak Meas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: #0C0C0C; color: #FFFFFF; }
+    img { display: block; max-width: 100%; }
+
+    :root {
+      --bg-primary: #0C0C0C;
+      --bg-secondary: #161616;
+      --bg-insight: #111111;
+      --bg-compact: #0A0A0A;
+      --bg-brand: #1A1A1A;
+      --bg-results: #060606;
+      --bg-cta: #080808;
+      --text-primary: #FFFFFF;
+      --text-muted: #999999;
+      --text-footer: #555555;
+      --accent-copper: #D4956A;
+      --accent-teal: #2A8F8A;
+      --accent-seafoam: #5EDDB8;
+      --accent-teal-bright: #34B8A8;
+      --card-bg: #222222;
+      --divider: #2A2A2A;
+      --section-pad-y: 100px;
+      --section-pad-x: 120px;
+      --section-gap: 40px;
+      --two-col-gap: 48px;
+      --left-col: 320px;
+    }
+
+    /* === LABEL BAR === */
+    .cs-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .cs-label__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .cs-label__text {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-footer);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cs-label__sep {
+      font-size: 11px;
+      color: var(--divider);
+    }
+    .cs-label__line {
+      flex: 1;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    .cs-section {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-body {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .cs-img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .cs-two-col {
+      display: flex;
+      gap: var(--two-col-gap);
+    }
+    .cs-two-col__left {
+      width: var(--left-col);
+      flex-shrink: 0;
+    }
+    .cs-two-col__right {
+      flex: 1;
+    }
+
+    /* ========================
+       SECTION 1 — HERO
+       ======================== */
+    .cs-hero {
+      background: var(--bg-primary);
+      padding: 80px var(--section-pad-x) 60px;
+    }
+    .cs-hero .cs-section {
+      gap: 32px;
+    }
+    .cs-hero__title {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-hero__subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cs-hero__stats {
+      display: flex;
+      gap: 32px;
+      padding-top: 32px;
+      width: 100%;
+    }
+    .cs-hero__stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cs-hero__stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent-seafoam);
+    }
+    .cs-hero__stat-label {
+      font-size: 13px;
+      color: var(--text-footer);
+    }
+    .cs-hero__image {
+      height: 420px;
+      width: 100%;
+      border-radius: 8px;
+      background: var(--bg-secondary);
+    }
+
+    /* ========================
+       SECTION 2 — CHALLENGE
+       ======================== */
+    .cs-challenge {
+      background: var(--bg-secondary);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-challenge .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-challenge__quote {
+      font-size: 15px;
+      color: var(--accent-copper);
+      line-height: 1.6;
+      margin-top: 24px;
+    }
+
+    /* ========================
+       SECTION 3 — INSIGHT
+       ======================== */
+    .cs-insight {
+      background: var(--bg-insight);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-insight .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-insight__cards {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+    .cs-insight__card {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-insight__card-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-copper);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cs-insight__card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .cs-insight__card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========================
+       SECTION 4 — THE WIZARD
+       ======================== */
+    .cs-wizard {
+      background: var(--bg-secondary);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-wizard .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-wizard__steps {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-wizard__step {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-wizard__step-number {
+      font-size: 32px;
+      font-weight: 700;
+    }
+    .cs-wizard__step-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .cs-wizard__step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ========================
+       SECTION 5 — COMPACT PRO
+       ======================== */
+    .cs-compact {
+      background: var(--bg-compact);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-compact .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-compact__subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-teal-bright);
+      margin-top: 16px;
+    }
+    .cs-compact__highlight {
+      font-size: 15px;
+      color: var(--accent-teal);
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+    .cs-compact__screenshot {
+      width: 100%;
+      height: 750px;
+      border-radius: 6px;
+      background: var(--card-bg);
+    }
+
+    /* ========================
+       SECTION 6 — BRAND IDENTITY
+       ======================== */
+    .cs-brand {
+      background: var(--bg-brand);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-brand .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-brand__swatches {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-brand__swatch {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-brand__swatch-box {
+      height: 60px;
+      border-radius: 6px;
+    }
+    .cs-brand__swatch-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .cs-brand__gradient {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right, var(--accent-copper), var(--accent-teal));
+    }
+    .cs-brand__gallery {
+      display: flex;
+      gap: 16px;
+      height: 280px;
+      width: 100%;
+    }
+    .cs-brand__gallery-item {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-brand__gallery-label {
+      font-size: 13px;
+      color: var(--text-footer);
+    }
+
+    /* ========================
+       SECTION 7 — RESULTS
+       ======================== */
+    .cs-results {
+      background: var(--bg-results);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-results .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-results__cards {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-results__card {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-results__card-stat {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--accent-seafoam);
+    }
+    .cs-results__card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .cs-results__card-desc {
+      font-size: 12px;
+      color: var(--text-footer);
+      line-height: 1.5;
+    }
+
+    /* ========================
+       SECTION 8 — CTA FOOTER
+       ======================== */
+    .cs-cta {
+      background: var(--bg-cta);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-cta .cs-section {
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+    .cs-cta__gradient-divider {
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent-copper), var(--accent-teal));
+    }
+    .cs-cta__title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-cta__subtitle {
+      font-size: 14px;
+      color: var(--text-footer);
+    }
+    .cs-cta__actions {
+      display: flex;
+      gap: 16px;
+    }
+    .cs-cta__btn {
+      display: inline-block;
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cs-cta__btn:hover { opacity: 0.9; }
+    .cs-cta__btn--primary {
+      background: var(--accent-teal-bright);
+      color: var(--text-primary);
+    }
+    .cs-cta__btn--secondary {
+      background: transparent;
+      color: var(--accent-teal-bright);
+    }
+    .cs-cta__footer {
+      font-size: 12px;
+      color: var(--text-footer);
+    }
+
+    /* ========================
+       RESPONSIVE
+       ======================== */
+    @media (max-width: 1024px) {
+      :root { --section-pad-x: 48px; }
+      .cs-hero__title { font-size: 36px; }
+      .cs-two-col { flex-direction: column; gap: 32px; }
+      .cs-two-col__left { width: 100%; }
+      .cs-insight__cards { flex-direction: column; }
+      .cs-wizard__steps { flex-wrap: wrap; }
+      .cs-wizard__step { min-width: calc(50% - 8px); }
+      .cs-brand__swatches { flex-wrap: wrap; }
+      .cs-compact__screenshot { height: 400px; }
+    }
+    @media (max-width: 640px) {
+      :root { --section-pad-x: 24px; --section-pad-y: 64px; }
+      .cs-hero { padding: 48px 24px 40px; }
+      .cs-hero__title { font-size: 28px; }
+      .cs-hero__stats { flex-direction: column; gap: 16px; }
+      .cs-hero__image { height: 240px; }
+      .cs-wizard__steps { flex-direction: column; }
+      .cs-wizard__step { min-width: 100%; }
+      .cs-results__cards { flex-direction: column; }
+      .cs-brand__gallery { flex-direction: column; height: auto; }
+      .cs-brand__gallery-item { height: 200px; }
+    }
+  </style>
 </head>
 <body>
-<div class="page-loader"></div>
 
-    <!-- Top Bar -->
-    <nav class="cs-nav">
-        <a href="../../portfolio.html" class="cs-nav__back">&larr; Back to Portfolio</a><a href="../../portfolio.html" class="cs-nav__logo">UX MEAS</a>
-    </nav>
+  <!-- SECTION 1 — HERO -->
+  <section class="cs-hero">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">DESIGN ENGINE</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">FIGMA PLUGIN</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">MZM LABS</span>
+        <div class="cs-label__line"></div>
+      </div>
 
-    <!-- ═══════════════════════════════════════
-         SECTION 1: HERO
-         ═══════════════════════════════════════ -->
-    <section class="hero" aria-label="Hero">
-        <!-- Label Bar -->
-        <div class="hero__label-bar">
-            <div class="hero__logo">
-                <img src="../../images/d2d/branding/d2d-lockup-inline-dark.svg" alt="Docs to Design" width="220" height="22" loading="eager">
-            </div>
-            <div class="hero__tags">DESIGN ENGINE &middot; FIGMA PLUGIN &middot; MZM LABS</div>
-            <div class="hero__meta">2025-2026</div>
+      <h1 class="cs-hero__title">Turning Word Documents<br>into Figma Designs</h1>
+
+      <p class="cs-hero__subtitle">
+        A Figma plugin that converts .docx files into fully editable designs. Upload a Word document, get professionally structured Figma pages in seconds.
+      </p>
+
+      <div class="cs-hero__stats">
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">Seconds</div>
+          <div class="cs-hero__stat-label">Conversion time</div>
         </div>
-
-        <!-- Title -->
-        <h1 class="hero__title">Docs to Design</h1>
-
-        <!-- Stats -->
-        <div class="hero__stats">
-            <div class="hero__stat">
-                <span class="hero__stat-number">Seconds</span>
-                <span class="hero__stat-label">Document to Layout</span>
-            </div>
-            <div class="hero__stat">
-                <span class="hero__stat-number">&lt; 10KB</span>
-                <span class="hero__stat-label">Plugin Bundle Size</span>
-            </div>
-            <div class="hero__stat">
-                <span class="hero__stat-number">7</span>
-                <span class="hero__stat-label">File Formats Supported</span>
-            </div>
-            <div class="hero__stat">
-                <span class="hero__stat-number">5</span>
-                <span class="hero__stat-label">Wizard Steps</span>
-            </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">&lt; 10KB</div>
+          <div class="cs-hero__stat-label">Plugin bundle size</div>
         </div>
-
-        <!-- Subtitle -->
-        <p class="hero__subtitle">A Figma plugin that transforms documents into production-ready designs in seconds. Upload any file, configure your brand, and generate polished layouts without ever starting from a blank canvas.</p>
-
-        <!-- Device Mockup -->
-        <div class="hero__device device-mockup device-composited">
-            <img src="../../images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design plugin interface showing the design generation workflow" width="1200" height="740" loading="eager">
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">7</div>
+          <div class="cs-hero__stat-label">Auto-generated text styles</div>
         </div>
-    </section>
-
-
-    <!-- ── Gradient Line ── -->
-    <div class="gradient-line" role="presentation"></div>
-
-
-    <!-- ═══════════════════════════════════════
-         SECTION 2: THE CHALLENGE
-         1/3 copy — 2/3 floating screen
-         ═══════════════════════════════════════ -->
-    <section class="cs-section" aria-label="The Challenge">
-        <div class="cs-section__inner reveal">
-            <span class="pill-badge">THE CHALLENGE</span>
-
-            <div class="cols-graphic">
-                <div class="col-copy">
-                    <h2 class="cs-title" style="margin-bottom: 24px;">The Universal Pain Point</h2>
-                    <p class="cs-body">Every designer has received a Word doc, a PDF, or a Google Doc and thought: "Now I have to rebuild all of this in Figma." Content extraction is tedious, error-prone, and eats hours that should go toward actual design work. Designers copy-paste text block by block, reformat headings, recreate tables, and manually place images. The content is already structured in the source document, but that structure gets lost the moment a designer opens a blank frame.</p>
-                </div>
-                <div class="col-graphic floating-screen">
-                    <img src="../../images/d2d/screenshots/plugin-step-1-upload.png" alt="Document upload step in the Docs to Design wizard" width="800" height="600" loading="lazy">
-                </div>
-            </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">5</div>
+          <div class="cs-hero__stat-label">Guided wizard steps</div>
         </div>
-    </section>
+      </div>
 
+      <img class="cs-img" style="height:420px;background:var(--bg-secondary);" src="handoff-screenshots/docs-to-design/v1p9t.png" alt="Docs to Design plugin screenshot">
+    </div>
+  </section>
 
-    <!-- ═══════════════════════════════════════
-         SECTION 3: THREE DISCOVERIES
-         Cards + floating screen below
-         ═══════════════════════════════════════ -->
-    <section class="cs-section" aria-label="Three Discoveries">
-        <div class="cs-section__inner reveal">
-            <span class="pill-badge">THREE DISCOVERIES</span>
-            <h2 class="cs-title">What the Research Revealed</h2>
+  <!-- SECTION 2 — CHALLENGE -->
+  <section class="cs-challenge">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-teal);"></div>
+        <span class="cs-label__text">CHALLENGE</span>
+        <div class="cs-label__line"></div>
+      </div>
 
-            <div class="discovery-cards">
-                <div class="discovery-card">
-                    <span class="discovery-card__label">DISCOVERY 01</span>
-                    <h3 class="discovery-card__title">Structure already exists in the source file</h3>
-                    <p class="discovery-card__desc">Documents carry semantic hierarchy through headings, lists, tables, and metadata. Designers manually flatten this structure when copy-pasting, then spend time rebuilding it. A parser that preserves document hierarchy eliminates the reconstruction step entirely.</p>
-                </div>
-                <div class="discovery-card">
-                    <span class="discovery-card__label">DISCOVERY 02</span>
-                    <h3 class="discovery-card__title">Brand application is the real bottleneck</h3>
-                    <p class="discovery-card__desc">Extracting text is only half the problem. The other half is applying the right fonts, colors, and spacing to match brand guidelines. Most designers spend more time on formatting than on content transfer. Baking brand tokens into the generation step removes the bottleneck.</p>
-                </div>
-                <div class="discovery-card">
-                    <span class="discovery-card__label">DISCOVERY 03</span>
-                    <h3 class="discovery-card__title">Figma plugins must be razor-light</h3>
-                    <p class="discovery-card__desc">Plugin performance directly affects adoption. A plugin that takes more than 2 seconds to open gets abandoned. Staying under 10KB for the bundle, using zero external dependencies, and deferring heavy parsing to Web Workers means the plugin opens instantly and never blocks the Figma canvas.</p>
-                </div>
-            </div>
-
-            <!-- Floating screen below cards -->
-            <div class="discovery-visual">
-                <div class="floating-screen">
-                    <img src="../../images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design plugin UI showing the full design workflow" width="1200" height="740" loading="lazy">
-                </div>
-            </div>
+      <div class="cs-two-col">
+        <div class="cs-two-col__left">
+          <h2 class="cs-title">THE<br>CHALLENGE</h2>
         </div>
-    </section>
-
-
-    <!-- ── Gradient Line ── -->
-    <div class="gradient-line" role="presentation"></div>
-
-
-    <!-- ═══════════════════════════════════════
-         SECTION 4: THE WIZARD
-         Cards + phone pair (step 1 + step 3)
-         ═══════════════════════════════════════ -->
-    <section class="cs-section" aria-label="The Wizard">
-        <div class="cs-section__inner reveal">
-            <span class="pill-badge">THE WIZARD</span>
-
-            <!-- 1/3 copy + 2/3 phone pair -->
-            <div class="cols-1-2">
-                <div class="col-copy">
-                    <h2 class="cs-title" style="margin-bottom: 16px;">Five Steps, Zero Friction</h2>
-                    <p class="cs-body">The entire workflow lives inside a compact 480 x 600px panel. Each step advances with a single action. No modals, no popups, no context switching. The wizard guides designers from raw document to finished layout in under 30 seconds.</p>
-                </div>
-                <div class="col-graphic">
-                    <div class="phone-pair">
-                        <div class="phone-frame">
-                            <img src="../../images/d2d/screenshots/plugin-step-1-upload.png" alt="Step 1: Upload document" width="440" height="600" loading="lazy">
-                        </div>
-                        <div class="phone-frame">
-                            <img src="../../images/d2d/screenshots/plugin-step-3-complete.png" alt="Step 3: Completed generation" width="440" height="600" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Step cards: full-width row below -->
-            <div class="step-cards">
-                <div class="step-card">
-                    <div class="step-card__badge">01</div>
-                    <div class="step-card__name">Upload</div>
-                    <p class="step-card__desc">Drag and drop any supported file. The parser auto-detects format and extracts structured content, headings, body text, lists, and tables.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-card__badge">02</div>
-                    <div class="step-card__name">Preview</div>
-                    <p class="step-card__desc">See the extracted content mapped into a structured outline. Verify headings, sections, and hierarchy before any design is generated.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-card__badge">03</div>
-                    <div class="step-card__name">Configure</div>
-                    <p class="step-card__desc">Choose your brand theme, layout template, and spacing preferences. Typography, colors, and component styles apply automatically from your brand tokens.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-card__badge">04</div>
-                    <div class="step-card__name">Generate</div>
-                    <p class="step-card__desc">One click creates the full layout on your Figma canvas. Frames, text layers, and auto-layout are all properly structured and named.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-card__badge">05</div>
-                    <div class="step-card__name">Refine</div>
-                    <p class="step-card__desc">The generated design is fully editable native Figma. Adjust, extend, and polish as needed. Nothing is locked or flattened.</p>
-                </div>
-            </div>
+        <div class="cs-two-col__right">
+          <p class="cs-body">
+            The workflow is universal and universally painful. A client sends a Word document. The designer opens it and begins manual labor: copy heading, paste into Figma, style it. Copy body text, paste, style it. Recreate the table structure from scratch. Repeat for 30 pages.
+          </p>
+          <p class="cs-challenge__quote">
+            No existing Figma plugin solved the full document-to-design pipeline.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
+  <!-- SECTION 3 — INSIGHT -->
+  <section class="cs-insight">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">INSIGHT</span>
+        <div class="cs-label__line"></div>
+      </div>
 
-    <!-- ═══════════════════════════════════════
-         SECTION 5: COMPACT PRO
-         2/3 tablet zigzag + 1/3 copy
-         ═══════════════════════════════════════ -->
-    <section class="cs-section" aria-label="Compact Pro">
-        <div class="cs-section__inner reveal">
-            <span class="pill-badge">COMPACT PRO</span>
+      <h2 class="cs-title">THREE DISCOVERIES</h2>
 
-            <div class="cols-graphic cols-graphic--reverse">
-                <div class="col-copy">
-                    <h2 class="cs-title" style="margin-bottom: 16px;">Designing for 480 x 600px</h2>
-                    <p class="cs-body" style="margin-bottom: 24px;">Figma plugins live in a constrained panel. Every pixel must earn its place. The interface uses vertical stacking, collapsible sections, and progressive disclosure to fit a five-step wizard into a space smaller than a mobile screen.</p>
-                    <p class="cs-body">Touch targets are sized for precision. Labels are terse but clear. Visual hierarchy relies on spacing and weight, never on color alone. The result is a plugin that feels spacious despite its compact footprint.</p>
-                </div>
-                <div class="col-graphic">
-                    <div class="tablet-frame">
-                        <img src="../../images/d2d/screenshots/plugin-step-2-configure.png" alt="Configuration step showing brand settings in the compact plugin panel" width="960" height="720" loading="lazy">
-                    </div>
-                </div>
-            </div>
+      <div class="cs-insight__cards">
+        <div class="cs-insight__card">
+          <div class="cs-insight__card-label">DISCOVERY 01</div>
+          <div class="cs-insight__card-title">One-Click Beats<br>Configurability</div>
+          <div class="cs-insight__card-desc">Plugins with extensive configuration had low adoption. Designers want to drop a file and get a result.</div>
         </div>
-    </section>
-
-
-    <!-- ── Gradient Line ── -->
-    <div class="gradient-line" role="presentation"></div>
-
-
-    <!-- ═══════════════════════════════════════
-         SECTION 6: BRAND IDENTITY
-         ═══════════════════════════════════════ -->
-    <section class="cs-section" aria-label="Brand Identity">
-        <div class="cs-section__inner reveal">
-            <span class="pill-badge">BRAND IDENTITY</span>
-            <h2 class="cs-title" style="margin-bottom: 8px;">Copper to Teal</h2>
-            <p class="cs-body" style="max-width: 720px;">The brand palette bridges the warmth of document creation with the precision of design tooling. Copper anchors the identity with craftsmanship and warmth. Teal signals technical reliability and forward motion. Seafoam provides accent energy for interactive states and data highlights.</p>
-
-            <div class="swatch-row">
-                <div class="swatch">
-                    <div class="swatch__color" style="background: #D4915E;"></div>
-                    <span class="swatch__name">COPPER</span>
-                    <span class="swatch__hex">#D4915E</span>
-                </div>
-                <div class="swatch">
-                    <div class="swatch__color" style="background: #D17848;"></div>
-                    <span class="swatch__name">COPPER DARK</span>
-                    <span class="swatch__hex">#D17848</span>
-                </div>
-                <div class="swatch">
-                    <div class="swatch__color" style="background: #34B8A8;"></div>
-                    <span class="swatch__name">TEAL</span>
-                    <span class="swatch__hex">#34B8A8</span>
-                </div>
-                <div class="swatch">
-                    <div class="swatch__color" style="background: #2A8F8A;"></div>
-                    <span class="swatch__name">TEAL DEEP</span>
-                    <span class="swatch__hex">#2A8F8A</span>
-                </div>
-                <div class="swatch">
-                    <div class="swatch__color" style="background: #5EDDB8;"></div>
-                    <span class="swatch__name">SEAFOAM</span>
-                    <span class="swatch__hex">#5EDDB8</span>
-                </div>
-                <div class="swatch">
-                    <div class="swatch__color" style="background: #0C0C0C;"></div>
-                    <span class="swatch__name">DEEP BLACK</span>
-                    <span class="swatch__hex">#0C0C0C</span>
-                </div>
-                <div class="swatch">
-                    <div class="swatch__color" style="background: #161616;"></div>
-                    <span class="swatch__name">SURFACE</span>
-                    <span class="swatch__hex">#161616</span>
-                </div>
-                <div class="swatch">
-                    <div class="swatch__color" style="background: #F0F0F2;"></div>
-                    <span class="swatch__name">PRIMARY TEXT</span>
-                    <span class="swatch__hex">#F0F0F2</span>
-                </div>
-            </div>
+        <div class="cs-insight__card">
+          <div class="cs-insight__card-label">DISCOVERY 02</div>
+          <div class="cs-insight__card-title">Plugin UI Is Its<br>Own Discipline</div>
+          <div class="cs-insight__card-desc">480&times;600px is not a web page, not a mobile screen. It demands its own design language.</div>
         </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════
-         SECTION 7: RESULTS & IMPACT
-         1/3 stats — 2/3 floating screen
-         ═══════════════════════════════════════ -->
-    <section class="cs-section" aria-label="Results and Impact">
-        <div class="cs-section__inner reveal">
-            <span class="pill-badge">RESULTS &amp; IMPACT</span>
-
-            <div class="results-layout">
-                <div class="results-left">
-                    <h2 class="cs-title">The Numbers That Proved It Worked</h2>
-
-                    <div class="results-stat-cards">
-                        <div class="results-stat-card">
-                            <div class="results-stat-card__number">Seconds</div>
-                            <div class="results-stat-card__label">Generation Time</div>
-                            <p class="results-stat-card__desc">Full layout from raw document in under 30 seconds.</p>
-                        </div>
-                        <div class="results-stat-card">
-                            <div class="results-stat-card__number">&lt; 10KB</div>
-                            <div class="results-stat-card__label">Bundle Size</div>
-                            <p class="results-stat-card__desc">Zero dependencies. Instant plugin load time.</p>
-                        </div>
-                    </div>
-
-                    <div class="results-stat-cards">
-                        <div class="results-stat-card">
-                            <div class="results-stat-card__number">7</div>
-                            <div class="results-stat-card__label">File Formats</div>
-                            <p class="results-stat-card__desc">DOCX, PDF, TXT, MD, CSV, HTML, and PPTX support.</p>
-                        </div>
-                        <div class="results-stat-card">
-                            <div class="results-stat-card__number">0</div>
-                            <div class="results-stat-card__label">Dependencies</div>
-                            <p class="results-stat-card__desc">Pure vanilla JS. No npm packages, no build chain bloat.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="results-right">
-                    <div class="floating-screen">
-                        <img src="../../images/d2d/screenshots/plugin-step-3-complete.png" alt="Completed design generation showing the finished layout output" loading="lazy">
-                    </div>
-                </div>
-            </div>
+        <div class="cs-insight__card">
+          <div class="cs-insight__card-label">DISCOVERY 03</div>
+          <div class="cs-insight__card-title">Dual-Layer Parsing<br>Absorbs Chaos</div>
+          <div class="cs-insight__card-desc">A single parsing strategy cannot handle real-world .docx variance. Two layers compensate for each other.</div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
+  <!-- SECTION 4 — THE WIZARD -->
+  <section class="cs-wizard">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">WORKFLOW</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">5-STEP WIZARD</span>
+        <div class="cs-label__line"></div>
+      </div>
 
-    <!-- ── Gradient Line ── -->
-    <div class="gradient-line" role="presentation"></div>
+      <h2 class="cs-title">THE WIZARD</h2>
+      <p class="cs-body">Five steps from Word document to styled Figma design. Each step handles one clear decision. No configuration screens, no settings panels. Just forward momentum.</p>
 
-
-    <!-- ═══════════════════════════════════════
-         SECTION 8: CTA FOOTER
-         ═══════════════════════════════════════ -->
-    <section class="cs-section" aria-label="Next Case Study">
-        <div class="cs-section__inner reveal">
-            <div class="cta-footer">
-                <span class="cta-footer__next-label">NEXT CASE STUDY</span>
-                <h2 class="cta-footer__title">Compliance UX for Private Capital Markets</h2>
-                <p class="cta-footer__desc">KYC/AML-compliant investor onboarding and electronic signature flows across 20+ jurisdictions. Reduced onboarding from days to minutes.</p>
-                <div class="cta-buttons">
-                    <a href="../compliance-ux/" class="cta-btn cta-btn--primary">VIEW COMPLIANCE UX</a>
-                    <a href="../../portfolio.html" class="cta-btn cta-btn--outline">BACK TO PORTFOLIO</a>
-                </div>
-            </div>
+      <div class="cs-wizard__steps">
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:var(--accent-copper);">01</div>
+          <div class="cs-wizard__step-title">Upload</div>
+          <div class="cs-wizard__step-desc">Drop a .docx file. The parser reads headings, body text, lists, and tables in one pass.</div>
         </div>
-    </section>
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:#C48A5F;">02</div>
+          <div class="cs-wizard__step-title">Preview</div>
+          <div class="cs-wizard__step-desc">See your document structure before any conversion. Headings, paragraphs, and lists mapped to Figma layers.</div>
+        </div>
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:#7B9B82;">03</div>
+          <div class="cs-wizard__step-title">Style</div>
+          <div class="cs-wizard__step-desc">Pick a text style preset. Seven auto-generated styles map to your document hierarchy.</div>
+        </div>
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:#3A9A8E;">04</div>
+          <div class="cs-wizard__step-title">Generate</div>
+          <div class="cs-wizard__step-desc">One click. Text layers, auto-layout frames, and styled components appear on your Figma canvas.</div>
+        </div>
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:var(--accent-teal);">05</div>
+          <div class="cs-wizard__step-title">Done</div>
+          <div class="cs-wizard__step-desc">Your document is now a Figma design. Edit, restyle, or hand off. The original structure is preserved.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- SECTION 5 — COMPACT PRO -->
+  <section class="cs-compact">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">DESIGN SYSTEM</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">PLUGIN VIEWPORT</span>
+        <div class="cs-label__line"></div>
+      </div>
 
-    <!-- Initialize Lucide Icons + Scroll Reveal -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            if (typeof lucide !== 'undefined') {
-                lucide.createIcons();
-            }
-        });
+      <div class="cs-two-col">
+        <div class="cs-two-col__left">
+          <h2 class="cs-title">COMPACT PRO</h2>
+          <div class="cs-compact__subtitle">Designing for 480 x 600px</div>
+        </div>
+        <div class="cs-two-col__right">
+          <p class="cs-body">
+            Figma plugin panels are 300-480px wide and 600px tall. Every pixel matters. I built a complete design system for this constraint: compact inputs, stacked controls, icon-only toggles, and a type scale that stays readable at 11px.
+          </p>
+          <p class="cs-compact__highlight">
+            The constraint became the product's personality. Dense, precise, zero wasted space.
+          </p>
+        </div>
+      </div>
 
-        // Scroll reveal (fires once per element)
-        var revealObserver = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
-    </script>
+      <img class="cs-img" style="height:750px;background:var(--card-bg);border-radius:6px;" src="handoff-screenshots/docs-to-design/n3t7p.png" alt="Plugin design system at 480x600px">
+    </div>
+  </section>
 
-<script>
-window.addEventListener("load", function() { var l = document.querySelector(".page-loader"); if (l) l.classList.add("hidden"); });
-document.querySelectorAll("img[loading=\"lazy\"]").forEach(function(img) { if (img.complete) img.classList.add("loaded"); else img.addEventListener("load", function() { this.classList.add("loaded"); }); });
-</script>
+  <!-- SECTION 6 — BRAND IDENTITY -->
+  <section class="cs-brand">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">BRAND</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">IDENTITY</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h2 class="cs-title">BRAND IDENTITY</h2>
+
+      <p class="cs-body">
+        The copper-to-teal gradient is the brand story. Copper represents the raw input. A Word document. Unformatted, unstructured. Teal represents the output. A styled Figma design. Clean, structured, ready to ship. The gradient connects them. Transformation in a single visual.
+      </p>
+
+      <div class="cs-brand__swatches">
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#D4956A;"></div>
+          <div class="cs-brand__swatch-label">Copper<br>#D4956A</div>
+        </div>
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#2A8F8A;"></div>
+          <div class="cs-brand__swatch-label">Teal<br>#2A8F8A</div>
+        </div>
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#5EDDB8;"></div>
+          <div class="cs-brand__swatch-label">Seafoam<br>#5EDDB8</div>
+        </div>
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#0C0C0C;"></div>
+          <div class="cs-brand__swatch-label">Dark<br>#0C0C0C</div>
+        </div>
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#222222;"></div>
+          <div class="cs-brand__swatch-label">Surface<br>#222222</div>
+        </div>
+      </div>
+
+      <div class="cs-brand__gradient"></div>
+
+      <div class="cs-brand__gallery">
+        <div class="cs-brand__gallery-item">
+          <span class="cs-brand__gallery-label">docstodesign.com</span>
+        </div>
+        <div class="cs-brand__gallery-item">
+          <span class="cs-brand__gallery-label">Logo + Wordmark</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 — RESULTS -->
+  <section class="cs-results">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">OUTCOMES</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">METRICS</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h2 class="cs-title">RESULTS & IMPACT</h2>
+
+      <p class="cs-body">
+        From hours of manual formatting to seconds of automated conversion. The plugin handles the tedious work so designers can focus on design.
+      </p>
+
+      <div class="cs-results__cards">
+        <div class="cs-results__card">
+          <div class="cs-results__card-stat">Seconds</div>
+          <div class="cs-results__card-title">Conversion Time</div>
+          <div class="cs-results__card-desc">What used to take hours of manual formatting now happens in seconds.</div>
+        </div>
+        <div class="cs-results__card">
+          <div class="cs-results__card-stat">&lt; 10KB</div>
+          <div class="cs-results__card-title">Bundle Size</div>
+          <div class="cs-results__card-desc">Lean plugin. No bloated dependencies. Fast install, instant load.</div>
+        </div>
+        <div class="cs-results__card">
+          <div class="cs-results__card-stat">7</div>
+          <div class="cs-results__card-title">Text Styles</div>
+          <div class="cs-results__card-desc">Auto-generated from document hierarchy. Heading 1 through body text.</div>
+        </div>
+        <div class="cs-results__card">
+          <div class="cs-results__card-stat">0</div>
+          <div class="cs-results__card-title">Crashes</div>
+          <div class="cs-results__card-desc">Zero crashes on 50+ documents tested. Graceful error handling throughout.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8 — CTA FOOTER -->
+  <section class="cs-cta">
+    <div class="cs-section">
+      <div class="cs-cta__gradient-divider"></div>
+      <h2 class="cs-cta__title">Docs to Design</h2>
+      <p class="cs-cta__subtitle">MZM Labs &middot; Solo Designer & Developer &middot; 2025–2026</p>
+      <div class="cs-cta__actions">
+        <a href="#" class="cs-cta__btn cs-cta__btn--primary">Figma Community</a>
+        <a href="#" class="cs-cta__btn cs-cta__btn--secondary">docstodesign.com</a>
+      </div>
+      <div class="cs-cta__footer">Designed and built by Pheak Meas &middot; MZM Labs Inc.</div>
+    </div>
+  </section>
+
 </body>
 </html>

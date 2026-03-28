@@ -1652,13 +1652,44 @@
                     </div>
                 </div>
 
-                <div class="work-card work-card--more reveal">
-                    <div class="work-card--more__inner">
-                        <h3 class="work-card--more__title">More Coming</h3>
-                        <p class="work-card--more__list">
-                            Docs to Design &mdash; Document automation<br>
-                            IsoBlock &mdash; Figma plugin
-                        </p>
+                <div data-project="docstodesign" class="work-card reveal" tabindex="0" role="button" aria-label="View Docs to Design case study">
+                    <div class="work-card__thumb" style="background-color: #0C0C0C">
+                        <img src="images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design" width="768" height="480" loading="lazy">
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">FIGMA PLUGIN &middot; AUTOMATION &middot; SIDE PROJECT</span>
+                        <h3 class="work-card__title">Docs to Design</h3>
+                        <p class="work-card__desc">A Figma plugin that converts Word documents into styled Figma designs. Upload, pick a style, get auto-layout frames with proper typography.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Build</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Iterate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 4 -->
+                <div data-project="isoblock" class="work-card reveal" tabindex="0" role="button" aria-label="View IsoBlock case study">
+                    <div class="work-card__thumb" style="background-color: #121212">
+                        <img src="images/isoblock/isoblock-hero.png" alt="IsoBlock" width="768" height="480" loading="lazy">
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">FIGMA PLUGIN &middot; ISOMETRIC &middot; SIDE PROJECT</span>
+                        <h3 class="work-card__title">IsoBlock</h3>
+                        <p class="work-card__desc">A Figma plugin for creating isometric shapes. 15 primitives, 5 surface presets, keyboard-driven workflow. One-click isometric design.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Build</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Iterate</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1917,7 +1948,7 @@
         // ══════════════════════════════════════════════════════
         // BEHANCE-STYLE MODAL SYSTEM (preserved from v1)
         // ══════════════════════════════════════════════════════
-        const projectKeys = ['compliance', 'dealflow', 'akm', 'relationsync', 'mypick'];
+        const projectKeys = ['compliance', 'dealflow', 'akm', 'relationsync', 'mypick', 'docstodesign', 'isoblock'];
 
         let currentIndex = 0;
         let triggerElement = null;
@@ -2661,6 +2692,206 @@
                             <a href="#contact" class="m-cta__btn m-cta__btn--ghost" style="color: #7AE582; width: 200px; border: 1px solid #1E3A1E; border-radius: 8px" onclick="closeModal()">Get in Touch</a>
                         </div>
                         <div class="m-cta__footer" style="color: #2A4A2A">&copy; 2026 Pheak &mdash; Product Designer &amp; Builder</div>
+                    </div>
+                </div>`;
+
+            } else if (key === 'docstodesign') {
+                html += `<div class="m-hero m-reveal" style="background: #0C0C0C">
+                    ${labelBar('MZM Labs', 'Figma Plugin', 'Automation')}
+                    <img class="m-hero__logo" src="images/d2d/branding/d2d-lockup-inline-light.svg" alt="Docs to Design" style="height: 32px">
+                    <h2 class="m-hero__title">Turning Word Documents into Figma Designs</h2>
+                    <p class="m-hero__subtitle">A Figma plugin that converts .docx files into styled Figma designs. Upload a Word document, pick a style preset, and get auto-layout frames with proper typography hierarchy. Built for designers who inherit content in Word format.</p>
+                    <div class="m-hero__stats">
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">Seconds</div><div class="m-hero__stat-label">Conversion time</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">&lt; 10KB</div><div class="m-hero__stat-label">Bundle size</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">7</div><div class="m-hero__stat-label">Text Styles</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">5</div><div class="m-hero__stat-label">Wizard Steps</div></div>
+                    </div>
+                    <div class="m-hero__screenshot"><img src="images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design Plugin" loading="eager"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #161616">
+                    ${labelBar('Context', 'Challenge', 'Problem')}
+                    ${twoCol(
+                        '<h3 class="m-section__title">THE<br>CHALLENGE</h3>',
+                        '<p class="m-section__desc">Designers inherit content in Word documents. Pasting into Figma means losing all structure. Headings become body text. Lists flatten. Tables disappear. The manual process of reformatting a 20-page document takes hours of tedious, error-prone work.</p>' +
+                        '<p class="m-section__highlight" style="margin-top: 16px">The gap between Word and Figma was a workflow problem hiding in plain sight.</p>'
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0C0C0C">
+                    ${labelBar('Insight', 'Discovery', 'Research')}
+                    <h3 class="m-section__title">THREE DISCOVERIES</h3>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px">
+                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px">
+                            <div style="color: #D4956A; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px">ONE-CLICK > CONFIG</div>
+                            <p style="color: #94A3B8; font-size: 14px; line-height: 1.6">Designers don&rsquo;t want configuration screens. They want to drop a file and see results. Every setting I removed made the plugin better.</p>
+                        </div>
+                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px">
+                            <div style="color: #D4956A; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px">PLUGIN UI DISCIPLINE</div>
+                            <p style="color: #94A3B8; font-size: 14px; line-height: 1.6">A Figma plugin panel is 300px wide. That constraint forced me to rethink every interaction. No sidebars. No tabs. Just a vertical flow.</p>
+                        </div>
+                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px">
+                            <div style="color: #D4956A; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 12px">DUAL-LAYER PARSING</div>
+                            <p style="color: #94A3B8; font-size: 14px; line-height: 1.6">Word documents have two layers of structure: the visual formatting and the semantic markup. Parsing both gives you accurate Figma output.</p>
+                        </div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #161616">
+                    ${labelBar('Process', 'Wizard', 'Flow')}
+                    ${twoCol(
+                        '<h3 class="m-section__title">THE<br>WIZARD</h3>',
+                        '<p class="m-section__desc">Five steps from Word document to styled Figma design. Each step handles one clear decision. No configuration screens, no settings panels. Just forward momentum.</p>'
+                    )}
+                    <div class="m-flow" style="margin-top: 32px">
+                        <span class="m-flow__node" style="background: #D4956A">01 Upload</span>
+                        <span class="m-flow__arrow">&rarr;</span>
+                        <span class="m-flow__node" style="background: #2A8F8A">02 Preview</span>
+                        <span class="m-flow__arrow">&rarr;</span>
+                        <span class="m-flow__node" style="background: #2A8F8A">03 Style</span>
+                        <span class="m-flow__arrow">&rarr;</span>
+                        <span class="m-flow__node" style="background: #2A8F8A">04 Generate</span>
+                        <span class="m-flow__arrow">&rarr;</span>
+                        <span class="m-flow__node" style="background: #5EDDB8">05 Done</span>
+                    </div>
+                    ${galleryRow(['images/d2d/screenshots/plugin-step-1-upload.png', 'images/d2d/screenshots/plugin-step-2-configure.png', 'images/d2d/screenshots/plugin-step-3-complete.png'], 240)}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0C0C0C">
+                    ${labelBar('Design', 'Compact Pro', 'Constraints')}
+                    ${twoCol(
+                        '<h3 class="m-section__title">COMPACT<br>PRO</h3><p class="m-section__subtitle">Designing for 480 x 600px</p>',
+                        '<p class="m-section__desc">Figma plugin panels are 300-480px wide and 600px tall. Every pixel matters. I built a complete design system for this constraint: compact inputs, stacked controls, icon-only toggles, and a type scale that stays readable at 11px.</p>' +
+                        '<p class="m-section__highlight" style="margin-top: 16px">The constraint became the product&rsquo;s personality. Dense, precise, zero wasted space.</p>'
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #161616">
+                    ${labelBar('Brand', 'Identity', 'Visual')}
+                    ${twoCol(
+                        '<h3 class="m-section__title">BRAND<br>IDENTITY</h3>',
+                        '<p class="m-section__desc">The copper-to-teal gradient is the brand story. Copper represents the raw input &mdash; a Word document. Unformatted, unstructured. Teal represents the output &mdash; a styled Figma design. Clean, structured, ready to ship. The gradient connects them. Transformation in a single visual.</p>'
+                    )}
+                    <div style="display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap">
+                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #D4956A"></div>
+                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #2A8F8A"></div>
+                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #5EDDB8"></div>
+                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #0C0C0C; border: 1px solid #333"></div>
+                        <div style="width: 80px; height: 80px; border-radius: 12px; background: #222222"></div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0C0C0C">
+                    ${labelBar('Outcome', 'Results', 'Impact')}
+                    ${resultCards([
+                        { num: 'Seconds', title: 'Conversion Time', desc: 'What used to take hours of manual formatting now happens in seconds.' },
+                        { num: '< 10KB', title: 'Bundle Size', desc: 'Lean plugin. No bloated dependencies. Fast install, instant load.' },
+                        { num: '7', title: 'Text Styles', desc: 'Auto-generated from document hierarchy. Heading 1 through body text.' },
+                        { num: '0', title: 'Crashes', desc: 'Zero crashes on 50+ documents tested. Graceful error handling throughout.' }
+                    ], 'RESULTS & IMPACT', 'From hours of manual formatting to seconds of automated conversion. The plugin handles the tedious work so designers can focus on design.')}
+                </div>`;
+
+                html += `<div class="m-section" style="background: #080808; padding: 64px 60px">
+                    <div class="m-cta">
+                        <div class="m-cta__line" style="background: linear-gradient(90deg, #D4956A, #2A8F8A)"></div>
+                        <div class="m-cta__title">Docs to Design</div>
+                        <div class="m-cta__subtitle">MZM Labs &middot; Solo Designer &amp; Developer &middot; 2025&ndash;2026</div>
+                        <div class="m-cta__buttons">
+                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" onclick="closeModal()">Get in Touch</a>
+                        </div>
+                        <div class="m-cta__footer">uxmeas.com</div>
+                    </div>
+                </div>`;
+
+            } else if (key === 'isoblock') {
+                html += `<div class="m-hero m-reveal" style="background: #121212">
+                    ${labelBar('MZM Labs', 'Figma Plugin', 'Isometric')}
+                    <h2 class="m-hero__title" style="color: #8ecae6">IsoBlock</h2>
+                    <p class="m-hero__subtitle">A Figma plugin for creating isometric shapes. 15 shape primitives, 5 surface presets, elliptical shadows, and a keyboard-driven workflow. One-click isometric design without leaving Figma.</p>
+                    <div class="m-hero__stats">
+                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #8ecae6">15</div><div class="m-hero__stat-label">Shape Primitives</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #8ecae6">5</div><div class="m-hero__stat-label">Surface Presets</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #8ecae6">30+</div><div class="m-hero__stat-label">Keyboard Shortcuts</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #8ecae6">0</div><div class="m-hero__stat-label">Dependencies</div></div>
+                    </div>
+                    <div class="m-hero__screenshot"><img src="images/isoblock/isoblock-hero.png" alt="IsoBlock Plugin" loading="eager"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #1E1E1E">
+                    ${labelBar('Context', 'Problem', 'Isometric')}
+                    ${twoCol(
+                        '<h3 class="m-section__title">THE<br>PROBLEM</h3><p class="m-section__subtitle" style="color: #8ecae6">Why isometric is hard in Figma</p>',
+                        '<p class="m-section__desc">Creating isometric shapes in Figma means manual rotation, skewing, and alignment for every single element. Designers resort to importing pre-made SVGs or spending hours on geometric calculations. There was no native way to create, customize, and iterate on isometric designs directly in Figma.</p>' +
+                        '<p class="m-section__highlight" style="margin-top: 16px; color: #8ecae6">IsoBlock turns isometric design from a math problem into a creative tool.</p>'
+                    )}
+                    <div class="m-img-wrap" style="margin-top: 24px"><img src="images/isoblock/isoblock-problem.png" alt="The Problem" loading="lazy"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #161616">
+                    ${labelBar('Feature', 'Shapes', 'Core')}
+                    <h3 class="m-section__title" style="color: #8ecae6">SHAPE PRIMITIVES</h3>
+                    <p class="m-section__desc" style="margin-top: 16px">15 shapes organized in three categories. Basic primitives for everyday use, structural shapes for architecture and diagrams, and diagram shapes for flowcharts and presentations. Each rendered with the three-tone isometric color system.</p>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 32px">
+                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px; border: 1px solid #023047">
+                            <div style="color: #8ecae6; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 8px">BASIC</div>
+                            <div style="color: #F1F5F9; font-size: 20px; font-weight: 600; margin-bottom: 8px">6 Primitives</div>
+                            <p style="color: #94A3B8; font-size: 13px; line-height: 1.5">Cube, Cylinder, Pyramid, Diamond, Stairs, Ramp</p>
+                        </div>
+                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px; border: 1px solid #023047">
+                            <div style="color: #219ebc; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 8px">STRUCTURAL</div>
+                            <div style="color: #F1F5F9; font-size: 20px; font-weight: 600; margin-bottom: 8px">5 Shapes</div>
+                            <p style="color: #94A3B8; font-size: 13px; line-height: 1.5">Wall, Floor, L-Shape, T-Shape, Corner</p>
+                        </div>
+                        <div style="background: #1A1A1A; border-radius: 12px; padding: 24px; border: 1px solid #023047">
+                            <div style="color: #023047; background: #8ecae6; display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; margin-bottom: 8px">DIAGRAM</div>
+                            <div style="color: #F1F5F9; font-size: 20px; font-weight: 600; margin-bottom: 8px">4 Shapes</div>
+                            <p style="color: #94A3B8; font-size: 13px; line-height: 1.5">Arrow, Connector, Label, Platform</p>
+                        </div>
+                    </div>
+                    <div class="m-img-wrap" style="margin-top: 24px"><img src="images/isoblock/isoblock-shape-primitives.png" alt="Shape Primitives" loading="lazy"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #121212">
+                    ${labelBar('Feature', 'Surfaces', 'Rendering')}
+                    ${twoCol(
+                        '<h3 class="m-section__title" style="color: #8ecae6">SURFACE<br>PRESETS</h3>',
+                        '<p class="m-section__desc">Five rendering styles applied to any shape. Each preset controls how light interacts with the three isometric faces, creating distinct visual treatments from a single shape.</p>' +
+                        '<div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap">' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Flat</span>' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Matte</span>' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Glossy</span>' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Metallic</span>' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Pastel</span>' +
+                        '</div>'
+                    )}
+                    <div class="m-img-wrap" style="margin-top: 24px"><img src="images/isoblock/isoblock-surface-presets.png" alt="Surface Presets" loading="lazy"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #1E1E1E">
+                    ${labelBar('Feature', 'Plugin UI', 'Interface')}
+                    ${twoCol(
+                        '<h3 class="m-section__title" style="color: #8ecae6">PLUGIN UI</h3><p class="m-section__subtitle">Vertical sidebar, 300px wide</p>',
+                        '<p class="m-section__desc">Shape selector with icon grid. Color picker with hex input and HSL sliders. Shadow controls with angle and blur. Keyboard shortcut indicators on every action. Dark theme matching Figma&rsquo;s native UI.</p>' +
+                        '<div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap">' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Icon Grid (15)</span>' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">HSL Picker</span>' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Shadow System</span>' +
+                            '<span style="background: #023047; color: #8ecae6; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600">Shortcuts</span>' +
+                        '</div>'
+                    )}
+                    <div class="m-img-wrap" style="margin-top: 24px"><img src="images/isoblock/isoblock-plugin-ui.png" alt="Plugin UI" loading="lazy"></div>
+                </div>`;
+
+                html += `<div class="m-section" style="background: #121212; padding: 64px 60px">
+                    <div class="m-cta">
+                        <div class="m-cta__line" style="background: linear-gradient(90deg, #8ecae6, #219ebc, #023047)"></div>
+                        <div class="m-cta__title" style="color: #8ecae6">IsoBlock</div>
+                        <div class="m-cta__subtitle">MZM Labs &middot; Solo Designer &amp; Developer &middot; 2025&ndash;2026</div>
+                        <div class="m-cta__buttons">
+                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" style="background: #8ecae6; color: #023047" onclick="closeModal()">Get in Touch</a>
+                        </div>
+                        <div class="m-cta__footer">uxmeas.com</div>
                     </div>
                 </div>`;
             }
