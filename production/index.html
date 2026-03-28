@@ -2119,6 +2119,32 @@
             });
         });
 
+        // ── Intercept "next case study" links inside modal ──
+        const reverseSlugMap = {};
+        Object.keys(slugMap).forEach(k => { reverseSlugMap[slugMap[k]] = k; });
+        modalPanel.addEventListener('click', (e) => {
+            const link = e.target.closest('a[href]');
+            if (!link) return;
+            const href = link.getAttribute('href');
+            // "Back to portfolio" links — close modal
+            if (href === '/' || href === '../../' || href === '../..') {
+                e.preventDefault();
+                closeModal();
+                return;
+            }
+            // Match links like /case-study/compliance-ux/ or ../compliance-ux/
+            const match = href.match(/\/case-study\/([^/]+)\/?$/) || href.match(/\.\.\/([^/]+)\/?$/);
+            if (match) {
+                const slug = match[1];
+                const projectKey = reverseSlugMap[slug];
+                if (projectKey) {
+                    e.preventDefault();
+                    openModal(projectKey);
+                    return;
+                }
+            }
+        });
+
         // ── Close handlers ──
         modal.querySelector('.modal-close').addEventListener('click', () => closeModal());
         modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
