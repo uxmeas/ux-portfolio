@@ -321,6 +321,14 @@
       .cs-hero__stat-number { font-size: 48px; }
       .cs-hero__laptop-wrap img { height: auto; }
       .device-ipad { max-width: 100%; }
+      .rt-header { display: none; }
+      .rt-row { flex-direction: column; gap: 12px; padding: 20px; }
+      .rt-cell:first-child { width: 100%; font-size: 16px; }
+      .rt-cell:not(:first-child)::before { font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 3px; color: var(--gold); display: block; margin-bottom: 4px; }
+      .rt-cell:nth-child(2)::before { content: 'BUSINESS PROBLEM'; }
+      .rt-cell:nth-child(3)::before { content: 'USER NEED'; }
+      .cta-footer__buttons { flex-direction: column; }
+      .phone-pair { flex-direction: column; align-items: center; }
     }
   </style>
   <!-- GA4 -->
