@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AKMSecure — Brand & Web Case Study — Pheak Meas</title>
+  <title>AKMSecure — Brand & Web Case Study — UX Meas</title>
+  <meta name="description" content="Case study: Full brand identity and website build for AKM Cyber Corp., a quantum-resilient cybersecurity platform. Logo, website design & development, HubSpot CMS migration, and print collateral.">
+  <meta property="og:title" content="AKMSecure — Case Study — UX Meas">
+  <meta property="og:description" content="Brand identity, website design & development, and HubSpot CMS migration for a quantum-resilient cybersecurity startup.">
+  <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
+  <meta property="og:url" content="https://uxmeas.com/case-study/akmsecure/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,476 +27,447 @@
         radial-gradient(circle 700px at 70% 65%, #1A1A1E 0%, transparent 100%),
         radial-gradient(circle 700px at 50% 93%, #161618 0%, transparent 100%),
         #0A0A0A;
-      color: #FFFFFF;
+      color: #F0F0F2;
     }
     img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
 
     :root {
-      --cs--akmsecure-bg-primary: #0B0B0B;
-      --cs--akmsecure-bg-light: #F5F5F5;
-      --cs--akmsecure-bg-statement: #0E0E0E;
-      --cs--akmsecure-bg-typo: #EBEBEB;
-      --cs--akmsecure-bg-website: #0D0D0D;
-      --cs--akmsecure-bg-print: #141414;
-      --cs--akmsecure-bg-cta: #060606;
-      --cs--akmsecure-text-primary: #FFFFFF;
-      --cs--akmsecure-text-muted: #6B6B6B;
-      --cs--akmsecure-accent: #991b1b;
-      --text-body: #8B8B8B;
+      --bg-primary: #0B0B0B;
+      --bg-deep: #0E0E0E;
+      --bg-surface: #1A1A1A;
+      --bg-card: #141414;
+      --border: #2B2B2B;
+      --accent: #9CA3AF;
+      --accent-red: #991b1b;
+      --text-primary: #F0F0F2;
+      --text-secondary: #9298A0;
+      --text-muted: #6B6B6B;
       --text-dark: #0B0B0B;
-      --text-scope: #555555;
-      --divider-dark: #2B2B2B;
-      --divider-light: #D5D5D5;
-      --section-pad-y: 100px;
-      --section-pad-x: 120px;
-      --section-gap: 40px;
-      --two-col-gap: 48px;
-      --left-col: 320px;
-      --right-col: 680px;
     }
 
-    /* === LABEL BAR === */
-    .cs-label-bar {
-      display: flex;
+    .page-wrap { width: 100%; max-width: 1440px; margin: 0 auto; overflow: hidden; }
+
+    /* === COMMON === */
+    .badge {
+      display: block;
+      width: max-content;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 6px 20px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 56px;
+      letter-spacing: 1px;
+      line-height: 1.05;
+      color: var(--text-primary);
+    }
+    .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+    .btn-primary {
+      display: inline-flex;
       align-items: center;
-      width: 100%;
-      gap: 12px;
-    }
-    .cs-label-bar span {
-      font-size: 11px;
-      font-weight: 500;
-      color: var(--cs--akmsecure-text-muted);
+      justify-content: center;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
       letter-spacing: 2px;
-      text-transform: uppercase;
-      white-space: nowrap;
+      color: var(--text-dark);
+      background: var(--text-primary);
+      padding: 14px 32px;
+      border-radius: 6px;
     }
-    .cs-label-bar .cs-label-divider {
-      flex: 1;
-      height: 1px;
-      background: var(--divider-dark);
-    }
-    .cs-label-bar--light .cs-label-divider {
-      background: var(--divider-light);
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 14px 32px;
+      border-radius: 6px;
     }
 
-    /* === SECTION WRAPPER === */
-    .cs-section {
-      width: 100%;
-      max-width: 1440px;
-      margin: 0 auto;
+    /* === NAV === */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 120px;
+    }
+    .nav__logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+    }
+    .nav__links { display: flex; gap: 40px; list-style: none; }
+    .nav__links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .nav__links a.nav--accent { color: var(--accent); }
+
+    /* === HERO === */
+    .cs-hero {
+      padding: 100px 120px 60px;
       display: flex;
       flex-direction: column;
-    }
-
-    /* === TWO-COLUMN === */
-    .cs-two-col {
-      display: flex;
-      gap: var(--two-col-gap);
-    }
-    .cs-two-col__left {
-      width: var(--left-col);
-      flex-shrink: 0;
-    }
-    .cs-two-col__right {
-      width: var(--right-col);
-      flex: 1;
-    }
-
-    /* === TYPOGRAPHY === */
-    .cs-title {
-      font-size: 36px;
-      font-weight: 700;
-      line-height: 1.1;
-    }
-    .cs-body {
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--text-scope);
-      line-height: 1.7;
-    }
-
-    /* === IMAGE === */
-    .cs-img {
-      width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-
-    /* ========================
-       SECTION 1 — HERO
-       ======================== */
-    .cs-hero {
-      background: var(--cs--akmsecure-bg-primary);
-      padding: 80px var(--section-pad-x) 60px;
-    }
-    .cs-hero .cs-section {
-      gap: 32px;
       align-items: center;
       text-align: center;
+      gap: 32px;
     }
-    .cs-hero__logo {
-      width: 240px;
-      height: 80px;
-      object-fit: contain;
+    .cs-hero__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
     }
-    .cs-hero__title {
-      font-size: 48px;
-      font-weight: 700;
-      color: var(--cs--akmsecure-text-primary);
-      line-height: 1.1;
+    .cs-hero__logo img { height: 40px; width: 180px; object-fit: contain; }
+    .cs-hero__tags {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--accent);
     }
-    .cs-hero__subtitle {
-      font-size: 18px;
-      font-weight: 400;
-      color: var(--text-body);
-      line-height: 1.6;
-      max-width: 680px;
+    .cs-hero__meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    .cs-hero__headline {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 80px;
+      letter-spacing: -1px;
+      line-height: 0.95;
+      color: var(--text-primary);
     }
     .cs-hero__stats {
       display: flex;
-      gap: 32px;
-      padding-top: 32px;
-      width: 100%;
-    }
-    .cs-hero__stat {
-      flex: 1;
-    }
-    .cs-hero__stat-number {
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--cs--akmsecure-text-primary);
-    }
-    .cs-hero__stat-label {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--cs--akmsecure-text-muted);
-      margin-top: 4px;
-    }
-    .cs-hero__image {
-      height: 420px;
-      width: 100%;
-      background: #161616;
-    }
-
-    /* ========================
-       SECTION 2 — ABOUT CLIENT
-       ======================== */
-    .cs-about {
-      background: var(--cs--akmsecure-bg-light);
-      padding: var(--section-pad-y) var(--section-pad-x);
-    }
-    .cs-about .cs-section {
-      gap: var(--section-gap);
-    }
-    .cs-about .cs-title {
-      color: var(--text-dark);
-    }
-    .cs-about .cs-body {
-      color: var(--text-scope);
-    }
-    .cs-scope {
+      gap: 48px;
+      justify-content: center;
+      align-items: center;
       padding-top: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
     }
-    .cs-scope__title {
-      font-size: 13px;
-      font-weight: 600;
-      color: #888888;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .cs-hero__stat { text-align: center; }
+    .cs-hero__stat-number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 28px;
+      color: var(--accent);
+      line-height: 1;
       margin-bottom: 4px;
     }
-    .cs-scope__item {
-      font-size: 14px;
-      color: var(--text-scope);
-      line-height: 1.5;
-      padding-left: 20px;
-      position: relative;
+    .cs-hero__stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
     }
-    .cs-scope__item::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: #888888;
+    .cs-hero__subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 800px;
+    }
+    .cs-hero__laptop {
+      width: 1200px;
+      max-width: 100%;
+      margin-top: 16px;
+    }
+    .cs-hero__laptop img { width: 100%; height: 740px; object-fit: cover; border-radius: 8px; }
+
+    /* === SECTIONS === */
+    .cs-section {
+      padding: 100px 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .cs-section--deep { background: var(--bg-deep); }
+
+    /* === TWO-COL === */
+    .cs-two-col {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+    .cs-col-left--380 { width: 380px; flex-shrink: 0; }
+    .cs-col-fill { flex: 1; }
+
+    /* === META ROW === */
+    .meta-row {
+      display: flex;
+      gap: 48px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item__label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .meta-item__value {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-secondary);
     }
 
-    /* ========================
-       SECTION 3 — STATEMENT
-       ======================== */
-    .cs-statement {
-      background: var(--cs--akmsecure-bg-statement);
-      padding: 140px var(--section-pad-x);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    /* === DEVICE FRAMES === */
+    .device-phone {
+      width: 170px;
+      aspect-ratio: 9 / 19;
+      border-radius: 22px;
+      border: 6px solid #1A1A1A;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+      overflow: hidden;
+      background: #0A0F1A;
     }
-    .cs-statement .cs-section {
+    .device-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .phone-pair {
+      display: flex;
       gap: 24px;
+      justify-content: center;
       align-items: center;
+    }
+    .device-ipad {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      border: 6px solid #1A1A1A;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+      overflow: hidden;
+      margin: 0 auto;
+      background: #0A0F1A;
+    }
+    .device-ipad img { width: 100%; height: auto; display: block; }
+
+    /* === STATEMENT === */
+    .cs-statement {
+      padding: 120px 120px;
       text-align: center;
     }
     .cs-statement__title {
-      font-size: 80px;
-      font-weight: 700;
-      color: var(--cs--akmsecure-text-primary);
-      line-height: 1.1;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 64px;
+      letter-spacing: -1px;
+      line-height: 1.05;
+      color: var(--text-primary);
+      max-width: 900px;
+      margin: 0 auto;
     }
     .cs-statement__subtitle {
-      font-size: 16px;
-      font-weight: 400;
-      color: var(--cs--akmsecure-text-muted);
-      line-height: 1.6;
-    }
-
-    /* ========================
-       SECTION 4 — TYPOGRAPHY & COLOR
-       ======================== */
-    .cs-typo {
-      background: var(--cs--akmsecure-bg-typo);
-      padding: var(--section-pad-y) var(--section-pad-x);
-    }
-    .cs-typo .cs-section {
-      gap: var(--section-gap);
-    }
-    .cs-typo .cs-title {
-      color: var(--text-dark);
-    }
-    .cs-typo__row {
-      display: flex;
-      gap: 32px;
-      width: 100%;
-    }
-    .cs-typo__col {
-      flex: 1;
-    }
-    .cs-typo__label {
-      font-size: 11px;
-      font-weight: 700;
-      color: #888888;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .cs-typo__name {
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--text-dark);
-    }
-    .cs-typo__weights {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      color: var(--text-muted);
       margin-top: 16px;
     }
-    .cs-typo__weight {
-      font-size: 14px;
-      color: #888888;
-    }
-    .cs-color-row {
-      display: flex;
-      gap: 8px;
-      height: 60px;
-    }
-    .cs-color-swatch {
-      flex: 1;
-      border-radius: 6px;
-    }
 
-    /* ========================
-       SECTION 5 — WEBSITE SHOWCASE
-       ======================== */
-    .cs-website {
-      background: var(--cs--akmsecure-bg-website);
-      padding: var(--section-pad-y) var(--section-pad-x);
+    /* === TYPOGRAPHY SECTION === */
+    .typo-row { display: flex; gap: 64px; width: 100%; }
+    .typo-col { flex: 1; }
+    .typo-label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 16px;
     }
-    .cs-website .cs-section {
-      gap: var(--section-gap);
+    .typo-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 16px;
     }
-    .cs-website .cs-title {
-      color: var(--cs--akmsecure-text-primary);
+    .typo-weights { display: flex; flex-direction: column; gap: 8px; }
+    .typo-weight {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: var(--text-muted);
     }
-    .cs-website__screenshots {
+    .color-row { display: flex; gap: 12px; }
+    .color-swatch {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+    }
+    .platform-screenshot {
+      width: 100%;
+      border-radius: 8px;
+      border: 3px solid var(--border);
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .platform-screenshot img { width: 100%; height: 360px; object-fit: cover; }
+
+    /* === PRINT SECTION === */
+    .print-image {
+      flex: 1;
+      border-radius: 8px;
+      border: 3px solid var(--border);
+      overflow: hidden;
+    }
+    .print-image img { width: 100%; height: 480px; object-fit: cover; }
+
+    /* === CTA FOOTER === */
+    .cta-footer {
+      padding: 100px 120px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
-    }
-    .cs-website__full {
-      width: 100%;
-      height: 900px;
-      border-radius: 10px;
-      object-fit: cover;
-      background: #1A1A1A;
-    }
-    .cs-website__row {
-      display: flex;
-      gap: 16px;
-      height: 444px;
-    }
-    .cs-website__row .cs-img {
-      flex: 1;
-      height: 100%;
-      border-radius: 10px;
-      background: #1A1A1A;
-    }
-
-    /* ========================
-       SECTION 6 — PRINT COLLATERAL
-       ======================== */
-    .cs-print {
-      background: var(--cs--akmsecure-bg-print);
-      padding: var(--section-pad-y) var(--section-pad-x);
-    }
-    .cs-print .cs-section {
-      gap: var(--section-gap);
-    }
-    .cs-print .cs-title {
-      color: var(--cs--akmsecure-text-primary);
-    }
-    .cs-print__row {
-      display: flex;
-      gap: 16px;
-      height: 280px;
-    }
-    .cs-print__item {
-      flex: 1;
-      background: #1A1A1A;
-      border-radius: 8px;
-      display: flex;
       align-items: center;
-      justify-content: center;
-    }
-    .cs-print__item-label {
-      font-size: 14px;
-      color: #2B2B2B;
-    }
-
-    /* ========================
-       SECTION 7 — CTA FOOTER
-       ======================== */
-    .cs-cta {
-      background: var(--cs--akmsecure-bg-cta);
-      padding: var(--section-pad-y) var(--section-pad-x);
-    }
-    .cs-cta .cs-section {
       gap: 32px;
-      align-items: center;
       text-align: center;
+      background: var(--bg-deep);
     }
-    .cs-cta__divider {
-      width: 120px;
-      height: 2px;
-      background: var(--cs--akmsecure-accent);
-    }
-    .cs-cta__title {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--cs--akmsecure-text-primary);
-    }
-    .cs-cta__subtitle {
+    .cta-footer__divider { width: 120px; height: 2px; background: var(--accent); }
+    .cta-footer__next-label {
+      font-family: 'Bebas Neue', cursive;
       font-size: 14px;
-      font-weight: 400;
-      color: var(--cs--akmsecure-text-muted);
+      letter-spacing: 6px;
+      color: var(--accent);
     }
-    .cs-cta__actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding-top: 16px;
+    .cta-footer__next-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 56px;
+      letter-spacing: 1px;
+      line-height: 1.05;
+      color: var(--text-primary);
     }
-    .cs-cta__btn {
-      display: inline-block;
-      background: #FFFFFF;
-      color: var(--cs--akmsecure-bg-primary);
-      border-radius: 6px;
-      padding: 12px 24px;
-      font-size: 14px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: opacity 0.2s;
+    .cta-footer__desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 600px;
     }
-    .cs-cta__btn:hover { opacity: 0.9; }
-    .cs-cta__ghost {
-      font-size: 14px;
-      font-weight: 500;
-      color: #ADADAD;
-      text-decoration: none;
-      padding: 12px 24px;
-    }
-    .cs-cta__ghost:hover { text-decoration: underline; }
-    .cs-cta__footer {
-      font-size: 12px;
-      color: var(--cs--akmsecure-text-muted);
+    .cta-footer__buttons { display: flex; gap: 16px; padding-top: 16px; }
+    .cta-footer__site {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 24px;
     }
 
-    /* ========================
-       RESPONSIVE
-       ======================== */
+    /* === MATERIALS GALLERY === */
+    .materials-mosaic {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 80px;
+      gap: 12px;
+      margin-top: 48px;
+    }
+    .materials-mosaic__item {
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+    .materials-mosaic__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Large event banner — spans full width */
+    .m-span-full { grid-column: span 12; grid-row: span 3; }
+    /* Half width event banner */
+    .m-span-half { grid-column: span 6; grid-row: span 3; }
+    /* Business card — small */
+    .m-span-card { grid-column: span 3; grid-row: span 4; }
+    /* Name tags — medium */
+    .m-span-medium { grid-column: span 6; grid-row: span 4; }
+    /* Card items get shadow */
+    .materials-mosaic__item--card {
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      background: var(--bg-surface);
+    }
+    .materials-mosaic__item--event {
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+
+    /* === RESPONSIVE === */
     @media (max-width: 1024px) {
-      :root {
-        --section-pad-x: 48px;
-      }
-      .cs-two-col {
-        flex-direction: column;
-        gap: 32px;
-      }
-      .cs-two-col__left,
-      .cs-two-col__right {
-        width: 100%;
-      }
-      .cs-hero__title { font-size: 36px; }
-      .cs-title { font-size: 28px; }
+      .cs-hero, .cs-section, .cs-statement, .cta-footer, .nav { padding-left: 48px; padding-right: 48px; }
+      .cs-two-col { flex-direction: column; gap: 32px; }
+      .cs-col-left--380 { width: 100%; }
+      .cs-hero__headline { font-size: 56px; }
+      .section-title { font-size: 40px; }
       .cs-statement__title { font-size: 48px; }
-      .cs-typo__row { flex-direction: column; }
-      .cs-website__full { height: 500px; }
-      .cs-website__row { height: 300px; }
+      .cs-hero__top { flex-direction: column; gap: 16px; }
+      .typo-row { flex-direction: column; gap: 32px; }
+      .meta-row { flex-wrap: wrap; gap: 24px; }
     }
     @media (max-width: 640px) {
-      :root {
-        --section-pad-x: 24px;
-        --section-pad-y: 64px;
-      }
-      .cs-hero { padding: 48px 24px 40px; }
-      .cs-hero__title { font-size: 28px; }
-      .cs-hero__stats { flex-direction: column; gap: 16px; }
-      .cs-hero__image { height: 240px; }
-      .cs-statement { padding: 80px 24px; }
+      .materials-mosaic { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 60px; }
+      .m-span-full { grid-column: span 6; grid-row: span 2; }
+      .m-span-half { grid-column: span 6; grid-row: span 2; }
+      .m-span-card { grid-column: span 3; grid-row: span 3; }
+      .m-span-medium { grid-column: span 6; grid-row: span 3; }
+      .cs-hero, .cs-section, .cs-statement, .cta-footer, .nav { padding-left: 24px; padding-right: 24px; }
+      .cs-hero { padding-top: 48px; padding-bottom: 40px; }
+      .cs-hero__headline { font-size: 40px; }
+      .cs-hero__stats { flex-direction: column; gap: 24px; }
+      .cs-hero__subtitle { font-size: 18px; }
+      .cs-hero__laptop img { height: auto; }
+      .cs-statement { padding-top: 80px; padding-bottom: 80px; }
       .cs-statement__title { font-size: 36px; }
-      .cs-print__row { flex-direction: column; height: auto; }
-      .cs-print__item { height: 200px; }
-      .cs-website__row { flex-direction: column; height: auto; }
-      .cs-website__row .cs-img { height: 240px; }
-      .cs-website__full { height: 300px; }
-      .cs-color-row { flex-wrap: wrap; }
+      .phone-pair { flex-direction: column; align-items: center; }
+      .device-ipad { max-width: 100%; }
+      .color-row { flex-wrap: wrap; }
+      .platform-screenshot img { height: auto; }
+      .print-image img { height: 300px; }
+      .cta-footer__next-title { font-size: 36px; }
+      .cta-footer__buttons { flex-direction: column; }
+      .meta-row { flex-direction: column; gap: 16px; }
     }
   </style>
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9HVVW1GBEC');</script>
 </head>
 <body>
+  <div class="page-wrap">
 
-  <!-- SECTION 1 — HERO -->
-  <section class="cs-hero">
-    <div class="cs-section">
-      <div class="cs-label-bar">
-        <span>AKMSecure</span>
-        <div class="cs-label-divider"></div>
-        <span>Brand · Web · CMS</span>
-        <div class="cs-label-divider"></div>
-        <span>Cybersecurity</span>
+    <!-- NAV -->
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav__logo" href="../../">UX MEAS</a>
+      <ul class="nav__links">
+        <li><a href="../../">WORK</a></li>
+        <li><a href="../../#about">ABOUT</a></li>
+        <li><a href="../../#contact" class="nav--accent">CONTACT</a></li>
+      </ul>
+    </nav>
+
+    <!-- 1. HERO -->
+    <section class="cs-hero">
+      <div class="cs-hero__top">
+        <div class="cs-hero__logo">
+          <img src="../../images/akmsecure/logos/akm-logo-white.png" alt="AKMSecure">
+        </div>
+        <span class="cs-hero__meta">Design Consultant · 2025–2026</span>
       </div>
-
-      <img class="cs-hero__logo" src="../../images/akmsecure/logos/akm-logo-white.png" alt="AKM Logo">
-
-      <h1 class="cs-hero__title">AKMSecure</h1>
-
-      <p class="cs-hero__subtitle">
-        Full brand identity and website build for a cybersecurity startup. Logo, brand guidelines, marketing site, HubSpot CMS migration, and print collateral.
-      </p>
-
+      <h1 class="cs-hero__headline">AKMSecure</h1>
+      <span class="cs-hero__tags" style="margin-top: -16px;">BRAND · WEB · CMS · CYBERSECURITY</span>
       <div class="cs-hero__stats">
         <div class="cs-hero__stat">
-          <div class="cs-hero__stat-number">Full Brand</div>
-          <div class="cs-hero__stat-label">Identity system from scratch</div>
+          <div class="cs-hero__stat-number">Brand System</div>
+          <div class="cs-hero__stat-label">Built around adopted logo</div>
         </div>
         <div class="cs-hero__stat">
           <div class="cs-hero__stat-number">Website</div>
@@ -499,158 +478,192 @@
           <div class="cs-hero__stat-label">CMS migration</div>
         </div>
       </div>
-
-      <img class="cs-img cs-hero__image" src="../../images/akmsecure/homepage-real.png" alt="AKMSecure website homepage screenshot">
-    </div>
-  </section>
-
-  <!-- SECTION 2 — ABOUT CLIENT -->
-  <section class="cs-about">
-    <div class="cs-section">
-      <div class="cs-label-bar cs-label-bar--light">
-        <span>Client</span>
-        <div class="cs-label-divider"></div>
-        <span>About</span>
-        <div class="cs-label-divider"></div>
-        <span>Cybersecurity</span>
+      <p class="cs-hero__subtitle">A quantum-resilient cybersecurity startup had a logo but no brand. Built the complete visual system, marketing website, HubSpot CMS migration, and print collateral from scratch.</p>
+      <div class="cs-hero__laptop">
+        <img src="../../images/case-studies/akmsecure/hero-website.png" alt="AKMSecure website homepage">
       </div>
+    </section>
 
-      <div class="cs-two-col">
-        <div class="cs-two-col__left">
-          <h2 class="cs-title">ABOUT<br>THE CLIENT</h2>
+    <!-- 2. ABOUT THE CLIENT -->
+    <section class="cs-section">
+      <span class="badge">ABOUT THE CLIENT</span>
+      <div class="cs-two-col" style="align-items: center;">
+        <div class="cs-col-left--380">
+          <h2 class="section-title" style="margin-bottom: 24px;">About the client</h2>
+          <p class="body-text">AKM Cyber Corp. builds autonomous key management — a quantum-resilient cybersecurity platform that eliminates the need for traditional certificates and central authorities. Their technology replaces legacy PKI infrastructure for enterprises in defense, energy, finance, and critical infrastructure.</p>
+          <p class="body-text" style="margin-top: 16px;">They had a logo and a product. Nothing else — no brand system, no website, no marketing materials. Without a cohesive identity, they were competing for Boeing and Lockheed Martin contracts with nothing to show.</p>
+          <div class="meta-row">
+            <div>
+              <div class="meta-item__label">ROLE</div>
+              <div class="meta-item__value">Design Consultant</div>
+            </div>
+            <div>
+              <div class="meta-item__label">STACK</div>
+              <div class="meta-item__value">Figma, HTML/CSS, HubSpot CMS</div>
+            </div>
+            <div>
+              <div class="meta-item__label">YEAR</div>
+              <div class="meta-item__value">2025</div>
+            </div>
+          </div>
         </div>
-        <div class="cs-two-col__right">
-          <p class="cs-body">
-            AKMSecure is a cybersecurity startup specializing in authentication and key management solutions. They needed a complete brand identity and web presence to establish credibility in the enterprise security market.
-          </p>
-          <div class="cs-scope">
-            <div class="cs-scope__title">Project Scope</div>
-            <div class="cs-scope__item">Brand identity design from scratch</div>
-            <div class="cs-scope__item">Marketing website design & development</div>
-            <div class="cs-scope__item">HubSpot CMS migration</div>
-            <div class="cs-scope__item">Print collateral (tear sheets, business cards, brand guidelines)</div>
+        <div class="cs-col-fill" style="display: flex; justify-content: center;">
+          <div class="phone-pair">
+            <div class="device-phone">
+              <img src="../../images/case-studies/akmsecure/about-phone-1.png" alt="AKMSecure mobile view">
+            </div>
+            <div class="device-phone">
+              <img src="../../images/case-studies/akmsecure/about-phone-2.png" alt="AKMSecure mobile view">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SECTION 3 — STATEMENT -->
-  <section class="cs-statement">
-    <div class="cs-section">
+    <!-- 3. BRAND STATEMENT -->
+    <section class="cs-statement">
       <h2 class="cs-statement__title">Security starts<br>with identity.</h2>
       <p class="cs-statement__subtitle">— brand, trust, and credibility before code</p>
-    </div>
-  </section>
+    </section>
 
-  <!-- SECTION 4 — TYPOGRAPHY & COLOR -->
-  <section class="cs-typo">
-    <div class="cs-section">
-      <div class="cs-label-bar cs-label-bar--light">
-        <span>Brand</span>
-        <div class="cs-label-divider"></div>
-        <span>Visual System</span>
-        <div class="cs-label-divider"></div>
-        <span>Identity</span>
-      </div>
+    <!-- 4. TYPOGRAPHY & COLOR -->
+    <section class="cs-section cs-section--deep">
+      <span class="badge">TYPOGRAPHY & COLOR</span>
+      <div class="typo-row">
+        <div class="typo-col">
+          <div class="typo-label">HEADERS</div>
+          <div style="font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.5px;">Aptos Narrow</div>
+          <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 32px;">Headlines, hero titles, section headings</div>
 
-      <h2 class="cs-title">TYPOGRAPHY & COLOR</h2>
-
-      <div class="cs-typo__row">
-        <div class="cs-typo__col">
-          <div class="cs-typo__label">PRIMARY TYPEFACE</div>
-          <div class="cs-typo__name">Inter</div>
-          <div class="cs-typo__weights">
-            <span class="cs-typo__weight" style="font-weight:400;">Regular 400</span>
-            <span class="cs-typo__weight" style="font-weight:500;">Medium 500</span>
-            <span class="cs-typo__weight" style="font-weight:600;">Semibold 600</span>
-            <span class="cs-typo__weight" style="font-weight:700;">Bold 700</span>
+          <div class="typo-label">BODY</div>
+          <div style="font-family: 'Inter', sans-serif; font-size: 36px; font-weight: 400; color: var(--text-primary); margin-bottom: 8px;">Inter</div>
+          <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 16px;">
+            <div>
+              <span style="font-weight: 400; font-size: 16px; color: var(--text-primary);">400 Regular</span>
+              <span style="font-size: 13px; color: var(--text-muted); margin-left: 12px;">Body text, descriptions</span>
+            </div>
+            <div>
+              <span style="font-weight: 500; font-size: 16px; color: var(--text-primary);">500 Medium</span>
+              <span style="font-size: 13px; color: var(--text-muted); margin-left: 12px;">Labels, navigation</span>
+            </div>
+            <div>
+              <span style="font-weight: 600; font-size: 16px; color: var(--text-primary);">600 Semibold</span>
+              <span style="font-size: 13px; color: var(--text-muted); margin-left: 12px;">Subheadings, CTAs</span>
+            </div>
+            <div>
+              <span style="font-weight: 700; font-size: 16px; color: var(--text-primary);">700 Bold</span>
+              <span style="font-size: 13px; color: var(--text-muted); margin-left: 12px;">Emphasis, key metrics</span>
+            </div>
           </div>
         </div>
-        <div class="cs-typo__col">
-          <div class="cs-typo__label">COLOR PALETTE</div>
-          <div class="cs-color-row">
-            <div class="cs-color-swatch" style="background:#0B0B0B;"></div>
-            <div class="cs-color-swatch" style="background:#991b1b;"></div>
-            <div class="cs-color-swatch" style="background:#FFFFFF; border: 1px solid #D5D5D5;"></div>
-            <div class="cs-color-swatch" style="background:#F5F5F5;"></div>
-            <div class="cs-color-swatch" style="background:#6B6B6B;"></div>
+        <div class="typo-col">
+          <div class="typo-label">MONOCHROMATIC PALETTE</div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;">
+            <div>
+              <div style="width: 100%; aspect-ratio: 1; border-radius: 8px; background: #000000;"></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">Black<br>#000000</div>
+            </div>
+            <div>
+              <div style="width: 100%; aspect-ratio: 1; border-radius: 8px; background: #0B0B0B;"></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">Primary<br>#0B0B0B</div>
+            </div>
+            <div>
+              <div style="width: 100%; aspect-ratio: 1; border-radius: 8px; background: #141414;"></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">Surface<br>#141414</div>
+            </div>
+            <div>
+              <div style="width: 100%; aspect-ratio: 1; border-radius: 8px; background: #1A1A1A;"></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">Card<br>#1A1A1A</div>
+            </div>
+            <div>
+              <div style="width: 100%; aspect-ratio: 1; border-radius: 8px; background: #2B2B2B;"></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">Border<br>#2B2B2B</div>
+            </div>
+            <div>
+              <div style="width: 100%; aspect-ratio: 1; border-radius: 8px; background: #555555;"></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">Muted<br>#555555</div>
+            </div>
+            <div>
+              <div style="width: 100%; aspect-ratio: 1; border-radius: 8px; background: #F5F5F5;"></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">Light<br>#F5F5F5</div>
+            </div>
+            <div>
+              <div style="width: 100%; aspect-ratio: 1; border-radius: 8px; background: #FFFFFF; border: 1px solid #2B2B2B;"></div>
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 8px;">White<br>#FFFFFF</div>
+            </div>
           </div>
-          <div class="cs-color-row" style="margin-top:8px;">
-            <div class="cs-color-swatch" style="background:#141414;"></div>
-            <div class="cs-color-swatch" style="background:#1A1A1A;"></div>
-            <div class="cs-color-swatch" style="background:#2B2B2B;"></div>
-            <div class="cs-color-swatch" style="background:#555555;"></div>
-            <div class="cs-color-swatch" style="background:#EBEBEB;"></div>
+        </div>
+      </div>
+
+      <!-- Mobile screens -->
+      <div class="phone-pair" style="gap: 32px; flex-wrap: wrap; margin-top: 16px;">
+        <div class="device-phone">
+          <img src="../../images/case-studies/akmsecure/website-phone-1.png" alt="AKMSecure homepage mobile">
+        </div>
+        <div class="device-phone">
+          <img src="../../images/case-studies/akmsecure/website-phone-2.png" alt="AKMSecure about mobile">
+        </div>
+        <div class="device-phone">
+          <img src="../../images/case-studies/akmsecure/website-phone-3.png" alt="AKMSecure platform mobile">
+        </div>
+        <div class="device-phone">
+          <img src="../../images/case-studies/akmsecure/website-phone-4.png" alt="AKMSecure features mobile">
+        </div>
+        <div class="device-phone">
+          <img src="../../images/case-studies/akmsecure/website-phone-5.png" alt="AKMSecure contact mobile">
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. WEBSITE -->
+    <section class="cs-section">
+      <span class="badge">WEBSITE</span>
+      <div class="cs-two-col" style="align-items: center;">
+        <div class="cs-col-left--380">
+          <h2 class="section-title" style="margin-bottom: 24px;">Website design and development</h2>
+          <p class="body-text">Designed and built from scratch. No template. The site needed to communicate technical credibility to enterprise buyers in defense, energy, and critical infrastructure — without looking like every other security vendor.</p>
+          <p class="body-text" style="margin-top: 16px;">Monochrome palette, zero border radius, high-contrast typography. The visual language says precision and control — the same qualities their product delivers.</p>
+        </div>
+        <div class="cs-col-fill" style="display: flex; justify-content: center;">
+          <div class="device-ipad">
+            <img src="../../images/case-studies/akmsecure/website-ipad.png" alt="AKMSecure website on iPad">
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SECTION 5 — WEBSITE SHOWCASE -->
-  <section class="cs-website">
-    <div class="cs-section">
-      <div class="cs-label-bar">
-        <span>Deliverable</span>
-        <div class="cs-label-divider"></div>
-        <span>Website</span>
-        <div class="cs-label-divider"></div>
-        <span>Design & Dev</span>
-      </div>
-
-      <h2 class="cs-title" style="color:#FFFFFF;">WEBSITE</h2>
-
-      <div class="cs-website__screenshots">
-        <img class="cs-img cs-website__full" src="../../images/akmsecure/homepage-real.png" alt="AKMSecure full homepage screenshot">
-        <div class="cs-website__row">
-          <img class="cs-img" src="../../images/akmsecure/about-real.png" alt="AKMSecure about page">
-          <img class="cs-img" src="../../images/akmsecure/platform-real.png" alt="AKMSecure platform page">
+    <!-- 6. BRAND SYSTEM IN ACTION -->
+    <section class="cs-section cs-section--deep">
+      <span class="badge">BRAND SYSTEM IN ACTION</span>
+      <div class="cs-two-col" style="align-items: flex-start;">
+        <div class="cs-col-left--380">
+          <h2 class="section-title" style="margin-bottom: 24px;">The brand didn't stop at the website</h2>
+          <p class="body-text">Same visual system adapted across business cards, trade show graphics, executive briefs, and print collateral. Every touchpoint reinforces the same identity — from a digital handshake to a physical one.</p>
+        </div>
+        <div class="cs-col-fill">
+          <div style="border-radius: 8px; overflow: hidden;">
+            <img src="../../images/case-studies/akmsecure/materials/print-example.png" alt="AKMSecure print collateral — tear sheets and brand guidelines" style="width: 100%; display: block;">
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- SECTION 6 — PRINT COLLATERAL -->
-  <section class="cs-print">
-    <div class="cs-section">
-      <div class="cs-label-bar">
-        <span>Deliverable</span>
-        <div class="cs-label-divider"></div>
-        <span>Print</span>
-        <div class="cs-label-divider"></div>
-        <span>Collateral</span>
+      <div style="border-radius: 8px; overflow: hidden;">
+        <img src="../../images/case-studies/akmsecure/materials/material-layout.png" alt="AKMSecure brand materials — trade show banners, business cards, conference graphics" style="width: 100%; display: block;">
       </div>
+    </section>
 
-      <h2 class="cs-title" style="color:#FFFFFF;">PRINT COLLATERAL</h2>
-
-      <div class="cs-print__row">
-        <div class="cs-print__item">
-          <span class="cs-print__item-label">Tear Sheet</span>
-        </div>
-        <div class="cs-print__item">
-          <span class="cs-print__item-label">Business Cards</span>
-        </div>
-        <div class="cs-print__item">
-          <span class="cs-print__item-label">Brand Guidelines</span>
-        </div>
+    <!-- 7. CTA FOOTER -->
+    <section class="cta-footer">
+      <div class="cta-footer__divider"></div>
+      <span class="cta-footer__next-label">NEXT CASE STUDY</span>
+      <h2 class="cta-footer__next-title">Compliance UX — 45 Minutes to 12</h2>
+      <p class="cta-footer__desc">Redesigned KYC onboarding for Katipult's investment platform. Cut completion time from 45 minutes to under 12, with 85% completion rate.</p>
+      <div class="cta-footer__buttons">
+        <a href="../compliance-ux/" class="btn-primary">VIEW COMPLIANCE UX CASE STUDY</a>
+        <a href="../../" class="btn-secondary">BACK TO PORTFOLIO</a>
       </div>
-    </div>
-  </section>
+      <span class="cta-footer__site">uxmeas.com</span>
+    </section>
 
-  <!-- SECTION 7 — CTA FOOTER -->
-  <section class="cs-cta">
-    <div class="cs-section">
-      <div class="cs-cta__divider"></div>
-      <h2 class="cs-cta__title">Next Case Study</h2>
-      <p class="cs-cta__subtitle">RelationSync — Memory-First Mobile App</p>
-      <div class="cs-cta__actions">
-        <a href="/case-study/relationsync/" class="cs-cta__btn">VIEW RELATIONSYNC CASE STUDY</a>
-        <a href="/" class="cs-cta__ghost">Back to Portfolio</a>
-      </div>
-      <div class="cs-cta__footer">uxmeas.com</div>
-    </div>
-  </section>
-
+  </div>
 </body>
 </html>
