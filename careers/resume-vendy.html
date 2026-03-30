@@ -502,54 +502,70 @@
         .panel-row {
             display: flex;
             align-items: center;
-            gap: 6px;
             margin-bottom: 4px;
-            height: 24px;
+            height: 26px;
         }
 
         .panel-row label {
             font-size: 10px;
             color: #7A7A86;
-            width: 72px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .panel-input {
+            position: relative;
+            width: 80px;
             flex-shrink: 0;
         }
 
-        .panel-row input[type="number"] {
-            width: 48px;
-            padding: 2px 4px;
+        .panel-input input[type="number"] {
+            width: 100%;
+            padding: 4px 22px 4px 8px;
             border: 1px solid #2A2A34;
-            border-radius: 2px;
+            border-radius: 3px;
             background: #16161E;
             color: #D8D8DC;
             font-family: 'Inter', sans-serif;
             font-size: 10px;
             font-variant-numeric: tabular-nums;
-            text-align: right;
+            text-align: left;
             -moz-appearance: textfield;
         }
 
-        .panel-row input[type="number"]::-webkit-inner-spin-button { opacity: 0; width: 12px; }
-        .panel-row input[type="number"]:hover::-webkit-inner-spin-button { opacity: 1; }
-        .panel-row input[type="number"]:focus { outline: none; border-color: #C07D4A; }
+        .panel-input input[type="number"]::-webkit-inner-spin-button { opacity: 0; width: 10px; }
+        .panel-input input[type="number"]:hover::-webkit-inner-spin-button { opacity: 1; }
+        .panel-input input[type="number"]:focus { outline: none; border-color: #C07D4A; }
 
-        .panel-row .color-input {
-            width: 72px;
-            padding: 3px 4px 3px 24px;
+        .panel-input .suffix {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 9px;
+            color: #444450;
+            pointer-events: none;
+        }
+
+        .panel-color {
+            width: 110px;
+            flex-shrink: 0;
+        }
+
+        .panel-color .color-input {
+            width: 100%;
+            padding: 4px 8px 4px 26px;
             border: 1px solid #2A2A34;
             border-radius: 3px;
             background: #16161E;
             color: #D8D8DC;
             font-family: 'Inter', monospace;
-            font-size: 9px;
+            font-size: 10px;
+            letter-spacing: 0.02em;
             cursor: pointer;
         }
 
-        .panel-row .color-input:focus { outline: none; border-color: #C07D4A; }
-
-        .panel-row .unit {
-            font-size: 9px;
-            color: #444450;
-            width: 14px;
+        .panel-color .color-input:focus { outline: none; border-color: #C07D4A;
         }
 
         .panel-actions {
@@ -641,32 +657,32 @@
 
     <div class="panel-section">
         <div class="panel-title">Color</div>
-        <div class="panel-row"><label>Accent</label><input type="text" class="color-input" data-coloris value="#C07D4A" id="clr-accent"></div>
-        <div class="panel-row"><label>Text</label><input type="text" class="color-input" data-coloris value="#1C1C24" id="clr-text"></div>
+        <div class="panel-row"><label>Accent</label><div class="panel-color"><input type="text" class="color-input" data-coloris value="#C07D4A" id="clr-accent"></div></div>
+        <div class="panel-row"><label>Text</label><div class="panel-color"><input type="text" class="color-input" data-coloris value="#1C1C24" id="clr-text"></div></div>
     </div>
 
     <div class="panel-section">
         <div class="panel-title">Type</div>
-        <div class="panel-row"><label>Body</label><input type="number" min="7" max="12" step="0.5" value="9" onchange="setToken('--t-body',this.value+'pt')"><span class="unit">pt</span></div>
-        <div class="panel-row"><label>Line Height</label><input type="number" min="1.0" max="2.0" step="0.05" value="1.3" onchange="setToken('--lh-body',this.value)"><span class="unit"></span></div>
-        <div class="panel-row"><label>Name</label><input type="number" min="18" max="34" step="1" value="26" onchange="setToken('--t-name',this.value+'pt')"><span class="unit">pt</span></div>
-        <div class="panel-row"><label>Role</label><input type="number" min="7" max="14" step="0.5" value="10" onchange="setToken('--t-role',this.value+'pt')"><span class="unit">pt</span></div>
+        <div class="panel-row"><label>Body</label><div class="panel-input"><input type="number" min="7" max="12" step="0.5" value="9" onchange="setToken('--t-body',this.value+'pt')"><span class="suffix">pt</span></div></div>
+        <div class="panel-row"><label>Line Height</label><div class="panel-input"><input type="number" min="1.0" max="2.0" step="0.05" value="1.3" onchange="setToken('--lh-body',this.value)"><span class="suffix">&times;</span></div></div>
+        <div class="panel-row"><label>Name</label><div class="panel-input"><input type="number" min="18" max="34" step="1" value="26" onchange="setToken('--t-name',this.value+'pt')"><span class="suffix">pt</span></div></div>
+        <div class="panel-row"><label>Role</label><div class="panel-input"><input type="number" min="7" max="14" step="0.5" value="10" onchange="setToken('--t-role',this.value+'pt')"><span class="suffix">pt</span></div></div>
     </div>
 
     <div class="panel-section">
         <div class="panel-title">Spacing</div>
-        <div class="panel-row"><label>Page Pad</label><input type="number" min="0.3" max="0.9" step="0.05" value="0.55" onchange="setToken('--sp-page-v',this.value+'in');setToken('--sp-page-h',(parseFloat(this.value)+0.1).toFixed(2)+'in')"><span class="unit">in</span></div>
-        <div class="panel-row"><label>Entry Gap</label><input type="number" min="4" max="28" step="1" value="16" onchange="setToken('--sp-entry',this.value+'px')"><span class="unit">px</span></div>
-        <div class="panel-row"><label>Section Gap</label><input type="number" min="6" max="32" step="1" value="18" onchange="setToken('--sp-section',this.value+'px')"><span class="unit">px</span></div>
-        <div class="panel-row"><label>Bullet Gap</label><input type="number" min="1" max="10" step="0.5" value="5" onchange="setToken('--sp-bullet',this.value+'px')"><span class="unit">px</span></div>
-        <div class="panel-row"><label>Role → Content</label><input type="number" min="2" max="14" step="1" value="6" onchange="setToken('--sp-role-b',this.value+'px')"><span class="unit">px</span></div>
-        <div class="panel-row"><label>Org → Bullets</label><input type="number" min="2" max="14" step="1" value="8" onchange="setToken('--sp-org-b',this.value+'px')"><span class="unit">px</span></div>
+        <div class="panel-row"><label>Page Pad</label><div class="panel-input"><input type="number" min="0.3" max="0.9" step="0.05" value="0.55" onchange="setToken('--sp-page-v',this.value+'in');setToken('--sp-page-h',(parseFloat(this.value)+0.1).toFixed(2)+'in')"><span class="suffix">in</span></div></div>
+        <div class="panel-row"><label>Entry Gap</label><div class="panel-input"><input type="number" min="4" max="28" step="1" value="16" onchange="setToken('--sp-entry',this.value+'px')"><span class="suffix">px</span></div></div>
+        <div class="panel-row"><label>Section Gap</label><div class="panel-input"><input type="number" min="6" max="32" step="1" value="18" onchange="setToken('--sp-section',this.value+'px')"><span class="suffix">px</span></div></div>
+        <div class="panel-row"><label>Bullet Gap</label><div class="panel-input"><input type="number" min="1" max="10" step="0.5" value="5" onchange="setToken('--sp-bullet',this.value+'px')"><span class="suffix">px</span></div></div>
+        <div class="panel-row"><label>Role → Content</label><div class="panel-input"><input type="number" min="2" max="14" step="1" value="6" onchange="setToken('--sp-role-b',this.value+'px')"><span class="suffix">px</span></div></div>
+        <div class="panel-row"><label>Org → Bullets</label><div class="panel-input"><input type="number" min="2" max="14" step="1" value="8" onchange="setToken('--sp-org-b',this.value+'px')"><span class="suffix">px</span></div></div>
     </div>
 
     <div class="panel-section">
         <div class="panel-title">Layout</div>
-        <div class="panel-row"><label>Left Col</label><input type="number" min="120" max="220" step="5" value="175" onchange="setToken('--col-left',this.value+'px')"><span class="unit">px</span></div>
-        <div class="panel-row"><label>Col Gap</label><input type="number" min="12" max="44" step="2" value="30" onchange="setToken('--col-gap',this.value+'px')"><span class="unit">px</span></div>
+        <div class="panel-row"><label>Left Col</label><div class="panel-input"><input type="number" min="120" max="220" step="5" value="175" onchange="setToken('--col-left',this.value+'px')"><span class="suffix">px</span></div></div>
+        <div class="panel-row"><label>Col Gap</label><div class="panel-input"><input type="number" min="12" max="44" step="2" value="30" onchange="setToken('--col-gap',this.value+'px')"><span class="suffix">px</span></div></div>
     </div>
 
     <div class="panel-section">
