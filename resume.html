@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pheak Meas — Senior Product Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* ═══════════════════════════════════════════════
+           DESIGN TOKENS — Adjust per persona/role target
+
+           PERSONA PRESETS — 3 densities, toggle via toolbar or CSS
+
+           Default (active) → Senior Designer (9pt)
+             Clean, professional, fits on 2 pages. The print-safe standard.
+
+           Spacious → Presentation (9.5pt)
+             Extra breathing room. Use for screen sharing or when content is light.
+             May overflow to 3 pages — check print preview.
+
+           Dense → Agency Recruiters (8.5pt)
+             Aquent, Robert Half, Randstad.
+             Keyword density for recruiter scanning.
+
+           HOW TO USE:
+           Toggle via the toolbar buttons at the top of the page,
+           or uncomment a preset block below.
+           ═══════════════════════════════════════════════ */
+
+        :root {
+            /* ─── Color ─── */
+            --text:           #141419;
+            --text-mid:       #3A3A44;
+            --text-secondary: #555560;
+            --text-muted:     #7A7A86;
+            --accent:         #C07D4A;
+            --bg:             #FFFFFF;
+            --rule:           #D8D8DC;
+            --navy:           #1C1C24;
+
+            /* ─── Type Scale (pt) ───
+               Default = Senior Designer (9pt)
+               Clean, confident, fits on 2 pages. Print-safe standard. */
+            --t-name:         26pt;   /* name heading */
+            --t-subtitle:     11pt;   /* "Senior Product Designer" */
+            --t-role:         10pt;   /* job title in entries */
+            --t-body:         9pt;    /* bullets, descriptions, org names */
+            --t-summary:      9.5pt;  /* summary paragraph */
+            --t-label:        7pt;    /* section headers, skill group labels */
+            --t-meta:         8pt;    /* dates, small text */
+            --t-contact:      8.5pt;  /* contact info */
+            --t-side:         8.5pt;  /* left column body text */
+            --t-side-label:   7pt;    /* left column group headers */
+
+            /* ─── Line Height (within text, not between elements) ─── */
+            --lh-body:        1.3;
+            --lh-tight:       1.2;
+            --lh-summary:     1.35;
+            --lh-contact:     1.4;
+
+            /* ─── Spacing ─── */
+            --sp-page-v:      0.55in; /* page padding top/bottom */
+            --sp-page-h:      0.65in; /* page padding left/right */
+            --sp-section:     18px;   /* between major sections */
+            --sp-entry:       16px;   /* between experience entries */
+            --sp-bullet:      5px;    /* between bullet items */
+            --sp-header-b:    14px;   /* below page header */
+            --sp-summary-b:   18px;   /* below summary */
+            --sp-side-group:  12px;   /* between skill groups */
+            --sp-side-section:16px;   /* between left-column sections (via divider) */
+            --sp-role-b:      6px;   /* role title → company or bullets */
+            --sp-org-b:       8px;   /* company name → bullets */
+            --sp-lead-b:      8px;   /* lead text → bullets */
+
+            /* ─── Layout ─── */
+            --col-left:       175px;  /* left column width */
+            --col-gap:        30px;   /* gap between columns */
+            --col-left-pad:   22px;   /* left column right padding (before rule) */
+            --bullet-indent:  10pt;   /* bullet text offset */
+
+            /* ─── Rules ─── */
+            --rule-header:    1.5px;  /* header bottom border */
+            --rule-section:   0.75px; /* section dividers */
+        }
+
+        /* ─── PRESET: Spacious — Presentation (9.5pt) ───
+           Extra whitespace for screen sharing or light content.
+           WARNING: May overflow to 3 pages in print.
+
+        :root {
+            --t-name:         28pt;
+            --t-subtitle:     11.5pt;
+            --t-role:         10.5pt;
+            --t-body:         9.5pt;
+            --t-summary:      10pt;
+            --t-label:        7.5pt;
+            --t-meta:         8.5pt;
+            --t-contact:      9pt;
+            --t-side:         9pt;
+            --t-side-label:   7.5pt;
+            --lh-body:        1.6;
+            --lh-summary:     1.65;
+            --lh-contact:     1.7;
+            --sp-page-v:      0.6in;
+            --sp-page-h:      0.7in;
+            --sp-section:     22px;
+            --sp-entry:       20px;
+            --sp-bullet:      4px;
+            --sp-header-b:    16px;
+            --sp-summary-b:   22px;
+            --sp-side-group:  14px;
+            --sp-side-section:18px;
+            --col-left:       185px;
+            --col-gap:        34px;
+            --col-left-pad:   24px;
+        }
+        */
+
+        /* ─── PRESET: Dense — Agency Recruiters (8.5pt) ───
+           Aquent, Robert Half, Randstad. Keyword density for scanning.
+           Only use for staffing agency submissions.
+
+        :root {
+            --t-name:         24pt;
+            --t-subtitle:     10pt;
+            --t-role:         9pt;
+            --t-body:         8.5pt;
+            --t-summary:      9pt;
+            --t-label:        6.5pt;
+            --t-meta:         7.5pt;
+            --t-contact:      8pt;
+            --t-side:         8pt;
+            --t-side-label:   6.5pt;
+            --lh-body:        1.45;
+            --lh-summary:     1.5;
+            --lh-contact:     1.55;
+            --sp-page-v:      0.45in;
+            --sp-page-h:      0.55in;
+            --sp-section:     12px;
+            --sp-entry:       10px;
+            --sp-bullet:      1.5px;
+            --sp-header-b:    10px;
+            --sp-summary-b:   12px;
+            --sp-side-group:  8px;
+            --sp-side-section:10px;
+            --col-left:       160px;
+            --col-gap:        22px;
+            --col-left-pad:   16px;
+        }
+        */
+
+        @page { size: letter; margin: 0; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            font-size: var(--t-body);
+            line-height: var(--lh-body);
+            text-wrap: pretty;
+        }
+
+        .page {
+            width: 8.5in;
+            min-height: 11in;
+            padding: var(--sp-page-v) var(--sp-page-h);
+            margin: 0 auto;
+            position: relative;
+            page-break-after: always;
+        }
+        .page:last-child { page-break-after: auto; }
+
+        /* ═══ HEADER (full width) ═══ */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: var(--sp-header-b);
+            border-bottom: var(--rule-header) solid var(--navy);
+            margin-bottom: var(--sp-header-b);
+        }
+
+        h1 {
+            font-size: var(--t-name);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            color: var(--navy);
+        }
+
+        .subtitle {
+            font-size: var(--t-subtitle);
+            font-weight: 500;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .contact {
+            text-align: right;
+            font-size: var(--t-contact);
+            line-height: var(--lh-contact);
+            color: var(--text-secondary);
+        }
+
+        .contact a { color: var(--accent); text-decoration: none; }
+        .contact .portfolio { font-weight: 600; color: var(--text); }
+
+        /* ═══ SUMMARY (full width) ═══ */
+        .summary {
+            font-size: var(--t-summary);
+            line-height: var(--lh-summary);
+            color: var(--text-mid);
+            margin-bottom: var(--sp-summary-b);
+            padding-bottom: var(--sp-summary-b);
+            border-bottom: var(--rule-section) solid var(--rule);
+        }
+
+        .summary strong {
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .summary .stats {
+            display: block;
+            margin-top: 7px;
+            font-size: var(--t-body);
+            color: var(--text-muted);
+        }
+
+        .summary .stats b {
+            color: var(--navy);
+            font-weight: 700;
+            font-size: var(--t-summary);
+        }
+
+        /* ═══ TWO-COLUMN LAYOUT ═══ */
+        .columns {
+            display: flex;
+            gap: var(--col-gap);
+        }
+
+        .col-left {
+            width: var(--col-left);
+            flex-shrink: 0;
+            padding-right: var(--col-left-pad);
+            border-right: var(--rule-section) solid var(--rule);
+        }
+
+        .col-right {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* ═══ LEFT COLUMN SECTIONS ═══ */
+        .side-section {
+            margin-bottom: var(--sp-section);
+        }
+
+        .side-title {
+            font-size: var(--t-label);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .side-group {
+            margin-bottom: var(--sp-side-group);
+        }
+
+        .side-label {
+            font-size: var(--t-side-label);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--navy);
+            margin-bottom: 2px;
+        }
+
+        .side-text {
+            font-size: var(--t-side);
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .side-tools {
+            font-size: var(--t-side);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2px;
+        }
+
+        .side-tools strong {
+            font-weight: 600;
+            color: var(--text-mid);
+        }
+
+        .side-rec-title {
+            font-size: var(--t-side);
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .side-rec-detail {
+            font-size: var(--t-meta);
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        .side-divider {
+            border: none;
+            border-top: var(--rule-section) solid var(--rule);
+            margin: var(--sp-side-section) 0;
+        }
+
+        /* ═══ RIGHT COLUMN — SECTION HEADERS ═══ */
+        .section-title {
+            font-size: var(--t-label);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: var(--sp-header-b);
+        }
+
+        /* ═══ EXPERIENCE ENTRIES ═══ */
+        .entry { margin-bottom: var(--sp-entry); }
+        .entry:last-child { margin-bottom: 0; }
+
+        .entry-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: var(--sp-role-b);
+        }
+
+        .entry-role {
+            font-size: var(--t-role);
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .entry-dates {
+            font-size: var(--t-meta);
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .entry-org {
+            font-size: var(--t-body);
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: var(--sp-org-b);
+        }
+
+        .entry-lead {
+            font-size: var(--t-body);
+            color: var(--text-secondary);
+            font-style: normal;
+            margin-bottom: var(--sp-lead-b);
+            line-height: var(--lh-body);
+        }
+
+        /* ═══ BULLETS — pixel-perfect alignment ═══ */
+        .bullets {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bullets li {
+            font-size: var(--t-body);
+            color: var(--text-secondary);
+            line-height: var(--lh-body);
+            padding-left: var(--bullet-indent);
+            text-indent: calc(var(--bullet-indent) * -1);
+            margin-bottom: var(--sp-bullet);
+        }
+
+        .bullets li::before {
+            content: '\2022';
+            color: var(--accent);
+            font-size: var(--t-meta);
+            display: inline-block;
+            width: var(--bullet-indent);
+            text-indent: 0;
+        }
+
+        .bullets li strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ═══ PAGE 2 ═══ */
+        .page2-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding-bottom: 10px;
+            border-bottom: var(--rule-header) solid var(--navy);
+            margin-bottom: var(--sp-section);
+        }
+
+        .page2-head .name {
+            font-size: var(--t-role);
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .page2-head .link {
+            font-size: var(--t-contact);
+            color: var(--text-muted);
+        }
+
+        .page2-head .link a { color: var(--accent); text-decoration: none; }
+
+        hr.light {
+            border: none;
+            border-top: var(--rule-section) solid var(--rule);
+            margin: var(--sp-section) 0;
+        }
+
+        /* ═══ LEFT PANEL (screen only) ═══ */
+        .panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 220px;
+            z-index: 100;
+            background: #1C1C24;
+            font-family: 'Inter', sans-serif;
+            overflow-y: auto;
+            padding: 14px 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .panel.collapsed { transform: translateX(-220px); }
+
+        .panel-toggle {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 101;
+            width: 28px;
+            height: 28px;
+            border: 1px solid #3A3A44;
+            border-radius: 3px;
+            background: #1C1C24;
+            color: #9298A0;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: left 0.2s ease;
+        }
+
+        .panel-toggle.open { left: 232px; }
+
+        .panel-section { margin-bottom: 14px; }
+
+        .panel-title {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #555560;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #2A2A34;
+        }
+
+        .panel-btn {
+            display: block;
+            width: 100%;
+            padding: 5px 8px;
+            margin-bottom: 2px;
+            border: 1px solid #2A2A34;
+            border-radius: 3px;
+            background: transparent;
+            color: #9298A0;
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.12s ease;
+        }
+
+        .panel-btn:hover { background: #26262F; color: #D8D8DC; }
+        .panel-btn--active { background: #C07D4A; border-color: #C07D4A; color: #fff; }
+
+        .panel-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+            height: 24px;
+        }
+
+        .panel-row label {
+            font-size: 10px;
+            color: #7A7A86;
+            width: 72px;
+            flex-shrink: 0;
+        }
+
+        .panel-row input[type="number"] {
+            width: 48px;
+            padding: 2px 4px;
+            border: 1px solid #2A2A34;
+            border-radius: 2px;
+            background: #16161E;
+            color: #D8D8DC;
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-variant-numeric: tabular-nums;
+            text-align: right;
+            -moz-appearance: textfield;
+        }
+
+        .panel-row input[type="number"]::-webkit-inner-spin-button { opacity: 0; width: 12px; }
+        .panel-row input[type="number"]:hover::-webkit-inner-spin-button { opacity: 1; }
+        .panel-row input[type="number"]:focus { outline: none; border-color: #C07D4A; }
+
+        .panel-row .unit {
+            font-size: 9px;
+            color: #444450;
+            width: 14px;
+        }
+
+        .panel-actions {
+            display: flex;
+            gap: 4px;
+        }
+
+        .panel-action {
+            flex: 1;
+            padding: 6px 0;
+            border: 1px solid #3A3A44;
+            border-radius: 3px;
+            background: #26262F;
+            color: #D8D8DC;
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.12s ease;
+        }
+
+        .panel-action:hover { background: #3A3A44; }
+
+        .panel-hint {
+            font-size: 8px;
+            color: #444450;
+            line-height: 1.3;
+            margin-top: 4px;
+        }
+
+        /* ═══ PRINT — B&W safe, professional line height ═══ */
+        @media print {
+            :root {
+                /* Darken for B&W printers — copper #C07D4A prints as
+                   unreadable mid-gray. #444 reads on any printer. */
+                --accent:         #444444;
+                --text-muted:     #555555;
+                /* Line height inherits from :root (1.4) — no override needed */
+            }
+            .panel, .panel-toggle { display: none !important; }
+            html {
+                font-size: 10px;
+            }
+            body {
+                background: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .page {
+                width: 100%;
+                min-height: 0;
+                margin: 0;
+                padding: var(--sp-page-v) var(--sp-page-h);
+                box-shadow: none;
+                page-break-after: always;
+            }
+            .page:last-child {
+                page-break-after: auto;
+            }
+            a { color: var(--accent) !important; }
+            .entry { break-inside: avoid; }
+            .columns { break-inside: avoid; }
+            .side-section { break-inside: avoid; }
+        }
+
+        /* ═══ SCREEN PREVIEW ═══ */
+        @media screen {
+            body { background: #DDDDE0; padding: 20px 0 20px 240px; transition: padding-left 0.2s ease; }
+            body.panel-closed { padding-left: 20px; }
+            .page { background: white; box-shadow: 0 1px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ LEFT PANEL ═══ -->
+<button class="panel-toggle open" id="panelToggle" onclick="togglePanel()">&#9776;</button>
+<div class="panel" id="panel">
+
+    <div class="panel-section">
+        <div class="panel-title">Preset</div>
+        <button class="panel-btn panel-btn--active" onclick="setPreset('default')" id="btn-default">Default (9pt)</button>
+        <button class="panel-btn" onclick="setPreset('spacious')" id="btn-spacious">Spacious (9.5pt)</button>
+        <button class="panel-btn" onclick="setPreset('dense')" id="btn-dense">Dense (8.5pt)</button>
+    </div>
+
+    <div class="panel-section">
+        <div class="panel-title">Type</div>
+        <div class="panel-row"><label>Body</label><input type="number" min="7" max="12" step="0.5" value="9" onchange="setToken('--t-body',this.value+'pt')"><span class="unit">pt</span></div>
+        <div class="panel-row"><label>Line Height</label><input type="number" min="1.0" max="2.0" step="0.05" value="1.3" onchange="setToken('--lh-body',this.value)"><span class="unit"></span></div>
+        <div class="panel-row"><label>Name</label><input type="number" min="18" max="34" step="1" value="26" onchange="setToken('--t-name',this.value+'pt')"><span class="unit">pt</span></div>
+        <div class="panel-row"><label>Role</label><input type="number" min="7" max="14" step="0.5" value="10" onchange="setToken('--t-role',this.value+'pt')"><span class="unit">pt</span></div>
+    </div>
+
+    <div class="panel-section">
+        <div class="panel-title">Spacing</div>
+        <div class="panel-row"><label>Page Pad</label><input type="number" min="0.3" max="0.9" step="0.05" value="0.55" onchange="setToken('--sp-page-v',this.value+'in');setToken('--sp-page-h',(parseFloat(this.value)+0.1).toFixed(2)+'in')"><span class="unit">in</span></div>
+        <div class="panel-row"><label>Entry Gap</label><input type="number" min="4" max="28" step="1" value="16" onchange="setToken('--sp-entry',this.value+'px')"><span class="unit">px</span></div>
+        <div class="panel-row"><label>Section Gap</label><input type="number" min="6" max="32" step="1" value="18" onchange="setToken('--sp-section',this.value+'px')"><span class="unit">px</span></div>
+        <div class="panel-row"><label>Bullet Gap</label><input type="number" min="1" max="10" step="0.5" value="5" onchange="setToken('--sp-bullet',this.value+'px')"><span class="unit">px</span></div>
+        <div class="panel-row"><label>Role → Content</label><input type="number" min="2" max="14" step="1" value="6" onchange="setToken('--sp-role-b',this.value+'px')"><span class="unit">px</span></div>
+        <div class="panel-row"><label>Org → Bullets</label><input type="number" min="2" max="14" step="1" value="8" onchange="setToken('--sp-org-b',this.value+'px')"><span class="unit">px</span></div>
+    </div>
+
+    <div class="panel-section">
+        <div class="panel-title">Layout</div>
+        <div class="panel-row"><label>Left Col</label><input type="number" min="120" max="220" step="5" value="175" onchange="setToken('--col-left',this.value+'px')"><span class="unit">px</span></div>
+        <div class="panel-row"><label>Col Gap</label><input type="number" min="12" max="44" step="2" value="30" onchange="setToken('--col-gap',this.value+'px')"><span class="unit">px</span></div>
+    </div>
+
+    <div class="panel-section">
+        <div class="panel-title">Export</div>
+        <div class="panel-actions">
+            <button class="panel-action" onclick="window.print()">Print</button>
+            <button class="panel-action" onclick="savePDF()">Save PDF</button>
+        </div>
+        <div class="panel-hint">Margins: None. Headers/footers: Off.</div>
+    </div>
+
+</div>
+
+<script>
+const presets = {
+    default: {
+        '--t-name':'26pt','--t-subtitle':'11pt','--t-role':'10pt','--t-body':'9pt',
+        '--t-summary':'9.5pt','--t-label':'7pt','--t-meta':'8pt','--t-contact':'8.5pt',
+        '--t-side':'8.5pt','--t-side-label':'7pt',
+        '--lh-body':'1.3','--lh-summary':'1.35','--lh-contact':'1.4',
+        '--sp-page-v':'0.55in','--sp-page-h':'0.65in','--sp-section':'18px','--sp-entry':'16px',
+        '--sp-bullet':'5px','--sp-header-b':'14px','--sp-summary-b':'18px',
+        '--sp-side-group':'12px','--sp-side-section':'16px',
+        '--sp-role-b':'6px','--sp-org-b':'8px','--sp-lead-b':'8px',
+        '--col-left':'175px','--col-gap':'30px','--col-left-pad':'22px'
+    },
+    spacious: {
+        '--t-name':'28pt','--t-subtitle':'11.5pt','--t-role':'10.5pt','--t-body':'9.5pt',
+        '--t-summary':'10pt','--t-label':'7.5pt','--t-meta':'8.5pt','--t-contact':'9pt',
+        '--t-side':'9pt','--t-side-label':'7.5pt',
+        '--lh-body':'1.35','--lh-summary':'1.4','--lh-contact':'1.45',
+        '--sp-page-v':'0.6in','--sp-page-h':'0.7in','--sp-section':'22px','--sp-entry':'20px',
+        '--sp-bullet':'4px','--sp-header-b':'16px','--sp-summary-b':'22px',
+        '--sp-side-group':'14px','--sp-side-section':'18px',
+        '--sp-role-b':'8px','--sp-org-b':'10px','--sp-lead-b':'10px',
+        '--col-left':'185px','--col-gap':'34px','--col-left-pad':'24px'
+    },
+    dense: {
+        '--t-name':'24pt','--t-subtitle':'10pt','--t-role':'9pt','--t-body':'8.5pt',
+        '--t-summary':'9pt','--t-label':'6.5pt','--t-meta':'7.5pt','--t-contact':'8pt',
+        '--t-side':'8pt','--t-side-label':'6.5pt',
+        '--lh-body':'1.25','--lh-summary':'1.3','--lh-contact':'1.35',
+        '--sp-page-v':'0.45in','--sp-page-h':'0.55in','--sp-section':'12px','--sp-entry':'10px',
+        '--sp-bullet':'1.5px','--sp-header-b':'10px','--sp-summary-b':'12px',
+        '--sp-side-group':'8px','--sp-side-section':'10px',
+        '--sp-role-b':'4px','--sp-org-b':'6px','--sp-lead-b':'6px',
+        '--col-left':'160px','--col-gap':'22px','--col-left-pad':'16px'
+    }
+};
+
+/* Input → token map for syncing presets to inputs */
+const inputMap = {
+    '--t-body':'pt','--lh-body':'','--t-name':'pt','--t-role':'pt',
+    '--sp-page-v':'in','--sp-entry':'px','--sp-section':'px',
+    '--sp-bullet':'px','--col-left':'px','--col-gap':'px'
+};
+
+function setToken(prop, val) {
+    document.documentElement.style.setProperty(prop, val);
+    document.querySelectorAll('.panel-btn').forEach(b => b.classList.remove('panel-btn--active'));
+}
+
+function setPreset(name) {
+    const root = document.documentElement;
+    const tokens = presets[name];
+    for (const [key, val] of Object.entries(tokens)) {
+        root.style.setProperty(key, val);
+    }
+    /* Sync number inputs to preset values */
+    const inputs = document.querySelectorAll('.panel-row input[type="number"]');
+    const tokenKeys = ['--t-body','--lh-body','--t-name','--t-role','--sp-page-v','--sp-entry','--sp-section','--sp-bullet','--col-left','--col-gap'];
+    inputs.forEach((input, i) => {
+        if (tokenKeys[i] && tokens[tokenKeys[i]]) {
+            input.value = parseFloat(tokens[tokenKeys[i]]);
+        }
+    });
+    document.querySelectorAll('.panel-btn').forEach(b => b.classList.remove('panel-btn--active'));
+    document.getElementById('btn-' + name).classList.add('panel-btn--active');
+}
+
+function savePDF() {
+    /* Trigger print dialog — user selects "Save as PDF" as destination */
+    window.print();
+}
+
+function togglePanel() {
+    const panel = document.getElementById('panel');
+    const toggle = document.getElementById('panelToggle');
+    panel.classList.toggle('collapsed');
+    toggle.classList.toggle('open');
+    document.body.classList.toggle('panel-closed');
+}
+</script>
+
+<!-- ═══════════ PAGE 1 ═══════════ -->
+<div class="page">
+
+    <header class="header">
+        <div>
+            <h1>Pheak Meas</h1>
+            <div class="subtitle">Senior Product Designer</div>
+        </div>
+        <div class="contact">
+            <div class="portfolio">uxmeas.com</div>
+            Calgary, AB &middot; Open to Remote<br>
+            <a href="mailto:hello@uxmeas.com">hello@uxmeas.com</a><br>
+            <a href="https://linkedin.com/in/uxmeas">linkedin.com/in/uxmeas</a>
+        </div>
+    </header>
+
+    <div class="summary">
+        <strong>Co-founded a fintech company that went from 3&nbsp;people to a TSX-V&nbsp;IPO.</strong>
+        16 years shipping products across fintech, compliance, and enterprise&nbsp;software.
+        Owned product design through every stage, from first wireframe to public&nbsp;market.
+        Consulting on product design and shipping tools while looking for a senior&nbsp;role where product thinking, execution, and AI fluency&nbsp;overlap.
+        <span class="stats">
+            <b>16</b> years &nbsp;&middot;&nbsp;
+            <b>IPO</b> (TSX-V) &nbsp;&middot;&nbsp;
+            <b>$50M+</b> platform volume &nbsp;&middot;&nbsp;
+            <b>20+</b> jurisdictions &nbsp;&middot;&nbsp;
+            <b>85%</b> onboarding completion
+        </span>
+    </div>
+
+    <div class="columns">
+
+        <!-- ─── LEFT COLUMN ─── -->
+        <div class="col-left">
+
+            <div class="side-section">
+                <div class="side-title">Skills</div>
+
+                <div class="side-group">
+                    <div class="side-label">Product Design</div>
+                    <div class="side-text">Product Thinking, Design Systems, 0&#8594;1 Development, Prototyping, UX Strategy</div>
+                </div>
+
+                <div class="side-group">
+                    <div class="side-label">Research</div>
+                    <div class="side-text">User Research, Data-Informed Design, Usability Testing, Competitive Analysis</div>
+                </div>
+
+                <div class="side-group">
+                    <div class="side-label">Domain</div>
+                    <div class="side-text">Fintech, Compliance UX, KYC/AML, Enterprise SaaS, Accessibility</div>
+                </div>
+
+                <div class="side-group">
+                    <div class="side-label">Collaboration</div>
+                    <div class="side-text">Cross-Functional Teams, Agile, Stakeholder Management, Mentorship</div>
+                </div>
+            </div>
+
+            <hr class="side-divider">
+
+            <div class="side-section">
+                <div class="side-title">Tools</div>
+                <div class="side-tools"><strong>Design</strong> /Figma, Adobe CC</div>
+                <div class="side-tools"><strong>Code</strong> /HTML, CSS, JS</div>
+                <div class="side-tools"><strong>AI</strong> /Claude, Cursor, Figma AI</div>
+                <div class="side-tools"><strong>Dev</strong> /VS Code, GitHub, Netlify</div>
+                <div class="side-tools"><strong>Data</strong> /GA4, Hotjar, PostHog</div>
+                <div class="side-tools"><strong>PM</strong> /Jira, Confluence, Linear</div>
+            </div>
+
+        </div>
+
+        <!-- ─── RIGHT COLUMN ─── -->
+        <div class="col-right">
+
+            <div class="section-title">Experience</div>
+
+            <div class="entry">
+                <div class="entry-head">
+                    <div class="entry-role">Product Design Consultant</div>
+                    <div class="entry-dates">2026 &ndash; Present</div>
+                </div>
+                <div class="entry-org">MZM Labs Inc., Calgary, AB</div>
+                <ul class="bullets">
+                    <li>Consulting on product design for a design tools studio, shipping Figma plugins and workflow automation&nbsp;products</li>
+                    <li>Building with AI-integrated workflows: Claude, Figma, and modern serverless infrastructure from concept to&nbsp;deployed</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-head">
+                    <div class="entry-role">Design Consultant</div>
+                    <div class="entry-dates">2025 &ndash; 2026</div>
+                </div>
+                <div class="entry-org">AKMSecure, Calgary, AB</div>
+                <ul class="bullets">
+                    <li>Retained as design consultant to establish market presence for a quantum-resilient cybersecurity startup targeting enterprise defense&nbsp;contracts</li>
+                    <li>Delivered the complete brand system, responsive marketing site, and HubSpot CRM migration that positioned the company for enterprise client&nbsp;conversations</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-head">
+                    <div class="entry-role">Co-founder &amp; Lead Product Designer</div>
+                    <div class="entry-dates">2008 &ndash; 2025</div>
+                </div>
+                <div class="entry-org">Katipult Technology Corp. (formerly JOI Media Inc.), Calgary, AB</div>
+                <div class="entry-lead">Co-founded and led product design from 3&nbsp;employees to TSX-V IPO over 9&nbsp;years. Transitioned company from service agency to B2B SaaS platform for private capital&nbsp;markets.</div>
+                <ul class="bullets">
+                    <li><strong>Compliance-first design:</strong> Shipped KYC/AML onboarding, accreditation verification, and electronic signature flows across 20+ regulatory jurisdictions. Reduced investor onboarding from days to 12&nbsp;minutes with 85% completion&nbsp;rate</li>
+                    <li><strong>Design system:</strong> Architected and maintained the component library used across the product organization, with standardized patterns, tokens, and documentation that supported rapid&nbsp;scaling</li>
+                    <li><strong>Data-informed decisions:</strong> Partnered cross-functionally with PM, engineering, compliance, and legal to synthesize user research, competitive analysis, and analytics into product roadmap&nbsp;priorities</li>
+                    <li><strong>Measurable impact:</strong> Led design initiatives that drove 30% engagement increase, 20% churn reduction, and 35% feature adoption&nbsp;improvement</li>
+                    <li><strong>Product strategy:</strong> Developed product vision and MVP strategy that transitioned the company from service-based to product-led, navigating ambiguity through 0&#8594;1&nbsp;development</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ═══════════ PAGE 2 ═══════════ -->
+<div class="page">
+
+    <div class="page2-head">
+        <div class="name">Pheak Meas</div>
+        <div class="link"><a href="https://uxmeas.com">uxmeas.com</a> &middot; <a href="mailto:hello@uxmeas.com">hello@uxmeas.com</a></div>
+    </div>
+
+    <div class="columns">
+
+        <!-- ─── LEFT COLUMN (page 2) ─── -->
+        <div class="col-left">
+
+            <div class="side-section">
+                <div class="side-title">Education</div>
+                <div class="side-rec-title">Multimedia Design</div>
+                <div class="side-rec-detail">Applied Multimedia Training Centre, Calgary</div>
+            </div>
+
+            <div class="side-section">
+                <div class="side-title">Recognition</div>
+                <div class="side-rec-title">EY Entrepreneur Of The Year 2017</div>
+                <div class="side-rec-detail">Finalist, Emerging Entrepreneur, Prairies. Ernst&nbsp;&amp;&nbsp;Young.</div>
+            </div>
+
+        </div>
+
+        <!-- ─── RIGHT COLUMN (page 2) ─── -->
+        <div class="col-right">
+
+            <div class="section-title">Katipult, Role Progression</div>
+
+            <div class="entry">
+                <div class="entry-head">
+                    <div class="entry-role">Head of UX/UI</div>
+                    <div class="entry-dates">2020 &ndash; 2025</div>
+                </div>
+                <ul class="bullets">
+                    <li>Led strategic UX initiatives for B2B SaaS platform serving enterprise clients across capital&nbsp;markets</li>
+                    <li>Facilitated cross-functional workshops and co-creation sessions, embedding UX early in product planning and business&nbsp;decisions</li>
+                    <li>Created comprehensive user journeys, information architectures, and ecosystem maps across 20+ platform&nbsp;touchpoints</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-head">
+                    <div class="entry-role">Lead Product Designer</div>
+                    <div class="entry-dates">2014 &ndash; 2020</div>
+                </div>
+                <ul class="bullets">
+                    <li>Established product vision and led MVP development for SaaS platform&nbsp;transformation</li>
+                    <li>Created holistic design foundations (UX strategy, UI systems, brand guidelines) supporting rapid&nbsp;scaling</li>
+                    <li>Led user interviews, usability testing, and customer insights programs to guide product roadmap&nbsp;prioritization</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-head">
+                    <div class="entry-role">UX/UI Designer</div>
+                    <div class="entry-dates">2008 &ndash; 2014</div>
+                </div>
+                <ul class="bullets">
+                    <li>Designed digital products for agency clients across multiple industries, applying user-centered design and research&nbsp;methods</li>
+                    <li>Implemented design standards and component libraries that improved delivery efficiency and&nbsp;consistency</li>
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

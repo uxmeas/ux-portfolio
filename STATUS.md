@@ -1,74 +1,156 @@
-# uxmeas.com — Project Status
+# UX Meas — Project Status
 
-**Last updated**: 2026-03-27 (evening — staging deployed)
-**Priority**: #1 (PRIMARY — revenue driver)
-**Stage**: Staging deployed — case studies ready for review
+**Last updated**: 2026-03-30
+**Priority**: #1a (job hunting + portfolio)
+**Stage**: LIVE — production deployed
+**Owners**: Ana (delivery gates), Rio (job hunting status + marketing), Kai (design QA)
 
 ---
 
 ## What EXISTS (do NOT recreate)
 
 ### Portfolio Site (LIVE)
-- https://uxmeas.netlify.app
-- Static HTML/CSS/JS, deployed on Netlify
+- https://uxmeas.com (Netlify, auto-deploys from main)
+- Static HTML/CSS/JS
 - Contact: inline form (Netlify Forms)
+- GA4: G-9HVVW1GBEC
 
-### Case Studies (7 — IN PROGRESS)
+### Case Studies (3 LIVE, 4 COMING SOON)
 Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
-1. Compliance UX (node: zw5Ei)
-2. Katipult DealFlow (node: PW1oJ)
-3. AKMSecure (node: n3rto)
-4. RelationSync (node: 52206)
-5. MyPick.io (node: v4u6R)
-6. Docs to Design (node: siX2x)
-7. IsoBlock (node: 6mdKh)
+1. **Compliance UX** (LIVE) — full .pen rewrite, responsive, GA4
+2. **Katipult DealFlow** (LIVE) — full .pen rewrite, responsive, GA4
+3. **AKMSecure** (LIVE) — built March 29, polished March 30
+4. Docs to Design — ghost card
+5. IsoBlock — ghost card
+6. RelationSync — ghost card
+7. MyPick.io — ghost card (last, personal project)
 
-Each is 1440px wide, spaced 1520px apart at y=3800.
+### HTML Resume (NEW — March 30)
+- `uxmeas/resume.html` — tokenized HTML resume with left panel controls
+- 3 presets: Default (9pt), Spacious (9.5pt), Dense (8.5pt)
+- 30+ CSS custom properties for type, spacing, layout
+- Left panel: number inputs for all tokens, preset toggle, Print + Save PDF buttons
+- B&W print safe (copper → dark gray in @media print)
+- Orphan prevention (text-wrap: pretty + &nbsp; guards)
+- Two-column layout on both pages (skills left, experience right)
+- Cover letter template at `careers/_templates/cover-letter.html`
+
+### Careers Folder (NEW — March 30)
+- `uxmeas/careers/` — per-company application folders
+- `careers/_templates/resume.html` + `cover-letter.html`
+- `careers/STATUS.md` — application tracker
+- Paperclip project "Careers" linked (#13)
+
+### Homepage
+- 3 live interactive cards (Compliance UX, DealFlow, AKMSecure)
+- 4 ghost "COMING SOON" cards (dimmed, no click, aria-hidden)
+- Behance-style modal with fetch-based case study loading
+- Stats: 16 Years, $2B+, TSX-V, 20+ Jurisdictions
 
 ### Design System
 - Behance-style modal: 92vw / max-width 1440px, 8px radius
-- Per-project CSS tokens (cs--compliance, cs--dealflow, etc.)
-- Fonts: Inter for case studies, Space Grotesk for shell
-- Layout: label bar → two-column (320px left / flex right) → gallery rows → results → CTA
+- Per-project CSS tokens (cs--compliance, cs--dealflow, cs--akm, etc.)
+- Fonts: Inter for case studies, Bebas Neue for display, Space Grotesk for shell
+- Device frames: phone 170px/22px radius/6px bezel, iPad 480px/24px radius
 
-### Existing Docs
-- PROJECT-STATUS.md (older version)
-- DEPLOY-CHECKLIST.md
-- PLAYBOOK.md
-- Multiple strategy/setup docs
+---
 
-## Staging URLs (deployed 2026-03-27)
-- https://staging--uxmeas.netlify.app/case-studies/compliance-ux.html
-- https://staging--uxmeas.netlify.app/case-studies/katipult-dealflow.html
+## Job Hunting (Rio Tracks)
 
-## What's DONE
-- Site shell and navigation
-- Modal interaction pattern
-- 7 case study frames designed in .pen (all node IDs documented in memory)
-- Design tokens per project (cs--compliance, cs--dealflow, etc.)
-- Accessibility: focus-visible, reduced-motion, ARIA
-- Added to Paperclip as Priority 1 project
-- STATUS.md created
-- MZM-15 created: build case study HTML from .pen designs
-- MZM-16 created: test contact form e2e
-- Kai ran MZM-23: design QA on case study pages vs .pen
-- Kai screenshotted .pen designs (MZM-40) — handoff screenshots in workspace
-- Max built case study HTML matching .pen designs (MZM-43)
-- Max integrated HTML + deployed to staging (MZM-49) — commit `110604a` on dev, merged to staging
-- **Compliance UX + DealFlow case studies live on staging**
+### Strategy & Voice
+- [x] `Client-Projects/job-hunting-strategy.md` — Master strategy (updated March 30)
+- [x] `my-skills/job-hunting-voice/SKILL.md` — Voice, templates, rate card (updated March 30)
+- [x] All sprint task files cleaned: title, case studies, AKM framing, dates (March 30)
+
+### Firecrawl Intel Pipeline
+**Report**: `_archive/docs-cleanup-march-2026/firecrawl-job-intel-play1.md`
+
+#### Play 1 (DONE — March 26)
+- 12 companies scraped. Tier 1: Coinbase ($180-212K), Binance ($155-175K), Forward Financing ($150-175K)
+- Keywords: "cross-functional" (100%), "design system" (83%), "compliance" (42%)
+
+#### Play 1 Language Changes (NOT YET APPLIED to uxmeas.com)
+- "designed UI" → "owned product design from discovery through delivery"
+- Add: "Shipped to production", "Compliance-first design", data-informed signals
+
+### Rate
+- **$100/hr USD anchor** (confirmed March 30)
+- $80+ CAD from agencies. $75-85 USD for Upwork bootstrapping only.
+
+### LinkedIn
+- [x] Copy finalized. Repositioning complete (Co-founder → Product Design Consultant)
+- [ ] **NOT APPLIED** — Headline, About, Open to Work, Featured, Skills reorder (manual)
+
+### Sprint Tasks (at `Client-Projects/job-hunting-sprint/`)
+- [ ] Task 1-8: All NOT STARTED (ready since March 14)
+
+### Metrics
+| Metric | Target | Current |
+|--------|--------|---------|
+| Applications sent | 10-15/week | 0 |
+| Agency registrations | 6 total | 0 |
+
+---
+
+## What's DONE (March 30 session)
+
+### Data Accuracy Fixes (CRITICAL)
+- [x] "SAIT Polytechnic" → "Applied Multimedia Training Centre" (old resume was wrong)
+- [x] "EV Entrepreneur" → "EY Entrepreneur Of The Year" (typo)
+- [x] "11 years" → "9 years" (founding to IPO = 2008-2017, not 11 years)
+- [x] AKMSecure: "8 weeks" removed, reframed as consulting engagement (~5 months, Oct 2025-Feb 2026)
+- [x] Email: pheak@uxmeas.com → hello@uxmeas.com
+- [x] "Solo" removed from all production files and .pen
+- [x] All fixes propagated across: resume, voice skill, strategy doc, sprint tasks, LinkedIn copy, .pen file
+- [x] Accuracy safeguard rule saved to memory
+
+### .pen File Fixes
+- [x] DealFlow CTA: 2008-2023 → 2008-2025 (node zApr2)
+- [x] Compliance UX CTA: 2014-2023 → 2008-2025, title fixed (node 73IA2)
+- [x] AKMSecure CTA: "Solo" removed, title fixed (node YvfEi)
+
+### Resume Built
+- [x] HTML resume with tokenized design system
+- [x] Left panel with number inputs (not sliders), preset switcher, Print + Save PDF
+- [x] B&W print safe, orphan prevention, two-column layout both pages
+- [x] Cover letter template matching resume design
+- [x] Careers folder + Paperclip project created
+
+### Production Fixes (NOT YET PROMOTED TO LIVE)
+- [x] "Solo" removed from portfolio.html, mypick/index.html, isoblock/index.html
+- [x] Duplicate "Shipped" tag fixed
+- [x] Sage QA passed — ready to promote when Pheak approves
+
+---
 
 ## What's NEXT
-- [ ] Review staging against .pen designs (visual QA)
-- [ ] Promote staging → main (go live) — needs Pheak approval
-- [ ] Build remaining 5 case study HTML pages (AKMSecure, RelationSync, MyPick, Docs to Design, IsoBlock)
-- [ ] Implement modal content for each project
-- [ ] Job hunting collateral (resume, cover letter templates)
-- [ ] Contact form testing
+
+### Immediate
+- [ ] Pheak: Final print review of resume
+- [ ] Promote Solo removal fixes: dev → staging → main
+- [ ] Execute sprint tasks (2, 7, 1, 4)
+- [ ] Pheak: Update LinkedIn profile manually
+
+### Portfolio
+- [ ] Build remaining 4 case studies
+- [ ] Apply Play 1 language changes to live case studies
+- [ ] Create og:image
+
+---
+
+## Known Issues
+- Compliance UX: conflicting drop-off stats (50% vs 60%)
+- og:image missing
+- Contact form untested / Netlify Forms notification not set up
+- Tasks 3-8 still reference "7 case studies" (tasks 1-2 cleaned)
+
+---
 
 ## Rules
-- Case studies built FROM .pen designs — do not invent layouts
-- 1/3 copy · 2/3 graphic rule for mixed-content columns
-- No orphan words
-- Hide AI tools (NB2, Claude Code) — show industry tools (Figma, design systems)
-- Pheak = "Product Design Consultant" — never "Co-Founder"
+- Case studies built FROM .pen designs
+- Pheak = "Product Design Consultant" — never "Co-Founder" (except Katipult historical)
 - No MZM Labs mentions on uxmeas.com
+- No "Solo" anywhere
+- main branch = live site — never push without approval
+- Review gate: Nothing submitted without Pheak's approval
+- Resume accuracy: Every fact verified with Pheak (AMTC incident)
