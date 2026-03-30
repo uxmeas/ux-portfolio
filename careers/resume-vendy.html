@@ -565,7 +565,11 @@
             cursor: pointer;
         }
 
-        .panel-color .color-input:focus { outline: none; border-color: #C07D4A;
+        .panel-color .color-input:focus { outline: none; border-color: #C07D4A; }
+
+        .clr-field button {
+            border: 1.5px solid #555560 !important;
+            border-radius: 2px !important;
         }
 
         .panel-actions {
@@ -782,17 +786,14 @@ Coloris({
         '#C4453D',
         '#7B61A6',
         '#333333'
-    ]
-});
-
-document.addEventListener('coloris:pick', function(e) {
-    const id = e.target.id;
-    const val = e.detail.color;
-    if (id === 'clr-accent') {
-        setToken('--accent', val);
-    } else if (id === 'clr-text') {
-        setToken('--navy', val);
-        setToken('--text', val);
+    ],
+    onChange: function(color, input) {
+        if (input.id === 'clr-accent') {
+            document.documentElement.style.setProperty('--accent', color);
+        } else if (input.id === 'clr-text') {
+            document.documentElement.style.setProperty('--navy', color);
+            document.documentElement.style.setProperty('--text', color);
+        }
     }
 });
 
