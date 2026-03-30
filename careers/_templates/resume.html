@@ -530,6 +530,27 @@
         .panel-row input[type="number"]:hover::-webkit-inner-spin-button { opacity: 1; }
         .panel-row input[type="number"]:focus { outline: none; border-color: #C07D4A; }
 
+        .panel-row input[type="color"] {
+            width: 28px;
+            height: 22px;
+            padding: 1px;
+            border: 1px solid #2A2A34;
+            border-radius: 3px;
+            background: #16161E;
+            cursor: pointer;
+            -webkit-appearance: none;
+        }
+
+        .panel-row input[type="color"]::-webkit-color-swatch-wrapper { padding: 1px; }
+        .panel-row input[type="color"]::-webkit-color-swatch { border: none; border-radius: 2px; }
+
+        .panel-row .hex {
+            font-size: 9px;
+            color: #555560;
+            font-family: 'Inter', monospace;
+            font-variant-numeric: tabular-nums;
+        }
+
         .panel-row .unit {
             font-size: 9px;
             color: #444450;
@@ -621,6 +642,12 @@
         <button class="panel-btn panel-btn--active" onclick="setPreset('default')" id="btn-default">Default (9pt)</button>
         <button class="panel-btn" onclick="setPreset('spacious')" id="btn-spacious">Spacious (9.5pt)</button>
         <button class="panel-btn" onclick="setPreset('dense')" id="btn-dense">Dense (8.5pt)</button>
+    </div>
+
+    <div class="panel-section">
+        <div class="panel-title">Color</div>
+        <div class="panel-row"><label>Accent</label><input type="color" value="#C07D4A" onchange="setToken('--accent',this.value);document.getElementById('hex-accent').textContent=this.value"><span class="hex" id="hex-accent">#C07D4A</span></div>
+        <div class="panel-row"><label>Text</label><input type="color" value="#1C1C24" onchange="setToken('--navy',this.value);setToken('--text',this.value);document.getElementById('hex-text').textContent=this.value"><span class="hex" id="hex-text">#1C1C24</span></div>
     </div>
 
     <div class="panel-section">
