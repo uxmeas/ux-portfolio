@@ -1,101 +1,56 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('uxmeas.com contact form', () => {
+test.describe('uxmeas.com contact section', () => {
 
-  test('form is visible and has required fields', async ({ page }) => {
+  test('contact section is visible', async ({ page }) => {
     await page.goto('/');
-    await page.locator('#contact').scrollIntoViewIfNeeded();
-    await expect(page.locator('#contactForm')).toBeVisible();
-    await expect(page.locator('#contactName')).toBeVisible();
-    await expect(page.locator('#contactEmail')).toBeVisible();
-    await expect(page.locator('#contactMessage')).toBeVisible();
-    await expect(page.locator('.contact-submit')).toBeVisible();
+    await page.waitForSelector('#contact');
+    await expect(page.locator('#contact')).toBeVisible();
   });
 
-  test('honeypot field exists and is hidden from users', async ({ page }) => {
+  test('GET IN TOUCH button exists with obfuscated email', async ({ page }) => {
     await page.goto('/');
-    await page.locator('#contact').scrollIntoViewIfNeeded();
-    // Honeypot field should exist (Netlify catches spam server-side)
-    const honeypot = page.locator('[name="bot-field"]');
-    await expect(honeypot).toBeAttached();
-    await expect(honeypot).not.toBeVisible();
-    // netlify-honeypot attribute should reference the field
-    await expect(page.locator('#contactForm')).toHaveAttribute('netlify-honeypot', 'bot-field');
+    const btn = page.locator('.btn-primary[data-u][data-d]');
+    await expect(btn).toBeVisible();
+    await expect(btn).toHaveText('GET IN TOUCH');
+    // Email must NOT be in the href before click
+    const href = await btn.getAttribute('href');
+    expect(href).toBe('#');
   });
 
-  test('submits successfully and shows confirmation', async ({ page }) => {
+  test('email is not exposed in HTML source', async ({ page }) => {
     await page.goto('/');
-    await page.locator('#contact').scrollIntoViewIfNeeded();
-    await page.waitForSelector('#contactForm', { state: 'visible' });
-
-    // Intercept POST only — must be set up before clicking submit
-    await page.route('/', async (route) => {
-      if (route.request().method() === 'POST') {
-        await route.fulfill({ status: 200, contentType: 'text/html', body: '<html></html>' });
-      } else {
-        await route.continue();
-      }
-    });
-
-    await page.locator('#contactName').fill('Test User');
-    await page.locator('#contactEmail').fill('test@example.com');
-    await page.locator('#contactMessage').fill('This is a test message for the contact form.');
-    await page.locator('.contact-submit').click();
-
-    await expect(page.locator('#contactForm')).toBeHidden({ timeout: 5000 });
-    await expect(page.locator('#contactSuccess')).toBeVisible();
+    const html = await page.content();
+    // Raw email should never appear in source
+    expect(html).not.toContain('hello@uxmeas.com');
+    // But obfuscation attributes should exist
+    expect(html).toContain('data-u="hello"');
+    expect(html).toContain('data-d="uxmeas.com"');
   });
 
-  test('sends correct payload to endpoint', async ({ page }) => {
+  test('GET IN TOUCH assembles mailto on click', async ({ page }) => {
     await page.goto('/');
-    await page.locator('#contact').scrollIntoViewIfNeeded();
-    await page.waitForSelector('#contactForm', { state: 'visible' });
-
-    let capturedBody = '';
-    await page.route('/', async (route) => {
-      if (route.request().method() === 'POST') {
-        capturedBody = route.request().postData() || '';
-        await route.fulfill({ status: 200, contentType: 'text/html', body: '<html></html>' });
-      } else {
-        await route.continue();
-      }
-    });
-
-    await page.locator('#contactName').fill('Pheak Meas');
-    await page.locator('#contactEmail').fill('hello@mzmlabs.com');
-    await page.locator('#contactMessage').fill('Testing the payload structure end to end.');
-    await page.locator('.contact-submit').click();
-
-    await expect(page.locator('#contactSuccess')).toBeVisible({ timeout: 5000 });
-
-    const params = new URLSearchParams(capturedBody);
-    expect(params.get('name')).toBe('Pheak Meas');
-    expect(params.get('email')).toBe('hello@mzmlabs.com');
-    expect(params.get('message')).toBe('Testing the payload structure end to end.');
+    const btn = page.locator('.btn-primary[data-u][data-d]');
+    // Click and check the href was assembled
+    await btn.click();
+    const href = await btn.getAttribute('href');
+    expect(href).toContain('mailto:hello@uxmeas.com');
+    expect(href).toContain('subject=Portfolio');
   });
 
-  test('button shows loading state during submission', async ({ page }) => {
+  test('VIEW LINKEDIN button links correctly', async ({ page }) => {
     await page.goto('/');
-    await page.locator('#contact').scrollIntoViewIfNeeded();
-    await page.waitForSelector('#contactForm', { state: 'visible' });
+    const linkedin = page.locator('.contact-ctas .btn-outline');
+    await expect(linkedin).toBeVisible();
+    await expect(linkedin).toHaveText('VIEW LINKEDIN');
+    const href = await linkedin.getAttribute('href');
+    expect(href).toContain('linkedin.com/in/uxmeas');
+  });
 
-    await page.route('/', async (route) => {
-      if (route.request().method() === 'POST') {
-        await new Promise((r) => setTimeout(r, 500));
-        await route.fulfill({ status: 200, contentType: 'text/html', body: '<html></html>' });
-      } else {
-        await route.continue();
-      }
-    });
-
-    await page.locator('#contactName').fill('Test User');
-    await page.locator('#contactEmail').fill('test@example.com');
-    await page.locator('#contactMessage').fill('Testing the loading state of the button.');
-
-    await page.locator('.contact-submit').click();
-
-    await expect(page.locator('.contact-submit')).toHaveText('Sending...', { timeout: 2000 });
-    await expect(page.locator('.contact-submit')).toBeDisabled();
-    await expect(page.locator('#contactSuccess')).toBeVisible({ timeout: 5000 });
+  test('no form elements exist on page', async ({ page }) => {
+    await page.goto('/');
+    // Form was intentionally removed — verify it stays gone
+    await expect(page.locator('#contactForm')).toHaveCount(0);
+    await expect(page.locator('.contact-submit')).toHaveCount(0);
   });
 });

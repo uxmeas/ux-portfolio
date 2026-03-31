@@ -502,7 +502,6 @@
         .about-title {
             font-family: 'Inter', sans-serif;
             font-size: 18px;
-            font-style: italic;
             color: var(--accent);
             font-weight: 400;
         }
@@ -590,7 +589,6 @@
         .contact-location {
             font-family: 'Inter', sans-serif;
             font-size: 16px;
-            font-style: italic;
             color: var(--text-secondary);
             margin-bottom: 32px;
         }
@@ -1769,37 +1767,8 @@
                 <h2 class="contact-headline">Looking for a senior role where product thinking, execution, and AI fluency overlap.</h2>
                 <p class="contact-location">Calgary, AB + Remote</p>
                 <div class="contact-ctas">
-                    <a href="#contact-form" class="btn-primary">GET IN TOUCH</a>
+                    <a href="#" class="btn-primary" data-u="hello" data-d="uxmeas.com" onclick="this.href='mailto:'+this.dataset.u+'@'+this.dataset.d+'?subject=Portfolio Inquiry';return true">GET IN TOUCH</a>
                     <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener" class="btn-outline">VIEW LINKEDIN</a>
-                </div>
-            </div>
-
-            <div class="contact-form-wrap reveal" id="contact-form">
-                <form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                    <input type="hidden" name="form-name" value="contact">
-                    <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="contactName">NAME</label>
-                            <input type="text" id="contactName" name="name" required placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="contactEmail">EMAIL</label>
-                            <input type="email" id="contactEmail" name="email" required placeholder="you@company.com">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contactMessage">MESSAGE</label>
-                        <textarea id="contactMessage" name="message" required placeholder="Tell me about the role or project" rows="5"></textarea>
-                    </div>
-
-                    <button type="submit" class="contact-submit">SEND MESSAGE &rarr;</button>
-                </form>
-
-                <div class="contact-success" id="contactSuccess">
-                    <p>Message sent. I'll be in touch soon.</p>
                 </div>
             </div>
         </div>
@@ -2179,34 +2148,8 @@
             if (projectKeys.includes(key)) openModal(key);
         }
 
-        // ── CONTACT FORM (Netlify Forms) ──
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitBtn = contactForm.querySelector('.contact-submit');
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-
-            try {
-                const res = await fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(new FormData(contactForm)).toString()
-                });
-
-                if (res.ok) {
-                    contactForm.style.display = 'none';
-                    document.getElementById('contactSuccess').style.display = 'block';
-                } else {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'SEND MESSAGE \u2192';
-                }
-            } catch (err) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'SEND MESSAGE \u2192';
-            }
-        });
+        // ── CONTACT (mailto with obfuscation) ──
+        // Email assembled on click via data-u + data-d attributes — not in HTML source
 
         // ── Email obfuscation ──
         document.querySelectorAll('.eml').forEach(function(a) {
