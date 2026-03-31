@@ -253,7 +253,7 @@
     }
     .device-ipad img { width: 100%; height: auto; display: block; }
     .device-phone {
-      width: 170px;
+      width: 213px;
       aspect-ratio: 9 / 19;
       border-radius: 22px;
       border: 6px solid #1a1a2e;
@@ -534,8 +534,22 @@
       .cs-hero__headline { font-size: 40px; }
       .cs-hero__stats { flex-direction: column; gap: 24px; }
       .cs-hero__stat-number { font-size: 48px; }
-      .phone-pair { flex-direction: column; align-items: center; }
-      .device-phone { width: 140px; }
+      .phone-pair {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 16px;
+        padding: 0;
+      }
+      .phone-pair::-webkit-scrollbar { display: none; }
+      .device-phone {
+        width: 75vw;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+      }
       .competitor-grid { grid-template-columns: 1fr; }
       .research-table th, .research-table td { padding: 12px 16px; font-size: 12px; }
       .research-table th:first-child { width: auto; }

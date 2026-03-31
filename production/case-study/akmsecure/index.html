@@ -229,7 +229,7 @@
 
     /* === DEVICE FRAMES === */
     .device-phone {
-      width: 170px;
+      width: 213px;
       aspect-ratio: 9 / 19;
       border-radius: 22px;
       border: 6px solid #1A1A1A;
@@ -389,7 +389,22 @@
       .cs-hero__laptop img { height: auto; }
       .cs-statement { padding-top: 80px; padding-bottom: 80px; }
       .cs-statement__title { font-size: 36px; }
-      .phone-pair { flex-direction: column; align-items: center; }
+      .phone-pair {
+        flex-direction: row;
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 16px;
+        padding: 0;
+      }
+      .phone-pair::-webkit-scrollbar { display: none; }
+      .device-phone {
+        width: 75vw;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+      }
       .device-ipad { max-width: 100%; }
       .color-row { flex-wrap: wrap; }
       .platform-screenshot img { height: auto; }
