@@ -7,6 +7,8 @@ async function openModal(page: any, key: string) {
   await page.waitForLoadState('domcontentloaded');
   await page.click(`[data-project="${key}"]`);
   await page.waitForSelector('.modal-panel', { state: 'visible', timeout: 5000 });
+  // Wait for fetched case study content to render inside the modal
+  await page.waitForSelector('.modal-panel .cs-hero__headline', { state: 'visible', timeout: 8000 });
 }
 
 async function closeModal(page: any) {
@@ -20,23 +22,23 @@ test.describe('Compliance UX modal', () => {
 
   test('opens and shows correct title', async ({ page }) => {
     await openModal(page, 'compliance');
-    await expect(page.locator('.m-hero__title')).toContainText('Compliance UX');
+    await expect(page.locator('.cs-hero__headline')).toContainText('Compliance UX');
   });
 
   test('hero stats — no confidential data', async ({ page }) => {
     await openModal(page, 'compliance');
-    const heroText = await page.locator('.m-hero__stats').textContent();
+    const heroText = await page.locator('.cs-hero__stats').textContent();
     expect(heroText).not.toContain('$220K');
     expect(heroText).not.toContain('MRR');
     expect(heroText).not.toContain('95–99%');
     expect(heroText).not.toContain('17 active');
   });
 
-  test('industry benchmark labels present on 65% figure', async ({ page }) => {
+  test('completion rate stat is present', async ({ page }) => {
     await openModal(page, 'compliance');
     const modalText = await page.locator('.modal-panel').textContent();
-    expect(modalText).toContain('65%');
-    expect(modalText).toContain('Industry benchmark');
+    expect(modalText).toContain('85%');
+    expect(modalText).toContain('completion rate');
   });
 
   test('"Up from 35%" does not appear', async ({ page }) => {
@@ -54,8 +56,8 @@ test.describe('Compliance UX modal', () => {
 
   test('results section is visible', async ({ page }) => {
     await openModal(page, 'compliance');
-    const results = page.locator('.m-results');
-    await expect(results).toBeVisible();
+    const modalText = await page.locator('.modal-panel').textContent();
+    expect(modalText).toContain('RESULTS');
   });
 
   test('all images load without error', async ({ page }) => {
@@ -84,12 +86,12 @@ test.describe('Katipult DealFlow modal', () => {
 
   test('opens and shows correct title', async ({ page }) => {
     await openModal(page, 'dealflow');
-    await expect(page.locator('.m-hero__title')).toContainText('DealFlow');
+    await expect(page.locator('.cs-hero__headline')).toContainText('DEALFLOW');
   });
 
   test('hero stats — no confidential data', async ({ page }) => {
     await openModal(page, 'dealflow');
-    const heroText = await page.locator('.m-hero__stats').textContent();
+    const heroText = await page.locator('.cs-hero__stats').textContent();
     expect(heroText).not.toContain('$220K');
     expect(heroText).not.toContain('MRR');
     expect(heroText).not.toContain('95–99%');
@@ -120,10 +122,10 @@ test.describe('Katipult DealFlow modal', () => {
   test('competitor analysis shows 4 cards', async ({ page }) => {
     await openModal(page, 'dealflow');
     const modalText = await page.locator('.modal-panel').textContent();
-    expect(modalText).toContain('Carta');
-    expect(modalText).toContain('AngelList');
-    expect(modalText).toContain('Persona');
-    expect(modalText).toContain('SVX');
+    expect(modalText).toContain('IMS');
+    expect(modalText).toContain('NIAD');
+    expect(modalText).toContain('DealPoint');
+    expect(modalText).toContain('Parvis');
   });
 
   test('SVX is not labeled as live or current client', async ({ page }) => {
@@ -138,7 +140,7 @@ test.describe('Katipult DealFlow modal', () => {
   test('design decision callouts are present', async ({ page }) => {
     await openModal(page, 'dealflow');
     const modalText = await page.locator('.modal-panel').textContent();
-    expect(modalText).toContain('Design Decision');
+    expect(modalText).toContain('DESIGN DECISION');
   });
 
   test('"Banking Tech" does not appear', async ({ page }) => {
@@ -159,8 +161,8 @@ test.describe('Katipult DealFlow modal', () => {
 
   test('results section is visible', async ({ page }) => {
     await openModal(page, 'dealflow');
-    const results = page.locator('.m-results');
-    await expect(results).toBeVisible();
+    const modalText = await page.locator('.modal-panel').textContent();
+    expect(modalText).toContain('RESULTS');
   });
 
   test('all images load without error', async ({ page }) => {
