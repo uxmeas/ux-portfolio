@@ -153,7 +153,7 @@
     .cs-hero__laptop-wrap { padding-top: 64px; text-align: center; width: 100%; }
     .cs-hero__device { position: relative; width: 1200px; max-width: 100%; margin: 0 auto; }
     .cs-hero__device-frame { width: 100%; height: auto; display: block; position: relative; z-index: 1; pointer-events: none; }
-    .cs-hero__device-screen { position: absolute; top: calc(3.6% + 48px); left: calc(11.8% + 12px); width: calc(76.4% - 24px); height: calc(81.5% - 69px); z-index: 2; overflow: hidden; border-radius: 6px 6px 0 0; }
+    .cs-hero__device-screen { position: absolute; top: calc(3.6% + 48px); left: calc(11.8% + 12px); width: calc(76.4% - 24px); height: calc(81.5% - 69px); z-index: 2; overflow: hidden; border-radius: 6px 6px 0 0; background: #000000; }
     .cs-hero__browser-bar { display: flex; align-items: center; justify-content: center; height: 22px; background: #2A2A2A; border-bottom: 1px solid #3A3A3A; position: relative; }
     .cs-hero__browser-dots { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); display: flex; gap: 5px; }
     .cs-hero__browser-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -161,7 +161,11 @@
     .cs-hero__browser-dot--min { background: #FEBC2E; }
     .cs-hero__browser-dot--max { background: #28C840; }
     .cs-hero__browser-url { background: #3A3A3A; border-radius: 3px; padding: 2px 8px; font-size: 8px; color: #999; font-family: 'Inter', sans-serif; }
-    .cs-hero__screen-img { width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; display: block; }
+    .cs-hero__screen-img { width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; display: block; opacity: 0; transition: opacity 0.6s ease; }
+    .cs-hero__screen-img.loaded { opacity: 1; }
+    .cs-hero__device-screen::before { content: ''; position: absolute; top: 22px; left: 0; right: 0; bottom: 0; background: linear-gradient(110deg, #1a1a2e 30%, #2a2a3e 50%, #1a1a2e 70%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; z-index: 0; }
+    .cs-hero__device-screen.loaded::before { opacity: 0; transition: opacity 0.4s ease; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
     /* === METRIC CARDS (120px) === */
     .metric-row { display: flex; gap: 24px; width: 100%; }
@@ -692,5 +696,6 @@
     </section>
 
   </div>
+<script>document.querySelectorAll('.cs-hero__screen-img').forEach(function(img){function r(){img.classList.add('loaded');img.closest('.cs-hero__device-screen').classList.add('loaded')}if(img.complete)r();else img.onload=r})</script>
 </body>
 </html>
