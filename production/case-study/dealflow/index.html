@@ -192,10 +192,10 @@
     .cs-hero__browser-dot--min { background: #FEBC2E; }
     .cs-hero__browser-dot--max { background: #28C840; }
     .cs-hero__browser-url { background: #3A3A3A; border-radius: 3px; padding: 2px 8px; font-size: 8px; color: #999; font-family: 'Inter', sans-serif; }
-    .cs-hero__screen-img { width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; display: block; opacity: 0; transition: opacity 0.6s ease; }
+    .cs-hero__screen-img { width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; display: block; opacity: 0; transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); position: relative; z-index: 1; }
     .cs-hero__screen-img.loaded { opacity: 1; }
-    .cs-hero__device-screen::before { content: ''; position: absolute; top: 22px; left: 0; right: 0; bottom: 0; background: linear-gradient(110deg, #1a1a2e 30%, #2a2a3e 50%, #1a1a2e 70%); background-size: 200% 100%; animation: shimmer 1.5s ease-in-out infinite; z-index: 0; }
-    .cs-hero__device-screen.loaded::before { opacity: 0; transition: opacity 0.4s ease; }
+    .cs-hero__device-screen::before { content: ''; position: absolute; top: 22px; left: 0; right: 0; bottom: 0; background: linear-gradient(110deg, #0a0a1e 30%, #1a1a3e 50%, #0a0a1e 70%); background-size: 200% 100%; animation: shimmer 1.8s ease-in-out infinite; z-index: 2; transition: opacity 0.6s ease; }
+    .cs-hero__device-screen.loaded::before { opacity: 0; pointer-events: none; }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
     /* === TWO-COL === */
@@ -868,6 +868,6 @@
     </section>
 
   </div>
-<script>document.querySelectorAll('.cs-hero__screen-img').forEach(function(img){function r(){img.classList.add('loaded');img.closest('.cs-hero__device-screen').classList.add('loaded')}if(img.complete)r();else img.onload=r})</script>
+<script>document.querySelectorAll('.cs-hero__screen-img').forEach(function(img){function r(){setTimeout(function(){img.classList.add('loaded');img.closest('.cs-hero__device-screen').classList.add('loaded')},800)}if(img.complete)r();else img.onload=r})</script>
 </body>
 </html>
