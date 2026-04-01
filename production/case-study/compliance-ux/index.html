@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Case study: Redesigned KYC onboarding for Katipult's investment platform. Cut completion time from 45 minutes to under 12 minutes with 85% completion rate.">
-  <meta property="og:title" content="Compliance UX — Case Study — UX Meas">
+  <meta property="og:title" content="Compliance UX - Case Study - UX Meas">
   <meta property="og:description" content="Case study: Redesigned KYC onboarding for Katipult's investment platform. Cut completion time from 45 minutes to under 12 minutes with 85% completion rate.">
   <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
   <meta property="og:url" content="https://uxmeas.com/case-study/compliance-ux/">
   <meta property="og:type" content="article">
   <link rel="icon" href="../../favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
-  <title>Compliance UX for Private Capital Markets — Pheak Meas</title>
+  <title>Compliance UX for Private Capital Markets - Pheak Meas</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -151,7 +151,17 @@
     .cs-hero__subtitle-wrap { text-align: center; padding-top: 40px; width: 100%; }
     .cs-hero__subtitle { font-size: 22px; line-height: 1.6; color: #94A3B8; text-align: center; max-width: 800px; margin: 0 auto; }
     .cs-hero__laptop-wrap { padding-top: 64px; text-align: center; width: 100%; }
-    .cs-hero__laptop-wrap img { width: 1200px; max-width: 100%; height: 740px; object-fit: cover; border-radius: 8px; margin: 0 auto; }
+    .cs-hero__device { position: relative; width: 1200px; max-width: 100%; margin: 0 auto; }
+    .cs-hero__device-frame { width: 100%; height: auto; display: block; position: relative; z-index: 1; pointer-events: none; }
+    .cs-hero__device-screen { position: absolute; top: calc(3.6% + 48px); left: calc(11.8% + 12px); width: calc(76.4% - 24px); height: calc(81.5% - 69px); z-index: 2; overflow: hidden; border-radius: 6px 6px 0 0; }
+    .cs-hero__browser-bar { display: flex; align-items: center; justify-content: center; height: 22px; background: #2A2A2A; border-bottom: 1px solid #3A3A3A; position: relative; }
+    .cs-hero__browser-dots { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); display: flex; gap: 5px; }
+    .cs-hero__browser-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .cs-hero__browser-dot--close { background: #FF5F57; }
+    .cs-hero__browser-dot--min { background: #FEBC2E; }
+    .cs-hero__browser-dot--max { background: #28C840; }
+    .cs-hero__browser-url { background: #3A3A3A; border-radius: 3px; padding: 2px 8px; font-size: 8px; color: #999; font-family: 'Inter', sans-serif; }
+    .cs-hero__screen-img { width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; display: block; }
 
     /* === METRIC CARDS (120px) === */
     .metric-row { display: flex; gap: 24px; width: 100%; }
@@ -180,8 +190,8 @@
 
     /* === RESEARCH TABLE === */
     .rt-label { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 4px; color: var(--gold); }
-    .research-table { width: 100%; display: flex; flex-direction: column; }
-    .rt-row { display: flex; width: 100%; padding: 16px 20px; }
+    .research-table { display: flex; flex-direction: column; align-self: stretch; flex-shrink: 0; }
+    .rt-row { display: flex; padding: 16px 20px; }
     .rt-header { background: var(--bg-surface); }
     .rt-body { background: var(--bg-card); border-bottom: 1px solid var(--border); }
     .rt-body:last-child { border-bottom: none; }
@@ -319,7 +329,7 @@
       .cs-hero__headline { font-size: 40px; }
       .cs-hero__stats { flex-direction: column; gap: 24px; }
       .cs-hero__stat-number { font-size: 48px; }
-      .cs-hero__laptop-wrap img { height: auto; }
+      .cs-hero__device { width: 100%; }
       .device-ipad { max-width: 100%; }
       .rt-header { display: none; }
       .rt-row { flex-direction: column; gap: 12px; padding: 20px; }
@@ -348,8 +358,8 @@
     }
   </style>
   <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9HVVW1GBEC');</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-87HSHMKCBH');</script>
 </head>
 <body>
   <div class="page-wrap">
@@ -408,7 +418,23 @@
       </div>
 
       <div class="cs-hero__laptop-wrap">
-        <img src="../../images/case-studies/compliance-ux/hero-laptop.png" alt="Compliance UX laptop mockup">
+        <div class="cs-hero__device">
+          <img src="../../images/macbook-pro.png" alt="" class="cs-hero__device-frame" loading="lazy">
+          <div class="cs-hero__device-screen">
+            <div class="cs-hero__browser-bar">
+              <div class="cs-hero__browser-dots">
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--close"></span>
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--min"></span>
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--max"></span>
+              </div>
+              <span class="cs-hero__browser-url">uxmeas.com</span>
+            </div>
+            <picture>
+              <source srcset="../../images/case-studies/compliance-ux/hero-laptop.webp" type="image/webp">
+              <img src="../../images/case-studies/compliance-ux/hero-laptop.png" alt="Compliance UX dashboard" class="cs-hero__screen-img" loading="lazy">
+            </picture>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -418,17 +444,17 @@
 
       <div class="cs-two-col">
         <div class="cs-col-left--500">
-          <h2 class="section-title">$200 per<br>failed verification.<br>50% drop-off at upload.</h2>
+          <h2 class="section-title">$200 per<br>failed verification.<br>60% drop-off at upload.</h2>
         </div>
         <div class="cs-col-fill">
-          <p class="body-text">Drop-off rates exceeded 50% at the document upload step — investors would start KYC, hit a wall of unfamiliar requirements, and abandon. Data showed each failed verification cost $200+ in manual review by compliance teams who had to chase missing documents over email.</p>
+          <p class="body-text">Drop-off rates exceeded 60% at the document upload step. Investors would start KYC, hit a wall of unfamiliar requirements, and abandon. Data showed each failed verification cost $200+ in manual review by compliance teams who had to chase missing documents over email.</p>
           <p class="body-text" style="margin-top: 24px;">Legal teams across 20+ jurisdictions each required different document sets, different identity checks, and different approval workflows. The platform had one rigid flow trying to serve them all. The challenge: design an adaptive onboarding experience that satisfies every regulator while cutting drop-off and verification costs.</p>
         </div>
       </div>
 
       <div class="metric-row">
         <div class="metric-card">
-          <span class="metric-card__number">50%</span>
+          <span class="metric-card__number">60%</span>
           <span class="metric-card__text">Drop-off rate at document upload step</span>
         </div>
         <div class="metric-card">
@@ -632,15 +658,15 @@
           <div class="stat-bars">
             <div class="stat-bar">
               <span class="stat-bar__number">85%</span>
-              <span class="stat-bar__label">Completion rate — up from 40%</span>
+              <span class="stat-bar__label">Completion rate, up from 40%</span>
             </div>
             <div class="stat-bar">
               <span class="stat-bar__number">20+</span>
-              <span class="stat-bar__label">Jurisdictions — single adaptive flow</span>
+              <span class="stat-bar__label">Jurisdictions, single adaptive flow</span>
             </div>
             <div class="stat-bar">
               <span class="stat-bar__number">&lt;12 min</span>
-              <span class="stat-bar__label">Average flow — down from 45 minutes</span>
+              <span class="stat-bar__label">Average flow, down from 45 minutes</span>
             </div>
           </div>
         </div>
@@ -656,7 +682,7 @@
     <section class="cta-footer">
       <div class="cta-footer__divider"></div>
       <h2 class="section-title">Next Case Study</h2>
-      <span class="cta-footer__sub">DealFlow — Startup to IPO</span>
+      <span class="cta-footer__sub">DealFlow - Startup to IPO</span>
       <p class="cta-footer__desc">Owned product design from startup to IPO (TSX-V). Deal management, portfolio tracking, and investor relations shipped across web and mobile. $2B+ processed.</p>
       <div class="cta-footer__buttons">
         <a href="/case-study/dealflow/" class="btn-primary">VIEW DEALFLOW CASE STUDY</a>

@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AKMSecure — Brand & Web Case Study — UX Meas</title>
+  <title>AKMSecure - Brand & Web Case Study - UX Meas</title>
   <meta name="description" content="Case study: Full brand identity and website build for AKM Cyber Corp., a quantum-resilient cybersecurity platform. Logo, website design & development, HubSpot CMS migration, and print collateral.">
-  <meta property="og:title" content="AKMSecure — Case Study — UX Meas">
+  <meta property="og:title" content="AKMSecure - Case Study - UX Meas">
   <meta property="og:description" content="Brand identity, website design & development, and HubSpot CMS migration for a quantum-resilient cybersecurity startup.">
   <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
   <meta property="og:url" content="https://uxmeas.com/case-study/akmsecure/">
@@ -181,12 +181,18 @@
       color: var(--text-secondary);
       max-width: 800px;
     }
-    .cs-hero__laptop {
-      width: 1200px;
-      max-width: 100%;
-      margin-top: 16px;
-    }
-    .cs-hero__laptop img { width: 100%; height: 740px; object-fit: cover; border-radius: 8px; }
+    .cs-hero__laptop { width: 1200px; max-width: 100%; margin-top: 16px; }
+    .cs-hero__device { position: relative; width: 100%; }
+    .cs-hero__device-frame { width: 100%; height: auto; display: block; position: relative; z-index: 1; pointer-events: none; }
+    .cs-hero__device-screen { position: absolute; top: calc(3.6% + 48px); left: calc(11.8% + 12px); width: calc(76.4% - 24px); height: calc(81.5% - 69px); z-index: 2; overflow: hidden; border-radius: 6px 6px 0 0; }
+    .cs-hero__browser-bar { display: flex; align-items: center; justify-content: center; height: 22px; background: #2A2A2A; border-bottom: 1px solid #3A3A3A; position: relative; }
+    .cs-hero__browser-dots { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); display: flex; gap: 5px; }
+    .cs-hero__browser-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .cs-hero__browser-dot--close { background: #FF5F57; }
+    .cs-hero__browser-dot--min { background: #FEBC2E; }
+    .cs-hero__browser-dot--max { background: #28C840; }
+    .cs-hero__browser-url { background: #3A3A3A; border-radius: 3px; padding: 2px 8px; font-size: 8px; color: #999; font-family: 'Inter', sans-serif; }
+    .cs-hero__screen-img { width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; display: block; }
 
     /* === SECTIONS === */
     .cs-section {
@@ -387,7 +393,7 @@
       .cs-hero__headline { font-size: 40px; }
       .cs-hero__stats { flex-direction: column; gap: 24px; }
       .cs-hero__subtitle { font-size: 18px; }
-      .cs-hero__laptop img { height: auto; }
+      .cs-hero__device { width: 100%; }
       .cs-statement { padding-top: 80px; padding-bottom: 80px; }
       .cs-statement__title { font-size: 36px; }
       .phone-pair {
@@ -417,8 +423,8 @@
     }
   </style>
   <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9HVVW1GBEC');</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-87HSHMKCBH');</script>
 </head>
 <body>
   <div class="page-wrap">
@@ -459,7 +465,23 @@
       </div>
       <p class="cs-hero__subtitle">A quantum-resilient cybersecurity startup had a logo but no brand. Built the complete visual system, marketing website, HubSpot CMS migration, and print collateral from scratch.</p>
       <div class="cs-hero__laptop">
-        <img src="../../images/case-studies/akmsecure/hero-website.png" alt="AKMSecure website homepage">
+        <div class="cs-hero__device">
+          <img src="../../images/macbook-pro.png" alt="" class="cs-hero__device-frame" loading="lazy">
+          <div class="cs-hero__device-screen">
+            <div class="cs-hero__browser-bar">
+              <div class="cs-hero__browser-dots">
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--close"></span>
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--min"></span>
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--max"></span>
+              </div>
+              <span class="cs-hero__browser-url">uxmeas.com</span>
+            </div>
+            <picture>
+              <source srcset="../../images/case-studies/akmsecure/hero-website.webp" type="image/webp">
+              <img src="../../images/case-studies/akmsecure/hero-website.png" alt="AKMSecure website" class="cs-hero__screen-img" loading="lazy">
+            </picture>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -469,8 +491,8 @@
       <div class="cs-two-col" style="align-items: center;">
         <div class="cs-col-left--380">
           <h2 class="section-title" style="margin-bottom: 24px;">About the client</h2>
-          <p class="body-text">AKM Cyber Corp. builds autonomous key management — a quantum-resilient cybersecurity platform that eliminates the need for traditional certificates and central authorities. Their technology replaces legacy PKI infrastructure for enterprises in defense, energy, finance, and critical infrastructure.</p>
-          <p class="body-text" style="margin-top: 16px;">They had a logo and a product. Nothing else — no brand system, no website, no marketing materials. Without a cohesive identity, they were competing for Boeing and Lockheed Martin contracts with nothing to show.</p>
+          <p class="body-text">AKM Cyber Corp. builds autonomous key management, a quantum-resilient cybersecurity platform that eliminates the need for traditional certificates and central authorities. Their technology replaces legacy PKI infrastructure for enterprises in defense, energy, finance, and critical infrastructure.</p>
+          <p class="body-text" style="margin-top: 16px;">They had a logo and a product. Nothing else. No brand system, no website, no marketing materials. Without a cohesive identity, they were competing for Boeing and Lockheed Martin contracts with nothing to show.</p>
           <div class="meta-row">
             <div>
               <div class="meta-item__label">ROLE</div>
@@ -502,7 +524,7 @@
     <!-- 3. BRAND STATEMENT -->
     <section class="cs-statement">
       <h2 class="cs-statement__title">Security starts<br>with identity.</h2>
-      <p class="cs-statement__subtitle">— brand, trust, and credibility before code</p>
+      <p class="cs-statement__subtitle">Brand, trust, and credibility before code.</p>
     </section>
 
     <!-- 4. TYPOGRAPHY & COLOR -->
@@ -600,8 +622,8 @@
       <div class="cs-two-col" style="align-items: center;">
         <div class="cs-col-left--380">
           <h2 class="section-title" style="margin-bottom: 24px;">Website design and development</h2>
-          <p class="body-text">Designed and built from scratch. No template. The site needed to communicate technical credibility to enterprise buyers in defense, energy, and critical infrastructure — without looking like every other security vendor.</p>
-          <p class="body-text" style="margin-top: 16px;">Monochrome palette, zero border radius, high-contrast typography. The visual language says precision and control — the same qualities their product delivers.</p>
+          <p class="body-text">Designed and built from scratch. No template. The site needed to communicate technical credibility to enterprise buyers in defense, energy, and critical infrastructure, without looking like every other security vendor.</p>
+          <p class="body-text" style="margin-top: 16px;">Monochrome palette, zero border radius, high-contrast typography. The visual language says precision and control. The same qualities their product delivers.</p>
         </div>
         <div class="cs-col-fill" style="display: flex; justify-content: center;">
           <div class="device-ipad">
@@ -617,16 +639,16 @@
       <div class="cs-two-col" style="align-items: flex-start;">
         <div class="cs-col-left--380">
           <h2 class="section-title" style="margin-bottom: 24px;">The brand didn't stop at the website</h2>
-          <p class="body-text">Same visual system adapted across business cards, trade show graphics, executive briefs, and print collateral. Every touchpoint reinforces the same identity — from a digital handshake to a physical one.</p>
+          <p class="body-text">Same visual system adapted across business cards, trade show graphics, executive briefs, and print collateral. Every touchpoint reinforces the same identity, from a digital handshake to a physical one.</p>
         </div>
         <div class="cs-col-fill">
           <div style="border-radius: 8px; overflow: hidden;">
-            <img src="../../images/case-studies/akmsecure/materials/print-example.png" alt="AKMSecure print collateral — tear sheets and brand guidelines" style="width: 100%; display: block;">
+            <img src="../../images/case-studies/akmsecure/materials/print-example.png" alt="AKMSecure print collateral, tear sheets and brand guidelines" style="width: 100%; display: block;">
           </div>
         </div>
       </div>
       <div style="border-radius: 8px; overflow: hidden;">
-        <img src="../../images/case-studies/akmsecure/materials/material-layout.png" alt="AKMSecure brand materials — trade show banners, business cards, conference graphics" style="width: 100%; display: block;">
+        <img src="../../images/case-studies/akmsecure/materials/material-layout.png" alt="AKMSecure brand materials, trade show banners, business cards, conference graphics" style="width: 100%; display: block;">
       </div>
     </section>
 
@@ -634,7 +656,7 @@
     <section class="cta-footer">
       <div class="cta-footer__divider"></div>
       <span class="cta-footer__next-label">NEXT CASE STUDY</span>
-      <h2 class="cta-footer__next-title">Compliance UX — 45 Minutes to 12</h2>
+      <h2 class="cta-footer__next-title">Compliance UX - 45 Minutes to 12</h2>
       <p class="cta-footer__desc">Redesigned KYC onboarding for Katipult's investment platform. Cut completion time from 45 minutes to under 12, with 85% completion rate.</p>
       <div class="cta-footer__buttons">
         <a href="../compliance-ux/" class="btn-primary">VIEW COMPLIANCE UX CASE STUDY</a>
