@@ -519,11 +519,6 @@
       flex: 1;
     }
 
-    /* === SHIMMER LOADING === */
-    @keyframes shimmer { 0% { background-position: -300px 0; } 100% { background-position: 300px 0; } }
-    .cs-hero__device-screen::before { content: ''; position: absolute; top: 22px; left: 0; right: 0; bottom: 0; background: linear-gradient(110deg, #0a0a1e 30%, #1a1a3e 50%, #0a0a1e 70%); background-size: 200% 100%; animation: shimmer 1.8s ease-in-out infinite; z-index: 2; transition: opacity 0.6s ease; }
-    .cs-hero__device-screen.loaded::before { opacity: 0; pointer-events: none; }
-
     /* === RESPONSIVE === */
     @media (max-width: 1024px) {
       .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 48px; padding-right: 48px; }
