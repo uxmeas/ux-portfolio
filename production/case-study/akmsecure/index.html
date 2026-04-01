@@ -386,6 +386,7 @@
       .cs-hero__top { flex-direction: column; gap: 16px; }
       .typo-row { flex-direction: column; gap: 32px; }
       .meta-row { flex-wrap: wrap; gap: 24px; }
+      .cs-hero__device-screen { top: calc(3.6% + 24px); height: calc(81.5% - 35px); }
     }
     @media (max-width: 640px) {
       .materials-mosaic { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 60px; }
@@ -398,7 +399,11 @@
       .cs-hero__headline { font-size: 40px; }
       .cs-hero__stats { flex-direction: column; gap: 24px; }
       .cs-hero__subtitle { font-size: 18px; }
-      .cs-hero__device { width: 100%; }
+      .cs-hero__laptop-wrap { padding-top: 40px; }
+      .cs-hero__device { max-width: 90%; margin: 0 auto; }
+      .cs-hero__device-screen { top: 10%; left: 12.5%; width: 75%; height: 72%; }
+      .cs-hero__browser-bar { display: none; }
+      .cs-hero__screen-img { height: 100%; }
       .cs-statement { padding-top: 80px; padding-bottom: 80px; }
       .cs-statement__title { font-size: 36px; }
       .phone-pair {

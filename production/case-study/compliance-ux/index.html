@@ -161,12 +161,7 @@
     .cs-hero__browser-dot--min { background: #FEBC2E; }
     .cs-hero__browser-dot--max { background: #28C840; }
     .cs-hero__browser-url { background: #3A3A3A; border-radius: 3px; padding: 3px 16px; font-size: 10px; color: #999; font-family: 'Inter', sans-serif; min-width: 40%; text-align: center; }
-    .cs-hero__screen-img { width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; display: block; opacity: 0; transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); position: relative; z-index: 1; animation: fallback-reveal 0s 2s forwards; }
-    .cs-hero__screen-img.loaded { opacity: 1; animation: none; }
-    @keyframes fallback-reveal { to { opacity: 1; } }
-    .cs-hero__device-screen::before { content: ''; position: absolute; top: 22px; left: 0; right: 0; bottom: 0; background: linear-gradient(110deg, #0a0a1e 30%, #1a1a3e 50%, #0a0a1e 70%); background-size: 200% 100%; animation: shimmer 1.8s ease-in-out infinite; z-index: 2; transition: opacity 0.6s ease; }
-    .cs-hero__device-screen.loaded::before { opacity: 0; pointer-events: none; }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .cs-hero__screen-img { width: 100%; height: calc(100% - 22px); object-fit: cover; object-position: top; display: block; }
 
     /* === METRIC CARDS (120px) === */
     .metric-row { display: flex; gap: 24px; width: 100%; }
@@ -314,6 +309,11 @@
     .cta-footer__buttons { display: flex; gap: 16px; padding-top: 16px; }
     .cta-footer__footer { font-size: 14px; color: var(--text-muted); }
 
+    /* === SHIMMER LOADING === */
+    @keyframes shimmer { 0% { background-position: -300px 0; } 100% { background-position: 300px 0; } }
+    .cs-hero__device-screen::before { content: ''; position: absolute; top: 22px; left: 0; right: 0; bottom: 0; background: linear-gradient(110deg, #0a0a1e 30%, #1a1a3e 50%, #0a0a1e 70%); background-size: 200% 100%; animation: shimmer 1.8s ease-in-out infinite; z-index: 2; transition: opacity 0.6s ease; }
+    .cs-hero__device-screen.loaded::before { opacity: 0; pointer-events: none; }
+
     /* === RESPONSIVE === */
     @media (max-width: 1024px) {
       .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 48px; padding-right: 48px; }
@@ -327,6 +327,7 @@
       .cs-hero__top { flex-direction: column; gap: 16px; }
       .cs-hero__meta { justify-content: center; }
       .metric-row { flex-direction: column; }
+      .cs-hero__device-screen { top: calc(3.6% + 24px); height: calc(81.5% - 35px); }
     }
     @media (max-width: 640px) {
       .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 24px; padding-right: 24px; }
@@ -334,7 +335,11 @@
       .cs-hero__headline { font-size: 40px; }
       .cs-hero__stats { flex-direction: column; gap: 24px; }
       .cs-hero__stat-number { font-size: 48px; }
-      .cs-hero__device { width: 100%; }
+      .cs-hero__laptop-wrap { padding-top: 40px; }
+      .cs-hero__device { max-width: 90%; margin: 0 auto; }
+      .cs-hero__device-screen { top: 10%; left: 12.5%; width: 75%; height: 72%; }
+      .cs-hero__browser-bar { display: none; }
+      .cs-hero__screen-img { height: 100%; }
       .device-ipad { max-width: 100%; }
       .rt-header { display: none; }
       .rt-row { flex-direction: column; gap: 12px; padding: 20px; }
