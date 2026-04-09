@@ -50,7 +50,6 @@
   --info-light: #EEF0FF;
 
   /* === TYPOGRAPHY === */
-  --font-display-hero: 'Instrument Serif', serif;  /* Audit A: serif for h1 only */
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
   --font-mono: 'Space Mono', monospace;
