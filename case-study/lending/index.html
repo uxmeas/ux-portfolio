@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Lending Platform — Pheak Meas</title>
+  <meta name="description" content="I extended an equity-focused investment platform to support private lending — loan creation, repayment schedules, interest accrual, and default workflows. One platform, two product personalities.">
+  <meta property="og:title" content="Private Lending Platform — Pheak Meas Portfolio">
+  <meta property="og:description" content="Equity to debt: extended platform to support private lending with loan creation, repayment, and default workflows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/case-study.css">
+</head>
+<body>
+
+  <!-- NAV (sticky) -->
+  <nav class="nav">
+    <a href="../../index.html" class="link-animated" style="font-weight: 700; letter-spacing: 0.15em; font-size: var(--text-xs);">PHEAK MEAS</a>
+    <div class="flex gap-xl">
+      <a href="../../index.html" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">Work</a>
+      <a href="../../index.html#about" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">About</a>
+      <a href="mailto:hello@uxmeas.com" class="link-animated" style="font-size: var(--text-sm); color: var(--accent);">Contact</a>
+    </div>
+  </nav>
+
+  <div class="cs">
+
+    <!-- 01: HERO -->
+    <section class="cs-hero reveal">
+      <span class="cs-hero__badge">Lending</span>
+      <h1 class="cs-hero__title">Private Lending Platform</h1>
+
+      <div class="cs-hero__meta">
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Role</span>
+          <span class="cs-hero__meta-value">Lead Product Designer</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Timeline</span>
+          <span class="cs-hero__meta-value">2016–2020</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Context</span>
+          <span class="cs-hero__meta-value">Platform Extension — Equity to Debt</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Tools</span>
+          <span class="cs-hero__meta-value">Figma, Sketch, Jira</span>
+        </div>
+      </div>
+
+      <div class="cs-hero__image cs-image--placeholder">
+        Hero Image — Private Lending Platform Overview
+      </div>
+    </section>
+
+    <!-- 02: PROBLEM FRAMING -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Deep Problem Framing</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-problem">
+        <div class="cs-problem__content">
+          <span class="cs-problem__label">The Goal</span>
+          <p class="cs-problem__text">The platform only supported equity investments. Clients were asking for private lending capabilities — mortgage funds, bridge loans, real estate debt. We needed to extend the platform to handle debt instruments without building a separate product or confusing existing equity users.</p>
+
+          <span class="cs-problem__label">The Problem</span>
+          <p class="cs-problem__text">Debt UX is fundamentally different from equity UX. Equity users think in shares, ownership percentages, and exit events. Debt users think in repayment schedules, interest rates, and default risk. The existing platform had no concept of loan creation, repayment tracking, interest accrual, or default escalation. Bolting lending onto an equity platform without careful design would confuse both user bases.</p>
+
+          <div class="cs-hmw">
+            <span class="cs-hmw__label">How Might We</span>
+            <p class="cs-hmw__text">How might we extend an equity-focused platform to support private lending — without creating a separate product or confusing existing equity users?</p>
+          </div>
+        </div>
+
+        <div class="cs-problem__sidebar">
+          <div class="cs-before-after cs-before-after--before">
+            <span class="cs-before-after__tag">Before</span>
+            <span class="cs-before-after__value">Equity only</span>
+            <span class="cs-before-after__desc">Platform couldn't handle debt instruments, repayment schedules, interest, or defaults.</span>
+          </div>
+          <div class="cs-before-after cs-before-after--after">
+            <span class="cs-before-after__tag">After</span>
+            <span class="cs-before-after__value">Equity + Debt</span>
+            <span class="cs-before-after__desc">Full lending workflows — loan creation, repayment schedules, interest accrual, default escalation.</span>
+          </div>
+          <div class="cs-before-after" style="border-color: var(--info);">
+            <span class="cs-before-after__tag" style="color: var(--info);">Scale</span>
+            <span class="cs-before-after__value">2x market coverage</span>
+            <span class="cs-before-after__desc">One platform serving both equity and debt clients. Zero new applications required.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03: USER RESEARCH -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Research</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="flex gap-lg">
+        <div class="card" style="flex: 1;">
+          <span class="label">Methodology</span>
+          <p style="margin-top: var(--space-sm);">Stakeholder interviews with mortgage fund managers, bridge loan operators, and real estate debt specialists. Workflow observation sessions with existing equity users to understand mental model differences. Competitive analysis of lending-specific platforms.</p>
+        </div>
+        <div class="card" style="flex: 1;">
+          <span class="label">Sample</span>
+          <p style="margin-top: var(--space-sm);">8 mortgage fund managers, 5 bridge loan operators, 10+ existing equity users. Research conducted across 3 months before design began.</p>
+        </div>
+      </div>
+
+      <span class="label">Key Insights</span>
+
+      <div class="cs-insights">
+        <div class="cs-insight">
+          <span class="cs-insight__number">01</span>
+          <span class="cs-insight__title">Debt users think in schedules, not shares</span>
+          <p class="cs-insight__text">Equity users care about ownership percentage and valuation. Debt users care about when they get paid, how much interest accrues, and what happens if a borrower defaults. The mental models are fundamentally different.</p>
+        </div>
+        <div class="cs-insight">
+          <span class="cs-insight__number">02</span>
+          <span class="cs-insight__title">Default workflows can't be an afterthought</span>
+          <p class="cs-insight__text">In equity, a failed investment is a write-off. In lending, a default triggers a complex escalation — notices, cure periods, legal action. Default handling had to be designed as a first-class workflow, not an edge case.</p>
+        </div>
+        <div class="cs-insight">
+          <span class="cs-insight__number">03</span>
+          <span class="cs-insight__title">One platform, two product personalities</span>
+          <p class="cs-insight__text">Users needed the platform to feel purpose-built for their asset class. An equity manager opening the platform should see equity-relevant information. A lending manager should see loan-relevant information. Same platform, contextually different experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: DESIGN APPROACH / SOLUTION -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Approach / Solution</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-solution">
+        <div class="cs-solution__content">
+          <p>I led the design of the lending extension — from loan creation through repayment tracking and default escalation. The core challenge was building a contextual UI that adapted based on whether the user was managing equity or debt, without fracturing the product into two separate applications.</p>
+          <p>The solution used a shared infrastructure layer (users, documents, compliance) with asset-class-specific interfaces on top. Equity users never saw lending UI, and lending users never saw equity UI — but administrators could manage both from a single dashboard.</p>
+
+          <span class="label">Key Features</span>
+          <p class="cs-solution__feature">1. Loan creation wizard with term sheets and interest configuration</p>
+          <p class="cs-solution__feature">2. Repayment schedule visualization with payment tracking</p>
+          <p class="cs-solution__feature">3. Interest accrual dashboard with real-time calculations</p>
+          <p class="cs-solution__feature">4. Default escalation flows with notices and cure periods</p>
+          <p class="cs-solution__feature">5. Contextual UI that adapts for debt vs. equity users</p>
+        </div>
+        <div class="cs-solution__visuals">
+          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Loan Creation Wizard</div>
+          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Repayment Schedule View</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: KEY SCREENS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Key Screens / Features</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <p>Annotated walkthrough of the key screens I designed — showing how debt-specific workflows integrated into the existing equity platform.</p>
+
+      <div class="flex gap-lg">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
+          <div class="cs-image cs-image--placeholder" style="min-height: 320px;">Interest Accrual Dashboard</div>
+          <p style="font-size: var(--text-sm); color: var(--warning);">Annotation: How real-time interest calculations reduced manual accounting</p>
+        </div>
+        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
+          <div class="cs-image cs-image--placeholder" style="min-height: 320px;">Default Escalation Flow</div>
+          <p style="font-size: var(--text-sm); color: var(--warning);">Annotation: How the escalation workflow guided fund managers through notices and cure periods</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06: DESIGN DECISIONS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Decisions</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-decision">
+        <div class="cs-decision__content">
+          <span class="cs-decision__number">01</span>
+          <h4 class="cs-decision__title">Contextual UI over separate applications</h4>
+          <span class="label">Considered</span>
+          <p style="color: var(--text-muted);">Separate lending app, tabbed interface, contextual adaptation</p>
+          <span class="label" style="color: var(--success);">Chose &amp; Why</span>
+          <p>Contextual adaptation — building a separate app would double maintenance and confuse clients who manage both equity and debt. The contextual approach let administrators see everything while individual users only saw their asset class.</p>
+        </div>
+        <div class="cs-decision__image cs-image--placeholder" style="min-height: 280px;">
+          Equity vs. Debt Context Switching
+        </div>
+      </div>
+
+      <div class="cs-decision cs-decision--reverse">
+        <div class="cs-decision__content">
+          <span class="cs-decision__number">02</span>
+          <h4 class="cs-decision__title">Visual repayment schedules over table-only views</h4>
+          <span class="label">Considered</span>
+          <p style="color: var(--text-muted);">Spreadsheet-style tables, Gantt-style timeline, visual schedule with table fallback</p>
+          <span class="label" style="color: var(--success);">Chose &amp; Why</span>
+          <p>Visual schedule with table fallback — fund managers needed to see the full repayment timeline at a glance, not scroll through rows. The visual timeline showed payment status (paid, upcoming, overdue, defaulted) with color coding, while the table view remained available for exports and detailed analysis.</p>
+        </div>
+        <div class="cs-decision__image cs-image--placeholder" style="min-height: 280px;">
+          Repayment Schedule — Visual vs. Table
+        </div>
+      </div>
+    </section>
+
+    <!-- 07: RESULTS & OUTCOMES -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Results &amp; Outcomes</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric__number">2x</span>
+          <span class="cs-metric__label cs-metric__label--accent">Market</span>
+          <span class="cs-metric__desc">Market coverage doubled — equity + debt</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">0</span>
+          <span class="cs-metric__label cs-metric__label--green">New Apps</span>
+          <span class="cs-metric__desc">Extended existing platform, no separate product</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">1</span>
+          <span class="cs-metric__label cs-metric__label--blue">Unified</span>
+          <span class="cs-metric__desc">Single admin UX for both equity and debt</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">100%</span>
+          <span class="cs-metric__label cs-metric__label--purple">Coverage</span>
+          <span class="cs-metric__desc">Full lending lifecycle — creation to default</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08: REFLECTION + CTA -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Reflection</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-reflection">
+        <div class="cs-reflection__card cs-reflection__card--worked">
+          <div class="cs-reflection__header">
+            <span style="color: var(--success); font-size: 18px;">&#10003;</span>
+            <span class="label" style="color: var(--success);">What Worked</span>
+          </div>
+          <p class="cs-reflection__item">1. Contextual UI kept both user bases happy — equity users never saw lending complexity, lending users got a purpose-built experience</p>
+          <p class="cs-reflection__item">2. Shared infrastructure reduced development time — compliance, documents, and user management worked identically across asset classes</p>
+          <p class="cs-reflection__item">3. Default escalation as a first-class workflow prevented edge-case disasters — fund managers trusted the system to handle the hardest scenarios</p>
+        </div>
+        <div class="cs-reflection__card cs-reflection__card--improve">
+          <div class="cs-reflection__header">
+            <span style="color: var(--warning); font-size: 18px;">&#9672;</span>
+            <span class="label" style="color: var(--warning);">What I'd Do Differently</span>
+          </div>
+          <p class="cs-reflection__item">1. Earlier user testing with actual lending clients — we designed based on equity-user assumptions that didn't always transfer</p>
+          <p class="cs-reflection__item">2. More sophisticated interest calculation UI — the first version was too simplified for complex amortization schedules</p>
+          <p class="cs-reflection__item">3. Mobile experience for borrowers — the initial release was desktop-only, and borrowers increasingly expected mobile access</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cs-cta">
+        <span class="cs-cta__label">Next Case Study</span>
+        <h3 class="cs-cta__title">One Design System, 50+ Client Brands</h3>
+        <a href="../white-label/" class="btn btn--primary">View Case Study</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="section text-center" style="padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--divider);">
+    <p style="font-size: var(--text-sm); color: var(--text-muted);">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

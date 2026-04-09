@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pheak Meas — Product Designer</title>
+  <meta name="description" content="I design products. Then I build them. 18 years in product design — fintech, compliance, and enterprise software. Co-founded a company that went from 3 people to TSX-V IPO.">
+  <meta property="og:title" content="Pheak Meas — Product Designer">
+  <meta property="og:description" content="I design products. Then I build them. 18 years designing fintech platforms, Figma plugins, and AI-native tools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <style>
+    /* === HOMEPAGE-SPECIFIC === */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px var(--section-padding-x) var(--section-padding-y);
+    }
+
+    .hero__title {
+      font-size: clamp(2.5rem, 6vw, var(--text-4xl));
+      font-weight: 400;
+      letter-spacing: var(--tracking-tight);
+      line-height: var(--leading-tight);
+      color: var(--text-primary);
+      margin-bottom: var(--space-lg);
+      max-width: 800px;
+    }
+
+    .hero__subtitle {
+      font-size: var(--text-lg);
+      color: var(--text-secondary);
+      max-width: 600px;
+      line-height: var(--leading-relaxed);
+      margin-bottom: var(--space-2xl);
+    }
+
+    /* === PROJECT GRID === */
+    .projects {
+      padding: var(--section-padding-y) var(--section-padding-x);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .projects__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color var(--transition-base), transform var(--transition-base);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .project-card__image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--bg-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: var(--text-sm);
+    }
+
+    .project-card__content {
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .project-card__tags {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .project-card__tag {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .project-card__tag + .project-card__tag::before {
+      content: " · ";
+      color: var(--text-muted);
+    }
+
+    .project-card__title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .project-card__desc {
+      font-size: var(--text-sm);
+      color: var(--text-secondary);
+      line-height: var(--leading-normal);
+    }
+
+    /* === ABOUT === */
+    .about {
+      padding: var(--section-padding-y) var(--section-padding-x);
+      max-width: var(--content-width);
+      margin: 0 auto;
+      display: flex;
+      gap: var(--space-3xl);
+      align-items: flex-start;
+    }
+
+    .about__content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .about__stats {
+      display: flex;
+      gap: var(--space-2xl);
+    }
+
+    .about__stat {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+
+    .about__stat-number {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .about__stat-label {
+      font-size: var(--text-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 768px) {
+      .projects__grid { grid-template-columns: 1fr; }
+      .about { flex-direction: column; }
+      .about__stats { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" style="font-weight: 700; letter-spacing: 0.15em; font-size: var(--text-xs);">PHEAK MEAS</a>
+    <div class="flex gap-xl">
+      <a href="#work" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">Work</a>
+      <a href="#about" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">About</a>
+      <a data-u="hello" data-d="uxmeas.com" href="#" class="link-animated" style="font-size: var(--text-sm); color: var(--accent);">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero reveal">
+    <h1 class="hero__title">I design products. <br>Then I build them.</h1>
+    <p class="hero__subtitle">18 years designing fintech platforms, developer tools, and AI-native products. From 3-person startup to TSX-V IPO.</p>
+    <a href="#work" class="btn btn--primary">View Case Studies</a>
+  </section>
+
+  <!-- WORK -->
+  <section class="projects" id="work">
+    <div style="margin-bottom: var(--space-2xl);">
+      <span class="label label--accent">Selected Work</span>
+    </div>
+
+    <div class="projects__grid">
+
+      <!-- KATIPULT GROUP -->
+      <a href="case-study/compliance-ux/" class="project-card reveal">
+        <div class="project-card__image">Compliance UX — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Fintech</span>
+            <span class="project-card__tag">Enterprise</span>
+            <span class="project-card__tag">Compliance</span>
+          </div>
+          <h3 class="project-card__title">Investor Onboarding — KYC/AML</h3>
+          <p class="project-card__desc">Reduced onboarding from 45 to 12 minutes with 85% completion across 20+ jurisdictions.</p>
+        </div>
+      </a>
+
+      <a href="case-study/dealflow/" class="project-card reveal">
+        <div class="project-card__image">DealFlow — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Fintech</span>
+            <span class="project-card__tag">Enterprise</span>
+            <span class="project-card__tag">Deal Management</span>
+          </div>
+          <h3 class="project-card__title">Deal Management Platform</h3>
+          <p class="project-card__desc">$2B+ processed. 48% faster deal close. Used by Canaccord Genuity, Raymond James, Echelon.</p>
+        </div>
+      </a>
+
+      <a href="case-study/white-label/" class="project-card reveal">
+        <div class="project-card__image">White-Label — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Design System</span>
+            <span class="project-card__tag">White-Label</span>
+          </div>
+          <h3 class="project-card__title">One Design System, 50+ Brands</h3>
+          <p class="project-card__desc">Token-based theming serving 85+ partnerships across 6 continents from a single codebase.</p>
+        </div>
+      </a>
+
+      <a href="case-study/donations-rewards/" class="project-card reveal">
+        <div class="project-card__image">Donations — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Crowdfunding</span>
+            <span class="project-card__tag">Nonprofit</span>
+          </div>
+          <h3 class="project-card__title">Donations &amp; Rewards Platform</h3>
+          <p class="project-card__desc">$500K+ raised for Calgary arts. 2,000 donors. Built with Calgary Arts Development + ATB Financial.</p>
+        </div>
+      </a>
+
+      <a href="case-study/lending/" class="project-card reveal">
+        <div class="project-card__image">Lending — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Fintech</span>
+            <span class="project-card__tag">Lending</span>
+          </div>
+          <h3 class="project-card__title">Private Lending Platform</h3>
+          <p class="project-card__desc">Extended platform from equity-only to full debt support — unified admin for both.</p>
+        </div>
+      </a>
+
+      <a href="case-study/3-to-ipo/" class="project-card reveal">
+        <div class="project-card__image">3 to IPO — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Leadership</span>
+            <span class="project-card__tag">Career Arc</span>
+          </div>
+          <h3 class="project-card__title">From 3 People to IPO</h3>
+          <p class="project-card__desc">17 years scaling design practice from solo founder-designer to Head of Product Design at a public company.</p>
+        </div>
+      </a>
+
+      <!-- NEW PRODUCTS -->
+      <a href="case-study/fuzehq/" class="project-card reveal">
+        <div class="project-card__image">FuzeHQ — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">SaaS</span>
+            <span class="project-card__tag">AI Agents</span>
+          </div>
+          <h3 class="project-card__title">FuzeHQ — AI Team Management</h3>
+          <p class="project-card__desc">Where humans and AI agents ship together. 9 agents, 14 MCP tools, zero context switches.</p>
+        </div>
+      </a>
+
+      <a href="case-study/multipaste/" class="project-card reveal">
+        <div class="project-card__image">MultiPaste — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Figma Plugin</span>
+            <span class="project-card__tag">Developer Tool</span>
+          </div>
+          <h3 class="project-card__title">MultiPaste — Text Distribution</h3>
+          <p class="project-card__desc">Paste structured data into 50+ Figma layers in one action. 15 min → 1 min.</p>
+        </div>
+      </a>
+
+      <a href="case-study/mockupkit/" class="project-card reveal">
+        <div class="project-card__image">MockupKit — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Figma Plugin</span>
+            <span class="project-card__tag">Freemium</span>
+          </div>
+          <h3 class="project-card__title">MockupKit — Device Mockups</h3>
+          <p class="project-card__desc">Perspective-accurate device mockups in Figma. DLT homography engine. 30 seconds per mockup.</p>
+        </div>
+      </a>
+
+      <a href="case-study/docs-to-design/" class="project-card reveal">
+        <div class="project-card__image">Docs to Design — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Figma Plugin</span>
+            <span class="project-card__tag">SaaS</span>
+          </div>
+          <h3 class="project-card__title">Docs to Design — Document Wizard</h3>
+          <p class="project-card__desc">Transform documents into Figma frames in under 60 seconds. Auto-detection + brand system.</p>
+        </div>
+      </a>
+
+      <a href="case-study/mypick/" class="project-card reveal">
+        <div class="project-card__image">MyPick — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Web App</span>
+            <span class="project-card__tag">Randomizer</span>
+          </div>
+          <h3 class="project-card__title">MyPick.io — Visual Randomizer</h3>
+          <p class="project-card__desc">Elimination race mechanic for random selection. 25 teams, multiplayer, 24 sound effects.</p>
+        </div>
+      </a>
+
+      <a href="case-study/relationsync/" class="project-card reveal">
+        <div class="project-card__image">RelationSync — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Mobile App</span>
+            <span class="project-card__tag">AI</span>
+          </div>
+          <h3 class="project-card__title">RelationSync — AI Voice Journal</h3>
+          <p class="project-card__desc">Voice-first therapy documentation. AI structures spoken reflections into searchable records.</p>
+        </div>
+      </a>
+
+      <a href="case-study/akmsecure/" class="project-card reveal">
+        <div class="project-card__image">AKMSecure — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Brand Identity</span>
+            <span class="project-card__tag">Website</span>
+          </div>
+          <h3 class="project-card__title">AKMSecure — Brand &amp; Web</h3>
+          <p class="project-card__desc">Industrial cybersecurity brand identity + responsive website + CMS. Startup to enterprise-ready.</p>
+        </div>
+      </a>
+
+      <a href="case-study/isoblock/" class="project-card reveal">
+        <div class="project-card__image">IsoBlock — Hero</div>
+        <div class="project-card__content">
+          <div class="project-card__tags">
+            <span class="project-card__tag">Blender Plugin</span>
+            <span class="project-card__tag">3D</span>
+          </div>
+          <h3 class="project-card__title">IsoBlock — Isometric Design</h3>
+          <p class="project-card__desc">Blender add-on for isometric 3D scenes. Shape primitives + surface presets = polished art in minutes.</p>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about reveal" id="about">
+    <div class="about__content">
+      <span class="label label--accent">About</span>
+      <h2>I design and build products that scale.</h2>
+      <p>18 years of hands-on product design across fintech, developer tools, and AI-native products. I co-founded a company that grew from 3 people to a TSX-V IPO, designing every investor-facing screen across a $2B+ platform. Now I build tools that make designers and developers more productive — Figma plugins, AI agent management, and design systems that serve 50+ brands.</p>
+      <p>I'm most effective when I can design AND build — owning the full stack from user research through shipped code. I think in systems, not screens.</p>
+
+      <div class="about__stats">
+        <div class="about__stat">
+          <span class="about__stat-number">18</span>
+          <span class="about__stat-label">Years</span>
+        </div>
+        <div class="about__stat">
+          <span class="about__stat-number">$2B+</span>
+          <span class="about__stat-label">Platform Volume</span>
+        </div>
+        <div class="about__stat">
+          <span class="about__stat-number">50+</span>
+          <span class="about__stat-label">Client Brands</span>
+        </div>
+        <div class="about__stat">
+          <span class="about__stat-number">IPO</span>
+          <span class="about__stat-label">TSX-V</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section text-center reveal" style="padding-bottom: var(--space-5xl);">
+    <span class="label label--accent">Get in Touch</span>
+    <h2 style="margin-top: var(--space-md); margin-bottom: var(--space-lg);">Let's build something together.</h2>
+    <a data-u="hello" data-d="uxmeas.com" href="#" class="btn btn--primary">Email Me</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="section text-center" style="padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--divider);">
+    <div class="flex justify-center gap-xl" style="margin-bottom: var(--space-md);">
+      <a href="https://linkedin.com/in/uxmeas" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">LinkedIn</a>
+      <a href="https://uxmeas.com" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">Portfolio</a>
+    </div>
+    <p style="font-size: var(--text-xs); color: var(--text-muted);">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

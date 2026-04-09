@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyPick.io — Visual Elimination Randomizer — Pheak Meas</title>
+  <meta name="description" content="I designed a visual elimination randomizer that turns random selection into a suspenseful race — 25 teams, 24 sound effects, real-time multiplayer.">
+  <meta property="og:title" content="MyPick.io — Pheak Meas Portfolio">
+  <meta property="og:description" content="Visual elimination randomizer: 25 teams, 24 sounds, multiplayer rooms, dynamic camera. Selection as entertainment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/case-study.css">
+</head>
+<body>
+
+  <!-- NAV (sticky) -->
+  <nav class="nav">
+    <a href="../../index.html" class="link-animated" style="font-weight: 700; letter-spacing: 0.15em; font-size: var(--text-xs);">PHEAK MEAS</a>
+    <div class="flex gap-xl">
+      <a href="../../index.html" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">Work</a>
+      <a href="../../index.html#about" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">About</a>
+      <a href="mailto:hello@uxmeas.com" class="link-animated" style="font-size: var(--text-sm); color: var(--accent);">Contact</a>
+    </div>
+  </nav>
+
+  <div class="cs">
+
+    <!-- 01: HERO -->
+    <section class="cs-hero reveal">
+      <span class="cs-hero__badge">Web App &middot; Randomizer</span>
+      <h1 class="cs-hero__title">MyPick.io — Visual Elimination Randomizer</h1>
+
+      <div class="cs-hero__meta">
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Role</span>
+          <span class="cs-hero__meta-value">Product Designer &amp; Developer</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Timeline</span>
+          <span class="cs-hero__meta-value">2025–2026</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Type</span>
+          <span class="cs-hero__meta-value">Web App &middot; Randomizer</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Tools</span>
+          <span class="cs-hero__meta-value">Vanilla JS, Supabase Realtime, Canvas</span>
+        </div>
+      </div>
+
+      <div class="cs-hero__image cs-image--placeholder">
+        Hero Image — MyPick.io Race in Progress
+      </div>
+    </section>
+
+    <!-- 02: PROBLEM FRAMING -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Deep Problem Framing</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-problem">
+        <div class="cs-problem__content">
+          <span class="cs-problem__label">The Goal</span>
+          <p class="cs-problem__text">Random selection tools are boring. Spinning wheels, random.org, coin flips — they produce a result but create no engagement. I wanted to make random selection feel like entertainment — the suspense of a race, the engagement of a shared experience, the utility of a decision tool.</p>
+
+          <span class="cs-problem__label">The Problem</span>
+          <p class="cs-problem__text">Existing randomizers are solitary and instant. There's no build-up, no shared experience, no reason to watch. Teachers picking students, teams making decisions, friends choosing restaurants — all these scenarios benefit from suspense and participation, but no tool delivers it.</p>
+
+          <div class="cs-hmw">
+            <span class="cs-hmw__label">How Might We</span>
+            <p class="cs-hmw__text">How might we make random selection feel like entertainment — with the suspense of a race, the engagement of shared participation, and the utility of a real decision tool?</p>
+          </div>
+        </div>
+
+        <div class="cs-problem__sidebar">
+          <div class="cs-before-after cs-before-after--before">
+            <span class="cs-before-after__tag">Before</span>
+            <span class="cs-before-after__value">Boring</span>
+            <span class="cs-before-after__desc">Spinning wheels, random.org — instant result, zero engagement, no shared experience.</span>
+          </div>
+          <div class="cs-before-after cs-before-after--after">
+            <span class="cs-before-after__tag">After</span>
+            <span class="cs-before-after__value">Event</span>
+            <span class="cs-before-after__desc">Visual race with sound, dynamic camera, and real-time multiplayer rooms.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03: USER RESEARCH -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Research</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <span class="label">Key Insights</span>
+
+      <div class="cs-insights">
+        <div class="cs-insight">
+          <span class="cs-insight__number">01</span>
+          <span class="cs-insight__title">Suspense is the core mechanic</span>
+          <p class="cs-insight__text">The value isn't the result — it's the anticipation. A 15-120 second race creates emotional investment in the outcome. The longer the race, the more the audience cares who wins.</p>
+        </div>
+        <div class="cs-insight">
+          <span class="cs-insight__number">02</span>
+          <span class="cs-insight__title">Multiplayer transforms engagement</span>
+          <p class="cs-insight__text">When a group watches the same race in real time, it becomes a shared experience. Room codes let anyone join with a 6-character code — no accounts, no downloads, instant participation.</p>
+        </div>
+        <div class="cs-insight">
+          <span class="cs-insight__number">03</span>
+          <span class="cs-insight__title">Sound is 50% of the experience</span>
+          <p class="cs-insight__text">24 sound effects — crowd cheers, engine revs, collision impacts, victory fanfares — transform a visual animation into an immersive experience. Muting the sound cuts the emotional impact in half.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: DESIGN APPROACH / SOLUTION -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Approach / Solution</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-solution">
+        <div class="cs-solution__content">
+          <p>MyPick.io uses an elimination race mechanic — teams race on screen, and the visual spectacle creates suspense around what's ultimately a random selection. The dynamic camera follows the race leader, creating a broadcast-quality viewing experience.</p>
+          <p>Multiplayer rooms use 6-character codes via Supabase Realtime. The host controls the race while viewers watch live with 100% sync accuracy. Billboards, weather effects, and night mode add visual variety across races.</p>
+
+          <span class="label">Key Features</span>
+          <p class="cs-solution__feature">1. 25 teams, 15-120 second configurable race duration</p>
+          <p class="cs-solution__feature">2. Dynamic camera following race leader</p>
+          <p class="cs-solution__feature">3. Multiplayer rooms with 6-character codes</p>
+          <p class="cs-solution__feature">4. 24 integrated sound effects</p>
+          <p class="cs-solution__feature">5. Billboards, weather effects, and night mode</p>
+        </div>
+        <div class="cs-solution__visuals">
+          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Race View with Dynamic Camera</div>
+          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Multiplayer Room Lobby</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: RESULTS & OUTCOMES -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Results &amp; Outcomes</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric__number">25</span>
+          <span class="cs-metric__label cs-metric__label--blue">Teams</span>
+          <span class="cs-metric__desc">Maximum teams per race with full visual fidelity</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">24</span>
+          <span class="cs-metric__label cs-metric__label--green">Sound Effects</span>
+          <span class="cs-metric__desc">Crowd, engines, collisions, victory — full immersion</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">100%</span>
+          <span class="cs-metric__label cs-metric__label--accent">Multiplayer Sync</span>
+          <span class="cs-metric__desc">Authoritative host pattern with Supabase Realtime</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">6-char</span>
+          <span class="cs-metric__label cs-metric__label--purple">Room Codes</span>
+          <span class="cs-metric__desc">No accounts, no downloads — instant join</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06: REFLECTION + CTA -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Reflection</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-reflection">
+        <div class="cs-reflection__card cs-reflection__card--worked">
+          <div class="cs-reflection__header">
+            <span style="color: var(--success); font-size: 18px;">&#10003;</span>
+            <span class="label" style="color: var(--success);">What Worked</span>
+          </div>
+          <p class="cs-reflection__item">1. Emotion-first design — building for suspense and excitement rather than pure utility created a product people actually enjoy using</p>
+          <p class="cs-reflection__item">2. Authoritative host pattern — the host controls the race state and viewers mirror it, which solved sync issues completely</p>
+          <p class="cs-reflection__item">3. Sound design investment — 24 effects seems excessive but sound is what makes the experience feel alive</p>
+        </div>
+        <div class="cs-reflection__card cs-reflection__card--improve">
+          <div class="cs-reflection__header">
+            <span style="color: var(--warning); font-size: 18px;">&#9672;</span>
+            <span class="label" style="color: var(--warning);">What I'd Do Differently</span>
+          </div>
+          <p class="cs-reflection__item">1. Mobile-first layout — the race view was designed for projectors/screens and needed retrofitting for phone viewers in multiplayer rooms</p>
+          <p class="cs-reflection__item">2. Analytics from day one — no telemetry means no data on how people actually use races (duration preferences, team counts, replay behavior)</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cs-cta">
+        <span class="cs-cta__label">Next Case Study</span>
+        <h3 class="cs-cta__title">RelationSync — AI Voice Journal for Therapists</h3>
+        <a href="../relationsync/" class="btn btn--primary">View Case Study</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="section text-center" style="padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--divider);">
+    <p style="font-size: var(--text-sm); color: var(--text-muted);">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

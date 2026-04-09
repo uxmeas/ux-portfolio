@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MultiPaste — Figma Text Distribution Plugin — Pheak Meas</title>
+  <meta name="description" content="I built a Figma plugin that distributes structured text across dozens of layers in one action — 15 minutes of manual pasting reduced to 1 minute.">
+  <meta property="og:title" content="MultiPaste — Pheak Meas Portfolio">
+  <meta property="og:description" content="Figma text distribution plugin: 15 min manual paste reduced to 1 min. 7.2KB bundle, 12 features in 2 weeks.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/case-study.css">
+</head>
+<body>
+
+  <!-- NAV (sticky) -->
+  <nav class="nav">
+    <a href="../../index.html" class="link-animated" style="font-weight: 700; letter-spacing: 0.15em; font-size: var(--text-xs);">PHEAK MEAS</a>
+    <div class="flex gap-xl">
+      <a href="../../index.html" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">Work</a>
+      <a href="../../index.html#about" class="link-animated" style="font-size: var(--text-sm); color: var(--text-secondary);">About</a>
+      <a href="mailto:hello@uxmeas.com" class="link-animated" style="font-size: var(--text-sm); color: var(--accent);">Contact</a>
+    </div>
+  </nav>
+
+  <div class="cs">
+
+    <!-- 01: HERO -->
+    <section class="cs-hero reveal">
+      <span class="cs-hero__badge">Figma Plugin</span>
+      <h1 class="cs-hero__title">MultiPaste — Figma Text Distribution Plugin</h1>
+
+      <div class="cs-hero__meta">
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Role</span>
+          <span class="cs-hero__meta-value">Product Designer &amp; Developer</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Timeline</span>
+          <span class="cs-hero__meta-value">2026 (2 weeks)</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Type</span>
+          <span class="cs-hero__meta-value">Figma Plugin</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Tools</span>
+          <span class="cs-hero__meta-value">Figma Plugin API, TypeScript</span>
+        </div>
+      </div>
+
+      <div class="cs-hero__image cs-image--placeholder">
+        Hero Image — MultiPaste Plugin Interface
+      </div>
+    </section>
+
+    <!-- 02: PROBLEM FRAMING -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Deep Problem Framing</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-problem">
+        <div class="cs-problem__content">
+          <span class="cs-problem__label">The Goal</span>
+          <p class="cs-problem__text">Designers paste text into 50+ layers one by one — selecting a layer, pasting, selecting the next, pasting again. For a single table mockup, this takes 15 minutes of pure repetition with zero creative value.</p>
+
+          <span class="cs-problem__label">The Problem</span>
+          <p class="cs-problem__text">Figma has no native way to distribute structured data across multiple text layers. Every table, list, or data-heavy component requires manual copy-paste per cell. Designers waste hours on work that should take seconds.</p>
+
+          <div class="cs-hmw">
+            <span class="cs-hmw__label">How Might We</span>
+            <p class="cs-hmw__text">How might we let designers paste structured data into dozens of text layers in one action — eliminating 15 minutes of repetitive work per table?</p>
+          </div>
+        </div>
+
+        <div class="cs-problem__sidebar">
+          <div class="cs-before-after cs-before-after--before">
+            <span class="cs-before-after__tag">Before</span>
+            <span class="cs-before-after__value">15 min manual paste</span>
+            <span class="cs-before-after__desc">Select layer, paste, next layer, paste. Repeat 50+ times per table mockup.</span>
+          </div>
+          <div class="cs-before-after cs-before-after--after">
+            <span class="cs-before-after__tag">After</span>
+            <span class="cs-before-after__value">1 min with MultiPaste</span>
+            <span class="cs-before-after__desc">Paste data, select layers, click apply. One action for all layers.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03: USER RESEARCH -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Research</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <span class="label">Key Insights</span>
+
+      <div class="cs-insights">
+        <div class="cs-insight">
+          <span class="cs-insight__number">01</span>
+          <span class="cs-insight__title">Preview prevents mistakes</span>
+          <p class="cs-insight__text">Showing which text goes to which layer before applying caught 100% of ordering mistakes. Without preview, designers would apply, see errors, undo, reorder, and try again.</p>
+        </div>
+        <div class="cs-insight">
+          <span class="cs-insight__number">02</span>
+          <span class="cs-insight__title">Selection order matters</span>
+          <p class="cs-insight__text">Designers select layers in visual order (top to bottom, left to right), but Figma's selection order doesn't always match. Making selection order predictable and visible was critical.</p>
+        </div>
+        <div class="cs-insight">
+          <span class="cs-insight__number">03</span>
+          <span class="cs-insight__title">Empty values need handling</span>
+          <p class="cs-insight__text">Real data has gaps — empty cells, missing fields, placeholder values. The plugin needed options to skip empty values or preserve existing text, not just blindly overwrite everything.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: USER PERSONAS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Personas</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-personas">
+        <div class="cs-persona">
+          <div class="cs-persona__header">
+            <div class="cs-persona__avatar cs-persona__avatar--blue">EW</div>
+            <div>
+              <div class="cs-persona__name">Emma Wright</div>
+              <div class="cs-persona__role">UI Designer, 28</div>
+            </div>
+          </div>
+          <p class="cs-persona__quote">"I spend more time pasting data into tables than actually designing them. It's the most tedious part of my day."</p>
+          <span class="cs-persona__goals-label">Goals</span>
+          <p class="cs-persona__item">Populate table mockups with real data quickly</p>
+          <p class="cs-persona__item">Preview before applying to catch ordering errors</p>
+          <p class="cs-persona__item">Undo everything if the result isn't right</p>
+          <span class="cs-persona__frustrations-label">Frustrations</span>
+          <p class="cs-persona__item">50+ layers per table, one paste at a time</p>
+          <p class="cs-persona__item">Loses track of which layer she's on mid-paste</p>
+        </div>
+
+        <div class="cs-persona">
+          <div class="cs-persona__header">
+            <div class="cs-persona__avatar cs-persona__avatar--purple">LP</div>
+            <div>
+              <div class="cs-persona__name">Liam Park</div>
+              <div class="cs-persona__role">Content Manager, 35</div>
+            </div>
+          </div>
+          <p class="cs-persona__quote">"I hand designers spreadsheets of content and they take a day to paste it all in. There has to be a faster way."</p>
+          <span class="cs-persona__goals-label">Goals</span>
+          <p class="cs-persona__item">Get content into designs without back-and-forth</p>
+          <p class="cs-persona__item">Support multiple data formats (tabs, commas, newlines)</p>
+          <span class="cs-persona__frustrations-label">Frustrations</span>
+          <p class="cs-persona__item">Content updates require repeating the entire paste process</p>
+          <p class="cs-persona__item">Designers sometimes miss rows or paste in wrong order</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: DESIGN APPROACH / SOLUTION -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Approach / Solution</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-solution">
+        <div class="cs-solution__content">
+          <p>MultiPaste takes structured text — from spreadsheets, CSVs, or plain lists — and distributes each value to a selected text layer in Figma. One paste, one click, all layers populated.</p>
+          <p>The plugin prioritizes trust: a live preview shows exactly which text goes to which layer before anything changes. One-click undo reverts everything if the result isn't right.</p>
+
+          <span class="label">Key Features</span>
+          <p class="cs-solution__feature">1. Multi-delimiter support (tab, comma, newline, pipe, custom)</p>
+          <p class="cs-solution__feature">2. Live preview — see the mapping before applying</p>
+          <p class="cs-solution__feature">3. One-click undo — revert all changes instantly</p>
+          <p class="cs-solution__feature">4. Trim whitespace and skip empty value toggles</p>
+        </div>
+        <div class="cs-solution__visuals">
+          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">MultiPaste Preview Panel</div>
+          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Before/After — Table Population</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06: RESULTS & OUTCOMES -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Results &amp; Outcomes</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric__number">15 → 1</span>
+          <span class="cs-metric__label cs-metric__label--blue">Minutes</span>
+          <span class="cs-metric__desc">Table population time reduced by 93%</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">7.2KB</span>
+          <span class="cs-metric__label cs-metric__label--green">Bundle Size</span>
+          <span class="cs-metric__desc">Lightweight plugin with zero dependencies</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">12</span>
+          <span class="cs-metric__label cs-metric__label--accent">Features</span>
+          <span class="cs-metric__desc">Shipped in just 2 weeks of development</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">100%</span>
+          <span class="cs-metric__label cs-metric__label--purple">Error Prevention</span>
+          <span class="cs-metric__desc">Preview caught all ordering mistakes before apply</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07: REFLECTION + CTA -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Reflection</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-reflection">
+        <div class="cs-reflection__card cs-reflection__card--worked">
+          <div class="cs-reflection__header">
+            <span style="color: var(--success); font-size: 18px;">&#10003;</span>
+            <span class="label" style="color: var(--success);">What Worked</span>
+          </div>
+          <p class="cs-reflection__item">1. Scratching my own itch — I built this because I needed it, which meant instant validation and clear requirements from day one</p>
+          <p class="cs-reflection__item">2. Preview-first design — showing the mapping before applying eliminated the undo-retry loop that makes batch operations stressful</p>
+        </div>
+        <div class="cs-reflection__card cs-reflection__card--improve">
+          <div class="cs-reflection__header">
+            <span style="color: var(--warning); font-size: 18px;">&#9672;</span>
+            <span class="label" style="color: var(--warning);">What I'd Do Differently</span>
+          </div>
+          <p class="cs-reflection__item">1. Add spreadsheet import — direct .xlsx/.csv file upload would save the copy-paste step entirely</p>
+          <p class="cs-reflection__item">2. Analytics tracking — no telemetry means no visibility into which features are most used or where users get stuck</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cs-cta">
+        <span class="cs-cta__label">Next Case Study</span>
+        <h3 class="cs-cta__title">MockupKit — Device Mockup Plugin for Figma</h3>
+        <a href="../mockupkit/" class="btn btn--primary">View Case Study</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="section text-center" style="padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--divider);">
+    <p style="font-size: var(--text-sm); color: var(--text-muted);">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>
