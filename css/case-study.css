@@ -136,12 +136,12 @@
   color: var(--text-primary);
 }
 
-/* HMW Card — Audit: pull-quote treatment, standalone moment */
+/* HMW Card — pull-quote with glass border */
 .cs-hmw {
   background: var(--bg-card);
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-left: 3px solid var(--info);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
   padding: var(--space-2xl) var(--space-xl);
   margin: var(--space-2xl) 0;
   display: flex;
@@ -165,23 +165,20 @@
   color: var(--text-primary);
 }
 
-/* Before/After Cards */
+/* Before/After Cards — Resend-style glass borders */
 .cs-before-after {
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
 }
 
-.cs-before-after--before {
-  border-color: var(--error);
-}
-
+.cs-before-after--before,
 .cs-before-after--after {
-  border-color: var(--success);
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
 .cs-before-after__tag {
@@ -237,8 +234,8 @@
 
 .cs-insight {
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
@@ -327,8 +324,8 @@
 
 .cs-persona {
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
@@ -403,10 +400,10 @@
 /* === 06: IMAGE PLACEHOLDER === */
 .cs-image {
   width: 100%;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .cs-image img {
@@ -495,8 +492,8 @@
 .cs-decision__content {
   flex: 1;
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
@@ -586,11 +583,11 @@
 }
 
 .cs-comparison__side--before .cs-comparison__image {
-  border: 2px solid var(--error);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .cs-comparison__side--after .cs-comparison__image {
-  border: 2px solid var(--success);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* === 13: REFLECTION === */
@@ -602,7 +599,8 @@
 
 .cs-reflection__card {
   background: var(--bg-card);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;
@@ -610,11 +608,11 @@
 }
 
 .cs-reflection__card--worked {
-  border: 1px solid var(--success);
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
 .cs-reflection__card--improve {
-  border: 1px solid var(--warning);
+  border-color: rgba(255, 255, 255, 0.06);
 }
 
 .cs-reflection__header {
@@ -664,8 +662,8 @@
 
 .cs-testimonial {
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
   flex-direction: column;

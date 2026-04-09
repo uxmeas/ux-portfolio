@@ -245,17 +245,17 @@ p {
   padding: 6px 20px;
 }
 
-/* === CARD === */
+/* === CARD — Resend-style subtle glass border === */
 .card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-xl);
   padding: var(--space-lg);
   transition: border-color var(--transition-base);
 }
 
 .card:hover {
-  border-color: var(--border-strong);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 /* === DIVIDER === */
