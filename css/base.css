@@ -38,11 +38,11 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
 }
 
-/* Audit: H1 lighter weight (400-500), let scale do the work */
-h1 { font-size: clamp(2.5rem, 6vw, var(--text-4xl)); font-weight: 400; }
+/* Audit A: h1 gets serif display font. Audit L: h3 weight 500 */
+h1 { font-family: var(--font-display-hero); font-size: clamp(2.5rem, 6vw, var(--text-4xl)); font-weight: 400; font-style: italic; }
 h2 { font-size: clamp(1.75rem, 4vw, var(--text-3xl)); font-weight: 400; }
-h3 { font-size: clamp(1.25rem, 3vw, var(--text-2xl)); font-weight: 700; }
-h4 { font-size: var(--text-lg); font-weight: 700; }
+h3 { font-size: clamp(1.25rem, 3vw, var(--text-2xl)); font-weight: 500; }
+h4 { font-size: var(--text-lg); font-weight: 500; }
 
 p {
   font-size: var(--text-base);  /* Standardized: 16px everywhere */
@@ -61,7 +61,7 @@ p {
 }
 
 .label--accent {
-  color: var(--accent);
+  color: var(--text-secondary);  /* Audit B: strip accent from labels */
 }
 
 .label--blue {
@@ -111,9 +111,20 @@ p {
   color: var(--accent-foreground);
 }
 
+.btn--primary::after {
+  content: ' \2192';
+  margin-left: 6px;
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
 .btn--primary:hover {
-  opacity: 0.9;
+  background: #c9844f;  /* Audit P: darker shade, not opacity */
   transform: translateY(-1px);
+}
+
+.btn--primary:hover::after {
+  transform: translateX(3px);  /* Audit O: arrow slides on hover */
 }
 
 .btn--outline {
@@ -141,6 +152,30 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Audit M: brand tighter spacing */
+.nav__brand {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+}
+
+/* Audit U: nav links use opacity */
+.nav__link {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.nav__link:hover {
+  opacity: 1;
+}
+
+.nav__link--accent {
+  color: var(--accent);
+  opacity: 1;
 }
 
 [data-theme="light"] .nav {

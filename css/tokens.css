@@ -24,18 +24,18 @@
   /* === SEMANTIC COLORS (DARK THEME — DEFAULT) === */
   --bg: #0A0A0A;
   --bg-surface: #141419;
-  --bg-card: #1C1C24;
-  --bg-card-hover: #22222C;
-  --bg-elevated: #26262F;
+  --bg-card: #1A1A1E;           /* Audit Q: neutralized (was #1C1C24 blue) */
+  --bg-card-hover: #222226;     /* Audit Q */
+  --bg-elevated: #28282C;       /* Audit Q */
 
   --text-primary: #F0F0F2;
-  --text-secondary: #9298A0;
-  --text-muted: #6B655E;
+  --text-secondary: #94949C;    /* Audit R: neutral gray (was #9298A0 cool) */
+  --text-muted: #666666;        /* Audit R: neutral (was #6B655E warm) */
   --text-caption: #858585;
 
-  --border: #2E2E3A;
-  --border-strong: #3E3E4A;
-  --divider: #1E1E28;
+  --border: #2A2A30;            /* Audit Q: neutralized */
+  --border-strong: #3A3A40;     /* Audit Q */
+  --divider: #1E1E22;           /* Audit Q */
 
   --accent: var(--color-accent);
   --accent-foreground: #000000;
@@ -50,6 +50,7 @@
   --info-light: #EEF0FF;
 
   /* === TYPOGRAPHY === */
+  --font-display-hero: 'Instrument Serif', serif;  /* Audit A: serif for h1 only */
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
   --font-mono: 'Space Mono', monospace;
