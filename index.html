@@ -89,27 +89,7 @@
       transition: background-color var(--transition-base);
     }
 
-    /* Audit C: featured first card spans full width */
-    .project-card:first-child {
-      grid-column: 1 / -1;
-      flex-direction: row;
-    }
-
-    .project-card:first-child .project-card__image {
-      aspect-ratio: auto;
-      width: 55%;
-      flex-shrink: 0;
-      min-height: 320px;
-    }
-
-    .project-card:first-child .project-card__content {
-      padding: 32px;
-      justify-content: center;
-    }
-
-    .project-card:first-child .project-card__title {
-      font-size: var(--text-xl);
-    }
+    /* MZM-342: uniform 2-column grid — let content differentiate */
 
     .project-card__content {
       padding: 20px 24px 24px;  /* Audit G: tighter top */
