@@ -139,8 +139,8 @@
 /* HMW Card — pull-quote with glass border */
 .cs-hmw {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-left: 3px solid var(--info);
   border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
   padding: var(--space-2xl) var(--space-xl);
@@ -169,8 +169,8 @@
 /* Before/After Cards — Resend-style glass borders */
 .cs-before-after {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
@@ -180,7 +180,7 @@
 
 .cs-before-after--before,
 .cs-before-after--after {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--glow-border);
 }
 
 /* MZM-353b: inline pill badge, fit-content */
@@ -197,13 +197,13 @@
 }
 
 .cs-before-after--before .cs-before-after__tag {
-  color: #F87171;
-  background: rgba(248, 113, 113, 0.1);
+  color: var(--badge-error);
+  background: var(--badge-error-bg);
 }
 
 .cs-before-after--after .cs-before-after__tag {
-  color: #4ADE80;
-  background: rgba(74, 222, 128, 0.1);
+  color: var(--badge-success);
+  background: var(--badge-success-bg);
 }
 
 .cs-before-after__value {
@@ -239,7 +239,7 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--info);
-  background: rgba(68, 102, 255, 0.08);
+  background: var(--badge-info-bg);
   padding: 5px 14px;
   border-radius: var(--radius-full);
   width: fit-content;
@@ -260,8 +260,8 @@
 
 .cs-insight {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
@@ -269,10 +269,17 @@
   gap: var(--space-sm);
 }
 
+/* MZM-354: Lucide icons replace numbers */
 .cs-insight__number {
-  font-size: var(--text-xl);
-  font-weight: 700;
+  font-size: var(--text-lg);
   color: var(--info);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--badge-info-bg);
+  border-radius: var(--radius-md);
 }
 
 .cs-insight__title {
@@ -297,10 +304,10 @@
 /* MZM-355: dark table header, not white */
 .cs-table__header {
   display: flex;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--glow-fill-subtle);
   padding: 14px 16px;
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glow-border);
   border-bottom: none;
 }
 
@@ -354,8 +361,8 @@
 
 .cs-persona {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
@@ -383,7 +390,7 @@
 }
 
 .cs-persona__avatar--blue { background: var(--info); }
-.cs-persona__avatar--purple { background: #7B61A6; }
+.cs-persona__avatar--purple { background: var(--purple); }
 .cs-persona__avatar--green { background: var(--success); }
 
 .cs-persona__name {
@@ -434,8 +441,8 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
 }
 
 .cs-image img {
@@ -524,8 +531,8 @@
 .cs-decision__content {
   flex: 1;
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
@@ -536,7 +543,7 @@
 .cs-decision__number {
   font-size: var(--text-3xl);
   font-weight: 700;
-  color: rgba(68, 102, 255, 0.15);
+  color: var(--decision-number);
 }
 
 .cs-decision__title {
@@ -564,8 +571,8 @@
 /* MZM-355: dark bg matching rest of site, not white */
 .cs-metric {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-radius: var(--radius-xl);
   padding: var(--space-2xl) var(--space-lg);
   display: flex;
@@ -592,7 +599,7 @@
 .cs-metric__label--blue { color: var(--info); }
 .cs-metric__label--green { color: var(--success); }
 .cs-metric__label--accent { color: var(--accent); }
-.cs-metric__label--purple { color: #7B61A6; }
+.cs-metric__label--purple { color: var(--purple); }
 
 .cs-metric__desc {
   font-size: var(--text-sm);
@@ -620,13 +627,13 @@
 }
 
 .cs-comparison__side--before .cs-comparison__image {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
 }
 
 .cs-comparison__side--after .cs-comparison__image {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
 }
 
 /* === 13: REFLECTION === */
@@ -638,8 +645,8 @@
 
 .cs-reflection__card {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;
@@ -648,11 +655,11 @@
 }
 
 .cs-reflection__card--worked {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--glow-border);
 }
 
 .cs-reflection__card--improve {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--glow-border);
 }
 
 .cs-reflection__header {
@@ -670,8 +677,8 @@
 /* === CTA FOOTER — MZM-353d: dark card, not white === */
 .cs-cta {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-radius: var(--radius-xl);
   padding: var(--space-2xl) var(--space-xl);
   display: flex;
@@ -697,14 +704,14 @@
 
 /* Resend-style dark CTA button with chevron */
 .cs-cta .btn--primary {
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--glow-fill-subtle);
   color: var(--text-primary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--glow-border-strong);
 }
 
 .cs-cta .btn--primary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: var(--glow-fill-hover);
+  border-color: var(--glow-border-strongest);
 }
 
 .cs-cta .btn--primary::after {
@@ -721,8 +728,8 @@
 
 .cs-testimonial {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glow-border);
+  box-shadow: var(--glow-shadow);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
   display: flex;

@@ -48,6 +48,26 @@
   --warning-light: #FBF0EB;
   --info: #4466FF;
   --info-light: #EEF0FF;
+  --purple: #7B61A6;
+
+  /* Badge colors (subtle tints) */
+  --badge-error: #F87171;
+  --badge-error-bg: rgba(248, 113, 113, 0.1);
+  --badge-success: #4ADE80;
+  --badge-success-bg: rgba(74, 222, 128, 0.1);
+  --badge-info-bg: rgba(68, 102, 255, 0.08);
+
+  /* Glow border tokens */
+  --glow-border: rgba(255, 255, 255, 0.08);
+  --glow-border-hover: rgba(255, 255, 255, 0.14);
+  --glow-border-subtle: rgba(255, 255, 255, 0.06);
+  --glow-border-strong: rgba(255, 255, 255, 0.1);
+  --glow-border-strongest: rgba(255, 255, 255, 0.18);
+  --glow-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  --glow-shadow-hover: 0 0 0 0.5px rgba(255, 255, 255, 0.08);
+  --glow-fill-subtle: rgba(255, 255, 255, 0.06);
+  --glow-fill-hover: rgba(255, 255, 255, 0.1);
+  --decision-number: rgba(68, 102, 255, 0.15);
 
   /* === TYPOGRAPHY === */
   --font-display: 'Space Grotesk', sans-serif;

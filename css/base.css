@@ -312,16 +312,16 @@ p {
 /* === CARD — Resend-style glow border on transparent bg === */
 .card {
   background: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--glow-border);
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04), 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--glow-shadow), 0 1px 3px rgba(0, 0, 0, 0.3);
   transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.08), 0 2px 8px rgba(0, 0, 0, 0.4);
+  border-color: var(--glow-border-hover);
+  box-shadow: var(--glow-shadow-hover), 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* === DIVIDER === */
