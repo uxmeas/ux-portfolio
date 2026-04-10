@@ -19,6 +19,13 @@
   margin: 0 auto;
 }
 
+/* MZM-369: Cap all body text for legibility — max 65-75 chars per line */
+.cs-section > p,
+.cs-solution__content > p,
+.cs-reflection__item {
+  max-width: var(--narrow-width);
+}
+
 .cs-section--dark {
   background: var(--bg);
 }
@@ -134,6 +141,7 @@
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
   color: var(--text-primary);
+  max-width: var(--narrow-width);
 }
 
 /* HMW Card — pull-quote with glass border */
@@ -160,7 +168,8 @@
 }
 
 .cs-hmw__text {
-  font-size: var(--text-xl);    /* Audit: 24px, was 18px */
+  font-size: var(--text-xl);
+  max-width: var(--narrow-width);
   font-weight: 500;             /* Audit: 500 not 700 */
   line-height: 1.4;             /* Audit: generous for this size */
   color: var(--text-primary);
