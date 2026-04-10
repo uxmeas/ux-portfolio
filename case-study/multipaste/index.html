@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-base="../../">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../../css/tokens.css">
   <link rel="stylesheet" href="../../css/base.css">
   <link rel="stylesheet" href="../../css/case-study.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css">
 </head>
 <body>
 
@@ -104,17 +105,17 @@
 
       <div class="cs-insights">
         <div class="cs-insight">
-          <span class="cs-insight__number">01</span>
+          <i class="lucide lucide-scan-eye cs-insight__icon"></i>
           <span class="cs-insight__title">Preview prevents mistakes</span>
           <p class="cs-insight__text">Showing which text goes to which layer before applying caught 100% of ordering mistakes. Without preview, designers would apply, see errors, undo, reorder, and try again.</p>
         </div>
         <div class="cs-insight">
-          <span class="cs-insight__number">02</span>
+          <i class="lucide lucide-list-ordered cs-insight__icon"></i>
           <span class="cs-insight__title">Selection order matters</span>
           <p class="cs-insight__text">Designers select layers in visual order (top to bottom, left to right), but Figma's selection order doesn't always match. Making selection order predictable and visible was critical.</p>
         </div>
         <div class="cs-insight">
-          <span class="cs-insight__number">03</span>
+          <i class="lucide lucide-filter cs-insight__icon"></i>
           <span class="cs-insight__title">Empty values need handling</span>
           <p class="cs-insight__text">Real data has gaps — empty cells, missing fields, placeholder values. The plugin needed options to skip empty values or preserve existing text, not just blindly overwrite everything.</p>
         </div>

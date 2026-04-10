@@ -294,18 +294,21 @@
   flex-direction: column;
 }
 
+/* MZM-355: dark table header, not white */
 .cs-table__header {
   display: flex;
-  background: var(--text-primary);
-  padding: 12px 16px;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 14px 16px;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
 }
 
 .cs-table__header span {
   flex: 1;
   font-size: var(--text-sm);
   font-weight: 700;
-  color: var(--bg);
+  color: var(--text-primary);
 }
 
 .cs-table__header span:last-child {
@@ -558,9 +561,12 @@
   gap: var(--space-lg);
 }
 
+/* MZM-355: dark bg matching rest of site, not white */
 .cs-metric {
-  background: var(--text-primary);
-  border-radius: var(--radius-md);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-xl);
   padding: var(--space-2xl) var(--space-lg);
   display: flex;
   flex-direction: column;
@@ -569,11 +575,10 @@
   text-align: center;
 }
 
-/* MZM-353c: smaller metric numbers so they fit 1 line in 4-col grid */
 .cs-metric__number {
   font-size: var(--text-2xl);
   font-weight: 700;
-  color: var(--bg);
+  color: var(--text-primary);
   white-space: nowrap;
 }
 
