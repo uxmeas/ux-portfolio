@@ -1,6 +1,0 @@
-[build]
-  publish = "dist"
-  command = "mkdir -p dist && cp -r index.html 404.html favicon.svg robots.txt sitemap.xml css js images case-study partials dist/ 2>/dev/null; echo 'Build complete'"
-
-# Internal tools (tokens/, scripts/, token-preview.html) stay in repo
-# but never copy to dist/ — local use only
