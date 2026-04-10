@@ -57,10 +57,11 @@
 
     .project-card {
       background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-xl);
       overflow: hidden;
-      transition: border-color var(--transition-base), transform var(--transition-base);
+      box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.04), 0 1px 3px rgba(0, 0, 0, 0.3);
+      transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
       text-decoration: none;
       color: inherit;
       display: flex;
@@ -68,8 +69,9 @@
     }
 
     .project-card:hover {
-      border-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.14);
       transform: translateY(-2px);
+      box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.08), 0 4px 16px rgba(0, 0, 0, 0.4);
     }
 
     /* Audit N: image bg shift on hover */

@@ -24,9 +24,9 @@
   /* === SEMANTIC COLORS (DARK THEME — DEFAULT) === */
   --bg: #0A0A0A;
   --bg-surface: #141419;
-  --bg-card: #1A1A1E;           /* Audit Q: neutralized (was #1C1C24 blue) */
-  --bg-card-hover: #222226;     /* Audit Q */
-  --bg-elevated: #28282C;       /* Audit Q */
+  --bg-card: transparent;        /* MZM-352: same as bg, cards defined by glow border */
+  --bg-card-hover: rgba(255, 255, 255, 0.02);
+  --bg-elevated: rgba(255, 255, 255, 0.03);
 
   --text-primary: #F0F0F2;
   --text-secondary: #94949C;    /* Audit R: neutral gray (was #9298A0 cool) */
