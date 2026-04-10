@@ -106,25 +106,44 @@ p {
   transition: all var(--transition-base);
 }
 
+/* MZM-357: Resend dark button — all primary buttons */
 .btn--primary {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: var(--glow-fill-subtle);
+  color: var(--text-primary);
+  border: 1px solid var(--glow-border-strong);
 }
 
 .btn--primary::after {
-  content: ' \2192';
+  content: ' \203A';
   margin-left: 6px;
   display: inline-block;
   transition: transform var(--transition-fast);
 }
 
 .btn--primary:hover {
-  background: #c9844f;  /* Audit P: darker shade, not opacity */
+  background: var(--glow-fill-hover);
+  border-color: var(--glow-border-strongest);
   transform: translateY(-1px);
 }
 
 .btn--primary:hover::after {
-  transform: translateX(3px);  /* Audit O: arrow slides on hover */
+  transform: translateX(3px);
+}
+
+/* Accent button — only for contact/email CTA */
+.btn--accent {
+  background: var(--accent);
+  color: var(--accent-foreground);
+  border: none;
+}
+
+.btn--accent:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn--accent::after {
+  content: none;
 }
 
 .btn--outline {
