@@ -376,6 +376,74 @@ p {
   border-width: 0;
 }
 
+/* === UTILITY CLASSES (replacing inline styles) === */
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.flex-1 { flex: 1; }
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 700; }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-error { color: var(--error); }
+.text-info { color: var(--info); }
+.text-accent { color: var(--accent); }
+.text-muted { color: var(--text-muted); }
+.text-xs { font-size: var(--text-xs); }
+.text-sm { font-size: var(--text-sm); }
+.text-lg { font-size: var(--text-lg); }
+.text-xl { font-size: var(--text-xl); }
+
+/* Footer copyright */
+.footer-copyright {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* Footer links row */
+.footer-links {
+  margin-bottom: 16px;
+}
+
+/* Reflection icon */
+.cs-reflection__icon {
+  font-size: 18px;
+}
+
+/* Annotation text */
+.cs-annotation {
+  font-size: var(--text-sm);
+  color: var(--warning);
+}
+
+/* Testimonial attribution */
+.cs-testimonial__attr {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* Design system type samples */
+.cs-type-sample--h1 { font-size: var(--text-xl); font-weight: 700; }
+.cs-type-sample--h2 { font-size: var(--text-lg); font-weight: 700; }
+.cs-type-sample--body { font-size: var(--text-sm); }
+.cs-type-sample--caption { font-size: var(--text-xs); color: var(--text-muted); }
+.cs-type-samples { margin-top: var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm); }
+
+/* Section padding overrides */
+.section--cta { padding-bottom: var(--space-5xl); }
+
+/* CTA heading */
+.cs-cta-heading {
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+/* Hero-area margin wrap */
+.hero-mb { margin-bottom: 32px; }
+
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .flex-row { flex-direction: column; }

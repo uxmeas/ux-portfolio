@@ -763,6 +763,41 @@
   border-top: 1px solid var(--divider);  /* Audit: separator */
 }
 
+/* === IMAGE PLACEHOLDER SIZES === */
+.cs-image--sm { min-height: 240px; }
+.cs-image--md { min-height: 280px; }
+.cs-image--lg { min-height: 320px; }
+.cs-image--logo { min-height: 80px; }
+
+/* === DESIGN EVOLUTION COLUMN === */
+.cs-evo-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* === DECISION TEXT-MUTED === */
+.cs-decision__desc {
+  color: var(--text-muted);
+}
+
+/* === BEFORE/AFTER TAG variant: info === */
+.cs-before-after__tag--info {
+  color: var(--info);
+}
+
+/* === LABEL COLOR VARIANTS === */
+.label--success { color: var(--success); }
+.label--warning { color: var(--warning); }
+.label--error { color: var(--error); }
+.label--success-bold { color: var(--success); font-weight: 700; }
+
+/* === BEFORE/AFTER VALUE size variant === */
+.cs-before-after__value--sm {
+  font-size: var(--text-lg);
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 1024px) {
   .cs-problem { flex-direction: column; }
