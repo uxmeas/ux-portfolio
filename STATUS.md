@@ -40,6 +40,19 @@
 - scripts/ — Firecrawl scraping + conversion tools
 
 ## What's DONE
+
+### MZM-321: Critical Technical Fixes (April 9-10, staging)
+- Broken Behance-style modal replaced with direct links to standalone pages (MZM-325)
+- RelationSync, MyPick, "More Coming" cards removed — 3 active cards remain (MZM-326)
+- Hero h1 accessibility fix — space before `<br>` for screen readers (MZM-322)
+- All inline JS (~970 lines) externalized to `js/main.js` (148 lines, defer) (MZM-323)
+- Card contrast increased, meta description forward-looking, hero 88vh (MZM-324)
+- Sage QA pass (MZM-329) — 13-point checklist all green
+- Pushed to dev (`bd156ae`), production/ folder synced (`0e4ce44`)
+- Staging promotion blocked by branch history divergence — needs force-push coordination
+- File reduced 74%: ~2715 → ~983 lines
+
+### V3 Rebuild (separate agent)
 - 12 case study pages built and deployed to dev
 - CoWork design audit applied (typography, spacing, hierarchy)
 - Resend visual polish (glass borders, transparent cards, pill badges)
