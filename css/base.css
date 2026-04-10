@@ -154,11 +154,15 @@ p {
   justify-content: space-between;
 }
 
-/* Audit M: brand tighter spacing */
+/* Nav brand logo */
 .nav__brand {
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  font-size: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.nav__brand img {
+  height: 20px;
+  width: auto;
 }
 
 /* Audit U: nav links use opacity */
