@@ -185,10 +185,22 @@
     }
 
     /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .hero { min-height: 70vh; padding-top: 60px; }
+      .hero__title { font-size: clamp(2rem, 5vw, 3.5rem); }
+    }
+
     @media (max-width: 768px) {
       .projects__grid { grid-template-columns: 1fr; }
-      .about { flex-direction: column; }
+      .about { flex-direction: column; gap: var(--space-xl); }
       .about__stats { flex-wrap: wrap; }
+      .about__stat { flex: none; width: 45%; padding: 0 0 var(--space-md) 0; border-left: none; border-bottom: 1px solid var(--divider); padding-bottom: var(--space-md); }
+      .about__stat:first-child { padding-left: 0; }
+      .hero { min-height: 60vh; padding-top: 48px; }
+      .hero__title { font-size: 2rem; }
+      .hero__subtitle { font-size: 1rem; max-width: 100%; }
+      .project-card__content { padding: 16px; }
+      .project-card__title { font-size: var(--text-base); }
     }
   </style>
 </head>
