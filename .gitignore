@@ -2,3 +2,5 @@
 token-preview.html
 tokens/
 scripts/
+node_modules/
+test-results/
