@@ -9,8 +9,6 @@ const CASE_STUDIES = [
   { slug: 'dealflow', title: 'Deal Management' },
   { slug: 'donations-rewards', title: 'Donations & Rewards' },
   { slug: 'lending', title: 'Lending Platform' },
-  { slug: 'white-label', title: 'White-Label System' },
-  { slug: '3-to-ipo', title: '3 to IPO' },
   { slug: 'fuzehq', title: 'FuzeHQ' },
   { slug: 'multipaste', title: 'MultiPaste' },
   { slug: 'mockupkit', title: 'MockupKit' },
