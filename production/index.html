@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Meas — Product Designer & Builder</title>
+    <meta name="description" content="I design products, then I build them. 16 years of product design across fintech, compliance, and enterprise software.">
+    <meta property="og:title" content="UX Meas — Product Designer & Builder">
+    <meta property="og:description" content="I design products, then I build them. 16 years of product design across fintech, compliance, and enterprise software.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uxmeas.com">
+    <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://uxmeas.com/images/og-image.png">
+    <link rel="canonical" href="https://uxmeas.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+    <meta name="theme-color" content="#141419">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Google Consent Mode v2 — must be FIRST before any gtag calls -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
+      if (localStorage.getItem('uxmeas-analytics') === 'granted') {
+        gtag('consent', 'update', { 'analytics_storage': 'granted' });
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-9HVVW1GBEC');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@1.6.0/dist/umd/lucide.min.js"></script>
+    <script src="js/main.js" defer></script>
+
+    <style>
+        /* ══════════════════════════════════════════════════════
+           DESIGN SYSTEM — Charcoal + Copper
+           ══════════════════════════════════════════════════════ */
+        :root {
+            --bg-deep: #141419;
+            --bg-card: #1F1F28;
+            --bg-surface: #26262F;
+            --accent: #D4915E;
+            --accent-hover: #C07D4A;
+            --accent-light: #F5E6D8;
+            --accent-muted: #8B6E52;
+            --text-primary: #F0F0F2;
+            --text-secondary: #9298A0;
+            --text-muted: #5C6270;
+            --border: #2E2E3A;
+            --white: #FFFFFF;
+            --section-light: #F5F5F7;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-weight: 400;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .font-display {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 72px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 32px;
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+        nav.scrolled {
+            background-color: rgba(20, 20, 25, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom-color: var(--border);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1440px;
+        }
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            margin-left: auto;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            letter-spacing: 0.02em;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a.nav-contact-link {
+            color: var(--accent);
+        }
+        .nav-links a.nav-contact-link:hover {
+            color: var(--accent-hover);
+        }
+
+        /* ── HAMBURGER MENU ── */
+        .nav-hamburger {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            margin-left: auto;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .nav-hamburger svg { display: block; }
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            top: 72px;
+            background: rgba(20, 20, 25, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            padding: 48px 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-overlay a {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 16px 0;
+            letter-spacing: 2px;
+            transition: color 0.2s;
+        }
+        .mobile-menu-overlay a:hover { color: var(--accent); }
+        .mobile-menu-overlay .mobile-menu-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin: 16px 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-hamburger { display: flex; }
+            .nav-links { display: none; }
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 32px 80px;
+            text-align: center;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 900px;
+            width: 100%;
+        }
+        .hero-tag {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            color: var(--accent);
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            background: var(--accent);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+        .btn-outline:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: scrollBounce 2s infinite 1.5s;
+        }
+        .scroll-indicator svg {
+            stroke: var(--text-muted);
+            width: 24px;
+            height: 24px;
+        }
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+            40% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+            60% { transform: translateX(-50%) translateY(4px); opacity: 0.7; }
+        }
+
+        /* ── SECTION COMMON ── */
+        .section-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .section-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            color: var(--accent);
+            margin-bottom: 48px;
+        }
+
+        /* ── SELECTED WORK ── */
+        .work {
+            padding: 120px 0;
+            background: var(--bg-deep);
+        }
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+        .work-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s var(--ease-out-expo), border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .work-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        .work-card:active {
+            transform: scale(0.98);
+        }
+        .work-card__thumb {
+            width: 100%;
+            height: 280px;
+            background: var(--bg-surface);
+            overflow: hidden;
+        }
+        .work-card__thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .work-card__info {
+            padding: 28px 28px 32px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .work-card__tags {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .work-card__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .work-card__desc {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+        .work-card__process {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .work-card__process-tag {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+        .work-card__process-arrow {
+            font-size: 10px;
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+        /* "More Coming" card */
+        .work-card--more {
+            border-style: dashed;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 420px;
+            cursor: default;
+        }
+        .work-card--more:hover {
+            transform: none;
+            border-color: var(--border);
+        }
+        .work-card--more__inner {
+            text-align: center;
+            padding: 40px;
+        }
+        .work-card--more__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .work-card--more__list {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+
+        /* ── ABOUT ── */
+        .about {
+            padding: 120px 0;
+            background: var(--bg-card);
+        }
+        .about-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 80px;
+        }
+        .about-left {}
+        .about-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        .about-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 400;
+        }
+        .about-right p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+        .about-stat {}
+        .about-stat__num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .about-stat__label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        /* ── SPECIALIZATIONS ── */
+        .specs {
+            padding: 120px 0;
+            background: var(--bg-deep);
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .spec-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 40px 32px;
+        }
+        .spec-card__icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .spec-card__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .spec-card__desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ── CONTACT ── */
+        .contact {
+            padding: 120px 0;
+            background: var(--bg-card);
+        }
+        .contact-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .contact-headline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(32px, 5vw, 48px);
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .contact-location {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+        .contact-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        .contact-form-wrap {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            transition: border-color 0.2s ease;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact-submit {
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 14px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: var(--bg-deep);
+            background: var(--accent);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .contact-submit:hover { background: var(--accent-hover); }
+        .contact-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+        .contact-success {
+            display: none;
+            padding: 32px 0;
+            text-align: center;
+        }
+        .contact-success p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #0E0E12;
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+        }
+        .footer-inner {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+        }
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── REDUCED MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .hero-tag, .hero h1, .hero-subtitle, .hero-ctas {
+                opacity: 1; transform: none;
+            }
+            .scroll-indicator { animation: none; opacity: 0.5; }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .about-stats { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .hero { padding: 100px 24px 80px; }
+            .section-container { padding: 0 24px; }
+            .work-grid { grid-template-columns: 1fr; }
+            .about-top { grid-template-columns: 1fr; gap: 32px; }
+            .about-stats { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+            .work-card__thumb { height: 220px; }
+        }
+
+        @media (max-width: 480px) {
+            nav { padding: 0 16px; }
+            .hero { padding: 100px 16px 80px; }
+            .section-container { padding: 0 16px; }
+            .about-stat__num { font-size: 36px; }
+        }
+
+        .work-card {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════════════════ NAVIGATION ════════════════════ -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">UX MEAS</a>
+            <div class="nav-links">
+                <a href="#work">Projects</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="nav-contact-link">Contact</a>
+            </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <a href="#work" class="mobile-menu-link">Projects</a>
+        <a href="#about" class="mobile-menu-link">About</a>
+        <div class="mobile-menu-divider"></div>
+        <a href="#contact" class="mobile-menu-link">Contact</a>
+    </div>
+
+    <!-- ════════════════════ HERO ════════════════════ -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-tag font-display">PRODUCT DESIGN &middot; SYSTEMS THINKING &middot; EXECUTION</p>
+            <h1>I design products. <br>Then I build them.</h1>
+            <p class="hero-subtitle">16 years. Agency to IPO. Still shipping.</p>
+            <div class="hero-ctas">
+                <a href="#work" class="btn-primary">VIEW CASE STUDIES</a>
+                <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener" class="btn-outline">LINKEDIN</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+    </section>
+
+    <!-- ════════════════════ SELECTED WORK ════════════════════ -->
+    <section id="work" class="work">
+        <div class="section-container">
+            <p class="section-label font-display reveal">SELECTED WORK</p>
+
+            <div class="work-grid">
+                <!-- Row 1 -->
+                <a href="/case-study/compliance-ux/" class="work-card reveal" aria-label="View Compliance UX case study">
+                    <div class="work-card__thumb" style="background-color: #0F172A">
+                        <picture><source srcset="images/katipult/nb2-compliance-hero.webp" type="image/webp"><img src="images/katipult/nb2-compliance-hero.png" alt="Compliance UX" width="768" height="480" fetchpriority="high"></picture>
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">COMPLIANCE &middot; FINTECH &middot; ENTERPRISE</span>
+                        <h3 class="work-card__title">Compliance UX</h3>
+                        <p class="work-card__desc">Led redesign of investor onboarding — from fax machines to 12-minute digital flows across 20+ jurisdictions. 85% completion rate.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Research</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Systems</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="/case-study/dealflow/" class="work-card reveal" aria-label="View Katipult DealFlow case study">
+                    <div class="work-card__thumb" style="background-color: #0F172A">
+                        <picture><source srcset="images/katipult/nb2-dealflow-hero.webp" type="image/webp"><img src="images/katipult/nb2-dealflow-hero.png" alt="Katipult DealFlow" width="768" height="480" loading="lazy"></picture>
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">PRODUCT DESIGN &middot; FINTECH &middot; IPO</span>
+                        <h3 class="work-card__title">Katipult DealFlow</h3>
+                        <p class="work-card__desc">Co-founded in 2008. Led product design through 15 years of growth — 3 people to 49+, IPO on TSX-V, and two industry awards.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Research</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Systems</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Row 2 -->
+                <a href="/case-study/akmsecure/" class="work-card reveal" aria-label="View AKMSecure case study">
+                    <div class="work-card__thumb" style="background-color: #252525">
+                        <picture><source srcset="images/akm-card.webp" type="image/webp"><img src="images/akm-card.png" alt="AKMSecure" width="768" height="480" loading="lazy"></picture>
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">BRAND &middot; WEB &middot; HUBSPOT</span>
+                        <h3 class="work-card__title">AKMSecure</h3>
+                        <p class="work-card__desc">A cybersecurity startup needed to look as secure as their product. Brand identity, website design, and HubSpot CMS — solo.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Research</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Build</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════ ABOUT ════════════════════ -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <p class="section-label font-display reveal">ABOUT</p>
+
+            <div class="about-top reveal">
+                <div class="about-left">
+                    <h2 class="about-name">Pheak Meas</h2>
+                    <p class="about-title">Product Designer & Builder</p>
+                </div>
+                <div class="about-right">
+                    <p>Co-founded a company in 2008 that became Katipult — a fintech platform that went public on the TSX Venture Exchange. 16 years of product design across UX, UI, brand, and systems at every stage of growth. Goes from spec to shipped product. Looking for a product team where design and engineering think together.</p>
+                </div>
+            </div>
+
+            <div class="about-stats reveal">
+                <div class="about-stat">
+                    <div class="about-stat__num">16</div>
+                    <div class="about-stat__label">YEARS</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat__num">$50M+</div>
+                    <div class="about-stat__label">PROCESSED</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat__num">TSX</div>
+                    <div class="about-stat__label">LISTED</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat__num">20+</div>
+                    <div class="about-stat__label">JURISDICTIONS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════ SPECIALIZATIONS ════════════════════ -->
+    <section class="specs">
+        <div class="section-container">
+            <p class="section-label font-display reveal">SPECIALIZATIONS</p>
+
+            <div class="specs-grid">
+                <div class="spec-card reveal">
+                    <i data-lucide="shield" class="spec-card__icon"></i>
+                    <h3 class="spec-card__title">Fintech UX</h3>
+                    <p class="spec-card__desc">KYC/AML onboarding, investor dashboards, deal flow management. 20+ jurisdictions, white-label architecture, real regulatory compliance.</p>
+                </div>
+                <div class="spec-card reveal">
+                    <i data-lucide="layers" class="spec-card__icon"></i>
+                    <h3 class="spec-card__title">Design Systems</h3>
+                    <p class="spec-card__desc">Component libraries, theming layers, design tokens. Built systems that power 20+ white-label deployments for enterprise clients.</p>
+                </div>
+                <div class="spec-card reveal">
+                    <i data-lucide="target" class="spec-card__icon"></i>
+                    <h3 class="spec-card__title">Product Strategy</h3>
+                    <p class="spec-card__desc">Spec to ship. Research, wireframes, prototypes, production. Led product design from 3-person startup to public company.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════ CONTACT ════════════════════ -->
+    <section id="contact" class="contact">
+        <div class="section-container">
+            <p class="section-label font-display reveal" style="text-align:center">LET'S WORK TOGETHER</p>
+
+            <div class="contact-header reveal">
+                <h2 class="contact-headline">Looking for a senior role where product thinking, execution, and AI fluency overlap.</h2>
+                <p class="contact-location">Calgary, AB + Remote</p>
+                <div class="contact-ctas">
+                    <a href="#contact-form" class="btn-primary">GET IN TOUCH</a>
+                    <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener" class="btn-outline">VIEW LINKEDIN</a>
+                </div>
+            </div>
+
+            <div class="contact-form-wrap reveal" id="contact-form">
+                <form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactName">NAME</label>
+                            <input type="text" id="contactName" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">EMAIL</label>
+                            <input type="email" id="contactEmail" name="email" required placeholder="you@company.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactMessage">MESSAGE</label>
+                        <textarea id="contactMessage" name="message" required placeholder="Tell me about the role or project" rows="5"></textarea>
+                    </div>
+
+                    <button type="submit" class="contact-submit">SEND MESSAGE &rarr;</button>
+                </form>
+
+                <div class="contact-success" id="contactSuccess">
+                    <p>Message sent. I'll be in touch soon.</p>
+                </div>
+                <div class="contact-error" id="contactError" style="display:none; padding:12px 0; text-align:center;">
+                    <p style="color:var(--accent); font-size:14px;">Something went wrong. Please try again or email me directly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════ FOOTER ════════════════════ -->
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-logo">UX MEAS</span>
+            <span class="footer-copy">&copy; 2026 UX Meas. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://uxmeas.com">uxmeas.com</a>
+                <a href="#" class="eml eml-show" data-u="hello" data-d="uxmeas.com"></a>
+                <a href="javascript:void(0)" onclick="resetCookieConsent()">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie consent banner -->
+    <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#1a1a1f;border-top:1px solid #2a2a30;padding:14px 20px;font-family:Inter,sans-serif;font-size:13px;color:#8a8a94;">
+      <div style="max-width:960px;margin:0 auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span style="flex:1;min-width:200px;">We use Google Analytics to understand how visitors use this site.</span>
+        <button onclick="acceptCookies()" style="background:#fff;color:#141419;border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:Inter,sans-serif;">Accept</button>
+        <button onclick="declineCookies()" style="background:transparent;color:#8a8a94;border:1px solid #2a2a30;border-radius:6px;padding:8px 16px;font-size:13px;cursor:pointer;font-family:Inter,sans-serif;">Decline</button>
+      </div>
+    </div>
+</body>
+</html>
