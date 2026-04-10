@@ -444,6 +444,16 @@ p {
 /* Hero-area margin wrap */
 .hero-mb { margin-bottom: 32px; }
 
+/* 404 page centered layout */
+.section--404 {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
   .flex-row { flex-direction: column; }

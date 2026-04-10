@@ -109,13 +109,13 @@
       </div>
 
       <div class="flex gap-lg">
-        <div class="card" style="flex: 1;">
+        <div class="card flex-1">
           <span class="label">Methodology</span>
-          <p style="margin-top: var(--space-sm);">Stakeholder interviews with compliance officers, fund managers, and investors across 5 jurisdictions. Observation sessions during live onboarding. Analytics review of drop-off points.</p>
+          <p class="mt-sm">Stakeholder interviews with compliance officers, fund managers, and investors across 5 jurisdictions. Observation sessions during live onboarding. Analytics review of drop-off points.</p>
         </div>
-        <div class="card" style="flex: 1;">
+        <div class="card flex-1">
           <span class="label">Sample</span>
-          <p style="margin-top: var(--space-sm);">12 compliance officers, 8 fund managers, 20+ investors. Multiple rounds across platform iterations over 6+ years of continuous research.</p>
+          <p class="mt-sm">12 compliance officers, 8 fund managers, 20+ investors. Multiple rounds across platform iterations over 6+ years of continuous research.</p>
         </div>
       </div>
 
@@ -275,17 +275,17 @@
       <p>Over 11 years, the compliance flow went through multiple major iterations. Here are the key concept explorations that shaped the final design.</p>
 
       <div class="flex gap-lg">
-        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">V1: Single long form</div>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--md">V1: Single long form</div>
           <span class="label">High abandonment — too overwhelming</span>
         </div>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">V2: Tabbed wizard</div>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--md">V2: Tabbed wizard</div>
           <span class="label">Better but still confusing navigation</span>
         </div>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">V3: Progressive steps</div>
-          <span class="label" style="color: var(--success); font-weight: 700;">Shipped — 85% completion rate</span>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--md">V3: Progressive steps</div>
+          <span class="label label--success-bold">Shipped — 85% completion rate</span>
         </div>
       </div>
     </section>
@@ -309,8 +309,8 @@
           <p class="cs-solution__feature">4. Trust signals at every sensitive step</p>
         </div>
         <div class="cs-solution__visuals">
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">KYC Progressive Flow</div>
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Compliance Dashboard</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">KYC Progressive Flow</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">Compliance Dashboard</div>
         </div>
       </div>
     </section>
@@ -325,13 +325,13 @@
       <p>Annotated walkthrough of the key screens I designed — with callouts explaining WHY each decision was made.</p>
 
       <div class="flex gap-lg">
-        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
-          <div class="cs-image cs-image--placeholder" style="min-height: 320px;">KYC Start Screen</div>
-          <p style="font-size: var(--text-sm); color: var(--warning);">Annotation: How this screen builds trust before asking for documents</p>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--lg">KYC Start Screen</div>
+          <p class="cs-annotation">Annotation: How this screen builds trust before asking for documents</p>
         </div>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
-          <div class="cs-image cs-image--placeholder" style="min-height: 320px;">Compliance Dashboard</div>
-          <p style="font-size: var(--text-sm); color: var(--warning);">Annotation: How this gives compliance officers full pipeline visibility</p>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--lg">Compliance Dashboard</div>
+          <p class="cs-annotation">Annotation: How this gives compliance officers full pipeline visibility</p>
         </div>
       </div>
     </section>
@@ -348,7 +348,7 @@
       <div class="cs-design-system">
         <div class="card">
           <span class="label">Color Palette</span>
-          <div class="cs-color-grid" style="margin-top: var(--space-md);">
+          <div class="cs-color-grid mt-md">
             <div class="cs-color-swatch">
               <div class="cs-color-swatch__color" style="background: #1A2030;"></div>
               <span class="cs-color-swatch__label">Primary</span>
@@ -373,11 +373,11 @@
         </div>
         <div class="card">
           <span class="label">Typography</span>
-          <div style="margin-top: var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm);">
-            <span style="font-size: var(--text-xl); font-weight: 700;">Heading 1</span>
-            <span style="font-size: var(--text-lg); font-weight: 700;">Heading 2</span>
-            <span style="font-size: var(--text-sm);">Body text — 14px regular</span>
-            <span style="font-size: var(--text-xs); color: var(--text-muted);">Caption — 11px muted</span>
+          <div class="cs-type-samples">
+            <span class="cs-type-sample--h1">Heading 1</span>
+            <span class="cs-type-sample--h2">Heading 2</span>
+            <span class="cs-type-sample--body">Body text — 14px regular</span>
+            <span class="cs-type-sample--caption">Caption — 11px muted</span>
             <span class="label label--blue">Label — uppercase</span>
           </div>
         </div>
@@ -396,11 +396,11 @@
           <span class="cs-decision__number">01</span>
           <h4 class="cs-decision__title">Progressive disclosure over single-page forms</h4>
           <span class="label">Considered</span>
-          <p style="color: var(--text-muted);">Single long form, tabbed wizard, progressive steps</p>
-          <span class="label" style="color: var(--success);">Chose &amp; Why</span>
+          <p class="cs-decision__desc">Single long form, tabbed wizard, progressive steps</p>
+          <span class="label label--success">Chose &amp; Why</span>
           <p>Progressive steps — analytics showed 60% drop-off on single forms. Step-based flow with save-and-resume achieved 85% completion. Users could see progress and return later without losing work.</p>
         </div>
-        <div class="cs-decision__image cs-image--placeholder" style="min-height: 280px;">
+        <div class="cs-decision__image cs-image--placeholder cs-image--md">
           Before/After comparison
         </div>
       </div>
@@ -410,11 +410,11 @@
           <span class="cs-decision__number">02</span>
           <h4 class="cs-decision__title">Contextual jurisdiction rules over global settings</h4>
           <span class="label">Considered</span>
-          <p style="color: var(--text-muted);">Global settings page, per-offering config, contextual inline rules</p>
-          <span class="label" style="color: var(--success);">Chose &amp; Why</span>
+          <p class="cs-decision__desc">Global settings page, per-offering config, contextual inline rules</p>
+          <span class="label label--success">Chose &amp; Why</span>
           <p>Contextual inline rules — compliance officers needed to see which rules applied WHILE reviewing investors, not in a separate settings screen. Reduced context-switching by 70%.</p>
         </div>
-        <div class="cs-decision__image cs-image--placeholder" style="min-height: 280px;">
+        <div class="cs-decision__image cs-image--placeholder cs-image--md">
           Jurisdiction rules UI
         </div>
       </div>
@@ -430,14 +430,14 @@
       <div class="cs-testimonials">
         <div class="cs-testimonial">
           <div class="cs-testimonial__logo">
-            <span style="font-size: var(--text-xs); color: var(--text-muted);">Canaccord Genuity</span>
+            <span class="cs-testimonial__attr">Canaccord Genuity</span>
           </div>
           <p class="cs-testimonial__quote">"It was extremely important to us to work with a company that had the skillset, the technology team, and the management team to grow and drive improvements with us, so we could truly be the leader in the digitization of private placements."</p>
           <span class="cs-testimonial__name">— Canaccord Genuity Stakeholder</span>
         </div>
         <div class="cs-testimonial">
           <div class="cs-testimonial__logo">
-            <span style="font-size: var(--text-xs); color: var(--text-muted);">Sprott Capital</span>
+            <span class="cs-testimonial__attr">Sprott Capital</span>
           </div>
           <p class="cs-testimonial__quote">"It is crucial that we modernize our processes to improve efficiency and create a better experience for both investors and issuers."</p>
           <span class="cs-testimonial__name">— Lisa Edwards, COO &amp; CCO, Sprott Capital Partners</span>
@@ -477,13 +477,13 @@
 
       <div class="cs-comparison">
         <div class="cs-comparison__side cs-comparison__side--before">
-          <span class="label" style="color: var(--error);">Before</span>
+          <span class="label label--error">Before</span>
           <div class="cs-comparison__image cs-image--placeholder">
             Old onboarding flow — 45 min, 60% drop-off
           </div>
         </div>
         <div class="cs-comparison__side cs-comparison__side--after">
-          <span class="label" style="color: var(--success);">After</span>
+          <span class="label label--success">After</span>
           <div class="cs-comparison__image cs-image--placeholder">
             New progressive flow — 12 min, 85% completion
           </div>
@@ -501,8 +501,8 @@
       <div class="cs-reflection">
         <div class="cs-reflection__card cs-reflection__card--worked">
           <div class="cs-reflection__header">
-            <span style="color: var(--success); font-size: 18px;">&#10003;</span>
-            <span class="label" style="color: var(--success);">What Worked</span>
+            <span class="cs-reflection__icon text-success">&#10003;</span>
+            <span class="label label--success">What Worked</span>
           </div>
           <p class="cs-reflection__item">1. Progressive disclosure reduced cognitive load — investors completed one step at a time instead of facing a wall of forms</p>
           <p class="cs-reflection__item">2. Jurisdiction-aware rules engine eliminated manual compliance checking — the system surfaced the right requirements automatically</p>
@@ -510,8 +510,8 @@
         </div>
         <div class="cs-reflection__card cs-reflection__card--improve">
           <div class="cs-reflection__header">
-            <span style="color: var(--warning); font-size: 18px;">&#9672;</span>
-            <span class="label" style="color: var(--warning);">What I'd Do Differently</span>
+            <span class="cs-reflection__icon text-warning">&#9672;</span>
+            <span class="label label--warning">What I'd Do Differently</span>
           </div>
           <p class="cs-reflection__item">1. Mobile-first from day one — we retrofitted mobile support years after desktop launch, which created layout debt</p>
           <p class="cs-reflection__item">2. User testing earlier in the compliance flow — we relied too heavily on stakeholder interviews and not enough on watching real investors struggle</p>
@@ -529,8 +529,8 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="section text-center" style="padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--divider);">
-    <p style="font-size: var(--text-sm); color: var(--text-muted);">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  <footer class="site-footer">
+    <p class="footer-copyright">&copy; 2026 Pheak Meas. All rights reserved.</p>
   </footer>
 
   <script src="../../js/main.js" defer></script>

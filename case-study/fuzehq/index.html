@@ -104,13 +104,13 @@
       </div>
 
       <div class="flex gap-lg">
-        <div class="card" style="flex: 1;">
+        <div class="card flex-1">
           <span class="label">Methodology</span>
-          <p style="margin-top: var(--space-sm);">Dogfooding — used FuzeHQ daily as our own team management platform. Observed how 2 human co-founders coordinated 9 AI agents across multiple projects simultaneously.</p>
+          <p class="mt-sm">Dogfooding — used FuzeHQ daily as our own team management platform. Observed how 2 human co-founders coordinated 9 AI agents across multiple projects simultaneously.</p>
         </div>
-        <div class="card" style="flex: 1;">
+        <div class="card flex-1">
           <span class="label">Sample</span>
-          <p style="margin-top: var(--space-sm);">2 co-founders as primary users, 9 AI agents as managed entities. Multiple projects running in parallel over months of daily usage.</p>
+          <p class="mt-sm">2 co-founders as primary users, 9 AI agents as managed entities. Multiple projects running in parallel over months of daily usage.</p>
         </div>
       </div>
 
@@ -219,8 +219,8 @@
           <p class="cs-solution__feature">5. Mandatory QA gates — no self-certification allowed</p>
         </div>
         <div class="cs-solution__visuals">
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Agent Roster &amp; Skill Management</div>
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Task Board with QA Gates</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">Agent Roster &amp; Skill Management</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">Task Board with QA Gates</div>
         </div>
       </div>
     </section>
@@ -237,11 +237,11 @@
           <span class="cs-decision__number">01</span>
           <h4 class="cs-decision__title">MCP execution over embedded AI</h4>
           <span class="label">Considered</span>
-          <p style="color: var(--text-muted);">Embedded AI in the platform, API-based agents, MCP local execution</p>
-          <span class="label" style="color: var(--success);">Chose &amp; Why</span>
+          <p class="cs-decision__desc">Embedded AI in the platform, API-based agents, MCP local execution</p>
+          <span class="label label--success">Chose &amp; Why</span>
           <p>MCP local execution — agents run on the user's machine using their existing Claude subscription. The platform provides coordination, not compute. This keeps costs predictable and lets agents access local files, repos, and tools directly.</p>
         </div>
-        <div class="cs-decision__image cs-image--placeholder" style="min-height: 280px;">
+        <div class="cs-decision__image cs-image--placeholder cs-image--md">
           MCP Architecture Diagram
         </div>
       </div>
@@ -251,11 +251,11 @@
           <span class="cs-decision__number">02</span>
           <h4 class="cs-decision__title">No self-certification — mandatory QA gates</h4>
           <span class="label">Considered</span>
-          <p style="color: var(--text-muted);">Agent self-reporting, peer review, mandatory QA agent</p>
-          <span class="label" style="color: var(--success);">Chose &amp; Why</span>
+          <p class="cs-decision__desc">Agent self-reporting, peer review, mandatory QA agent</p>
+          <span class="label label--success">Chose &amp; Why</span>
           <p>Mandatory QA gates — after an incident where 28 features shipped unverified because agents marked their own work as "done," we designed a system where builders can only set status to "in review." Only the QA agent can move tasks to "done" after posting a QA pass.</p>
         </div>
-        <div class="cs-decision__image cs-image--placeholder" style="min-height: 280px;">
+        <div class="cs-decision__image cs-image--placeholder cs-image--md">
           QA Gate Flow
         </div>
       </div>
@@ -302,8 +302,8 @@
       <div class="cs-reflection">
         <div class="cs-reflection__card cs-reflection__card--worked">
           <div class="cs-reflection__header">
-            <span style="color: var(--success); font-size: 18px;">&#10003;</span>
-            <span class="label" style="color: var(--success);">What Worked</span>
+            <span class="cs-reflection__icon text-success">&#10003;</span>
+            <span class="label label--success">What Worked</span>
           </div>
           <p class="cs-reflection__item">1. Dogfooding — using FuzeHQ daily to manage our own AI team meant every pain point was felt immediately and fixed quickly</p>
           <p class="cs-reflection__item">2. MCP architecture — local execution with centralized coordination hit the sweet spot between control and cost</p>
@@ -311,8 +311,8 @@
         </div>
         <div class="cs-reflection__card cs-reflection__card--improve">
           <div class="cs-reflection__header">
-            <span style="color: var(--warning); font-size: 18px;">&#9672;</span>
-            <span class="label" style="color: var(--warning);">What I'd Do Differently</span>
+            <span class="cs-reflection__icon text-warning">&#9672;</span>
+            <span class="label label--warning">What I'd Do Differently</span>
           </div>
           <p class="cs-reflection__item">1. Start with the dashboard, not settings — we built agent configuration before building the visibility layer that users actually need first</p>
           <p class="cs-reflection__item">2. Design for multi-tenant from day one — retrofitting tenant isolation was painful and introduced security debt</p>
@@ -331,8 +331,8 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="section text-center" style="padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--divider);">
-    <p style="font-size: var(--text-sm); color: var(--text-muted);">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  <footer class="site-footer">
+    <p class="footer-copyright">&copy; 2026 Pheak Meas. All rights reserved.</p>
   </footer>
 
   <script src="../../js/main.js" defer></script>

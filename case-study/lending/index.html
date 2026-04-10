@@ -93,7 +93,7 @@
             <span class="cs-before-after__desc">Full lending workflows — loan creation, repayment schedules, interest accrual, default escalation.</span>
           </div>
           <div class="cs-before-after" >
-            <span class="cs-before-after__tag" style="color: var(--info);">Scale</span>
+            <span class="cs-before-after__tag cs-before-after__tag--info">Scale</span>
             <span class="cs-before-after__value">2x market coverage</span>
             <span class="cs-before-after__desc">One platform serving both equity and debt clients. Zero new applications required.</span>
           </div>
@@ -109,13 +109,13 @@
       </div>
 
       <div class="flex gap-lg">
-        <div class="card" style="flex: 1;">
+        <div class="card flex-1">
           <span class="label">Methodology</span>
-          <p style="margin-top: var(--space-sm);">Stakeholder interviews with mortgage fund managers, bridge loan operators, and real estate debt specialists. Workflow observation sessions with existing equity users to understand mental model differences. Competitive analysis of lending-specific platforms.</p>
+          <p class="mt-sm">Stakeholder interviews with mortgage fund managers, bridge loan operators, and real estate debt specialists. Workflow observation sessions with existing equity users to understand mental model differences. Competitive analysis of lending-specific platforms.</p>
         </div>
-        <div class="card" style="flex: 1;">
+        <div class="card flex-1">
           <span class="label">Sample</span>
-          <p style="margin-top: var(--space-sm);">8 mortgage fund managers, 5 bridge loan operators, 10+ existing equity users. Research conducted across 3 months before design began.</p>
+          <p class="mt-sm">8 mortgage fund managers, 5 bridge loan operators, 10+ existing equity users. Research conducted across 3 months before design began.</p>
         </div>
       </div>
 
@@ -163,8 +163,8 @@
           <p class="cs-solution__feature">8. Contextual UI that adapts for debt vs. equity users</p>
         </div>
         <div class="cs-solution__visuals">
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Loan Creation Wizard</div>
-          <div class="cs-image cs-image--placeholder" style="min-height: 280px;">Repayment Schedule View</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">Loan Creation Wizard</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">Repayment Schedule View</div>
         </div>
       </div>
     </section>
@@ -179,13 +179,13 @@
       <p>Annotated walkthrough of the key screens I designed — showing how debt-specific workflows integrated into the existing equity platform.</p>
 
       <div class="flex gap-lg">
-        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
-          <div class="cs-image cs-image--placeholder" style="min-height: 320px;">Interest Accrual Dashboard</div>
-          <p style="font-size: var(--text-sm); color: var(--warning);">Annotation: How real-time interest calculations reduced manual accounting</p>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--lg">Interest Accrual Dashboard</div>
+          <p class="cs-annotation">Annotation: How real-time interest calculations reduced manual accounting</p>
         </div>
-        <div style="flex: 1; display: flex; flex-direction: column; gap: var(--space-sm);">
-          <div class="cs-image cs-image--placeholder" style="min-height: 320px;">Default Escalation Flow</div>
-          <p style="font-size: var(--text-sm); color: var(--warning);">Annotation: How the escalation workflow guided fund managers through notices and cure periods</p>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--lg">Default Escalation Flow</div>
+          <p class="cs-annotation">Annotation: How the escalation workflow guided fund managers through notices and cure periods</p>
         </div>
       </div>
     </section>
@@ -202,11 +202,11 @@
           <span class="cs-decision__number">01</span>
           <h4 class="cs-decision__title">Contextual UI over separate applications</h4>
           <span class="label">Considered</span>
-          <p style="color: var(--text-muted);">Separate lending app, tabbed interface, contextual adaptation</p>
-          <span class="label" style="color: var(--success);">Chose &amp; Why</span>
+          <p class="cs-decision__desc">Separate lending app, tabbed interface, contextual adaptation</p>
+          <span class="label label--success">Chose &amp; Why</span>
           <p>Contextual adaptation — building a separate app would double maintenance and confuse clients who manage both equity and debt. The contextual approach let administrators see everything while individual users only saw their asset class.</p>
         </div>
-        <div class="cs-decision__image cs-image--placeholder" style="min-height: 280px;">
+        <div class="cs-decision__image cs-image--placeholder cs-image--md">
           Equity vs. Debt Context Switching
         </div>
       </div>
@@ -216,11 +216,11 @@
           <span class="cs-decision__number">02</span>
           <h4 class="cs-decision__title">Visual repayment schedules over table-only views</h4>
           <span class="label">Considered</span>
-          <p style="color: var(--text-muted);">Spreadsheet-style tables, Gantt-style timeline, visual schedule with table fallback</p>
-          <span class="label" style="color: var(--success);">Chose &amp; Why</span>
+          <p class="cs-decision__desc">Spreadsheet-style tables, Gantt-style timeline, visual schedule with table fallback</p>
+          <span class="label label--success">Chose &amp; Why</span>
           <p>Visual schedule with table fallback — fund managers needed to see the full repayment timeline at a glance, not scroll through rows. The visual timeline showed payment status (paid, upcoming, overdue, defaulted) with color coding, while the table view remained available for exports and detailed analysis.</p>
         </div>
-        <div class="cs-decision__image cs-image--placeholder" style="min-height: 280px;">
+        <div class="cs-decision__image cs-image--placeholder cs-image--md">
           Repayment Schedule — Visual vs. Table
         </div>
       </div>
@@ -267,8 +267,8 @@
       <div class="cs-reflection">
         <div class="cs-reflection__card cs-reflection__card--worked">
           <div class="cs-reflection__header">
-            <span style="color: var(--success); font-size: 18px;">&#10003;</span>
-            <span class="label" style="color: var(--success);">What Worked</span>
+            <span class="cs-reflection__icon text-success">&#10003;</span>
+            <span class="label label--success">What Worked</span>
           </div>
           <p class="cs-reflection__item">1. Contextual UI kept both user bases happy — equity users never saw lending complexity, lending users got a purpose-built experience</p>
           <p class="cs-reflection__item">2. Shared infrastructure reduced development time — compliance, documents, and user management worked identically across asset classes</p>
@@ -276,8 +276,8 @@
         </div>
         <div class="cs-reflection__card cs-reflection__card--improve">
           <div class="cs-reflection__header">
-            <span style="color: var(--warning); font-size: 18px;">&#9672;</span>
-            <span class="label" style="color: var(--warning);">What I'd Do Differently</span>
+            <span class="cs-reflection__icon text-warning">&#9672;</span>
+            <span class="label label--warning">What I'd Do Differently</span>
           </div>
           <p class="cs-reflection__item">1. Earlier user testing with actual lending clients — we designed based on equity-user assumptions that didn't always transfer</p>
           <p class="cs-reflection__item">2. More sophisticated interest calculation UI — the first version was too simplified for complex amortization schedules</p>
@@ -296,8 +296,8 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="section text-center" style="padding-top: 40px; padding-bottom: 40px; border-top: 1px solid var(--divider);">
-    <p style="font-size: var(--text-sm); color: var(--text-muted);">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  <footer class="site-footer">
+    <p class="footer-copyright">&copy; 2026 Pheak Meas. All rights reserved.</p>
   </footer>
 
   <script src="../../js/main.js" defer></script>
