@@ -18,11 +18,30 @@
     <meta name="theme-color" content="#141419">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+    <!-- Google Consent Mode v2 (default denied until user opts in) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      // Check for existing consent
+      (function() {
+        try {
+          var consent = JSON.parse(localStorage.getItem('uxmeas_consent'));
+          if (consent && consent.analytics) {
+            gtag('consent', 'update', { analytics_storage: 'granted' });
+          }
+        } catch(e) {}
+      })();
+    </script>
+    <!-- GA4 loads after consent mode is configured -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+    <script>
       gtag('js', new Date());
       gtag('config', 'G-87HSHMKCBH');
     </script>
@@ -906,6 +925,20 @@
             --cs-border: #1E3A1E;
             --cs-purple: #39FF14;
         }
+        .cs--multipaste {
+            --cs-accent: #F43F5E;
+            --cs-highlight: #F43F5E;
+            --cs-stat-color: #FB7185;
+            --cs-bg-1: #121215;
+            --cs-bg-2: #1E1518;
+            --cs-bg-deep: #0E0C10;
+            --cs-bg-card: #1A1519;
+            --cs-text: #FFFFFF;
+            --cs-text-muted: #FB7185;
+            --cs-text-dim: #9F5060;
+            --cs-border: #2D1F28;
+            --cs-purple: #F43F5E;
+        }
 
         /* ── Modal sections — full-bleed within panel ── */
         .m-section {
@@ -1652,6 +1685,16 @@
                 <div class="work-card work-card--ghost reveal" aria-hidden="true">
                     <div class="work-card__thumb"></div>
                     <div class="work-card__info">
+                        <span class="work-card__tags">FIGMA PLUGIN &middot; TEXT &middot; MZM LABS</span>
+                        <h3 class="work-card__title">MultiPaste</h3>
+                        <p class="work-card__desc">Figma plugin that distributes text across layers. 5 delimiters, preview, 1-click undo.</p>
+                        <span class="work-card__coming">COMING SOON</span>
+                    </div>
+                </div>
+
+                <div class="work-card work-card--ghost reveal" aria-hidden="true">
+                    <div class="work-card__thumb"></div>
+                    <div class="work-card__info">
                         <span class="work-card__tags">FIGMA PLUGIN &middot; AUTOMATION &middot; SIDE PROJECT</span>
                         <h3 class="work-card__title">Docs to Design</h3>
                         <p class="work-card__desc">Figma plugin that converts Word documents into styled designs.</p>
@@ -1780,8 +1823,10 @@
             <span class="footer-logo">UX MEAS</span>
             <span class="footer-copy">&copy; 2026 UX Meas. All rights reserved.</span>
             <div class="footer-links">
+                <a href="/privacy.html">Privacy</a>
+                <a href="/cookies.html">Cookies</a>
+                <a href="/terms.html">Terms</a>
                 <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="https://uxmeas.com">uxmeas.com</a>
             </div>
         </div>
     </footer>
@@ -1919,7 +1964,7 @@
         // ══════════════════════════════════════════════════════
         // BEHANCE-STYLE MODAL SYSTEM (preserved from v1)
         // ══════════════════════════════════════════════════════
-        const projectKeys = ['compliance', 'dealflow', 'akm', 'relationsync', 'mypick', 'docstodesign', 'isoblock'];
+        const projectKeys = ['compliance', 'dealflow', 'akm', 'multipaste', 'relationsync', 'mypick', 'docstodesign', 'isoblock'];
 
         let currentIndex = 0;
         let triggerElement = null;
@@ -2007,7 +2052,8 @@
             'relationsync': 'relationsync',
             'mypick': 'mypick',
             'docstodesign': 'docs-to-design',
-            'isoblock': 'isoblock'
+            'isoblock': 'isoblock',
+            'multipaste': 'multipaste'
         };
 
         // ══════════════════════════════════════════════════════
@@ -2160,6 +2206,46 @@
                 window.location = 'mailto:' + addr;
             });
         });
+    </script>
+
+    <!-- Cookie Consent -->
+    <script src="/js/cookie-consent.js"></script>
+    <script>
+      CookieConsent.init({
+        storageKey: 'uxmeas_consent',
+        policyUrl: '/cookies.html',
+        categories: [
+          { id: 'necessary', label: 'Necessary', description: 'Required for the site to function properly.', required: true, default: true },
+          { id: 'analytics', label: 'Performance & Analytics', description: 'Help us understand how visitors use this site by collecting anonymous usage data via Google Analytics.', required: false, default: false }
+        ],
+        onSave: function(consent) {
+          if (consent.analytics) {
+            gtag('consent', 'update', { analytics_storage: 'granted' });
+            uxmeasInitClarity();
+          } else {
+            gtag('consent', 'update', { analytics_storage: 'denied' });
+          }
+        }
+      });
+    </script>
+    <!-- Microsoft Clarity — loads only after consent -->
+    <script type="text/javascript">
+      function uxmeasInitClarity() {
+        if (window._clarityLoaded) return;
+        window._clarityLoaded = true;
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "waeobadji5");
+      }
+      // Restore Clarity if user already accepted in a previous session
+      (function() {
+        try {
+          var consent = JSON.parse(localStorage.getItem('uxmeas_consent'));
+          if (consent && consent.analytics) { uxmeasInitClarity(); }
+        } catch(e) {}
+      })();
     </script>
 </body>
 </html>
