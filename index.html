@@ -81,6 +81,50 @@
       margin: 0 auto;
     }
 
+    /* MZM-623: centered section header (icon + heading + subtext) */
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-3xl);
+    }
+
+    .section-header__icon {
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--glow-border);
+      border-radius: var(--radius-lg);
+      background: var(--glow-fill-subtle);
+      color: var(--text-primary);
+    }
+
+    .section-header__icon svg {
+      width: 36px;
+      height: 36px;
+    }
+
+    .section-header__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 4vw, var(--text-3xl));
+      font-weight: 400;
+      letter-spacing: var(--tracking-tight);
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .section-header__subtext {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 560px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
     .projects__grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -272,9 +316,19 @@
 
   <!-- WORK -->
   <section class="projects" id="work">
-    <div class="hero-mb">
-      <span class="label label--accent">Selected Work</span>
-    </div>
+    <!-- MZM-623: centered icon + heading + subtext -->
+    <header class="section-header">
+      <div class="section-header__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </div>
+      <h2 class="section-header__title">Selected Work</h2>
+      <p class="section-header__subtext">12 case studies across fintech, compliance, developer tools, and AI-native products.</p>
+    </header>
 
     <div class="projects__grid">
 
