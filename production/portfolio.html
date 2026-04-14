@@ -16,11 +16,28 @@
     <meta name="theme-color" content="#141419">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+    <!-- Google Consent Mode v2 (default denied until user opts in) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      (function() {
+        try {
+          var consent = JSON.parse(localStorage.getItem('uxmeas_consent'));
+          if (consent && consent.analytics) {
+            gtag('consent', 'update', { analytics_storage: 'granted' });
+          }
+        } catch(e) {}
+      })();
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+    <script>
       gtag('js', new Date());
       gtag('config', 'G-87HSHMKCBH');
     </script>
@@ -38,6 +55,8 @@
 </head>
 <body>
 <div class="page-loader"></div>
+
+<a href="#main-content" class="sr-only">Skip to content</a>
 
 <!-- ════════════════════════════════════════════════════
      NAV
@@ -61,6 +80,7 @@
 <!-- ════════════════════════════════════════════════════
      HERO
      ════════════════════════════════════════════════════ -->
+<main id="main-content">
 <div class="page-wrapper">
 
 <section class="hero" id="hero">
@@ -153,8 +173,8 @@
         </a>
         <a href="/case-study/docs-to-design/" class="work-card fade-in" aria-label="View Docs to Design case study">
             <div class="work-card-thumb">
-                <img src="/images/d2d/screenshots/docstodesign-1.png"
-                     alt="Docs to Design Figma plugin interface showing document-to-design conversion"
+                <img src="/images/d2d/branding/d2d-lockup-inline-dark.svg"
+                     alt="Docs to Design plugin logo"
                      loading="lazy"
                      width="680" height="280">
             </div>
@@ -252,6 +272,8 @@
 
 </div><!-- .page-wrapper -->
 
+</main>
+
 <!-- ════════════════════════════════════════════════════
      FOOTER
      ════════════════════════════════════════════════════ -->
@@ -348,6 +370,26 @@ document.querySelectorAll('img[loading="lazy"]').forEach(function(img) {
   if (img.complete) { img.classList.add('loaded'); }
   else { img.addEventListener('load', function() { this.classList.add('loaded'); }); }
 });
+</script>
+
+<!-- Cookie Consent -->
+<script src="/js/cookie-consent.js"></script>
+<script>
+  CookieConsent.init({
+    storageKey: 'uxmeas_consent',
+    policyUrl: '/cookies.html',
+    categories: [
+      { id: 'necessary', label: 'Necessary', description: 'Required for the site to function properly.', required: true, default: true },
+      { id: 'analytics', label: 'Performance & Analytics', description: 'Help us understand how visitors use this site by collecting anonymous usage data via Google Analytics.', required: false, default: false }
+    ],
+    onSave: function(consent) {
+      if (consent.analytics) {
+        gtag('consent', 'update', { analytics_storage: 'granted' });
+      } else {
+        gtag('consent', 'update', { analytics_storage: 'denied' });
+      }
+    }
+  });
 </script>
 
 </body>

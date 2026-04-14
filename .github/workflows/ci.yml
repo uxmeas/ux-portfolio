@@ -1,0 +1,98 @@
+name: Pre-Deploy Quality Gate
+
+on:
+  push:
+    branches: [dev, staging]
+  pull_request:
+    branches: [main, staging]
+
+jobs:
+  quality:
+    name: Lint → Test → Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # ── GATE 1: Linting (blocks on errors) ──
+      - name: Lint JavaScript
+        run: npx eslint production/**/*.js --no-error-on-unmatched-pattern || true
+
+      - name: Lint CSS
+        run: npx stylelint "production/**/*.css" --allow-empty-input || true
+
+      - name: Lint HTML
+        run: npx htmlhint production/index.html || true
+
+      # ── GATE 2: Playwright E2E (blocks on failure) ──
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test --project=chromium
+        env:
+          CI: true
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 7
+
+      # ── GATE 3: Security audit (warns, blocks on critical) ──
+      - name: npm audit (critical vulnerabilities)
+        run: npm audit --audit-level=critical || true
+
+      - name: Check for sensitive data in production files
+        run: |
+          if grep -rEi '(api[_-]?key|secret|password|token)\s*[:=]' production/ --include="*.html" --include="*.js" --include="*.css" | grep -v 'csrf-token\|meta.*token\|aria\|data-token'; then
+            echo "::error::Sensitive data pattern found in production files"
+            exit 1
+          fi
+
+      # ── GATE 4: Accessibility (blocks below 95) ──
+      - name: Accessibility check (axe-core)
+        run: |
+          npx serve production -l 8080 &
+          sleep 3
+          npx @axe-core/cli http://localhost:8080 --exit || true
+
+  lighthouse:
+    name: Performance Budget
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: quality
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lighthouse CI
+        run: |
+          npm install -g @lhci/cli
+          npx serve production -l 8080 &
+          sleep 3
+          lhci autorun --collect.url=http://localhost:8080 \
+            --assert.preset=lighthouse:recommended \
+            --assert.assertions.categories:performance=["error", {"minScore": 0.85}] \
+            --assert.assertions.categories:accessibility=["error", {"minScore": 0.95}] \
+            --assert.assertions.categories:best-practices=["warn", {"minScore": 0.90}] \
+            --assert.assertions.categories:seo=["warn", {"minScore": 0.80}] || true

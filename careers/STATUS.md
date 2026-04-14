@@ -58,12 +58,38 @@ uxmeas/careers/
 - [x] Resume template built (HTML, tokenized, 3 presets)
 - [x] Cover letter template built (HTML, matches resume design)
 - [x] Paperclip project created and linked
+- [x] MakerHQ task descriptions written for all 17 sprint tasks (March 31)
+
+## MakerHQ Task Map
+Full descriptions ready to paste: `Client-Projects/job-hunting-sprint/makerhq-task-descriptions.md`
+
+| MakerHQ | Task | Category |
+|---------|------|----------|
+| MZM-45 | Update LinkedIn profile | Profile Setup |
+| MZM-46 | Test uxmeas.com contact form | Profile Setup |
+| MZM-47 | Register: Aquent / Vitamin T | Staffing Agency |
+| MZM-48 | Register: Robert Half | Staffing Agency |
+| MZM-49 | Register: Randstad Digital | Staffing Agency |
+| MZM-50 | Register: Creative Niche | Staffing Agency |
+| MZM-51 | Register: Tundra Technical | Staffing Agency |
+| MZM-52 | Register: Hays Canada | Staffing Agency |
+| MZM-53 | Register: David Aplin Group | Staffing Agency |
+| MZM-54 | Apply: Coinbase — Sr Product Designer (AI) | Application (Tier 1) |
+| MZM-55 | Apply: Binance.US — Product Designer | Application (Tier 1) |
+| MZM-56 | Apply: Forward Financing — Sr Product Designer | Application (Tier 1) |
+| MZM-57 | Apply: NerdWallet — Product Designer | Application (Tier 2) |
+| MZM-58 | Apply: Brigit — Sr Product Designer II | Application (Tier 2) |
+| MZM-59 | Apply: Webflow — Sr Product Designer | Application (Tier 2) |
+| MZM-60 | Apply: Grow Therapy — Senior/Staff Designer | Application (Tier 2) |
+| MZM-61 | Firecrawl Play 2 | Research |
 
 ## What's NEXT
-- [ ] Execute sprint Task 2: Staffing agency research
-- [ ] Execute sprint Task 7: Outreach templates
-- [ ] First applications (from Tasks 1+4 job listing research)
-- [ ] Pheak: Update LinkedIn profile (copy ready, manual action)
+- [ ] MZM-45: Pheak updates LinkedIn (copy ready, manual action)
+- [ ] MZM-46: Test uxmeas.com contact form before sending applications
+- [ ] MZM-47 to MZM-53: Register with 7 staffing agencies (Week 1)
+- [ ] MZM-54 to MZM-56: Tier 1 applications — Coinbase, Binance.US, Forward Financing
+- [ ] MZM-57 to MZM-60: Tier 2 applications — NerdWallet, Brigit, Webflow, Grow Therapy
+- [ ] MZM-61: Firecrawl Play 2 (after Round 1 sent)
 
 ## Known Issues
 - Education on resume: Applied Multimedia Training Centre (closed, unverifiable). Consider removing.

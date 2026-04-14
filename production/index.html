@@ -11,6 +11,8 @@
     <meta property="og:url" content="https://uxmeas.com">
     <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="UX Meas - Senior Product Designer">
+    <meta name="twitter:description" content="Co-founded a fintech company that went from 3 people to a TSX-V IPO. 18 years shipping products across fintech, compliance, and enterprise software.">
     <meta name="twitter:image" content="https://uxmeas.com/images/og-image.png">
     <link rel="canonical" href="https://uxmeas.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
@@ -51,7 +53,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@1.6.0/dist/umd/lucide.min.js"></script>
+    <script src="https://unpkg.com/lucide@1.6.0/dist/umd/lucide.min.js" defer></script>
 
     <style>
         /* ══════════════════════════════════════════════════════
@@ -1574,9 +1576,44 @@
             .m-hero__stat-num { font-size: 28px; }
             .m-result-card__num { font-size: 32px; }
         }
+
+        /* ── ACCESSIBILITY ── */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        .sr-only:focus {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            width: auto;
+            height: auto;
+            padding: 12px 24px;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+            background: var(--accent);
+            color: var(--bg-deep);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            border-radius: 6px;
+            text-decoration: none;
+            z-index: 9999;
+        }
     </style>
 </head>
 <body>
+
+    <a href="#main-content" class="sr-only">Skip to content</a>
 
     <!-- ════════════════════ NAVIGATION ════════════════════ -->
     <nav id="navbar">
@@ -1602,6 +1639,7 @@
     </div>
 
     <!-- ════════════════════ HERO ════════════════════ -->
+    <main id="main-content">
     <section class="hero">
         <div class="hero-content">
             <p class="hero-tag font-display">PRODUCT DESIGN &middot; SYSTEMS THINKING &middot; EXECUTION</p>
@@ -1627,7 +1665,7 @@
                     </div>
                     <div class="work-card__info">
                         <span class="work-card__tags">COMPLIANCE &middot; FINTECH &middot; ENTERPRISE</span>
-                        <h3 class="work-card__title">Compliance UX</h3>
+                        <h2 class="work-card__title">Compliance UX</h2>
                         <p class="work-card__desc">Led redesign of investor onboarding. From fax machines to 12-minute digital flows across 20+ jurisdictions. 85% completion rate.</p>
                         <div class="work-card__process">
                             <span class="work-card__process-tag">Research</span>
@@ -1647,7 +1685,7 @@
                     </div>
                     <div class="work-card__info">
                         <span class="work-card__tags">PRODUCT DESIGN &middot; FINTECH &middot; IPO</span>
-                        <h3 class="work-card__title">Katipult DealFlow</h3>
+                        <h2 class="work-card__title">Katipult DealFlow</h2>
                         <p class="work-card__desc">Co-founded in 2008. Led product design from 3 people to TSX-V IPO. Deal management, portfolio tracking, and investor relations across web and mobile. $2B+ processed.</p>
                         <div class="work-card__process">
                             <span class="work-card__process-tag">Strategy</span>
@@ -1668,7 +1706,7 @@
                     </div>
                     <div class="work-card__info">
                         <span class="work-card__tags">BRAND &middot; WEB &middot; HUBSPOT</span>
-                        <h3 class="work-card__title">AKMSecure</h3>
+                        <h2 class="work-card__title">AKMSecure</h2>
                         <p class="work-card__desc">Brand identity, responsive website, and CMS integration for a cybersecurity startup.</p>
                         <div class="work-card__process">
                             <span class="work-card__process-tag">Research</span>
@@ -1686,7 +1724,7 @@
                     <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">FIGMA PLUGIN &middot; TEXT &middot; MZM LABS</span>
-                        <h3 class="work-card__title">MultiPaste</h3>
+                        <h2 class="work-card__title">MultiPaste</h2>
                         <p class="work-card__desc">Figma plugin that distributes text across layers. 5 delimiters, preview, 1-click undo.</p>
                         <span class="work-card__coming">COMING SOON</span>
                     </div>
@@ -1696,7 +1734,7 @@
                     <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">FIGMA PLUGIN &middot; AUTOMATION &middot; SIDE PROJECT</span>
-                        <h3 class="work-card__title">Docs to Design</h3>
+                        <h2 class="work-card__title">Docs to Design</h2>
                         <p class="work-card__desc">Figma plugin that converts Word documents into styled designs.</p>
                         <span class="work-card__coming">COMING SOON</span>
                     </div>
@@ -1707,7 +1745,7 @@
                     <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">FIGMA PLUGIN &middot; ISOMETRIC &middot; SIDE PROJECT</span>
-                        <h3 class="work-card__title">IsoBlock</h3>
+                        <h2 class="work-card__title">IsoBlock</h2>
                         <p class="work-card__desc">Isometric shape creation plugin. 15 primitives, 5 surface presets.</p>
                         <span class="work-card__coming">COMING SOON</span>
                     </div>
@@ -1717,7 +1755,7 @@
                     <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">MOBILE APP &middot; PRODUCT DESIGN &middot; COLLABORATION</span>
-                        <h3 class="work-card__title">RelationSync</h3>
+                        <h2 class="work-card__title">RelationSync</h2>
                         <p class="work-card__desc">Voice-first journaling app. 35 screens, 19 components, AI summaries.</p>
                         <span class="work-card__coming">COMING SOON</span>
                     </div>
@@ -1728,7 +1766,7 @@
                     <div class="work-card__thumb"></div>
                     <div class="work-card__info">
                         <span class="work-card__tags">WEB APP &middot; RANDOMIZER &middot; SIDE PROJECT</span>
-                        <h3 class="work-card__title">MyPick.io</h3>
+                        <h2 class="work-card__title">MyPick.io</h2>
                         <p class="work-card__desc">Pixel car race randomizer. 4 terrains, mechanical failures, zero dependencies.</p>
                         <span class="work-card__coming">COMING SOON</span>
                     </div>
@@ -1816,6 +1854,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <!-- ════════════════════ FOOTER ════════════════════ -->
     <footer>

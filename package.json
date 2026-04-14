@@ -16,7 +16,6 @@
     "serve:portfolio": "python3 -m http.server 8000",
     "dev:case-study": "cd src/tools/case-study-generator && npm run dev",
     "start:case-study": "cd src/tools/case-study-generator && npm start",
-
     "// === DOCKER COMMANDS ===": "",
     "docker:dev": "docker-compose up --build",
     "docker:dev:detached": "docker-compose up -d --build",
@@ -25,14 +24,12 @@
     "docker:logs": "docker-compose logs -f",
     "docker:tools": "docker-compose --profile tools up -d dev-tools",
     "docker:testing": "docker-compose --profile testing up lighthouse axe-testing",
-
     "// === BUILD COMMANDS ===": "",
     "build": "npm run build:all",
     "build:all": "npm run build:portfolio && npm run build:case-study",
     "build:portfolio": "npm run optimize:images && npm run minify:css && npm run minify:js",
     "build:case-study": "cd src/tools/case-study-generator && npm run build",
     "build:production": "NODE_ENV=production npm run build:all",
-
     "// === OPTIMIZATION ===": "",
     "optimize": "npm run optimize:all",
     "optimize:all": "npm run optimize:images && npm run optimize:css && npm run optimize:js",
@@ -41,7 +38,6 @@
     "optimize:js": "terser src/scripts/*.js -c -m -o dist/js/bundle.min.js",
     "minify:css": "cleancss -o dist/css/style.min.css css/style.css",
     "minify:js": "terser src/scripts/*.js -c -m -o dist/js/scripts.min.js",
-
     "// === TESTING ===": "",
     "test": "npm run test:all",
     "test:all": "npm run test:portfolio && npm run test:accessibility && npm run test:performance && npm run test:links",
@@ -56,7 +52,6 @@
     "test:html": "node infrastructure/scripts/validate-html.js",
     "test:css": "stylelint \"**/*.css\" --config infrastructure/config/.stylelintrc.json",
     "test:js": "eslint \"src/**/*.js\" --config infrastructure/config/.eslintrc.json",
-
     "// === LINTING & FORMATTING ===": "",
     "lint": "npm run lint:all",
     "lint:all": "npm run lint:css && npm run lint:js && npm run lint:html",
@@ -66,7 +61,6 @@
     "format": "npm run format:all",
     "format:all": "prettier --write \"**/*.{html,css,js,json,md}\"",
     "format:check": "prettier --check \"**/*.{html,css,js,json,md}\"",
-
     "// === QUALITY CHECKS ===": "",
     "quality": "npm run quality:all",
     "quality:all": "npm run lint && npm run test && npm run security:check",
@@ -74,7 +68,6 @@
     "security:fix": "npm audit fix",
     "deps:check": "npm outdated",
     "deps:update": "npm update",
-
     "// === DEVELOPMENT UTILITIES ===": "",
     "clean": "npm run clean:all",
     "clean:all": "npm run clean:dist && npm run clean:cache && npm run clean:logs",
@@ -82,22 +75,18 @@
     "clean:cache": "rm -rf .cache && cd src/tools/case-study-generator && rm -rf .next",
     "clean:logs": "rm -rf infrastructure/testing/*-reports/*.html infrastructure/testing/*-reports/*.json",
     "clean:modules": "rm -rf node_modules && cd src/tools/case-study-generator && rm -rf node_modules",
-    
     "watch": "npm run watch:all",
     "watch:all": "concurrently \"npm run watch:css\" \"npm run watch:js\" --names \"css,js\" --prefix-colors \"magenta,cyan\"",
     "watch:css": "postcss css/style.css -o dist/css/style.css --watch",
     "watch:js": "chokidar \"src/scripts/**/*.js\" -c \"npm run optimize:js\"",
-
     "// === DEPLOYMENT PREP ===": "",
     "predeploy": "npm run quality && npm run build:production",
     "deploy:staging": "echo 'Staging deployment requires manual approval - see DEPLOYMENT-STRATEGY.md'",
     "deploy:production": "echo 'Production deployment requires manual approval - see DEPLOYMENT-STRATEGY.md'",
-
     "// === CASE STUDY GENERATOR ===": "",
     "case-study:install": "cd src/tools/case-study-generator && npm install",
     "case-study:update": "cd src/tools/case-study-generator && npm update",
     "case-study:build": "cd src/tools/case-study-generator && npm run build",
-
     "// === DEVELOPMENT SETUP ===": "",
     "prepare": "test -d .git && cp infrastructure/workflows/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit || true",
     "setup": "npm run setup:all",
@@ -105,21 +94,19 @@
     "setup:git-hooks": "cp infrastructure/workflows/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit",
     "setup:env": "cp .env.example .env.local",
     "setup:docker": "docker-compose build && echo 'Docker environment ready. Run: npm run docker:dev'",
-
     "// === MAINTENANCE ===": "",
     "health": "npm run health:all",
     "health:all": "npm run health:dependencies && npm run health:links && npm run health:performance",
     "health:dependencies": "npm audit && cd src/tools/case-study-generator && npm audit",
     "health:links": "npm run test:links",
     "health:performance": "npm run test:lighthouse",
-    
     "info": "node infrastructure/scripts/dev-info.js",
     "help": "node infrastructure/scripts/help.js"
   },
   "devDependencies": {
     "@axe-core/cli": "^4.8.2",
     "@lhci/cli": "^0.12.0",
-    "@playwright/test": "^1.40.0",
+    "@playwright/test": "^1.59.1",
     "autoprefixer": "^10.4.16",
     "chokidar-cli": "^3.0.0",
     "clean-css-cli": "^5.6.2",
