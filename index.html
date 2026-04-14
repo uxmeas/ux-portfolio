@@ -14,15 +14,23 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <style>
-    /* === HOMEPAGE-SPECIFIC === */
+    /* === HOMEPAGE-SPECIFIC (MZM-621: 2-col hero, left-aligned) === */
     .hero {
-      min-height: 80vh;       /* Audit E: was 85vh */
+      min-height: 72vh;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: var(--space-3xl);
+      align-items: center;
+      text-align: left;
+      padding: 80px var(--section-padding-x) var(--section-padding-y);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .hero__content {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 80px var(--section-padding-x) var(--section-padding-y);  /* Audit E: was 120px top */
+      align-items: flex-start;
     }
 
     .hero__title {
@@ -32,15 +40,38 @@
       line-height: var(--leading-tight);
       color: var(--text-primary);
       margin-bottom: var(--space-lg);
-      max-width: 800px;
+      max-width: 640px;
     }
 
     .hero__subtitle {
-      font-size: 1.125rem;     /* Audit J: was 20px, now 18px */
+      font-size: 1.125rem;
       color: var(--text-secondary);
-      max-width: 520px;        /* Audit J: was 600px */
-      line-height: 1.6;        /* Audit J: was 1.75 */
+      max-width: 520px;
+      line-height: 1.6;
       margin-bottom: var(--space-2xl);
+    }
+
+    /* MZM-621: right-side placeholder for future hero visual */
+    .hero__visual {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 520px;
+      border: 1px solid var(--glow-border);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+      box-shadow: var(--glow-shadow);
+    }
+
+    /* MZM-621: horizontal divider below hero */
+    .hero-divider {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--section-padding-x);
+    }
+    .hero-divider hr {
+      border: none;
+      border-top: 1px solid var(--divider);
+      margin: 0;
     }
 
     /* === PROJECT GRID === */
@@ -186,7 +217,7 @@
 
     /* === RESPONSIVE === */
     @media (max-width: 1024px) {
-      .hero { min-height: 70vh; padding-top: 60px; }
+      .hero { min-height: 64vh; padding-top: 60px; gap: var(--space-2xl); }
       .hero__title { font-size: clamp(2rem, 5vw, 3.5rem); }
     }
 
@@ -196,7 +227,13 @@
       .about__stats { flex-wrap: wrap; }
       .about__stat { flex: none; width: 45%; padding: 0 0 var(--space-md) 0; border-left: none; border-bottom: 1px solid var(--divider); padding-bottom: var(--space-md); }
       .about__stat:first-child { padding-left: 0; }
-      .hero { min-height: 60vh; padding-top: 48px; }
+      .hero {
+        min-height: auto;
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+        padding-top: 48px;
+      }
+      .hero__visual { display: none; }
       .hero__title { font-size: 2rem; }
       .hero__subtitle { font-size: 1rem; max-width: 100%; }
       .project-card__content { padding: 16px; }
@@ -216,12 +253,22 @@
     </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO (MZM-621: 2-col, left-aligned, primary+secondary CTA, divider) -->
   <section class="hero reveal">
-    <h1 class="hero__title">I design products. <br>Then I build them.</h1>
-    <p class="hero__subtitle">18 years designing fintech platforms, developer tools, and AI-native products. From 3-person startup to TSX-V IPO.</p>
-    <a href="#work" class="btn btn--primary">View Case Studies</a>
+    <div class="hero__content">
+      <h1 class="hero__title">I design products. <br>Then I build them.</h1>
+      <p class="hero__subtitle">18 years designing fintech platforms, developer tools, and AI-native products. From 3-person startup to TSX-V IPO.</p>
+      <div class="cta-pair">
+        <a href="#work" class="btn-primary">View Case Studies</a>
+        <a data-u="hello" data-d="uxmeas.com" href="#" class="btn-secondary">Contact</a>
+      </div>
+    </div>
+    <div class="hero__visual" aria-hidden="true">
+      <!-- v3 hero visual placeholder — TODO graphic/animation -->
+    </div>
   </section>
+
+  <div class="hero-divider" aria-hidden="true"><hr></div>
 
   <!-- WORK -->
   <section class="projects" id="work">
