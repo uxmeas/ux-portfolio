@@ -207,49 +207,68 @@
       line-height: var(--leading-normal);
     }
 
-    /* === ABOUT === */
+    /* === ABOUT (MZM-624: centered header + left bio + 4-col stat cards) === */
     .about {
       padding: var(--section-padding-y) var(--section-padding-x);
-      max-width: var(--content-width);
+      max-width: var(--max-width);
       margin: 0 auto;
-      display: flex;
+    }
+
+    .about__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: var(--space-3xl);
-      align-items: flex-start;
+      align-items: start;
+      margin-top: var(--space-2xl);
     }
 
     .about__content {
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: var(--space-lg);
+      max-width: 640px;
+    }
+
+    .about__visual {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      max-height: 520px;
+      border: 1px solid var(--glow-border);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+      box-shadow: var(--glow-shadow);
     }
 
     .about__stats {
-      display: flex;
-      gap: 0;                    /* Audit I: dividers instead of gap */
-      margin-top: 16px;
-      padding-top: 24px;
-      border-top: 1px solid var(--divider);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      margin-top: var(--space-3xl);
     }
 
     .about__stat {
-      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: var(--space-xs);
-      padding: 0 24px;
-      border-left: 1px solid var(--divider);
+      gap: var(--space-sm);
+      padding: var(--space-xl);
+      background: var(--glow-fill-subtle);
+      border: 1px solid var(--glow-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--glow-shadow);
+      transition: border-color var(--transition-base);
     }
 
-    .about__stat:first-child {
-      padding-left: 0;
-      border-left: none;
+    .about__stat:hover {
+      border-color: var(--glow-border-hover);
     }
 
     .about__stat-number {
-      font-size: var(--text-2xl);
-      font-weight: 700;
-      color: var(--text-primary);  /* Audit B: was accent — let numbers speak */
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, var(--text-3xl));
+      font-weight: 400;
+      letter-spacing: var(--tracking-tight);
+      line-height: 1.1;
+      color: var(--text-primary);
     }
 
     .about__stat-label {
@@ -257,6 +276,15 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
+    }
+
+    @media (max-width: 1024px) {
+      .about__stats { grid-template-columns: repeat(2, 1fr); }
+      .about__grid { grid-template-columns: 1fr; }
+      .about__visual { display: none; }
+    }
+    @media (max-width: 560px) {
+      .about__stats { grid-template-columns: 1fr; }
     }
 
     /* === RESPONSIVE === */
@@ -267,10 +295,6 @@
 
     @media (max-width: 768px) {
       .projects__grid { grid-template-columns: 1fr; }
-      .about { flex-direction: column; gap: var(--space-xl); }
-      .about__stats { flex-wrap: wrap; }
-      .about__stat { flex: none; width: 45%; padding: 0 0 var(--space-md) 0; border-left: none; border-bottom: 1px solid var(--divider); padding-bottom: var(--space-md); }
-      .about__stat:first-child { padding-left: 0; }
       .hero {
         min-height: auto;
         grid-template-columns: 1fr;
@@ -483,32 +507,47 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
+  <!-- ABOUT (MZM-624: centered header + left bio + 4-col stat cards) -->
   <section class="about reveal" id="about">
-    <div class="about__content">
-      <span class="label label--accent">About</span>
-      <h2>I design and build products that scale.</h2>
-      <p>18 years of product design across fintech, developer tools, and AI-native products. I co-founded a company that grew from 3 people to a TSX-V IPO — scaling design practice from solo founder-designer to Head of Product Design at a 45-person public company.</p>
-      <p>Our team designed every investor-facing screen across a $2B+ platform used by enterprise clients including Canaccord Genuity, Raymond James, and Sprott Capital. Now I build tools that make designers and developers more productive — Figma plugins, AI agent management, and design systems.</p>
-      <p>EY Entrepreneur of the Year Finalist (2017). RBC Emerging Enterprise of the Year. I think in systems, not screens.</p>
+    <header class="section-header">
+      <div class="section-header__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+        </svg>
+      </div>
+      <h2 class="section-header__title">About</h2>
+      <p class="section-header__subtext">Product designer and founder. I design systems, not screens — then I ship them.</p>
+    </header>
 
-      <div class="about__stats">
-        <div class="about__stat">
-          <span class="about__stat-number">18</span>
-          <span class="about__stat-label">Years</span>
-        </div>
-        <div class="about__stat">
-          <span class="about__stat-number">$2B+</span>
-          <span class="about__stat-label">Platform Volume</span>
-        </div>
-        <div class="about__stat">
-          <span class="about__stat-number">3 → 45</span>
-          <span class="about__stat-label">Team Growth</span>
-        </div>
-        <div class="about__stat">
-          <span class="about__stat-number">IPO</span>
-          <span class="about__stat-label">TSX-V</span>
-        </div>
+    <div class="about__grid">
+      <div class="about__content">
+        <p>18 years of product design across fintech, developer tools, and AI-native products. I co-founded a company that grew from 3 people to a TSX-V IPO — scaling design practice from solo founder-designer to Head of Product Design at a 45-person public company.</p>
+        <p>Our team designed every investor-facing screen across a $2B+ platform used by enterprise clients including Canaccord Genuity, Raymond James, and Sprott Capital. Now I build tools that make designers and developers more productive — Figma plugins, AI agent management, and design systems.</p>
+        <p>EY Entrepreneur of the Year Finalist (2017). RBC Emerging Enterprise of the Year. I think in systems, not screens.</p>
+      </div>
+      <div class="about__visual" aria-hidden="true">
+        <!-- v3 about visual placeholder — TODO portrait/graphic -->
+      </div>
+    </div>
+
+    <div class="about__stats">
+      <div class="about__stat">
+        <span class="about__stat-number">18</span>
+        <span class="about__stat-label">Years in product design</span>
+      </div>
+      <div class="about__stat">
+        <!-- TODO confirm $2B claim -->
+        <span class="about__stat-number">$2B+</span>
+        <span class="about__stat-label">In funded products</span>
+      </div>
+      <div class="about__stat">
+        <span class="about__stat-number">3 → 45</span>
+        <span class="about__stat-label">Team scaled</span>
+      </div>
+      <div class="about__stat">
+        <span class="about__stat-number">IPO</span>
+        <span class="about__stat-label">TSX-V public company</span>
       </div>
     </div>
   </section>
