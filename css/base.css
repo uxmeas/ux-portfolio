@@ -243,8 +243,11 @@ p {
   opacity: 1;
 }
 
-.nav__link--accent {
-  color: var(--accent);
+/* MZM-622: nav active state is white (v3: no blue active state) */
+.nav__link--accent,
+.nav__link.active,
+.nav__link[aria-current="page"] {
+  color: #FFFFFF;
   opacity: 1;
 }
 
