@@ -17,14 +17,14 @@
   --color-off-white: #F5F5F5;
   --color-white: #FFFFFF;
 
-  /* === ACCENT === */
-  --color-accent: #00A3FF;
-  --color-accent-light: rgba(0, 163, 255, 0.15);
-  --color-accent-muted: rgba(0, 163, 255, 0.5);
+  /* === ACCENT (MZM-626: monochromatic v3 — neutralized from blue) === */
+  --color-accent: #FFFFFF;
+  --color-accent-light: rgba(255, 255, 255, 0.12);
+  --color-accent-muted: rgba(255, 255, 255, 0.5);
 
   /* === SEMANTIC COLORS === */
   --bg: #000000;
-  --bg-surface: #4983C2;
+  --bg-surface: #141418;
   --bg-card: transparent;
   --bg-card-hover: rgba(255, 255, 255, 0.02);
   --bg-elevated: rgba(255, 255, 255, 0.03);
@@ -38,25 +38,26 @@
   --border-strong: #3A3A40;
   --divider: #1E1E22;
 
-  --accent: #00A3FF;
+  /* MZM-626: monochromatic accent — white replaces blue #00A3FF */
+  --accent: #FFFFFF;
   --accent-foreground: #000000;
 
-  --success: #3D8B6E;
-  --success-light: #EDF6F1;
-  --error: #C4453D;
-  --error-light: #FBEFEE;
-  --warning: #F59E0B;
-  --warning-light: #FBF0EB;
-  --info: #00A3FF;
-  --info-light: rgba(0, 163, 255, 0.08);
-  --purple: #7B61A6;
+  --success: #C8C8C8;
+  --success-light: rgba(255, 255, 255, 0.06);
+  --error: #E5E5E5;
+  --error-light: rgba(255, 255, 255, 0.06);
+  --warning: #B8B8B8;
+  --warning-light: rgba(255, 255, 255, 0.06);
+  --info: #FFFFFF;
+  --info-light: rgba(255, 255, 255, 0.08);
+  --purple: #B0B0B0;
 
-  /* Badge colors */
-  --badge-error: #F87171;
-  --badge-error-bg: rgba(248, 113, 113, 0.1);
-  --badge-success: #4ADE80;
-  --badge-success-bg: rgba(74, 222, 128, 0.1);
-  --badge-info-bg: rgba(0, 163, 255, 0.08);
+  /* Badge colors (neutralized) */
+  --badge-error: #E5E5E5;
+  --badge-error-bg: rgba(255, 255, 255, 0.08);
+  --badge-success: #F5F5F5;
+  --badge-success-bg: rgba(255, 255, 255, 0.08);
+  --badge-info-bg: rgba(255, 255, 255, 0.08);
 
   /* Glow border tokens */
   --glow-border: rgba(255, 255, 255, 0.08);
@@ -68,7 +69,20 @@
   --glow-shadow-hover: 0 0 0 0.5px rgba(255, 255, 255, 0.08);
   --glow-fill-subtle: rgba(255, 255, 255, 0.06);
   --glow-fill-hover: rgba(255, 255, 255, 0.1);
-  --decision-number: rgba(0, 163, 255, 0.15);
+  --decision-number: rgba(255, 255, 255, 0.15);
+
+  /* === MZM-626: v3 button system tokens === */
+  --btn-radius: 6px;
+  --btn-padding-y: 12px;
+  --btn-padding-x: 22px;
+  --btn-primary-bg: #1A1A1F;
+  --btn-primary-bg-hover: #26262C;
+  --btn-primary-text: #FFFFFF;
+  --btn-primary-border: rgba(255, 255, 255, 0.12);
+  --btn-primary-border-hover: rgba(255, 255, 255, 0.22);
+  --btn-secondary-text: #999999;
+  --btn-secondary-text-hover: #FFFFFF;
+  --btn-chevron-offset: 6px;
 
   /* === TYPOGRAPHY === */
   --font-display: 'domaine', system-ui, sans-serif;

@@ -90,60 +90,99 @@ p {
   background-size: 100% 1px;
 }
 
-/* === BUTTONS === */
-.btn {
+/* === BUTTONS (MZM-626: v3 monochromatic system) === */
+.btn,
+.btn-primary,
+.btn-secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
   font-size: var(--text-sm);
   font-weight: 500;
-  letter-spacing: var(--tracking-wide);
-  padding: 14px 32px;
-  border-radius: var(--radius-md);
-  border: none;
+  letter-spacing: 0;
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  border-radius: var(--btn-radius);
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: all var(--transition-base);
+  text-decoration: none;
+  transition: background-color var(--transition-fast),
+              border-color var(--transition-fast),
+              color var(--transition-fast),
+              transform var(--transition-fast);
 }
 
-/* MZM-357: Resend dark button — all primary buttons */
+/* Primary — dark charcoal fill, white text, chevron */
+.btn-primary,
 .btn--primary {
-  background: var(--glow-fill-subtle);
-  color: var(--text-primary);
-  border: 1px solid var(--glow-border-strong);
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border-color: var(--btn-primary-border);
 }
 
+.btn-primary::after,
 .btn--primary::after {
-  content: ' \203A';
-  margin-left: 6px;
+  content: '→';
+  margin-left: var(--btn-chevron-offset);
   display: inline-block;
   transition: transform var(--transition-fast);
 }
 
+.btn-primary:hover,
 .btn--primary:hover {
-  background: var(--glow-fill-hover);
-  border-color: var(--glow-border-strongest);
+  background: var(--btn-primary-bg-hover);
+  border-color: var(--btn-primary-border-hover);
   transform: translateY(-1px);
 }
 
+.btn-primary:hover::after,
 .btn--primary:hover::after {
   transform: translateX(3px);
 }
 
-/* Accent button — only for contact/email CTA */
+/* Secondary — text-only, gray, chevron */
+.btn-secondary,
+.cta-text {
+  background: transparent;
+  color: var(--btn-secondary-text);
+  border-color: transparent;
+  padding: var(--btn-padding-y) 4px;
+}
+
+.btn-secondary::after,
+.cta-text::after {
+  content: '→';
+  margin-left: var(--btn-chevron-offset);
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.btn-secondary:hover,
+.cta-text:hover {
+  color: var(--btn-secondary-text-hover);
+}
+
+.btn-secondary:hover::after,
+.cta-text:hover::after {
+  transform: translateX(3px);
+}
+
+/* Legacy accent button — now monochromatic (no blue/orange) */
 .btn--accent {
-  background: var(--accent);
-  color: var(--accent-foreground);
-  border: none;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 1px solid var(--btn-primary-border);
 }
 
 .btn--accent:hover {
-  opacity: 0.9;
+  background: var(--btn-primary-bg-hover);
+  border-color: var(--btn-primary-border-hover);
   transform: translateY(-1px);
 }
 
 .btn--accent::after {
-  content: none;
+  content: '→';
+  margin-left: var(--btn-chevron-offset);
 }
 
 .btn--outline {
@@ -155,6 +194,14 @@ p {
 .btn--outline:hover {
   border-color: var(--text-primary);
   color: var(--text-primary);
+}
+
+/* CTA pair layout — primary + secondary side by side */
+.cta-pair {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 /* === LAYOUT === */
