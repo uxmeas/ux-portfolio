@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compliance UX for Private Capital Markets — Pheak Meas</title>
+  <meta name="description" content="Our team redesigned investor onboarding from 45 to 12 minutes with 85% completion — across 20+ regulatory jurisdictions. KYC/AML compliance UX for enterprise investment dealers.">
+  <meta property="og:title" content="Compliance UX — Pheak Meas Portfolio">
+  <meta property="og:description" content="Investor onboarding redesign: 45→12 min, 85% completion, 20+ jurisdictions. KYC/AML compliance UX.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/case-study.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css">
+</head>
+<body>
+
+  <!-- NAV (sticky) -->
+  <nav class="nav">
+    <a href="../../index.html" class="nav__brand"><img src="../../images/logo.svg" alt="UX Meas"></a>
+    <div class="flex gap-xl">
+      <a href="../../index.html" class="nav__link link-animated">Work</a>
+      <a href="../../index.html#about" class="nav__link link-animated">About</a>
+      <a href="mailto:hello@uxmeas.com" class="nav__link--accent link-animated">Contact</a>
+    </div>
+  </nav>
+
+  <div class="cs">
+
+    <!-- 01: HERO -->
+    <section class="cs-hero reveal">
+      <span class="cs-hero__badge">Compliance UX</span>
+      <h1 class="cs-hero__title">Investor Onboarding for Private Capital Markets</h1>
+
+      <div class="cs-hero__meta">
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Role</span>
+          <span class="cs-hero__meta-value">Head of Product Design</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Timeline</span>
+          <span class="cs-hero__meta-value">2014–2025</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Team</span>
+          <span class="cs-hero__meta-value">3 → 30+ employees</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Tools</span>
+          <span class="cs-hero__meta-value">Figma, Sketch, InVision, Jira</span>
+        </div>
+      </div>
+
+      <div class="cs-hero__image cs-image--placeholder">
+        Hero Image — KYC/Compliance Platform Overview
+      </div>
+    </section>
+
+    <!-- 02: PROBLEM FRAMING -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Deep Problem Framing</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-problem">
+        <div class="cs-problem__content">
+          <span class="cs-problem__label">The Goal</span>
+          <p class="cs-problem__text">Our team redesigned the investor onboarding flow that was causing 60% drop-off at the document upload step. Each failed verification cost $200+ in manual compliance review. The challenge: reduce a 45-minute process to under 15 minutes while maintaining KYC/AML compliance across 20+ regulatory jurisdictions.</p>
+
+          <span class="cs-problem__label">The Problem</span>
+          <p class="cs-problem__text">Investors uploading sensitive ID documents abandoned at alarming rates. The flow asked for everything upfront — 6-8 documents in a single session with no save-and-resume. Compliance officers had zero visibility into who was stuck vs. who had abandoned. Different jurisdictions required different documents but the UI treated them identically. Identity verification integrations with providers like Trulioo and Onfido were fragmented and poorly surfaced in the flow.</p>
+
+          <div class="cs-hmw">
+            <span class="cs-hmw__label">How Might We</span>
+            <p class="cs-hmw__text">How might we reduce investor onboarding from 45 to under 15 minutes — cutting drop-off from 60% to 15% while maintaining compliance across 20+ jurisdictions?</p>
+          </div>
+        </div>
+
+        <div class="cs-problem__sidebar">
+          <div class="cs-before-after cs-before-after--before">
+            <span class="cs-before-after__tag">Before</span>
+            <span class="cs-before-after__value">45 min · 60% drop-off</span>
+            <span class="cs-before-after__desc">$200+ per failed verification. No save-and-resume. One-size-fits-all across jurisdictions.</span>
+          </div>
+          <div class="cs-before-after cs-before-after--after">
+            <span class="cs-before-after__tag">After</span>
+            <span class="cs-before-after__value">12 min · 85% completion</span>
+            <span class="cs-before-after__desc">Progressive steps with save-and-resume. Jurisdiction-aware rules engine.</span>
+          </div>
+          <div class="cs-before-after" >
+            <span class="cs-before-after__tag cs-before-after__tag--info">Scale</span>
+            <span class="cs-before-after__value">20+ jurisdictions</span>
+            <span class="cs-before-after__desc">150+ completed offerings across IIROC, Reg CF, MiFID, and FINTRAC jurisdictions.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03: USER RESEARCH -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Research</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="flex gap-lg">
+        <div class="card flex-1">
+          <span class="label">Methodology</span>
+          <p class="mt-sm">Stakeholder interviews with compliance officers, fund managers, and investors across 5 jurisdictions. Observation sessions during live onboarding. Analytics review of drop-off points.</p>
+        </div>
+        <div class="card flex-1">
+          <span class="label">Sample</span>
+          <p class="mt-sm">12 compliance officers, 8 fund managers, 20+ investors. Multiple rounds across platform iterations over 6+ years of continuous research.</p>
+        </div>
+      </div>
+
+      <span class="label">Key Insights</span>
+
+      <div class="cs-insights">
+        <div class="cs-insight">
+          <i class="lucide lucide-file-warning cs-insight__icon"></i>
+          <span class="cs-insight__title">Document fatigue kills completion</span>
+          <p class="cs-insight__text">Investors uploading 6-8 documents in one session abandoned at 60% rate. Breaking into progressive steps with save-and-resume changed everything.</p>
+        </div>
+        <div class="cs-insight">
+          <i class="lucide lucide-globe cs-insight__icon"></i>
+          <span class="cs-insight__title">Jurisdiction complexity was hidden</span>
+          <p class="cs-insight__text">Compliance officers couldn't see which requirements applied to which jurisdiction. We designed a rules engine UI that surfaced requirements contextually.</p>
+        </div>
+        <div class="cs-insight">
+          <i class="lucide lucide-shield-check cs-insight__icon"></i>
+          <span class="cs-insight__title">Trust signals reduce verification anxiety</span>
+          <p class="cs-insight__text">Investors uploading sensitive ID documents needed reassurance. Adding encryption badges, progress indicators, and clear data-handling messaging cut abandonment by 40%.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: COMPETITIVE ANALYSIS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Competitive Analysis</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <p>I evaluated how competing platforms handled investor onboarding and compliance verification to identify UX gaps we could exploit.</p>
+
+      <div class="cs-table">
+        <div class="cs-table__header">
+          <span>Feature</span>
+          <span>DocuSign</span>
+          <span>DealMaker</span>
+          <span>Our Platform</span>
+        </div>
+        <div class="cs-table__row">
+          <span>Progressive KYC flow</span>
+          <span class="cs-table__no">No</span>
+          <span class="cs-table__partial">Partial</span>
+          <span class="cs-table__yes">Yes</span>
+        </div>
+        <div class="cs-table__row">
+          <span>Multi-jurisdiction rules</span>
+          <span class="cs-table__no">No</span>
+          <span class="cs-table__no">No</span>
+          <span class="cs-table__yes">Yes (20+)</span>
+        </div>
+        <div class="cs-table__row">
+          <span>Save &amp; resume onboarding</span>
+          <span class="cs-table__no">No</span>
+          <span class="cs-table__partial">Partial</span>
+          <span class="cs-table__yes">Yes</span>
+        </div>
+        <div class="cs-table__row">
+          <span>Compliance dashboard</span>
+          <span class="cs-table__partial">Basic</span>
+          <span class="cs-table__partial">Basic</span>
+          <span class="cs-table__yes">Advanced</span>
+        </div>
+      </div>
+
+      <div class="cs-image cs-image--placeholder">
+        Competitive Landscape — Feature Gap Analysis Diagram
+      </div>
+    </section>
+
+    <!-- 05: USER PERSONAS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Personas</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-personas">
+        <div class="cs-persona">
+          <div class="cs-persona__header">
+            <div class="cs-persona__avatar cs-persona__avatar--blue">FM</div>
+            <div>
+              <div class="cs-persona__name">David Chen</div>
+              <div class="cs-persona__role">Fund Manager, 42</div>
+            </div>
+          </div>
+          <p class="cs-persona__quote">"I need to see all investor statuses at a glance — I can't chase compliance across spreadsheets."</p>
+          <span class="cs-persona__goals-label">Goals</span>
+          <p class="cs-persona__item">Launch offerings quickly with minimal compliance friction</p>
+          <p class="cs-persona__item">Real-time visibility into investor pipeline status</p>
+          <p class="cs-persona__item">Automate follow-ups for incomplete onboarding</p>
+          <span class="cs-persona__frustrations-label">Frustrations</span>
+          <p class="cs-persona__item">Manual tracking across jurisdictions is error-prone</p>
+          <p class="cs-persona__item">Can't tell which investors are stuck vs. abandoned</p>
+        </div>
+
+        <div class="cs-persona">
+          <div class="cs-persona__header">
+            <div class="cs-persona__avatar cs-persona__avatar--purple">CO</div>
+            <div>
+              <div class="cs-persona__name">Sarah Kim</div>
+              <div class="cs-persona__role">Compliance Officer, 38</div>
+            </div>
+          </div>
+          <p class="cs-persona__quote">"If I miss a regulatory flag, the whole offering gets shut down. I need the system to catch what I might miss."</p>
+          <span class="cs-persona__goals-label">Goals</span>
+          <p class="cs-persona__item">Audit trail for every verification decision</p>
+          <p class="cs-persona__item">Jurisdiction-specific rule visibility</p>
+          <p class="cs-persona__item">Automated alerts when documents expire</p>
+          <span class="cs-persona__frustrations-label">Frustrations</span>
+          <p class="cs-persona__item">Different rules per jurisdiction but one UI for all</p>
+          <p class="cs-persona__item">No way to bulk-verify or batch-reject</p>
+        </div>
+
+        <div class="cs-persona">
+          <div class="cs-persona__header">
+            <div class="cs-persona__avatar cs-persona__avatar--green">AI</div>
+            <div>
+              <div class="cs-persona__name">Michael Torres</div>
+              <div class="cs-persona__role">Accredited Investor, 55</div>
+            </div>
+          </div>
+          <p class="cs-persona__quote">"I'm investing $250K — I expect the onboarding to be as professional as the opportunity itself."</p>
+          <span class="cs-persona__goals-label">Goals</span>
+          <p class="cs-persona__item">Complete onboarding quickly from any device</p>
+          <p class="cs-persona__item">Understand exactly what's needed and why</p>
+          <p class="cs-persona__item">Trust that sensitive documents are secure</p>
+          <span class="cs-persona__frustrations-label">Frustrations</span>
+          <p class="cs-persona__item">Uploading IDs feels invasive without context</p>
+          <p class="cs-persona__item">No progress indicator — no idea how long this takes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06: INFORMATION ARCHITECTURE -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Information Architecture</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <p>I mapped the complete investor journey across 20+ platform touchpoints — from initial offering discovery through KYC verification, accreditation, document signing, and investment confirmation. This architecture informed every compliance screen we designed.</p>
+
+      <div class="cs-image cs-image--placeholder">
+        Information Architecture — Investor Onboarding Sitemap
+      </div>
+    </section>
+
+    <!-- 07: DESIGN CONCEPTS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Concepts / Ideation</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <p>Over 11 years, the compliance flow went through multiple major iterations. Here are the key concept explorations that shaped the final design.</p>
+
+      <div class="flex gap-lg">
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--md">V1: Single long form</div>
+          <span class="label">High abandonment — too overwhelming</span>
+        </div>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--md">V2: Tabbed wizard</div>
+          <span class="label">Better but still confusing navigation</span>
+        </div>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--md">V3: Progressive steps</div>
+          <span class="label label--success-bold">Shipped — 85% completion rate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08: DESIGN APPROACH / SOLUTION -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Approach / Solution</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-solution">
+        <div class="cs-solution__content">
+          <p>I led the redesign of the entire investor onboarding experience — from KYC document collection through accreditation verification and electronic signatures.</p>
+          <p>Our team designed a progressive, jurisdiction-aware flow that adapts requirements based on investor type and location. The key innovation was treating compliance as a UX problem, not just a legal checkbox.</p>
+
+          <span class="label">Key Approach</span>
+          <p class="cs-solution__feature">1. Progressive disclosure — one step at a time</p>
+          <p class="cs-solution__feature">2. Save-and-resume across sessions</p>
+          <p class="cs-solution__feature">3. Contextual jurisdiction rules</p>
+          <p class="cs-solution__feature">4. Trust signals at every sensitive step</p>
+        </div>
+        <div class="cs-solution__visuals">
+          <div class="cs-image cs-image--placeholder cs-image--md">KYC Progressive Flow</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">Compliance Dashboard</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09: KEY SCREENS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Key Screens / Features</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <p>Annotated walkthrough of the key screens I designed — with callouts explaining WHY each decision was made.</p>
+
+      <div class="flex gap-lg">
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--lg">KYC Start Screen</div>
+          <p class="cs-annotation">Annotation: How this screen builds trust before asking for documents</p>
+        </div>
+        <div class="cs-evo-col">
+          <div class="cs-image cs-image--placeholder cs-image--lg">Compliance Dashboard</div>
+          <p class="cs-annotation">Annotation: How this gives compliance officers full pipeline visibility</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10: VISUAL DESIGN SYSTEM -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Visual Design System</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <p>I built and maintained the design system that powered every compliance screen — from color tokens to component states.</p>
+
+      <div class="cs-design-system">
+        <div class="card">
+          <span class="label">Color Palette</span>
+          <div class="cs-color-grid mt-md">
+            <div class="cs-color-swatch">
+              <div class="cs-color-swatch__color" style="background: #1A2030;"></div>
+              <span class="cs-color-swatch__label">Primary</span>
+            </div>
+            <div class="cs-color-swatch">
+              <div class="cs-color-swatch__color" style="background: #D4915E;"></div>
+              <span class="cs-color-swatch__label">Accent</span>
+            </div>
+            <div class="cs-color-swatch">
+              <div class="cs-color-swatch__color" style="background: #2E7D32;"></div>
+              <span class="cs-color-swatch__label">Success</span>
+            </div>
+            <div class="cs-color-swatch">
+              <div class="cs-color-swatch__color" style="background: #C62828;"></div>
+              <span class="cs-color-swatch__label">Error</span>
+            </div>
+            <div class="cs-color-swatch">
+              <div class="cs-color-swatch__color" style="background: #F59E0B;"></div>
+              <span class="cs-color-swatch__label">Warning</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="label">Typography</span>
+          <div class="cs-type-samples">
+            <span class="cs-type-sample--h1">Heading 1</span>
+            <span class="cs-type-sample--h2">Heading 2</span>
+            <span class="cs-type-sample--body">Body text — 14px regular</span>
+            <span class="cs-type-sample--caption">Caption — 11px muted</span>
+            <span class="label label--blue">Label — uppercase</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11: DESIGN DECISIONS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Decisions</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-decision">
+        <div class="cs-decision__content">
+          <span class="cs-decision__number">01</span>
+          <h4 class="cs-decision__title">Progressive disclosure over single-page forms</h4>
+          <span class="label">Considered</span>
+          <p class="cs-decision__desc">Single long form, tabbed wizard, progressive steps</p>
+          <span class="label label--success">Chose &amp; Why</span>
+          <p>Progressive steps — analytics showed 60% drop-off on single forms. Step-based flow with save-and-resume achieved 85% completion. Users could see progress and return later without losing work.</p>
+        </div>
+        <div class="cs-decision__image cs-image--placeholder cs-image--md">
+          Before/After comparison
+        </div>
+      </div>
+
+      <div class="cs-decision cs-decision--reverse">
+        <div class="cs-decision__content">
+          <span class="cs-decision__number">02</span>
+          <h4 class="cs-decision__title">Contextual jurisdiction rules over global settings</h4>
+          <span class="label">Considered</span>
+          <p class="cs-decision__desc">Global settings page, per-offering config, contextual inline rules</p>
+          <span class="label label--success">Chose &amp; Why</span>
+          <p>Contextual inline rules — compliance officers needed to see which rules applied WHILE reviewing investors, not in a separate settings screen. Reduced context-switching by 70%.</p>
+        </div>
+        <div class="cs-decision__image cs-image--placeholder cs-image--md">
+          Jurisdiction rules UI
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT TESTIMONIALS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Client Testimonial</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-testimonials">
+        <div class="cs-testimonial">
+          <div class="cs-testimonial__logo">
+            <span class="cs-testimonial__attr">Canaccord Genuity</span>
+          </div>
+          <p class="cs-testimonial__quote">"It was extremely important to us to work with a company that had the skillset, the technology team, and the management team to grow and drive improvements with us, so we could truly be the leader in the digitization of private placements."</p>
+          <span class="cs-testimonial__name">— Canaccord Genuity Stakeholder</span>
+        </div>
+        <div class="cs-testimonial">
+          <div class="cs-testimonial__logo">
+            <span class="cs-testimonial__attr">Sprott Capital</span>
+          </div>
+          <p class="cs-testimonial__quote">"It is crucial that we modernize our processes to improve efficiency and create a better experience for both investors and issuers."</p>
+          <span class="cs-testimonial__name">— Lisa Edwards, COO &amp; CCO, Sprott Capital Partners</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12: RESULTS & OUTCOMES -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Results &amp; Outcomes</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric__number">45 → 12</span>
+          <span class="cs-metric__label cs-metric__label--blue">Minutes</span>
+          <span class="cs-metric__desc">Onboarding time reduced by 73%</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">85%</span>
+          <span class="cs-metric__label cs-metric__label--green">Completion</span>
+          <span class="cs-metric__desc">Investor onboarding completion rate</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">$2B+</span>
+          <span class="cs-metric__label cs-metric__label--accent">Processed</span>
+          <span class="cs-metric__desc">Total capital through platform</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">150+</span>
+          <span class="cs-metric__label cs-metric__label--purple">Offerings</span>
+          <span class="cs-metric__desc">Completed offerings on platform</span>
+        </div>
+      </div>
+
+      <div class="cs-comparison">
+        <div class="cs-comparison__side cs-comparison__side--before">
+          <span class="label label--error">Before</span>
+          <div class="cs-comparison__image cs-image--placeholder">
+            Old onboarding flow — 45 min, 60% drop-off
+          </div>
+        </div>
+        <div class="cs-comparison__side cs-comparison__side--after">
+          <span class="label label--success">After</span>
+          <div class="cs-comparison__image cs-image--placeholder">
+            New progressive flow — 12 min, 85% completion
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13: REFLECTION + CTA -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Reflection</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-reflection">
+        <div class="cs-reflection__card cs-reflection__card--worked">
+          <div class="cs-reflection__header">
+            <span class="cs-reflection__icon text-success">&#10003;</span>
+            <span class="label label--success">What Worked</span>
+          </div>
+          <p class="cs-reflection__item">1. Progressive disclosure reduced cognitive load — investors completed one step at a time instead of facing a wall of forms</p>
+          <p class="cs-reflection__item">2. Jurisdiction-aware rules engine eliminated manual compliance checking — the system surfaced the right requirements automatically</p>
+          <p class="cs-reflection__item">3. Save-and-resume was the single biggest win — investors could leave mid-flow and return days later without losing progress</p>
+        </div>
+        <div class="cs-reflection__card cs-reflection__card--improve">
+          <div class="cs-reflection__header">
+            <span class="cs-reflection__icon text-warning">&#9672;</span>
+            <span class="label label--warning">What I'd Do Differently</span>
+          </div>
+          <p class="cs-reflection__item">1. Mobile-first from day one — we retrofitted mobile support years after desktop launch, which created layout debt</p>
+          <p class="cs-reflection__item">2. User testing earlier in the compliance flow — we relied too heavily on stakeholder interviews and not enough on watching real investors struggle</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cs-cta">
+        <span class="cs-cta__label">Next Case Study</span>
+        <h3 class="cs-cta__title">DealFlow Investment Platform</h3>
+        <a href="../dealflow/" class="btn btn--primary">View Case Study</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-copyright">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MockupKit — Device Mockup Plugin for Figma — Pheak Meas</title>
+  <meta name="description" content="I designed a Figma plugin that creates perspective-accurate device mockups in under 30 seconds — no Photoshop, no leaving Figma.">
+  <meta property="og:title" content="MockupKit — Pheak Meas Portfolio">
+  <meta property="og:description" content="Device mockup plugin for Figma: 30s per mockup, 5 devices, DLT homography perspective editor.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/case-study.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css">
+</head>
+<body>
+
+  <!-- NAV (sticky) -->
+  <nav class="nav">
+    <a href="../../index.html" class="nav__brand"><img src="../../images/logo.svg" alt="UX Meas"></a>
+    <div class="flex gap-xl">
+      <a href="../../index.html" class="nav__link link-animated">Work</a>
+      <a href="../../index.html#about" class="nav__link link-animated">About</a>
+      <a href="mailto:hello@uxmeas.com" class="nav__link--accent link-animated">Contact</a>
+    </div>
+  </nav>
+
+  <div class="cs">
+
+    <!-- 01: HERO -->
+    <section class="cs-hero reveal">
+      <span class="cs-hero__badge">Figma Plugin</span>
+      <h1 class="cs-hero__title">MockupKit — Device Mockup Plugin for Figma</h1>
+
+      <div class="cs-hero__meta">
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Role</span>
+          <span class="cs-hero__meta-value">Product Designer &amp; Developer</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Timeline</span>
+          <span class="cs-hero__meta-value">2026 (4 weeks)</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Type</span>
+          <span class="cs-hero__meta-value">Figma Plugin (Free + Pro $8)</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Tools</span>
+          <span class="cs-hero__meta-value">Figma Plugin API, TypeScript, DLT</span>
+        </div>
+      </div>
+
+      <div class="cs-hero__image cs-image--placeholder">
+        Hero Image — MockupKit Plugin with Device Previews
+      </div>
+    </section>
+
+    <!-- 02: PROBLEM FRAMING -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Deep Problem Framing</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-problem">
+        <div class="cs-problem__content">
+          <span class="cs-problem__label">The Goal</span>
+          <p class="cs-problem__text">Designers need device mockups for portfolios, presentations, and client deliverables — but creating them means leaving Figma for Photoshop or third-party mockup tools. Each mockup takes 5-10 minutes and breaks the design workflow.</p>
+
+          <span class="cs-problem__label">The Problem</span>
+          <p class="cs-problem__text">Existing mockup tools either require leaving Figma entirely or produce flat, lifeless results without perspective. The top Figma plugins have millions of users but limited perspective control — they offer presets, not creative freedom.</p>
+
+          <div class="cs-hmw">
+            <span class="cs-hmw__label">How Might We</span>
+            <p class="cs-hmw__text">How might we create perspective-accurate device mockups without leaving Figma — in under 30 seconds?</p>
+          </div>
+        </div>
+
+        <div class="cs-problem__sidebar">
+          <div class="cs-before-after cs-before-after--before">
+            <span class="cs-before-after__tag">Before</span>
+            <span class="cs-before-after__value">5-10 min per mockup</span>
+            <span class="cs-before-after__desc">Leave Figma, open Photoshop or Smartmockups, export, reimport. Workflow broken.</span>
+          </div>
+          <div class="cs-before-after cs-before-after--after">
+            <span class="cs-before-after__tag">After</span>
+            <span class="cs-before-after__value">30 seconds in Figma</span>
+            <span class="cs-before-after__desc">Select frame, pick device, adjust perspective, done. Never leave Figma.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03: USER RESEARCH -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Research</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <span class="label">Key Insights</span>
+
+      <div class="cs-insights">
+        <div class="cs-insight">
+          <i class="lucide lucide-box cs-insight__icon"></i>
+          <span class="cs-insight__title">Perspective is the differentiator</span>
+          <p class="cs-insight__text">Flat mockups look amateur. Real perspective transforms a screenshot into a professional presentation piece. DLT homography math enables 4-point perspective that competitors don't offer.</p>
+        </div>
+        <div class="cs-insight">
+          <i class="lucide lucide-sliders cs-insight__icon"></i>
+          <span class="cs-insight__title">Designers want control, not presets</span>
+          <p class="cs-insight__text">Fixed mockup angles feel limiting. Designers need to drag perspective points freely to match their composition — not pick from a grid of predetermined views.</p>
+        </div>
+        <div class="cs-insight">
+          <i class="lucide lucide-trending-up cs-insight__icon"></i>
+          <span class="cs-insight__title">Freemium validates demand</span>
+          <p class="cs-insight__text">Offering core devices for free and premium devices at $8 lets designers try before buying. Free users become advocates, and the price point is low enough for impulse purchase.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: COMPETITIVE ANALYSIS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Competitive Analysis</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <p>I analyzed the two dominant Figma mockup plugins to find the UX gap MockupKit could own.</p>
+
+      <div class="cs-table">
+        <div class="cs-table__header">
+          <span>Feature</span>
+          <span>Mockup Plugin (1.4M)</span>
+          <span>Clay Mockups (599K)</span>
+          <span>MockupKit</span>
+        </div>
+        <div class="cs-table__row">
+          <span>4-point perspective editor</span>
+          <span class="cs-table__no">No</span>
+          <span class="cs-table__no">No</span>
+          <span class="cs-table__yes">Yes</span>
+        </div>
+        <div class="cs-table__row">
+          <span>Custom perspective angles</span>
+          <span class="cs-table__partial">Presets only</span>
+          <span class="cs-table__partial">Presets only</span>
+          <span class="cs-table__yes">Free-form</span>
+        </div>
+        <div class="cs-table__row">
+          <span>Device color options</span>
+          <span class="cs-table__yes">Yes</span>
+          <span class="cs-table__partial">Limited</span>
+          <span class="cs-table__yes">Yes</span>
+        </div>
+        <div class="cs-table__row">
+          <span>Landscape toggle</span>
+          <span class="cs-table__no">No</span>
+          <span class="cs-table__partial">Manual</span>
+          <span class="cs-table__yes">One-click</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: USER PERSONAS -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Personas</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-personas">
+        <div class="cs-persona">
+          <div class="cs-persona__header">
+            <div class="cs-persona__avatar cs-persona__avatar--blue">SM</div>
+            <div>
+              <div class="cs-persona__name">Sofia Martinez</div>
+              <div class="cs-persona__role">UI Designer, 26</div>
+            </div>
+          </div>
+          <p class="cs-persona__quote">"I need mockups for every case study in my portfolio. Leaving Figma for Photoshop every time is a workflow killer."</p>
+          <span class="cs-persona__goals-label">Goals</span>
+          <p class="cs-persona__item">Create polished device mockups without leaving Figma</p>
+          <p class="cs-persona__item">Custom perspective angles for unique compositions</p>
+          <span class="cs-persona__frustrations-label">Frustrations</span>
+          <p class="cs-persona__item">Preset angles don't match her design compositions</p>
+          <p class="cs-persona__item">Existing plugins produce flat, lifeless results</p>
+        </div>
+
+        <div class="cs-persona">
+          <div class="cs-persona__header">
+            <div class="cs-persona__avatar cs-persona__avatar--purple">JT</div>
+            <div>
+              <div class="cs-persona__name">Jake Thompson</div>
+              <div class="cs-persona__role">Freelance Designer, 32</div>
+            </div>
+          </div>
+          <p class="cs-persona__quote">"Clients love seeing their app in a device mockup. I need this to be fast because I'm billing by the hour."</p>
+          <span class="cs-persona__goals-label">Goals</span>
+          <p class="cs-persona__item">Generate client-ready mockups in seconds</p>
+          <p class="cs-persona__item">Multiple device types for different presentations</p>
+          <span class="cs-persona__frustrations-label">Frustrations</span>
+          <p class="cs-persona__item">Time spent on mockups isn't billable design work</p>
+          <p class="cs-persona__item">Free tools look cheap, expensive tools are overkill</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06: DESIGN APPROACH / SOLUTION -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Approach / Solution</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-solution">
+        <div class="cs-solution__content">
+          <p>MockupKit uses DLT (Direct Linear Transform) homography to map screen content onto device frames with mathematically accurate perspective. Designers drag 4 corner points to set any angle — not limited to presets.</p>
+          <p>The plugin generates native Figma frames, not flattened images. Everything stays editable. Device colors, landscape orientation, and quantity are all one-click controls.</p>
+
+          <span class="label">Key Features</span>
+          <p class="cs-solution__feature">1. 5 device templates (iPhone, MacBook, iPad, Android, Desktop)</p>
+          <p class="cs-solution__feature">2. 4-point perspective editor with free-form dragging</p>
+          <p class="cs-solution__feature">3. Device color options and landscape toggle</p>
+          <p class="cs-solution__feature">4. Quantity stepper for multi-device compositions</p>
+        </div>
+        <div class="cs-solution__visuals">
+          <div class="cs-image cs-image--placeholder cs-image--md">Perspective Editor — 4-Point Drag</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">Device Color &amp; Orientation Controls</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07: RESULTS & OUTCOMES -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Results &amp; Outcomes</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric__number">30s</span>
+          <span class="cs-metric__label cs-metric__label--blue">Per Mockup</span>
+          <span class="cs-metric__desc">Down from 5-10 minutes with external tools</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">30KB</span>
+          <span class="cs-metric__label cs-metric__label--green">Bundle Size</span>
+          <span class="cs-metric__desc">Lightweight with DLT math included</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">5</span>
+          <span class="cs-metric__label cs-metric__label--accent">Devices</span>
+          <span class="cs-metric__desc">iPhone, MacBook, iPad, Android, Desktop</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">$8</span>
+          <span class="cs-metric__label cs-metric__label--purple">Pro Price</span>
+          <span class="cs-metric__desc">Free core + affordable Pro upgrade</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08: REFLECTION + CTA -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Reflection</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-reflection">
+        <div class="cs-reflection__card cs-reflection__card--worked">
+          <div class="cs-reflection__header">
+            <span class="cs-reflection__icon text-success">&#10003;</span>
+            <span class="label label--success">What Worked</span>
+          </div>
+          <p class="cs-reflection__item">1. DLT homography — the math-based perspective approach created a genuine differentiator against preset-only competitors</p>
+          <p class="cs-reflection__item">2. Freemium model — free core devices lowered the barrier while the $8 Pro price felt like an impulse buy for working designers</p>
+        </div>
+        <div class="cs-reflection__card cs-reflection__card--improve">
+          <div class="cs-reflection__header">
+            <span class="cs-reflection__icon text-warning">&#9672;</span>
+            <span class="label label--warning">What I'd Do Differently</span>
+          </div>
+          <p class="cs-reflection__item">1. More device templates at launch — 5 devices covers the basics but designers immediately asked for watches, TVs, and custom frames</p>
+          <p class="cs-reflection__item">2. Batch mockup generation — designers creating portfolios need the same screen in multiple devices at once</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cs-cta">
+        <span class="cs-cta__label">Next Case Study</span>
+        <h3 class="cs-cta__title">Docs to Design — Document-to-Design Wizard</h3>
+        <a href="../docs-to-design/" class="btn btn--primary">View Case Study</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-copyright">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>

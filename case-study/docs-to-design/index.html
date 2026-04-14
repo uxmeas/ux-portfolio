@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-base="../../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs to Design — Document-to-Design Wizard — Pheak Meas</title>
+  <meta name="description" content="I designed a Figma plugin and SaaS that converts documents to design structures in under 60 seconds — eliminating 30-60 minutes of manual translation.">
+  <meta property="og:title" content="Docs to Design — Pheak Meas Portfolio">
+  <meta property="og:description" content="Document-to-design wizard: 60 min manual translation reduced to under 60 seconds. Auto hierarchy detection.">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/case-study.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide-static@latest/font/lucide.min.css">
+</head>
+<body>
+
+  <!-- NAV (sticky) -->
+  <nav class="nav">
+    <a href="../../index.html" class="nav__brand"><img src="../../images/logo.svg" alt="UX Meas"></a>
+    <div class="flex gap-xl">
+      <a href="../../index.html" class="nav__link link-animated">Work</a>
+      <a href="../../index.html#about" class="nav__link link-animated">About</a>
+      <a href="mailto:hello@uxmeas.com" class="nav__link--accent link-animated">Contact</a>
+    </div>
+  </nav>
+
+  <div class="cs">
+
+    <!-- 01: HERO -->
+    <section class="cs-hero reveal">
+      <span class="cs-hero__badge">Figma Plugin + SaaS</span>
+      <h1 class="cs-hero__title">Docs to Design — Document-to-Design Wizard</h1>
+
+      <div class="cs-hero__meta">
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Role</span>
+          <span class="cs-hero__meta-value">Product Designer &amp; Developer</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Timeline</span>
+          <span class="cs-hero__meta-value">2025–2026</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Type</span>
+          <span class="cs-hero__meta-value">Figma Plugin + SaaS</span>
+        </div>
+        <div class="cs-hero__meta-item">
+          <span class="cs-hero__meta-label">Tools</span>
+          <span class="cs-hero__meta-value">Figma Plugin API, TypeScript, React</span>
+        </div>
+      </div>
+
+      <div class="cs-hero__image cs-image--placeholder">
+        Hero Image — Docs to Design Wizard Interface
+      </div>
+    </section>
+
+    <!-- 02: PROBLEM FRAMING -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Deep Problem Framing</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-problem">
+        <div class="cs-problem__content">
+          <span class="cs-problem__label">The Goal</span>
+          <p class="cs-problem__text">Designers manually recreate document structure in Figma — reading a Word doc or PDF, then building the heading hierarchy, body text, lists, and tables by hand. This takes 30-60 minutes per document with zero creative value.</p>
+
+          <span class="cs-problem__label">The Problem</span>
+          <p class="cs-problem__text">Every designer does this translation work — taking structured content from documents and rebuilding it in a design tool. The content already has hierarchy (H1, H2, body, lists) but designers ignore the structure and recreate it manually because there's no bridge between document format and design format.</p>
+
+          <div class="cs-hmw">
+            <span class="cs-hmw__label">How Might We</span>
+            <p class="cs-hmw__text">How might we go from document to design structure in under 60 seconds — with auto hierarchy detection that maps document structure to design tokens?</p>
+          </div>
+        </div>
+
+        <div class="cs-problem__sidebar">
+          <div class="cs-before-after cs-before-after--before">
+            <span class="cs-before-after__tag">Before</span>
+            <span class="cs-before-after__value">30-60 min translation</span>
+            <span class="cs-before-after__desc">Read document, identify hierarchy, manually recreate in Figma. Zero creative value.</span>
+          </div>
+          <div class="cs-before-after cs-before-after--after">
+            <span class="cs-before-after__tag">After</span>
+            <span class="cs-before-after__value">Under 60 seconds</span>
+            <span class="cs-before-after__desc">Auto-detect structure, map to design tokens, generate Figma layers. Start designing immediately.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03: USER RESEARCH -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">User Research</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <span class="label">Key Insights</span>
+
+      <div class="cs-insights">
+        <div class="cs-insight">
+          <i class="lucide lucide-file-text cs-insight__icon"></i>
+          <span class="cs-insight__title">Every designer does this translation</span>
+          <p class="cs-insight__text">The document-to-design translation is universal — every designer converting content into layouts spends time on structural work before creative work can begin. It's invisible labor that nobody tracks.</p>
+        </div>
+        <div class="cs-insight">
+          <i class="lucide lucide-layout cs-insight__icon"></i>
+          <span class="cs-insight__title">Structure matters more than content</span>
+          <p class="cs-insight__text">Designers don't need perfect content on first pass — they need the hierarchy. Knowing where H1s, H2s, body text, and lists go is 80% of the layout work. Content can be refined later.</p>
+        </div>
+        <div class="cs-insight">
+          <i class="lucide lucide-wand cs-insight__icon"></i>
+          <span class="cs-insight__title">Wizard UX reduces overwhelm</span>
+          <p class="cs-insight__text">A step-by-step wizard that walks through import, detection, mapping, and preview was far less overwhelming than a single-screen power tool. But power users wanted a compact mode too.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04: DESIGN APPROACH / SOLUTION -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Design Approach / Solution</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-solution">
+        <div class="cs-solution__content">
+          <p>Docs to Design auto-detects document hierarchy — headings, body text, lists, tables — and maps each element to design tokens. The wizard walks designers through import, structure review, style mapping, and preview before generating Figma layers.</p>
+          <p>For power users, Compact Pro mode condenses the entire flow into a single panel. The brand identity system lets teams save their design token mappings so every document follows the same visual language.</p>
+
+          <span class="label">Key Features</span>
+          <p class="cs-solution__feature">1. Structure auto-detection from documents</p>
+          <p class="cs-solution__feature">2. Style mapping to design tokens (headings, body, lists)</p>
+          <p class="cs-solution__feature">3. Live preview before generating layers</p>
+          <p class="cs-solution__feature">4. Compact Pro mode for power users</p>
+          <p class="cs-solution__feature">5. Brand identity system for consistent token mapping</p>
+        </div>
+        <div class="cs-solution__visuals">
+          <div class="cs-image cs-image--placeholder cs-image--md">Wizard Flow — Step-by-Step</div>
+          <div class="cs-image cs-image--placeholder cs-image--md">Compact Pro Mode</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05: RESULTS & OUTCOMES -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Results &amp; Outcomes</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-metrics">
+        <div class="cs-metric">
+          <span class="cs-metric__number">60 → 1</span>
+          <span class="cs-metric__label cs-metric__label--blue">Minutes</span>
+          <span class="cs-metric__desc">Document-to-design translation time reduced by 98%</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">2</span>
+          <span class="cs-metric__label cs-metric__label--green">Modes</span>
+          <span class="cs-metric__desc">Wizard for beginners, Compact Pro for power users</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">Auto</span>
+          <span class="cs-metric__label cs-metric__label--accent">Detection</span>
+          <span class="cs-metric__desc">Hierarchy auto-detected from document structure</span>
+        </div>
+        <div class="cs-metric">
+          <span class="cs-metric__number">Brand</span>
+          <span class="cs-metric__label cs-metric__label--purple">Identity</span>
+          <span class="cs-metric__desc">Saved token mappings for team consistency</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06: REFLECTION + CTA -->
+    <section class="cs-section reveal">
+      <div class="cs-section-header">
+        <span class="cs-section-header__label">Reflection</span>
+        <div class="cs-section-header__divider"></div>
+      </div>
+
+      <div class="cs-reflection">
+        <div class="cs-reflection__card cs-reflection__card--worked">
+          <div class="cs-reflection__header">
+            <span class="cs-reflection__icon text-success">&#10003;</span>
+            <span class="label label--success">What Worked</span>
+          </div>
+          <p class="cs-reflection__item">1. Dual-mode UX — the wizard captured beginners while Compact Pro retained power users who would have bounced from a step-by-step flow</p>
+          <p class="cs-reflection__item">2. Structure-first approach — focusing on hierarchy detection instead of pixel-perfect content rendering meant the tool was useful from day one</p>
+        </div>
+        <div class="cs-reflection__card cs-reflection__card--improve">
+          <div class="cs-reflection__header">
+            <span class="cs-reflection__icon text-warning">&#9672;</span>
+            <span class="label label--warning">What I'd Do Differently</span>
+          </div>
+          <p class="cs-reflection__item">1. Support more input formats earlier — users immediately asked for Google Docs, Notion, and Markdown support beyond Word/PDF</p>
+          <p class="cs-reflection__item">2. Build the SaaS web version in parallel — the Figma plugin validates the concept but the web app reaches non-Figma designers</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cs-cta">
+        <span class="cs-cta__label">Next Case Study</span>
+        <h3 class="cs-cta__title">MyPick.io — Visual Elimination Randomizer</h3>
+        <a href="../mypick/" class="btn btn--primary">View Case Study</a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-copyright">&copy; 2026 Pheak Meas. All rights reserved.</p>
+  </footer>
+
+  <script src="../../js/main.js" defer></script>
+</body>
+</html>
