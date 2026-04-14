@@ -1,6 +1,6 @@
 # UX Meas — Project Status
 
-**Last updated**: 2026-04-10
+**Last updated**: 2026-04-14
 **Priority**: #1a (job hunting + portfolio)
 **Stage**: LIVE — production deployed
 **Owners**: Ana (delivery gates), Rio (job hunting status + marketing), Kai (design QA)
@@ -182,6 +182,24 @@ Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
 
 ---
 
+## What's DONE (April 14 session)
+
+### Folder Consolidation (MZM-609)
+- [x] Archived stale `uxmeas-portfolio-ui` (zero unique commits) to `_archive/uxmeas-portfolio-ui-2026-04-14/`
+- [x] Archived corrupt `uxmeas-broken` (git object DB corrupt; all reachable commits already in uxmeas) to `_archive/uxmeas-broken-2026-04-14/`
+- [x] Created tar snapshots under `_archive/uxmeas-consolidation-2026-04-14/`
+- [x] `uxmeas` confirmed as canonical KEEPER: new look + Microsoft Clarity + MZM-402 a11y + MZM-321 production/ sync + gallery/device fixes already at `origin/dev` HEAD `74c080c`
+- [x] `uxmeas-fresh` left untouched (separate Development monorepo worktree, out of scope)
+
+### Compliance UX Stat Fix (MZM-605)
+- [x] Replaced all semantic `60%` drop-off references with `65%` industry benchmark framing (Persona / Onfido, pre-2017)
+- [x] Updated both source (`case-study/compliance-ux/index.html`) and published (`production/case-study/compliance-ux/index.html`) copies
+- [x] Kept `85% completion` stat unchanged
+- [x] Kept `$200 per failed verification` (Katipult data) — decoupled from industry baseline framing
+- [x] Matches copy source of truth at `_copy/uxmeas.com/case-studies/compliance-ux.md`
+
+---
+
 ## What's DONE (April 10 session)
 
 ### Board Audit (MZM-391)
@@ -211,7 +229,6 @@ Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
 ---
 
 ## Known Issues
-- Compliance UX: conflicting drop-off stats (50% vs 60%)
 - og:image missing
 - Contact form untested / Netlify Forms notification not set up
 - Hero laptop images in case studies may need dark/light swap (compliance-ux currently shows light dashboard, dealflow shows dark — verify against .pen intent)
