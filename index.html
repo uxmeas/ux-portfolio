@@ -249,33 +249,44 @@
     .about__stat {
       display: flex;
       flex-direction: column;
-      gap: var(--space-sm);
+      align-items: stretch;
+    }
+
+    .about__stat-box {
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: var(--space-xl);
       background: var(--glow-fill-subtle);
       border: 1px solid var(--glow-border);
       border-radius: var(--radius-lg);
       box-shadow: var(--glow-shadow);
       transition: border-color var(--transition-base);
+      text-align: center;
     }
 
-    .about__stat:hover {
+    .about__stat:hover .about__stat-box {
       border-color: var(--glow-border-hover);
     }
 
     .about__stat-number {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, var(--text-3xl));
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
       font-weight: 400;
       letter-spacing: var(--tracking-tight);
-      line-height: 1.1;
+      line-height: 1;
       color: var(--text-primary);
     }
 
     .about__stat-label {
+      display: block;
+      margin-top: var(--space-md);
       font-size: var(--text-xs);
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-muted);
+      text-align: center;
     }
 
     @media (max-width: 1024px) {
@@ -533,20 +544,20 @@
 
     <div class="about__stats">
       <div class="about__stat">
-        <span class="about__stat-number">18</span>
+        <div class="about__stat-box"><span class="about__stat-number">18</span></div>
         <span class="about__stat-label">Years in product design</span>
       </div>
       <div class="about__stat">
         <!-- TODO confirm $2B claim -->
-        <span class="about__stat-number">$2B+</span>
+        <div class="about__stat-box"><span class="about__stat-number">$2B+</span></div>
         <span class="about__stat-label">In funded products</span>
       </div>
       <div class="about__stat">
-        <span class="about__stat-number">3 → 45</span>
+        <div class="about__stat-box"><span class="about__stat-number">3 → 45</span></div>
         <span class="about__stat-label">Team scaled</span>
       </div>
       <div class="about__stat">
-        <span class="about__stat-number">IPO</span>
+        <div class="about__stat-box"><span class="about__stat-number">IPO</span></div>
         <span class="about__stat-label">TSX-V public company</span>
       </div>
     </div>
