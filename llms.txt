@@ -1,0 +1,34 @@
+# Pheak Meas — Product Designer & Founder
+
+> 18 years shipping product design across fintech, developer tools, and AI-native products. Co-founded a fintech company from 3-person startup to TSX-V public company.
+
+## About
+- Founder + senior product designer, 18 years experience
+- Co-founder and Head of Product Design at Katipult (TSX-V public fintech)
+- Scaled the design practice from solo founder-designer to leading the team at a 45-person public company
+- Currently designing AI-native products at MZM Labs
+- **Available for senior product design roles** as of April 2026
+
+## Domain expertise
+- Fintech (KYC/AML, investor onboarding, compliance flows)
+- Developer tools and AI-native products
+- 0→1 product launches and scale-stage redesigns
+- Design systems and design tokens
+- Cross-functional leadership
+
+## Case studies
+- [Compliance UX — KYC redesign that beat the 65% industry drop-off benchmark](/case-study/compliance-ux/)
+- [DealFlow — Katipult investor onboarding redesign](/case-study/dealflow/)
+- [AKMSecure — security software product design](/case-study/akmsecure/)
+- [Docs to Design — design tooling product](/case-study/docs-to-design/)
+- [Donations & Rewards — engagement platform](/case-study/donations-rewards/)
+- [FuzeHQ — agent orchestration SaaS](/case-study/fuzehq/)
+- [IsoBlock — product platform](/case-study/isoblock/)
+- [Lending — fintech lending platform](/case-study/lending/)
+- [MockupKit — Figma plugin for device mockups](/case-study/mockupkit/)
+- [MultiPaste — productivity tool](/case-study/multipaste/)
+- [MyPick.io — visual elimination race game](/case-study/mypick/)
+- [RelationSync — wellness/journaling app](/case-study/relationsync/)
+
+## Contact
+- Website: https://uxmeas.com

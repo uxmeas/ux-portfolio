@@ -13,6 +13,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pheak Meas",
+    "alternateName": ["UX Meas", "Pheak Meas, Product Designer"],
+    "jobTitle": "Product Designer & Founder",
+    "url": "https://uxmeas.com",
+    "image": "https://uxmeas.com/images/og-image.png",
+    "description": "18 years shipping product design across fintech, developer tools, and AI-native products. Co-founded a fintech company from 3-person startup to TSX-V public company.",
+    "knowsAbout": [
+      "Product Design",
+      "Fintech",
+      "Developer Tools",
+      "AI-native Products",
+      "KYC/AML Compliance",
+      "Design Systems",
+      "Founder Operations",
+      "0 to 1 Product Design",
+      "Scale-Stage Redesign"
+    ],
+    "worksFor": {"@type": "Organization", "name": "MZM Labs", "url": "https://mzmlabs.com"},
+    "alumniOf": [{"@type": "Organization", "name": "Katipult", "description": "TSX-V public fintech, co-founder, Head of Product Design"}],
+    "knowsLanguage": ["en", "km"]
+  }
+  </script>
+  <script src="/js/copy-rotation.js" defer></script>
   <style>
     /* === HOMEPAGE-SPECIFIC (MZM-621: 2-col hero, left-aligned) === */
     .hero {
@@ -335,8 +362,8 @@
   <!-- HERO (MZM-621: 2-col, left-aligned, primary+secondary CTA, divider) -->
   <section class="hero reveal">
     <div class="hero__content">
-      <h1 class="hero__title">I design products. <br>Then I build them.</h1>
-      <p class="hero__subtitle">18 years designing fintech platforms, developer tools, and AI-native products. From 3-person startup to TSX-V IPO.</p>
+      <h1 class="hero__title" data-rotate-slot="hero_h1">I design products. <br>Then I build them.</h1>
+      <p class="hero__subtitle" data-rotate-slot="hero_subtitle">18 years designing fintech platforms, developer tools, and AI-native products. From 3-person startup to TSX-V IPO.</p>
       <div class="cta-pair">
         <a href="#work" class="btn-primary">View Case Studies</a>
         <a data-u="hello" data-d="uxmeas.com" href="#" class="btn-secondary">Contact</a>
@@ -533,7 +560,7 @@
 
     <div class="about__grid">
       <div class="about__content">
-        <p>18 years of product design across fintech, developer tools, and AI-native products. I co-founded a company that grew from 3 people to a TSX-V IPO — scaling design practice from solo founder-designer to Head of Product Design at a 45-person public company.</p>
+        <p><span data-rotate-slot="about_bio_lede">18 years of product design across fintech, developer tools, and AI-native products.</span> I co-founded a company that grew from 3 people to a TSX-V IPO — scaling design practice from solo founder-designer to Head of Product Design at a 45-person public company.</p>
         <p>Our team designed every investor-facing screen across a $2B+ platform used by enterprise clients including Canaccord Genuity, Raymond James, and Sprott Capital. Now I build tools that make designers and developers more productive — Figma plugins, AI agent management, and design systems.</p>
         <p>EY Entrepreneur of the Year Finalist (2017). RBC Emerging Enterprise of the Year. I think in systems, not screens.</p>
       </div>
@@ -565,10 +592,7 @@
 
   <!-- CLOSING CTA (MZM-625: large centered headline + paired CTAs) -->
   <section class="closing-cta reveal">
-    <h2 class="closing-cta__title">
-      Hire a designer who builds.<br>
-      Available now.
-    </h2>
+    <h2 class="closing-cta__title" data-rotate-slot="closing_cta_headline">Hire a designer who builds.<br>Available now.</h2>
     <div class="cta-pair closing-cta__actions">
       <a data-u="hello" data-d="uxmeas.com" href="#" class="btn-primary">Let's Talk</a>
       <a href="#work" class="btn-secondary">View Work</a>

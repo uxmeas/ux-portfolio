@@ -1,0 +1,19 @@
+{
+  "hero_h1": [
+    {"id": "h1-default-builder", "text": "I design products. Then I build them.", "audiences": ["any"]},
+    {"id": "h1-default-founder", "text": "Product designer and founder. I design systems, not screens — then I ship them.", "audiences": ["any", "linkedin"]},
+    {"id": "h1-default-shipper", "text": "Hire a designer who's also shipped a public company.", "audiences": ["linkedin", "jobboard", "recruiter"]}
+  ],
+  "hero_subtitle": [
+    {"id": "sub-default", "text": "18 years designing fintech platforms, developer tools, and AI-native products. From 3-person startup to TSX-V IPO.", "audiences": ["any"]}
+  ],
+  "selected_work_subtext": [
+    {"id": "sw-default", "text": "Case studies across fintech, compliance, developer tools, and AI-native products.", "audiences": ["any"]}
+  ],
+  "about_bio_lede": [
+    {"id": "bio-default", "text": "18 years of product design across fintech, developer tools, and AI-native products.", "audiences": ["any"]}
+  ],
+  "closing_cta_headline": [
+    {"id": "cta-default", "text": "Hire a designer who builds.\nAvailable now.", "audiences": ["any"]}
+  ]
+}
