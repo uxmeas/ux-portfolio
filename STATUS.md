@@ -1,6 +1,6 @@
 # UX Meas — Project Status
 
-**Last updated**: 2026-04-14
+**Last updated**: 2026-04-16
 **Priority**: #1a (job hunting + portfolio)
 **Stage**: LIVE — production deployed
 **Owners**: Ana (delivery gates), Rio (job hunting status + marketing), Kai (design QA)
