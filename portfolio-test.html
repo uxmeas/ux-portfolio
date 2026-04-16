@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Test - UX Meas</title>
+    <link rel="stylesheet" href="src/styles/portfolio-modal.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>My Portfolio</h1>
+            <p>Click on any project to view details</p>
+        </div>
+        
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid">
+            <!-- AKM Secure Card -->
+            <div class="portfolio-card" data-project-id="akm-secure">
+                <div class="card-image-wrapper">
+                    <img src="public/images/terracore_ai/terracore_ai_1_hero.png" alt="AKM Secure" class="card-image">
+                    <div class="card-overlay">
+                        <button class="view-project-btn" aria-label="View project details">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">AKM SecureKey</h3>
+                    <p class="card-description">Enterprise key management platform with 400% increase in demo requests</p>
+                    <div class="card-tags">
+                        <span>UX Design</span>
+                        <span>Enterprise</span>
+                        <span>Security</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TerraCore AI Card -->
+            <div class="portfolio-card" data-project-id="terracore">
+                <div class="card-image-wrapper">
+                    <img src="public/images/terracore_ai/terracore_ai_2_challenge.png" alt="TerraCore AI" class="card-image">
+                    <div class="card-overlay">
+                        <button class="view-project-btn" aria-label="View project details">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">TerraCore AI</h3>
+                    <p class="card-description">AI-powered geospatial analytics reducing analysis time by 90%</p>
+                    <div class="card-tags">
+                        <span>AI/ML</span>
+                        <span>Data Viz</span>
+                        <span>Enterprise</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Katipult Card -->
+            <div class="portfolio-card" data-project-id="katipult">
+                <div class="card-image-wrapper">
+                    <img src="public/images/katipult/screen_one.jpg" alt="Katipult" class="card-image">
+                    <div class="card-overlay">
+                        <button class="view-project-btn" aria-label="View project details">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Katipult</h3>
+                    <p class="card-description">Investment platform streamlining capital raising for startups</p>
+                    <div class="card-tags">
+                        <span>FinTech</span>
+                        <span>B2B</span>
+                        <span>Platform</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- FinTrust Capital Card -->
+            <div class="portfolio-card" data-project-id="fintrust">
+                <div class="card-image-wrapper">
+                    <img src="public/images/fintrust_capital/screen_one.jpg" alt="FinTrust Capital" class="card-image">
+                    <div class="card-overlay">
+                        <button class="view-project-btn" aria-label="View project details">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">FinTrust Capital</h3>
+                    <p class="card-description">Wealth management platform with personalized investment strategies</p>
+                    <div class="card-tags">
+                        <span>FinTech</span>
+                        <span>Investment</span>
+                        <span>Mobile</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Remindry Card -->
+            <div class="portfolio-card" data-project-id="remindry">
+                <div class="card-image-wrapper">
+                    <img src="public/images/remindry/screen_one.jpg" alt="Remindry" class="card-image">
+                    <div class="card-overlay">
+                        <button class="view-project-btn" aria-label="View project details">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Remindry</h3>
+                    <p class="card-description">Smart reminder app helping users stay organized and productive</p>
+                    <div class="card-tags">
+                        <span>Mobile App</span>
+                        <span>Productivity</span>
+                        <span>iOS/Android</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Portfolio Modal -->
+    <div class="portfolio-modal" id="portfolio-modal" aria-hidden="true" role="dialog">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Close modal">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <div class="modal-content">
+                <!-- Hero Section -->
+                <div class="modal-hero">
+                    <img src="" alt="" class="modal-hero-image">
+                    <div class="modal-hero-overlay">
+                        <h1 class="modal-title"></h1>
+                        <p class="modal-subtitle"></p>
+                    </div>
+                </div>
+                
+                <!-- Project Details -->
+                <div class="modal-body">
+                    <div class="modal-section">
+                        <h2>Overview</h2>
+                        <p class="modal-overview"></p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h2>Challenge</h2>
+                        <p class="modal-challenge"></p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h2>Solution</h2>
+                        <p class="modal-solution"></p>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h2>Process</h2>
+                        <div class="modal-process-grid">
+                            <!-- Process steps will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h2>Results</h2>
+                        <div class="modal-results">
+                            <!-- Results metrics will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section modal-gallery">
+                        <h2>Visual Design</h2>
+                        <div class="modal-images-grid">
+                            <!-- Gallery images will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <div class="modal-tech-stack">
+                            <h3>Technologies Used</h3>
+                            <div class="tech-tags">
+                                <!-- Tech stack tags will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-cta">
+                        <a href="#" class="btn-primary modal-live-link" target="_blank" rel="noopener">View Live Project</a>
+                        <a href="#" class="btn-secondary modal-case-study-link">Full Case Study</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include the portfolio modal script -->
+    <script src="src/scripts/portfolio-modal.js"></script>
+    
+    <!-- Update project data to include more projects -->
+    <script>
+        // Override getProjectData method with more projects
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = new PortfolioModal();
+            
+            // Extend with additional project data
+            modal.getProjectData = function(projectId) {
+                const projects = {
+                    'akm-secure': {
+                        id: 'akm-secure',
+                        title: 'AKM SecureKey',
+                        subtitle: 'Enterprise Key Management Solution',
+                        heroImage: 'public/images/terracore_ai/terracore_ai_1_hero.png',
+                        overview: 'Designed and developed a comprehensive key management platform for enterprise security, achieving a 400% increase in demo requests through strategic UX transformation.',
+                        challenge: 'AKM Secure needed to compete with established players like Palantir and Anduril. Their complex cryptographic technology needed to be accessible to non-technical decision makers.',
+                        solution: 'Created a unified platform with intuitive visualizations, role-based access control, and automated workflows. Focused on making complex security concepts understandable through clear information architecture.',
+                        process: [
+                            {
+                                title: 'Competitive Analysis',
+                                description: 'Analyzed Palantir, Anduril, and other enterprise security platforms'
+                            },
+                            {
+                                title: 'User Research',
+                                description: 'Interviewed 20+ CISOs and security professionals'
+                            },
+                            {
+                                title: 'Rapid Prototyping',
+                                description: '4-week sprint to design and build the entire platform'
+                            },
+                            {
+                                title: 'Continuous Iteration',
+                                description: 'Weekly deployments based on user feedback'
+                            }
+                        ],
+                        results: [
+                            { value: '400%', label: 'Increase in Demo Requests' },
+                            { value: '85%', label: 'Mobile Engagement' },
+                            { value: '60%', label: 'Faster Time to Value' },
+                            { value: '4 weeks', label: 'Time to Market' }
+                        ],
+                        gallery: [
+                            { src: 'public/images/terracore_ai/terracore_ai_2_challenge.png', alt: 'Dashboard view' },
+                            { src: 'public/images/terracore_ai/terracore_ai_3_user_personas.png', alt: 'User personas' },
+                            { src: 'public/images/terracore_ai/terracore_ai_4_ux.png', alt: 'UX flow' }
+                        ],
+                        technologies: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'AWS', 'Tailwind CSS'],
+                        liveUrl: 'https://www.akmsecure.com',
+                        caseStudyUrl: 'case-studies/akm-secure/akm-secure-exact-brand.html'
+                    },
+                    'terracore': {
+                        id: 'terracore',
+                        title: 'TerraCore AI',
+                        subtitle: 'AI-Powered Geospatial Analytics',
+                        heroImage: 'public/images/terracore_ai/terracore_ai_1_hero.png',
+                        overview: 'Led the design of an AI-driven platform for geospatial data analysis, making complex satellite imagery accessible to non-technical users.',
+                        challenge: 'Geospatial analysts needed weeks to process and analyze satellite data, limiting response time for critical decisions.',
+                        solution: 'Developed an intuitive interface with AI-powered automation, reducing analysis time from weeks to hours.',
+                        process: [
+                            {
+                                title: 'Discovery',
+                                description: 'Mapped current workflows and identified automation opportunities'
+                            },
+                            {
+                                title: 'Prototyping',
+                                description: 'Built interactive prototypes to test AI integration concepts'
+                            },
+                            {
+                                title: 'Validation',
+                                description: 'Conducted A/B testing with real users in field conditions'
+                            },
+                            {
+                                title: 'Launch',
+                                description: 'Phased rollout with continuous monitoring'
+                            }
+                        ],
+                        results: [
+                            { value: '90%', label: 'Time Reduction' },
+                            { value: '5x', label: 'More Data Processed' },
+                            { value: '250+', label: 'Active Users' },
+                            { value: '$2M', label: 'Cost Savings' }
+                        ],
+                        gallery: [
+                            { src: 'public/images/terracore_ai/terracore_ai_2_challenge.png', alt: 'Challenge overview' },
+                            { src: 'public/images/terracore_ai/terracore_ai_3_user_personas.png', alt: 'User personas' },
+                            { src: 'public/images/terracore_ai/terracore_ai_4_ux.png', alt: 'UX flow' },
+                            { src: 'public/images/terracore_ai/terracore_ai_5_ui.png', alt: 'UI design' }
+                        ],
+                        technologies: ['Vue.js', 'Python', 'TensorFlow', 'PostgreSQL', 'Mapbox', 'AWS'],
+                        liveUrl: null,
+                        caseStudyUrl: null
+                    },
+                    'katipult': {
+                        id: 'katipult',
+                        title: 'Katipult',
+                        subtitle: 'Investment Platform for Startups',
+                        heroImage: 'public/images/katipult/screen_one.jpg',
+                        overview: 'Redesigned the investment platform to streamline capital raising for startups and simplify the investor experience.',
+                        challenge: 'Complex regulatory requirements and fragmented user flows were causing high drop-off rates during the investment process.',
+                        solution: 'Simplified the investment flow into clear steps, added progress indicators, and created intuitive dashboards for both investors and startups.',
+                        process: [
+                            {
+                                title: 'User Journey Mapping',
+                                description: 'Identified pain points in the investment process'
+                            },
+                            {
+                                title: 'Compliance Integration',
+                                description: 'Worked with legal team to embed compliance seamlessly'
+                            },
+                            {
+                                title: 'Progressive Disclosure',
+                                description: 'Revealed complexity gradually to avoid overwhelming users'
+                            },
+                            {
+                                title: 'Testing',
+                                description: 'Conducted usability tests with investors and founders'
+                            }
+                        ],
+                        results: [
+                            { value: '65%', label: 'Reduced Drop-off' },
+                            { value: '3x', label: 'Faster Onboarding' },
+                            { value: '$50M+', label: 'Capital Raised' },
+                            { value: '200+', label: 'Active Startups' }
+                        ],
+                        gallery: [
+                            { src: 'public/images/katipult/screen_one.jpg', alt: 'Dashboard' },
+                            { src: 'public/images/katipult/screen_two.jpg', alt: 'Investment flow' },
+                            { src: 'public/images/katipult/screen_three.jpg', alt: 'Analytics' },
+                            { src: 'public/images/katipult/screen_four.jpg', alt: 'Mobile view' }
+                        ],
+                        technologies: ['React', 'Redux', 'Node.js', 'MongoDB', 'Stripe', 'AWS'],
+                        liveUrl: null,
+                        caseStudyUrl: null
+                    },
+                    'fintrust': {
+                        id: 'fintrust',
+                        title: 'FinTrust Capital',
+                        subtitle: 'Wealth Management Platform',
+                        heroImage: 'public/images/fintrust_capital/screen_one.jpg',
+                        overview: 'Designed a personalized wealth management platform that democratizes access to sophisticated investment strategies.',
+                        challenge: 'High-net-worth investment strategies were inaccessible to retail investors due to complexity and minimum investment requirements.',
+                        solution: 'Created an AI-driven platform that provides personalized investment recommendations based on individual risk profiles and goals.',
+                        process: [
+                            {
+                                title: 'Market Research',
+                                description: 'Analyzed competitor platforms and user needs'
+                            },
+                            {
+                                title: 'Algorithm Design',
+                                description: 'Collaborated with quants to design recommendation engine'
+                            },
+                            {
+                                title: 'Mobile-First',
+                                description: 'Designed for mobile to reach younger investors'
+                            },
+                            {
+                                title: 'Gamification',
+                                description: 'Added achievement systems to encourage saving'
+                            }
+                        ],
+                        results: [
+                            { value: '$100M+', label: 'Assets Under Management' },
+                            { value: '10K+', label: 'Active Investors' },
+                            { value: '4.8/5', label: 'App Store Rating' },
+                            { value: '25%', label: 'Monthly Active Users' }
+                        ],
+                        gallery: [
+                            { src: 'public/images/fintrust_capital/screen_one.jpg', alt: 'Dashboard' },
+                            { src: 'public/images/fintrust_capital/screen_two.jpg', alt: 'Portfolio view' },
+                            { src: 'public/images/fintrust_capital/screen_three.jpg', alt: 'Analytics' },
+                            { src: 'public/images/fintrust_capital/screen_four.jpg', alt: 'Mobile app' }
+                        ],
+                        technologies: ['React Native', 'Python', 'Django', 'PostgreSQL', 'Redis', 'AWS'],
+                        liveUrl: null,
+                        caseStudyUrl: null
+                    },
+                    'remindry': {
+                        id: 'remindry',
+                        title: 'Remindry',
+                        subtitle: 'Smart Reminder App',
+                        heroImage: 'public/images/remindry/screen_one.jpg',
+                        overview: 'Created an intelligent reminder app that learns from user behavior to provide timely, contextual notifications.',
+                        challenge: 'Users were overwhelmed by traditional reminder apps that required manual input for every task.',
+                        solution: 'Built an AI-powered system that learns routines, suggests reminders, and adapts to changing schedules automatically.',
+                        process: [
+                            {
+                                title: 'Behavioral Analysis',
+                                description: 'Studied how users currently manage reminders'
+                            },
+                            {
+                                title: 'AI Integration',
+                                description: 'Implemented machine learning for pattern recognition'
+                            },
+                            {
+                                title: 'Minimalist Design',
+                                description: 'Created clean, distraction-free interface'
+                            },
+                            {
+                                title: 'Cross-Platform',
+                                description: 'Ensured seamless sync across all devices'
+                            }
+                        ],
+                        results: [
+                            { value: '500K+', label: 'Downloads' },
+                            { value: '4.9/5', label: 'User Rating' },
+                            { value: '70%', label: 'Daily Active Users' },
+                            { value: '2M+', label: 'Reminders Created' }
+                        ],
+                        gallery: [
+                            { src: 'public/images/remindry/screen_one.jpg', alt: 'Home screen' },
+                            { src: 'public/images/remindry/screen_two.jpg', alt: 'Reminder list' },
+                            { src: 'public/images/remindry/screen_three.jpg', alt: 'Settings' },
+                            { src: 'public/images/remindry/screen_four.jpg', alt: 'Widgets' }
+                        ],
+                        technologies: ['Flutter', 'Firebase', 'TensorFlow Lite', 'Node.js', 'MongoDB'],
+                        liveUrl: null,
+                        caseStudyUrl: null
+                    }
+                };
+                
+                return projects[projectId] || null;
+            };
+        });
+    </script>
+</body>
+</html>

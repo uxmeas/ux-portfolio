@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs to Design — Figma Plugin Case Study — Pheak Meas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: #0C0C0C; color: #FFFFFF; }
+    img { display: block; max-width: 100%; }
+
+    :root {
+      --bg-primary: #0C0C0C;
+      --bg-secondary: #161616;
+      --bg-insight: #111111;
+      --bg-compact: #0A0A0A;
+      --bg-brand: #1A1A1A;
+      --bg-results: #060606;
+      --bg-cta: #080808;
+      --text-primary: #FFFFFF;
+      --text-muted: #999999;
+      --text-footer: #555555;
+      --accent-copper: #D4956A;
+      --accent-teal: #2A8F8A;
+      --accent-seafoam: #5EDDB8;
+      --accent-teal-bright: #34B8A8;
+      --card-bg: #222222;
+      --divider: #2A2A2A;
+      --section-pad-y: 100px;
+      --section-pad-x: 120px;
+      --section-gap: 40px;
+      --two-col-gap: 48px;
+      --left-col: 320px;
+    }
+
+    /* === LABEL BAR === */
+    .cs-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .cs-label__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .cs-label__text {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-footer);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cs-label__sep {
+      font-size: 11px;
+      color: var(--divider);
+    }
+    .cs-label__line {
+      flex: 1;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    .cs-section {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-body {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .cs-img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .cs-two-col {
+      display: flex;
+      gap: var(--two-col-gap);
+    }
+    .cs-two-col__left {
+      width: var(--left-col);
+      flex-shrink: 0;
+    }
+    .cs-two-col__right {
+      flex: 1;
+    }
+
+    /* ========================
+       SECTION 1 — HERO
+       ======================== */
+    .cs-hero {
+      background: var(--bg-primary);
+      padding: 80px var(--section-pad-x) 60px;
+    }
+    .cs-hero .cs-section {
+      gap: 32px;
+    }
+    .cs-hero__title {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-hero__subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cs-hero__stats {
+      display: flex;
+      gap: 32px;
+      padding-top: 32px;
+      width: 100%;
+    }
+    .cs-hero__stat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cs-hero__stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent-seafoam);
+    }
+    .cs-hero__stat-label {
+      font-size: 13px;
+      color: var(--text-footer);
+    }
+    .cs-hero__image {
+      height: 420px;
+      width: 100%;
+      border-radius: 8px;
+      background: var(--bg-secondary);
+    }
+
+    /* ========================
+       SECTION 2 — CHALLENGE
+       ======================== */
+    .cs-challenge {
+      background: var(--bg-secondary);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-challenge .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-challenge__quote {
+      font-size: 15px;
+      color: var(--accent-copper);
+      line-height: 1.6;
+      margin-top: 24px;
+    }
+
+    /* ========================
+       SECTION 3 — INSIGHT
+       ======================== */
+    .cs-insight {
+      background: var(--bg-insight);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-insight .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-insight__cards {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+    .cs-insight__card {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-insight__card-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-copper);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cs-insight__card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .cs-insight__card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========================
+       SECTION 4 — THE WIZARD
+       ======================== */
+    .cs-wizard {
+      background: var(--bg-secondary);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-wizard .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-wizard__steps {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-wizard__step {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-wizard__step-number {
+      font-size: 32px;
+      font-weight: 700;
+    }
+    .cs-wizard__step-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .cs-wizard__step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ========================
+       SECTION 5 — COMPACT PRO
+       ======================== */
+    .cs-compact {
+      background: var(--bg-compact);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-compact .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-compact__subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-teal-bright);
+      margin-top: 16px;
+    }
+    .cs-compact__highlight {
+      font-size: 15px;
+      color: var(--accent-teal);
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+    .cs-compact__screenshot {
+      width: 100%;
+      height: 750px;
+      border-radius: 6px;
+      background: var(--card-bg);
+    }
+
+    /* ========================
+       SECTION 6 — BRAND IDENTITY
+       ======================== */
+    .cs-brand {
+      background: var(--bg-brand);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-brand .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-brand__swatches {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-brand__swatch {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-brand__swatch-box {
+      height: 60px;
+      border-radius: 6px;
+    }
+    .cs-brand__swatch-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    .cs-brand__gradient {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(to right, var(--accent-copper), var(--accent-teal));
+    }
+    .cs-brand__gallery {
+      display: flex;
+      gap: 16px;
+      height: 280px;
+      width: 100%;
+    }
+    .cs-brand__gallery-item {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-brand__gallery-label {
+      font-size: 13px;
+      color: var(--text-footer);
+    }
+
+    /* ========================
+       SECTION 7 — RESULTS
+       ======================== */
+    .cs-results {
+      background: var(--bg-results);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-results .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-results__cards {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-results__card {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-results__card-stat {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--accent-seafoam);
+    }
+    .cs-results__card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .cs-results__card-desc {
+      font-size: 12px;
+      color: var(--text-footer);
+      line-height: 1.5;
+    }
+
+    /* ========================
+       SECTION 8 — CTA FOOTER
+       ======================== */
+    .cs-cta {
+      background: var(--bg-cta);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-cta .cs-section {
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+    .cs-cta__gradient-divider {
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent-copper), var(--accent-teal));
+    }
+    .cs-cta__title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-cta__subtitle {
+      font-size: 14px;
+      color: var(--text-footer);
+    }
+    .cs-cta__actions {
+      display: flex;
+      gap: 16px;
+    }
+    .cs-cta__btn {
+      display: inline-block;
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cs-cta__btn:hover { opacity: 0.9; }
+    .cs-cta__btn--primary {
+      background: var(--accent-teal-bright);
+      color: var(--text-primary);
+    }
+    .cs-cta__btn--secondary {
+      background: transparent;
+      color: var(--accent-teal-bright);
+    }
+    .cs-cta__footer {
+      font-size: 12px;
+      color: var(--text-footer);
+    }
+
+    /* ========================
+       RESPONSIVE
+       ======================== */
+    @media (max-width: 1024px) {
+      :root { --section-pad-x: 48px; }
+      .cs-hero__title { font-size: 36px; }
+      .cs-two-col { flex-direction: column; gap: 32px; }
+      .cs-two-col__left { width: 100%; }
+      .cs-insight__cards { flex-direction: column; }
+      .cs-wizard__steps { flex-wrap: wrap; }
+      .cs-wizard__step { min-width: calc(50% - 8px); }
+      .cs-brand__swatches { flex-wrap: wrap; }
+      .cs-compact__screenshot { height: 400px; }
+    }
+    @media (max-width: 640px) {
+      :root { --section-pad-x: 24px; --section-pad-y: 64px; }
+      .cs-hero { padding: 48px 24px 40px; }
+      .cs-hero__title { font-size: 28px; }
+      .cs-hero__stats { flex-direction: column; gap: 16px; }
+      .cs-hero__image { height: 240px; }
+      .cs-wizard__steps { flex-direction: column; }
+      .cs-wizard__step { min-width: 100%; }
+      .cs-results__cards { flex-direction: column; }
+      .cs-brand__gallery { flex-direction: column; height: auto; }
+      .cs-brand__gallery-item { height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1 — HERO -->
+  <section class="cs-hero">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">DESIGN ENGINE</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">FIGMA PLUGIN</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">MZM LABS</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h1 class="cs-hero__title">Turning Word Documents<br>into Figma Designs</h1>
+
+      <p class="cs-hero__subtitle">
+        A Figma plugin that converts .docx files into fully editable designs. Upload a Word document, get professionally structured Figma pages in seconds.
+      </p>
+
+      <div class="cs-hero__stats">
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">Seconds</div>
+          <div class="cs-hero__stat-label">Conversion time</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">&lt; 10KB</div>
+          <div class="cs-hero__stat-label">Plugin bundle size</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">7</div>
+          <div class="cs-hero__stat-label">Auto-generated text styles</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">5</div>
+          <div class="cs-hero__stat-label">Guided wizard steps</div>
+        </div>
+      </div>
+
+      <img class="cs-img" style="height:420px;background:var(--bg-secondary);object-fit:contain;" src="../../images/d2d/screenshots/docstodesign-1.png" alt="Docs to Design plugin screenshot">
+    </div>
+  </section>
+
+  <!-- SECTION 2 — CHALLENGE -->
+  <section class="cs-challenge">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-teal);"></div>
+        <span class="cs-label__text">CHALLENGE</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <div class="cs-two-col">
+        <div class="cs-two-col__left">
+          <h2 class="cs-title">THE<br>CHALLENGE</h2>
+        </div>
+        <div class="cs-two-col__right">
+          <p class="cs-body">
+            The workflow is universal and universally painful. A client sends a Word document. The designer opens it and begins manual labor: copy heading, paste into Figma, style it. Copy body text, paste, style it. Recreate the table structure from scratch. Repeat for 30 pages.
+          </p>
+          <p class="cs-challenge__quote">
+            No existing Figma plugin solved the full document-to-design pipeline.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — INSIGHT -->
+  <section class="cs-insight">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">INSIGHT</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h2 class="cs-title">THREE DISCOVERIES</h2>
+
+      <div class="cs-insight__cards">
+        <div class="cs-insight__card">
+          <div class="cs-insight__card-label">DISCOVERY 01</div>
+          <div class="cs-insight__card-title">One-Click Beats<br>Configurability</div>
+          <div class="cs-insight__card-desc">Plugins with extensive configuration had low adoption. Designers want to drop a file and get a result.</div>
+        </div>
+        <div class="cs-insight__card">
+          <div class="cs-insight__card-label">DISCOVERY 02</div>
+          <div class="cs-insight__card-title">Plugin UI Is Its<br>Own Discipline</div>
+          <div class="cs-insight__card-desc">480&times;600px is not a web page, not a mobile screen. It demands its own design language.</div>
+        </div>
+        <div class="cs-insight__card">
+          <div class="cs-insight__card-label">DISCOVERY 03</div>
+          <div class="cs-insight__card-title">Dual-Layer Parsing<br>Absorbs Chaos</div>
+          <div class="cs-insight__card-desc">A single parsing strategy cannot handle real-world .docx variance. Two layers compensate for each other.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — THE WIZARD -->
+  <section class="cs-wizard">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">WORKFLOW</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">5-STEP WIZARD</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h2 class="cs-title">THE WIZARD</h2>
+      <p class="cs-body">Five steps from Word document to styled Figma design. Each step handles one clear decision. No configuration screens, no settings panels. Just forward momentum.</p>
+
+      <div class="cs-wizard__steps">
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:var(--accent-copper);">01</div>
+          <div class="cs-wizard__step-title">Upload</div>
+          <div class="cs-wizard__step-desc">Drop a .docx file. The parser reads headings, body text, lists, and tables in one pass.</div>
+        </div>
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:#C48A5F;">02</div>
+          <div class="cs-wizard__step-title">Preview</div>
+          <div class="cs-wizard__step-desc">See your document structure before any conversion. Headings, paragraphs, and lists mapped to Figma layers.</div>
+        </div>
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:#7B9B82;">03</div>
+          <div class="cs-wizard__step-title">Style</div>
+          <div class="cs-wizard__step-desc">Pick a text style preset. Seven auto-generated styles map to your document hierarchy.</div>
+        </div>
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:#3A9A8E;">04</div>
+          <div class="cs-wizard__step-title">Generate</div>
+          <div class="cs-wizard__step-desc">One click. Text layers, auto-layout frames, and styled components appear on your Figma canvas.</div>
+        </div>
+        <div class="cs-wizard__step">
+          <div class="cs-wizard__step-number" style="color:var(--accent-teal);">05</div>
+          <div class="cs-wizard__step-title">Done</div>
+          <div class="cs-wizard__step-desc">Your document is now a Figma design. Edit, restyle, or hand off. The original structure is preserved.</div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:16px;width:100%;margin-top:24px;">
+        <div style="flex:1;border-radius:8px;overflow:hidden;background:var(--card-bg);">
+          <img src="../../images/d2d/screenshots/plugin-step-1-upload.png" alt="Step 1: Upload document" style="width:100%;height:320px;object-fit:contain;">
+        </div>
+        <div style="flex:1;border-radius:8px;overflow:hidden;background:var(--card-bg);">
+          <img src="../../images/d2d/screenshots/plugin-step-2-configure.png" alt="Step 2: Configure styles" style="width:100%;height:320px;object-fit:contain;">
+        </div>
+        <div style="flex:1;border-radius:8px;overflow:hidden;background:var(--card-bg);">
+          <img src="../../images/d2d/screenshots/plugin-step-3-complete.png" alt="Step 3: Generation complete" style="width:100%;height:320px;object-fit:contain;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — COMPACT PRO -->
+  <section class="cs-compact">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">DESIGN SYSTEM</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">PLUGIN VIEWPORT</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <div class="cs-two-col">
+        <div class="cs-two-col__left">
+          <h2 class="cs-title">COMPACT PRO</h2>
+          <div class="cs-compact__subtitle">Designing for 480 x 600px</div>
+        </div>
+        <div class="cs-two-col__right">
+          <p class="cs-body">
+            Figma plugin panels are 300-480px wide and 600px tall. Every pixel matters. I built a complete design system for this constraint: compact inputs, stacked controls, icon-only toggles, and a type scale that stays readable at 11px.
+          </p>
+          <p class="cs-compact__highlight">
+            The constraint became the product's personality. Dense, precise, zero wasted space.
+          </p>
+        </div>
+      </div>
+
+      <img class="cs-img" style="height:750px;background:var(--card-bg);border-radius:6px;object-fit:contain;" src="../../images/d2d/screenshots/docstodesign-2.png" alt="Plugin design system at 480x600px">
+    </div>
+  </section>
+
+  <!-- SECTION 6 — BRAND IDENTITY -->
+  <section class="cs-brand">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">BRAND</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">IDENTITY</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h2 class="cs-title">BRAND IDENTITY</h2>
+
+      <p class="cs-body">
+        The copper-to-teal gradient is the brand story. Copper represents the raw input. A Word document. Unformatted, unstructured. Teal represents the output. A styled Figma design. Clean, structured, ready to ship. The gradient connects them. Transformation in a single visual.
+      </p>
+
+      <div class="cs-brand__swatches">
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#D4956A;"></div>
+          <div class="cs-brand__swatch-label">Copper<br>#D4956A</div>
+        </div>
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#2A8F8A;"></div>
+          <div class="cs-brand__swatch-label">Teal<br>#2A8F8A</div>
+        </div>
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#5EDDB8;"></div>
+          <div class="cs-brand__swatch-label">Seafoam<br>#5EDDB8</div>
+        </div>
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#0C0C0C;"></div>
+          <div class="cs-brand__swatch-label">Dark<br>#0C0C0C</div>
+        </div>
+        <div class="cs-brand__swatch">
+          <div class="cs-brand__swatch-box" style="background:#222222;"></div>
+          <div class="cs-brand__swatch-label">Surface<br>#222222</div>
+        </div>
+      </div>
+
+      <div class="cs-brand__gradient"></div>
+
+      <div class="cs-brand__gallery">
+        <div class="cs-brand__gallery-item" style="overflow:hidden;">
+          <img src="../../images/d2d/screenshots/docstodesign-3.png" alt="docstodesign.com website" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+        </div>
+        <div class="cs-brand__gallery-item" style="overflow:hidden;padding:32px;">
+          <img src="../../images/d2d/branding/d2d-lockup-inline-light.svg" alt="Docs to Design logo and wordmark" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 — RESULTS -->
+  <section class="cs-results">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot" style="background:var(--accent-copper);"></div>
+        <span class="cs-label__text">OUTCOMES</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">METRICS</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h2 class="cs-title">RESULTS & IMPACT</h2>
+
+      <p class="cs-body">
+        From hours of manual formatting to seconds of automated conversion. The plugin handles the tedious work so designers can focus on design.
+      </p>
+
+      <div class="cs-results__cards">
+        <div class="cs-results__card">
+          <div class="cs-results__card-stat">Seconds</div>
+          <div class="cs-results__card-title">Conversion Time</div>
+          <div class="cs-results__card-desc">What used to take hours of manual formatting now happens in seconds.</div>
+        </div>
+        <div class="cs-results__card">
+          <div class="cs-results__card-stat">&lt; 10KB</div>
+          <div class="cs-results__card-title">Bundle Size</div>
+          <div class="cs-results__card-desc">Lean plugin. No bloated dependencies. Fast install, instant load.</div>
+        </div>
+        <div class="cs-results__card">
+          <div class="cs-results__card-stat">7</div>
+          <div class="cs-results__card-title">Text Styles</div>
+          <div class="cs-results__card-desc">Auto-generated from document hierarchy. Heading 1 through body text.</div>
+        </div>
+        <div class="cs-results__card">
+          <div class="cs-results__card-stat">0</div>
+          <div class="cs-results__card-title">Crashes</div>
+          <div class="cs-results__card-desc">Zero crashes on 50+ documents tested. Graceful error handling throughout.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8 — CTA FOOTER -->
+  <section class="cs-cta">
+    <div class="cs-section">
+      <div class="cs-cta__gradient-divider"></div>
+      <h2 class="cs-cta__title">Next Case Study</h2>
+      <p class="cs-cta__subtitle">IsoBlock — Isometric Shapes for Figma</p>
+      <div class="cs-cta__actions">
+        <a href="/case-study/isoblock/" class="cs-cta__btn cs-cta__btn--primary">VIEW ISOBLOCK CASE STUDY</a>
+        <a href="/" class="cs-cta__btn cs-cta__btn--secondary">Back to Portfolio</a>
+      </div>
+      <div class="cs-cta__footer">Designed and built by Pheak Meas &middot; MZM Labs Inc.</div>
+    </div>
+  </section>
+
+</body>
+</html>

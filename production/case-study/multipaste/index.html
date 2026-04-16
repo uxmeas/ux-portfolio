@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MultiPaste - Figma Plugin Case Study - Pheak Meas</title>
+  <meta name="description" content="Case study: Built a Figma plugin that distributes text data across multiple selected layers. 5 delimiters, live preview, 1-click undo. Free forever.">
+  <meta property="og:title" content="MultiPaste - Case Study - UX Meas">
+  <meta property="og:description" content="Figma plugin that distributes text data across multiple selected layers. 5 delimiters, live preview, 1-click undo.">
+  <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
+  <meta property="og:url" content="https://uxmeas.com/case-study/multipaste/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body {
+      background:
+        radial-gradient(circle 700px at 60% 6%, #2A1520 0%, transparent 100%),
+        radial-gradient(circle 700px at 25% 20%, #1E1518 0%, transparent 100%),
+        radial-gradient(circle 700px at 75% 35%, #2A1520 0%, transparent 100%),
+        radial-gradient(circle 700px at 30% 50%, #1E1518 0%, transparent 100%),
+        radial-gradient(circle 700px at 70% 65%, #2A1520 0%, transparent 100%),
+        radial-gradient(circle 700px at 50% 93%, #1E1518 0%, transparent 100%),
+        #121215;
+      color: #F0F0F2;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --bg-primary: #121215;
+      --bg-deep: #0E0C10;
+      --bg-surface: #1E1820;
+      --bg-card: #1A1519;
+      --border: #2D1F28;
+      --accent: #F43F5E;
+      --text-primary: #F0F0F2;
+      --text-secondary: #9298A0;
+      --text-muted: #6B6B6B;
+      --text-dark: #121215;
+    }
+
+    .page-wrap { width: 100%; max-width: 1440px; margin: 0 auto; overflow: hidden; }
+
+    /* === COMMON === */
+    .badge {
+      display: block;
+      width: max-content;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      padding: 6px 20px;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 56px;
+      letter-spacing: 1px;
+      line-height: 1.05;
+      color: var(--text-primary);
+    }
+    .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: var(--text-dark);
+      background: var(--accent);
+      padding: 14px 32px;
+      border-radius: 6px;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 14px 32px;
+      border-radius: 6px;
+    }
+
+    /* === NAV === */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 120px;
+    }
+    .nav__logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+    }
+    .nav__links { display: flex; gap: 40px; list-style: none; }
+    .nav__links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    .nav__links a.nav--accent { color: var(--accent); }
+
+    /* === HERO === */
+    .cs-hero {
+      padding: 100px 120px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 32px;
+    }
+    .cs-hero__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .cs-hero__tags {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--accent);
+    }
+    .cs-hero__meta {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+    .cs-hero__headline {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 80px;
+      letter-spacing: -1px;
+      line-height: 0.95;
+      color: var(--text-primary);
+    }
+    .cs-hero__stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      align-items: center;
+      padding-top: 16px;
+    }
+    .cs-hero__stat { text-align: center; }
+    .cs-hero__stat-number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 28px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .cs-hero__stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .cs-hero__subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 22px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      max-width: 800px;
+    }
+    .cs-hero__laptop-wrap { padding-top: 64px; text-align: center; width: 100%; }
+    .cs-hero__device { position: relative; width: 1200px; max-width: 100%; margin: 0 auto; }
+    .cs-hero__device-frame { width: 100%; height: auto; display: block; position: relative; z-index: 1; pointer-events: none; }
+    .cs-hero__device-screen { position: absolute; top: 9.8%; left: 12.8%; width: 74.4%; height: 72.6%; z-index: 2; overflow: hidden; border-radius: 6px 6px 0 0; background: #000000; }
+    .cs-hero__browser-bar { display: none; }
+    .cs-hero__screen-img { width: 100%; height: 100%; display: block; }
+
+    /* === SECTIONS === */
+    .cs-section {
+      padding: 100px 120px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+    }
+    .cs-section--deep { background: var(--bg-deep); }
+
+    /* === TWO-COL === */
+    .cs-two-col {
+      display: flex;
+      gap: 64px;
+      align-items: flex-start;
+    }
+    .cs-col-left--380 { width: 380px; flex-shrink: 0; }
+    .cs-col-fill { flex: 1; }
+
+    /* === META ROW === */
+    .meta-row {
+      display: flex;
+      gap: 48px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item__label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .meta-item__value {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    /* === HMW CARD (blockquote) === */
+    .hmw-card {
+      background: var(--bg-surface);
+      border-radius: 6px;
+      padding: 32px 40px;
+      width: 100%;
+    }
+    .hmw-card__label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .hmw-card__text {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    /* === FLOW STEP CARDS === */
+    .flow-cards { display: flex; gap: 16px; width: 100%; }
+    .flow-card {
+      flex: 1;
+      background: var(--bg-surface);
+      border-radius: 6px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .flow-card__head { display: flex; align-items: center; gap: 12px; }
+    .flow-card__badge {
+      width: 36px; height: 36px;
+      border-radius: 18px;
+      border: 2px solid var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', cursive; font-size: 16px; color: var(--accent);
+      flex-shrink: 0;
+    }
+    .flow-card__title { font-size: 16px; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
+    .flow-card__desc { font-size: 16px; line-height: 1.5; color: var(--text-muted); }
+
+    /* === FEATURES LIST === */
+    .features-group__label {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 4px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .features-list { display: flex; flex-direction: column; gap: 20px; }
+    .feature-item { display: flex; gap: 12px; width: 100%; }
+    .feature-icon {
+      width: 22px; height: 22px; flex-shrink: 0; color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feature-icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-wrap { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .feature-title { font-size: 18px; font-weight: 600; color: var(--text-primary); }
+    .feature-desc { font-size: 16px; line-height: 1.5; color: var(--text-muted); }
+
+    /* === GALLERY (2x2) === */
+    .gallery-row { display: flex; gap: 16px; width: 100%; height: 400px; }
+    .gallery-item {
+      width: 580px; max-width: 50%; height: 362px;
+      border-radius: 6px; border: 3px solid var(--border); overflow: hidden;
+      background: var(--bg-card);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: contain; object-position: top; }
+    .gallery-item__placeholder {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* === STAT BARS === */
+    .stat-bars { display: flex; flex-direction: column; gap: 12px; padding-top: 32px; width: 100%; }
+    .stat-bar {
+      display: flex; align-items: center; gap: 16px; justify-content: space-between;
+      background: var(--bg-surface); border-radius: 6px; padding: 20px 24px; height: 64px;
+    }
+    .stat-bar__number {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 36px;
+      letter-spacing: 1px;
+      color: var(--accent);
+      width: 100px;
+      flex-shrink: 0;
+    }
+    .stat-bar__label { font-size: 14px; line-height: 1.4; color: var(--text-muted); flex: 1; }
+
+    /* === CTA FOOTER === */
+    .cta-footer {
+      padding: 100px 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      text-align: center;
+      background: var(--bg-deep);
+    }
+    .cta-footer__divider { width: 120px; height: 2px; background: var(--accent); }
+    .cta-footer__desc { font-size: 18px; line-height: 1.7; color: var(--text-secondary); max-width: 640px; text-align: center; }
+    .cta-footer__sub { font-size: 22px; font-weight: 600; color: var(--accent); text-align: center; }
+    .cta-footer__buttons { display: flex; gap: 16px; padding-top: 16px; }
+    .cta-footer__footer { font-size: 14px; color: var(--text-muted); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 48px; padding-right: 48px; }
+      .cs-two-col { flex-direction: column; gap: 32px; }
+      .cs-col-left--380, .cs-col-fill { width: 100%; }
+      .cs-hero__headline { font-size: 56px; }
+      .section-title { font-size: 40px; }
+      .flow-cards { flex-direction: column; }
+      .gallery-row { flex-direction: column; height: auto; }
+      .gallery-item { width: 100%; max-width: 100%; }
+      .cs-hero__top { flex-direction: column; gap: 16px; }
+      .cs-hero__meta { justify-content: center; }
+      .meta-row { flex-wrap: wrap; gap: 24px; }
+    }
+    @media (max-width: 640px) {
+      .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 24px; padding-right: 24px; }
+      .cs-hero { padding-top: 48px; padding-bottom: 40px; }
+      .cs-hero__headline { font-size: 40px; }
+      .cs-hero__stats { flex-direction: column; gap: 24px; }
+      .cs-hero__stat-number { font-size: 48px; }
+      .cs-hero__laptop-wrap { padding-top: 40px; }
+      .cs-hero__device { max-width: 90%; margin: 0 auto; }
+      .cta-footer__buttons { flex-direction: column; }
+      .features-two-col { flex-direction: column; }
+    }
+  </style>
+  <!-- Google Consent Mode v2 -->
+  <script>
+    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+    gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+    try{var c=JSON.parse(localStorage.getItem('uxmeas_consent'));if(c&&c.analytics)gtag('consent','update',{analytics_storage:'granted'});}catch(e){}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+  <script>gtag('js',new Date());gtag('config','G-87HSHMKCBH');</script>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- NAV -->
+    <nav class="nav">
+      <a class="nav__logo" href="../../">UX MEAS</a>
+      <ul class="nav__links">
+        <li><a href="../../">WORK</a></li>
+        <li><a href="../../#about">ABOUT</a></li>
+        <li><a href="../../#contact" class="nav--accent">CONTACT</a></li>
+      </ul>
+    </nav>
+
+    <!-- 1. HERO -->
+    <section class="cs-hero">
+      <div class="cs-hero__top">
+        <span class="cs-hero__tags">FIGMA PLUGIN &middot; TEXT &middot; UTILITY</span>
+        <span class="cs-hero__meta">MZM Labs &middot; Solo Project &middot; 2026</span>
+      </div>
+
+      <h1 class="cs-hero__headline">MultiPaste</h1>
+
+      <div class="cs-hero__stats">
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">5</div>
+          <div class="cs-hero__stat-label">Delimiters</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">1-Click</div>
+          <div class="cs-hero__stat-label">Undo</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">0</div>
+          <div class="cs-hero__stat-label">Dependencies</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">Free</div>
+          <div class="cs-hero__stat-label">Forever</div>
+        </div>
+      </div>
+
+      <p class="cs-hero__subtitle">A Figma plugin that distributes text data across multiple selected text layers. Paste a list from a spreadsheet, each line maps to a layer. Loop, reverse, preview, and undo. Built because I use this workflow every day and wanted it done right.</p>
+
+      <div class="cs-hero__laptop-wrap">
+        <div class="cs-hero__device">
+          <picture>
+            <source srcset="../../images/macbook-pro.webp" type="image/webp">
+            <img src="../../images/macbook-pro.png" alt="" class="cs-hero__device-frame">
+          </picture>
+          <div class="cs-hero__device-screen">
+            <img src="../../images/multipaste/hero-laptop.png" alt="MultiPaste plugin in Figma" class="cs-hero__screen-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. THE PROBLEM -->
+    <section class="cs-section">
+      <span class="badge">THE PROBLEM</span>
+
+      <div class="cs-two-col">
+        <div class="cs-col-left--380">
+          <h2 class="section-title">Populating text<br>layers is tedious</h2>
+        </div>
+        <div class="cs-col-fill">
+          <p class="body-text">Every time you design a table, a list, a set of cards, or any repeating UI pattern, you end up copy-pasting text one layer at a time. Select layer, paste, select next layer, paste. 50 names into 50 cards means 100 clicks minimum.</p>
+          <p class="body-text" style="margin-top: 24px;">Existing plugins solve this partially but lack preview, undo, and delimiter options. I used Many Paster daily and wanted a version that matched MZM Labs quality standards with the features I was missing.</p>
+
+          <div class="hmw-card" style="margin-top: 32px;">
+            <div class="hmw-card__label">WHY I BUILT THIS</div>
+            <p class="hmw-card__text">I built MultiPaste to eliminate the most tedious part of populating realistic designs.</p>
+          </div>
+
+          <div class="meta-row">
+            <div class="meta-item">
+              <div class="meta-item__label">ROLE</div>
+              <div class="meta-item__value">Solo Designer &amp; Developer</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-item__label">STACK</div>
+              <div class="meta-item__value">TypeScript | Figma Plugin API | esbuild</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-item__label">STATUS</div>
+              <div class="meta-item__value">Production v0.1.0</div>
+            </div>
+            <div class="meta-item">
+              <div class="meta-item__label">YEAR</div>
+              <div class="meta-item__value">2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HOW IT WORKS -->
+    <section class="cs-section cs-section--deep">
+      <span class="badge">HOW IT WORKS</span>
+      <h2 class="section-title">Three steps</h2>
+
+      <div class="flow-cards">
+        <div class="flow-card">
+          <div class="flow-card__head">
+            <div class="flow-card__badge">01</div>
+          </div>
+          <div class="flow-card__title">Select text layers</div>
+          <div class="flow-card__desc">Click the layers you want to populate. Nested layers in frames, groups, and components are detected automatically.</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card__head">
+            <div class="flow-card__badge">02</div>
+          </div>
+          <div class="flow-card__title">Paste your data</div>
+          <div class="flow-card__desc">Drop a list from Excel, a spreadsheet, or type it directly. Choose newline, comma, or tab as delimiter.</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card__head">
+            <div class="flow-card__badge">03</div>
+          </div>
+          <div class="flow-card__title">Preview and paste</div>
+          <div class="flow-card__desc">See exactly which line maps to which layer before committing. One click to paste, one click to undo.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FEATURES -->
+    <section class="cs-section">
+      <span class="badge">FEATURES</span>
+      <h2 class="section-title">What I built</h2>
+      <p class="body-text" style="max-width: 800px;">Every feature exists because I needed it in my daily workflow. No bloat, no premium tiers.</p>
+
+      <div class="features-two-col" style="display: flex; gap: 64px;">
+        <div style="flex: 1;">
+          <div class="features-group__label">CORE</div>
+          <div class="features-list">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Multi-line paste</div>
+                <div class="feature-desc">Each line maps to a text layer in selection order</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Delimiter options</div>
+                <div class="feature-desc">Newline, comma, or tab splitting</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Loop mode</div>
+                <div class="feature-desc">Cycle lines when you have more layers than data</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Reverse order</div>
+                <div class="feature-desc">Paste in reverse selection order</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Trim whitespace</div>
+                <div class="feature-desc">Auto-clean leading and trailing spaces</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Skip empty lines</div>
+                <div class="feature-desc">Filter blank entries automatically</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="flex: 1;">
+          <div class="features-group__label">ENHANCED</div>
+          <div class="features-list">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Drag-and-drop reorder</div>
+                <div class="feature-desc">Rearrange entries before pasting with drag handles or arrow buttons</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Live preview</div>
+                <div class="feature-desc">Line-to-layer mapping table before you commit</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">One-click undo</div>
+                <div class="feature-desc">Restore original text instantly</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Copy from selection</div>
+                <div class="feature-desc">Read existing text back into the plugin</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Mixed font support</div>
+                <div class="feature-desc">Handles text nodes with multiple font styles</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Deep selection walk</div>
+                <div class="feature-desc">Finds text layers nested in frames, groups, and component instances</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PLUGIN UI -->
+    <section class="cs-section cs-section--deep">
+      <span class="badge">PLUGIN INTERFACE</span>
+      <h2 class="section-title">Four states</h2>
+      <p class="body-text" style="max-width: 800px;">320 x 460 panel. MZM Labs dark theme with rose accent. Selection banner with real-time count, monospace textarea, inline options row, and collapsible preview.</p>
+
+      <div class="gallery-row">
+        <div class="gallery-item">
+          <img src="../../images/multipaste/state-empty.png" alt="MultiPaste empty state" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="../../images/multipaste/state-active.png" alt="MultiPaste active state" loading="lazy">
+        </div>
+      </div>
+      <div class="gallery-row">
+        <div class="gallery-item">
+          <img src="../../images/multipaste/state-preview.png" alt="MultiPaste preview state" loading="lazy">
+        </div>
+        <div class="gallery-item">
+          <img src="../../images/multipaste/state-postpaste.png" alt="MultiPaste post-paste state" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. RESULTS & IMPACT -->
+    <section class="cs-section">
+      <span class="badge">RESULTS &amp; IMPACT</span>
+
+      <div class="cs-two-col">
+        <div class="cs-col-left--380">
+          <h2 class="section-title">Shipped and<br>used daily</h2>
+
+          <div class="stat-bars">
+            <div class="stat-bar">
+              <span class="stat-bar__number">4.7 KB</span>
+              <span class="stat-bar__label">Code bundle size</span>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__number">7.2 KB</span>
+              <span class="stat-bar__label">UI bundle size</span>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__number">0</span>
+              <span class="stat-bar__label">External dependencies</span>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__number">12</span>
+              <span class="stat-bar__label">Features shipped</span>
+            </div>
+          </div>
+        </div>
+        <div class="cs-col-fill">
+          <p class="body-text">Built from scratch in a single session. Every feature designed, coded, and tested by one person. The plugin I wanted to exist, so I made it.</p>
+          <p class="body-text" style="margin-top: 24px;">Async font discovery per text node. Mixed-font nodes require per-character font enumeration before any text write. Stack-based traversal avoids recursion depth limits on deeply nested component instances.</p>
+          <p class="body-text" style="margin-top: 24px;">Discriminated union types for all code-to-UI and UI-to-code messages. Type-safe IPC. esbuild bundles TypeScript to ES2017. JS inlined into HTML for Figma's single-file plugin requirement.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CTA FOOTER -->
+    <section class="cta-footer">
+      <div class="cta-footer__divider"></div>
+      <h2 class="section-title">Back to Portfolio</h2>
+      <span class="cta-footer__sub">MultiPaste &mdash; Text Distribution for Figma</span>
+      <p class="cta-footer__desc">MZM Labs &middot; Solo Designer &amp; Developer &middot; 2026</p>
+      <div class="cta-footer__buttons">
+        <a href="/" class="btn-primary">BACK TO PORTFOLIO</a>
+        <a href="/#contact" class="btn-secondary">GET IN TOUCH</a>
+      </div>
+      <span class="cta-footer__footer">uxmeas.com</span>
+    </section>
+
+  </div>
+<script src="/js/cookie-consent.js"></script>
+<script>
+CookieConsent.init({storageKey:'uxmeas_consent',policyUrl:'/cookies.html',
+categories:[{id:'necessary',label:'Necessary',description:'Required for the site to function properly.',required:true,default:true},{id:'analytics',label:'Performance & Analytics',description:'Help us understand how visitors use this site via Google Analytics.',required:false,default:false}],
+onSave:function(c){gtag('consent','update',{analytics_storage:c.analytics?'granted':'denied'});}});
+</script>
+</body>
+</html>

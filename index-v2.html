@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Meas — Product Designer & Builder</title>
+    <meta name="description" content="Co-founded a company that went public. 16 years leading product design across fintech, compliance, and enterprise software.">
+    <meta property="og:title" content="UX Meas — Product Designer & Builder">
+    <meta property="og:description" content="Co-founded a company that went public. 16 years leading product design across fintech, compliance, and enterprise software.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uxmeas.com">
+    <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://uxmeas.com/images/og-image.png">
+    <link rel="canonical" href="https://uxmeas.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+    <meta name="theme-color" content="#141419">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-87HSHMKCBH');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+        /* ══════════════════════════════════════════════════════
+           DESIGN SYSTEM — Charcoal + Copper
+           ══════════════════════════════════════════════════════ */
+        :root {
+            --bg-deep: #141419;
+            --bg-card: #1C1C24;
+            --bg-surface: #26262F;
+            --accent: #D4915E;
+            --accent-hover: #C07D4A;
+            --accent-light: #F5E6D8;
+            --accent-muted: #8B6E52;
+            --text-primary: #F0F0F2;
+            --text-secondary: #9298A0;
+            --text-muted: #5C6270;
+            --border: #2E2E3A;
+            --white: #FFFFFF;
+            --section-light: #F5F5F7;
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-primary);
+            font-weight: 400;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── TYPOGRAPHY ── */
+        .font-display {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 72px;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 32px;
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+        nav.scrolled {
+            background-color: rgba(20, 20, 25, 0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom-color: var(--border);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .nav-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 3px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            margin-left: auto;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            letter-spacing: 0.02em;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .nav-links a.nav-contact-link {
+            color: var(--accent);
+        }
+        .nav-links a.nav-contact-link:hover {
+            color: var(--accent-hover);
+        }
+
+        /* ── HAMBURGER MENU ── */
+        .nav-hamburger {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            margin-left: auto;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .nav-hamburger svg { display: block; }
+        .mobile-menu-overlay {
+            position: fixed;
+            inset: 0;
+            top: 72px;
+            background: rgba(20, 20, 25, 0.98);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            padding: 48px 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-overlay a {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 16px 0;
+            letter-spacing: 2px;
+            transition: color 0.2s;
+        }
+        .mobile-menu-overlay a:hover { color: var(--accent); }
+        .mobile-menu-overlay .mobile-menu-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin: 16px 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-hamburger { display: flex; }
+            .nav-links { display: none; }
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 120px 32px 80px;
+            text-align: center;
+            position: relative;
+        }
+        .hero-content {
+            max-width: 900px;
+            width: 100%;
+        }
+        .hero-tag {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            color: var(--accent);
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 8vw, 80px);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -1px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hero-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: 400;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            background: var(--accent);
+            color: var(--bg-deep);
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+        .btn-outline:hover {
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+            transform: translateY(-1px);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: scrollBounce 2s infinite 1.5s;
+        }
+        .scroll-indicator svg {
+            stroke: var(--text-muted);
+            width: 24px;
+            height: 24px;
+        }
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.5; }
+            40% { transform: translateX(-50%) translateY(8px); opacity: 1; }
+            60% { transform: translateX(-50%) translateY(4px); opacity: 0.7; }
+        }
+
+        /* ── SECTION COMMON ── */
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        .section-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            letter-spacing: 6px;
+            color: var(--accent);
+            margin-bottom: 48px;
+        }
+
+        /* ── SELECTED WORK ── */
+        .work {
+            padding: 120px 0;
+            background: var(--bg-deep);
+        }
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+        .work-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s var(--ease-out-expo), border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .work-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+        .work-card:active {
+            transform: scale(0.98);
+        }
+        .work-card__thumb {
+            width: 100%;
+            height: 280px;
+            background: var(--bg-surface);
+            overflow: hidden;
+        }
+        .work-card__thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .work-card__info {
+            padding: 28px 28px 32px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+        .work-card__tags {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .work-card__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+        .work-card__desc {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+        .work-card__process {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .work-card__process-tag {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+        .work-card__process-arrow {
+            font-size: 10px;
+            color: var(--text-muted);
+            opacity: 0.5;
+        }
+        /* "More Coming" card */
+        .work-card--more {
+            border-style: dashed;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 420px;
+            cursor: default;
+        }
+        .work-card--more:hover {
+            transform: none;
+            border-color: var(--border);
+        }
+        .work-card--more__inner {
+            text-align: center;
+            padding: 40px;
+        }
+        .work-card--more__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+        .work-card--more__list {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 2;
+        }
+
+        /* ── ABOUT ── */
+        .about {
+            padding: 120px 0;
+            background: var(--bg-card);
+        }
+        .about-top {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 80px;
+        }
+        .about-left {}
+        .about-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 42px;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+        .about-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--accent);
+            font-weight: 400;
+        }
+        .about-right p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            padding-top: 48px;
+            border-top: 1px solid var(--border);
+        }
+        .about-stat {}
+        .about-stat__num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .about-stat__label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        /* ── SPECIALIZATIONS ── */
+        .specs {
+            padding: 120px 0;
+            background: var(--bg-deep);
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .spec-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 40px 32px;
+        }
+        .spec-card__icon {
+            width: 32px;
+            height: 32px;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+        .spec-card__title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        .spec-card__desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ── CONTACT ── */
+        .contact {
+            padding: 120px 0;
+            background: var(--bg-card);
+        }
+        .contact-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .contact-headline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(32px, 5vw, 48px);
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .contact-location {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+        .contact-ctas {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 48px;
+        }
+        .contact-form-wrap {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            transition: border-color 0.2s ease;
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact-submit {
+            display: inline-flex;
+            align-self: flex-start;
+            padding: 14px 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            color: var(--bg-deep);
+            background: var(--accent);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .contact-submit:hover { background: var(--accent-hover); }
+        .contact-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+        .contact-success {
+            display: none;
+            padding: 32px 0;
+            text-align: center;
+        }
+        .contact-success p {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #0E0E12;
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+        }
+        .footer-copy {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text-secondary); }
+
+        /* ── SCROLL REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── REDUCED MOTION ── */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; transition: none; }
+            .hero-tag, .hero h1, .hero-subtitle, .hero-ctas {
+                opacity: 1; transform: none;
+            }
+            .scroll-indicator { animation: none; opacity: 0.5; }
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .about-stats { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .hero { padding: 100px 24px 80px; }
+            .section-container { padding: 0 24px; }
+            .work-grid { grid-template-columns: 1fr; }
+            .about-top { grid-template-columns: 1fr; gap: 32px; }
+            .about-stats { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+            .work-card__thumb { height: 220px; }
+        }
+
+        @media (max-width: 480px) {
+            nav { padding: 0 16px; }
+            .hero { padding: 100px 16px 80px; }
+            .section-container { padding: 0 16px; }
+            .about-stat__num { font-size: 36px; }
+        }
+
+        /* ══════════════════════════════════════════════════════
+           BEHANCE-STYLE MODAL (Preserved from v1)
+           ══════════════════════════════════════════════════════ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 1001;
+            overflow-y: auto;
+            cursor: zoom-out;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-panel {
+            max-width: 1440px;
+            width: 92vw;
+            margin: 32px auto 48px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: default;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.35s var(--ease-out-expo) 0.05s,
+                        transform 0.35s var(--ease-out-expo) 0.05s;
+            position: relative;
+        }
+        .modal-overlay.active .modal-panel {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            width: 35px;
+            height: 35px;
+            background: rgb(48, 48, 48);
+            border: 1px solid transparent;
+            border-radius: 100px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            z-index: 1002;
+            transition: background 0.2s;
+        }
+        .modal-close:hover {
+            background: dimgray;
+        }
+
+        /* ── Per-project theme tokens (from .pen designs) ── */
+        .cs--compliance {
+            --cs-accent: #3B82F6;
+            --cs-highlight: #F96815;
+            --cs-stat-color: #34D399;
+            --cs-bg-1: #0A1628;
+            --cs-bg-2: #0F1D2F;
+            --cs-bg-deep: #071320;
+            --cs-bg-card: #07243c;
+            --cs-bg-metric: #0d1b2e;
+            --cs-text: #FFFFFF;
+            --cs-text-muted: #94A3B8;
+            --cs-text-dim: #6b7177;
+            --cs-border: #1E3A5F;
+            --cs-purple: #5d2de6;
+            --cs-error: #EF4444;
+        }
+        .cs--dealflow {
+            --cs-accent: #3B82F6;
+            --cs-highlight: #F96815;
+            --cs-stat-color: #34D399;
+            --cs-bg-1: #0A1628;
+            --cs-bg-2: #0F1D2F;
+            --cs-bg-deep: #071320;
+            --cs-bg-card: #111827;
+            --cs-text: #FFFFFF;
+            --cs-text-muted: #94A3B8;
+            --cs-text-dim: #64748B;
+            --cs-border: #1E293B;
+            --cs-purple: #F96815;
+        }
+        .cs--akm {
+            --cs-accent: #22C55E;
+            --cs-highlight: #FFFFFF;
+            --cs-stat-color: #FFFFFF;
+            --cs-bg-1: #0B0B0B;
+            --cs-bg-2: #111111;
+            --cs-bg-deep: #0B0B0B;
+            --cs-bg-card: #1A1A1A;
+            --cs-text: #FFFFFF;
+            --cs-text-muted: #8B8B8B;
+            --cs-text-dim: #6B6B6B;
+            --cs-border: #2B2B2B;
+            --cs-purple: #991b1b;
+        }
+        .cs--relationsync {
+            --cs-accent: #8B6FC0;
+            --cs-highlight: #8B6FC0;
+            --cs-stat-color: #C4A7E0;
+            --cs-bg-1: #1A1220;
+            --cs-bg-2: #130E1A;
+            --cs-bg-deep: #0F0A16;
+            --cs-bg-card: #2A1F35;
+            --cs-text: #F2F0F5;
+            --cs-text-muted: #9B8AAF;
+            --cs-text-dim: #6B5B7B;
+            --cs-border: #2D2040;
+            --cs-purple: #7C5FA6;
+        }
+        .cs--mypick {
+            --cs-accent: #39FF14;
+            --cs-highlight: #39FF14;
+            --cs-stat-color: #39FF14;
+            --cs-bg-1: #0A0A0A;
+            --cs-bg-2: #0D1A0D;
+            --cs-bg-deep: #0A0A0A;
+            --cs-bg-card: #111811;
+            --cs-text: #FFFFFF;
+            --cs-text-muted: #7AE582;
+            --cs-text-dim: #5A8F60;
+            --cs-border: #1E3A1E;
+            --cs-purple: #39FF14;
+        }
+
+        /* ── Modal sections — full-bleed within panel ── */
+        .m-section {
+            width: 100%;
+            padding: 100px 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* ── Label bar (3 labels with 1px dividers) ── */
+        .m-label-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cs-text-dim);
+            margin-bottom: 24px;
+        }
+        .m-label-bar__divider {
+            flex: 1;
+            height: 1px;
+            background: var(--cs-border);
+        }
+        .m-label-dot {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .m-label-dot__dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--cs-purple);
+        }
+        .m-label-dot__text {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cs-purple);
+        }
+
+        /* ── Hero section ── */
+        .m-hero {
+            padding: 80px 120px 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .m-hero--center { text-align: center; align-items: center; }
+        .m-hero__logo {
+            height: 80px;
+            width: 280px;
+            object-fit: contain;
+            object-position: left;
+        }
+        .m-hero--center .m-hero__logo { object-position: center; }
+        .m-hero__title {
+            font-family: 'Inter', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--cs-text);
+            line-height: 1.1;
+        }
+        .m-hero__subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--cs-text-muted);
+            line-height: 1.6;
+            max-width: 680px;
+        }
+        .m-hero__stats {
+            display: flex;
+            gap: 32px;
+            padding-top: 32px;
+            width: 100%;
+        }
+        .m-hero--center .m-hero__stats { justify-content: center; gap: 48px; }
+        .m-hero__stat { flex: 1; }
+        .m-hero--center .m-hero__stat { flex: none; text-align: center; }
+        .m-hero__stat-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--cs-highlight);
+        }
+        .m-hero__stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--cs-text-dim);
+            margin-top: 4px;
+        }
+        .m-hero__screenshot {
+            border-radius: 8px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .m-hero__screenshot img {
+            display: block;
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .m-hero__phones {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            align-items: flex-end;
+            height: 540px;
+            padding-top: 24px;
+            width: 100%;
+        }
+        .m-hero__phone {
+            border-radius: 32px;
+            background: var(--cs-border);
+            padding: 12px 8px 8px;
+            overflow: hidden;
+        }
+        .m-hero__phone--center { width: 260px; height: 540px; }
+        .m-hero__phone--side { width: 240px; height: 500px; }
+        .m-hero__phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+
+        /* ── Two-column layout ── */
+        .m-two-col {
+            display: flex;
+            gap: 48px;
+        }
+        .m-two-col__left {
+            width: 320px;
+            flex-shrink: 0;
+        }
+        .m-two-col__right {
+            flex: 1;
+            max-width: 680px;
+        }
+
+        /* ── Section typography ── */
+        .m-section__title {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--cs-text);
+            line-height: 1.1;
+        }
+        .m-section__subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--cs-purple);
+            margin-top: 4px;
+        }
+        .m-section__desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--cs-text-muted);
+            line-height: 1.7;
+            max-width: 680px;
+        }
+        .m-section__highlight {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--cs-accent);
+            line-height: 1.6;
+            margin-top: 16px;
+        }
+
+        /* ── Goals / Features list ── */
+        .m-goals-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cs-highlight);
+            margin-bottom: 12px;
+        }
+        .m-goal-item {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--cs-text);
+            line-height: 1.6;
+            padding: 2px 0;
+        }
+        .m-pain-item {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--cs-error, #EF4444);
+            line-height: 1.5;
+            padding: 4px 0;
+        }
+
+        /* ── Metric cards ── */
+        .m-metrics {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .m-metric {
+            flex: 1;
+            padding: 20px 16px;
+            background: var(--cs-bg-metric, var(--cs-bg-card));
+            border-radius: 8px;
+        }
+        .m-metric__num {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--cs-error, #EF4444);
+        }
+        .m-metric__label {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--cs-text-muted);
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        /* ── Process steps ── */
+        .m-steps {
+            display: flex;
+            gap: 16px;
+            margin-top: 24px;
+        }
+        .m-step {
+            flex: 1;
+            padding: 20px 16px;
+            background: var(--cs-bg-metric, var(--cs-bg-card));
+            border-radius: 8px;
+        }
+        .m-step__num {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--cs-purple);
+        }
+        .m-step__title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cs-text);
+            margin-top: 8px;
+        }
+        .m-step__desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--cs-text-dim);
+            line-height: 1.5;
+            margin-top: 4px;
+        }
+
+        /* ── Flow diagram ── */
+        .m-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 24px 0;
+            flex-wrap: wrap;
+        }
+        .m-flow__node {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .m-flow__arrow {
+            font-size: 18px;
+            color: var(--cs-text-dim);
+        }
+
+        /* ── Gallery ── */
+        .m-gallery {
+            display: flex;
+            gap: 16px;
+        }
+        .m-gallery--2 .m-gallery__item { flex: 1; }
+        .m-gallery--3 .m-gallery__item { flex: 1; }
+        .m-gallery--row { height: 320px; }
+        .m-gallery--row .m-img-wrap { height: 100%; }
+        .m-gallery--row .m-img-wrap img { height: 100%; object-fit: cover; }
+        .m-gallery--tall { height: 400px; }
+        .m-gallery--tall .m-img-wrap { height: 100%; }
+        .m-gallery--tall .m-img-wrap img { height: 100%; object-fit: cover; }
+        .m-gallery__item { border-radius: 8px; overflow: hidden; }
+
+        /* Image skeleton */
+        .m-img-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            background: var(--cs-bg-card, #252525);
+        }
+        .m-img-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.04) 50%, transparent 75%);
+            background-size: 600px;
+            animation: m-shimmer 1.5s infinite linear;
+        }
+        @keyframes m-shimmer {
+            0% { background-position: -300px 0; }
+            100% { background-position: 300px 0; }
+        }
+        .m-img-wrap img {
+            display: block;
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .m-img-wrap img.loaded {
+            opacity: 1;
+        }
+
+        /* ── Results cards ── */
+        .m-results {
+            display: flex;
+            gap: 16px;
+        }
+        .m-result-card {
+            flex: 1;
+            padding: 24px 20px;
+            background: var(--cs-bg-card);
+            border-radius: 8px;
+        }
+        .m-result-card__num {
+            font-family: 'Inter', sans-serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--cs-stat-color);
+        }
+        .m-result-card__title {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--cs-text);
+            margin-top: 8px;
+        }
+        .m-result-card__desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--cs-text-dim);
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        /* ── CTA Footer ── */
+        .m-cta {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+        .m-cta__line {
+            width: 120px;
+            height: 2px;
+            background: var(--cs-purple);
+        }
+        .m-cta__title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--cs-text);
+        }
+        .m-cta__subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--cs-text-dim);
+        }
+        .m-cta__buttons {
+            display: flex;
+            gap: 16px;
+            padding-top: 16px;
+        }
+        .m-cta__btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .m-cta__btn:hover { opacity: 0.85; transform: translateY(-1px); }
+        .m-cta__btn--primary { background: var(--cs-purple); color: white; }
+        .m-cta__btn--ghost { color: var(--cs-purple); }
+        .m-cta__btn--ghost:hover { text-decoration: underline; }
+        .m-cta__footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            color: var(--cs-text-dim);
+            margin-top: 24px;
+        }
+
+        /* ── Component grid (RelationSync) ── */
+        .m-comp-grid {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .m-comp-card {
+            width: 190px;
+            height: 100px;
+            background: var(--cs-bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--cs-text-muted);
+        }
+
+        /* ── MyPick meta row ── */
+        .m-meta-row {
+            display: flex;
+            gap: 32px;
+            padding-top: 16px;
+        }
+        .m-meta__label {
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--cs-highlight);
+        }
+        .m-meta__value {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--cs-text);
+            margin-top: 4px;
+        }
+
+        /* ── Typography & Color showcase (AKM) ── */
+        .m-type-color {
+            display: flex;
+            gap: 32px;
+        }
+        .m-type-color__col { flex: 1; }
+        .m-type-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ADADAD;
+            margin-bottom: 16px;
+        }
+        .m-color-row {
+            display: flex;
+            gap: 8px;
+            height: 60px;
+        }
+        .m-color-swatch {
+            flex: 1;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 0 6px 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        /* ── Onboarding phone flow (RelationSync) ── */
+        .m-onboarding-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            height: 340px;
+        }
+        .m-onboarding-phone {
+            width: 120px;
+            height: 240px;
+            background: var(--cs-bg-card);
+            border-radius: 12px;
+            padding: 8px 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .m-onboarding-phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .m-onboarding-arrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--cs-purple);
+        }
+
+        /* ── Feature spotlight ── */
+        .m-spotlight {
+            display: flex;
+            gap: 48px;
+            align-items: center;
+        }
+        .m-spotlight__phone {
+            width: 280px;
+            height: 520px;
+            background: var(--cs-border);
+            border-radius: 36px;
+            padding: 14px 10px 10px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .m-spotlight__phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 26px;
+        }
+
+        /* ── Scroll reveal inside modal ── */
+        .m-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .m-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Modal loader ── */
+        .m-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            z-index: 1003;
+            overflow: hidden;
+        }
+        .m-loader__bar {
+            width: 40%;
+            height: 100%;
+            background: var(--white);
+            border-radius: 2px;
+            animation: m-load 0.8s ease-out forwards;
+        }
+        @keyframes m-load {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(350%); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .m-reveal { opacity: 1; transform: none; transition: none; }
+        }
+
+        @media (max-width: 768px) {
+            .modal-panel { width: 100%; margin: 0; border-radius: 0; min-height: 100vh; }
+            .modal-close { top: 10px; right: 10px; position: fixed; }
+            .m-section { padding: 48px 24px; }
+            .m-hero { padding: 48px 24px 32px; }
+            .m-hero__title { font-size: 32px; }
+            .m-hero__subtitle { font-size: 15px; }
+            .m-hero__logo { height: 60px; width: 200px; }
+            .m-hero__stats { flex-direction: column; gap: 16px; }
+            .m-hero__screenshot img { height: auto; }
+            .m-hero__phones { height: auto; flex-direction: column; align-items: center; }
+            .m-hero__phone--side { width: 200px; height: auto; }
+            .m-hero__phone--center { width: 220px; height: auto; }
+            .m-two-col { flex-direction: column; gap: 24px; }
+            .m-two-col__left { width: 100%; }
+            .m-gallery { flex-direction: column; }
+            .m-gallery--row, .m-gallery--tall { height: auto; }
+            .m-gallery--row .m-img-wrap, .m-gallery--tall .m-img-wrap { height: auto; }
+            .m-gallery--row .m-img-wrap img, .m-gallery--tall .m-img-wrap img { height: auto; }
+            .m-results { flex-direction: column; }
+            .m-flow { gap: 6px; }
+            .m-flow__node { padding: 8px 12px; font-size: 10px; }
+            .m-section__title { font-size: 28px; }
+            .m-steps { flex-direction: column; }
+            .m-metrics { flex-direction: column; }
+            .m-cta__buttons { flex-direction: column; align-items: center; }
+            .m-meta-row { flex-wrap: wrap; gap: 16px; }
+            .m-type-color { flex-direction: column; }
+            .m-spotlight { flex-direction: column; }
+            .m-spotlight__phone { width: 220px; height: 400px; }
+            .m-onboarding-flow { flex-wrap: wrap; height: auto; }
+            .m-comp-grid { gap: 12px; }
+            .m-comp-card { width: 140px; height: 80px; }
+        }
+        @media (max-width: 480px) {
+            .m-hero__title { font-size: 26px; }
+            .m-hero__stat-num { font-size: 28px; }
+            .m-result-card__num { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════════════════ NAVIGATION ════════════════════ -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">UX MEAS</a>
+            <div class="nav-links">
+                <a href="#work">Projects</a>
+                <a href="#about">About</a>
+                <a href="#contact" class="nav-contact-link">Contact</a>
+            </div>
+            <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <a href="#work" class="mobile-menu-link">Projects</a>
+        <a href="#about" class="mobile-menu-link">About</a>
+        <div class="mobile-menu-divider"></div>
+        <a href="#contact" class="mobile-menu-link">Contact</a>
+    </div>
+
+    <!-- ════════════════════ HERO ════════════════════ -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-tag font-display">PRODUCT DESIGN &middot; SYSTEMS THINKING &middot; EXECUTION</p>
+            <h1>I design products.<br>Then I build them.</h1>
+            <p class="hero-subtitle">16 years. Agency to IPO. Still shipping.</p>
+            <div class="hero-ctas">
+                <a href="#work" class="btn-primary">VIEW CASE STUDIES</a>
+                <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener" class="btn-outline">LINKEDIN</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </div>
+    </section>
+
+    <!-- ════════════════════ SELECTED WORK ════════════════════ -->
+    <section id="work" class="work">
+        <div class="section-container">
+            <p class="section-label font-display reveal">SELECTED WORK</p>
+
+            <div class="work-grid">
+                <!-- Row 1 -->
+                <div data-project="compliance" class="work-card reveal" tabindex="0" role="button" aria-label="View Compliance UX case study">
+                    <div class="work-card__thumb" style="background-color: #0F172A">
+                        <picture><source srcset="images/katipult/nb2-compliance-hero.webp" type="image/webp"><img src="images/katipult/nb2-compliance-hero.png" alt="Compliance UX" width="768" height="480" fetchpriority="high"></picture>
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">COMPLIANCE &middot; FINTECH &middot; ENTERPRISE</span>
+                        <h3 class="work-card__title">Compliance UX</h3>
+                        <p class="work-card__desc">Led redesign of investor onboarding — from fax machines to 12-minute digital flows across 20+ jurisdictions. 85% completion rate.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Research</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Systems</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-project="dealflow" class="work-card reveal" tabindex="0" role="button" aria-label="View Katipult DealFlow case study">
+                    <div class="work-card__thumb" style="background-color: #0F172A">
+                        <picture><source srcset="images/katipult/nb2-dealflow-hero.webp" type="image/webp"><img src="images/katipult/nb2-dealflow-hero.png" alt="Katipult DealFlow" width="768" height="480" loading="lazy"></picture>
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">PRODUCT DESIGN &middot; FINTECH &middot; IPO</span>
+                        <h3 class="work-card__title">Katipult DealFlow</h3>
+                        <p class="work-card__desc">Co-founded in 2008. Led product design through 15 years of growth — 3 people to 49+, IPO on TSX-V, and two industry awards.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Research</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Systems</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div data-project="akm" class="work-card reveal" tabindex="0" role="button" aria-label="View AKMSecure case study">
+                    <div class="work-card__thumb" style="background-color: #252525">
+                        <picture><source srcset="images/akm-card.webp" type="image/webp"><img src="images/akm-card.png" alt="AKMSecure" width="768" height="480" loading="lazy"></picture>
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">BRAND &middot; WEB &middot; HUBSPOT</span>
+                        <h3 class="work-card__title">AKMSecure</h3>
+                        <p class="work-card__desc">A cybersecurity startup needed to look as secure as their product. Brand identity, website design, and HubSpot CMS — solo.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Research</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Build</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-project="relationsync" class="work-card reveal" tabindex="0" role="button" aria-label="View RelationSync case study">
+                    <div class="work-card__thumb" style="background-color: #1A1625">
+                        <picture><source srcset="images/relationsync/nb2-home-v2-grounded.webp" type="image/webp"><img src="images/relationsync/nb2-home-v2-grounded.png" alt="RelationSync" width="768" height="480" loading="lazy"></picture>
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">MOBILE APP &middot; PRODUCT DESIGN &middot; COLLABORATION</span>
+                        <h3 class="work-card__title">RelationSync</h3>
+                        <p class="work-card__desc">Most apps want your attention. This one helps you pay attention to people. 35 screens, 19 components, voice-first journaling.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Research</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Systems</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div data-project="mypick" class="work-card reveal" tabindex="0" role="button" aria-label="View MyPick.io case study">
+                    <div class="work-card__thumb" style="background-color: #0C1222">
+                        <picture><source srcset="images/mypick-card.webp" type="image/webp"><img src="images/mypick-card.png" alt="MyPick.io" width="768" height="480" loading="lazy"></picture>
+                    </div>
+                    <div class="work-card__info">
+                        <span class="work-card__tags">WEB APP &middot; GAME &middot; SIDE PROJECT</span>
+                        <h3 class="work-card__title">MyPick.io</h3>
+                        <p class="work-card__desc">Turned a boring randomizer into a pixel car race. 4 terrains, 4 weather conditions, mechanical failures. Live product, zero dependencies.</p>
+                        <div class="work-card__process">
+                            <span class="work-card__process-tag">Design</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Build</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Ship</span>
+                            <span class="work-card__process-arrow">&rarr;</span>
+                            <span class="work-card__process-tag">Iterate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card work-card--more reveal">
+                    <div class="work-card--more__inner">
+                        <h3 class="work-card--more__title">More Coming</h3>
+                        <p class="work-card--more__list">
+                            Docs to Design &mdash; Document automation<br>
+                            IsoBlock &mdash; Figma plugin
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════ ABOUT ════════════════════ -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <p class="section-label font-display reveal">ABOUT</p>
+
+            <div class="about-top reveal">
+                <div class="about-left">
+                    <h2 class="about-name">Pheak Meas</h2>
+                    <p class="about-title">Product Designer & Builder</p>
+                </div>
+                <div class="about-right">
+                    <p>Co-founded a company in 2008 that became Katipult — a fintech platform that went public on the TSX Venture Exchange. 16 years of product design across UX, UI, brand, and systems at every stage of growth. Goes from spec to shipped product. Looking for a product team where design and engineering think together.</p>
+                </div>
+            </div>
+
+            <div class="about-stats reveal">
+                <div class="about-stat">
+                    <div class="about-stat__num">16</div>
+                    <div class="about-stat__label">YEARS</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat__num">$50M+</div>
+                    <div class="about-stat__label">PROCESSED</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat__num">TSX</div>
+                    <div class="about-stat__label">LISTED</div>
+                </div>
+                <div class="about-stat">
+                    <div class="about-stat__num">20+</div>
+                    <div class="about-stat__label">JURISDICTIONS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════ SPECIALIZATIONS ════════════════════ -->
+    <section class="specs">
+        <div class="section-container">
+            <p class="section-label font-display reveal">SPECIALIZATIONS</p>
+
+            <div class="specs-grid">
+                <div class="spec-card reveal">
+                    <i data-lucide="shield" class="spec-card__icon"></i>
+                    <h3 class="spec-card__title">Fintech UX</h3>
+                    <p class="spec-card__desc">KYC/AML onboarding, investor dashboards, deal flow management. 20+ jurisdictions, white-label architecture, real regulatory compliance.</p>
+                </div>
+                <div class="spec-card reveal">
+                    <i data-lucide="layers" class="spec-card__icon"></i>
+                    <h3 class="spec-card__title">Design Systems</h3>
+                    <p class="spec-card__desc">Component libraries, theming layers, design tokens. Built systems that power 20+ white-label deployments for enterprise clients.</p>
+                </div>
+                <div class="spec-card reveal">
+                    <i data-lucide="target" class="spec-card__icon"></i>
+                    <h3 class="spec-card__title">Product Strategy</h3>
+                    <p class="spec-card__desc">Spec to ship. Research, wireframes, prototypes, production. Led product design from 3-person startup to public company.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════ CONTACT ════════════════════ -->
+    <section id="contact" class="contact">
+        <div class="section-container">
+            <p class="section-label font-display reveal" style="text-align:center">LET'S WORK TOGETHER</p>
+
+            <div class="contact-header reveal">
+                <h2 class="contact-headline">Looking for a senior role where product thinking, execution, and AI fluency overlap.</h2>
+                <p class="contact-location">Calgary, AB + Remote</p>
+                <div class="contact-ctas">
+                    <a href="#contact-form" class="btn-primary">GET IN TOUCH</a>
+                    <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener" class="btn-outline">VIEW LINKEDIN</a>
+                </div>
+            </div>
+
+            <div class="contact-form-wrap reveal" id="contact-form">
+                <form id="contactForm" class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactName">NAME</label>
+                            <input type="text" id="contactName" name="name" required placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">EMAIL</label>
+                            <input type="email" id="contactEmail" name="email" required placeholder="you@company.com">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactMessage">MESSAGE</label>
+                        <textarea id="contactMessage" name="message" required placeholder="Tell me about the role or project" rows="5"></textarea>
+                    </div>
+
+                    <button type="submit" class="contact-submit">SEND MESSAGE &rarr;</button>
+                </form>
+
+                <div class="contact-success" id="contactSuccess">
+                    <p>Message sent. I'll be in touch soon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ════════════════════ FOOTER ════════════════════ -->
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-logo">UX MEAS</span>
+            <span class="footer-copy">&copy; 2026 UX Meas. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://uxmeas.com">uxmeas.com</a>
+                <a href="#" class="eml eml-show" data-u="hello" data-d="uxmeas.com"></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ════════════════════ PROJECT MODAL ════════════════════ -->
+    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-label="Project details">
+        <div class="modal-panel">
+            <div class="m-loader"><div class="m-loader__bar"></div></div>
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // ── Initialize Lucide icons ──
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+
+        // ── Navbar scroll effect ──
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 30);
+        });
+
+        // ── Mobile hamburger menu ──
+        (function() {
+            const hamburger = document.getElementById('navHamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>';
+            const closeIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>';
+            let isOpen = false;
+
+            function toggleMenu() {
+                isOpen = !isOpen;
+                mobileMenu.classList.toggle('active', isOpen);
+                hamburger.innerHTML = isOpen ? closeIcon : menuIcon;
+                hamburger.setAttribute('aria-expanded', isOpen);
+                hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            function closeMenu() {
+                if (!isOpen) return;
+                isOpen = false;
+                mobileMenu.classList.remove('active');
+                hamburger.innerHTML = menuIcon;
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open menu');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+            mobileMenu.querySelectorAll('a').forEach(function(link) {
+                link.addEventListener('click', closeMenu);
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeMenu();
+            });
+        })();
+
+        // ── Hero sequential fade-in ──
+        (function() {
+            const heroEls = document.querySelectorAll('.hero-tag, .hero h1, .hero-subtitle, .hero-ctas');
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            heroEls.forEach((el, i) => {
+                if (prefersReduced) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                    return;
+                }
+                el.style.transition = `opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.2}s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${i * 0.2}s`;
+                requestAnimationFrame(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                });
+            });
+        })();
+
+        // ── Scroll reveal with stagger ──
+        (function() {
+            const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (prefersReduced) {
+                document.querySelectorAll('.reveal').forEach(el => {
+                    el.classList.add('visible');
+                });
+                return;
+            }
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Stagger cards in the same row
+                        const el = entry.target;
+                        const parent = el.parentElement;
+                        if (parent && parent.classList.contains('work-grid')) {
+                            const siblings = Array.from(parent.querySelectorAll('.reveal'));
+                            const idx = siblings.indexOf(el);
+                            const row = Math.floor(idx / 2);
+                            const col = idx % 2;
+                            el.style.transitionDelay = (col * 0.1) + 's';
+                        }
+                        el.classList.add('visible');
+                        revealObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+        })();
+
+        // ── Smooth scroll ──
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#') && href.length > 1) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ══════════════════════════════════════════════════════
+        // BEHANCE-STYLE MODAL SYSTEM (preserved from v1)
+        // ══════════════════════════════════════════════════════
+        const projectKeys = ['compliance', 'dealflow', 'akm', 'relationsync', 'mypick'];
+
+        let currentIndex = 0;
+        let triggerElement = null;
+        const modal = document.getElementById('projectModal');
+        const modalPanel = modal.querySelector('.modal-panel');
+        let modalRevealObserver = null;
+
+        function getFocusableElements() {
+            return modalPanel.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])');
+        }
+
+        function trapFocus(e) {
+            if (e.key !== 'Tab') return;
+            const focusable = getFocusableElements();
+            if (!focusable.length) return;
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+
+        function initModalReveal() {
+            if (modalRevealObserver) modalRevealObserver.disconnect();
+            modalRevealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        modalRevealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { root: modal, threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+            modalPanel.querySelectorAll('.m-reveal').forEach(el => modalRevealObserver.observe(el));
+        }
+
+        function initLazyImages() {
+            modalPanel.querySelectorAll('.m-img-wrap img').forEach(img => {
+                if (img.complete && img.naturalWidth > 0) {
+                    img.classList.add('loaded');
+                } else {
+                    img.addEventListener('load', () => img.classList.add('loaded'), { once: true });
+                    img.addEventListener('error', () => img.classList.add('loaded'), { once: true });
+                }
+            });
+        }
+
+        function openModal(key) {
+            triggerElement = document.activeElement;
+            currentIndex = projectKeys.indexOf(key);
+            renderModal();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            history.pushState({ project: key }, '', '#project/' + key);
+            modal.addEventListener('keydown', trapFocus);
+            setTimeout(() => {
+                modal.querySelector('.modal-close').focus();
+                initModalReveal();
+                initLazyImages();
+            }, 100);
+        }
+
+        function closeModal(pushState) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            modal.removeEventListener('keydown', trapFocus);
+            if (modalRevealObserver) modalRevealObserver.disconnect();
+            if (pushState !== false && location.hash.startsWith('#project/')) {
+                history.pushState(null, '', location.pathname);
+            }
+            if (triggerElement) {
+                triggerElement.focus();
+                triggerElement = null;
+            }
+        }
+
+        // ── Helper: Build label bar ──
+        function labelBar(l1, l2, l3) {
+            return `<div class="m-label-bar">
+                <span>${l1}</span>
+                <span class="m-label-bar__divider"></span>
+                <span>${l2}</span>
+                <span class="m-label-bar__divider"></span>
+                <span>${l3}</span>
+            </div>`;
+        }
+
+        // ── Helper: Dot label ──
+        function dotLabel(text) {
+            return `<div class="m-label-dot">
+                <span class="m-label-dot__dot"></span>
+                <span class="m-label-dot__text">${text}</span>
+            </div>`;
+        }
+
+        // ── Helper: Gallery row ──
+        function galleryRow(images, height, label) {
+            const count = images.length;
+            return `<div class="m-reveal">
+                ${label ? labelBar(label[0] || '', label[1] || '', label[2] || '') : ''}
+                <div class="m-gallery m-gallery--${count}${height ? ' m-gallery--row' : ''}"${height ? ` style="height:${height}px"` : ''}>
+                    ${images.map(img => `<div class="m-gallery__item"><div class="m-img-wrap"><img src="${img}" alt="" loading="lazy"></div></div>`).join('')}
+                </div>
+            </div>`;
+        }
+
+        // ── Helper: Two-column section ──
+        function twoCol(titleHtml, rightHtml) {
+            return `<div class="m-two-col">
+                <div class="m-two-col__left">${titleHtml}</div>
+                <div class="m-two-col__right">${rightHtml}</div>
+            </div>`;
+        }
+
+        // ── Helper: Results cards ──
+        function resultCards(cards, introTitle, introDesc) {
+            return `<div class="m-reveal">
+                ${introTitle ? `<h3 class="m-section__title">${introTitle}</h3>` : ''}
+                ${introDesc ? `<p class="m-section__desc" style="margin: 16px 0 32px">${introDesc}</p>` : ''}
+                <div class="m-results">${cards.map(c => `
+                    <div class="m-result-card">
+                        <div class="m-result-card__num">${c.num}</div>
+                        <div class="m-result-card__title">${c.title}</div>
+                        <div class="m-result-card__desc">${c.desc}</div>
+                    </div>`).join('')}
+                </div>
+            </div>`;
+        }
+
+        // ══════════════════════════════════════════════════════
+        // RENDER MODAL — Case study content (preserved from v1)
+        // ══════════════════════════════════════════════════════
+        function renderModal() {
+            const key = projectKeys[currentIndex];
+            const content = document.getElementById('modalContent');
+            let html = '';
+
+            modalPanel.className = 'modal-panel cs--' + key;
+
+            if (key === 'compliance') {
+                html += `<div class="m-hero m-reveal" style="background: #0A1628">
+                    ${labelBar('Katipult', 'Compliance UX', 'Fintech')}
+                    <img class="m-hero__logo" src="images/katipult/logos/katipult-logo-white.png" alt="Katipult">
+                    <h2 class="m-hero__title">Compliance UX for Private Capital Markets</h2>
+                    <p class="m-hero__subtitle">Led redesign of how investors get approved in regulated markets. What used to take days of paperwork and fax machines now takes minutes, across 20+ jurisdictions.</p>
+                    <div class="m-hero__stats">
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">&lt; 12 min</div><div class="m-hero__stat-label">Average onboarding time</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">20+</div><div class="m-hero__stat-label">Jurisdictions supported</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">85%</div><div class="m-hero__stat-label">Completion rate</div></div>
+                    </div>
+                    <div class="m-hero__screenshot"><img src="images/katipult/nb2-compliance-hero.png" alt="Compliance UX Platform" loading="eager"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
+                    ${labelBar('Katipult', 'Business Context', 'Fintech')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">BUSINESS<br>CONTEXT</h3>`,
+                        `<p class="m-section__desc">Katipult powers private capital markets infrastructure. Investment dealers, fund managers, and crowdfunding portals rely on it for investor onboarding, deal flow, and compliance. The platform handles real money, real regulations, and real consequences for getting it wrong.</p>
+                        <p class="m-section__highlight">The goal: satisfy regulators in 20+ jurisdictions while keeping investors from abandoning the process.</p>
+                        <div style="padding-top: 24px">
+                            <div class="m-goals-label">PROJECT GOALS</div>
+                            <div class="m-goal-item">&rarr;  Design KYC/AML-compliant onboarding flows</div>
+                            <div class="m-goal-item">&rarr;  Support accreditation across 20+ jurisdictions</div>
+                            <div class="m-goal-item">&rarr;  Reduce drop-off during document verification</div>
+                            <div class="m-goal-item">&rarr;  White-label ready for enterprise clients</div>
+                        </div>`
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A1628">
+                    ${labelBar('Challenge', 'Problem', 'Fintech')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">PROBLEM<br>STATEMENT</h3>`,
+                        `<p class="m-section__desc">Investors were faxing documents. Compliance teams were drowning in manual reviews. The onboarding experience was scattered across email, physical mail, and phone calls. Industry research showed the severity of the problem.</p>
+                        <div class="m-metrics">
+                            <div class="m-metric"><div class="m-metric__num">65%</div><div class="m-metric__label">KYC drop-off rate without guided onboarding <span style="font-size: 10px; color: #64748B; display: block; font-weight: 400; margin-top: 4px">Industry benchmark (Persona / Onfido, pre-2017)</span></div></div>
+                            <div class="m-metric"><div class="m-metric__num">3–5 days</div><div class="m-metric__label">Manual KYC verification time <span style="font-size: 10px; color: #64748B; display: block; font-weight: 400; margin-top: 4px">Industry baseline for manual document review</span></div></div>
+                        </div>
+                        <div style="padding-top: 16px">
+                            <div class="m-pain-item">&#10005;  Manual document collection via email and fax</div>
+                            <div class="m-pain-item">&#10005;  No visibility into onboarding progress</div>
+                            <div class="m-pain-item">&#10005;  Compliance teams overwhelmed with manual reviews</div>
+                        </div>`
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
+                    ${labelBar('Method', 'Approach', 'Fintech')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">DESIGN<br>APPROACH</h3>`,
+                        `<p class="m-section__desc">Spent weeks alongside compliance officers and real investors mapping the regulatory landscape. 20+ jurisdictions, each with different requirements. The approach: progressive disclosure. Show investors only what they need, when they need it. Hide the complexity without hiding the compliance.</p>
+                        <div class="m-steps">
+                            <div class="m-step"><div class="m-step__num">01</div><div class="m-step__title">Regulatory Mapping</div><div class="m-step__desc">Mapped KYC/AML requirements across 20+ jurisdictions</div></div>
+                            <div class="m-step"><div class="m-step__num">02</div><div class="m-step__title">Flow Design</div><div class="m-step__desc">Progressive disclosure for complex compliance steps</div></div>
+                            <div class="m-step"><div class="m-step__num">03</div><div class="m-step__title">Validation</div><div class="m-step__desc">Tested with real investors and compliance officers</div></div>
+                        </div>`
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A1628">
+                    ${labelBar('Process', 'User Flow', 'Fintech')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">USER<br>FLOW</h3>`,
+                        `<p class="m-section__desc">Five core steps, but no two investors see the same flow. The system adapts per jurisdiction. A Canadian accredited investor skips steps that a US retail investor must complete. The design challenge was making a branching flow feel linear.</p>
+                        <p style="font-size: 13px; font-weight: 600; color: #F96815; margin-top: 12px">5 core steps  &middot;  20+ jurisdiction variants</p>`
+                    )}
+                    <div class="m-flow" style="margin-top: 32px">
+                        <span class="m-flow__node" style="background: #5d2de6">Sign Up</span>
+                        <span class="m-flow__arrow">&rarr;</span>
+                        <span class="m-flow__node" style="background: #0d4270">Identity<br>Verification</span>
+                        <span class="m-flow__arrow">&rarr;</span>
+                        <span class="m-flow__node" style="background: #0d4270">Accreditation</span>
+                        <span class="m-flow__arrow">&rarr;</span>
+                        <span class="m-flow__node" style="background: #0d4270">Document<br>Upload</span>
+                        <span class="m-flow__arrow">&rarr;</span>
+                        <span class="m-flow__node" style="background: #F96815">Approved</span>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
+                    ${labelBar('Feature', 'KSign', 'E-Signatures')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">KSIGN</h3>
+                        <p class="m-section__subtitle">Electronic Signature Module</p>`,
+                        `<p class="m-section__desc">When investors commit capital, they need to sign. KSign is the signature module designed specifically for that step. Subscription agreements, regulatory disclosures, accreditation documents. Compliant across 20 jurisdictions, part of the platform that went public on the TSX Venture Exchange.</p>
+                        <div style="padding-top: 16px">
+                            <div class="m-goal-item">&rarr;  Full signature flow for investment documents</div>
+                            <div class="m-goal-item">&rarr;  Regulatory compliance integration across 20 jurisdictions</div>
+                            <div class="m-goal-item">&rarr;  Part of design system powering 20+ white-label deployments</div>
+                            <div class="m-goal-item">&rarr;  Part of platform deployed across 20+ white-label instances globally</div>
+                        </div>`
+                    )}
+                    ${galleryRow(['images/katipult/v2/v2-offerings-table.png', 'images/katipult/v2/v2-deal-detail.png'], 280)}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A1628">
+                    ${labelBar('Outcome', 'UI Showcase', 'Fintech')}
+                    <h3 class="m-section__title">UI SHOWCASE</h3>
+                    ${galleryRow(['images/katipult/v2/v2-kyc-personal-info.png', 'images/katipult/v2/v2-kyc-document-upload.png'], 320)}
+                    <div style="margin-top: 16px">
+                    ${galleryRow(['images/katipult/v2/v2-kyc-accreditation.png', 'images/katipult/v2/v2-kyc-verified.png'], 320)}
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
+                    ${labelBar('Outcome', 'Results', 'Impact')}
+                    ${resultCards([
+                        { num: '85%', title: 'Completion Rate', desc: 'Guided, step-by-step onboarding. Investors complete KYC without abandoning mid-flow.' },
+                        { num: '< 12 min', title: 'Average Onboarding', desc: 'Down from days of manual paperwork, email chains, and fax-based document collection.' },
+                        { num: '20+', title: 'Jurisdictions', desc: 'Single flow adapts to regulatory requirements per region. No duplicate builds.' },
+                        { num: '20+', title: 'White-Label Deployments', desc: 'Same compliance flow running across every client instance — each branded differently.' }
+                    ], 'RESULTS & IMPACT', 'The design goal: make a regulated, multi-jurisdictional process feel like a consumer product. Minutes instead of days. Guided instead of abandoned.')}
+                </div>`;
+
+                html += `<div class="m-section" style="background: #071320; padding: 64px 60px">
+                    <div class="m-cta">
+                        <div class="m-cta__line"></div>
+                        <div class="m-cta__title">Compliance UX for Private Capital Markets</div>
+                        <div class="m-cta__subtitle">Katipult  &middot;  Co-Founder &amp; Lead Product Designer  &middot;  2014&ndash;2023</div>
+                        <div class="m-cta__buttons">
+                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" onclick="closeModal()">Get in Touch</a>
+                        </div>
+                        <div class="m-cta__footer">uxmeas.com</div>
+                    </div>
+                </div>`;
+
+            } else if (key === 'dealflow') {
+                html += `<div class="m-hero m-reveal" style="background: #0A1628">
+                    ${labelBar('Katipult', 'Product Design', 'Private Capital')}
+                    <img class="m-hero__logo" src="images/katipult/logos/katipult-logo.png" alt="Katipult">
+                    <h2 class="m-hero__title">Katipult DealFlow Platform</h2>
+                    <p class="m-hero__subtitle">Co-founded in 2008. Led product design across every screen the platform shipped for 15 years. Grew from 3 people to 49+, went public on the TSX Venture Exchange.</p>
+                    <div class="m-hero__stats">
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">49+</div><div class="m-hero__stat-label">Employees at peak</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">IPO</div><div class="m-hero__stat-label">Public company (TSX-V)</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">20+</div><div class="m-hero__stat-label">White-label deployments</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num">15 yrs</div><div class="m-hero__stat-label">As design lead</div></div>
+                    </div>
+                    <div class="m-hero__screenshot"><img src="images/katipult/nb2-dealflow-hero.png" alt="DealFlow Platform" loading="eager"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
+                    ${labelBar('Subject', 'Platform', 'Private Capital')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">PLATFORM<br>OVERVIEW</h3>`,
+                        `<p class="m-section__desc">Katipult is the infrastructure behind private capital markets. Investment dealers like Canaccord and TMX use it to run the full deal lifecycle: onboarding investors, managing commitments, closing deals, and staying compliant.</p>
+                        <p class="m-section__desc" style="margin-top: 24px">Co-founded as JOI Media in 2008. Led every design decision from day one — screens, flows, and components across the full platform. When you're the design lead at a startup, you own the whole surface.</p>`
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #071320">
+                    ${labelBar('Process', 'Research', 'Framework')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">HOW I<br>FRAMED IT</h3>`,
+                        `<p class="m-section__desc">Private capital infrastructure has no obvious design precedent. Before touching a single screen, I mapped the business problem to market reality. Each design decision traces back to a real constraint.</p>`
+                    )}
+                    <div style="overflow-x: auto; margin-top: 8px">
+                        <table style="width: 100%; border-collapse: collapse; font-family: 'Inter', sans-serif; font-size: 13px">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: left; padding: 12px 16px; background: #0F1D2F; color: #3B82F6; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #1E293B; width: 28%">Metric</th>
+                                    <th style="text-align: left; padding: 12px 16px; background: #0F1D2F; color: #3B82F6; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #1E293B; width: 36%">Business Problem</th>
+                                    <th style="text-align: left; padding: 12px 16px; background: #0F1D2F; color: #3B82F6; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 1px solid #1E293B; width: 36%">User Need</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #F1F5F9; vertical-align: top; line-height: 1.5">20+ white-label deployments across 6 markets</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">A single confusing screen multiplies across every client&rsquo;s investor base simultaneously</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">A design system consistent enough to white-label but flexible enough that each dealer feels it&rsquo;s built for them</td></tr>
+                                <tr><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #F1F5F9; vertical-align: top; line-height: 1.5">321 target accounts across equity, debt &amp; lending</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">Market fragmented &mdash; each asset class runs on different tools and different workflows</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">One platform for all deal types, without retraining staff between modules</td></tr>
+                                <tr><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #F1F5F9; vertical-align: top; line-height: 1.5">6 markets, 20+ regulatory jurisdictions</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">Every country has different securities law. Custom builds don&rsquo;t scale internationally</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">White-label that configures compliance rules per deployment, not per country build</td></tr>
+                                <tr><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #F1F5F9; vertical-align: top; line-height: 1.5">Deployed for: SVX (Canada), Markette (Canada), Canaccord, Raymond James, Cormark, Red Cloud</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">Niche expertise is hard to communicate to dealers without real-world proof</td><td style="padding: 14px 16px; border-bottom: 1px solid #131F30; color: #94A3B8; vertical-align: top; line-height: 1.5">Case studies in their asset class showing the platform deployed, not just pitched</td></tr>
+                                <tr><td style="padding: 14px 16px; color: #F1F5F9; vertical-align: top; line-height: 1.5">65% avg KYC drop-off without guided onboarding <span style="font-size: 11px; color: #64748B">(industry benchmark)</span></td><td style="padding: 14px 16px; color: #94A3B8; vertical-align: top; line-height: 1.5">Poor onboarding drives investors away before they commit capital, revenue is lost</td><td style="padding: 14px 16px; color: #94A3B8; vertical-align: top; line-height: 1.5">Step-by-step KYC with plain-language explanations that builds confidence, not friction</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A1628">
+                    ${labelBar('Process', 'North Star', 'Strategy')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">THE<br>QUESTION</h3>`,
+                        `<p class="m-section__desc" style="color: #64748B; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px">How might we&hellip;</p>
+                        <p style="font-family: 'Inter', sans-serif; font-size: 20px; line-height: 1.6; color: #F1F5F9; font-weight: 500">Design white-label private capital infrastructure flexible enough to serve 3 asset classes, 6 markets, and 20+ regulatory jurisdictions &mdash; so that any investment dealer can deploy a fully compliant, branded investor experience without custom development?</p>
+                        <div style="margin-top: 32px; padding: 20px 24px; background: #0F1D2F; border-left: 3px solid #F96815; border-radius: 4px">
+                            <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.6; margin: 0">This question shaped every design decision from 2014 onward. Not &ldquo;what looks good&rdquo; but &ldquo;what makes a dealer confident enough to sign a $250K contract and trust us with their investors?&rdquo;</p>
+                        </div>`
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
+                    ${labelBar('Process', 'Competitor Analysis', 'Market')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">WHAT WE<br>LOOKED AT</h3>`,
+                        `<p class="m-section__desc">No direct 1:1 competitor existed. I studied adjacent platforms to identify what gaps Katipult could own, and what opportunities to borrow from.</p>`
+                    )}
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 8px">
+                        <div style="background: #0A1628; border: 1px solid #1E293B; border-radius: 8px; padding: 24px"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px"><div style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; flex-shrink: 0"></div><span style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #EF4444">Gap Identified</span></div><div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #F1F5F9; margin-bottom: 6px">Carta</div><div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #64748B; margin-bottom: 12px">Equity Management &middot; USA</div><p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.5; margin: 0">Equity-only. No debt, no lending, no KYC compliance layer. Clean cap table UI was a benchmark for information density &mdash; we learned from its data clarity.</p></div>
+                        <div style="background: #0A1628; border: 1px solid #1E293B; border-radius: 8px; padding: 24px"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px"><div style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; flex-shrink: 0"></div><span style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #EF4444">Gap Identified</span></div><div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #F1F5F9; margin-bottom: 6px">AngelList</div><div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #64748B; margin-bottom: 12px">Venture Capital &middot; USA</div><p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.5; margin: 0">Venture-stage equity only. No regulatory compliance outside the US, no white-label model. Confirmed the gap: no platform served multi-jurisdiction regulated dealers.</p></div>
+                        <div style="background: #0A1628; border: 1px solid #1E293B; border-radius: 8px; padding: 24px"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px"><div style="width: 8px; height: 8px; border-radius: 50%; background: #34D399; flex-shrink: 0"></div><span style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #34D399">Opportunity</span></div><div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #F1F5F9; margin-bottom: 6px">Persona / Onfido</div><div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #64748B; margin-bottom: 12px">KYC Identity Verification &middot; Global</div><p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.5; margin: 0">Best-in-class step-by-step ID verification flow. Progressive disclosure per verification step informed Katipult&rsquo;s KYC flow design &mdash; treating accreditation like a guided journey, not a form dump.</p></div>
+                        <div style="background: #0A1628; border: 1px solid #1E293B; border-radius: 8px; padding: 24px"><div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px"><div style="width: 8px; height: 8px; border-radius: 50%; background: #34D399; flex-shrink: 0"></div><span style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #34D399">Opportunity</span></div><div style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; color: #F1F5F9; margin-bottom: 6px">SVX</div><div style="font-family: 'Inter', sans-serif; font-size: 12px; color: #64748B; margin-bottom: 12px">Impact Investing &middot; Canada &middot; Early Client</div><p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.5; margin: 0">Early Katipult client. Canada-only, impact-focused. White-label on Katipult infrastructure. Proved the regulated white-label model before scaling to larger dealers like Canaccord, Raymond James, and Cormark.</p></div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A1628">
+                    ${labelBar('Module', 'Investor Dashboard', 'Data Viz')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">INVESTOR<br>DASHBOARD</h3>`,
+                        `<p class="m-section__desc">Investors managing private capital need to see their money clearly. Designed the dashboard that shows portfolio performance, distributions, and documents in real-time. White-label theming deployed across 20+ client instances, each with unique branding on shared architecture.</p>
+                        <div style="padding-top: 16px">
+                            <div class="m-goal-item">&rarr;  Portfolio overview with real-time investment tracking</div>
+                            <div class="m-goal-item">&rarr;  Data visualization for returns, distributions, commitments</div>
+                            <div class="m-goal-item">&rarr;  Document vault and reporting interface</div>
+                        </div>
+                        <div style="margin-top: 24px; padding: 20px 24px; background: #071320; border-left: 3px solid #3B82F6; border-radius: 4px">
+                            <div style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #3B82F6; margin-bottom: 8px">Design Decision</div>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.6; margin: 0">Chose modular card layout over full-page tables because dealers white-label for investors with varying financial literacy. A card-first hierarchy lets each client configure what their investors see first, without code changes.</p>
+                        </div>`
+                    )}
+                    ${galleryRow(['images/katipult/v2/v2-investor-profile.png', 'images/katipult/v2/v2-kyc-accreditation.png'], 320)}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
+                    ${labelBar('Module', 'Equity &amp; Debt', 'Deal Flow')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">EQUITY &amp;<br>DEBT</h3>`,
+                        `<p class="m-section__desc">Every deal type has different rules. Equity raises work differently from debt offerings, and hybrid structures combine both. Designed the flows that handle all three within the same interface, so dealers don't need separate tools for each.</p>
+                        <div style="padding-top: 16px">
+                            <div class="m-goal-item">&rarr;  Deal creation and offering page design</div>
+                            <div class="m-goal-item">&rarr;  Investor commitment and subscription flow</div>
+                            <div class="m-goal-item">&rarr;  Allocation and closing workflow</div>
+                        </div>
+                        <div style="margin-top: 24px; padding: 20px 24px; background: #071320; border-left: 3px solid #3B82F6; border-radius: 4px">
+                            <div style="font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #3B82F6; margin-bottom: 8px">Design Decision</div>
+                            <p style="font-family: 'Inter', sans-serif; font-size: 13px; color: #94A3B8; line-height: 1.6; margin: 0">Same offering browse UI for equity and debt &mdash; only form fields change per type. This cut development time and made training easier for dealer admin staff who manage multiple asset classes in the same day.</p>
+                        </div>`
+                    )}
+                    ${galleryRow(['images/katipult/v2/v2-browse-offerings.png', 'images/katipult/v2/v2-issuers-overview.png'], 320)}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A1628">
+                    ${labelBar('Module', 'Lending', 'Credit')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">LENDING<br>PLATFORM</h3>`,
+                        `<p class="m-section__desc">Katipult started in equity. When they expanded into lending, designed the entire loan lifecycle from scratch. Borrower applications, lender review, servicing, and repayment tracking. The constraint: it had to feel native to the existing platform, not bolted on.</p>
+                        <div style="padding-top: 16px">
+                            <div class="m-goal-item">&rarr;  Borrower application and document submission</div>
+                            <div class="m-goal-item">&rarr;  Lender review and approval workflow</div>
+                            <div class="m-goal-item">&rarr;  Loan servicing with repayment tracking</div>
+                        </div>`
+                    )}
+                    ${galleryRow(['images/katipult/v2/v2-manage-users.png', 'images/katipult/v2/v2-documentation-hub.png'], 320)}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F1D2F">
+                    ${labelBar('System', 'Design System', 'White-Label')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">DESIGN<br>SYSTEM</h3>`,
+                        `<p class="m-section__desc">One design system. 20+ client brands. Cormark, Canaccord, TMX. Each instance looks completely different but shares the same architecture underneath. Built the theming layer that made this possible.</p>
+                        <div style="padding-top: 16px">
+                            <div class="m-goal-item">&rarr;  Themeable component library across all modules</div>
+                            <div class="m-goal-item">&rarr;  Client-specific branding with shared architecture</div>
+                            <div class="m-goal-item">&rarr;  Responsive across desktop and tablet</div>
+                        </div>`
+                    )}
+                    ${galleryRow(['images/katipult/v2/v2-dashboard-light.png', 'images/katipult/v2/v2-offerings-table.png'], 320)}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A1628">
+                    ${labelBar('Subject', 'Results', 'Impact')}
+                    ${resultCards([
+                        { num: '3 &rarr; 49+', title: 'Team Growth', desc: 'Co-founded as JOI Media in 2008. Scaled to 49+ employees over 15 years.' },
+                        { num: 'IPO', title: 'Public Company', desc: 'Listed on TSX Venture Exchange. EY Entrepreneur of the Year finalist 2017.' },
+                        { num: '20+', title: 'White-Label Deployments', desc: 'Platform running for Canaccord, Raymond James, Cormark, Red Cloud, and more.' },
+                        { num: '6', title: 'Markets', desc: 'Canada, USA, UK, Australia, Hong Kong, Singapore — one design system across all.' }
+                    ], 'RESULTS & IMPACT', 'Started in a basement. Led product design from day one. 15 years later: a public company with infrastructure running for some of Canada\'s largest investment dealers.')}
+                </div>`;
+
+                html += `<div class="m-section" style="background: #071320; padding: 64px 60px">
+                    <div class="m-cta">
+                        <div class="m-cta__line" style="background: #F96815"></div>
+                        <div class="m-cta__title">Katipult DealFlow Platform</div>
+                        <div class="m-cta__subtitle">Design Co-Founder  &middot;  2008&ndash;2023  &middot;  JOI Media &rarr; Katipult &rarr; IPO</div>
+                        <div class="m-cta__buttons">
+                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" style="background: #F96815" onclick="closeModal()">Get in Touch</a>
+                        </div>
+                        <div class="m-cta__footer">uxmeas.com</div>
+                    </div>
+                </div>`;
+
+            } else if (key === 'akm') {
+                html += `<div class="m-hero m-reveal" style="background: #0B0B0B">
+                    ${labelBar('AKMSecure', 'Brand &middot; Web &middot; CMS', 'Cybersecurity')}
+                    <img class="m-hero__logo" src="images/akmsecure/logos/akm-logo-light.png" alt="AKMSecure" style="width: 240px">
+                    <h2 class="m-hero__title">AKMSecure</h2>
+                    <p class="m-hero__subtitle" style="color: #8B8B8B">A cybersecurity startup needed to look as secure as their product. Owned design and development from brand to deployment. Brand, website, print, CMS.</p>
+                    <div class="m-hero__stats">
+                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #FFFFFF; font-size: 28px">Full Brand</div><div class="m-hero__stat-label">Identity system from scratch</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #FFFFFF; font-size: 28px">Website</div><div class="m-hero__stat-label">Design &amp; development</div></div>
+                        <div class="m-hero__stat"><div class="m-hero__stat-num" style="color: #FFFFFF; font-size: 28px">HubSpot</div><div class="m-hero__stat-label">CMS migration</div></div>
+                    </div>
+                    <div class="m-hero__screenshot"><img src="images/akmsecure/homepage-real.png" alt="AKMSecure Website" loading="eager"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #F5F5F5">
+                    ${labelBar('Client', 'About', 'Cybersecurity')}
+                    ${twoCol(
+                        `<h3 class="m-section__title" style="color: #0B0B0B">ABOUT<br>THE CLIENT</h3>`,
+                        `<p class="m-section__desc" style="color: #555555">AKMSecure sells identity authentication to enterprises. Their product prevents breaches. But without a brand, they looked like every other cybersecurity vendor with a dark website and a padlock icon. They needed to stand apart.</p>
+                        <div style="padding-top: 16px">
+                            <div class="m-goals-label" style="color: #888888">SCOPE OF WORK</div>
+                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  Brand identity and logo design</div>
+                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  Brand guidelines documentation</div>
+                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  Website design and development</div>
+                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  HubSpot CMS migration</div>
+                            <div class="m-goal-item" style="color: #1A1A1A">&rarr;  Print collateral (tear sheets, business cards)</div>
+                        </div>`
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0B0B0B; padding: 140px 120px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px">
+                    <h2 style="font-family: 'Inter', sans-serif; font-size: 80px; font-weight: 700; color: #FFFFFF; line-height: 1.1">Security starts<br>with identity.</h2>
+                    <p style="font-family: 'Inter', sans-serif; font-size: 16px; color: #6B6B6B; line-height: 1.6">&mdash; brand, trust, and credibility before code</p>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #F5F5F5">
+                    ${labelBar('Brand', 'Visual System', 'Identity')}
+                    <h3 class="m-section__title" style="color: #0B0B0B">TYPOGRAPHY & COLOR</h3>
+                    <p class="m-section__desc" style="color: #555555; margin-top: 16px; margin-bottom: 16px">Dark palette, minimal color. In cybersecurity, restraint signals competence. One accent color (deep red) for warnings and CTAs. Everything else stays neutral.</p>
+                    <div class="m-type-color" style="margin-top: 32px">
+                        <div class="m-type-color__col">
+                            <div class="m-type-label" style="color: #888888">PRIMARY TYPEFACE</div>
+                            <div style="font-size: 32px; font-weight: 700; color: #0B0B0B; margin-bottom: 16px">Inter</div>
+                            <div style="font-size: 14px; color: #555555; line-height: 2">400 Regular &mdash; Body text, standard content</div>
+                            <div style="font-size: 14px; color: #333333; font-weight: 500; line-height: 2">500 Medium &mdash; Labels and navigation</div>
+                            <div style="font-size: 14px; color: #1A1A1A; font-weight: 600; line-height: 2">600 Semi-Bold &mdash; Section headings, UI labels</div>
+                            <div style="font-size: 14px; color: #0B0B0B; font-weight: 700; line-height: 2">700 Bold &mdash; Page titles, hero text</div>
+                        </div>
+                        <div class="m-type-color__col">
+                            <div class="m-type-label">COLOR PALETTE</div>
+                            <div class="m-color-row" style="margin-bottom: 8px">
+                                <div class="m-color-swatch" style="background: #0B0B0B; color: #6B6B6B; border: 1px solid #2B2B2B">#0B0B0B</div>
+                                <div class="m-color-swatch" style="background: #1A1A1A; color: #8B8B8B">#1A1A1A</div>
+                                <div class="m-color-swatch" style="background: #2B2B2B; color: #ADADAD">#2B2B2B</div>
+                                <div class="m-color-swatch" style="background: #6B6B6B; color: #fff">#6B6B6B</div>
+                                <div class="m-color-swatch" style="background: #ADADAD; color: #0B0B0B">#ADADAD</div>
+                                <div class="m-color-swatch" style="background: #F2F2F2; color: #0B0B0B">#F2F2F2</div>
+                            </div>
+                            <div class="m-color-row">
+                                <div class="m-color-swatch" style="background: #991b1b; color: #fff">#991b1b</div>
+                                <div class="m-color-swatch" style="background: #3D3D3D; color: #ADADAD">#3D3D3D</div>
+                                <div class="m-color-swatch" style="background: #8B8B8B; color: #0B0B0B">#8B8B8B</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #111111">
+                    ${labelBar('Deliverable', 'Website', 'Design &amp; Dev')}
+                    <h3 class="m-section__title">WEBSITE</h3>
+                    <p class="m-section__desc" style="margin-top: 16px; margin-bottom: 16px">Designed and built from scratch. No template. The site needed to communicate technical credibility to enterprise buyers without looking like every other security vendor. Wrote the copy, designed the pages, and handled the HubSpot CMS migration.</p>
+                    <div style="margin-top: 32px">
+                        <div class="m-img-wrap" style="height: 400px"><img src="images/akmsecure/homepage-full.png" alt="AKM Homepage" loading="lazy" style="height: 100%; object-fit: cover"></div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0B0B0B">
+                    ${labelBar('Deliverable', 'Print', 'Collateral')}
+                    <h3 class="m-section__title">PRINT COLLATERAL</h3>
+                    <p class="m-section__desc" style="margin-top: 16px; margin-bottom: 16px">Physical materials for trade shows and sales meetings. Same brand system, adapted for print. The tear sheet became their primary leave-behind at conferences.</p>
+                    <div class="m-results" style="margin-top: 32px">
+                        <div class="m-result-card" style="height: 280px; display: flex; align-items: center; justify-content: center; color: #6B6B6B; font-size: 13px">Tear Sheet</div>
+                        <div class="m-result-card" style="height: 280px; display: flex; align-items: center; justify-content: center; color: #6B6B6B; font-size: 13px">Business Card</div>
+                        <div class="m-result-card" style="height: 280px; display: flex; align-items: center; justify-content: center; color: #6B6B6B; font-size: 13px">Letterhead</div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section" style="background: #0B0B0B; padding: 64px 60px">
+                    <div class="m-cta">
+                        <div class="m-cta__line" style="background: #991b1b"></div>
+                        <div class="m-cta__title">AKMSecure</div>
+                        <div class="m-cta__subtitle">Brand &amp; Web Designer  &middot;  Solo (design &amp; dev)  &middot;  2025</div>
+                        <div class="m-cta__buttons">
+                            <a href="https://akmsecure.com" target="_blank" rel="noopener" class="m-cta__btn m-cta__btn--primary" style="background: #FFFFFF; color: #0B0B0B">Visit Site</a>
+                            <a href="#contact" class="m-cta__btn m-cta__btn--ghost" onclick="closeModal()" style="color: #8B8B8B">Get in Touch</a>
+                        </div>
+                        <div class="m-cta__footer">uxmeas.com</div>
+                    </div>
+                </div>`;
+
+            } else if (key === 'relationsync') {
+                html += `<div class="m-hero m-hero--center m-reveal" style="background: #1A1220">
+                    ${labelBar('RelationSync', 'Mobile App', 'Product Design')}
+                    <h2 class="m-hero__title">RelationSync</h2>
+                    <p class="m-hero__subtitle" style="color: #9B8AAF; text-align: center">Most apps want your attention. This one wants you to pay attention to the people around you.</p>
+                    <div class="m-hero__stats" style="justify-content: center; gap: 48px">
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num" style="color: #8B6FC0">35</div><div class="m-hero__stat-label">Screens</div></div>
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num" style="color: #8B6FC0">19</div><div class="m-hero__stat-label">Components</div></div>
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num" style="color: #8B6FC0">7</div><div class="m-hero__stat-label">Onboarding</div></div>
+                    </div>
+                    <div class="m-hero__phones">
+                        <div class="m-hero__phone m-hero__phone--side"><img src="images/relationsync/nb2-calendar-v2.png" alt="Calendar" loading="eager"></div>
+                        <div class="m-hero__phone m-hero__phone--center"><img src="images/relationsync/nb2-home-v2-grounded.png" alt="Home" loading="eager"></div>
+                        <div class="m-hero__phone m-hero__phone--side"><img src="images/relationsync/nb2-voice-recorder.png" alt="Voice Recorder" loading="eager"></div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #130E1A">
+                    ${labelBar('Context', 'Product', 'Mobile App')}
+                    ${twoCol(
+                        `<h3 class="m-section__title">ABOUT THE<br>PRODUCT</h3>`,
+                        `<p class="m-section__desc" style="color: #9B8AAF">People forget the details that matter most. Not the big events, but the small ones. What someone said at dinner. How a conversation made you feel. RelationSync captures those moments through voice, then uses AI to make them searchable and meaningful over time.</p>
+                        <p class="m-section__desc" style="color: #9B8AAF; margin-top: 20px">Leading design and frontend development alongside a backend engineering partner. Every screen, every component, every interaction state. The design system and onboarding flow were built from scratch in Pencil.</p>`
+                    )}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #1A1220">
+                    ${labelBar('Feature', 'Voice Journal', 'Core')}
+                    <div class="m-spotlight">
+                        <div class="m-spotlight__phone"><img src="images/relationsync/nb2-voice-recorder.png" alt="Voice Recorder" loading="lazy"></div>
+                        <div>
+                            <h3 class="m-section__title">VOICE-FIRST<br>JOURNALING</h3>
+                            <p class="m-section__desc" style="color: #9B8AAF; margin-top: 20px">Recording a memory should be faster than typing a text. Tap, talk, done. AI handles the rest: transcription, summaries, relationship tagging, and mood tracking. The hard part was making it feel effortless.</p>
+                            <div style="padding-top: 16px">
+                                <div class="m-goal-item">&rarr;  One-tap voice recording</div>
+                                <div class="m-goal-item">&rarr;  AI-powered transcription and summarization</div>
+                                <div class="m-goal-item">&rarr;  Automatic relationship tagging</div>
+                                <div class="m-goal-item">&rarr;  Mood and sentiment tracking</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F0A16">
+                    ${dotLabel('DESIGN PHILOSOPHY')}
+                    <h3 class="m-section__title" style="line-height: 1.2">Designing for intimacy,<br>not engagement metrics.</h3>
+                    <p class="m-section__desc" style="color: #9B8AAF; margin-top: 24px">Every social app optimizes for time-on-screen. RelationSync optimizes for time well spent. No likes. No followers. No feed. The best session is the one where you record a memory in 30 seconds and close the app.</p>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #130E1A">
+                    ${labelBar('Flow', 'Onboarding', '7 Screens')}
+                    <h3 class="m-section__title">ONBOARDING FLOW</h3>
+                    <p class="m-section__desc" style="color: #9B8AAF; margin-top: 16px">The first 60 seconds decide whether someone keeps the app. This onboarding gets users to record their first memory before asking for a single permission.</p>
+                    <div class="m-onboarding-flow" style="margin-top: 24px">
+                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-1-welcome.png" alt="Welcome" loading="lazy"></div>
+                        <span class="m-onboarding-arrow">&rarr;</span>
+                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-2-voice.png" alt="Voice" loading="lazy"></div>
+                        <span class="m-onboarding-arrow">&rarr;</span>
+                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-3-reflect.png" alt="Reflect" loading="lazy"></div>
+                        <span class="m-onboarding-arrow">&rarr;</span>
+                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-4-timecapsule.png" alt="Time Capsule" loading="lazy"></div>
+                        <span class="m-onboarding-arrow">&rarr;</span>
+                        <div class="m-onboarding-phone"><img src="images/relationsync/ob-5-mic.png" alt="Mic Permission" loading="lazy"></div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #1A1220">
+                    ${dotLabel('05 — SCREEN GALLERY')}
+                    <h3 class="m-section__title">KEY SCREENS</h3>
+                    <p class="m-section__desc" style="color: #9B8AAF; margin-top: 16px">Every screen designed in Pencil. The visual language had to feel warm and private. No sharp edges, no aggressive CTAs. Soft purples, rounded corners, and generous whitespace.</p>
+                    ${galleryRow(['images/relationsync/nb2-home-v2-grounded.png', 'images/relationsync/nb2-calendar-v2.png', 'images/relationsync/nb2-voice-recorder.png'], 0)}
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0F0A16">
+                    ${dotLabel('VISUAL IDENTITY')}
+                    <h3 class="m-section__title">COLOR & TYPOGRAPHY</h3>
+                    <div class="m-type-color" style="margin-top: 32px">
+                        <div class="m-type-color__col">
+                            <div class="m-type-label" style="color: #7C5FA6">COLOR SWATCHES</div>
+                            <div class="m-color-row" style="margin-bottom: 8px">
+                                <div class="m-color-swatch" style="background: #1A1220; color: #9B8AAF; border: 1px solid #2D2040">#1A1220</div>
+                                <div class="m-color-swatch" style="background: #2A1F35; color: #9B8AAF">#2A1F35</div>
+                                <div class="m-color-swatch" style="background: #8B6FC0; color: #fff">#8B6FC0</div>
+                            </div>
+                            <div class="m-color-row">
+                                <div class="m-color-swatch" style="background: #FA8D7D; color: #1A1220">#FA8D7D</div>
+                                <div class="m-color-swatch" style="background: #4DD785; color: #1A1220">#4DD785</div>
+                                <div class="m-color-swatch" style="background: #F2F0F5; color: #1A1220">#F2F0F5</div>
+                            </div>
+                        </div>
+                        <div class="m-type-color__col">
+                            <div class="m-type-label" style="color: #7C5FA6">TYPOGRAPHY</div>
+                            <div style="font-size: 28px; font-weight: 700; color: #F2F0F5; margin-bottom: 12px">Inter</div>
+                            <div style="font-size: 13px; color: #9B8AAF; line-height: 2">Primary: Inter 400-700</div>
+                            <div style="font-size: 13px; color: #9B8AAF; line-height: 2">Headings: 700 Bold, 1.1 line-height</div>
+                            <div style="font-size: 13px; color: #9B8AAF; line-height: 2">Body: 400 Regular, 1.7 line-height</div>
+                        </div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #130E1A">
+                    ${dotLabel('06 — DESIGN SYSTEM')}
+                    <h3 class="m-section__title">COMPONENT LIBRARY</h3>
+                    <p class="m-section__desc" style="color: #9B8AAF; margin-top: 16px">A personal project still needs a system. 19 components with shared spacing tokens, color variables, and interaction states. Built to scale if the app does, but lean enough to move fast right now.</p>
+                    <div class="m-comp-grid" style="margin-top: 32px">
+                        <div class="m-comp-card">Button</div>
+                        <div class="m-comp-card">Input</div>
+                        <div class="m-comp-card">Card</div>
+                        <div class="m-comp-card">Nav Bar</div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section" style="background: #1A1220; padding: 80px 60px">
+                    <div class="m-cta">
+                        <div class="m-cta__title" style="font-size: 32px">Want to see more?</div>
+                        <div class="m-cta__subtitle" style="color: #9B8AAF">RelationSync is an ongoing personal project. Full interactive prototype and component library designed in Pencil.</div>
+                        <div class="m-cta__buttons">
+                            <a href="#contact" class="m-cta__btn m-cta__btn--primary" style="background: #7C5FA6; width: 200px" onclick="closeModal()">Get in Touch</a>
+                            <a href="#work" class="m-cta__btn m-cta__btn--ghost" style="color: #9B8AAF; width: 200px; border: 1px solid #3D3748; border-radius: 8px" onclick="closeModal()">View All Projects</a>
+                        </div>
+                        <div class="m-cta__footer" style="color: #4A3660">&copy; 2026 Pheak &mdash; Product Designer &amp; Builder</div>
+                    </div>
+                </div>`;
+
+            } else if (key === 'mypick') {
+                html += `<div class="m-hero m-hero--center m-reveal" style="background: #0A0A0A">
+                    ${dotLabel('01 — HERO')}
+                    <h2 class="m-hero__title" style="font-size: 56px">MyPick.io</h2>
+                    <p class="m-hero__subtitle" style="color: #7AE582; text-align: center">Random number generators work. They're also boring. MyPick.io turns list shuffling into a pixel car race across 4 terrain environments and 4 weather conditions. Mechanical failures create real drama. A dynamic camera follows the leader. 17 custom audio tracks layer terrain ambient, weather effects, and announcer calls. Zero dependencies, pure Canvas 2D, cryptographically fair.</p>
+                    <div class="m-hero__stats" style="justify-content: center; gap: 48px">
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">4</div><div class="m-hero__stat-label">Terrains</div></div>
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">4</div><div class="m-hero__stat-label">Weather</div></div>
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">17</div><div class="m-hero__stat-label">Audio Files</div></div>
+                        <div class="m-hero__stat" style="text-align: center"><div class="m-hero__stat-num">0</div><div class="m-hero__stat-label">Dependencies</div></div>
+                    </div>
+                    <div class="m-hero__screenshot" style="width: 800px; max-width: 100%"><img src="images/mypick-card.png" alt="MyPick.io" loading="eager" style="height: 450px; border-radius: 12px"></div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0D1A0D">
+                    ${dotLabel('02 — CONTEXT')}
+                    ${twoCol(
+                        `<h3 class="m-section__title" style="line-height: 1.2">THE PROBLEM WITH<br>RANDOMIZERS</h3>`,
+                        `<p class="m-section__desc" style="color: #7AE582">Every group decision has a dead moment. Someone pulls out their phone, opens a random number generator, taps a button, reads a number. Nobody watches. Nobody remembers.</p>
+                        <p class="m-section__desc" style="color: #5A8F60; margin-top: 16px; font-size: 15px">That moment should be the best part. MyPick.io turns it into a pixel car race across 4 terrain environments (Stadium, Neon, Desert, Retro) with 4 weather conditions (Clear, Rain, Snow, Night) creating 16 unique race combinations. Mechanical failures add real drama. Cars break down, slow down, then recover with an adrenaline boost. 17 custom audio tracks layer terrain ambient, weather effects, and announcer calls with smart ducking. Billboard ads line the track with impression tracking. Built from scratch in vanilla JS and Canvas 2D. Zero dependencies. Every pixel is intentional.</p>`
+                    )}
+                    <div class="m-meta-row" style="margin-top: 24px">
+                        <div><div class="m-meta__label">ROLE</div><div class="m-meta__value">Solo Creator (Design + Engineering)</div></div>
+                        <div><div class="m-meta__label">STACK</div><div class="m-meta__value">Canvas 2D, Web Crypto API, Custom Audio</div></div>
+                        <div><div class="m-meta__label">STATUS</div><div class="m-meta__value">Production v2.9.1</div></div>
+                        <div><div class="m-meta__label">YEAR</div><div class="m-meta__value">2025&ndash;2026</div></div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A0A0A">
+                    ${dotLabel('03 — HOW IT WORKS')}
+                    <h3 class="m-section__title">THE RACE MECHANIC</h3>
+                    <div class="m-steps" style="margin-top: 32px">
+                        <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
+                            <div class="m-step__num" style="font-size: 32px; color: #39FF14">01</div>
+                            <div class="m-step__title" style="font-size: 16px; font-weight: 600">Add Your Picks</div>
+                            <div class="m-step__desc" style="color: #5A8F60">Enter team names, food options, draft picks. Up to 25 entries. Choose your terrain and weather.</div>
+                        </div>
+                        <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
+                            <div class="m-step__num" style="font-size: 32px; color: #39FF14">02</div>
+                            <div class="m-step__title" style="font-size: 16px; font-weight: 600">Start the Race</div>
+                            <div class="m-step__desc" style="color: #5A8F60">Pixel cars race across Stadium, Neon, Desert, or Retro tracks. Rain and snow affect speed. Mechanical failures create drama. Dynamic camera follows the leader.</div>
+                        </div>
+                        <div class="m-step" style="background: #111811; border-radius: 12px; padding: 24px 20px">
+                            <div class="m-step__num" style="font-size: 32px; color: #39FF14">03</div>
+                            <div class="m-step__title" style="font-size: 16px; font-weight: 600">Winner Revealed</div>
+                            <div class="m-step__desc" style="color: #5A8F60">Finish line appears at 88%. Cars sprint. 3.5s victory celebration with confetti and fanfare.</div>
+                        </div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0D1A0D">
+                    ${dotLabel('04 — THE PRODUCT')}
+                    <h3 class="m-section__title">THE PRODUCT</h3>
+                    <div style="margin-top: 32px">
+                        <div class="m-img-wrap" style="height: 400px"><img src="images/mypick-card.png" alt="MyPick.io Product" loading="lazy" style="height: 100%; object-fit: cover"></div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0D1A0D">
+                    ${dotLabel('05 — VISUAL DIRECTION')}
+                    <h3 class="m-section__title">WHAT SHIPPED</h3>
+                    <p class="m-section__desc" style="color: #7AE582; margin-top: 16px">v2.9.1 ships the full experience. 4 terrain environments, each with distinct procedural scenery and color palettes. Stadium has crowd lights and banners. Neon has synth glow and city signs. Desert has dunes and heat haze. Retro has 8-bit trees and pixel clouds. 4 weather conditions layer on top with rain particles, snow, and night mode lighting. Each terrain-weather combo has unique speed modifiers and failure rates.</p>
+                    <p class="m-section__desc" style="color: #5A8F60; margin-top: 16px; font-size: 15px">17 custom audio tracks bring each environment to life. Terrain-specific ambient audio, weather sound layers, and a condition announcer that calls out track conditions at race start. Billboard ads line the track with impression tracking. A finish line reveal at 88% triggers a sprint finale. Mobile DPR scaling keeps pixel art crisp on every device. Built solo. Design and code.</p>
+                </div>`;
+
+                html += `<div class="m-section m-reveal" style="background: #0A0A0A">
+                    ${dotLabel('06 — FEATURES')}
+                    <h3 class="m-section__title">THE BUILD</h3>
+                    <div class="m-results" style="margin-top: 32px">
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">4</div><div class="m-result-card__title">Terrains</div><div class="m-result-card__desc" style="color: #5A8F60">Stadium, Neon, Desert, Retro. Each with procedural scenery and distinct color palettes.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">4</div><div class="m-result-card__title">Weather</div><div class="m-result-card__desc" style="color: #5A8F60">Clear, Rain, Snow, Night. Terrain-specific speed modifiers and failure rates.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">17</div><div class="m-result-card__title">Audio Files</div><div class="m-result-card__desc" style="color: #5A8F60">Terrain ambient, weather layers, announcer calls with smart ducking.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">16</div><div class="m-result-card__title">Combos</div><div class="m-result-card__desc" style="color: #5A8F60">4 terrains x 4 weather conditions. Every race feels different.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">8</div><div class="m-result-card__title">Car Colors</div><div class="m-result-card__desc" style="color: #5A8F60">Pixel art sprites with shadows, top-down perspective.</div></div>
+                        <div class="m-result-card" style="background: #111811"><div class="m-result-card__num" style="color: #39FF14">Crypto</div><div class="m-result-card__title">Secure</div><div class="m-result-card__desc" style="color: #5A8F60">Web Crypto API for truly random, unbiased results.</div></div>
+                    </div>
+                </div>`;
+
+                html += `<div class="m-section" style="background: #0D1A0D; padding: 80px 60px">
+                    <div class="m-cta">
+                        <div class="m-cta__title" style="font-size: 32px">Try it yourself</div>
+                        <div class="m-cta__subtitle" style="color: #7AE582">MyPick.io is live and free. Enter your picks and start a race.</div>
+                        <div class="m-cta__buttons">
+                            <a href="https://mypick.io" target="_blank" rel="noopener" class="m-cta__btn m-cta__btn--primary" style="background: #39FF14; color: #0A0A0A; width: 200px">Try MyPick.io</a>
+                            <a href="#contact" class="m-cta__btn m-cta__btn--ghost" style="color: #7AE582; width: 200px; border: 1px solid #1E3A1E; border-radius: 8px" onclick="closeModal()">Get in Touch</a>
+                        </div>
+                        <div class="m-cta__footer" style="color: #2A4A2A">&copy; 2026 Pheak &mdash; Product Designer &amp; Builder</div>
+                    </div>
+                </div>`;
+            }
+
+            content.innerHTML = html;
+            history.replaceState({ project: key }, '', '#project/' + key);
+            modal.scrollTop = 0;
+        }
+
+        // ── Card click + keyboard handlers ──
+        document.querySelectorAll('[data-project]').forEach(card => {
+            card.addEventListener('click', () => openModal(card.dataset.project));
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(card.dataset.project);
+                }
+            });
+        });
+
+        // ── Close handlers ──
+        modal.querySelector('.modal-close').addEventListener('click', () => closeModal());
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // ── Handle browser back button ──
+        window.addEventListener('popstate', () => {
+            if (modal.classList.contains('active')) {
+                closeModal(false);
+            }
+        });
+
+        // ── Open modal if URL has #project/xxx on load ──
+        if (location.hash.startsWith('#project/')) {
+            const key = location.hash.replace('#project/', '');
+            if (projectKeys.includes(key)) openModal(key);
+        }
+
+        // ── CONTACT FORM (Netlify Forms) ──
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = contactForm.querySelector('.contact-submit');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                const res = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(contactForm)).toString()
+                });
+
+                if (res.ok) {
+                    contactForm.style.display = 'none';
+                    document.getElementById('contactSuccess').style.display = 'block';
+                } else {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'SEND MESSAGE \u2192';
+                }
+            } catch (err) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'SEND MESSAGE \u2192';
+            }
+        });
+
+        // ── Email obfuscation ──
+        document.querySelectorAll('.eml').forEach(function(a) {
+            var addr = a.dataset.u + '@' + a.dataset.d;
+            if (a.classList.contains('eml-show')) a.textContent = addr;
+            a.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location = 'mailto:' + addr;
+            });
+        });
+    </script>
+</body>
+</html>

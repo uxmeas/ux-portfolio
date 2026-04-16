@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyPick.io — Elimination Race Game — Pheak Meas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: #0A0A0A; color: #FFFFFF; }
+    img { display: block; max-width: 100%; }
+
+    :root {
+      --bg-primary: #0A0A0A;
+      --bg-context: #0D1A0D;
+      --bg-works: #0F150F;
+      --bg-visual: #0A140A;
+      --bg-features: #061006;
+      --bg-cta: #050A05;
+      --text-primary: #FFFFFF;
+      --text-green: #39FF14;
+      --text-green-soft: #7AE582;
+      --text-green-muted: #5A8F60;
+      --text-green-dark: #6B8F71;
+      --text-footer: #2A4A2A;
+      --card-bg: #111811;
+      --section-pad-y: 100px;
+      --section-pad-x: 120px;
+      --section-gap: 40px;
+    }
+
+    /* === LABEL DOT === */
+    .cs-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .cs-label__dot {
+      width: 8px;
+      height: 8px;
+      background: var(--text-green);
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .cs-label__text {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-green);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* === SECTION WRAPPER === */
+    .cs-section {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+
+    .cs-img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* ========================
+       SECTION 1 — HERO
+       ======================== */
+    .cs-hero {
+      background: var(--bg-primary);
+      padding: 80px var(--section-pad-x) 60px;
+    }
+    .cs-hero .cs-section {
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+    .cs-hero__title {
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-hero__subtitle {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-green-soft);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cs-hero__stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      padding-top: 24px;
+      width: 100%;
+    }
+    .cs-hero__stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .cs-hero__stat-number {
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--text-green);
+    }
+    .cs-hero__stat-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-green-dark);
+    }
+    .cs-hero__image {
+      width: 800px;
+      height: 450px;
+      border-radius: 12px;
+      background: var(--card-bg);
+    }
+
+    /* ========================
+       SECTION 2 — CONTEXT
+       ======================== */
+    .cs-context {
+      background: var(--bg-context);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-context .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-context__cols {
+      display: flex;
+      gap: 48px;
+      width: 100%;
+    }
+    .cs-context__left {
+      width: 380px;
+      flex-shrink: 0;
+    }
+    .cs-context__left-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .cs-context__right {
+      width: 680px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .cs-context__body {
+      font-size: 16px;
+      color: var(--text-green-soft);
+      line-height: 1.7;
+    }
+    .cs-context__body--muted {
+      font-size: 15px;
+      color: var(--text-green-muted);
+      line-height: 1.7;
+    }
+    .cs-meta {
+      display: flex;
+      gap: 32px;
+      padding-top: 16px;
+      width: 100%;
+    }
+    .cs-meta__item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cs-meta__label {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-green);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .cs-meta__value {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ========================
+       SECTION 3 — HOW IT WORKS
+       ======================== */
+    .cs-works {
+      background: var(--bg-works);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-works .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-steps {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+    }
+    .cs-step {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-step__number {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-green);
+    }
+    .cs-step__title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .cs-step__desc {
+      font-size: 13px;
+      color: var(--text-green-muted);
+      line-height: 1.6;
+    }
+
+    /* ========================
+       SECTION 4 — UI SHOWCASE
+       ======================== */
+    .cs-showcase {
+      background: var(--bg-context);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-showcase .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-showcase__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-showcase__row {
+      display: flex;
+      gap: 16px;
+    }
+    .cs-showcase__item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .cs-showcase__item-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-green);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .cs-showcase__item-img {
+      width: 100%;
+      height: 340px;
+      border-radius: 8px;
+      background: var(--card-bg);
+      object-fit: cover;
+    }
+
+    /* ========================
+       SECTION 5 — VISUAL DIRECTION
+       ======================== */
+    .cs-visual {
+      background: var(--bg-visual);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-visual .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-visual__desc {
+      font-size: 16px;
+      color: var(--text-green-soft);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+    .cs-visual__comparison {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+    }
+    .cs-visual__col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-visual__col-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .cs-visual__col-label--current {
+      color: var(--text-green-muted);
+    }
+    .cs-visual__col-label--direction {
+      color: var(--text-green);
+    }
+    .cs-visual__col-img {
+      width: 100%;
+      height: 240px;
+      border-radius: 8px;
+      background: var(--card-bg);
+    }
+
+    /* ========================
+       SECTION 6 — FEATURES
+       ======================== */
+    .cs-features {
+      background: var(--bg-features);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-features .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-features__grid {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-feature {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-feature__icon {
+      font-size: 24px;
+    }
+    .cs-feature__title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .cs-feature__desc {
+      font-size: 12px;
+      color: var(--text-green-muted);
+      line-height: 1.5;
+    }
+
+    /* ========================
+       SECTION 7 — CTA FOOTER
+       ======================== */
+    .cs-cta {
+      background: var(--bg-cta);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-cta .cs-section {
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+    .cs-cta__title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .cs-cta__desc {
+      font-size: 16px;
+      color: var(--text-green-soft);
+      line-height: 1.6;
+      max-width: 600px;
+    }
+    .cs-cta__actions {
+      display: flex;
+      gap: 16px;
+      padding-top: 16px;
+    }
+    .cs-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 48px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cs-cta__btn:hover { opacity: 0.9; }
+    .cs-cta__btn--primary {
+      background: var(--text-green);
+      color: var(--bg-primary);
+    }
+    .cs-cta__btn--secondary {
+      background: transparent;
+      color: var(--text-green);
+      font-weight: 600;
+    }
+    .cs-cta__footer {
+      font-size: 12px;
+      color: var(--text-footer);
+    }
+
+    /* ========================
+       RESPONSIVE
+       ======================== */
+    @media (max-width: 1024px) {
+      :root { --section-pad-x: 48px; }
+      .cs-hero__title { font-size: 40px; }
+      .cs-hero__image { width: 100%; height: 350px; }
+      .cs-context__cols { flex-direction: column; }
+      .cs-context__left { width: 100%; }
+      .cs-context__right { width: 100%; }
+      .cs-visual__comparison { flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      :root { --section-pad-x: 24px; --section-pad-y: 64px; }
+      .cs-hero { padding: 48px 24px 40px; }
+      .cs-hero__title { font-size: 32px; }
+      .cs-hero__stats { flex-wrap: wrap; gap: 24px; }
+      .cs-hero__image { height: 240px; }
+      .cs-steps { flex-direction: column; }
+      .cs-showcase__row { flex-direction: column; }
+      .cs-features__grid { flex-direction: column; }
+      .cs-meta { flex-wrap: wrap; }
+      .cs-cta__actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1 — HERO -->
+  <section class="cs-hero">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">CASE STUDY</span>
+      </div>
+
+      <h1 class="cs-hero__title">MyPick.io</h1>
+
+      <p class="cs-hero__subtitle">
+        Random number generators work. They're also boring. MyPick.io turns list shuffling into a pixel car race with 21 sound effects, mechanical failures that create real drama, and a dynamic camera that builds tension as cars approach the finish line. Zero dependencies, cryptographically fair.
+      </p>
+
+      <div class="cs-hero__stats">
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">21</div>
+          <div class="cs-hero__stat-label">Sound Effects</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">0</div>
+          <div class="cs-hero__stat-label">Dependencies</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">8</div>
+          <div class="cs-hero__stat-label">Car Colors</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">Crypto</div>
+          <div class="cs-hero__stat-label">Secure</div>
+        </div>
+      </div>
+
+      <img class="cs-img cs-hero__image" src="../../images/mypick/hero-race.png" alt="MyPick.io race game screenshot">
+    </div>
+  </section>
+
+  <!-- SECTION 2 — CONTEXT -->
+  <section class="cs-context">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">CONTEXT</span>
+      </div>
+
+      <div class="cs-context__cols">
+        <div class="cs-context__left">
+          <h2 class="cs-context__left-title">THE PROBLEM WITH<br>RANDOMIZERS</h2>
+        </div>
+        <div class="cs-context__right">
+          <p class="cs-context__body">
+            Every group decision has a dead moment. Someone pulls out their phone, opens a random number generator, taps a button, reads a number. Nobody watches. Nobody remembers.
+          </p>
+          <p class="cs-context__body--muted">
+            I wanted that moment to be the best part. MyPick.io turns it into a pixel car race with mechanical failures, a dynamic camera, and 21 sound effects across 5 categories. Cars don't get eliminated. They break down, slow down, then recover with an adrenaline boost. Built from scratch. Zero dependencies. I wanted to own every pixel.
+          </p>
+        </div>
+      </div>
+
+      <div class="cs-meta">
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">ROLE</span>
+          <span class="cs-meta__value">Product Designer &amp; Developer</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">STACK</span>
+          <span class="cs-meta__value">Web Crypto API &middot; Canvas 2D &middot; Vanilla JS</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">STATUS</span>
+          <span class="cs-meta__value">Production v2.9.1</span>
+        </div>
+        <div class="cs-meta__item">
+          <span class="cs-meta__label">YEAR</span>
+          <span class="cs-meta__value">2025–2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — HOW IT WORKS -->
+  <section class="cs-works">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">HOW IT WORKS</span>
+      </div>
+
+      <h2 class="cs-title">THE RACE MECHANIC</h2>
+
+      <div class="cs-steps">
+        <div class="cs-step">
+          <div class="cs-step__number">01</div>
+          <div class="cs-step__title">Add Your Picks</div>
+          <div class="cs-step__desc">Enter team names, food options, draft picks. Up to 25 entries.</div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step__number">02</div>
+          <div class="cs-step__title">Start the Race</div>
+          <div class="cs-step__desc">Pixel cars race. Mechanical failures create drama. Dynamic camera follows the leader.</div>
+        </div>
+        <div class="cs-step">
+          <div class="cs-step__number">03</div>
+          <div class="cs-step__title">Winner Revealed</div>
+          <div class="cs-step__desc">Finish line appears at 88%. Cars sprint. 3.5s victory celebration with confetti and fanfare.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — UI SHOWCASE -->
+  <section class="cs-showcase">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">THE PRODUCT</span>
+      </div>
+
+      <div class="cs-showcase__grid">
+        <div class="cs-showcase__row">
+          <div class="cs-showcase__item">
+            <span class="cs-showcase__item-label">SETUP</span>
+            <img class="cs-showcase__item-img" src="../../images/mypick/setup-screen.png" alt="Setup screen">
+          </div>
+          <div class="cs-showcase__item">
+            <span class="cs-showcase__item-label">RACING</span>
+            <img class="cs-showcase__item-img" src="../../images/mypick/real-racing.png" alt="Racing screen">
+          </div>
+        </div>
+        <div class="cs-showcase__row">
+          <div class="cs-showcase__item">
+            <span class="cs-showcase__item-label">WINNER</span>
+            <img class="cs-showcase__item-img" src="../../images/mypick/real-winner.png" alt="Winner screen">
+          </div>
+          <div class="cs-showcase__item">
+            <span class="cs-showcase__item-label">MID-RACE</span>
+            <img class="cs-showcase__item-img" src="../../images/mypick/real-midrace.png" alt="Mid-race drama">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — VISUAL DIRECTION -->
+  <section class="cs-visual">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">VISUAL DIRECTION</span>
+      </div>
+
+      <h2 class="cs-title">WHAT I SHIPPED</h2>
+
+      <p class="cs-visual__desc">
+        v2.9.1 ships the full experience. Mechanical failures that create real race drama. A finish line reveal at 88% that triggers a sprint finale. Billboard ads on the track. And a 21-sound audio system across 5 categories with smart music ducking. Designed and built from scratch.
+      </p>
+
+      <div class="cs-visual__comparison">
+        <div class="cs-visual__col">
+          <span class="cs-visual__col-label cs-visual__col-label--current">HOMEPAGE</span>
+          <img class="cs-visual__col-img" src="../../images/mypick/real-homepage.png" alt="MyPick.io homepage" style="object-fit: cover;">
+        </div>
+        <div class="cs-visual__col">
+          <span class="cs-visual__col-label cs-visual__col-label--direction">RACE IN ACTION</span>
+          <img class="cs-visual__col-img" src="../../images/mypick/hero-race.png" alt="MyPick.io race in action" style="object-fit: cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 — FEATURES -->
+  <section class="cs-features">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">FEATURES</span>
+      </div>
+
+      <h2 class="cs-title">WHAT I BUILT</h2>
+
+      <div class="cs-features__grid">
+        <div class="cs-feature">
+          <div class="cs-feature__title">21 Sound Effects</div>
+          <div class="cs-feature__desc">5 categories: engine, crash, boost, ambient, celebration. Smart ducking system.</div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature__title">0 Dependencies</div>
+          <div class="cs-feature__desc">Pure vanilla JS. No React, no framework. Complete ownership of every pixel.</div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature__title">8 Car Colors</div>
+          <div class="cs-feature__desc">Pixel art cars with unique color palettes. Each with idle, racing, and broken states.</div>
+        </div>
+        <div class="cs-feature">
+          <div class="cs-feature__title">Crypto Secure</div>
+          <div class="cs-feature__desc">Web Crypto API for true randomness. No Math.random(). Verifiably fair results.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 — CTA FOOTER -->
+  <section class="cs-cta">
+    <div class="cs-section">
+      <h2 class="cs-cta__title">Try it yourself</h2>
+      <p class="cs-cta__desc">
+        MyPick.io is live and free. Enter your picks and start a race.
+      </p>
+      <div class="cs-cta__actions">
+        <a href="https://mypick.io" class="cs-cta__btn cs-cta__btn--primary">Play Now</a>
+        <a href="/" class="cs-cta__btn cs-cta__btn--secondary">Back to Portfolio</a>
+      </div>
+      <div class="cs-cta__footer">&copy; 2026 Pheak Meas — Senior Product Designer</div>
+    </div>
+  </section>
+
+</body>
+</html>

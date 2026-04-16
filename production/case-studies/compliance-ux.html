@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance UX for Private Capital Markets — UX Meas</title>
+    <meta name="description" content="KYC/AML-compliant investor onboarding and electronic signature flows for enterprise clients. Turning hours of regulatory paperwork into streamlined digital experiences across 20+ jurisdictions.">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Compliance UX for Private Capital Markets — UX Meas">
+    <meta property="og:description" content="KYC/AML-compliant investor onboarding and electronic signature flows for enterprise clients across 20+ jurisdictions.">
+    <meta property="og:image" content="../images/katipult/v2/v2-full-app-with-sidebar.png">
+    <meta property="og:type" content="article">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../css/case-study-page.css">
+
+    <!-- Critical inline CSS for page loader (prevent FOUC) -->
+    <style>
+        body { background: #071320; }
+        .cs-pageloader {
+            position: fixed; inset: 0; z-index: 9999;
+            background: #071320;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .cs-pageloader.done { opacity: 0; pointer-events: none; transition: opacity 0.5s ease; }
+        .cs-pageloader__inner { width: 300px; display: flex; flex-direction: column; gap: 16px; }
+        .cs-pageloader__bar {
+            height: 12px; border-radius: 6px;
+            background: #0A1628;
+        }
+        @keyframes cs-shimmer {
+            0%   { background-position: -300px 0; }
+            100% { background-position: 300px 0; }
+        }
+    </style>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9HVVW1GBEC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9HVVW1GBEC');
+    </script>
+</head>
+<body>
+
+<!-- Page Loader -->
+<div class="cs-pageloader" aria-hidden="true">
+    <div class="cs-pageloader__inner">
+        <div class="cs-pageloader__bar" style="width: 100%"></div>
+        <div class="cs-pageloader__bar" style="width: 80%"></div>
+        <div class="cs-pageloader__bar" style="width: 60%"></div>
+    </div>
+</div>
+
+<!-- Top Bar -->
+<header class="cs-topbar">
+    <a href="/" class="cs-topbar__back">&larr; UX Meas</a>
+</header>
+
+<!-- Nav Dots -->
+<nav class="cs-nav" aria-label="Section navigation">
+    <button class="cs-nav__dot cs-nav__dot--active" data-target="hero" aria-label="Hero"></button>
+    <button class="cs-nav__dot" data-target="context" aria-label="Business Context"></button>
+    <button class="cs-nav__dot" data-target="problem" aria-label="Problem Statement"></button>
+    <button class="cs-nav__dot" data-target="approach" aria-label="Design Approach"></button>
+    <button class="cs-nav__dot" data-target="flow" aria-label="User Flow"></button>
+    <button class="cs-nav__dot" data-target="ksign" aria-label="KSign"></button>
+    <button class="cs-nav__dot" data-target="showcase" aria-label="UI Showcase"></button>
+    <button class="cs-nav__dot" data-target="results" aria-label="Results"></button>
+    <button class="cs-nav__dot" data-target="cta" aria-label="Footer"></button>
+</nav>
+
+<main class="cs--compliance">
+<div class="cs-page">
+
+    <!-- Section 1: Hero -->
+    <section class="cs-section cs-section--primary" data-section="hero">
+        <div class="cs-label-bar cs-reveal">
+            <span>Katipult</span>
+            <span class="cs-label-sep">/</span>
+            <span>Compliance UX</span>
+            <span class="cs-label-sep">/</span>
+            <span>Fintech</span>
+            <span class="cs-label-line"></span>
+        </div>
+
+        <div class="cs-mt-32 cs-reveal">
+            <img src="../images/katipult/logos/katipult-logo-white.png" alt="Katipult logo" class="cs-logo" loading="eager">
+        </div>
+
+        <h1 class="cs-hero__title cs-mt-24 cs-reveal">Compliance UX for Private Capital Markets</h1>
+
+        <p class="cs-hero__subtitle cs-mt-24 cs-reveal">KYC/AML-compliant investor onboarding and electronic signature flows for enterprise clients. Turning hours of regulatory paperwork into streamlined digital experiences across 20+ jurisdictions.</p>
+
+        <div class="cs-stats cs-reveal">
+            <div class="cs-stat">
+                <div class="cs-stat__number">&lt; 12 min</div>
+                <div class="cs-stat__label">Average onboarding time</div>
+            </div>
+            <div class="cs-stat">
+                <div class="cs-stat__number">20+</div>
+                <div class="cs-stat__label">Jurisdictions supported</div>
+            </div>
+            <div class="cs-stat">
+                <div class="cs-stat__number">85%</div>
+                <div class="cs-stat__label">Completion rate</div>
+            </div>
+        </div>
+
+        <div class="cs-img-wrap cs-mt-48 cs-reveal">
+            <img src="../images/katipult/v2/v2-full-app-with-sidebar.png" alt="Katipult platform overview showing investor onboarding dashboard" class="cs-hero__img" loading="eager">
+        </div>
+    </section>
+
+    <!-- Section 2: Business Context -->
+    <section class="cs-section cs-section--alt" data-section="context">
+        <div class="cs-label-bar cs-reveal">
+            <span class="cs-label-dot"></span>
+            <span>02 — BUSINESS CONTEXT</span>
+            <span class="cs-label-line"></span>
+        </div>
+
+        <div class="cs-two-col cs-mt-32 cs-reveal">
+            <div class="cs-two-col__left">
+                <h2 class="cs-section__title">BUSINESS CONTEXT</h2>
+            </div>
+            <div class="cs-two-col__right">
+                <p class="cs-section__desc">Katipult is a white-label infrastructure platform powering private capital markets. Investment dealers, fund managers, and crowdfunding portals use it to manage investor onboarding, deal flow, and compliance across multiple jurisdictions.</p>
+                <p class="cs-section__highlight cs-mt-24">The goal: satisfy regulators in 20+ jurisdictions while keeping investors from abandoning the process.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Problem Statement -->
+    <section class="cs-section cs-section--primary" data-section="problem">
+        <div class="cs-label-bar cs-reveal">
+            <span class="cs-label-dot"></span>
+            <span>03 — PROBLEM STATEMENT</span>
+            <span class="cs-label-line"></span>
+        </div>
+
+        <div class="cs-two-col cs-mt-32 cs-reveal">
+            <div class="cs-two-col__left">
+                <h2 class="cs-section__title">PROBLEM STATEMENT</h2>
+            </div>
+            <div class="cs-two-col__right">
+                <p class="cs-section__desc">Before the redesign, investor onboarding was a paper-heavy process requiring manual document collection, in-person verification, and back-and-forth between compliance teams and investors. The experience was fragmented across email, fax, and physical mail.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Design Approach -->
+    <section class="cs-section cs-section--alt" data-section="approach">
+        <div class="cs-label-bar cs-reveal">
+            <span class="cs-label-dot"></span>
+            <span>04 — DESIGN APPROACH</span>
+            <span class="cs-label-line"></span>
+        </div>
+
+        <div class="cs-two-col cs-mt-32 cs-reveal">
+            <div class="cs-two-col__left">
+                <h2 class="cs-section__title">DESIGN APPROACH</h2>
+            </div>
+            <div class="cs-two-col__right">
+                <p class="cs-section__desc">Working closely with compliance officers, legal teams, and real investors, I mapped the entire regulatory landscape before designing any screens. The approach prioritized progressive disclosure: showing investors only what they needed at each step.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: User Flow -->
+    <section class="cs-section cs-section--primary" data-section="flow">
+        <div class="cs-label-bar cs-reveal">
+            <span class="cs-label-dot"></span>
+            <span>05 — USER FLOW</span>
+            <span class="cs-label-line"></span>
+        </div>
+
+        <div class="cs-two-col cs-mt-32 cs-reveal">
+            <div class="cs-two-col__left">
+                <h2 class="cs-section__title">USER FLOW</h2>
+            </div>
+            <div class="cs-two-col__right">
+                <p class="cs-section__desc">The onboarding flow adapts per jurisdiction. Investors see only the steps required for their region, with clear progress indicators throughout.</p>
+                <p class="cs-section__highlight cs-mt-16">5 core steps. 20+ jurisdiction variants</p>
+            </div>
+        </div>
+
+        <div class="cs-flow cs-mt-32 cs-reveal">
+            <div class="cs-flow__node" style="background: #5d2de6;">Sign Up</div>
+            <span class="cs-flow__arrow">&rarr;</span>
+            <div class="cs-flow__node" style="background: #0d4270;">Identity Verification</div>
+            <span class="cs-flow__arrow">&rarr;</span>
+            <div class="cs-flow__node" style="background: #0d4270;">Accreditation</div>
+            <span class="cs-flow__arrow">&rarr;</span>
+            <div class="cs-flow__node" style="background: #0d4270;">Document Upload</div>
+            <span class="cs-flow__arrow">&rarr;</span>
+            <div class="cs-flow__node" style="background: #F96815;">Approved</div>
+        </div>
+    </section>
+
+    <!-- Section 6: KSign -->
+    <section class="cs-section cs-section--alt" data-section="ksign">
+        <div class="cs-label-bar cs-reveal">
+            <span class="cs-label-dot"></span>
+            <span>06 — KSIGN</span>
+            <span class="cs-label-line"></span>
+        </div>
+
+        <div class="cs-two-col cs-mt-32 cs-reveal">
+            <div class="cs-two-col__left">
+                <h2 class="cs-section__title">KSIGN</h2>
+                <p class="cs-section__subtitle">Electronic Signature Module</p>
+            </div>
+            <div class="cs-two-col__right">
+                <p class="cs-section__desc">KSign is an electronic signature module built into Katipult's DealFlow platform. It enables compliant investment document signing across 20 jurisdictions, handling everything from subscription agreements to regulatory disclosures.</p>
+            </div>
+        </div>
+
+        <div class="cs-gallery cs-gallery--2 cs-mt-32 cs-reveal">
+            <div class="cs-gallery__item">
+                <div class="cs-img-wrap">
+                    <img src="../images/katipult/v2/v2-offerings-table.png" alt="KSign offerings table showing available investment deals" loading="lazy">
+                </div>
+            </div>
+            <div class="cs-gallery__item">
+                <div class="cs-img-wrap">
+                    <img src="../images/katipult/v2/v2-deal-detail.png" alt="KSign deal detail view with document signing workflow" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: UI Showcase -->
+    <section class="cs-section cs-section--primary" data-section="showcase">
+        <div class="cs-label-bar cs-reveal">
+            <span>Outcome</span>
+            <span class="cs-label-sep">/</span>
+            <span>UI Showcase</span>
+            <span class="cs-label-sep">/</span>
+            <span>Fintech</span>
+            <span class="cs-label-line"></span>
+        </div>
+
+        <h2 class="cs-section__title cs-mt-32 cs-reveal">UI SHOWCASE</h2>
+
+        <div class="cs-gallery cs-gallery--2 cs-mt-32 cs-reveal">
+            <div class="cs-gallery__item">
+                <div class="cs-img-wrap">
+                    <img src="../images/katipult/v2/v2-kyc-personal-info.png" alt="KYC personal information form with progressive disclosure" loading="lazy">
+                </div>
+            </div>
+            <div class="cs-gallery__item">
+                <div class="cs-img-wrap">
+                    <img src="../images/katipult/v2/v2-kyc-document-upload.png" alt="KYC document upload interface with drag-and-drop" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <div class="cs-gallery cs-gallery--2 cs-mt-16 cs-reveal">
+            <div class="cs-gallery__item">
+                <div class="cs-img-wrap">
+                    <img src="../images/katipult/v2/v2-kyc-accreditation.png" alt="KYC accreditation step with jurisdiction-specific requirements" loading="lazy">
+                </div>
+            </div>
+            <div class="cs-gallery__item">
+                <div class="cs-img-wrap">
+                    <img src="../images/katipult/v2/v2-kyc-verified.png" alt="KYC verification complete confirmation screen" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Results -->
+    <section class="cs-section cs-section--alt" data-section="results">
+        <div class="cs-label-bar cs-reveal">
+            <span class="cs-label-dot"></span>
+            <span>08 — RESULTS</span>
+            <span class="cs-label-line"></span>
+        </div>
+
+        <h2 class="cs-section__title cs-mt-32 cs-reveal">RESULTS &amp; IMPACT</h2>
+
+        <p class="cs-section__desc cs-mt-24 cs-reveal">The redesigned compliance flows transformed investor onboarding from a multi-day paper process into a streamlined digital experience.</p>
+
+        <div class="cs-results cs-mt-32 cs-reveal">
+            <div class="cs-result-card">
+                <div class="cs-result-card__num">85%</div>
+                <div class="cs-result-card__title">Completion Rate</div>
+                <div class="cs-result-card__desc">Up from 35%. Investors complete onboarding without abandoning.</div>
+            </div>
+            <div class="cs-result-card">
+                <div class="cs-result-card__num">&lt; 12 min</div>
+                <div class="cs-result-card__title">Average Onboarding</div>
+                <div class="cs-result-card__desc">Down from 3-5 days of manual paperwork and back-and-forth.</div>
+            </div>
+            <div class="cs-result-card">
+                <div class="cs-result-card__num">20+</div>
+                <div class="cs-result-card__title">Jurisdictions</div>
+                <div class="cs-result-card__desc">Single flow adapts to regulatory requirements across regions.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: CTA Footer -->
+    <section class="cs-section cs-section--deep cs-cta" data-section="cta">
+        <div class="cs-reveal">
+            <div class="cs-cta__line"></div>
+            <h2 class="cs-hero__title">Compliance UX for Private Capital Markets</h2>
+            <p class="cs-hero__subtitle cs-mt-16">Katipult. Co-Founder &amp; Lead Product Designer. 2014-2023</p>
+            <div class="cs-cta__buttons cs-mt-32">
+                <a href="/" class="cs-btn cs-btn--primary">View Portfolio</a>
+                <a href="https://ncfacanada.org/katipult-announces-investment-dealer-partnership/" class="cs-btn cs-btn--ghost" target="_blank" rel="noopener">NCFA Partnership &rarr;</a>
+            </div>
+            <p class="cs-cta__footer">uxmeas.com</p>
+        </div>
+    </section>
+
+</div><!-- .cs-page -->
+
+<!-- Prev/Next Navigation -->
+<nav class="cs-prevnext cs--compliance" aria-label="Case study navigation">
+    <a href="mypick.html" class="cs-prevnext__link">
+        <span class="cs-prevnext__label">&larr; Previous</span>
+        <span class="cs-prevnext__name">MyPick.io</span>
+    </a>
+    <a href="katipult-dealflow.html" class="cs-prevnext__link cs-prevnext__link--next">
+        <span class="cs-prevnext__label">Next &rarr;</span>
+        <span class="cs-prevnext__name">Katipult DealFlow</span>
+    </a>
+</nav>
+
+</main>
+
+<script src="../js/case-study.js"></script>
+</body>
+</html>

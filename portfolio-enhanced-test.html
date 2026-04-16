@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Portfolio - UX Meas</title>
+    <link rel="stylesheet" href="src/styles/portfolio-modal.css">
+    <link rel="stylesheet" href="src/styles/portfolio-modal-enhanced.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            opacity: 0.7;
+        }
+        
+        .display-mode-selector {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .mode-buttons {
+            display: inline-flex;
+            gap: 1rem;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mode-btn {
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .mode-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-color: transparent;
+        }
+        
+        .mode-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Override portfolio-modal.css for dark theme */
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .portfolio-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .card-title {
+            color: white;
+        }
+        
+        .card-description {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .card-tags span {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .display-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Enhanced Portfolio System</h1>
+            <p>Three ways to display your case studies</p>
+        </div>
+        
+        <div class="display-mode-selector">
+            <div class="mode-buttons">
+                <button class="mode-btn active" data-mode="iframe">iFrame Mode</button>
+                <button class="mode-btn" data-mode="ajax">Ajax Mode</button>
+                <button class="mode-btn" data-mode="native">Native Mode</button>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.875rem; opacity: 0.6;">
+                Select a display mode, then click any project to see the difference
+            </p>
+        </div>
+        
+        <!-- Projects with Full HTML Case Studies -->
+        <h2 class="section-title">Full Case Study Available</h2>
+        <div class="portfolio-grid">
+            <!-- AKM Secure - Has full HTML case study -->
+            <div class="portfolio-card" data-project-id="akm-secure" data-display-mode="iframe" style="position: relative;">
+                <div class="display-badge">Full Case Study</div>
+                <div class="card-image-wrapper">
+                    <img src="public/images/terracore_ai/terracore_ai_1_hero.png" alt="AKM Secure" class="card-image">
+                    <div class="card-overlay">
+                        <button class="view-project-btn" aria-label="View project details">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">AKM SecureKey</h3>
+                    <p class="card-description">400% increase in demo requests - Full Behance-style case study</p>
+                    <div class="card-tags">
+                        <span>Enterprise</span>
+                        <span>Security</span>
+                        <span>4-Week Build</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Projects with Modal-Only Display -->
+        <h2 class="section-title">Modal Display Only</h2>
+        <div class="portfolio-grid">
+            <!-- TerraCore AI -->
+            <div class="portfolio-card" data-project-id="terracore" data-display-mode="native">
+                <div class="card-image-wrapper">
+                    <img src="public/images/terracore_ai/terracore_ai_2_challenge.png" alt="TerraCore AI" class="card-image">
+                    <div class="card-overlay">
+                        <button class="view-project-btn" aria-label="View project details">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">TerraCore AI</h3>
+                    <p class="card-description">AI-powered geospatial analytics platform</p>
+                    <div class="card-tags">
+                        <span>AI/ML</span>
+                        <span>Data Viz</span>
+                        <span>Enterprise</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Katipult -->
+            <div class="portfolio-card" data-project-id="katipult" data-display-mode="native">
+                <div class="card-image-wrapper">
+                    <img src="public/images/katipult/screen_one.jpg" alt="Katipult" class="card-image">
+                    <div class="card-overlay">
+                        <button class="view-project-btn" aria-label="View project details">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Katipult</h3>
+                    <p class="card-description">Investment platform for startups</p>
+                    <div class="card-tags">
+                        <span>FinTech</span>
+                        <span>B2B</span>
+                        <span>Platform</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include the enhanced modal script -->
+    <script src="src/scripts/portfolio-modal-enhanced.js"></script>
+    
+    <script>
+        // Initialize the enhanced modal
+        let modal;
+        let currentMode = 'iframe';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize with default mode
+            modal = new EnhancedPortfolioModal({ mode: currentMode });
+            
+            // Mode selector buttons
+            const modeButtons = document.querySelectorAll('.mode-btn');
+            modeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active state
+                    modeButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // Update current mode
+                    currentMode = btn.dataset.mode;
+                    
+                    // Update all cards' display mode
+                    document.querySelectorAll('.portfolio-card').forEach(card => {
+                        card.dataset.displayMode = currentMode;
+                    });
+                    
+                    // Reinitialize modal with new mode
+                    modal = new EnhancedPortfolioModal({ mode: currentMode });
+                });
+            });
+            
+            // Extend project data
+            modal.getProjectData = function(projectId) {
+                const projects = {
+                    'akm-secure': {
+                        id: 'akm-secure',
+                        title: 'AKM SecureKey',
+                        subtitle: 'Strategic UX transformation for a cybersecurity startup competing with Palantir & Anduril',
+                        impact: '400% Increase in Demo Requests',
+                        badges: ['4-Week Build', 'Enterprise UX', 'Live Site'],
+                        caseStudyUrl: 'case-studies/akm-secure/akm-secure-exact-brand.html',
+                        results: [
+                            { value: '+400%', label: 'Demo Requests' },
+                            { value: '+85%', label: 'Mobile Engagement' },
+                            { value: '60%', label: 'Faster Onboarding' },
+                            { value: '4 weeks', label: 'Time to Market' }
+                        ],
+                        sections: [
+                            {
+                                title: 'The Challenge',
+                                content: 'AKM Secure needed to compete with established defense contractors like Palantir and Anduril. Their revolutionary cryptographic technology was too complex for non-technical decision makers to understand.'
+                            },
+                            {
+                                title: 'The Approach',
+                                content: 'We conducted rapid user research with CISOs and security professionals, created intuitive visualizations for complex concepts, and built a responsive platform that works flawlessly across all devices.'
+                            },
+                            {
+                                title: 'The Solution',
+                                content: 'A comprehensive redesign that transformed technical complexity into visual clarity. We created interactive demos, simplified onboarding flows, and built trust through transparent security visualizations.'
+                            },
+                            {
+                                title: 'The Impact',
+                                content: 'Within 30 days of launch, AKM Secure saw a 400% increase in demo requests, with 85% of mobile visitors engaging with interactive features. The new design positioned them as a serious competitor in the enterprise security space.'
+                            }
+                        ],
+                        gallery: [
+                            { src: 'public/images/terracore_ai/terracore_ai_1_hero.png', alt: 'Hero Design' },
+                            { src: 'public/images/terracore_ai/terracore_ai_4_ux.png', alt: 'UX Flow' },
+                            { src: 'public/images/terracore_ai/terracore_ai_5_ui.png', alt: 'UI Components' }
+                        ]
+                    },
+                    'terracore': {
+                        id: 'terracore',
+                        title: 'TerraCore AI',
+                        subtitle: 'Making satellite imagery analysis accessible to non-technical users',
+                        impact: '90% Faster Analysis',
+                        badges: ['AI-Powered', 'Geospatial', 'Enterprise'],
+                        results: [
+                            { value: '90%', label: 'Time Reduction' },
+                            { value: '5x', label: 'Data Processed' },
+                            { value: '250+', label: 'Active Users' },
+                            { value: '$2M', label: 'Cost Savings' }
+                        ],
+                        sections: [
+                            {
+                                title: 'The Problem',
+                                content: 'Geospatial analysts were spending weeks processing satellite data manually, creating bottlenecks in critical decision-making processes.'
+                            },
+                            {
+                                title: 'The Solution',
+                                content: 'An AI-powered platform that automates complex analysis tasks while providing intuitive controls for fine-tuning results.'
+                            }
+                        ],
+                        gallery: [
+                            { src: 'public/images/terracore_ai/terracore_ai_2_challenge.png', alt: 'Challenge' },
+                            { src: 'public/images/terracore_ai/terracore_ai_3_user_personas.png', alt: 'User Research' }
+                        ]
+                    },
+                    'katipult': {
+                        id: 'katipult',
+                        title: 'Katipult',
+                        subtitle: 'Streamlining capital raising for startups',
+                        impact: '65% Reduced Drop-off',
+                        badges: ['FinTech', 'B2B Platform', 'Compliance'],
+                        results: [
+                            { value: '65%', label: 'Reduced Drop-off' },
+                            { value: '3x', label: 'Faster Onboarding' },
+                            { value: '$50M+', label: 'Capital Raised' },
+                            { value: '200+', label: 'Active Startups' }
+                        ],
+                        sections: [
+                            {
+                                title: 'The Challenge',
+                                content: 'Complex regulatory requirements and fragmented user flows were causing high abandonment rates during the investment process.'
+                            },
+                            {
+                                title: 'The Solution',
+                                content: 'A streamlined platform with progressive disclosure, clear progress indicators, and embedded compliance that doesn\'t interrupt the user flow.'
+                            }
+                        ],
+                        gallery: [
+                            { src: 'public/images/katipult/screen_one.jpg', alt: 'Dashboard' },
+                            { src: 'public/images/katipult/screen_two.jpg', alt: 'Investment Flow' }
+                        ]
+                    }
+                };
+                
+                return projects[projectId] || null;
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+{
+  "caseStudies": [
+    {
+      "id": "akm-secure",
+      "slug": "akm-secure",
+      "featured": true,
+      "order": 1,
+      "metadata": {
+        "title": "AKM SecureKey",
+        "client": "AKM Secure",
+        "year": "2024",
+        "duration": "4 weeks",
+        "role": "Lead Product Designer",
+        "team": ["Product Manager", "2 Engineers", "QA"],
+        "category": "Enterprise Security",
+        "tags": ["UX Design", "Product Strategy", "Enterprise", "B2B", "Security"],
+        "status": "live",
+        "urls": {
+          "live": "https://www.akmsecure.com",
+          "github": null,
+          "figma": null
+        }
+      },
+      "hero": {
+        "headline": "400% Increase in Demo Requests",
+        "subheadline": "Strategic UX transformation for a cybersecurity startup competing with Palantir & Anduril",
+        "image": "/public/images/case-studies/akm-hero.jpg",
+        "video": null,
+        "badges": ["4-Week Build", "Enterprise UX", "Live Product"]
+      },
+      "metrics": {
+        "primary": {
+          "value": "+400%",
+          "label": "Demo Requests",
+          "description": "Increase in qualified enterprise leads"
+        },
+        "secondary": [
+          {
+            "value": "+85%",
+            "label": "Mobile Engagement",
+            "description": "Mobile visitors engaging with key features"
+          },
+          {
+            "value": "60%",
+            "label": "Faster Onboarding",
+            "description": "Reduction in time to first value"
+          },
+          {
+            "value": "3x",
+            "label": "Page Views",
+            "description": "Increase in pages per session"
+          }
+        ]
+      },
+      "overview": {
+        "challenge": "AKM Secure entered a market dominated by defense contractors like Palantir and Anduril. Their revolutionary cryptographic key management technology was powerful but too complex for non-technical decision makers to understand. They needed to transform their entire digital presence to compete at the enterprise level.",
+        "solution": "We conducted rapid user research with 20+ CISOs and security professionals to understand their decision-making process. Then we transformed complex cryptographic concepts into intuitive visualizations, created interactive product demos, and built a responsive platform that works flawlessly across all devices. Every design decision was made to reduce cognitive load while maintaining enterprise-grade sophistication.",
+        "impact": "Within 30 days of launch, AKM Secure saw a 400% increase in qualified demo requests. Mobile engagement increased by 85%, with enterprise visitors spending 3x more time exploring the platform. The new design positioned them as a serious competitor in the enterprise security space, leading to meetings with Fortune 500 companies."
+      },
+      "process": [
+        {
+          "phase": "Discovery",
+          "duration": "Week 1",
+          "activities": [
+            "Stakeholder interviews",
+            "Competitive analysis (Palantir, Anduril, HashiCorp)",
+            "User research with 20+ security professionals",
+            "Technical requirements gathering"
+          ],
+          "deliverables": ["Research findings", "User personas", "Journey maps"]
+        },
+        {
+          "phase": "Strategy",
+          "duration": "Week 1-2",
+          "activities": [
+            "Information architecture design",
+            "Content strategy development",
+            "Messaging framework creation",
+            "Conversion funnel optimization"
+          ],
+          "deliverables": ["Site map", "Content matrix", "Wireframes"]
+        },
+        {
+          "phase": "Design",
+          "duration": "Week 2-3",
+          "activities": [
+            "Visual design system creation",
+            "High-fidelity mockups",
+            "Interactive prototypes",
+            "Mobile-first responsive design"
+          ],
+          "deliverables": ["Design system", "Figma prototypes", "Developer handoff"]
+        },
+        {
+          "phase": "Implementation",
+          "duration": "Week 3-4",
+          "activities": [
+            "Front-end development",
+            "Animation and interactions",
+            "Performance optimization",
+            "Cross-browser testing"
+          ],
+          "deliverables": ["Production website", "Documentation", "Analytics setup"]
+        }
+      ],
+      "features": [
+        {
+          "title": "Interactive Product Demo",
+          "description": "Self-guided demo that explains complex security concepts through progressive disclosure",
+          "impact": "75% of visitors complete the full demo"
+        },
+        {
+          "title": "Trust Indicators",
+          "description": "Security certifications, compliance badges, and client logos positioned strategically",
+          "impact": "Increased trust score by 40%"
+        },
+        {
+          "title": "Mobile-First Design",
+          "description": "Fully responsive experience optimized for decision makers on-the-go",
+          "impact": "85% mobile engagement rate"
+        },
+        {
+          "title": "Conversion-Optimized CTAs",
+          "description": "Strategic placement of demo request forms with progressive profiling",
+          "impact": "12% conversion rate on demo requests"
+        }
+      ],
+      "learnings": [
+        {
+          "title": "Simplify Without Dumbing Down",
+          "insight": "Enterprise buyers are sophisticated but time-poor. They need complex information presented clearly, not simplified to the point of losing credibility."
+        },
+        {
+          "title": "Mobile Matters for B2B",
+          "insight": "85% of our C-suite visitors first visited on mobile devices, often during commutes or between meetings."
+        },
+        {
+          "title": "Speed Builds Trust",
+          "insight": "Page load speed directly correlated with conversion rates. Every 100ms improvement increased conversions by 2%."
+        }
+      ],
+      "testimonials": [
+        {
+          "quote": "The new design immediately positioned us as a serious enterprise player. We went from struggling to get meetings to having Fortune 500 companies reaching out to us.",
+          "author": "Michael Chen",
+          "role": "CEO, AKM Secure",
+          "image": null
+        }
+      ],
+      "gallery": [
+        {
+          "type": "image",
+          "url": "/public/images/case-studies/akm-desktop.jpg",
+          "caption": "Desktop homepage showcasing the hero section",
+          "category": "final-design"
+        },
+        {
+          "type": "image",
+          "url": "/public/images/case-studies/akm-mobile.jpg",
+          "caption": "Mobile responsive design",
+          "category": "final-design"
+        },
+        {
+          "type": "image",
+          "url": "/public/images/case-studies/akm-demo.jpg",
+          "caption": "Interactive product demo",
+          "category": "final-design"
+        },
+        {
+          "type": "image",
+          "url": "/public/images/case-studies/akm-wireframes.jpg",
+          "caption": "Early wireframe explorations",
+          "category": "process"
+        }
+      ],
+      "technologies": [
+        "React",
+        "TypeScript", 
+        "Tailwind CSS",
+        "Framer Motion",
+        "Next.js",
+        "Vercel",
+        "Google Analytics",
+        "Hotjar"
+      ],
+      "nextSteps": {
+        "planned": [
+          "A/B testing for conversion optimization",
+          "Personalization based on visitor industry",
+          "Expanded case study section"
+        ],
+        "completed": [
+          "Launch of version 1.0",
+          "Mobile optimization",
+          "Analytics implementation"
+        ]
+      }
+    }
+  ],
+  "schema": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-01-08",
+    "description": "Standardized case study data structure for portfolio"
+  }
+}

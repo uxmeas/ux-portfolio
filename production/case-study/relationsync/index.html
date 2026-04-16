@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RelationSync — Mobile App Case Study — Pheak Meas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: #1A1220; color: #FFFFFF; }
+    img { display: block; max-width: 100%; }
+
+    :root {
+      --bg-primary: #1A1220;
+      --bg-light: #F2F0F5;
+      --bg-voice: #1E1528;
+      --bg-philosophy: #130E1A;
+      --bg-onboarding: #211830;
+      --bg-gallery: #0E0916;
+      --bg-cta: #0F0A16;
+      --text-primary: #FFFFFF;
+      --text-muted: #6B5B7B;
+      --text-dark: #1A1220;
+      --accent: #7C5FA6;
+      --accent-light: #C4A0E8;
+      --accent-soft: #9B8AAF;
+      --accent-footer: #4A3660;
+      --pill-bg: #2D2040;
+      --pill-bg-light: #D6D0DE;
+      --card-bg: #2A1F35;
+      --section-pad-y: 100px;
+      --section-pad-x: 120px;
+      --section-gap: 40px;
+    }
+
+    /* === PILL LABELS === */
+    .cs-pills {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .cs-pill {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      padding: 6px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .cs-pill--dark {
+      background: var(--pill-bg);
+      color: var(--accent-soft);
+    }
+    .cs-pill--light {
+      background: var(--pill-bg-light);
+      color: var(--text-muted);
+    }
+
+    /* === SECTION WRAPPER === */
+    .cs-section {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* === TYPOGRAPHY === */
+    .cs-title {
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .cs-body {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    /* === IMAGE === */
+    .cs-img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    /* ========================
+       SECTION 1 — HERO
+       ======================== */
+    .cs-hero {
+      background: var(--bg-primary);
+      padding: 80px var(--section-pad-x) 60px;
+    }
+    .cs-hero .cs-section {
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+    .cs-hero__phones {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: flex-end;
+      height: 544px;
+      padding-bottom: 24px;
+      width: 100%;
+    }
+    .cs-hero__phone {
+      border-radius: 32px;
+      overflow: hidden;
+      background: var(--pill-bg);
+      padding: 12px 8px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .cs-hero__phone--center {
+      width: 240px;
+      height: 520px;
+    }
+    .cs-hero__phone--side {
+      width: 220px;
+      height: 477px;
+    }
+    .cs-hero__phone-notch {
+      width: 80px;
+      height: 6px;
+      background: var(--bg-primary);
+      border-radius: 3px;
+    }
+    .cs-hero__phone-screen {
+      flex: 1;
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      background: var(--card-bg);
+    }
+    .cs-hero__title {
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-hero__subtitle {
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--accent-soft);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cs-hero__stats {
+      display: flex;
+      gap: 48px;
+      justify-content: center;
+      width: 100%;
+    }
+    .cs-hero__stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .cs-hero__stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+    .cs-hero__stat-label {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    /* ========================
+       SECTION 2 — CONTEXT
+       ======================== */
+    .cs-context {
+      background: var(--bg-light);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-context .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-context__cols {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      width: 100%;
+    }
+    .cs-context__left {
+      flex: 1;
+    }
+    .cs-context__right {
+      width: 640px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cs-context__title {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.2;
+    }
+    .cs-context__body {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ========================
+       SECTION 3 — STATEMENT
+       ======================== */
+    .cs-statement {
+      background: var(--bg-primary);
+      padding: 140px var(--section-pad-x);
+      display: flex;
+      justify-content: center;
+    }
+    .cs-statement .cs-section {
+      align-items: center;
+      text-align: center;
+    }
+    .cs-statement__title {
+      font-size: 80px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-statement__subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========================
+       SECTION 4 — VOICE JOURNAL
+       ======================== */
+    .cs-voice {
+      background: var(--bg-voice);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-voice .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-voice__row {
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .cs-voice__phone {
+      width: 220px;
+      height: 477px;
+      border-radius: 32px;
+      background: var(--pill-bg);
+      padding: 14px 10px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .cs-voice__phone-screen {
+      flex: 1;
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+      background: var(--card-bg);
+    }
+    .cs-voice__text {
+      width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cs-voice__title {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-voice__desc {
+      font-size: 17px;
+      color: var(--accent-soft);
+      line-height: 1.8;
+    }
+    .cs-voice__features {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-voice__feature {
+      font-size: 14px;
+      color: var(--accent-soft);
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+    .cs-voice__feature::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent-light);
+    }
+
+    /* ========================
+       SECTION 5 — DESIGN PHILOSOPHY
+       ======================== */
+    .cs-philosophy {
+      background: var(--bg-philosophy);
+      padding: 140px var(--section-pad-x);
+      display: flex;
+      justify-content: center;
+    }
+    .cs-philosophy .cs-section {
+      gap: 40px;
+      align-items: center;
+      text-align: center;
+    }
+    .cs-philosophy__title {
+      font-size: 64px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.15;
+    }
+    .cs-philosophy__desc {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ========================
+       SECTION 6 — ONBOARDING
+       ======================== */
+    .cs-onboarding {
+      background: var(--bg-onboarding);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-onboarding .cs-section {
+      gap: 32px;
+    }
+    .cs-onboarding__desc {
+      font-size: 16px;
+      color: var(--accent-soft);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cs-onboarding__phones {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: flex-end;
+      height: 467px;
+      width: 100%;
+    }
+    .cs-onboarding__phone {
+      width: 160px;
+      border-radius: 12px;
+      background: var(--card-bg);
+      padding: 10px 8px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      height: 347px;
+    }
+    .cs-onboarding__phone-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent-light);
+      text-align: center;
+    }
+    .cs-onboarding__phone-screen {
+      width: 140px;
+      height: 295px;
+      border-radius: 6px;
+      background: var(--pill-bg);
+      object-fit: cover;
+    }
+
+    /* ========================
+       SECTION 7 — SCREEN GALLERY
+       ======================== */
+    .cs-gallery {
+      background: var(--bg-gallery);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-gallery .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-gallery__desc {
+      font-size: 16px;
+      color: var(--accent-soft);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cs-gallery__phones {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      padding-top: 16px;
+      width: 100%;
+    }
+    .cs-gallery__phone-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .cs-gallery__phone {
+      width: 220px;
+      height: 477px;
+      border-radius: 24px;
+      background: var(--card-bg);
+      padding: 12px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cs-gallery__phone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      background: var(--pill-bg);
+    }
+    .cs-gallery__phone-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-light);
+    }
+
+    /* ========================
+       SECTION 8 — VISUAL IDENTITY
+       ======================== */
+    .cs-visual {
+      background: var(--bg-light);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-visual .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-visual .cs-title {
+      color: var(--text-dark);
+    }
+    .cs-visual__row {
+      display: flex;
+      gap: 48px;
+      width: 100%;
+    }
+    .cs-visual__col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .cs-visual__label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cs-swatch-row {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+    .cs-swatch {
+      flex: 1;
+      height: 60px;
+      border-radius: 8px;
+    }
+    .cs-swatch-labels {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+    }
+    .cs-swatch-label {
+      flex: 1;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .cs-visual__type-name {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .cs-visual__type-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .cs-visual__type-sample {
+      font-size: 28px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    /* ========================
+       SECTION 9 — DESIGN SYSTEM
+       ======================== */
+    .cs-ds {
+      background: var(--bg-voice);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-ds .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-ds__desc {
+      font-size: 16px;
+      color: var(--accent-soft);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cs-ds__stats {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+    }
+    .cs-ds__stat {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 140px;
+      text-align: center;
+    }
+    .cs-ds__stat-number {
+      font-size: 40px;
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+    .cs-ds__stat-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent-soft);
+      line-height: 1.4;
+    }
+
+    /* ========================
+       SECTION 10 — CTA FOOTER
+       ======================== */
+    .cs-cta {
+      background: var(--bg-cta);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-cta .cs-section {
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+    .cs-cta__title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .cs-cta__desc {
+      font-size: 17px;
+      color: var(--accent-soft);
+      line-height: 1.7;
+      max-width: 600px;
+    }
+    .cs-cta__actions {
+      display: flex;
+      gap: 16px;
+      padding-top: 16px;
+    }
+    .cs-cta__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 220px;
+      height: 52px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cs-cta__btn:hover { opacity: 0.9; }
+    .cs-cta__btn--primary {
+      background: var(--accent);
+      color: var(--text-primary);
+    }
+    .cs-cta__btn--secondary {
+      background: transparent;
+      color: var(--accent-light);
+    }
+    .cs-cta__footer {
+      font-size: 12px;
+      color: var(--accent-footer);
+    }
+
+    /* ========================
+       RESPONSIVE
+       ======================== */
+    @media (max-width: 1024px) {
+      :root {
+        --section-pad-x: 48px;
+      }
+      .cs-hero__title { font-size: 40px; }
+      .cs-statement__title { font-size: 48px; }
+      .cs-philosophy__title { font-size: 40px; }
+      .cs-context__cols { flex-direction: column; }
+      .cs-context__right { width: 100%; }
+      .cs-voice__row { flex-direction: column; }
+      .cs-voice__text { width: 100%; }
+      .cs-visual__row { flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      :root {
+        --section-pad-x: 24px;
+        --section-pad-y: 64px;
+      }
+      .cs-hero { padding: 48px 24px 40px; }
+      .cs-hero__title { font-size: 32px; }
+      .cs-hero__phones { flex-direction: column; align-items: center; height: auto; }
+      .cs-hero__stats { flex-direction: column; gap: 16px; }
+      .cs-statement { padding: 80px 24px; }
+      .cs-statement__title { font-size: 36px; }
+      .cs-philosophy { padding: 80px 24px; }
+      .cs-philosophy__title { font-size: 32px; }
+      .cs-onboarding__phones { flex-wrap: wrap; height: auto; }
+      .cs-gallery__phones { flex-direction: column; align-items: center; }
+      .cs-ds__stats { flex-direction: column; }
+      .cs-cta__actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1 — HERO -->
+  <section class="cs-hero">
+    <div class="cs-section">
+      <div class="cs-hero__phones">
+        <div class="cs-hero__phone cs-hero__phone--side">
+          <div class="cs-hero__phone-notch"></div>
+          <img class="cs-hero__phone-screen" src="handoff-screenshots/relationsync/YC6b3.png" alt="RelationSync Voice Recorder screen">
+        </div>
+        <div class="cs-hero__phone cs-hero__phone--center">
+          <div class="cs-hero__phone-notch"></div>
+          <img class="cs-hero__phone-screen" src="handoff-screenshots/relationsync/YC6b3.png" alt="RelationSync Home screen">
+        </div>
+        <div class="cs-hero__phone cs-hero__phone--side">
+          <div class="cs-hero__phone-notch"></div>
+          <img class="cs-hero__phone-screen" src="handoff-screenshots/relationsync/YC6b3.png" alt="RelationSync Calendar screen">
+        </div>
+      </div>
+
+      <h1 class="cs-hero__title">RelationSync</h1>
+
+      <p class="cs-hero__subtitle">
+        A mobile app for capturing and reflecting on relationship memories. Voice-first journaling with AI summaries, calendar views, and personal insights.
+      </p>
+
+      <div class="cs-hero__stats">
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">35</div>
+          <div class="cs-hero__stat-label">Screens</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">19</div>
+          <div class="cs-hero__stat-label">Components</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">7</div>
+          <div class="cs-hero__stat-label">Onboarding Screens</div>
+        </div>
+      </div>
+
+      <div class="cs-pills">
+        <span class="cs-pill cs-pill--dark">RelationSync</span>
+        <span class="cs-pill cs-pill--dark">Mobile App</span>
+        <span class="cs-pill cs-pill--dark">Product Design</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 — CONTEXT -->
+  <section class="cs-context">
+    <div class="cs-section">
+      <div class="cs-pills">
+        <span class="cs-pill cs-pill--light">Context</span>
+        <span class="cs-pill cs-pill--light">Product</span>
+        <span class="cs-pill cs-pill--light">Mobile App</span>
+      </div>
+
+      <div class="cs-context__cols">
+        <div class="cs-context__left">
+          <h2 class="cs-context__title">About the Product</h2>
+        </div>
+        <div class="cs-context__right">
+          <p class="cs-context__body">
+            RelationSync is a mobile app for capturing and reflecting on relationship memories. Built with a friend as a personal project. Voice-first journaling powered by AI summaries, with calendar views and personal insights.
+          </p>
+          <p class="cs-context__body">
+            I handle all design and frontend development. 35 screens designed from scratch, 19 reusable components, and a 7-screen interactive onboarding flow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — STATEMENT -->
+  <section class="cs-statement">
+    <div class="cs-section">
+      <h2 class="cs-statement__title">Remember<br>what matters.</h2>
+      <p class="cs-statement__subtitle">— the philosophy behind every design decision</p>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — VOICE JOURNAL -->
+  <section class="cs-voice">
+    <div class="cs-section">
+      <div class="cs-pills">
+        <span class="cs-pill cs-pill--dark">Feature</span>
+        <span class="cs-pill cs-pill--dark">Voice Journal</span>
+        <span class="cs-pill cs-pill--dark">Core</span>
+      </div>
+
+      <div class="cs-voice__row">
+        <div class="cs-voice__phone">
+          <div class="cs-hero__phone-notch"></div>
+          <img class="cs-voice__phone-screen" src="handoff-screenshots/relationsync/B5yfJ.png" alt="Voice Recorder screen">
+        </div>
+        <div class="cs-voice__text">
+          <h2 class="cs-voice__title">VOICE-FIRST<br>JOURNALING</h2>
+          <p class="cs-voice__desc">
+            Tap and talk. RelationSync captures voice entries and uses AI to generate summaries, extract key moments, and tag relationships automatically.
+          </p>
+          <div class="cs-voice__features">
+            <div class="cs-voice__feature">One-tap voice recording</div>
+            <div class="cs-voice__feature">AI-generated summaries</div>
+            <div class="cs-voice__feature">Automatic relationship tagging</div>
+            <div class="cs-voice__feature">Key moment extraction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — DESIGN PHILOSOPHY -->
+  <section class="cs-philosophy">
+    <div class="cs-section">
+      <h2 class="cs-philosophy__title">Designing for intimacy,<br>not engagement metrics.</h2>
+      <p class="cs-philosophy__desc">
+        No likes, no followers, no feed algorithm.<br>Just you and the people you care about.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 6 — ONBOARDING FLOW -->
+  <section class="cs-onboarding">
+    <div class="cs-section">
+      <div class="cs-pills">
+        <span class="cs-pill cs-pill--dark">Flow</span>
+        <span class="cs-pill cs-pill--dark">Onboarding</span>
+        <span class="cs-pill cs-pill--dark">7 Screens</span>
+      </div>
+
+      <h2 class="cs-title" style="color:var(--text-primary);">ONBOARDING FLOW</h2>
+
+      <p class="cs-onboarding__desc">
+        7-screen interactive onboarding guiding new users through setup, permissions, and their first memory capture.
+      </p>
+
+      <div class="cs-onboarding__phones">
+        <div class="cs-onboarding__phone">
+          <span class="cs-onboarding__phone-label">Welcome</span>
+          <img class="cs-onboarding__phone-screen" src="handoff-screenshots/relationsync/OMMva.png" alt="Onboarding — Welcome">
+        </div>
+        <div class="cs-onboarding__phone">
+          <span class="cs-onboarding__phone-label">Speak It</span>
+          <img class="cs-onboarding__phone-screen" src="handoff-screenshots/relationsync/OMMva.png" alt="Onboarding — Speak It">
+        </div>
+        <div class="cs-onboarding__phone">
+          <span class="cs-onboarding__phone-label">Reflect</span>
+          <img class="cs-onboarding__phone-screen" src="handoff-screenshots/relationsync/OMMva.png" alt="Onboarding — Reflect">
+        </div>
+        <div class="cs-onboarding__phone">
+          <span class="cs-onboarding__phone-label">Time Capsule</span>
+          <img class="cs-onboarding__phone-screen" src="handoff-screenshots/relationsync/OMMva.png" alt="Onboarding — Time Capsule">
+        </div>
+        <div class="cs-onboarding__phone">
+          <span class="cs-onboarding__phone-label">Mic Access</span>
+          <img class="cs-onboarding__phone-screen" src="handoff-screenshots/relationsync/OMMva.png" alt="Onboarding — Mic Access">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 — SCREEN GALLERY -->
+  <section class="cs-gallery">
+    <div class="cs-section">
+      <div class="cs-pills">
+        <span class="cs-pill cs-pill--dark">Screen Gallery</span>
+      </div>
+
+      <h2 class="cs-title" style="color:var(--text-primary);">KEY SCREENS</h2>
+
+      <p class="cs-gallery__desc">
+        Core screens designed in Pencil. 35 total screens covering onboarding, journaling, calendar, insights, and settings.
+      </p>
+
+      <div class="cs-gallery__phones">
+        <div class="cs-gallery__phone-wrap">
+          <div class="cs-gallery__phone">
+            <img class="cs-gallery__phone-screen" src="handoff-screenshots/relationsync/Ph5IY.png" alt="Home Feed screen">
+          </div>
+          <span class="cs-gallery__phone-label">Home Feed</span>
+        </div>
+        <div class="cs-gallery__phone-wrap">
+          <div class="cs-gallery__phone">
+            <img class="cs-gallery__phone-screen" src="handoff-screenshots/relationsync/Ph5IY.png" alt="Voice Journal screen">
+          </div>
+          <span class="cs-gallery__phone-label">Voice Journal</span>
+        </div>
+        <div class="cs-gallery__phone-wrap">
+          <div class="cs-gallery__phone">
+            <img class="cs-gallery__phone-screen" src="handoff-screenshots/relationsync/Ph5IY.png" alt="Calendar View screen">
+          </div>
+          <span class="cs-gallery__phone-label">Calendar View</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8 — VISUAL IDENTITY -->
+  <section class="cs-visual">
+    <div class="cs-section">
+      <div class="cs-pills">
+        <span class="cs-pill cs-pill--light">Visual Identity</span>
+      </div>
+
+      <h2 class="cs-title" style="color:var(--text-dark);">COLOR & TYPOGRAPHY</h2>
+
+      <div class="cs-visual__row">
+        <div class="cs-visual__col">
+          <div class="cs-visual__label">COLOR PALETTE</div>
+          <div class="cs-swatch-row">
+            <div class="cs-swatch" style="background:#1A1220;"></div>
+            <div class="cs-swatch" style="background:#7C5FA6;"></div>
+            <div class="cs-swatch" style="background:#C4A0E8;"></div>
+            <div class="cs-swatch" style="background:#F2F0F5;"></div>
+            <div class="cs-swatch" style="background:#2D2040;"></div>
+          </div>
+          <div class="cs-swatch-labels">
+            <span class="cs-swatch-label">Primary</span>
+            <span class="cs-swatch-label">Accent</span>
+            <span class="cs-swatch-label">Light</span>
+            <span class="cs-swatch-label">Surface</span>
+            <span class="cs-swatch-label">Card</span>
+          </div>
+        </div>
+        <div class="cs-visual__col">
+          <div class="cs-visual__label">TYPOGRAPHY</div>
+          <div class="cs-visual__type-name">Inter</div>
+          <p class="cs-visual__type-desc">Primary typeface for all UI elements, headings, body text, and navigation. Weights 400–700.</p>
+          <div class="cs-visual__type-sample">Aa Bb Cc Dd Ee Ff Gg</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9 — DESIGN SYSTEM -->
+  <section class="cs-ds">
+    <div class="cs-section">
+      <div class="cs-pills">
+        <span class="cs-pill cs-pill--dark">Design System</span>
+      </div>
+
+      <h2 class="cs-title" style="color:var(--text-primary);">DESIGN SYSTEM</h2>
+
+      <p class="cs-ds__desc">
+        A complete component library built in Pencil. Every element tokenized for consistency across 35 screens.
+      </p>
+
+      <div class="cs-ds__stats">
+        <div class="cs-ds__stat">
+          <div class="cs-ds__stat-number">19</div>
+          <div class="cs-ds__stat-label">Reusable<br>Components</div>
+        </div>
+        <div class="cs-ds__stat">
+          <div class="cs-ds__stat-number">31</div>
+          <div class="cs-ds__stat-label">Design<br>Variables</div>
+        </div>
+        <div class="cs-ds__stat">
+          <div class="cs-ds__stat-number">8px</div>
+          <div class="cs-ds__stat-label">Spacing<br>Grid</div>
+        </div>
+        <div class="cs-ds__stat">
+          <div class="cs-ds__stat-number">2</div>
+          <div class="cs-ds__stat-label">Theme<br>Modes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10 — CTA FOOTER -->
+  <section class="cs-cta">
+    <div class="cs-section">
+      <h2 class="cs-cta__title">Next Case Study</h2>
+      <p class="cs-cta__desc">
+        MyPick.io — Visual Randomizer That Turns Lists Into Pixel Car Races
+      </p>
+      <div class="cs-cta__actions">
+        <a href="/case-study/mypick/" class="cs-cta__btn cs-cta__btn--primary">VIEW MYPICK CASE STUDY</a>
+        <a href="/" class="cs-cta__btn cs-cta__btn--secondary">Back to Portfolio</a>
+      </div>
+      <div class="cs-cta__footer">&copy; 2026 Pheak Meas — Senior Product Designer</div>
+    </div>
+  </section>
+
+</body>
+</html>

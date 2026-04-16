@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IsoBlock — Figma Plugin Case Study — Pheak Meas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: #121212; color: #FFFFFF; }
+    img { display: block; max-width: 100%; }
+
+    :root {
+      --bg-primary: #121212;
+      --bg-secondary: #1E1E1E;
+      --bg-shapes: #1A1A1A;
+      --bg-plugin: #141414;
+      --bg-cta: #0A0A0A;
+      --text-primary: #FFFFFF;
+      --text-muted: #9CA3AF;
+      --text-footer: #6B7280;
+      --accent: #258DE7;
+      --accent-light: #8ecae6;
+      --accent-teal: #219ebc;
+      --card-bg: #2A2A2A;
+      --divider: #333333;
+      --section-pad-y: 100px;
+      --section-pad-x: 120px;
+      --section-gap: 40px;
+      --two-col-gap: 48px;
+      --left-col: 320px;
+    }
+
+    /* === LABEL BAR === */
+    .cs-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+    .cs-label__dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cs-label__text {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-footer);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .cs-label__sep {
+      font-size: 11px;
+      color: var(--divider);
+    }
+    .cs-label__line {
+      flex: 1;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    .cs-section {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cs-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-body {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .cs-img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .cs-two-col {
+      display: flex;
+      gap: var(--two-col-gap);
+    }
+    .cs-two-col__left {
+      width: var(--left-col);
+      flex-shrink: 0;
+    }
+    .cs-two-col__right {
+      flex: 1;
+    }
+
+    /* ========================
+       SECTION 1 — HERO
+       ======================== */
+    .cs-hero {
+      background: var(--bg-primary);
+      padding: 80px var(--section-pad-x) 60px;
+    }
+    .cs-hero .cs-section {
+      gap: 32px;
+    }
+    .cs-hero__title {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-hero__subtitle {
+      font-size: 18px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .cs-hero__stats {
+      display: flex;
+      gap: 32px;
+      padding-top: 32px;
+      width: 100%;
+    }
+    .cs-hero__stat {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .cs-hero__stat-number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+    .cs-hero__stat-label {
+      font-size: 13px;
+      color: var(--text-footer);
+    }
+    .cs-hero__image {
+      height: 420px;
+      width: 100%;
+      border-radius: 8px;
+      background: var(--bg-secondary);
+    }
+
+    /* ========================
+       SECTION 2 — CONTEXT
+       ======================== */
+    .cs-context {
+      background: var(--bg-secondary);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-context .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-context__subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-teal);
+      margin-top: 16px;
+    }
+    .cs-context__highlight {
+      font-size: 15px;
+      color: var(--accent);
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+
+    /* ========================
+       SECTION 3 — SHAPES
+       ======================== */
+    .cs-shapes {
+      background: var(--bg-shapes);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-shapes .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-shapes__categories {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-shapes__cat {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .cs-shapes__cat-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 2px;
+    }
+    .cs-shapes__cat-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .cs-shapes__cat-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .cs-shapes__cat-preview {
+      width: 100%;
+      height: 120px;
+      border-radius: 6px;
+      background: var(--bg-secondary);
+      margin-top: auto;
+    }
+
+    /* ========================
+       SECTION 4 — PRESETS
+       ======================== */
+    .cs-presets {
+      background: var(--bg-primary);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-presets .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-presets__cards {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+    }
+    .cs-presets__card {
+      flex: 1;
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .cs-presets__card-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 4px;
+    }
+    .cs-presets__card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: center;
+    }
+    .cs-presets__card-desc {
+      font-size: 11px;
+      color: var(--text-footer);
+      text-align: center;
+    }
+
+    /* ========================
+       SECTION 5 — PLUGIN UI
+       ======================== */
+    .cs-plugin {
+      background: var(--bg-plugin);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-plugin .cs-section {
+      gap: var(--section-gap);
+    }
+    .cs-plugin__subtitle {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-teal);
+      margin-top: 16px;
+    }
+    .cs-plugin__screenshot {
+      width: 100%;
+      height: 400px;
+      border-radius: 8px;
+      background: var(--card-bg);
+    }
+    .cs-plugin__features {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cs-plugin__feature {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+    .cs-plugin__feature::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ========================
+       SECTION 6 — CTA FOOTER
+       ======================== */
+    .cs-cta {
+      background: var(--bg-cta);
+      padding: var(--section-pad-y) var(--section-pad-x);
+    }
+    .cs-cta .cs-section {
+      gap: 32px;
+      align-items: center;
+      text-align: center;
+    }
+    .cs-cta__divider {
+      width: 120px;
+      height: 2px;
+      background: var(--accent);
+    }
+    .cs-cta__title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.1;
+    }
+    .cs-cta__subtitle {
+      font-size: 14px;
+      color: var(--text-footer);
+    }
+    .cs-cta__actions {
+      display: flex;
+      gap: 16px;
+    }
+    .cs-cta__btn {
+      display: inline-block;
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .cs-cta__btn:hover { opacity: 0.9; }
+    .cs-cta__btn--primary {
+      background: var(--accent);
+      color: var(--text-primary);
+    }
+    .cs-cta__btn--secondary {
+      background: transparent;
+      color: var(--accent);
+    }
+    .cs-cta__footer {
+      font-size: 12px;
+      color: var(--text-footer);
+    }
+
+    /* ========================
+       RESPONSIVE
+       ======================== */
+    @media (max-width: 1024px) {
+      :root { --section-pad-x: 48px; }
+      .cs-hero__title { font-size: 36px; }
+      .cs-two-col { flex-direction: column; gap: 32px; }
+      .cs-two-col__left { width: 100%; }
+      .cs-shapes__categories { flex-direction: column; }
+      .cs-presets__cards { flex-wrap: wrap; }
+      .cs-presets__card { min-width: calc(33% - 11px); }
+    }
+    @media (max-width: 640px) {
+      :root { --section-pad-x: 24px; --section-pad-y: 64px; }
+      .cs-hero { padding: 48px 24px 40px; }
+      .cs-hero__title { font-size: 28px; }
+      .cs-hero__stats { flex-wrap: wrap; gap: 16px; }
+      .cs-hero__image { height: 240px; }
+      .cs-presets__cards { flex-direction: column; }
+      .cs-presets__card { min-width: 100%; }
+      .cs-plugin__screenshot { height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SECTION 1 — HERO -->
+  <section class="cs-hero">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">FIGMA PLUGIN</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">ISOMETRIC SHAPES</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">MZM LABS</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h1 class="cs-hero__title">IsoBlock</h1>
+
+      <p class="cs-hero__subtitle">
+        A Figma plugin for creating isometric shapes. 15 shape primitives, 5 surface presets, elliptical shadows, and a keyboard-driven workflow. One-click isometric design without leaving Figma.
+      </p>
+
+      <div class="cs-hero__stats">
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">15</div>
+          <div class="cs-hero__stat-label">Shape Primitives</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">5</div>
+          <div class="cs-hero__stat-label">Surface Presets</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">30+</div>
+          <div class="cs-hero__stat-label">Keyboard Shortcuts</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">0</div>
+          <div class="cs-hero__stat-label">Dependencies</div>
+        </div>
+      </div>
+
+      <img class="cs-img cs-hero__image" src="handoff-screenshots/isoblock/iAn37.png" alt="IsoBlock plugin UI with shape grid and surface presets">
+    </div>
+  </section>
+
+  <!-- SECTION 2 — CONTEXT -->
+  <section class="cs-context">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">CONTEXT</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">THE PROBLEM</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <div class="cs-two-col">
+        <div class="cs-two-col__left">
+          <h2 class="cs-title">THE PROBLEM</h2>
+          <div class="cs-context__subtitle">Why isometric is hard in Figma</div>
+        </div>
+        <div class="cs-two-col__right">
+          <p class="cs-body">
+            Creating isometric shapes in Figma means manual rotation, skewing, and alignment for every single element. Designers resort to importing pre-made SVGs or spending hours on geometric calculations. There was no native way to create, customize, and iterate on isometric designs directly in Figma.
+          </p>
+          <p class="cs-context__highlight">
+            IsoBlock turns isometric design from a math problem into a creative tool.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 — SHAPE PRIMITIVES -->
+  <section class="cs-shapes">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">SHAPES</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">15 PRIMITIVES</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h2 class="cs-title">SHAPE PRIMITIVES</h2>
+
+      <p class="cs-body">
+        15 shapes organized in three categories. Basic primitives for everyday use, structural shapes for architecture and diagrams, and diagram shapes for flowcharts and presentations. Each rendered with the three-tone isometric color system.
+      </p>
+
+      <div class="cs-shapes__categories">
+        <div class="cs-shapes__cat">
+          <div class="cs-shapes__cat-label">BASIC</div>
+          <div class="cs-shapes__cat-title">6 Primitives</div>
+          <div class="cs-shapes__cat-desc">Cube, Cylinder, Pyramid, Diamond, Stairs, Ramp</div>
+          <div class="cs-shapes__cat-preview"></div>
+        </div>
+        <div class="cs-shapes__cat">
+          <div class="cs-shapes__cat-label">STRUCTURAL</div>
+          <div class="cs-shapes__cat-title">5 Shapes</div>
+          <div class="cs-shapes__cat-desc">Wall, Floor, L-Shape, T-Shape, Corner</div>
+          <div class="cs-shapes__cat-preview"></div>
+        </div>
+        <div class="cs-shapes__cat">
+          <div class="cs-shapes__cat-label">DIAGRAM</div>
+          <div class="cs-shapes__cat-title">4 Shapes</div>
+          <div class="cs-shapes__cat-desc">Arrow, Connector, Label, Platform</div>
+          <div class="cs-shapes__cat-preview"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — SURFACE PRESETS -->
+  <section class="cs-presets">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">RENDERING</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">5 PRESETS</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <h2 class="cs-title">SURFACE PRESETS</h2>
+
+      <p class="cs-body">
+        Five rendering styles applied to any shape. Each preset controls how light interacts with the three isometric faces, creating distinct visual treatments from a single shape.
+      </p>
+
+      <div class="cs-presets__cards">
+        <div class="cs-presets__card">
+          <div class="cs-presets__card-box" style="background:var(--accent-teal); border-radius: 4px;"></div>
+          <div class="cs-presets__card-title">Flat</div>
+          <div class="cs-presets__card-desc">Solid colors, no gradients</div>
+        </div>
+        <div class="cs-presets__card">
+          <div class="cs-presets__card-box" style="background:linear-gradient(135deg, #3BA8A0, #1E6E6A); border-radius: 4px;"></div>
+          <div class="cs-presets__card-title">Matte</div>
+          <div class="cs-presets__card-desc">Subtle gradients per face</div>
+        </div>
+        <div class="cs-presets__card">
+          <div class="cs-presets__card-box" style="background:linear-gradient(135deg, #5EDDB8, #1A7F7A); border-radius: 4px;"></div>
+          <div class="cs-presets__card-title">Glossy</div>
+          <div class="cs-presets__card-desc">Strong highlights, reflections</div>
+        </div>
+        <div class="cs-presets__card">
+          <div class="cs-presets__card-box" style="background:linear-gradient(135deg, #B0C4DE, #4682B4); border-radius: 4px;"></div>
+          <div class="cs-presets__card-title">Metallic</div>
+          <div class="cs-presets__card-desc">Chrome-like reflective faces</div>
+        </div>
+        <div class="cs-presets__card">
+          <div class="cs-presets__card-box" style="background:linear-gradient(135deg, #B8D4E3, #8BB8D0); border-radius: 4px;"></div>
+          <div class="cs-presets__card-title">Pastel</div>
+          <div class="cs-presets__card-desc">Soft, muted color palette</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — PLUGIN UI -->
+  <section class="cs-plugin">
+    <div class="cs-section">
+      <div class="cs-label">
+        <div class="cs-label__dot"></div>
+        <span class="cs-label__text">INTERFACE</span>
+        <span class="cs-label__sep">/</span>
+        <span class="cs-label__text">PLUGIN PANEL</span>
+        <div class="cs-label__line"></div>
+      </div>
+
+      <div class="cs-two-col">
+        <div class="cs-two-col__left">
+          <h2 class="cs-title">PLUGIN UI</h2>
+          <div class="cs-plugin__subtitle">Vertical sidebar, 300px wide</div>
+          <p class="cs-body" style="margin-top:16px;">
+            Shape selector with icon grid. Color picker with hex input and HSL sliders. Shadow controls with angle and blur. Keyboard shortcut indicators on every action. Dark theme matching Figma's native UI.
+          </p>
+        </div>
+        <div class="cs-two-col__right">
+          <img class="cs-img cs-plugin__screenshot" src="handoff-screenshots/isoblock/9Mc8y.png" alt="IsoBlock plugin UI panel">
+          <div class="cs-plugin__features" style="margin-top:16px;">
+            <div class="cs-plugin__feature">Icon grid for shape selection</div>
+            <div class="cs-plugin__feature">HSL color picker with hex input</div>
+            <div class="cs-plugin__feature">Shadow angle and blur controls</div>
+            <div class="cs-plugin__feature">Keyboard shortcut hints on every action</div>
+            <div class="cs-plugin__feature">Native Figma dark theme integration</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 — CTA FOOTER -->
+  <section class="cs-cta">
+    <div class="cs-section">
+      <div class="cs-cta__divider"></div>
+      <h2 class="cs-cta__title">View All Projects</h2>
+      <p class="cs-cta__subtitle">IsoBlock &middot; MZM Labs &middot; Product Designer &amp; Developer &middot; 2025–2026</p>
+      <div class="cs-cta__actions">
+        <a href="/" class="cs-cta__btn cs-cta__btn--primary">Back to Portfolio</a>
+        <a href="https://isoblock.io" class="cs-cta__btn cs-cta__btn--secondary">isoblock.io</a>
+      </div>
+      <div class="cs-cta__footer">Designed and built by Pheak Meas &middot; MZM Labs Inc.</div>
+    </div>
+  </section>
+
+</body>
+</html>

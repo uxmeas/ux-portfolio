@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyPick.io - Race Mechanic System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #0a0f0d;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1376px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        section {
+            min-height: 768px;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a1410 0%, #1a2820 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00ff88;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: #88ffc4;
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        .hero-visual {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: rgba(0, 255, 136, 0.05);
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .race-track {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.1) 0%, transparent 50%, rgba(0, 255, 136, 0.1) 100%);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .stat-item {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 255, 136, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #00ff88;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #88ffc4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: #0d1612;
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-tag {
+            font-size: 14px;
+            color: #00ff88;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #00ff88;
+            border-radius: 50%;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            font-size: 18px;
+            color: #88ffc4;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(0, 255, 136, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 255, 136, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.1);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #00ff88;
+        }
+
+        .card-text {
+            font-size: 16px;
+            color: #b0e0c8;
+            line-height: 1.6;
+        }
+
+        /* Race Mechanic Section */
+        .race-mechanic {
+            background: linear-gradient(180deg, #0d1612 0%, #0a1410 100%);
+            padding: 80px 20px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .step {
+            position: relative;
+            background: rgba(0, 255, 136, 0.03);
+            border: 2px solid rgba(0, 255, 136, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: #00ff88;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .step-number {
+            font-size: 64px;
+            font-weight: 700;
+            color: #00ff88;
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .step-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .step-description {
+            font-size: 16px;
+            color: #b0e0c8;
+            line-height: 1.6;
+        }
+
+        /* Product Section */
+        .product {
+            background: #0a0f0d;
+            padding: 80px 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-item {
+            background: rgba(0, 255, 136, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-item:hover {
+            transform: scale(1.02);
+            border-color: rgba(0, 255, 136, 0.4);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .product-label {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #00ff88;
+            color: #0a0f0d;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Visual Direction Section */
+        .visual-direction {
+            background: linear-gradient(180deg, #0a0f0d 0%, #0d1612 100%);
+            padding: 80px 20px;
+        }
+
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .visual-item {
+            background: rgba(0, 255, 136, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .visual-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00ff88;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .visual-content {
+            height: 250px;
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.05) 0%, transparent 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+        }
+
+        /* Features Section */
+        .features {
+            background: #0d1612;
+            padding: 80px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            background: rgba(0, 255, 136, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            border-color: #00ff88;
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: #b0e0c8;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #0a1410 0%, #1a2820 100%);
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 20px;
+            color: #88ffc4;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #00ff88;
+            color: #0a0f0d;
+        }
+
+        .btn-primary:hover {
+            background: #00dd77;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00ff88;
+            border: 2px solid #00ff88;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 136, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0f0d;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 136, 0.15);
+        }
+
+        .footer-text {
+            color: #88ffc4;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .cta-title {
+                font-size: 36px;
+            }
+
+            .product-grid,
+            .visual-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+        }
+
+        /* Image Sections - Fallback for Figma imports */
+        .image-section {
+            width: 100%;
+            max-width: 1376px;
+            margin: 0 auto;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="logo">MyPick.io</h1>
+            <p class="hero-subtitle">
+                Make strategic choices and make your predictions at each moment of the competition.<br>
+                Watch them race in real-time. Better picks equal better results.
+            </p>
+            <div class="hero-visual">
+                <div class="race-track">
+                    <!-- Placeholder for race visualization -->
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-value">4</span>
+                    <span class="stat-label">Racers</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">Picks</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">Live</span>
+                    <span class="stat-label">Real-time</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">The Problem</div>
+                <h2 class="section-title">THE PROBLEM WITH<br>RANDOMIZERS</h2>
+                <p class="section-description">
+                    Every great decision has a clear concept element from start to finish. After a<br>
+                    random person, I saw an opportunity to create a pick-and-race system that adds a<br>
+                    layer of tension. Instantly watchable. Massively addictive.
+                </p>
+            </div>
+            <div class="content-grid">
+                <div class="card">
+                    <h3 class="card-title">UX</h3>
+                    <p class="card-text">Decision-based engagement</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Web</h3>
+                    <p class="card-text">Client-Focused Design + Engineering</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">WebSocket</h3>
+                    <p class="card-text">Real-time: Not Ajax-Load</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Tech</h3>
+                    <p class="card-text">HTML/CSS/JS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Race Mechanic Section -->
+    <section class="race-mechanic">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">How It Works</div>
+                <h2 class="section-title">THE RACE MECHANIC</h2>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Add Your Picks</h3>
+                    <p class="step-description">
+                        Choose your racers strategically. Each pick matters and influences the outcome.
+                    </p>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">Start the Race</h3>
+                    <p class="step-description">
+                        Launch the competition and watch as your picks compete in real-time.
+                    </p>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Winner Revealed</h3>
+                    <p class="step-description">
+                        See the results unfold. Your strategic picks and careful analysis pay off.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section class="product">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">The Product</div>
+                <h2 class="section-title">THE PRODUCT</h2>
+            </div>
+            <div class="product-grid">
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="product-label">Desktop</div>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="product-label">Mobile</div>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="product-label">Interface</div>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-image">
+                        <div class="product-label">Racing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Direction Section -->
+    <section class="visual-direction">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Visual Direction</div>
+                <h2 class="section-title">WHAT I SHIPPED</h2>
+                <p class="section-description">
+                    I shipped an advanced live tracking implementation that allows for dynamic, real-time interaction. Built a custom data synchronization system for seamless live updates.
+                </p>
+            </div>
+            <div class="visual-grid">
+                <div class="visual-item">
+                    <h3 class="visual-title">Component Style</h3>
+                    <div class="visual-content"></div>
+                </div>
+                <div class="visual-item">
+                    <h3 class="visual-title">Interactive Table</h3>
+                    <div class="visual-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">Features</div>
+                <h2 class="section-title">WHAT I BUILT</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">21 Speed Effects</h3>
+                    <p class="feature-description">
+                        Multiple speed variations to create dynamic racing experiences.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Zero Dependencies</h3>
+                    <p class="feature-description">
+                        Pure vanilla JavaScript implementation for maximum performance.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎨</div>
+                    <h3 class="feature-title">5 Car Styles</h3>
+                    <p class="feature-description">
+                        Customizable racer designs to match your brand aesthetic.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3 class="feature-title">Cryptic Scores</h3>
+                    <p class="feature-description">
+                        Advanced scoring system with real-time calculations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Try it yourself</h2>
+            <p class="cta-description">
+                Experience the thrill of strategic picks and start a race.
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary">Start Racing</a>
+                <a href="#" class="btn btn-secondary">View on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">© 2026 MyPick.io. All rights reserved.</p>
+    </footer>
+</body>
+</html>

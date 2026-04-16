@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKM Secure Case Study - UX Meas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+        
+        * {
+            border-radius: 0 !important;
+        }
+        
+        .gradient-mesh {
+            background-image: 
+                radial-gradient(at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%),
+                radial-gradient(at 40% 40%, rgba(255,255,255,0.02) 0%, transparent 50%);
+        }
+        
+        .transition-sharp {
+            transition: all 0.2s linear;
+        }
+        
+        .tracking-tighter {
+            letter-spacing: -0.04em;
+        }
+        
+        .hover-lift {
+            transition: transform 0.2s linear, box-shadow 0.2s linear;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2 text-white hover:text-white/80 transition">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span class="font-medium">Back to Portfolio</span>
+            </a>
+            <div class="flex items-center gap-6">
+                <a href="https://www.akmsecure.com" target="_blank" class="text-white/70 hover:text-white transition flex items-center gap-2">
+                    <span>View Live Site</span>
+                    <i data-lucide="external-link" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Case Study Content -->
+    <article class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50"></div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-8 text-center">
+                <!-- Impact stats at top -->
+                <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 md:mb-12 text-xs md:text-base">
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="clock" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">4-Week Build</span>
+                    </div>
+                    <div class="text-white/30">|</div>
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">Enterprise UX</span>
+                    </div>
+                    <div class="text-white/30">|</div>
+                    <div class="flex items-center gap-2 text-white/70">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span class="uppercase text-xs tracking-wider font-medium">Live Site</span>
+                    </div>
+                </div>
+                
+                <!-- Main title -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-8 tracking-tight text-white" style="line-height: 1.1">
+                    AKM Secure:<br/>
+                    <span class="font-light">400% Increase</span><br/>
+                    <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl">in Demo Requests</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-white/70 mb-16 max-w-3xl mx-auto font-light leading-relaxed">
+                    Strategic UX transformation for a cybersecurity startup competing with Palantir & Anduril
+                </p>
+                
+                <!-- Hero metrics -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 mb-16 max-w-5xl mx-auto">
+                    <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-4xl md:text-6xl font-bold text-white mb-1 md:mb-2">+400%</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Demo Requests</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-4xl md:text-6xl font-bold text-white mb-1 md:mb-2">+85%</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Mobile Engagement</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-4xl md:text-6xl font-bold text-white mb-1 md:mb-2">+60%</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Time on Site</div>
+                    </div>
+                    <div class="bg-gradient-to-b from-white/10 to-black border border-white/20 p-4 md:p-8 hover-lift transition-sharp">
+                        <div class="text-4xl md:text-6xl font-bold text-white mb-1 md:mb-2">4 weeks</div>
+                        <div class="text-xs md:text-sm text-white/50 uppercase tracking-wider font-medium">Time to Launch</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Challenge Section -->
+        <section class="py-24 px-8 bg-gradient-to-b from-black to-gray-900">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-5xl font-bold mb-12 text-white">The Challenge</h2>
+                <p class="text-xl text-white/80 leading-relaxed mb-8">
+                    AKM Secure entered the enterprise security market with revolutionary cryptographic key management technology. 
+                    But they faced a critical problem: their complex technology was incomprehensible to non-technical decision makers.
+                </p>
+                <p class="text-xl text-white/80 leading-relaxed mb-8">
+                    Competing against defense contractors like Palantir and Anduril meant they needed more than just superior technology - 
+                    they needed a digital presence that could communicate trust, sophistication, and accessibility.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6 mt-12">
+                    <div class="border-l-4 border-white/30 pl-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Complex Technology</h3>
+                        <p class="text-white/60">Cryptographic concepts too technical for C-suite executives</p>
+                    </div>
+                    <div class="border-l-4 border-white/30 pl-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Fierce Competition</h3>
+                        <p class="text-white/60">Up against billion-dollar defense contractors</p>
+                    </div>
+                    <div class="border-l-4 border-white/30 pl-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Limited Time</h3>
+                        <p class="text-white/60">4-week deadline to launch before key conference</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section class="py-24 px-8 bg-black">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-5xl font-bold mb-12 text-white">The Solution</h2>
+                <p class="text-xl text-white/80 leading-relaxed mb-12">
+                    We transformed complex security concepts into intuitive visualizations, created interactive product demos, 
+                    and built a responsive platform that works flawlessly across all devices. Every design decision was made 
+                    to reduce cognitive load while maintaining enterprise-grade sophistication.
+                </p>
+                
+                <div class="space-y-8">
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white p-8">
+                        <h3 class="text-2xl font-bold text-white mb-4">Visual Storytelling</h3>
+                        <p class="text-white/70">Transformed technical jargon into compelling visual narratives that resonated with executives</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white p-8">
+                        <h3 class="text-2xl font-bold text-white mb-4">Interactive Demos</h3>
+                        <p class="text-white/70">Built self-guided product tours that explained complex features through progressive disclosure</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-white/5 to-transparent border-l-4 border-white p-8">
+                        <h3 class="text-2xl font-bold text-white mb-4">Mobile-First Design</h3>
+                        <p class="text-white/70">Ensured flawless experience for C-suite executives reviewing on phones between meetings</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="py-24 px-8 bg-gradient-to-b from-gray-900 to-black">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-5xl font-bold mb-12 text-white text-center">The Impact</h2>
+                <p class="text-xl text-white/80 leading-relaxed mb-16 text-center max-w-3xl mx-auto">
+                    Within 30 days of launch, AKM Secure saw transformative results that positioned them 
+                    as a serious competitor in the enterprise security space.
+                </p>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-white mb-4">400%</div>
+                        <div class="text-lg text-white/60">Increase in qualified demo requests from Fortune 500 companies</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-white mb-4">85%</div>
+                        <div class="text-lg text-white/60">Mobile visitors engaging with interactive features</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-white mb-4">3x</div>
+                        <div class="text-lg text-white/60">More pages viewed per session</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-white mb-4">60%</div>
+                        <div class="text-lg text-white/60">Reduction in bounce rate</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-8 bg-black border-t border-white/10">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-6 text-white">Want Similar Results?</h2>
+                <p class="text-xl text-white/70 mb-12">Let's discuss how strategic UX can transform your business</p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                    <a href="/" class="px-8 py-4 bg-white text-black font-semibold hover:bg-white/90 transition">
+                        View More Work
+                    </a>
+                    <a href="mailto:hello@uxmeas.com" class="px-8 py-4 border border-white text-white font-semibold hover:bg-white hover:text-black transition">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

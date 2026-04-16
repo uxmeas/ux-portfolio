@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - UX Meas</title>
+    <meta name="description" content="Privacy Policy for uxmeas.com. Learn how we collect, use, and protect your data.">
+    <meta property="og:title" content="Privacy Policy - UX Meas">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://uxmeas.com/privacy.html">
+    <link rel="canonical" href="https://uxmeas.com/privacy.html">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+    <meta name="theme-color" content="#141419">
+
+    <!-- Google Consent Mode v2 (default denied until user opts in) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        wait_for_update: 500
+      });
+      (function() {
+        try {
+          var consent = JSON.parse(localStorage.getItem('uxmeas_consent'));
+          if (consent && consent.analytics) {
+            gtag('consent', 'update', { analytics_storage: 'granted' });
+          }
+        } catch(e) {}
+      })();
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+    <script>
+      gtag('js', new Date());
+      gtag('config', 'G-87HSHMKCBH');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-deep: #141419;
+            --bg-card: #1C1C24;
+            --bg-surface: #26262F;
+            --accent: #D4915E;
+            --accent-hover: #C07D4A;
+            --text-primary: #F0F0F2;
+            --text-secondary: #9298A0;
+            --text-muted: #5C6270;
+            --border: #2E2E3A;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        .legal-nav {
+            position: fixed; top: 0; left: 0; right: 0; height: 64px;
+            display: flex; align-items: center;
+            background: rgba(20, 20, 25, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+        .legal-nav-inner {
+            width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .legal-nav .site-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px; letter-spacing: 3px; color: var(--text-muted);
+            text-decoration: none;
+        }
+        .legal-nav .back-link {
+            font-size: 14px; color: var(--text-secondary); text-decoration: none;
+        }
+        .legal-nav .back-link:hover { color: var(--white); }
+        .legal-container {
+            max-width: 800px; margin: 0 auto; padding: 120px 32px 80px;
+        }
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700;
+            letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 8px;
+        }
+        .last-updated {
+            font-size: 14px; color: var(--text-muted); margin-bottom: 48px;
+        }
+        h2 {
+            font-size: 20px; font-weight: 600; color: var(--white);
+            margin-top: 48px; margin-bottom: 16px; letter-spacing: -0.02em;
+        }
+        h3 {
+            font-size: 16px; font-weight: 600; color: var(--accent);
+            margin-top: 32px; margin-bottom: 12px;
+        }
+        p { color: var(--text-secondary); margin-bottom: 16px; font-size: 16px; }
+        strong { color: var(--text-primary); font-weight: 600; }
+        a { color: var(--accent); }
+        a:hover { color: var(--accent-hover); }
+        ul { list-style: none; margin-bottom: 16px; }
+        ul li {
+            color: var(--text-secondary); font-size: 16px;
+            padding-left: 20px; position: relative; margin-bottom: 8px;
+        }
+        ul li::before {
+            content: ''; position: absolute; left: 0; top: 12px;
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent);
+        }
+        table {
+            width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+            font-size: 14px;
+        }
+        th, td {
+            text-align: left; padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        th { color: var(--text-primary); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; }
+        td { color: var(--text-secondary); }
+        footer {
+            background: #0E0E12; padding: 48px 0;
+            border-top: 1px solid var(--border);
+        }
+        .footer-inner {
+            max-width: 1440px; margin: 0 auto; padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--text-muted); }
+        .footer-copy { font-size: 13px; color: var(--text-muted); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--text-secondary); }
+        @media (max-width: 768px) {
+            .legal-container { padding: 100px 24px 60px; }
+            .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+            table { font-size: 13px; }
+            th, td { padding: 8px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="legal-nav">
+        <div class="legal-nav-inner">
+            <a href="/" class="site-name">UX MEAS</a>
+            <a href="/" class="back-link">Back to portfolio</a>
+        </div>
+    </nav>
+
+    <main class="legal-container">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: April 2, 2026</p>
+
+        <h2>1. Who We Are</h2>
+        <p>This website (<strong>uxmeas.com</strong>) is the personal portfolio of UX Meas, operated by MZM Labs. We are based in Calgary, Alberta, Canada.</p>
+        <p>For privacy inquiries, contact us at: <a href="#" data-u="hello" data-d="uxmeas.com" class="eml eml-show"></a></p>
+
+        <h2>2. What Data We Collect</h2>
+        <p>We collect minimal data, limited to what is necessary for the site to function and for us to understand how visitors use it.</p>
+
+        <h3>Data you provide</h3>
+        <table>
+            <thead>
+                <tr><th>Data</th><th>Purpose</th><th>Legal Basis</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Name, email, message</td><td>Responding to contact form inquiries</td><td>Consent (you submit the form)</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Data collected automatically (with consent)</h3>
+        <table>
+            <thead>
+                <tr><th>Data</th><th>Purpose</th><th>Legal Basis</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Page views, referrers, device type</td><td>Understanding site traffic via Google Analytics (GA4)</td><td>Consent (cookie banner opt-in)</td></tr>
+            </tbody>
+        </table>
+
+        <h2>3. Cookies</h2>
+        <p>We use <strong>Google Consent Mode v2</strong> to ensure no analytics cookies are set until you explicitly opt in via our cookie consent banner.</p>
+        <p>For a detailed list of cookies used on this site, see our <a href="/cookies.html">Cookie Policy</a>.</p>
+
+        <h2>4. How We Use Your Data</h2>
+        <ul>
+            <li>To respond to your contact form submissions</li>
+            <li>To understand how visitors use this site (anonymous analytics, with consent)</li>
+        </ul>
+        <p>We do <strong>not</strong> sell, rent, or share your personal data with third parties for marketing purposes.</p>
+
+        <h2>5. Third-Party Services</h2>
+        <table>
+            <thead>
+                <tr><th>Service</th><th>Purpose</th><th>Data Shared</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Google Analytics (GA4)</td><td>Anonymous site analytics</td><td>Page views, device info (with consent)</td></tr>
+                <tr><td>Resend</td><td>Email delivery for contact form</td><td>Name, email, message</td></tr>
+                <tr><td>Netlify</td><td>Hosting and serverless functions</td><td>Server logs (IP, user agent)</td></tr>
+                <tr><td>Google Fonts</td><td>Typography</td><td>IP address (standard web request)</td></tr>
+            </tbody>
+        </table>
+
+        <h2>6. Data Retention</h2>
+        <ul>
+            <li><strong>Contact form data:</strong> Retained until inquiry is resolved, then deleted</li>
+            <li><strong>Analytics data:</strong> Google Analytics retains data for 14 months, then auto-deletes</li>
+            <li><strong>Server logs:</strong> Netlify retains access logs for 30 days</li>
+        </ul>
+
+        <h2>7. Your Rights</h2>
+        <p>Under Canadian privacy law (PIPEDA), GDPR (if you are in the EU/EEA), and CCPA (if you are in California), you have the right to:</p>
+        <ul>
+            <li><strong>Access</strong> the personal data we hold about you</li>
+            <li><strong>Correct</strong> inaccurate data</li>
+            <li><strong>Delete</strong> your data ("right to be forgotten")</li>
+            <li><strong>Withdraw consent</strong> for analytics at any time via the cookie settings on this site</li>
+            <li><strong>Object</strong> to data processing</li>
+            <li><strong>Data portability</strong> (receive your data in a structured format)</li>
+        </ul>
+        <p>To exercise any of these rights, email <a href="#" data-u="hello" data-d="uxmeas.com" class="eml eml-show"></a>.</p>
+
+        <h2>8. Do Not Track</h2>
+        <p>We respect Do Not Track (DNT) browser signals. If your browser sends a DNT header, analytics will not be loaded regardless of cookie consent settings.</p>
+
+        <h2>9. Children's Privacy</h2>
+        <p>This site is not directed at children under 16. We do not knowingly collect data from minors.</p>
+
+        <h2>10. Changes to This Policy</h2>
+        <p>We may update this policy from time to time. The "Last updated" date at the top of this page reflects the most recent revision. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
+
+        <h2>11. Contact</h2>
+        <p>For any privacy-related questions or requests:</p>
+        <ul>
+            <li>Email: <a href="#" data-u="hello" data-d="uxmeas.com" class="eml eml-show"></a></li>
+            <li>Location: Calgary, Alberta, Canada</li>
+        </ul>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <span class="footer-logo">UX MEAS</span>
+            <span class="footer-copy">&copy; 2026 UX Meas. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="/privacy.html">Privacy</a>
+                <a href="/cookies.html">Cookies</a>
+                <a href="/terms.html">Terms</a>
+                <a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent -->
+    <script src="/js/cookie-consent.js"></script>
+    <script>
+      CookieConsent.init({
+        storageKey: 'uxmeas_consent',
+        policyUrl: '/cookies.html',
+        categories: [
+          { id: 'necessary', label: 'Necessary', description: 'Required for the site to function properly.', required: true, default: true },
+          { id: 'analytics', label: 'Performance & Analytics', description: 'Help us understand how visitors use this site by collecting anonymous usage data via Google Analytics.', required: false, default: false }
+        ],
+        onSave: function(consent) {
+          if (consent.analytics) {
+            gtag('consent', 'update', { analytics_storage: 'granted' });
+          } else {
+            gtag('consent', 'update', { analytics_storage: 'denied' });
+          }
+        }
+      });
+
+      // Email obfuscation
+      document.querySelectorAll('.eml').forEach(function(a) {
+        var addr = a.dataset.u + '@' + a.dataset.d;
+        if (a.classList.contains('eml-show')) a.textContent = addr;
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.location = 'mailto:' + addr;
+        });
+      });
+    </script>
+</body>
+</html>

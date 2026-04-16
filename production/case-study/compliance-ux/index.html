@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Case study: Redesigned KYC onboarding for Katipult's investment platform. Cut completion time from 45 minutes to under 12 minutes with 85% completion rate.">
+  <meta property="og:title" content="Compliance UX - Case Study - UX Meas">
+  <meta property="og:description" content="Case study: Redesigned KYC onboarding for Katipult's investment platform. Cut completion time from 45 minutes to under 12 minutes with 85% completion rate.">
+  <meta property="og:image" content="https://uxmeas.com/images/og-image.png">
+  <meta property="og:url" content="https://uxmeas.com/case-study/compliance-ux/">
+  <meta property="og:type" content="article">
+  <link rel="icon" href="../../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32x32.png">
+  <title>Compliance UX for Private Capital Markets - Pheak Meas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+    body { background: #141419; color: #F0F0F2; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --bg-card: #1A2030;
+      --bg-deep: #141419;
+      --bg-surface: #1F2937;
+      --border: #2A3545;
+      --gold: #D4915E;
+      --gold-light: #F5E6D8;
+      --gold-muted: #8B6E52;
+      --text-primary: #F0F0F2;
+      --text-secondary: #9298A0;
+      --text-muted: #969CA5;
+      --stat-label: #CBD5E1;
+    }
+
+    body {
+      background:
+        radial-gradient(circle 700px at 60% 6%, #243352 0%, transparent 100%),
+        radial-gradient(circle 700px at 25% 20%, #1E2D45 0%, transparent 100%),
+        radial-gradient(circle 700px at 75% 35%, #243352 0%, transparent 100%),
+        radial-gradient(circle 700px at 30% 50%, #1E2D45 0%, transparent 100%),
+        radial-gradient(circle 700px at 70% 65%, #243352 0%, transparent 100%),
+        radial-gradient(circle 700px at 40% 80%, #1E2D45 0%, transparent 100%),
+        radial-gradient(circle 700px at 50% 93%, #243352 0%, transparent 100%),
+        #141419;
+    }
+
+    .page-wrap { width: 100%; max-width: 1440px; margin: 0 auto; overflow: hidden; }
+
+    /* === BADGE (pill) === */
+    .badge {
+      display: block;
+      width: max-content;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 6px;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      border-radius: 20px;
+      padding: 6px 20px;
+    }
+
+    /* === TYPOGRAPHY === */
+    .section-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 56px;
+      letter-spacing: 1px;
+      line-height: 1.05;
+      color: var(--text-primary);
+    }
+    .body-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+    }
+
+    /* === BUTTONS === */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #141419;
+      background: var(--gold);
+      border-radius: 6px;
+      padding: 14px 32px;
+      border: none;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 32px;
+    }
+
+    /* === NAV === */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 120px;
+    }
+    .nav__logo {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--text-primary);
+    }
+    .nav__links { display: flex; gap: 40px; list-style: none; }
+    .nav__links a { font-size: 14px; font-weight: 500; color: var(--text-secondary); }
+    .nav__links a.nav--accent { color: var(--gold); }
+
+    /* === SECTION LAYOUT === */
+    .cs-section { padding: 100px 120px; display: flex; flex-direction: column; gap: 48px; }
+    .cs-section--deep { background: #141419; }
+    .cs-two-col { display: flex; gap: 64px; align-items: flex-start; }
+    .cs-col-left--380 { width: 380px; flex-shrink: 0; }
+    .cs-col-left--500 { width: 500px; flex-shrink: 0; }
+    .cs-col-right--380 { width: 380px; flex-shrink: 0; }
+    .cs-col-fill { flex: 1; }
+
+    /* === HERO === */
+    .cs-hero { padding: 100px 120px 60px; display: flex; flex-direction: column; }
+    .cs-hero__top { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .cs-hero__logo img { height: 34px; width: 140px; object-fit: contain; }
+    .cs-hero__tags { display: flex; gap: 8px; justify-content: center; align-items: center; padding-top: 16px; }
+    .cs-hero__tags span { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 4px; color: var(--gold); }
+    .cs-hero__tags .dot { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--text-muted); letter-spacing: 0; }
+    .cs-hero__meta { display: flex; gap: 24px; justify-content: flex-end; align-items: center; flex: 1; }
+    .cs-hero__meta span { font-size: 14px; color: #94A3B8; }
+    .cs-hero__meta .dot { color: #64748B; }
+    .cs-hero__title-wrap { text-align: center; padding-top: 32px; width: 100%; }
+    .cs-hero__headline { font-family: 'Bebas Neue', cursive; font-size: 80px; letter-spacing: -1px; line-height: 0.95; color: var(--text-primary); text-align: center; }
+    .cs-hero__stats { display: flex; gap: 48px; justify-content: center; align-items: center; padding-top: 48px; width: 100%; }
+    .cs-hero__stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .cs-hero__stat-number { font-family: 'Bebas Neue', cursive; font-size: 64px; letter-spacing: -1px; line-height: 0.9; color: var(--gold); }
+    .cs-hero__stat-label { font-size: 16px; line-height: 1.3; color: var(--stat-label); }
+    .cs-hero__subtitle-wrap { text-align: center; padding-top: 40px; width: 100%; }
+    .cs-hero__subtitle { font-size: 22px; line-height: 1.6; color: #94A3B8; text-align: center; max-width: 800px; margin: 0 auto; }
+    .cs-hero__laptop-wrap { padding-top: 64px; text-align: center; width: 100%; }
+    .cs-hero__device { position: relative; width: 1200px; max-width: 100%; margin: 0 auto; }
+    .cs-hero__device-frame { width: 100%; height: auto; display: block; position: relative; z-index: 1; pointer-events: none; }
+    .cs-hero__device-screen { position: absolute; top: 9.8%; left: 12.8%; width: 74.4%; height: 72.6%; z-index: 2; overflow: hidden; border-radius: 6px 6px 0 0; background: #000000; }
+    .cs-hero__browser-bar { display: none; }
+    .cs-hero__screen-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+
+    /* === METRIC CARDS (120px) === */
+    .metric-row { display: flex; gap: 24px; width: 100%; }
+    .metric-card {
+      flex: 1;
+      background: var(--bg-surface);
+      border-radius: 6px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 120px;
+    }
+    .metric-card__number { font-family: 'Bebas Neue', cursive; font-size: 28px; color: var(--gold); }
+    .metric-card__text { font-size: 12px; line-height: 1.4; color: var(--text-muted); }
+
+    /* === HMW CARD === */
+    .hmw-card {
+      background: var(--bg-surface);
+      border-radius: 6px;
+      padding: 32px 40px;
+      width: 100%;
+    }
+    .hmw-card__label { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 4px; color: var(--gold); margin-bottom: 16px; }
+    .hmw-card__text { font-size: 18px; font-weight: 500; line-height: 1.6; color: var(--text-primary); }
+
+    /* === RESEARCH TABLE === */
+    .rt-label { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 4px; color: var(--gold); }
+    .research-table { display: flex; flex-direction: column; align-self: stretch; flex-shrink: 0; }
+    .rt-row { display: flex; padding: 16px 20px; }
+    .rt-header { background: var(--bg-surface); }
+    .rt-body { background: var(--bg-card); border-bottom: 1px solid var(--border); }
+    .rt-body:last-child { border-bottom: none; }
+    .rt-cell { font-size: 14px; line-height: 1.5; color: var(--text-secondary); }
+    .rt-cell:first-child { width: 200px; flex-shrink: 0; }
+    .rt-cell:not(:first-child) { flex: 1; }
+    .rt-header .rt-cell { font-family: 'Bebas Neue', cursive; font-size: 14px; letter-spacing: 3px; color: var(--gold); }
+    .rt-body .rt-cell:first-child { color: var(--text-primary); font-weight: 500; }
+    .rt-body .rt-cell:not(:first-child) { color: var(--text-secondary); }
+
+    /* === FLOW STEP CARDS === */
+    .flow-cards { display: flex; gap: 16px; width: 100%; }
+    .flow-card {
+      flex: 1;
+      background: var(--bg-surface);
+      border-radius: 6px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .flow-card__head { display: flex; align-items: center; gap: 12px; }
+    .flow-card__badge {
+      width: 36px; height: 36px;
+      border-radius: 18px;
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', cursive; font-size: 16px; color: var(--gold);
+      flex-shrink: 0;
+    }
+    .flow-card__time { font-size: 14px; font-weight: 600; color: var(--gold); }
+    .flow-card__title { font-size: 16px; font-weight: 700; line-height: 1.3; color: var(--text-primary); }
+    .flow-card__desc { font-size: 16px; line-height: 1.5; color: var(--text-muted); }
+
+    /* === DEVICE FRAMES === */
+    .device-ipad {
+      width: 100%;
+      max-width: 480px;
+      border-radius: 24px;
+      border: 6px solid #1a1a2e;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+      overflow: hidden;
+      margin: 0 auto;
+      background: #0A0F1A;
+    }
+    .device-ipad img { width: 100%; height: auto; display: block; }
+    .device-phone {
+      width: 213px;
+      aspect-ratio: 9 / 19;
+      border-radius: 22px;
+      border: 6px solid #1a1a2e;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+      overflow: hidden;
+      background: #0A0F1A;
+    }
+    .device-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .phone-pair {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      align-items: center;
+    }
+    .device-browser {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      overflow: hidden;
+    }
+    .device-browser img { width: 100%; height: 100%; object-fit: contain; background: #0A0F1A; }
+
+    /* === FEATURES LIST === */
+    .features-list { display: flex; flex-direction: column; gap: 20px; padding-top: 32px; }
+    .feature-item { display: flex; gap: 12px; width: 100%; }
+    .feature-icon { width: 22px; height: 22px; flex-shrink: 0; color: var(--gold); }
+    .feature-icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-wrap { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+    .feature-title { font-size: 18px; font-weight: 600; color: var(--text-primary); }
+    .feature-desc { font-size: 16px; line-height: 1.5; color: var(--text-muted); }
+
+    /* === UI SHOWCASE GRID (2x2) === */
+    .gallery-row { display: flex; gap: 16px; width: 100%; height: 400px; }
+    .gallery-item {
+      width: 580px; max-width: 50%; height: 362px;
+      border-radius: 6px; border: 3px solid var(--border); overflow: hidden;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: contain; object-position: top; }
+
+    /* === RESULTS STAT BARS (64px) === */
+    .stat-bars { display: flex; flex-direction: column; gap: 12px; padding-top: 32px; width: 100%; }
+    .stat-bar {
+      display: flex; align-items: center; gap: 16px; justify-content: space-between;
+      background: var(--bg-surface); border-radius: 6px; padding: 20px 24px; height: 64px;
+    }
+    .stat-bar__number { font-family: 'Bebas Neue', cursive; font-size: 36px; letter-spacing: 1px; color: var(--gold); width: 100px; flex-shrink: 0; }
+    .stat-bar__label { font-size: 14px; line-height: 1.4; color: var(--text-muted); flex: 1; }
+
+    /* === FLOATING SCREENSHOT === */
+    .floating-screenshot {
+      flex: 1; height: 480px; border-radius: 8px; overflow: hidden;
+      border: 3px solid var(--border);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+    }
+    .floating-screenshot img { width: 100%; height: 100%; object-fit: contain; object-position: top; }
+
+    /* === CTA FOOTER === */
+    .cta-footer {
+      padding: 100px 120px;
+      display: flex; flex-direction: column; align-items: center; gap: 40px; text-align: center;
+      background: #141419;
+    }
+    .cta-footer__divider { width: 120px; height: 2px; background: var(--gold); }
+    .cta-footer__desc { font-size: 18px; line-height: 1.7; color: var(--text-secondary); max-width: 640px; text-align: center; }
+    .cta-footer__sub { font-size: 22px; font-weight: 600; color: var(--gold); text-align: center; }
+    .cta-footer__buttons { display: flex; gap: 16px; padding-top: 16px; }
+    .cta-footer__footer { font-size: 14px; color: var(--text-muted); }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 1024px) {
+      .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 48px; padding-right: 48px; }
+      .cs-two-col { flex-direction: column; gap: 32px; }
+      .cs-col-left--380, .cs-col-left--500, .cs-col-right--380, .cs-col-fill { width: 100%; }
+      .cs-hero__headline { font-size: 56px; }
+      .section-title { font-size: 40px; }
+      .flow-cards { flex-direction: column; }
+      .gallery-row { flex-direction: column; height: auto; }
+      .gallery-item { width: 100%; max-width: 100%; }
+      .cs-hero__top { flex-direction: column; gap: 16px; }
+      .cs-hero__meta { justify-content: center; }
+      .metric-row { flex-direction: column; }
+      /* device-screen uses pure % — no override needed */
+    }
+    @media (max-width: 640px) {
+      .cs-hero, .cs-section, .cta-footer, .nav { padding-left: 24px; padding-right: 24px; }
+      .cs-hero { padding-top: 48px; padding-bottom: 40px; }
+      .cs-hero__headline { font-size: 40px; }
+      .cs-hero__stats { flex-direction: column; gap: 24px; }
+      .cs-hero__stat-number { font-size: 48px; }
+      .cs-hero__laptop-wrap { padding-top: 40px; }
+      .cs-hero__device { max-width: 90%; margin: 0 auto; }
+      /* device-screen uses pure % — no override needed */
+      .device-ipad { max-width: 100%; }
+      .rt-header { display: none; }
+      .rt-row { flex-direction: column; gap: 12px; padding: 20px; }
+      .rt-cell:first-child { width: 100%; font-size: 16px; }
+      .rt-cell:not(:first-child)::before { font-family: 'Bebas Neue', cursive; font-size: 11px; letter-spacing: 3px; color: var(--gold); display: block; margin-bottom: 4px; }
+      .rt-cell:nth-child(2)::before { content: 'BUSINESS PROBLEM'; }
+      .rt-cell:nth-child(3)::before { content: 'USER NEED'; }
+      .cta-footer__buttons { flex-direction: column; }
+      .phone-pair {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 16px;
+        padding: 0;
+        scroll-padding-inline: 16px;
+      }
+      .phone-pair::-webkit-scrollbar { display: none; }
+      .device-phone {
+        width: 75vw;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+      }
+    }
+  </style>
+  <!-- Google Consent Mode v2 -->
+  <script>
+    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+    gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
+    try{var c=JSON.parse(localStorage.getItem('uxmeas_consent'));if(c&&c.analytics)gtag('consent','update',{analytics_storage:'granted'});}catch(e){}
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
+  <script>gtag('js',new Date());gtag('config','G-87HSHMKCBH');</script>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <!-- NAV -->
+    <nav class="nav">
+      <a class="nav__logo" href="../../">UX MEAS</a>
+      <ul class="nav__links">
+        <li><a href="../../">WORK</a></li>
+        <li><a href="../../#about">ABOUT</a></li>
+        <li><a href="../../#contact" class="nav--accent">CONTACT</a></li>
+      </ul>
+    </nav>
+
+    <!-- 1. HERO -->
+    <section class="cs-hero">
+      <div class="cs-hero__top">
+        <div class="cs-hero__logo">
+          <img src="../../images/katipult/logos/katipult-logo-white.png" alt="Katipult">
+        </div>
+        <div class="cs-hero__meta">
+          <span>20+ Jurisdictions</span>
+          <span class="dot">&middot;</span>
+          <span>Katipult Platform</span>
+        </div>
+      </div>
+
+      <div class="cs-hero__title-wrap">
+        <h1 class="cs-hero__headline">Compliance UX</h1>
+        <div class="cs-hero__tags">
+          <span>FINTECH</span>
+          <span class="dot">&middot;</span>
+          <span>COMPLIANCE</span>
+          <span class="dot">&middot;</span>
+          <span>UX</span>
+        </div>
+      </div>
+
+      <div class="cs-hero__stats">
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">85%</div>
+          <div class="cs-hero__stat-label">completion rate</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">20+</div>
+          <div class="cs-hero__stat-label">jurisdictions</div>
+        </div>
+        <div class="cs-hero__stat">
+          <div class="cs-hero__stat-number">12 min</div>
+          <div class="cs-hero__stat-label">avg. completion</div>
+        </div>
+      </div>
+
+      <div class="cs-hero__subtitle-wrap">
+        <p class="cs-hero__subtitle">Shipped regulatory-compliant investor onboarding across 20+ jurisdictions. Partnered with compliance, engineering, and legal to replace days of paperwork with a 12-minute digital flow. WCAG 2.1 AA accessible.</p>
+      </div>
+
+      <div class="cs-hero__laptop-wrap">
+        <div class="cs-hero__device">
+          <picture>
+            <source srcset="../../images/macbook-pro.webp" type="image/webp">
+            <img src="../../images/macbook-pro.png" alt="" class="cs-hero__device-frame">
+          </picture>
+          <div class="cs-hero__device-screen">
+            <div class="cs-hero__browser-bar">
+              <div class="cs-hero__browser-dots">
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--close"></span>
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--min"></span>
+                <span class="cs-hero__browser-dot cs-hero__browser-dot--max"></span>
+              </div>
+              <span class="cs-hero__browser-url">uxmeas.com</span>
+            </div>
+            <picture>
+              <source srcset="../../images/case-studies/compliance-ux/hero-laptop.webp" type="image/webp">
+              <img src="../../images/case-studies/compliance-ux/hero-laptop.png" alt="Compliance UX dashboard" class="cs-hero__screen-img">
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. THE CHALLENGE -->
+    <section class="cs-section">
+      <span class="badge">THE CHALLENGE</span>
+
+      <div class="cs-two-col">
+        <div class="cs-col-left--500">
+          <h2 class="section-title">$200 per<br>failed verification.<br>65% industry drop-off.</h2>
+        </div>
+        <div class="cs-col-fill">
+          <p class="body-text">Industry benchmarks from Persona and Onfido (pre-2017) showed KYC drop-off reaching 65% without guided onboarding — the bar Katipult had to beat at the document upload step. Investors would start KYC, hit a wall of unfamiliar requirements, and abandon. Data showed each failed verification cost $200+ in manual review by compliance teams who had to chase missing documents over email.</p>
+          <p class="body-text" style="margin-top: 24px;">Legal teams across 20+ jurisdictions each required different document sets, different identity checks, and different approval workflows. The platform had one rigid flow trying to serve them all. The challenge: design an adaptive onboarding experience that satisfies every regulator while cutting drop-off and verification costs.</p>
+        </div>
+      </div>
+
+      <div class="metric-row">
+        <div class="metric-card">
+          <span class="metric-card__number">65%</span>
+          <span class="metric-card__text">Industry KYC drop-off benchmark (Persona / Onfido, pre-2017)</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-card__number">$200+</span>
+          <span class="metric-card__text">Cost per failed verification in manual review</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-card__number">1 flow</span>
+          <span class="metric-card__text">Rigid process serving 20+ jurisdictions with unique rules</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. DESIGN APPROACH -->
+    <section class="cs-section cs-section--deep">
+      <span class="badge">DESIGN APPROACH</span>
+
+      <div class="cs-two-col">
+        <div class="cs-col-fill">
+          <h2 class="section-title">Research-driven<br>compliance design</h2>
+          <p class="body-text" style="margin-top: 32px;">Partnered cross-functionally with compliance officers, legal teams, and real investors to map the full regulatory landscape before designing any screens. Conducted evaluative research with investors across 4 jurisdictions. The Research Table methodology ensured nothing was built on assumption.</p>
+        </div>
+        <div class="cs-col-fill">
+          <div class="hmw-card">
+            <div class="hmw-card__label">HOW MIGHT WE</div>
+            <p class="hmw-card__text">How might we design a compliance onboarding experience that satisfies regulators across 20+ jurisdictions while feeling simple enough that a first-time investor can complete it without support?</p>
+          </div>
+        </div>
+      </div>
+
+      <span class="rt-label">RESEARCH TABLE</span>
+
+      <div class="research-table">
+        <div class="rt-row rt-header">
+          <span class="rt-cell">METRIC</span>
+          <span class="rt-cell">BUSINESS PROBLEM</span>
+          <span class="rt-cell">USER NEED</span>
+        </div>
+        <div class="rt-row rt-body">
+          <span class="rt-cell">Drop-off Rate</span>
+          <span class="rt-cell">65% industry KYC drop-off (Persona / Onfido, pre-2017) — the benchmark Katipult had to beat</span>
+          <span class="rt-cell">Investors feel overwhelmed by regulatory jargon and unclear next steps</span>
+        </div>
+        <div class="rt-row rt-body">
+          <span class="rt-cell">Support Tickets</span>
+          <span class="rt-cell">40% of support volume related to compliance document questions</span>
+          <span class="rt-cell">Users need clear guidance on what documents are required and why</span>
+        </div>
+        <div class="rt-row rt-body">
+          <span class="rt-cell">Time to Complete</span>
+          <span class="rt-cell">Average 45 minutes to complete onboarding across all steps</span>
+          <span class="rt-cell">Investors want to complete verification quickly and invest same day</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. USER FLOW -->
+    <section class="cs-section">
+      <span class="badge">USER FLOW</span>
+
+      <div class="cs-two-col">
+        <div class="cs-col-left--380">
+          <h2 class="section-title">12-minute digital<br>onboarding</h2>
+          <p class="body-text" style="margin-top: 32px;">From 45 minutes of paperwork to a streamlined 12-minute digital flow. Every screen designed to reduce cognitive load while maintaining full regulatory compliance.</p>
+          <p class="body-text" style="margin-top: 24px;">The flow guides investors through five progressive stages. Each stage validates before advancing, so users never encounter dead ends or surprise requirements.</p>
+        </div>
+        <div class="cs-col-fill" style="display:flex; justify-content:center; align-items:center;">
+          <div class="phone-pair">
+            <div class="device-phone">
+              <img src="../../images/case-studies/compliance-ux/userflow-phones-1.png" alt="KYC onboarding step 1">
+            </div>
+            <div class="device-phone">
+              <img src="../../images/case-studies/compliance-ux/userflow-phones-2.png" alt="KYC onboarding step 2">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-cards">
+        <div class="flow-card">
+          <div class="flow-card__head">
+            <div class="flow-card__badge">1</div>
+            <span class="flow-card__time">2 min</span>
+          </div>
+          <div class="flow-card__title">Personal Info</div>
+          <div class="flow-card__desc">Basic identity details and contact information</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card__head">
+            <div class="flow-card__badge">2</div>
+            <span class="flow-card__time">3 min</span>
+          </div>
+          <div class="flow-card__title">Document Upload</div>
+          <div class="flow-card__desc">Upload required documents with clear guidance per jurisdiction</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card__head">
+            <div class="flow-card__badge">3</div>
+            <span class="flow-card__time">1 min</span>
+          </div>
+          <div class="flow-card__title">Selfie Verification</div>
+          <div class="flow-card__desc">Quick selfie match against uploaded ID document</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card__head">
+            <div class="flow-card__badge">4</div>
+            <span class="flow-card__time">3 min</span>
+          </div>
+          <div class="flow-card__title">Accreditation Check</div>
+          <div class="flow-card__desc">Investor status verified against jurisdiction requirements</div>
+        </div>
+        <div class="flow-card">
+          <div class="flow-card__head">
+            <div class="flow-card__badge">5</div>
+            <span class="flow-card__time">3 min</span>
+          </div>
+          <div class="flow-card__title">E-Signature (KSign)</div>
+          <div class="flow-card__desc">Sign subscription agreements digitally, legally binding across 20+ jurisdictions</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. KSIGN -->
+    <section class="cs-section cs-section--deep">
+      <span class="badge">KSIGN</span>
+
+      <div class="cs-two-col">
+        <div class="cs-col-fill" style="display:flex;align-items:center;justify-content:center;">
+          <div class="device-ipad">
+            <img src="../../images/case-studies/compliance-ux/ksign-ipad.png" alt="KSign ceremony on iPad">
+          </div>
+        </div>
+        <div class="cs-col-right--380">
+          <h2 class="section-title">Digital signatures<br>built for compliance</h2>
+          <p class="body-text" style="margin-top: 32px;">KSign was the platform's e-signature module, purpose-built for subscription agreements in private capital markets. The entire signing ceremony took under 3 minutes.</p>
+
+          <div class="features-list">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Inline Review</div>
+                <div class="feature-desc">Read and sign documents without leaving the platform</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Legally Binding</div>
+                <div class="feature-desc">Compliant e-signatures recognized across 20+ jurisdictions</div>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div class="feature-wrap">
+                <div class="feature-title">Instant Delivery</div>
+                <div class="feature-desc">Countersigned copies delivered to all parties within seconds</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. UI SHOWCASE -->
+    <section class="cs-section">
+      <span class="badge">UI SHOWCASE</span>
+      <h2 class="section-title">Key screens from the<br>compliance experience</h2>
+
+      <div class="gallery-row">
+        <div class="gallery-item">
+          <img src="../../images/case-studies/compliance-ux/showcase-1.png" alt="KYC Personal Information">
+        </div>
+        <div class="gallery-item">
+          <img src="../../images/case-studies/compliance-ux/showcase-2.png" alt="KYC Document Upload">
+        </div>
+      </div>
+      <div class="gallery-row">
+        <div class="gallery-item">
+          <img src="../../images/case-studies/compliance-ux/showcase-3.png" alt="KYC Selfie Verification">
+        </div>
+        <div class="gallery-item">
+          <img src="../../images/case-studies/compliance-ux/showcase-4.png" alt="KYC Accreditation">
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. RESULTS & IMPACT -->
+    <section class="cs-section">
+      <span class="badge">RESULTS &amp; IMPACT</span>
+
+      <div class="cs-two-col">
+        <div class="cs-col-left--380">
+          <h2 class="section-title">The numbers that<br>proved it worked</h2>
+
+          <div class="stat-bars">
+            <div class="stat-bar">
+              <span class="stat-bar__number">85%</span>
+              <span class="stat-bar__label">Completion rate, up from 40%</span>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__number">20+</span>
+              <span class="stat-bar__label">Jurisdictions, single adaptive flow</span>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__number">&lt;12 min</span>
+              <span class="stat-bar__label">Average flow, down from 45 minutes</span>
+            </div>
+          </div>
+        </div>
+        <div class="cs-col-fill">
+          <div class="floating-screenshot">
+            <img src="../../images/case-studies/compliance-ux/results-dashboard.png" alt="Compliance Overview Dashboard">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CTA FOOTER -->
+    <section class="cta-footer">
+      <div class="cta-footer__divider"></div>
+      <h2 class="section-title">Next Case Study</h2>
+      <span class="cta-footer__sub">DealFlow - Startup to IPO</span>
+      <p class="cta-footer__desc">Owned product design from startup to IPO (TSX-V). Deal management, portfolio tracking, and investor relations shipped across web and mobile. $2B+ processed.</p>
+      <div class="cta-footer__buttons">
+        <a href="/case-study/dealflow/" class="btn-primary">VIEW DEALFLOW CASE STUDY</a>
+        <a href="/" class="btn-secondary">BACK TO PORTFOLIO</a>
+      </div>
+      <span class="cta-footer__footer">uxmeas.com</span>
+    </section>
+
+  </div>
+<script src="/js/cookie-consent.js"></script>
+<script>
+CookieConsent.init({storageKey:'uxmeas_consent',policyUrl:'/cookies.html',
+categories:[{id:'necessary',label:'Necessary',description:'Required for the site to function properly.',required:true,default:true},{id:'analytics',label:'Performance & Analytics',description:'Help us understand how visitors use this site via Google Analytics.',required:false,default:false}],
+onSave:function(c){gtag('consent','update',{analytics_storage:c.analytics?'granted':'denied'});}});
+</script>
+</body>
+</html>
