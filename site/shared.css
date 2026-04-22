@@ -1,0 +1,459 @@
+/* =============================================================
+   UX Meas — shared visual system
+   Monochromatic. Typography-led. Mono-inflected.
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ---------- tokens (light) ---------- */
+:root {
+  /* grayscale, warm-tinted, very low chroma. contrast-tuned for WCAG AA. */
+  --bg:        oklch(98.6% 0.003 60);
+  --bg-2:      oklch(96.0% 0.003 60);
+  --rule:      oklch(88.5% 0.004 60);
+  --rule-soft: oklch(92.5% 0.004 60);
+  /* placeholder: stays neutral grey in BOTH modes. used for card visual blocks
+     so they read as empty image slots, not as blue-tinted surfaces. */
+  --placeholder-bg:     oklch(92.5% 0.004 60);
+  --placeholder-border: oklch(88.5% 0.004 60);
+  --fg:        oklch(18.0% 0.006 60);   /* 14:1 on bg */
+  --fg-2:      oklch(38.0% 0.005 60);   /* 6:1 on bg */
+  --fg-3:      oklch(48.0% 0.005 60);   /* 4.5:1 on bg */
+  --fg-4:      oklch(58.0% 0.005 60);   /* 3:1 on bg, UI-only */
+  /* scroll-lit resting color: muted base from which words fade to --accent.
+     light: neutral grey (fg-3). dark: cool blue-grey (per CEO spec). */
+  --scroll-lit-resting: var(--fg-3);
+
+  /* accent — dual mode. langchain cyan on dark, darker blue on light for contrast.
+     used for structural moments: section labels, HMW rules, focus, hover borders,
+     lit-state text. same semantic token, adapts per theme. */
+  --accent:      #1e6fb8;                /* light mode: 4.9:1 on cream */
+  --accent-soft: color-mix(in oklab, var(--accent) 22%, transparent);
+
+  --f-sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --max: 1440px;
+  --gutter: clamp(20px, 4vw, 48px);
+
+  /* typography scale — reusable font-size tokens */
+  --t-eyebrow: 11px;
+  --t-body:    16px;
+  --t-lede:    19px;
+  --t-h-display: clamp(36px, 5.8vw, 72px); /* hero H1 + case study H1 (consistent) */
+  --t-h-section: clamp(26px, 3.6vw, 44px); /* section-level H2 */
+  --t-h-sub:     clamp(22px, 2.8vw, 34px); /* sub-display, preview headings */
+
+  --radius: 0px;
+
+  --focus: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+}
+
+/* ---------- tokens (dark via system) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        oklch(13.5% 0.004 60);
+    --bg-2:      oklch(17.5% 0.004 60);
+    /* dark-mode lines: deep navy, subtle against near-black bg (CEO spec). */
+    --rule:      #181f33;
+    --rule-soft: #141829;
+    /* placeholder stays neutral grey in dark — image slots don't inherit
+       the navy line tint. */
+    --placeholder-bg:     oklch(26.0% 0.004 60);
+    --placeholder-border: oklch(34.0% 0.004 60);
+    --fg:        oklch(96.0% 0.003 60);
+    --fg-2:      oklch(78.0% 0.004 60);
+    --fg-3:      oklch(62.0% 0.004 60);
+    --fg-4:      oklch(55.0% 0.004 60);
+    /* scroll-lit resting color in dark: cool blue-grey (CEO spec) */
+    --scroll-lit-resting: #2e4054;
+    --accent:    #7fc8ff;
+    --accent-soft: color-mix(in oklab, var(--accent) 18%, transparent);
+  }
+}
+
+/* ---------- explicit overrides via toggle ---------- */
+:root[data-theme="dark"] {
+  --bg:        oklch(13.5% 0.004 60);
+  --bg-2:      oklch(17.5% 0.004 60);
+  --rule:      #181f33;
+  --rule-soft: #141829;
+  --placeholder-bg:     oklch(26.0% 0.004 60);
+  --placeholder-border: oklch(34.0% 0.004 60);
+  --fg:        oklch(96.0% 0.003 60);
+  --fg-2:      oklch(78.0% 0.004 60);
+  --fg-3:      oklch(62.0% 0.004 60);
+  --fg-4:      oklch(55.0% 0.004 60);
+  --scroll-lit-resting: #2e4054;
+  --accent:    #7fc8ff;
+  --accent-soft: color-mix(in oklab, var(--accent) 18%, transparent);
+}
+:root[data-theme="light"] {
+  --bg:        oklch(98.6% 0.003 60);
+  --bg-2:      oklch(96.0% 0.003 60);
+  --rule:      oklch(88.5% 0.004 60);
+  --rule-soft: oklch(92.5% 0.004 60);
+  --placeholder-bg:     oklch(92.5% 0.004 60);
+  --placeholder-border: oklch(88.5% 0.004 60);
+  --fg:        oklch(18.0% 0.006 60);
+  --fg-2:      oklch(38.0% 0.005 60);
+  --fg-3:      oklch(48.0% 0.005 60);
+  --fg-4:      oklch(58.0% 0.005 60);
+  --accent:    #1e6fb8;
+  --accent-soft: color-mix(in oklab, var(--accent) 22%, transparent);
+}
+
+/* ---------- reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-sans);
+  font-size: var(--t-body);
+  line-height: 1.55;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* tabular numbers everywhere numbers matter */
+.mono, .stat-n, .row-n, .row-meta, .eyebrow, .tags, nav a, .kbd {
+  font-family: var(--f-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum", "zero";
+}
+
+/* ---------- skip link ---------- */
+.skip {
+  position: absolute; left: 12px; top: 12px;
+  transform: translateY(-200%);
+  background: var(--fg); color: var(--bg);
+  padding: 8px 12px; font-family: var(--f-mono); font-size: 12px;
+  z-index: 100;
+}
+.skip:focus { transform: translateY(0); outline: none; }
+
+/* ---------- focus ---------- */
+a:focus-visible, button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: 2px;
+}
+
+/* ---------- layout ---------- */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 20;
+  background: color-mix(in oklab, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.wordmark {
+  font-family: var(--f-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--fg);
+  display: inline-flex; align-items: baseline; gap: 8px;
+}
+.wordmark .dot {
+  width: 6px; height: 6px; background: var(--fg);
+  display: inline-block; transform: translateY(-2px);
+}
+.nav-links {
+  display: flex; align-items: center; gap: 28px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--fg-2);
+}
+.nav-links a { position: relative; padding: 4px 0; }
+.nav-links a:hover { color: var(--fg); }
+.nav-links .back {
+  display: inline-flex; align-items: center; gap: 8px;
+}
+
+.theme-toggle {
+  appearance: none;
+  background: transparent; border: 1px solid var(--rule);
+  width: 28px; height: 28px; display: inline-grid; place-items: center;
+  color: var(--fg-2); cursor: pointer;
+  font-family: var(--f-mono); font-size: 11px;
+  transition: color .2s, border-color .2s;
+}
+.theme-toggle:hover { color: var(--fg); border-color: var(--fg-3); }
+.theme-toggle svg { width: 14px; height: 14px; }
+.theme-toggle .sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .sun,
+:root:not([data-theme="light"]) .theme-toggle .sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .moon,
+:root:not([data-theme="light"]) .theme-toggle .moon { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .theme-toggle .sun { display: none; }
+  :root:not([data-theme="dark"]) .theme-toggle .moon { display: block; }
+}
+
+/* ---------- type scale ---------- */
+.eyebrow {
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.eyebrow .sep { color: var(--fg-4); }
+
+h1, h2, h3, h4 {
+  font-family: var(--f-sans);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  margin: 0;
+  color: var(--fg);
+}
+
+.h-display {
+  font-size: var(--t-h-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+.h-case {
+  /* case study H1: uses same scale as hero H1 for consistency */
+  font-size: var(--t-h-display);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+.h-section {
+  font-size: var(--t-h-section);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.08;
+  color: var(--fg-3);
+}
+
+/* Scroll-lit text effect (LangChain-style). JS splits into .word spans,
+   toggles .lit based on scroll position so words fade to accent as viewed.
+   Resting color is --scroll-lit-resting (grey on light, blue-grey on dark). */
+.h-section.scroll-lit .word {
+  color: var(--scroll-lit-resting);
+  transition: color .35s ease-out, text-shadow .35s ease-out;
+  display: inline-block;
+}
+.h-section.scroll-lit .word.lit {
+  color: var(--accent);
+}
+.h-section.scroll-lit .word.just-lit {
+  text-shadow: 0 0 20px var(--accent-soft);
+}
+@media (prefers-reduced-motion: reduce) {
+  .h-section.scroll-lit .word { transition: none; }
+  .h-section.scroll-lit .word.just-lit { text-shadow: none; }
+}
+.lede {
+  font-size: var(--t-lede);
+  line-height: 1.5;
+  color: var(--fg-2);
+  max-width: 58ch;
+  text-wrap: pretty;
+}
+p { text-wrap: pretty; }
+
+/* ---------- rules ---------- */
+.rule { border: 0; height: 1px; background: var(--rule); margin: 0; }
+.rule-soft { border: 0; height: 1px; background: var(--rule-soft); margin: 0; }
+
+/* ---------- stats row ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.stats.three { grid-template-columns: repeat(3, 1fr); }
+.stat {
+  padding: 28px 24px 24px;
+  border-left: 1px solid var(--rule-soft);
+  min-height: 140px;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.stat:first-child { border-left: 0; }
+.stat-n {
+  font-family: var(--f-sans);
+  font-size: clamp(32px, 4.2vw, 52px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+}
+.stat-l {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-top: 20px;
+}
+@media (max-width: 768px) {
+  .stats, .stats.three { grid-template-columns: repeat(2, 1fr); }
+  .stat { border-left: 1px solid var(--rule-soft); padding: 22px 18px 18px; min-height: 120px; }
+  .stat:first-child, .stat:nth-child(3) { border-left: 0; }
+  .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--rule-soft); }
+  .stats.three .stat:nth-child(3) { grid-column: 1 / -1; border-left: 0; }
+  .stat-n { font-size: 36px; }
+}
+
+/* ---------- buttons ---------- */
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 12px 18px;
+  font-family: var(--f-mono); font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--fg);
+  color: var(--fg);
+  background: transparent;
+  transition: background .15s, color .15s;
+}
+.btn-primary { background: var(--fg); color: var(--bg); }
+.btn-primary:hover { background: transparent; color: var(--fg); }
+.btn-secondary:hover { background: var(--fg); color: var(--bg); }
+.btn .arrow { transition: transform .2s; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ---------- breadcrumbs (case-study pages) ---------- */
+.breadcrumbs {
+  border-bottom: 1px solid var(--rule);
+  padding: 18px 0;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.breadcrumbs .wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.breadcrumbs a {
+  color: var(--fg-3);
+  transition: color .15s;
+}
+.breadcrumbs a:hover { color: var(--accent); }
+.breadcrumbs .sep {
+  color: var(--fg-4);
+}
+.breadcrumbs [aria-current="page"] {
+  color: var(--fg);
+}
+
+/* ---------- section header ---------- */
+.section {
+  padding: clamp(72px, 10vw, 140px) 0;
+  border-top: 1px solid var(--rule);
+}
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: baseline;
+  margin-bottom: 56px;
+}
+.section-head .label {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-head .label svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+@media (max-width: 768px) {
+  .section-head { grid-template-columns: 1fr; gap: 20px; margin-bottom: 36px; }
+}
+
+/* ---------- footer ---------- */
+footer.site {
+  padding: 40px 0 60px;
+  border-top: 1px solid var(--rule);
+  color: var(--fg-3);
+  font-family: var(--f-mono);
+  font-size: 12px;
+}
+footer.site .site-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+footer.site a:hover { color: var(--accent); }
+
+/* ---------- case study: next-cta inner layout ---------- */
+.next-cta .next-cta-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: end;
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .next-cta .next-cta-row { grid-template-columns: 1fr; align-items: start; }
+}
+
+/* ---------- prose paragraph spacing utility (case study reflection) ---------- */
+.reflection .col p + p { margin-top: 16px; }
+
+/* ---------- scroll reveal (adopted from current dev site) ----------
+   Subtle fade-up on section enter: opacity 0→1 + translateY 20px→0.
+   JS (scroll-reveal.js) toggles .visible on IntersectionObserver. */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ---------- selection ---------- */
+::selection { background: var(--accent-soft); color: var(--fg); }

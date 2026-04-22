@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RelationSync. Documentation That Doesn't Break the Session. UX Meas.</title>
+<meta name="description" content="RelationSync case study. Voice-first therapy documentation. Speak naturally. AI structures the notes." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
+<link rel="stylesheet" href="shared.css" />
+<script src="theme.js"></script>
+
+<!-- Schema.org structured data: page = CreativeWork, author = Person (email exposed for crawlers) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "RelationSync: Documentation That Doesn't Break the Session",
+  "headline": "Documentation That Doesn't Break the Session",
+  "description": "RelationSync case study. Voice-first therapy documentation. Speak naturally. AI structures the notes.",
+  "url": "https://uxmeas.com/relationsync.html",
+  "author": {
+    "@type": "Person",
+    "name": "UX Meas",
+    "jobTitle": "Senior Product Designer",
+    "email": "hello@uxmeas.com",
+    "url": "https://uxmeas.com"
+  },
+  "about": ["Mobile App", "Concept", "AI", "Voice"]
+}
+</script>
+
+<style>
+  /* =========================================================
+     Case study styles (shared across all case studies)
+     ========================================================= */
+
+  .cs-hero {
+    padding: clamp(56px, 9vw, 112px) 0 clamp(40px, 6vw, 80px);
+  }
+  .cs-hero .eyebrow { margin-bottom: 32px; }
+  .cs-hero h1 { margin-bottom: 28px; max-width: 18ch; }
+  .cs-hero .sub {
+    font-size: var(--t-lede);
+    color: var(--fg-2);
+    max-width: 50ch;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cs-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .cs-meta .m {
+    padding: 22px 20px 24px;
+    border-left: 1px solid var(--rule-soft);
+  }
+  .cs-meta .m:first-child { border-left: 0; }
+  .cs-meta .k {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 14px;
+  }
+  .cs-meta .v {
+    font-size: 14px;
+    color: var(--fg);
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 900px) {
+    .cs-meta { grid-template-columns: 1fr 1fr; }
+    .cs-meta .m:nth-child(odd) { border-left: 0; }
+    .cs-meta .m:nth-child(n+3) { border-top: 1px solid var(--rule-soft); }
+  }
+  @media (max-width: 560px) {
+    .cs-meta { grid-template-columns: 1fr; }
+    .cs-meta .m { border-left: 0; border-top: 1px solid var(--rule-soft); }
+    .cs-meta .m:first-child { border-top: 0; }
+  }
+
+  .prose-section {
+    padding: clamp(64px, 9vw, 120px) 0;
+    border-top: 1px solid var(--rule);
+  }
+  .prose-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: baseline;
+  }
+  .prose-grid > .label {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .prose-grid > .label svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+  .prose-grid .h {
+    font-size: clamp(28px, 3.6vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 28px;
+    max-width: 22ch;
+  }
+  .prose-grid p {
+    font-size: 17px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0 0 20px;
+    max-width: 62ch;
+    font-variant-numeric: tabular-nums;
+  }
+  .prose-grid .pullquote {
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+    max-width: 30ch;
+  }
+  .prose-grid .cite {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 24px;
+  }
+  .prose-grid .hmw {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0;
+    margin-top: 36px;
+  }
+  .prose-grid .hmw .tag {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .prose-grid .hmw p {
+    font-size: 20px;
+    color: var(--fg);
+    margin: 0;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    max-width: 60ch;
+  }
+
+  @media (max-width: 900px) {
+    .prose-grid { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  .answer-beads { display: flex; flex-direction: column; gap: 0; }
+  .bead { padding: 40px 0; border-top: 1px solid var(--rule-soft); }
+  .bead:first-child { border-top: 0; padding-top: 8px; }
+  .bead-n {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 16px;
+  }
+  .bead h4 {
+    font-size: clamp(24px, 2.8vw, 32px);
+    letter-spacing: -0.015em;
+    font-weight: 500;
+    margin: 0 0 18px;
+    max-width: 22ch;
+  }
+  .bead p {
+    font-size: 16px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0 0 12px;
+    max-width: 62ch;
+    font-variant-numeric: tabular-nums;
+  }
+  .bead p:last-child { margin-bottom: 0; }
+
+  .screens { display: grid; gap: 0; border-top: 1px solid var(--rule-soft); }
+  .screen {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 48px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: start;
+  }
+  .screen .tag {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    color: var(--fg-3);
+    padding-top: 8px;
+  }
+  .screen h4 {
+    font-size: clamp(22px, 2.6vw, 30px);
+    letter-spacing: -0.015em;
+    font-weight: 500;
+    margin: 0 0 14px;
+  }
+  .screen p {
+    font-size: 16px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 58ch;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 700px) {
+    .screen { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .result-block {
+    padding: 36px 36px 36px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .result-block:nth-child(even) {
+    border-left: 1px solid var(--rule-soft);
+    padding-left: 36px;
+  }
+  .result-block .tag {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 16px;
+  }
+  .result-block p {
+    font-size: 15.5px;
+    color: var(--fg-2);
+    line-height: 1.55;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 700px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .result-block, .result-block:nth-child(even) {
+      padding: 28px 0;
+      border-left: 0;
+      padding-left: 0;
+    }
+  }
+
+  .quotes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .quote { padding: 48px 40px 40px 0; }
+  .quote + .quote {
+    padding-left: 40px;
+    border-left: 1px solid var(--rule-soft);
+    padding-right: 0;
+  }
+  .quote .mark {
+    font-family: var(--f-mono);
+    font-size: 28px;
+    color: var(--fg-3);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .quote blockquote {
+    margin: 0 0 28px;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    color: var(--fg);
+    max-width: 38ch;
+  }
+  .quote .attr {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--fg-3);
+    line-height: 1.5;
+  }
+  .quote .attr .n {
+    color: var(--fg);
+    display: block;
+    margin-bottom: 2px;
+  }
+  @media (max-width: 768px) {
+    .quotes { grid-template-columns: 1fr; }
+    .quote { padding: 36px 0; border-bottom: 1px solid var(--rule-soft); }
+    .quote + .quote { padding-left: 0; border-left: 0; }
+    .quote:last-child { border-bottom: 0; }
+  }
+
+  .reflection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  .reflection .col { border-top: 1px solid var(--rule-soft); padding-top: 24px; }
+  .reflection .tag {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 18px;
+  }
+  .reflection p {
+    font-size: 16px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0 0 16px;
+    max-width: 58ch;
+    font-variant-numeric: tabular-nums;
+  }
+  .reflection p:last-child { margin-bottom: 0; }
+  @media (max-width: 768px) {
+    .reflection { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  .next-cta {
+    padding: clamp(64px, 9vw, 120px) 0;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+  }
+  .next-cta h3 {
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin: 0;
+    max-width: 16ch;
+  }
+  .next-cta .tag {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .next-cta .tag svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+  @media (max-width: 700px) {
+    .next-cta { grid-template-columns: 1fr; align-items: start; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="index.html" aria-label="UX Meas, home">
+      <span class="dot" aria-hidden="true"></span>
+      UX/MEAS
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <div class="wrap">
+    <a href="index.html">Work</a>
+    <span class="sep">/</span>
+    <span aria-current="page">RelationSync</span>
+  </div>
+</nav>
+
+<main id="main">
+
+<section class="cs-hero reveal">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span>CS-10</span>
+      <span class="sep">·</span>
+      <span>RELATIONSYNC</span>
+      <span class="sep">·</span>
+      <span>MOBILE APP</span>
+      <span class="sep">·</span>
+      <span>CONCEPT</span>
+    </div>
+    <h1 class="h-case">Documentation That Doesn't Break the Session</h1>
+    <p class="sub">Voice-first therapy documentation. Speak naturally. AI structures the notes.</p>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="wrap">
+    <div class="cs-meta">
+      <div class="m">
+        <div class="k">Role</div>
+        <div class="v">Product Designer</div>
+      </div>
+      <div class="m">
+        <div class="k">Type</div>
+        <div class="v">Mobile App Concept</div>
+      </div>
+      <div class="m">
+        <div class="k">Tools</div>
+        <div class="v">Figma</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Hero stats" class="reveal">
+  <div class="wrap">
+    <div class="stats three">
+      <div class="stat">
+        <div class="stat-n">35 screens</div>
+        <div class="stat-l">Full concept flow designed, from onboarding through session documentation and record review.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">19 components</div>
+        <div class="stat-l">Reusable design system built for clinical context.</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">4-screen onboarding</div>
+        <div class="stat-l">Structured sequence that establishes privacy, data handling, and AI behavior before the first recording.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="octagon-alert"></i>( 01 ) The Problem</div>
+      <div>
+        <p>Typing notes during a session means breaking eye contact. Every therapist faces the same structural tension: documentation is a clinical and legal requirement, but the act of documenting competes directly with the act of being present. The therapist's attention is split between the person in front of them and the screen in their hands. Typing after sessions relies on memory. The 20 minutes between appointments is the only window before the next client arrives. The keyboard is the wrong tool for a clinical context where the most important skill is being present. But the documentation still has to happen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="compass"></i>( 02 ) How It Was Framed</div>
+      <div>
+        <p>The insight was timing. Therapists don't need to document during sessions or spend evenings on notes. They need to capture observations in the 2 to 3 minute window between sessions. When impressions are fresh, transition time is limited, and the next client is waiting. That window is too short for structured typing. Voice in that window is natural. The design brief became: build for those 2 to 3 minutes.</p>
+
+        <div class="hmw">
+          <div class="tag">HMW</div>
+          <p>How might we help therapists document sessions without disrupting the therapeutic connection, using voice capture with AI structuring observations into clinical records?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="lightbulb"></i>( 03 ) The Answer</div>
+      <div>
+        <div class="answer-beads">
+          <div class="bead">
+            <div class="bead-n">A / 01</div>
+            <h4>Voice journal removed the keyboard from clinical documentation</h4>
+            <p>The core interaction is one tap to record. Therapists speak observations naturally in the transition window between appointments. <em>"Client presented heightened anxiety this session, mentioned work stress for the third week running, discussed coping strategy review for next session."</em> The AI transcribes, identifies clinical themes, and organizes the content into structured client records without requiring the therapist to format anything. The record is searchable by theme, date, and client. Useful both as session documentation and as longitudinal reference material.</p>
+          </div>
+          <div class="bead">
+            <div class="bead-n">A / 02</div>
+            <h4>Calm design system reduced adoption resistance</h4>
+            <p>Clinical tools are typically designed to look clinical. Dense data, compact layouts, high information density. The premise was that a documentation tool for a wellness context should feel like the wellness context it serves. Soft background colors, generous padding, large touch targets, and minimal cognitive load at every interaction point. The opening screen shows a single record button. The architecture is simple enough that a therapist unfamiliar with AI tools can use it correctly on the first session without instruction.</p>
+          </div>
+          <div class="bead">
+            <div class="bead-n">A / 03</div>
+            <h4>Guided onboarding removed uncertainty before the first recording</h4>
+            <p>Therapists vary significantly in their comfort with AI-mediated documentation. The guided onboarding flow, 4 screens, established what the tool captures, how it's stored, what happens to the voice recording after transcription, and what the AI does with the content. Each screen answered one question. The onboarding didn't train the user on features. It removed the uncertainty that would have prevented a first recording from happening.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="layout-grid"></i>( 04 ) Key Screen Annotations</div>
+      <div>
+        <div class="screens">
+          <div class="screen">
+            <div class="tag">SCREEN 01</div>
+            <div>
+              <h4>Voice Journal Recording Screen</h4>
+              <p>Large central record button. Passive session timer in the upper corner. No text input visible. The screen communicates clearly: the only task here is speaking. Everything else is handled.</p>
+            </div>
+          </div>
+          <div class="screen">
+            <div class="tag">SCREEN 02</div>
+            <div>
+              <h4>Client Record with AI-Structured View</h4>
+              <p>Notes organized by session date with theme tags generated from content. Searchable. The AI-generated structure is visible but editable. Therapists can adjust categories and add annotations. The record is theirs. The AI organizes it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="trending-up"></i>( 05 ) Results</div>
+      <div>
+        <div class="results-grid">
+          <div class="result-block">
+            <p>Voice-first documentation flow · Keyboard removed from core interaction · Calm design system · 4-screen guided onboarding · Client records organized by session and AI-detected theme</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="book-open"></i>( 06 ) Reflection</div>
+      <div>
+        <div class="reflection">
+          <div class="col">
+            <div class="tag">What worked</div>
+            <p>Voice-first interaction removed the keyboard entirely. The most disruptive element of existing documentation workflows. Without requiring therapists to change how they think about note-taking. Calm design system reduced the tool's perceived clinical burden, making adoption feel lower-stakes.</p>
+          </div>
+          <div class="col">
+            <div class="tag">What to do differently</div>
+            <p>Validate with licensed therapists before advancing the concept. HIPAA compliance requirements, state licensing board rules around session documentation, and malpractice considerations all shape what AI-mediated documentation can legally do in a clinical context. Those constraints should drive design decisions, not follow them. Prototype the AI structuring accuracy early. The concept's entire value proposition depends on the AI producing clinically useful structure from natural speech. That needs to be tested before UI polish matters.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="next-cta reveal">
+  <div class="wrap next-cta-row">
+    <div>
+      <div class="tag"><i data-lucide="arrow-right"></i>( 07 )</div>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-secondary" href="index.html#work">All Case Studies <span class="arrow">→</span></a>
+      <a class="btn btn-primary" href="mailto:hello@uxmeas.com">Let's Talk <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Lucide icons: hydrates all <i data-lucide="..."> elements on DOMContentLoaded -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>document.addEventListener('DOMContentLoaded', () => window.lucide && window.lucide.createIcons());</script>
+<script src="scroll-reveal.js" defer></script>
+
+<footer class="site">
+  <div class="wrap site-footer-row">
+    <span>© 2026 UX Meas</span>
+    <a href="mailto:hello@uxmeas.com">hello@uxmeas.com</a>
+  </div>
+</footer>
+
+</body>
+</html>

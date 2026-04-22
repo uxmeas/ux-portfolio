@@ -1,0 +1,728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DealFlow. Deal Management for Private Capital Markets. UX Meas.</title>
+<meta name="description" content="DealFlow case study. $2B+ processed. 85+ partnerships across 6 continents. From co-founder to TSX-V IPO." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
+<link rel="stylesheet" href="shared.css" />
+<script src="theme.js"></script>
+
+<!-- Schema.org structured data: page = CreativeWork, author = Person (email exposed for crawlers) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": "DealFlow: Deal Management for Private Capital Markets",
+  "headline": "Deal Management for Private Capital Markets",
+  "description": "DealFlow case study. $2B+ processed. 85+ partnerships across 6 continents. From co-founder to TSX-V IPO.",
+  "url": "https://uxmeas.com/dealflow.html",
+  "author": {
+    "@type": "Person",
+    "name": "UX Meas",
+    "jobTitle": "Senior Product Designer",
+    "email": "hello@uxmeas.com",
+    "url": "https://uxmeas.com"
+  },
+  "about": [
+    "Product Design",
+    "Fintech UX",
+    "Deal Management",
+    "Private Capital Markets"
+  ]
+}
+</script>
+
+<style>
+  /* =========================================================
+     Case study styles (DealFlow)
+     ========================================================= */
+
+  .cs-hero {
+    padding: clamp(56px, 9vw, 112px) 0 clamp(40px, 6vw, 80px);
+  }
+  .cs-hero .eyebrow { margin-bottom: 32px; }
+  .cs-hero h1 { margin-bottom: 28px; max-width: 18ch; }
+  .cs-hero .sub {
+    font-size: var(--t-lede);
+    color: var(--fg-2);
+    max-width: 50ch;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* meta table */
+  .cs-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .cs-meta .m {
+    padding: 22px 20px 24px;
+    border-left: 1px solid var(--rule-soft);
+  }
+  .cs-meta .m:first-child { border-left: 0; }
+  .cs-meta .k {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 14px;
+  }
+  .cs-meta .v {
+    font-size: 14px;
+    color: var(--fg);
+    line-height: 1.45;
+    font-variant-numeric: tabular-nums;
+  }
+  .cs-meta .v .mono {
+    font-family: var(--f-mono);
+    font-size: 13px;
+  }
+  @media (max-width: 900px) {
+    .cs-meta { grid-template-columns: 1fr 1fr; }
+    .cs-meta .m:nth-child(odd) { border-left: 0; }
+    .cs-meta .m:nth-child(n+3) { border-top: 1px solid var(--rule-soft); }
+  }
+  @media (max-width: 560px) {
+    .cs-meta { grid-template-columns: 1fr; }
+    .cs-meta .m { border-left: 0; border-top: 1px solid var(--rule-soft); }
+    .cs-meta .m:first-child { border-top: 0; }
+  }
+
+  /* prose section */
+  .prose-section {
+    padding: clamp(64px, 9vw, 120px) 0;
+    border-top: 1px solid var(--rule);
+  }
+  .prose-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: baseline;
+  }
+  .prose-grid > .label {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .prose-grid > .label svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+  .prose-grid .h {
+    font-size: clamp(28px, 3.6vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 28px;
+    max-width: 22ch;
+  }
+  .prose-grid p {
+    font-size: 17px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0 0 20px;
+    max-width: 62ch;
+    font-variant-numeric: tabular-nums;
+  }
+  .prose-grid .pullquote {
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+    padding-left: 0;
+    max-width: 30ch;
+  }
+  .prose-grid .cite {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 24px;
+  }
+  .prose-grid .hmw {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 28px 0;
+    margin-top: 36px;
+  }
+  .prose-grid .hmw .tag {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .prose-grid .hmw p {
+    font-size: 20px;
+    color: var(--fg);
+    margin: 0;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+    max-width: 60ch;
+  }
+
+  @media (max-width: 900px) {
+    .prose-grid { grid-template-columns: 1fr; gap: 20px; }
+    .prose-grid > .label { padding-top: 0; }
+  }
+
+  /* "The Answer" three-bead structure */
+  .answer-beads {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .bead {
+    padding: 40px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .bead:first-child { border-top: 0; padding-top: 8px; }
+  .bead-n {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 16px;
+  }
+  .bead h4 {
+    font-size: clamp(24px, 2.8vw, 32px);
+    letter-spacing: -0.015em;
+    font-weight: 500;
+    margin: 0 0 18px;
+    max-width: 22ch;
+  }
+  .bead p {
+    font-size: 16px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 62ch;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* screen annotation blocks (no imagery) */
+  .screens {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .screen {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 48px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    align-items: start;
+  }
+  .screen .tag {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    color: var(--fg-3);
+    padding-top: 8px;
+  }
+  .screen h4 {
+    font-size: clamp(22px, 2.6vw, 30px);
+    letter-spacing: -0.015em;
+    font-weight: 500;
+    margin: 0 0 14px;
+  }
+  .screen p {
+    font-size: 16px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 58ch;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 700px) {
+    .screen { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  }
+
+  /* Results cluster */
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .result-block {
+    padding: 36px 36px 36px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .result-block:nth-child(even) {
+    border-left: 1px solid var(--rule-soft);
+    padding-left: 36px;
+  }
+  .result-block .tag {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 16px;
+  }
+  .result-block p {
+    font-size: 15.5px;
+    color: var(--fg-2);
+    line-height: 1.55;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 700px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .result-block, .result-block:nth-child(even) {
+      padding: 28px 0;
+      border-left: 0;
+      padding-left: 0;
+    }
+  }
+
+  /* client quotes — side by side */
+  .quotes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .quote {
+    padding: 48px 40px 40px 0;
+  }
+  .quote + .quote {
+    padding-left: 40px;
+    border-left: 1px solid var(--rule-soft);
+    padding-right: 0;
+  }
+  .quote .mark {
+    font-family: var(--f-mono);
+    font-size: 28px;
+    color: var(--fg-3);
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .quote blockquote {
+    margin: 0 0 28px;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.45;
+    letter-spacing: -0.005em;
+    color: var(--fg);
+    max-width: 38ch;
+  }
+  .quote .attr {
+    font-family: var(--f-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.04em;
+    color: var(--fg-3);
+    line-height: 1.5;
+  }
+  .quote .attr .n {
+    color: var(--fg);
+    display: block;
+    margin-bottom: 2px;
+  }
+  @media (max-width: 768px) {
+    .quotes { grid-template-columns: 1fr; }
+    .quote { padding: 36px 0; border-bottom: 1px solid var(--rule-soft); }
+    .quote + .quote { padding-left: 0; border-left: 0; }
+    .quote:last-child { border-bottom: 0; }
+  }
+
+  /* reflection block */
+  .reflection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+  }
+  .reflection .col {
+    border-top: 1px solid var(--rule-soft);
+    padding-top: 24px;
+  }
+  .reflection .tag {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 18px;
+  }
+  .reflection p {
+    font-size: 16px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 58ch;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 768px) {
+    .reflection { grid-template-columns: 1fr; gap: 32px; }
+  }
+
+  /* next / back */
+  .next-cta {
+    padding: clamp(64px, 9vw, 120px) 0;
+    border-top: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+  }
+  .next-cta h3 {
+    font-size: clamp(28px, 4vw, 48px);
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin: 0;
+    max-width: 16ch;
+  }
+  .next-cta .tag {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .next-cta .tag svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+  @media (max-width: 700px) {
+    .next-cta { grid-template-columns: 1fr; align-items: start; }
+  }
+
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- =================== NAV =================== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="index.html" aria-label="UX Meas, home">
+      <span class="dot" aria-hidden="true"></span>
+      UX/MEAS
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <div class="wrap">
+    <a href="index.html">Work</a>
+    <span class="sep">/</span>
+    <span aria-current="page">DealFlow</span>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- =================== HERO =================== -->
+<section class="cs-hero reveal">
+  <div class="wrap">
+    <div class="eyebrow">
+      <span>CS-02</span>
+      <span class="sep">·</span>
+      <span>DEALFLOW</span>
+      <span class="sep">·</span>
+      <span>FINTECH</span>
+      <span class="sep">·</span>
+      <span>ENTERPRISE</span>
+    </div>
+    <h1 class="h-case">Deal Management for Private Capital Markets</h1>
+    <p class="sub">$2B+ processed. 85+ partnerships across 6 continents. From co-founder to TSX-V IPO.</p>
+  </div>
+</section>
+
+<!-- Meta table -->
+<section class="reveal">
+  <div class="wrap">
+    <div class="cs-meta">
+      <div class="m">
+        <div class="k">Role</div>
+        <div class="v">
+          Product Designer and Co-founder <span class="mono">(2008 to 2014)</span><br/>
+          Lead Product Designer <span class="mono">(2014 to 2020)</span><br/>
+          Head of Product Design <span class="mono">(2020 to 2025)</span>
+        </div>
+      </div>
+      <div class="m">
+        <div class="k">Timeline</div>
+        <div class="v"><span class="mono">2014 to 2025</span><br/>Private capital markets pivot through DealFlow Mesh.</div>
+      </div>
+      <div class="m">
+        <div class="k">Team</div>
+        <div class="v">3 people to 45 employees. Calgary, Vancouver, Prague. <span class="mono">TSX-V IPO 2017.</span></div>
+      </div>
+      <div class="m">
+        <div class="k">Anchor clients</div>
+        <div class="v">Canaccord Genuity, Raymond James, Echelon Wealth Partners, Sprott Capital Partners, Markette Ventures.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hero stats -->
+<section aria-label="Hero stats" class="reveal">
+  <div class="wrap">
+    <div class="stats three">
+      <div class="stat">
+        <div class="stat-n">$2B+</div>
+        <div class="stat-l">Total capital processed on platform over 17 years</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">$647M</div>
+        <div class="stat-l">Facilitated in 2023 alone. 71% YoY growth against market headwinds</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">98%</div>
+        <div class="stat-l">Reduction in NIGO (not-in-good-order) documents</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== THE PROBLEM =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="octagon-alert"></i>( 01 ) The Problem</div>
+      <div>
+        <p class="pullquote">"Everything was done through email, so there was just a lot of room for error and things took way longer than they needed to."</p>
+        <p class="cite">Canaccord Genuity, describing the pre-platform state</p>
+
+        <p>40% of subscription agreements arrived with errors at quality check stage. Wrong amounts. Missing signatures. Expired accreditation.</p>
+        <p>Investment dealers at Canaccord, Raymond James, Echelon, and Sprott were managing private placements through email chains and spreadsheets. ECM teams spent weeks chasing documents instead of closing deals.</p>
+        <p>Every handoff across the deal lifecycle (offering creation, onboarding, compliance, subscription, funding, distribution) was a manual spreadsheet or email.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== HOW IT WAS FRAMED =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="compass"></i>( 02 ) How It Was Framed</div>
+      <div>
+        <p>Research surfaced the pattern across every dealer: the platform's value wasn't any single feature. It was the elimination of every handoff.</p>
+        <p>Dealers weren't paying for subscription agreement software or for offering wizards. They were paying for one source of truth that every stakeholder (ECM team, compliance, wealth management, legal, issuer, investor) could trust.</p>
+        <p>The team framed the problem across three structural needs: issuers needed to launch offerings without waiting weeks for legal setup. Investors needed transparency into deal status and portfolio performance. Compliance needed every transaction auditable end to end.</p>
+
+        <div class="hmw">
+          <div class="tag">HMW</div>
+          <p>How might we replace email-based private placement management with an end-to-end platform that reduces close time by 48% and eliminates document errors, for investment dealers operating across multiple regulatory jurisdictions?</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== THE ANSWER =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="lightbulb"></i>( 03 ) The Answer</div>
+      <div>
+        <div class="answer-beads">
+          <div class="bead">
+            <div class="bead-n">A / 01</div>
+            <h4>End-to-end beat best-of-breed</h4>
+            <p>Competitors handled pieces of the deal. The team chose to build across the full lifecycle. Offering creation through funding, distribution, and ongoing investor reporting. Every stakeholder worked from the same source of truth. That architectural choice is what drove 97% customer retention through 2023 (3% quarterly churn per board reporting). Dealers didn't leave because leaving meant rebuilding their entire workflow across five vendors.</p>
+          </div>
+          <div class="bead">
+            <div class="bead-n">A / 02</div>
+            <h4>DealFlow Mesh connected the industry</h4>
+            <p>DealFlow Mesh launched 2023 as the industry's first private capital network. Real-time book building across ECM teams, wealth management, law firms, and issuers. Backed by $510K in NRC IRAP funding ($350K in 2022, $160K in 2023). The team designed the coordination UX across a network where every participant had different priorities, different workflows, and different regulatory obligations.</p>
+          </div>
+          <div class="bead">
+            <div class="bead-n">A / 03</div>
+            <h4>Token-based white-labeling served 154 clients</h4>
+            <p>Every dealer needed to present the platform as their own branded experience. Building custom designs per client would have been commercially impossible. Design tokens handled brand adaptation. Logos, colors, and typography switched per deployment while the underlying component architecture never forked. One system. 154 implementations across 17 Enterprise tier, 50+ Pro tier, and 10+ Starter tier clients. 85+ partnerships across 6 continents by Q2 2018.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== KEY SCREEN ANNOTATIONS =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="layout-grid"></i>( 04 ) Key Screen Annotations</div>
+      <div>
+        <div class="screens">
+          <div class="screen">
+            <div class="tag">SCREEN 01</div>
+            <div>
+              <h4>Investor Dashboard</h4>
+              <p>Investors see their full portfolio across all holdings, not just the current offering. Distributions, documents, and deal status in one view. This replaced the standard approach of one email per event.</p>
+            </div>
+          </div>
+          <div class="screen">
+            <div class="tag">SCREEN 02</div>
+            <div>
+              <h4>Deal Management View</h4>
+              <p>ECM teams see every offering's status across all investors simultaneously. Funding progress, compliance completion, pending subscriptions, and upcoming closing deadlines. The dashboard that replaced a wall of spreadsheets.</p>
+            </div>
+          </div>
+          <div class="screen">
+            <div class="tag">SCREEN 03</div>
+            <div>
+              <h4>DealFlow Mesh Book</h4>
+              <p>Real-time book building interface where dealers saw commitment levels, allocation status, and counterparty activity as it happened. Previously a multi-day reconciliation process. Now a live canvas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== RESULTS =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="trending-up"></i>( 05 ) Results</div>
+      <div>
+        <div class="results-grid">
+          <div class="result-block">
+            <div class="tag">Platform scale</div>
+            <p>$2B+ capital processed across 17 years. 154 white-label implementations (17 Enterprise tier, 50+ Pro tier, 10+ Starter tier). 85+ partnerships across 6 continents. 20+ regulatory jurisdictions.</p>
+          </div>
+          <div class="result-block">
+            <div class="tag">2023 performance</div>
+            <p>$647M facilitated (71% YoY). $545M from enterprise customers alone, up from $318M in 2022. 55% more deals launched. 19,018 transactions. Average transaction value grew from $48K to $78K (63% increase).</p>
+          </div>
+          <div class="result-block">
+            <div class="tag">Operational impact</div>
+            <p>48% faster deal close for ECM teams. 98% reduction in NIGO documents. 97% customer retention (Q4 2023, 3% quarterly churn).</p>
+          </div>
+          <div class="result-block">
+            <div class="tag">Extended client roster</div>
+            <p>Cormark Securities, TSX Trust, ATB Financial, MaRS Discovery District, Leede Jones Gable, Mackie Research Capital, plus international deployments including ClearlySo (UK impact investment) and WeAreStarting Srl (Italian equity crowdfunding, MiFID-compliant, 2017 ING Challenge winner).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== CLIENT QUOTES =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="quote"></i>( 06 ) Client Quote</div>
+      <div>
+        <div class="quotes">
+          <div class="quote">
+            <div class="mark">"</div>
+            <blockquote>Katipult provides a powerful, cloud-based infrastructure that will allow us to manage our private placement activities in a digital environment and improve coordination across teams and geographies.</blockquote>
+            <div class="attr">
+              <span class="n">Pat Burke</span>
+              President Capital Markets-Canada<br/>
+              Canaccord Genuity
+            </div>
+          </div>
+          <div class="quote">
+            <div class="mark">"</div>
+            <blockquote>Capital markets are modernizing, and firms must adapt. Katipult's platform shifts private placements into the digital era, creating efficiencies across compliance and client servicing while boosting deal volumes.</blockquote>
+            <div class="attr">
+              <span class="n">David Cusson</span>
+              CEO<br/>
+              Echelon Wealth Partners
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== REFLECTION =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="prose-grid">
+      <div class="label"><i data-lucide="book-open"></i>( 07 ) Reflection</div>
+      <div>
+        <div class="reflection">
+          <div class="col">
+            <div class="tag">What worked</div>
+            <p>Building the full lifecycle in one platform created a competitive moat that individual feature competitors couldn't match. Token-based white-labeling proved that design systems are also business decisions. 154 implementations with zero per-client design overhead.</p>
+            <p>Growing design practice from 3-person startup to public company with design at the table demonstrated that UX leadership drives revenue in enterprise fintech.</p>
+            <p>The design work also outlasted the company: PropertyBridges.com (P2P property investment, Central Bank of Ireland regulated, 8,000+ investors), WeAreStarting.it (Italian equity crowdfunding, 2,500+ users), and MaRS VX (Toronto innovation hub venture exchange) are all still operational years after launch.</p>
+          </div>
+          <div class="col">
+            <div class="tag">What to do differently</div>
+            <p>A formalized design system from year one, not year five. The first five years were ad hoc components that created consistency debt requiring full audits before each major client launch.</p>
+            <p>Earlier structured user research. The founding team relied on intuition and client feedback for too long before establishing formal research practices.</p>
+            <p>Cleaner separation between DealFlow Accounts (investor-facing onboarding) and DealFlow Core (admin-facing deal management) from the product architecture level. The two workflows got tangled in the same information architecture for years before being split.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== NEXT =================== -->
+<section class="next-cta reveal">
+  <div class="wrap next-cta-row">
+    <div>
+      <div class="tag"><i data-lucide="arrow-right"></i>( 08 )</div>
+    </div>
+    <div class="btn-row">
+      <a class="btn btn-secondary" href="index.html#work">All Case Studies <span class="arrow">→</span></a>
+      <a class="btn btn-primary" href="mailto:hello@uxmeas.com">Let's Talk <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Lucide icons: hydrates all <i data-lucide="..."> elements on DOMContentLoaded -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>document.addEventListener('DOMContentLoaded', () => window.lucide && window.lucide.createIcons());</script>
+<script src="scroll-reveal.js" defer></script>
+
+<footer class="site">
+  <div class="wrap site-footer-row">
+    <span>© 2026 UX Meas</span>
+    <a href="mailto:hello@uxmeas.com">hello@uxmeas.com</a>
+  </div>
+</footer>
+
+</body>
+</html>

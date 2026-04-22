@@ -2,17 +2,35 @@
 
 **Last updated**: 2026-04-16
 **Priority**: #1a (job hunting + portfolio)
-**Stage**: LIVE — production deployed
+**Stage**: LIVE (v2 production) — v3 in progress on dev
 **Owners**: Ana (delivery gates), Rio (job hunting status + marketing), Kai (design QA)
+
+---
+
+## Deploy Spec
+
+**Repo:** github.com/uxmeas/ux-portfolio
+**Hosting:** Cloudflare Pages (project: `uxmeas`)
+**Build:** Static site — no build command, output directory: `/` (root)
+**DNS:** Cloudflare zone (MZM Labs account)
+**Local path:** `/Users/pheakmeas/Documents/Development/uxmeas`
+
+| Branch | URL | Version | Auto-deploy |
+|--------|-----|---------|-------------|
+| main | uxmeas.com / uxmeas.pages.dev | v2 (production) | Yes |
+| staging | staging.uxmeas.pages.dev | v2 | Yes |
+| dev | dev.uxmeas.pages.dev | v3 (in progress) | Yes |
+
+**Promote flow:** dev → staging → main (one-directional only)
+**Main gate:** Sage QA + CEO approval required before staging → main
 
 ---
 
 ## What EXISTS (do NOT recreate)
 
 ### Portfolio Site (LIVE)
-- https://uxmeas.com (Netlify, auto-deploys from main)
+- https://uxmeas.com (Cloudflare Pages, auto-deploys from main)
 - Static HTML/CSS/JS
-- Contact: inline form (Netlify Forms)
 - GA4: G-9HVVW1GBEC
 
 ### Case Studies (3 LIVE, 5 COMING SOON)
@@ -230,7 +248,7 @@ Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
 
 ## Known Issues
 - og:image missing
-- Contact form untested / Netlify Forms notification not set up
+- Contact form untested (was Netlify Forms — needs replacement on Cloudflare Pages)
 - Hero laptop images in case studies may need dark/light swap (compliance-ux currently shows light dashboard, dealflow shows dark — verify against .pen intent)
 
 ---
