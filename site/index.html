@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>UX Meas. Senior Product Designer.</title>
-<meta name="description" content="Senior product designer with 18 years across fintech, developer tools, and AI-native products. Co-founded a company that grew from 3 people to a TSX-V public company. Available for senior product design roles in Calgary plus remote." />
+<title>UX Meas. Founding designer → TSX-V IPO. $2B+ processed.</title>
+<meta name="description" content="Founding designer of a TSX-V public fintech. $2B+ processed across 20+ jurisdictions. 18 years across fintech, developer tools, and AI-native products. Senior product design roles, Calgary plus remote." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
@@ -18,9 +18,12 @@
   "@type": "Person",
   "name": "UX Meas",
   "jobTitle": "Senior Product Designer",
-  "description": "Senior product designer with 18 years across fintech, developer tools, and AI-native products. Co-founded a company that grew from 3 people to a TSX-V public company.",
+  "description": "Founding designer of a TSX-V public fintech. $2B+ processed across 20+ jurisdictions. 18 years across fintech, developer tools, and AI-native products.",
   "email": "hello@uxmeas.com",
   "url": "https://uxmeas.com",
+  "sameAs": [
+    "https://linkedin.com/in/uxmeas"
+  ],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Calgary",
@@ -50,231 +53,300 @@
 
   /* hero */
   .hero {
-    padding: clamp(80px, 12vw, 160px) 0 clamp(48px, 7vw, 96px);
+    padding: clamp(80px, 12vw, 160px) 0 clamp(56px, 8vw, 112px);
   }
   .hero .eyebrow { margin-bottom: 40px; }
-  .hero h1 { margin-bottom: 36px; }
+  .hero h1 { margin-bottom: 32px; }
   .hero h1 .ln { display: block; }
   .hero h1 .ln-2 { color: var(--accent); }
-  .hero .lede { margin-bottom: 44px; }
-  .hero .meta-grid {
+  .hero .lede { margin-bottom: 36px; max-width: 52ch; }
+
+  /* hero-grid: headline column on the left, narrower stats rail on the right.
+     align-items: stretch — stats column fills full height of headline column,
+     internal hairlines align top to bottom.
+     Collapses to single column below 900px, then 2x2 grid. */
+  .hero-grid {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 32px;
-    align-items: end;
-  }
-  @media (max-width: 768px) {
-    .hero .meta-grid { grid-template-columns: 1fr; }
+    grid-template-columns: minmax(0, 1fr) minmax(290px, 320px);
+    gap: clamp(24px, 3vw, 48px);
+    align-items: stretch;
   }
 
-  /* work list — 3-column card grid, steps down responsively */
-  .work-list {
+  /* stats column inside hero. 4 rows distribute evenly across full column height.
+     Hairlines between rows. Number stacks above label so column stays narrow.
+     Slides in from the right on first view. */
+  .hero-stats {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    padding-top: 24px;
-    border-top: 1px solid var(--rule);
+    grid-template-rows: repeat(4, 1fr);
   }
-  @media (max-width: 1100px) {
-    .work-list { grid-template-columns: 1fr 1fr; }
-  }
-  .work-row {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    border: 1px solid var(--rule-soft);
+  .hstat {
     position: relative;
-    background: var(--bg);
-    transition: background .15s ease-out, border-color .15s ease-out;
-    overflow: hidden;
-  }
-  .work-row:hover {
-    background: var(--bg-2);
-    border-color: var(--accent);
-  }
-
-  /* visual placeholder: 16:10 neutral grey block in both themes.
-     uses dedicated placeholder tokens so it stays grey while other lines
-     may carry a blue tint (dark mode). */
-  .row-visual {
-    aspect-ratio: 16 / 10;
-    width: 100%;
-    background: var(--placeholder-bg);
-    border-bottom: 1px solid var(--placeholder-border);
-    transition: background .15s ease-out;
-  }
-  .work-row:hover .row-visual {
-    background: var(--placeholder-border);
-  }
-
-  /* card body: padded content stack, fills remaining height */
-  .row-body {
-    padding: 24px 26px 24px;
+    padding: 16px 0;
+    border-top: 1px solid var(--rule-soft);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 12px;
-    flex-grow: 1;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity .55s ease-out, transform .55s ease-out;
   }
+  .hstat:first-child { border-top: 0; }
+  .hstat.in { opacity: 1; transform: translateX(0); }
 
-  .row-n {
-    font-family: var(--f-mono);
-    font-size: 12px;
-    color: var(--fg-3);
-  }
-  .row-title {
+  .hstat-n {
     font-family: var(--f-sans);
-    font-size: 22px;
-    letter-spacing: -0.01em;
+    font-size: var(--t-stat-n);
     font-weight: 500;
-    line-height: 1.15;
-    color: var(--fg);
-  }
-  .row-title .sub {
-    display: block;
-    color: var(--fg-3);
-    font-weight: 400;
-    margin-top: 4px;
-    font-size: 16px;
-  }
-  .row-desc {
-    font-size: 15px;
-    color: var(--fg-2);
-    line-height: 1.55;
+    letter-spacing: -0.025em;
+    line-height: 1;
     font-variant-numeric: tabular-nums;
-    flex-grow: 1;
-  }
-  .row-tags {
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.06em;
-    color: var(--fg-3);
-    line-height: 1.6;
-  }
-  .row-cta {
-    font-family: var(--f-mono);
-    font-size: 11px;
-    letter-spacing: 0.05em;
-    color: var(--fg-3);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 4px;
-  }
-  .row-cta .st {
-    border: 1px solid var(--rule);
-    padding: 3px 6px;
-    font-size: 9.5px;
-    letter-spacing: 0.08em;
-    color: var(--fg-3);
-  }
-  .row-cta .st.live { color: var(--fg); border-color: var(--fg-3); }
-  .row-cta .st.concept { color: var(--fg-3); }
-  .row-cta .arrow {
-    font-family: var(--f-mono);
-    color: var(--fg-3);
-    transition: transform .2s, color .2s;
-  }
-  .work-row:hover .row-cta .arrow { color: var(--accent); transform: translateX(4px); }
-  .work-row:hover .row-title { color: var(--fg); }
-
-  /* featured row: DealFlow chapter break spans both columns, keeps preview */
-  .work-row.featured {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 56px 1fr auto;
-    gap: 28px;
-    padding: 36px 0 0;
-    cursor: pointer;
-    border-right: 0;
-    min-height: auto;
-  }
-  .work-row.featured:hover { background: transparent; }
-  .work-row.featured .row-n { padding-top: 6px; }
-  .work-row.featured .row-cta { margin-top: 0; padding-top: 6px; }
-  .work-row.featured .row-preview {
-    grid-column: 2 / -1;
-    margin-top: 28px;
-    margin-bottom: 4px;
-    padding: 40px 36px 36px;
-    background: var(--bg);
-    border: 1px solid var(--rule);
-    position: relative;
-  }
-  .work-row.featured .row-preview::before {
-    content: "PREVIEW";
-    position: absolute; top: 14px; right: 16px;
-    font-family: var(--f-mono);
-    font-size: 10px; letter-spacing: 0.12em;
     color: var(--fg);
+    min-width: 4ch;
   }
-  .preview-eyebrow {
+  .hstat-l {
     font-family: var(--f-mono);
-    font-size: 10px; letter-spacing: 0.14em;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--fg-3);
-    margin-bottom: 16px;
-  }
-  .preview-h {
-    font-size: clamp(22px, 2.8vw, 34px);
-    line-height: 1.06;
-    letter-spacing: -0.02em;
-    font-weight: 500;
-    margin-bottom: 12px;
-    color: var(--fg);
-    max-width: 28ch;
-  }
-  .preview-sub {
-    font-family: var(--f-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 12px;
-    color: var(--fg-3);
-    margin-bottom: 28px;
-  }
-  .preview-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--rule-soft);
-  }
-  .preview-stats .s {
-    padding: 18px 16px 4px;
-    border-left: 1px solid var(--rule-soft);
-  }
-  .preview-stats .s:first-child { border-left: 0; padding-left: 0; }
-  .preview-stats .n {
-    font-size: clamp(22px, 2.4vw, 30px);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-  }
-  .preview-stats .l {
-    font-family: var(--f-mono);
-    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--fg-3);
-    margin-top: 8px;
     line-height: 1.4;
   }
-  .preview-cta {
-    margin-top: 28px;
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border-bottom: 1px solid var(--accent);
-    padding-bottom: 2px;
-  }
-  .preview-cta:hover .arrow { transform: translateX(3px); }
-  .preview-cta .arrow { transition: transform .2s; }
 
-  /* mobile: single column of cards, featured stays full-width */
-  @media (max-width: 768px) {
-    .work-list { grid-template-columns: 1fr; border-left: 0; }
-    .work-row { padding: 28px 20px 24px; min-height: auto; border-right: 0; }
-    .work-row.featured { grid-template-columns: 40px 1fr auto; gap: 16px; padding: 28px 0 0; }
-    .work-row.featured .row-preview { padding: 28px 20px 24px; }
-    .preview-stats { grid-template-columns: 1fr; }
-    .preview-stats .s { border-left: 0; border-top: 1px solid var(--rule-soft); padding: 14px 0 4px; }
-    .preview-stats .s:first-child { border-top: 0; }
+  /* tablet + mobile: stack column below text, then 2x2 grid */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero-stats {
+      grid-template-columns: 1fr 1fr;
+    }
+    .hstat {
+      padding: 18px 18px 18px 18px;
+      border-left: 1px solid var(--rule-soft);
+      border-top: 1px solid var(--rule-soft);
+      grid-template-columns: 1fr;
+      gap: 12px;
+      min-height: 110px;
+      align-content: space-between;
+    }
+    .hstat:nth-child(odd) { border-left: 0; padding-left: 0; }
+    .hstat:nth-child(-n+2) { border-top: 0; }
+  }
+
+  /* respect reduced-motion: skip both reveal and count-up */
+  @media (prefers-reduced-motion: reduce) {
+    .hstat { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* =========================================================
+     Case switcher: tabbed on desktop, linear scroll on mobile.
+     Rail (left) drives which panel (right) is visible via JS.
+     ========================================================= */
+  /* Section needs overflow-x:clip to contain the right-bleed visuals without
+     creating a horizontal page scroll. `clip` (not `hidden`) doesn't break
+     the sticky rail's positioning context the way `hidden` would. */
+  #work { overflow-x: clip; }
+
+  .case-switcher {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: clamp(48px, 6vw, 96px);
+  }
+
+  /* Section-head column widths matched to the case-switcher below, so the
+     badge sits over the rail and the heading sits over the case content
+     (same left edge). Scoped to this index page; case studies use default
+     section-head proportions. */
+  .section-head.section-head-aligned {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: clamp(48px, 6vw, 96px);
+  }
+
+  /* sticky vertical rail — section-scoped, not page-scoped */
+  .case-rail {
+    position: sticky;
+    /* 60px sticky-nav height + 32px buffer so Compliance UX clears the nav */
+    top: 92px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .case-rail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-family: var(--f-mono);
+    font-size: 14px;
+    color: var(--fg-3);
+    text-decoration: none;
+    transition: color .15s ease;
+  }
+  .case-rail-item:hover { color: var(--fg-2); }
+  .case-rail-item.is-active { color: var(--accent); }
+  .case-rail-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+  .case-rail-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--fg-4);
+    flex-shrink: 0;
+    transition: background .2s, border-color .2s, transform .2s;
+  }
+  .case-rail-item.is-active .case-rail-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.15);
+  }
+
+  /* panels stack vertically — all 4 always visible. scroll-margin-top
+     accounts for breathing room when anchor-scrolled. */
+  .case-panels {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(96px, 12vw, 160px);
+  }
+  .case-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(40px, 4vw, 72px);
+    align-items: start;
+    scroll-margin-top: 32px;
+  }
+
+  /* slide-in animation: content fades in from below, visual slides in from
+     the right as each panel enters view. IntersectionObserver toggles
+     `.is-visible` once per panel; transition handles the rest. */
+  .case-content,
+  .case-visual {
+    opacity: 0;
+    transition: opacity .7s ease-out, transform .7s ease-out;
+  }
+  .case-content { transform: translateY(16px); }
+  .case-visual { transform: translateX(48px); }
+  .case-panel.is-visible .case-content,
+  .case-panel.is-visible .case-visual {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case-content,
+    .case-visual {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* center column anatomy */
+  .case-content { max-width: 52ch; }
+  .case-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .case-eyebrow {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .case-headline {
+    font-size: var(--t-h-sub);
+    font-weight: 500;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+    margin: 0 0 24px;
+    color: var(--fg);
+  }
+  .case-body {
+    font-size: var(--t-lede);
+    line-height: 1.5;
+    color: var(--fg-2);
+    margin: 0 0 28px;
+  }
+  .case-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 36px;
+    display: grid;
+    gap: 12px;
+  }
+  .case-bullets li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--fg-2);
+    font-variant-numeric: tabular-nums;
+  }
+  .case-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* right visual: desktop screenshot pinned to the right side of the viewport,
+     bleeding off the right edge so only the left portion is visible. No frame,
+     no rounded corners — the cut is the affordance.
+     - Sticky to viewport top while its panel is in view (60px nav + 32px buffer)
+     - Width extends past the wrap's right gutter all the way to the viewport
+       edge via `calc(100% + gutter + outside-wrap space)`
+     - Image at full height with `object-position: left` so the left portion of
+       the desktop UI is shown; right portion clips off-screen. */
+  .case-visual {
+    position: sticky;
+    top: 92px;
+    width: calc(100% + var(--gutter) + max(0px, (100vw - var(--max)) / 2));
+    height: clamp(360px, 56vh, 540px);
+    overflow: hidden;
+    background: var(--placeholder-bg);
+    border: 0;
+    border-radius: 0;
+  }
+  .case-visual img {
+    height: 100%;
+    width: 200%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+  }
+
+
+  /* =========================================================
+     Mobile: rail vanishes, every panel renders as long scroll
+     ========================================================= */
+  @media (max-width: 900px) {
+    .case-switcher {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .case-rail { display: none; }
+    .case-panel,
+    .case-panel.is-active {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 72px;
+      animation: none;
+    }
+    .case-panel:last-child { margin-bottom: 0; }
+    .case-panel[hidden] { display: grid; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .case-panel.is-active { animation: none; }
   }
 
   /* about */
@@ -294,6 +366,15 @@
     color: var(--fg);
     max-width: 24ch;
     margin-bottom: 24px;
+  }
+  .about-grid .about-name-tag {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+    max-width: none;
   }
 
   /* 2x2 stats in narrow column */
@@ -338,43 +419,6 @@
     text-transform: uppercase;
     color: var(--fg-3);
     margin-bottom: 16px;
-  }
-
-  /* specializations */
-  .spec {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-    border-top: 1px solid var(--rule);
-  }
-  .spec-item {
-    padding: 36px 32px 40px;
-    border-left: 1px solid var(--rule-soft);
-  }
-  .spec-item:first-child { border-left: 0; padding-left: 0; }
-  .spec-item:last-child { padding-right: 0; }
-  .spec-n {
-    font-family: var(--f-mono);
-    font-size: 11px;
-    color: var(--fg-3);
-    letter-spacing: 0.04em;
-    margin-bottom: 20px;
-  }
-  .spec-h {
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    margin-bottom: 16px;
-  }
-  .spec-p {
-    font-size: 15px;
-    color: var(--fg-2);
-    line-height: 1.5;
-  }
-  @media (max-width: 900px) {
-    .spec { grid-template-columns: 1fr; }
-    .spec-item { border-left: 0; border-top: 1px solid var(--rule-soft); padding: 28px 0 32px; }
-    .spec-item:first-child { border-top: 0; padding-top: 28px; }
   }
 
   /* contact */
@@ -451,209 +495,187 @@
 <main id="main">
 
 <!-- =================== HERO =================== -->
+<!-- Stats live inside the hero now: claim + proof at the same fixation. -->
 <section class="hero reveal" id="top">
   <div class="wrap">
-    <h1 class="h-display">
-      <span class="ln ln-1">Systems designed.</span>
-      <span class="ln ln-2">Products shipped.</span>
-    </h1>
-
-    <div class="meta-grid">
-      <p class="lede">18 years across fintech, developer tools, and AI-native products. From 3-person startup to TSX-V IPO.</p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="#work">View Case Studies <span class="arrow">→</span></a>
-        <a class="btn btn-secondary" href="#contact">Let's Talk <span class="arrow">→</span></a>
+    <div class="hero-grid">
+      <div class="hero-left">
+        <h1 class="h-display">
+          <span class="ln ln-1">Founding designer → TSX-V IPO.</span>
+          <span class="ln ln-2">$2B+ processed across 20+ jurisdictions.</span>
+        </h1>
+        <p class="lede">Senior product designer. 18 years across fintech, developer tools, and AI-native products. Calgary plus remote.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#work">View Case Studies <span class="arrow">→</span></a>
+          <a class="btn btn-secondary" href="#contact">Let's Talk <span class="arrow">→</span></a>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- =================== STATS =================== -->
-<section aria-label="Career stats">
-  <div class="wrap">
-    <div class="stats">
-      <div class="stat"><div class="stat-n">18</div><div class="stat-l">Years shipping products</div></div>
-      <div class="stat"><div class="stat-n">$2B+</div><div class="stat-l">Capital processed on shipped platforms</div></div>
-      <div class="stat"><div class="stat-n">TSX-V</div><div class="stat-l">Public company co-founded</div></div>
-      <div class="stat"><div class="stat-n">20+</div><div class="stat-l">Jurisdictions served</div></div>
+      <aside class="hero-stats" aria-label="Career stats">
+        <div class="hstat" data-stagger="0">
+          <div class="hstat-n" data-count="18" data-suffix="">18</div>
+          <div class="hstat-l">Years shipping products</div>
+        </div>
+        <div class="hstat" data-stagger="1">
+          <div class="hstat-n" data-count="2" data-prefix="$" data-suffix="B+">$2B+</div>
+          <div class="hstat-l">Capital processed on shipped platforms</div>
+        </div>
+        <div class="hstat" data-stagger="2">
+          <div class="hstat-n">TSX-V</div>
+          <div class="hstat-l">Public company co-founded</div>
+        </div>
+        <div class="hstat" data-stagger="3">
+          <div class="hstat-n" data-count="20" data-suffix="+">20+</div>
+          <div class="hstat-l">Jurisdictions served</div>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
 
 <!-- =================== SELECTED WORK =================== -->
-<section class="section reveal" id="work">
+<!-- No `.reveal` on this section: its `transform` creates a containing block
+     that breaks `position: sticky` on the case-switcher rail. The 4 case panels
+     have their own per-section slide-in via `.case-panel.is-visible` instead. -->
+<section class="section" id="work">
   <div class="wrap">
-    <div class="section-head">
-      <div class="label"><i data-lucide="briefcase"></i>( 01 ) Selected Work</div>
-      <div>
-        <h2 class="h-section scroll-lit">Selected Work. Fintech platforms, developer tools, and AI-native products. Shipped across 12 projects.</h2>
+    <div class="section-head section-head-aligned">
+      <span class="badge section-num">01 / Work</span>
+      <h2 class="h-section scroll-lit">Selected Work. Four anchor cases. Fintech depth, AI-native systems, and design tools that ship.</h2>
+    </div>
+
+    <!-- Case switcher: 4 sections always visible, stacked. Sticky left rail
+         is a TOC-style nav that smooth-scrolls to each section and tracks
+         which one is in view via IntersectionObserver. Rail vanishes on mobile. -->
+    <div class="case-switcher">
+      <nav class="case-rail" aria-label="Case study navigation">
+        <a class="case-rail-item is-active" href="#case-compliance-ux" data-target="compliance-ux">
+          <span class="case-rail-dot" aria-hidden="true"></span>
+          <span>Compliance UX</span>
+        </a>
+        <a class="case-rail-item" href="#case-dealflow" data-target="dealflow">
+          <span class="case-rail-dot" aria-hidden="true"></span>
+          <span>Katipult</span>
+        </a>
+        <!-- Pre-launch: FuzeHQ + Docs to Design rail items hidden until cases are polished.
+             Re-enable when ready. -->
+      </nav>
+
+      <div class="case-panels">
+
+        <!-- 01 — Compliance UX -->
+        <article class="case-panel" id="case-compliance-ux">
+          <div class="case-content">
+            <div class="case-header">
+              <span class="icon-tile"><i data-lucide="shield-check"></i></span>
+              <span class="case-eyebrow">Compliance UX</span>
+            </div>
+            <h3 class="case-headline">KYC that ships in 12 minutes, not 45.</h3>
+            <p class="case-body">Compliance was the bottleneck for every fintech we built. So we made it the fastest part. One investor onboarding flow that adapts to IIROC, Reg CF, MiFID, and FINTRAC without forcing investors to know the difference.</p>
+            <ul class="case-bullets">
+              <li>45 minutes to 12. Average completion time, cut by 73%.</li>
+              <li>85% completion rate, up from 47%.</li>
+              <li>20+ jurisdictions on a single white-label engine.</li>
+              <li>Shipped to Canaccord Genuity, Raymond James, Sprott Capital.</li>
+            </ul>
+            <a class="btn btn-secondary case-cta" href="compliance-ux.html">How we built it <span class="arrow">→</span></a>
+          </div>
+          <div class="case-visual" aria-hidden="true">
+            <img src="img/cases/compliance-ux.png" alt="" loading="lazy" />
+          </div>
+        </article>
+
+        <!-- 02 — Katipult (white-label deal platform) -->
+        <article class="case-panel" id="case-dealflow">
+          <div class="case-content">
+            <div class="case-header">
+              <span class="icon-tile"><i data-lucide="layers"></i></span>
+              <span class="case-eyebrow">Katipult</span>
+            </div>
+            <h3 class="case-headline">Three products. One engine. $2B+ in regulated transactions.</h3>
+            <p class="case-body">Co-founded and designed Katipult — the white-label compliance and deal platform. DealFlow (equity), Lending, and Donations &amp; Rewards all ship on one configurable engine. 17 enterprise tenants, 6 continents, 20+ regulatory jurisdictions, zero per-tenant codebase overhead.</p>
+            <ul class="case-bullets">
+              <li>$2B+ moved across 17 enterprise tenants.</li>
+              <li>$647M facilitated in 2023 alone (DealFlow vertical, 71% YoY).</li>
+              <li>Three product verticals on one engine.</li>
+              <li>From co-founder to TSX-V IPO. Design at the leadership table.</li>
+            </ul>
+            <a class="btn btn-secondary case-cta" href="katipult.html">Read the case study <span class="arrow">→</span></a>
+          </div>
+          <div class="case-visual" aria-hidden="true">
+            <img src="img/cases/dealflow.webp" alt="" loading="lazy" />
+          </div>
+        </article>
+
+        <!-- Pre-launch: FuzeHQ + Docs to Design panels hidden until cases are polished.
+             Re-enable by uncommenting (and restoring matching case-rail items above). -->
+        <!--
+        <article class="case-panel" id="case-fuzehq">
+          <div class="case-content">
+            <div class="case-header">
+              <span class="icon-tile"><i data-lucide="bot"></i></span>
+              <span class="case-eyebrow">FuzeHQ</span>
+            </div>
+            <h3 class="case-headline">Where humans and AI agents ship side by side.</h3>
+            <p class="case-body">Co-designed FuzeHQ from blank canvas to daily driver. Tasks, agents, skills, and runtime in one workspace, with zero context-switching between human and agent work. Shipped to mobile, desktop, and Slack on the same control plane.</p>
+            <ul class="case-bullets">
+              <li>9 specialized agents shipping production work today.</li>
+              <li>14 MCP tools. Any Claude Code session is a co-worker.</li>
+              <li>Multi-tenant from day one. No rewrites.</li>
+              <li>Mobile, desktop, and Slack surfaces. One workspace.</li>
+            </ul>
+            <a class="btn btn-secondary case-cta" href="fuzehq.html">Inside the build <span class="arrow">→</span></a>
+          </div>
+          <div class="case-visual" aria-hidden="true">
+            <img src="img/cases/fuzehq.png" alt="" loading="lazy" />
+          </div>
+        </article>
+
+        <article class="case-panel" id="case-docs-to-design">
+          <div class="case-content">
+            <div class="case-header">
+              <span class="icon-tile"><i data-lucide="file-text"></i></span>
+              <span class="case-eyebrow">Docs to Design</span>
+            </div>
+            <h3 class="case-headline">Word docs to Figma frames in 60 seconds.</h3>
+            <p class="case-body">A Figma plugin that detects heading hierarchy, maps to design tokens, and outputs native editable frames. What used to take an afternoon now takes a paste.</p>
+            <ul class="case-bullets">
+              <li>Under 60 seconds per document.</li>
+              <li>H1 through H6 hierarchy auto-detected.</li>
+              <li>Maps directly to your design tokens.</li>
+              <li>Native Figma frames. Editable, no flat exports.</li>
+            </ul>
+            <a class="btn btn-secondary case-cta" href="docs-to-design.html">How the plugin works <span class="arrow">→</span></a>
+          </div>
+          <div class="case-visual" aria-hidden="true">
+            <img src="img/cases/docs-to-design.png" alt="" loading="lazy" />
+          </div>
+        </article>
+        -->
+
       </div>
     </div>
 
-    <div class="work-list">
-
-      <!-- 01 -->
-      <a class="work-row reveal" href="compliance-ux.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">01</div>
-          <div class="row-title">Compliance UX<span class="sub">Investor Onboarding</span></div>
-          <div class="row-desc">Redesigned investor onboarding across 20+ jurisdictions. 45 minutes to 12. 85% completion rate.</div>
-          <div class="row-tags">FINTECH · ENTERPRISE<br/>KYC/AML</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 02 -->
-      <a class="work-row reveal" href="dealflow.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">02</div>
-          <div class="row-title">DealFlow<span class="sub">Deal Management Platform</span></div>
-          <div class="row-desc">Designed the full-lifecycle deal management platform used by Canada's top investment dealers. $2B+ processed across 150+ offerings. 48% faster deal close.</div>
-          <div class="row-tags">FINTECH · ENTERPRISE<br/>DEAL MANAGEMENT</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 03 -->
-      <a class="work-row reveal" href="donations-rewards.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">03</div>
-          <div class="row-title">Donations and Rewards<span class="sub">White-label Crowdfunding</span></div>
-          <div class="row-desc">Designed a white-label crowdfunding SaaS for Calgary Arts Development and ATB Financial. $500K+ raised. 2,000 donors. $50K matched in 2 months.</div>
-          <div class="row-tags">SAAS · CROWDFUNDING<br/>ARTS</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 04 -->
-      <a class="work-row reveal" href="lending.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">04</div>
-          <div class="row-title">Lending<span class="sub">Private Lending Platform Extension</span></div>
-          <div class="row-desc">Extended an equity platform to support private lending. Full debt lifecycle from a single admin. Zero new applications for existing clients.</div>
-          <div class="row-tags">FINTECH · PLATFORM EXT.<br/>LENDING</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 05 -->
-      <a class="work-row reveal" href="fuzehq.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">05</div>
-          <div class="row-title">FuzeHQ<span class="sub">AI Team Management</span></div>
-          <div class="row-desc">Co-designed and shipped FuzeHQ. A control plane where humans and AI agents plan, execute, and track together. 9 agents, 14 MCP tools, zero context switches.</div>
-          <div class="row-tags">SAAS · AI AGENTS<br/>MCP</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 06 -->
-      <a class="work-row reveal" href="multipaste.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">06</div>
-          <div class="row-title">MultiPaste<span class="sub">Figma Text Distribution</span></div>
-          <div class="row-desc">Built a Figma plugin that distributes structured data across 50+ text layers in one action. 15 minutes to 1 minute. 7.2KB bundle, zero dependencies.</div>
-          <div class="row-tags">FIGMA PLUGIN · DEV TOOL<br/>PRODUCTIVITY</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 07 -->
-      <a class="work-row reveal" href="mockupkit.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">07</div>
-          <div class="row-title">MockupKit<span class="sub">Device Mockups in Figma</span></div>
-          <div class="row-desc">Built the first Figma plugin with DLT homography math for 4-point free-form perspective. 30 seconds per mockup. Native Figma frames, fully editable after creation.</div>
-          <div class="row-tags">FIGMA PLUGIN · FREEMIUM<br/>DEVICE MOCKUPS</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 08 -->
-      <a class="work-row reveal" href="docs-to-design.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">08</div>
-          <div class="row-title">Docs to Design<span class="sub">Document-to-Figma Wizard</span></div>
-          <div class="row-desc">Converts Word documents into structured Figma frames in under 60 seconds. Auto-detects heading hierarchy. Maps directly to design tokens.</div>
-          <div class="row-tags">FIGMA PLUGIN · SAAS<br/>DOCUMENT TRANSLATION</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 09 -->
-      <a class="work-row reveal" href="mypick.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">09</div>
-          <div class="row-title">MyPick.io<span class="sub">Visual Elimination Randomizer</span></div>
-          <div class="row-desc">Turned random selection into a shared event. 25 teams, 24 sound effects, and real-time multiplayer rooms with 100% sync accuracy.</div>
-          <div class="row-tags">WEB APP · RANDOMIZER<br/>MULTIPLAYER</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 10 -->
-      <a class="work-row reveal" href="relationsync.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">10</div>
-          <div class="row-title">RelationSync<span class="sub">AI Voice Journal</span></div>
-          <div class="row-desc">Designed a voice-first documentation concept for therapists. Zero keyboard interactions in the core flow. 35 screens, 19 components, calm design system for clinical context.</div>
-          <div class="row-tags">MOBILE · CONCEPT<br/>AI · VOICE</div>
-          <div class="row-cta"><span class="st concept">CONCEPT</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 11 -->
-      <a class="work-row reveal" href="akmsecure.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">11</div>
-          <div class="row-title">AKMSecure<span class="sub">Brand Identity and Website</span></div>
-          <div class="row-desc">Designed a full brand system and CMS-integrated website for an industrial cybersecurity startup. Zero to enterprise-ready. Positioned to win conversations against Fortinet and Palo Alto Networks.</div>
-          <div class="row-tags">BRAND · WEBSITE · CMS<br/>INDUSTRIAL CYBERSECURITY</div>
-          <div class="row-cta"><span class="st live">LIVE</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-      <!-- 12 -->
-      <a class="work-row reveal" href="isoblock.html">
-        <div class="row-visual" aria-hidden="true"></div>
-        <div class="row-body">
-          <div class="row-n">12</div>
-          <div class="row-title">IsoBlock<span class="sub">Native Isometric Shapes in Figma</span></div>
-          <div class="row-desc">Built a Figma plugin with an isometric math engine and 14 shape types. Output is native Figma vectors, editable after creation. Not flattened images locked to a preset angle.</div>
-          <div class="row-tags">FIGMA PLUGIN · DESIGN TOOLS<br/>ISOMETRIC</div>
-          <div class="row-cta"><span class="st">PRE-SUBMISSION</span><span class="arrow">→</span></div>
-        </div>
-      </a>
-
-    </div>
   </div>
 </section>
 
 <!-- =================== ABOUT =================== -->
 <section class="section reveal" id="about">
   <div class="wrap">
-    <div class="section-head">
-      <div class="label"><i data-lucide="circle-user"></i>( 02 ) About</div>
-      <div></div>
+    <div class="section-head section-head-solo">
+      <span class="badge section-num">02 / About</span>
     </div>
 
     <div class="about-grid">
       <div>
-        <p class="about-lede">Senior product designer with 18 years across fintech, developer tools, and AI-native products.</p>
-        <p>Co-founded a company that grew from 3 people to a TSX-V public company. Scaled from founder-designer to Head of Product Design across a 45-person org. The team designed every investor-facing screen on a $2B+ platform used by Canaccord Genuity, Raymond James, and Sprott Capital.</p>
+        <p class="about-name-tag">Pheak Meas · Lead Product Designer</p>
+        <p class="about-lede">Founding designer of a fintech that went from 3 people to a TSX-V public company.</p>
+        <p>Scaled from founder-designer to Head of Product Design across a 45-person org. The team designed every investor-facing screen on a $2B+ platform used by Canaccord Genuity, Raymond James, and Sprott Capital. 18 years across fintech, developer tools, and AI-native products.</p>
         <p>Now building tools that make designers and developers faster. Figma plugins, AI agent management, and design systems that ship.</p>
-        <p>EY Entrepreneur of the Year Finalist (2017). RBC Emerging Enterprise of the Year.</p>
+        <div class="badge-row">
+          <span class="badge">EY Entrepreneur Finalist · 2017</span>
+          <span class="badge">RBC Emerging Enterprise of the Year</span>
+        </div>
       </div>
 
       <div>
@@ -668,40 +690,11 @@
   </div>
 </section>
 
-<!-- =================== SPECIALIZATIONS =================== -->
-<section class="section reveal" aria-label="Specializations">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="label"><i data-lucide="target"></i>( 03 ) Specializations</div>
-      <div></div>
-    </div>
-
-    <div class="spec">
-      <div class="spec-item">
-        <div class="spec-n">S / 01</div>
-        <h3 class="spec-h">Fintech UX</h3>
-        <p class="spec-p">KYC/AML onboarding, investor dashboards, deal flow management. 20+ jurisdictions. White-label architecture. Real regulatory compliance across IIROC, Reg CF, MiFID, and FINTRAC.</p>
-      </div>
-      <div class="spec-item">
-        <div class="spec-n">S / 02</div>
-        <h3 class="spec-h">Design Systems</h3>
-        <p class="spec-p">Component libraries, theming layers, design tokens. Built systems that power 154 white-label deployments for enterprise fintech clients.</p>
-      </div>
-      <div class="spec-item">
-        <div class="spec-n">S / 03</div>
-        <h3 class="spec-h">Product Strategy</h3>
-        <p class="spec-p">Spec to ship. Research, wireframes, prototypes, production. Led product design from 3-person startup to public company.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- =================== CONTACT =================== -->
 <section class="section reveal" id="contact">
   <div class="wrap">
-    <div class="section-head">
-      <div class="label"><i data-lucide="mail"></i>( 04 ) Contact</div>
-      <div></div>
+    <div class="section-head section-head-solo">
+      <span class="badge section-num">03 / Contact</span>
     </div>
 
     <div class="contact-grid">
@@ -710,14 +703,14 @@
         <p class="contact-sub">Senior, Lead, or Head of Product Design. Fintech, developer tools, or AI-native products. Calgary plus remote.</p>
         <div class="btn-row">
           <a class="btn btn-primary" href="mailto:hello@uxmeas.com">Let's Talk <span class="arrow">→</span></a>
-          <a class="btn btn-secondary" href="#" aria-label="View LinkedIn">View LinkedIn <span class="arrow">→</span></a>
+          <a class="btn btn-secondary" href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener" aria-label="View LinkedIn profile">View LinkedIn <span class="arrow">→</span></a>
         </div>
       </div>
 
       <div class="contact-table">
         <div class="r"><div class="k">Location</div><div class="v">Calgary, AB. Open to remote.</div></div>
         <div class="r"><div class="k">Email</div><div class="v"><a href="mailto:hello@uxmeas.com">hello@uxmeas.com</a></div></div>
-        <div class="r"><div class="k">LinkedIn</div><div class="v"><a href="#" aria-label="LinkedIn profile (URL pending)">Profile</a></div></div>
+        <div class="r"><div class="k">LinkedIn</div><div class="v"><a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener">linkedin.com/in/uxmeas</a></div></div>
       </div>
     </div>
   </div>
@@ -730,6 +723,121 @@
 <script>document.addEventListener('DOMContentLoaded', () => window.lucide && window.lucide.createIcons());</script>
 <script src="scroll-reveal.js" defer></script>
 <script src="scroll-lit.js" defer></script>
+
+<!-- Case switcher (scroll-anchored):
+     - Rail anchors smooth-scroll to each section
+     - IntersectionObserver tracks which panel is in view → sets active rail item
+     - Same observer triggers slide-in animation per panel (one-shot via `.is-visible`) -->
+<script>
+(function () {
+  const rail = Array.from(document.querySelectorAll('.case-rail-item'));
+  const panels = Array.from(document.querySelectorAll('.case-panel'));
+  if (!rail.length || !panels.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Active rail tracking: pick the panel currently centered in viewport.
+     rootMargin biases the trigger zone toward the upper-third of the screen
+     so the rail flips as soon as a section starts dominating the view. */
+  const activeIo = new IntersectionObserver((entries) => {
+    let best = null;
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      if (!best || entry.intersectionRatio > best.intersectionRatio) best = entry;
+    });
+    if (!best) return;
+    const id = best.target.id;
+    rail.forEach((r) => {
+      r.classList.toggle('is-active', 'case-' + r.dataset.target === id);
+    });
+  }, {
+    rootMargin: '-30% 0px -55% 0px',
+    threshold: [0, 0.25, 0.5, 0.75, 1]
+  });
+  panels.forEach((p) => activeIo.observe(p));
+
+  /* Slide-in reveal: one-shot per panel as it enters view */
+  if (reduced) {
+    panels.forEach((p) => p.classList.add('is-visible'));
+  } else {
+    const revealIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealIo.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    panels.forEach((p) => revealIo.observe(p));
+  }
+
+  /* Smooth scroll on rail click. Native anchor would jump; we override
+     to honor scroll-margin-top and avoid layout-shift jank. */
+  rail.forEach((r) => {
+    r.addEventListener('click', (e) => {
+      const id = r.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({
+        behavior: reduced ? 'auto' : 'smooth',
+        block: 'start'
+      });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
+</script>
+
+<!-- Hero stats: stagger reveal + count-up. Triggers once when in view. Skips on prefers-reduced-motion. -->
+<script>
+(function () {
+  const stats = document.querySelectorAll('.hero-stats .hstat');
+  if (!stats.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const STAGGER_MS = 120;
+  const COUNT_DURATION = 900;
+
+  const animateNumber = (el) => {
+    const target = parseInt(el.dataset.count, 10);
+    if (isNaN(target)) return;
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    if (reduced) { el.textContent = prefix + target + suffix; return; }
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / COUNT_DURATION);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = prefix + Math.round(target * eased) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (reduced) {
+    stats.forEach((el) => {
+      el.classList.add('in');
+      const num = el.querySelector('.hstat-n');
+      if (num && num.dataset.count) animateNumber(num);
+    });
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const idx = parseInt(el.dataset.stagger || '0', 10);
+      setTimeout(() => {
+        el.classList.add('in');
+        const num = el.querySelector('.hstat-n');
+        if (num && num.dataset.count) animateNumber(num);
+      }, idx * STAGGER_MS);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+
+  stats.forEach((el) => io.observe(el));
+})();
+</script>
 
 <footer class="site">
   <div class="wrap site-footer-row">
