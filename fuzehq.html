@@ -3,386 +3,841 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>FuzeHQ. A Control Plane for Human-AI Teams. UX Meas.</title>
-<meta name="description" content="FuzeHQ case study. 9 agents. 14 MCP tools. 51 structured skills. Zero context switches." />
+<title>FuzeHQ. AI work, made visible. UX Meas.</title>
+<meta name="description" content="FuzeHQ case study. The team workspace for humans and AI agents. Pipeline audit-trail, knowledge as gravity-wells, 13 surfaces shipped on a single design system." />
+<meta property="og:title" content="FuzeHQ — AI work, made visible — UX Meas" />
+<meta property="og:description" content="The team workspace for humans and AI agents. Pipeline audit-trail, knowledge graph, 13 surfaces on one design system." />
+<meta property="og:url" content="https://uxmeas.com/fuzehq.html" />
+<meta property="og:type" content="article" />
+<meta property="og:image" content="https://uxmeas.com/img/fuzehq/taskdetail-desktop.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="FuzeHQ — AI work, made visible" />
+<meta name="twitter:description" content="The team workspace for humans and AI agents. Pipeline audit-trail and gravity-well memory shipped on a single design system." />
+<meta name="twitter:image" content="https://uxmeas.com/img/fuzehq/taskdetail-desktop.png" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
 <link rel="stylesheet" href="shared.css" />
 <script src="theme.js"></script>
 
-<!-- Schema.org structured data: page = CreativeWork, author = Person (email exposed for crawlers) -->
+<!-- Schema.org structured data: page = CreativeWork, author = Person -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "FuzeHQ: A Control Plane for Human-AI Teams",
-  "headline": "A Control Plane for Human-AI Teams",
-  "description": "FuzeHQ case study. 9 agents. 14 MCP tools. 51 structured skills. Zero context switches.",
+  "name": "FuzeHQ: AI work, made visible",
+  "headline": "AI work, made visible",
+  "description": "The team workspace for humans and AI agents. Pipeline audit-trail, knowledge as gravity-wells, 13 surfaces shipped on a single design system.",
   "url": "https://uxmeas.com/fuzehq.html",
   "author": {
     "@type": "Person",
     "name": "UX Meas",
     "jobTitle": "Senior Product Designer",
     "email": "hello@uxmeas.com",
-    "url": "https://uxmeas.com"
+    "url": "https://uxmeas.com",
+    "sameAs": ["https://linkedin.com/in/uxmeas"]
   },
-  "about": ["SaaS", "AI Agents", "Team Management", "MCP"]
+  "about": ["SaaS", "AI Agents", "Team Workspace", "Audit Trail", "MCP", "Design Systems"]
 }
 </script>
 
 <style>
   /* =========================================================
-     Case study styles (shared across all case studies)
+     FuzeHQ case study — v3
+     Visual-first, dark-anchored. 12 sections.
+     Apple-keynote bloom glow on every mockup PNG.
      ========================================================= */
 
-  .cs-hero {
-    padding: clamp(56px, 9vw, 112px) 0 clamp(40px, 6vw, 80px);
+  /* ---------- Page-level dark anchor ----------
+     The case study leans dark by default (Apple-keynote / Linear convention)
+     so the bloom glow on each mockup PNG reads correctly. Tokens already
+     adapt via shared.css [data-theme="dark"] — we just tilt sections. */
+  .cs-fzh main {
+    /* fall through to the global :root tokens; sections set their own bg. */
   }
-  .cs-hero .eyebrow { margin-bottom: 32px; }
-  .cs-hero h1 { margin-bottom: 28px; max-width: 18ch; }
+
+  /* ---------- Bloom glow primitive ----------
+     Multi-layer drop-shadow on transparent PNGs. CEO directive 2026-04-29.
+     Three layers (60 / 120 / 240px) build ambient depth — Apple-keynote pattern.
+     Easing curve `cubic-bezier(0.32, 0.72, 0, 1)` is the iOS UI motion curve.
+     Color: cool electric-blue (98,130,255) — adjacent to FuzeHQ accent token but
+     more saturated for ambient halo. Hover lift earns engagement. */
+  .case-mockup,
+  .case-mockup-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter:
+      drop-shadow(0 0 60px rgba(98, 130, 255, 0.35))
+      drop-shadow(0 0 120px rgba(98, 130, 255, 0.20))
+      drop-shadow(0 0 240px rgba(98, 130, 255, 0.10));
+    transition: filter 400ms cubic-bezier(0.32, 0.72, 0, 1),
+                transform 400ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  .case-mockup:hover,
+  .case-mockup-img:hover {
+    filter:
+      drop-shadow(0 0 80px rgba(98, 130, 255, 0.50))
+      drop-shadow(0 0 160px rgba(98, 130, 255, 0.30))
+      drop-shadow(0 0 320px rgba(98, 130, 255, 0.15));
+    transform: translateY(-2px);
+  }
+  /* Light-mode bloom: weaker + warmer. Reads as "soft halo" not "neon." */
+  :root[data-theme="light"] .case-mockup,
+  :root[data-theme="light"] .case-mockup-img {
+    filter:
+      drop-shadow(0 0 40px rgba(30, 111, 184, 0.18))
+      drop-shadow(0 0 80px rgba(30, 111, 184, 0.10))
+      drop-shadow(0 0 160px rgba(30, 111, 184, 0.05));
+  }
+  :root[data-theme="light"] .case-mockup:hover,
+  :root[data-theme="light"] .case-mockup-img:hover {
+    filter:
+      drop-shadow(0 0 56px rgba(30, 111, 184, 0.28))
+      drop-shadow(0 0 112px rgba(30, 111, 184, 0.15))
+      drop-shadow(0 0 224px rgba(30, 111, 184, 0.08));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case-mockup, .case-mockup-img,
+    .case-mockup:hover, .case-mockup-img:hover {
+      transition: none;
+      transform: none;
+    }
+  }
+
+  /* ---------- 01 Hero ---------- */
+  .cs-hero {
+    padding: clamp(56px, 8vw, 96px) 0 clamp(40px, 6vw, 64px);
+    position: relative;
+    overflow: hidden;
+  }
+  .cs-hero .eyebrow { margin-bottom: 28px; }
+  .cs-hero h1 {
+    margin-bottom: 28px;
+    max-width: 16ch;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .cs-hero h1 .ln { display: block; }
+  .cs-hero h1 .ln-2 { color: var(--accent); }
   .cs-hero .sub {
     font-size: var(--t-lede);
     color: var(--fg-2);
-    max-width: 50ch;
+    line-height: 1.5;
+    max-width: 60ch;
     font-variant-numeric: tabular-nums;
+    margin-bottom: 36px;
+  }
+  .cs-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(28px, 4vw, 56px);
+    padding-top: 28px;
+    border-top: 1px solid var(--rule);
+  }
+  .cs-hero-stats .s { display: flex; flex-direction: column; gap: 10px; }
+  .cs-hero-stats .n {
+    font-family: var(--f-sans);
+    font-size: var(--t-stat-n);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--fg);
+  }
+  .cs-hero-stats .l {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+    line-height: 1.4;
   }
 
+  /* Hero visual — full-bleed mockup with deep bloom glow */
+  .cs-hero-visual {
+    position: relative;
+    margin-top: clamp(40px, 6vw, 80px);
+    padding: clamp(40px, 6vw, 72px) 0 clamp(8px, 2vw, 24px);
+  }
+  .cs-hero-visual .case-mockup-img {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .cs-hero-visual .caption {
+    margin-top: clamp(20px, 2.5vw, 32px);
+    text-align: center;
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+
+  /* ---------- 02 Context strip (4-cell) ---------- */
   .cs-meta {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
   }
   .cs-meta .m {
-    padding: 22px 20px 24px;
+    padding: 24px 24px 26px;
     border-left: 1px solid var(--rule-soft);
   }
-  .cs-meta .m:first-child { border-left: 0; }
+  .cs-meta .m:first-child { border-left: 0; padding-left: 0; }
   .cs-meta .k {
     font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--fg-3);
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
   .cs-meta .v {
     font-size: 14px;
     color: var(--fg);
-    line-height: 1.45;
+    line-height: 1.5;
     font-variant-numeric: tabular-nums;
   }
   @media (max-width: 900px) {
     .cs-meta { grid-template-columns: 1fr 1fr; }
-    .cs-meta .m:nth-child(odd) { border-left: 0; }
+    .cs-meta .m:nth-child(odd) { border-left: 0; padding-left: 0; }
     .cs-meta .m:nth-child(n+3) { border-top: 1px solid var(--rule-soft); }
   }
   @media (max-width: 560px) {
     .cs-meta { grid-template-columns: 1fr; }
-    .cs-meta .m { border-left: 0; border-top: 1px solid var(--rule-soft); }
+    .cs-meta .m { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-soft); }
     .cs-meta .m:first-child { border-top: 0; }
   }
 
+  /* ---------- prose-section frame ---------- */
   .prose-section {
-    padding: clamp(64px, 9vw, 120px) 0;
+    padding: clamp(56px, 8vw, 104px) 0;
     border-top: 1px solid var(--rule);
   }
-  .prose-grid {
+  .prose-section .section-head-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .prose-section .section-head-row .badge { flex-shrink: 0; }
+  .prose-section .section-head-row .h2 {
+    font-family: var(--f-sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: var(--fg);
+    margin: 0;
+  }
+
+  .section-lede {
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.25;
+    font-weight: 500;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+    max-width: 36ch;
+    margin: 0 0 20px;
+  }
+  .prose-body {
+    font-size: 16px;
+    color: var(--fg-2);
+    line-height: 1.65;
+    margin: 0 0 16px;
+    max-width: 64ch;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- 03 Problem — quadrant + body ---------- */
+  .problem-grid {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 48px;
-    align-items: baseline;
-  }
-  .prose-grid > .label {
-    font-family: var(--f-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    display: inline-flex;
+    grid-template-columns: 0.5fr 0.5fr;
+    gap: clamp(40px, 5vw, 72px);
     align-items: center;
+  }
+  .problem-left { display: flex; flex-direction: column; gap: 24px; }
+  .quadrant-figure {
+    width: 100%;
+    max-width: 480px;
+    justify-self: center;
+  }
+  /* Quadrant SVG sizing + label typography */
+  .quadrant-svg { width: 100%; height: auto; display: block; }
+  .quadrant-svg .axis { stroke: var(--rule); stroke-width: 1; }
+  .quadrant-svg .grid { stroke: var(--rule-soft); stroke-width: 1; stroke-dasharray: 3 4; }
+  .quadrant-svg .axis-label {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    fill: var(--fg-3);
+  }
+  .quadrant-svg .cell-label {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    fill: var(--fg-3);
+  }
+  .quadrant-svg .cell-name {
+    font-family: var(--f-sans);
+    font-size: 12px;
+    font-weight: 500;
+    fill: var(--fg-2);
+  }
+  .quadrant-svg .empty-cell { fill: var(--accent-soft); }
+  .quadrant-svg .empty-name { fill: var(--accent); font-weight: 600; }
+  .quadrant-svg .marker {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    fill: var(--fg-4);
+  }
+  .quadrant-figcaption {
+    margin-top: 16px;
+    text-align: center;
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  @media (max-width: 900px) {
+    .problem-grid { grid-template-columns: 1fr; }
+    .quadrant-figure { max-width: 420px; }
+  }
+
+  /* ---------- 04 Approach — two anchors + body ---------- */
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 0.5fr 0.5fr;
+    gap: clamp(40px, 5vw, 72px);
+    align-items: center;
+  }
+  .approach-grid--reverse { direction: rtl; }
+  .approach-grid--reverse > * { direction: ltr; }
+  @media (max-width: 900px) {
+    .approach-grid { grid-template-columns: 1fr; direction: ltr; }
+  }
+
+  .anchor-pair {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: clamp(16px, 2vw, 28px);
+    align-items: center;
+    padding: clamp(28px, 3vw, 40px);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--bg-2);
+  }
+  .anchor-cell {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
+    text-align: center;
   }
-  .prose-grid > .label svg {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    stroke: var(--accent);
-    stroke-width: 2;
+  .anchor-cell .label {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
   }
-  .prose-grid .h {
+  .anchor-cell .name {
+    font-family: var(--f-sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 500;
+    color: var(--fg);
+    letter-spacing: -0.015em;
+  }
+  .anchor-cell .axis {
+    font-size: 13px;
+    color: var(--fg-2);
+    line-height: 1.5;
+  }
+  .anchor-plus {
+    font-family: var(--f-sans);
+    font-size: clamp(28px, 3vw, 40px);
+    color: var(--accent);
+    font-weight: 300;
+    line-height: 1;
+  }
+  .anchor-tiebreak {
+    margin-top: 20px;
+    padding: 18px 20px;
+    border-left: 2px solid var(--accent);
+    background: var(--bg-2);
+    font-size: 14px;
+    color: var(--fg-2);
+    line-height: 1.55;
+    border-radius: 0 6px 6px 0;
+  }
+  .anchor-tiebreak .lead {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  @media (max-width: 600px) {
+    .anchor-pair { grid-template-columns: 1fr; }
+    .anchor-plus { transform: rotate(90deg); justify-self: center; }
+  }
+
+  /* ---------- 05 + 06 WOW shots — full-bleed hero ---------- */
+  .wow-section {
+    padding: clamp(72px, 10vw, 128px) 0;
+    border-top: 1px solid var(--rule);
+  }
+  .wow-section .section-head-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .wow-section h2 {
+    font-family: var(--f-sans);
     font-size: clamp(28px, 3.6vw, 44px);
     font-weight: 500;
     letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin: 0 0 28px;
+    line-height: 1.1;
+    color: var(--fg);
+    margin: 0;
     max-width: 22ch;
   }
-  .prose-grid p {
-    font-size: 17px;
+  .wow-section .lede {
+    font-size: clamp(20px, 2.2vw, 24px);
+    line-height: 1.4;
+    color: var(--fg-2);
+    max-width: 50ch;
+    margin: 0 0 24px;
+    letter-spacing: -0.005em;
+  }
+  .wow-hero {
+    margin: clamp(48px, 7vw, 96px) 0;
+    padding: clamp(40px, 6vw, 80px) 0;
+    position: relative;
+  }
+  .wow-hero .case-mockup-img {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .wow-caption {
+    margin-top: clamp(28px, 3vw, 40px);
+    text-align: center;
+    font-family: var(--f-sans);
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.45;
+    color: var(--fg);
+    font-style: italic;
+    max-width: 56ch;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: -0.005em;
+  }
+
+  /* WOW form-factor pair (desktop + mobile companion) */
+  .wow-pair {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: clamp(32px, 4vw, 56px);
+    align-items: center;
+    margin-top: clamp(48px, 6vw, 72px);
+  }
+  .wow-pair .desktop { width: 100%; }
+  .wow-pair .mobile {
+    width: 100%;
+    max-width: 280px;
+    justify-self: center;
+  }
+  .wow-pair .desktop img,
+  .wow-pair .mobile img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .wow-pair-meta {
+    margin-top: clamp(24px, 3vw, 36px);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: clamp(28px, 3vw, 48px);
+  }
+  .wow-pair-meta p {
+    font-size: 15px;
     color: var(--fg-2);
     line-height: 1.6;
-    margin: 0 0 20px;
-    max-width: 62ch;
-    font-variant-numeric: tabular-nums;
+    margin: 0;
+    max-width: 36ch;
   }
-  .prose-grid .pullquote {
-    font-size: clamp(20px, 2.4vw, 26px);
-    font-weight: 500;
-    line-height: 1.3;
-    color: var(--fg);
-    letter-spacing: -0.01em;
-    margin: 0 0 24px;
-    max-width: 30ch;
+  @media (max-width: 900px) {
+    .wow-pair { grid-template-columns: 1fr; }
+    .wow-pair .mobile { max-width: 280px; }
+    .wow-pair-meta { grid-template-columns: 1fr; gap: 20px; }
   }
-  .prose-grid .cite {
+
+  /* ---------- 07 System surfaces — 2x2 grid of supporting mockups ---------- */
+  .system-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 5vw, 64px);
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+  .system-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .system-card .figure-wrap {
+    padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 32px);
+    /* dark-anchored card backdrop helps the bloom read in light mode too */
+    background: var(--bg-2);
+    border: 1px solid var(--rule-soft);
+    border-radius: 8px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+    align-items: center;
+  }
+  .system-card .figure-wrap .desktop { width: 100%; }
+  .system-card .figure-wrap .mobile {
+    width: 100%;
+    max-width: 160px;
+    justify-self: center;
+  }
+  @media (max-width: 600px) {
+    .system-card .figure-wrap { grid-template-columns: 1fr; }
+    .system-card .figure-wrap .mobile { max-width: 200px; }
+  }
+  .system-card .num {
     font-family: var(--f-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--fg-3);
-    margin-bottom: 24px;
   }
-  .prose-grid .hmw {
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    padding: 28px 0;
-    margin-top: 36px;
+  .system-card .h {
+    font-family: var(--f-sans);
+    font-size: clamp(18px, 2vw, 22px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--fg);
+    margin: 0;
   }
-  .prose-grid .hmw .tag {
+  .system-card p {
+    font-size: 15px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 48ch;
+  }
+  @media (max-width: 800px) {
+    .system-grid { grid-template-columns: 1fr; }
+  }
+
+  .row-grammar {
+    margin-top: clamp(48px, 6vw, 72px);
+    padding: clamp(28px, 3vw, 40px);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--bg-2);
+  }
+  .row-grammar .lead {
     font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 12px;
+    display: block;
   }
-  .prose-grid .hmw p {
-    font-size: 20px;
+  .row-grammar p {
+    font-size: 16px;
+    color: var(--fg);
+    line-height: 1.55;
+    margin: 0 0 8px;
+    max-width: 70ch;
+  }
+  .row-grammar .formula {
+    font-family: var(--f-mono);
+    font-size: 14px;
+    color: var(--fg-2);
+    background: var(--bg);
+    padding: 10px 14px;
+    border-radius: 4px;
+    border: 1px solid var(--rule-soft);
+    margin-top: 14px;
+    display: inline-block;
+  }
+
+  /* ---------- 08 Process — 3 columns of beats ---------- */
+  .process-beats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(28px, 3.5vw, 48px);
+    margin-top: clamp(40px, 5vw, 56px);
+  }
+  .beat {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-top: 1px solid var(--rule);
+    padding-top: 24px;
+  }
+  .beat .num {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .beat .h {
+    font-family: var(--f-sans);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
     color: var(--fg);
     margin: 0;
-    line-height: 1.4;
-    letter-spacing: -0.01em;
-    max-width: 60ch;
   }
-
+  .beat p {
+    font-size: 14px;
+    color: var(--fg-2);
+    line-height: 1.6;
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+  }
   @media (max-width: 900px) {
-    .prose-grid { grid-template-columns: 1fr; gap: 20px; }
+    .process-beats { grid-template-columns: 1fr; gap: 32px; }
   }
 
-  .answer-beads { display: flex; flex-direction: column; gap: 0; }
-  .bead { padding: 40px 0; border-top: 1px solid var(--rule-soft); }
-  .bead:first-child { border-top: 0; padding-top: 8px; }
-  .bead-n {
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--fg-3);
-    margin-bottom: 16px;
-  }
-  .bead h4 {
-    font-size: clamp(24px, 2.8vw, 32px);
-    letter-spacing: -0.015em;
-    font-weight: 500;
-    margin: 0 0 18px;
-    max-width: 22ch;
-  }
-  .bead p {
-    font-size: 16px;
-    color: var(--fg-2);
-    line-height: 1.6;
-    margin: 0 0 12px;
-    max-width: 62ch;
-    font-variant-numeric: tabular-nums;
-  }
-  .bead p:last-child { margin-bottom: 0; }
-
-  .screens { display: grid; gap: 0; border-top: 1px solid var(--rule-soft); }
-  .screen {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 48px;
-    padding: 36px 0;
-    border-bottom: 1px solid var(--rule-soft);
-    align-items: start;
-  }
-  .screen .tag {
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
-    color: var(--fg-3);
-    padding-top: 8px;
-  }
-  .screen h4 {
-    font-size: clamp(22px, 2.6vw, 30px);
-    letter-spacing: -0.015em;
-    font-weight: 500;
-    margin: 0 0 14px;
-  }
-  .screen p {
-    font-size: 16px;
-    color: var(--fg-2);
-    line-height: 1.6;
-    margin: 0;
-    max-width: 58ch;
-    font-variant-numeric: tabular-nums;
-  }
-  @media (max-width: 700px) {
-    .screen { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
-  }
-
-  .results-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border-top: 1px solid var(--rule-soft);
-  }
-  .result-block {
-    padding: 36px 36px 36px 0;
-    border-bottom: 1px solid var(--rule-soft);
-  }
-  .result-block:nth-child(even) {
-    border-left: 1px solid var(--rule-soft);
-    padding-left: 36px;
-  }
-  .result-block .tag {
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--fg-3);
-    margin-bottom: 16px;
-  }
-  .result-block p {
-    font-size: 15.5px;
-    color: var(--fg-2);
-    line-height: 1.55;
-    margin: 0;
-    font-variant-numeric: tabular-nums;
-  }
-  @media (max-width: 700px) {
-    .results-grid { grid-template-columns: 1fr; }
-    .result-block, .result-block:nth-child(even) {
-      padding: 28px 0;
-      border-left: 0;
-      padding-left: 0;
-    }
-  }
-
-  .quotes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
+  /* ---------- 09 Pull quote (Apple-IC critique) ---------- */
+  .pull-quote {
+    padding: clamp(56px, 8vw, 96px) 0;
     border-top: 1px solid var(--rule);
     border-bottom: 1px solid var(--rule);
   }
-  .quote { padding: 48px 40px 40px 0; }
-  .quote + .quote {
-    padding-left: 40px;
-    border-left: 1px solid var(--rule-soft);
-    padding-right: 0;
-  }
-  .quote .mark {
+  .pull-quote .mark {
     font-family: var(--f-mono);
     font-size: 28px;
-    color: var(--fg-3);
+    color: var(--accent);
     line-height: 1;
     margin-bottom: 20px;
   }
-  .quote blockquote {
+  .pull-quote blockquote {
     margin: 0 0 28px;
-    font-size: clamp(18px, 2vw, 22px);
-    line-height: 1.45;
-    letter-spacing: -0.005em;
+    font-family: var(--f-sans);
+    font-size: clamp(22px, 2.8vw, 32px);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
     color: var(--fg);
-    max-width: 38ch;
+    max-width: 36ch;
+    font-weight: 400;
   }
-  .quote .attr {
+  .pull-quote .attr {
     font-family: var(--f-mono);
-    font-size: 11.5px;
-    letter-spacing: 0.04em;
+    font-size: 12px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
     color: var(--fg-3);
     line-height: 1.5;
   }
-  .quote .attr .n {
+  .pull-quote .attr .name {
     color: var(--fg);
     display: block;
-    margin-bottom: 2px;
-  }
-  @media (max-width: 768px) {
-    .quotes { grid-template-columns: 1fr; }
-    .quote { padding: 36px 0; border-bottom: 1px solid var(--rule-soft); }
-    .quote + .quote { padding-left: 0; border-left: 0; }
-    .quote:last-child { border-bottom: 0; }
+    margin-bottom: 4px;
   }
 
+  /* ---------- 10 Outcome ---------- */
+  .outcome-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: clamp(28px, 3vw, 40px);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .outcome-stats .rs {
+    padding: clamp(24px, 2.5vw, 32px) clamp(20px, 2vw, 28px);
+    border-left: 1px solid var(--rule-soft);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .outcome-stats .rs:first-child { border-left: 0; padding-left: 0; }
+  .outcome-stats .rs-n {
+    font-family: var(--f-sans);
+    font-size: clamp(28px, 3.6vw, 44px);
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--fg);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .outcome-stats .rs-l {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+    line-height: 1.4;
+  }
+  @media (max-width: 900px) {
+    .outcome-stats { grid-template-columns: 1fr 1fr; }
+    .outcome-stats .rs:nth-child(odd) { border-left: 0; padding-left: 0; }
+    .outcome-stats .rs:nth-child(n+3) { border-top: 1px solid var(--rule-soft); }
+  }
+  @media (max-width: 560px) {
+    .outcome-stats { grid-template-columns: 1fr; }
+    .outcome-stats .rs { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-soft); }
+    .outcome-stats .rs:first-child { border-top: 0; }
+  }
+
+  /* ---------- 11 Reflection (2-col) ---------- */
   .reflection {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 56px;
+    margin-top: clamp(32px, 4vw, 48px);
   }
-  .reflection .col { border-top: 1px solid var(--rule-soft); padding-top: 24px; }
-  .reflection .tag {
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--fg-3);
-    margin-bottom: 18px;
+  .reflection .col {
+    border-top: 1px solid var(--rule);
+    padding-top: 28px;
+  }
+  .reflection .reflection-h {
+    font-family: var(--f-sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    margin: 0 0 18px;
   }
   .reflection p {
     font-size: 16px;
     color: var(--fg-2);
     line-height: 1.6;
-    margin: 0 0 16px;
-    max-width: 58ch;
-    font-variant-numeric: tabular-nums;
+    margin: 0 0 14px;
+    max-width: 56ch;
   }
   .reflection p:last-child { margin-bottom: 0; }
   @media (max-width: 768px) {
     .reflection { grid-template-columns: 1fr; gap: 32px; }
   }
 
-  .next-cta {
-    padding: clamp(64px, 9vw, 120px) 0;
+  /* ---------- Foundation band — wide brand-sentence band before close ---------- */
+  .foundation-band {
+    padding: clamp(48px, 6vw, 80px) 0;
     border-top: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 32px;
-    align-items: end;
   }
-  .next-cta h3 {
-    font-size: clamp(28px, 4vw, 48px);
-    letter-spacing: -0.02em;
-    font-weight: 500;
-    margin: 0;
-    max-width: 16ch;
+  .foundation-band .case-mockup-img {
+    max-width: 1200px;
+    margin: 0 auto;
   }
-  .next-cta .tag {
+  .foundation-band .caption {
+    margin-top: clamp(20px, 2.5vw, 32px);
+    text-align: center;
     font-family: var(--f-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-    display: inline-flex;
+    color: var(--fg-3);
+  }
+
+  /* ---------- 12 Close — brand-sentence repeat + CTA ---------- */
+  .final-close {
+    padding: clamp(72px, 10vw, 128px) 0;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+  .final-close .brand-sentence {
+    font-family: var(--f-sans);
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--fg);
+    margin: 0 0 20px;
+  }
+  .final-close .sub {
+    font-size: clamp(18px, 2vw, 22px);
+    color: var(--fg-2);
+    line-height: 1.45;
+    max-width: 48ch;
+    margin: 0 auto 36px;
+  }
+  .final-close .btn-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* ---------- Next-case CTA ---------- */
+  .next-case-cta {
+    display: grid;
+    grid-template-columns: minmax(240px, 320px) 1fr auto;
+    gap: 32px;
     align-items: center;
-    gap: 10px;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
   }
-  .next-cta .tag svg {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    stroke: var(--accent);
-    stroke-width: 2;
+  .next-case-cta .thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--placeholder-bg);
+    border-radius: 4px;
   }
-  @media (max-width: 700px) {
-    .next-cta { grid-template-columns: 1fr; align-items: start; }
+  .next-case-cta .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+  }
+  .next-case-cta .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .next-case-cta .meta .eb {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .next-case-cta .meta .name {
+    font-family: var(--f-sans);
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    margin: 0;
+  }
+  .next-case-cta .meta .tease {
+    font-size: 14px;
+    color: var(--fg-2);
+    line-height: 1.5;
+    max-width: 50ch;
+  }
+  @media (max-width: 900px) {
+    .next-case-cta { grid-template-columns: 1fr; gap: 20px; padding: 28px 0; }
+    .next-case-cta .btn { justify-self: start; }
   }
 </style>
 </head>
-<body>
+<body class="cs-fzh">
 
 <a href="#main" class="skip">Skip to content</a>
 
@@ -414,6 +869,7 @@
 
 <main id="main">
 
+<!-- =================== 01. HERO =================== -->
 <section class="cs-hero reveal">
   <div class="wrap">
     <div class="eyebrow">
@@ -423,177 +879,444 @@
       <span class="sep">·</span>
       <span>SAAS</span>
       <span class="sep">·</span>
-      <span>AI AGENTS</span>
+      <span>HUMAN + AI TEAMS</span>
     </div>
-    <h1 class="h-case">A Control Plane for Human-AI Teams</h1>
-    <p class="sub">9 agents. 14 MCP tools. 51 structured skills. Zero context switches.</p>
+    <h1 class="h-case">
+      <span class="ln ln-1">AI work,</span>
+      <span class="ln ln-2">made visible.</span>
+    </h1>
+    <p class="sub">The team workspace for humans and AI agents. Every action signed. Every handoff visible. Every shipment proven — across 13 surfaces on a single design system.</p>
+
+    <div class="cs-hero-stats">
+      <div class="s">
+        <div class="n">13</div>
+        <div class="l">Surfaces shipped, six desktop and six mobile, on one system</div>
+      </div>
+      <div class="s">
+        <div class="n">2</div>
+        <div class="l">Anchors locked: Linear chrome and LangSmith content density</div>
+      </div>
+      <div class="s">
+        <div class="n">5/5</div>
+        <div class="l">Apple-IC audit checks passed before final lock</div>
+      </div>
+    </div>
+
+    <figure class="cs-hero-visual">
+      <img class="case-mockup-img" src="img/fuzehq/taskdetail-desktop.png" alt="FuzeHQ Task Detail screen — pipeline widget with Build, Review, QA, and Ship stages each signed by a named agent with timestamps and a horizontal run-summary timeline below" loading="eager" decoding="async" width="1440" height="1440" />
+      <figcaption class="caption">Task detail. Pipeline widget. Audit-trail showcase.</figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="reveal">
+<!-- =================== 02. CONTEXT =================== -->
+<section class="prose-section reveal" style="padding-top: clamp(40px, 5vw, 64px); border-top: 0;">
   <div class="wrap">
     <div class="cs-meta">
       <div class="m">
         <div class="k">Role</div>
-        <div class="v">CEO and Product Designer</div>
+        <div class="v">CEO and lead Product Designer</div>
       </div>
       <div class="m">
         <div class="k">Timeline</div>
-        <div class="v">2025 to Present</div>
+        <div class="v">2025 – present<br/>(case study covers iter 6f-6g, April 2026)</div>
       </div>
       <div class="m">
         <div class="k">Team</div>
-        <div class="v">2 co-founders plus 9 AI agents</div>
+        <div class="v">2 co-founders<br/>+ 13 named AI agents</div>
+      </div>
+      <div class="m">
+        <div class="k">Stack</div>
+        <div class="v">Pencil for design, Inter Tight + JetBrains Mono, MCP for execution</div>
       </div>
     </div>
+    <p class="prose-body" style="max-width: 70ch; margin-top: clamp(28px, 3vw, 40px);">FuzeHQ is the team workspace for humans and AI agents. I co-founded it after watching every team I knew add AI capacity faster than they could manage it. This case study walks through the design phase that locked the visual system in April 2026 — research wedge, two-anchor pick, two WOW shots, and the Apple-IC critique that earned the final ship.</p>
   </div>
 </section>
 
-<section aria-label="Hero stats" class="reveal">
-  <div class="wrap">
-    <div class="stats three">
-      <div class="stat">
-        <div class="stat-n">9</div>
-        <div class="stat-l">Named AI agents with distinct roles and skills.</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">14</div>
-        <div class="stat-l">MCP coordination tools.</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">0</div>
-        <div class="stat-l">Context switches. Work and tracking unified.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- =================== 03. PROBLEM =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="octagon-alert"></i>( 01 ) The Problem</div>
-      <div>
-        <p>Status updates were wrong 40% of the time because agents had no structured way to report progress. Teams using AI agents have no control plane. Agents run in terminals with no visibility, no skill management, no coordination. The standard setup required 5 separate tools: a project manager, an AI interface, documentation, deployment, and team chat. There was no way to see what an agent was working on, whether its output had been verified, or how it connected to the broader project. The problem wasn't that AI agents weren't capable. It was that every management layer around them was missing.</p>
+    <div class="section-head-row">
+      <span class="badge section-num"><span class="sn-num">( 01 )</span><span class="sn-name">Problem</span></span>
+    </div>
+
+    <div class="problem-grid">
+      <div class="problem-left">
+        <p class="section-lede">Every unverified AI handoff is a breach in motion.</p>
+        <p class="prose-body">When an agent finishes a task, the team has two options today. Trust the agent's word. Or pause to re-check the work themselves. Neither scales.</p>
+        <p class="prose-body">LangSmith built the developer-facing answer — a run-tree that engineers love. Generic GRC tools built the auditor-facing answer — a compliance log nobody reads. The empty quadrant is the operator: the senior PM, the head of design, the founder running a small team. They need to <em>see</em> what their AI team shipped without having to read XML.</p>
       </div>
+
+      <figure class="quadrant-figure">
+        <svg class="quadrant-svg" viewBox="0 0 480 360" role="img" aria-label="Two-by-two quadrant chart. X-axis: Team UX, low to high. Y-axis: Agent Identity, low to high. The high-Identity high-UX quadrant is highlighted in the accent color and labeled FuzeHQ. The other three cells contain LangSmith (high Identity, low UX), generic project tools, and generic compliance logs.">
+          <!-- Background grid -->
+          <rect x="60" y="40" width="380" height="260" fill="none" stroke="none"/>
+          <line class="grid" x1="60" y1="170" x2="440" y2="170"/>
+          <line class="grid" x1="250" y1="40" x2="250" y2="300"/>
+
+          <!-- Axes -->
+          <line class="axis" x1="60" y1="300" x2="440" y2="300"/>
+          <line class="axis" x1="60" y1="40" x2="60" y2="300"/>
+
+          <!-- Cells (top-right empty/highlighted = FuzeHQ) -->
+          <rect class="empty-cell" x="250" y="40" width="190" height="130" rx="2"/>
+
+          <!-- Cell content -->
+          <text class="cell-label" x="70" y="60">LOW UX · HIGH IDENTITY</text>
+          <text class="cell-name" x="70" y="80">LangSmith</text>
+          <text class="cell-name" x="70" y="98">(developer run-tree)</text>
+
+          <text class="cell-label empty-name" x="260" y="60">FUZEHQ — empty until now</text>
+          <text class="cell-name empty-name" x="260" y="80">High UX + High Identity</text>
+          <text class="cell-name" x="260" y="98" style="fill: var(--fg-2);">Operator-facing audit trail</text>
+
+          <text class="cell-label" x="70" y="200">LOW UX · LOW IDENTITY</text>
+          <text class="cell-name" x="70" y="220">Generic compliance logs</text>
+          <text class="cell-name" x="70" y="238">(SOC 2 evidence buckets)</text>
+
+          <text class="cell-label" x="260" y="200">HIGH UX · LOW IDENTITY</text>
+          <text class="cell-name" x="260" y="220">Linear, Notion, Plane</text>
+          <text class="cell-name" x="260" y="238">(humans only)</text>
+
+          <!-- Axis labels -->
+          <text class="axis-label" x="60" y="320">LOW</text>
+          <text class="axis-label" x="430" y="320" text-anchor="end">HIGH</text>
+          <text class="axis-label" x="250" y="340" text-anchor="middle">TEAM UX</text>
+
+          <text class="axis-label" x="50" y="300" text-anchor="end">LOW</text>
+          <text class="axis-label" x="50" y="50" text-anchor="end">HIGH</text>
+          <text class="axis-label" x="20" y="170" text-anchor="middle" transform="rotate(-90 20 170)">AGENT IDENTITY</text>
+        </svg>
+        <figcaption class="quadrant-figcaption">Two-by-two. The empty quadrant is the wedge.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
 
+<!-- =================== 04. APPROACH =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="compass"></i>( 02 ) How It Was Framed</div>
+    <div class="approach-grid approach-grid--reverse">
       <div>
-        <p>The research methodology was dogfooding. FuzeHQ was used daily as the actual management system for 2 co-founders running 9 AI agents across multiple simultaneous projects. Every pain point was felt in real time and addressed in the next build cycle. The insight that drove the core architecture: agents didn't need more AI capability. They needed accountability infrastructure. Skills, budgets, roles, and QA that made their work auditable.</p>
+        <div class="section-head-row">
+          <span class="badge section-num"><span class="sn-num">( 02 )</span><span class="sn-name">Approach</span></span>
+          <h2 class="h2">Two anchors. Different axes. One seam document.</h2>
+        </div>
+        <p class="prose-body">Every system needs a frame of reference. We picked two — exactly two — on different axes, with an explicit tiebreaker. Three anchors becomes design-by-committee. Two becomes a system.</p>
+        <p class="prose-body">Linear's chrome is the operator-persona pattern proven across thousands of teams. Calm, monochromatic, deeply restrained. LangSmith's run-tree is the closest public reference to FuzeHQ's content model — agent runs, signed handoffs, threaded subtasks. Linear teaches us how to <em>frame</em> the workspace. LangSmith teaches us how to <em>fill</em> it.</p>
 
-        <div class="hmw">
-          <div class="tag">HMW</div>
-          <p>How might we create a single workspace where humans and AI agents organize, execute, and track work together, with full visibility and zero context switching?</p>
+        <div class="anchor-tiebreak">
+          <span class="lead">Tiebreaker</span>
+          When the two anchors conflict, Linear wins on chrome and structure. LangSmith wins on content density and provenance display. The seam document is FuzeHQ.
+        </div>
+      </div>
+
+      <div class="anchor-pair" aria-hidden="false">
+        <div class="anchor-cell">
+          <span class="label">Anchor 01 · Aesthetic</span>
+          <span class="name">Linear</span>
+          <span class="axis">Operator chrome. Restrained surfaces. Calm typography.</span>
+        </div>
+        <div class="anchor-plus" aria-hidden="true">+</div>
+        <div class="anchor-cell">
+          <span class="label">Anchor 02 · Content</span>
+          <span class="name">LangSmith</span>
+          <span class="axis">Run-tree density. Signed handoffs. Provenance fluent.</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- =================== 05. WOW SHOT 1 — Task Detail =================== -->
+<section class="wow-section reveal">
+  <div class="wrap">
+    <div class="section-head-row">
+      <span class="badge section-num"><span class="sn-num">( 03 )</span><span class="sn-name">Hero — Task Detail</span></span>
+      <h2>Every action signed. Every handoff visible. Every shipment proven.</h2>
+    </div>
+    <p class="lede">A task in FuzeHQ is a pipeline, not a card. Each stage is signed by a named agent at a real timestamp. The audit trail is not a footer — it <em>is</em> the surface.</p>
+
+    <figure class="wow-hero">
+      <img class="case-mockup-img" src="img/fuzehq/taskdetail-desktop.png" alt="FuzeHQ Task Detail desktop screen at full bleed. Build, Review, QA, and Ship stages stacked horizontally with each stage signed by a named agent — Rex shipped Build at 09:14, Max approved Review at 11:02, Sage signed QA at 14:28, Nova promoted Ship at 16:05. Below is a horizontal run-summary timeline with provenance dots and SHA-256 references." width="1440" height="1440" loading="lazy" decoding="async" />
+      <figcaption class="wow-caption">"Done" stops being a checkbox. It becomes a signed receipt with timestamps, attribution, and a SHA-256 trail back to the commit.</figcaption>
+    </figure>
+
+    <div class="wow-pair">
+      <div class="desktop">
+        <img class="case-mockup-img" src="img/fuzehq/taskdetail-desktop.png" alt="Task detail desktop — horizontal pipeline + run-summary timeline" width="1440" height="1440" loading="lazy" decoding="async" />
+      </div>
+      <div class="mobile">
+        <img class="case-mockup-img" src="img/fuzehq/taskdetail-mobile.png" alt="Task detail mobile — vertical pipeline showing the same Build, Review, QA, and Ship stages stacked, with each agent's signature, timestamp, and trail-signal preserved at small scale" width="754" height="1672" loading="lazy" decoding="async" />
+      </div>
+    </div>
+
+    <div class="wow-pair-meta">
+      <p>The horizontal pipeline becomes a vertical pipeline on mobile. Same data, same attribution, same trail. The Row Grammar holds.</p>
+      <p>Each stage carries a Trail-Signal — a small dot whose color encodes status without color-only meaning. Ana taught me that.</p>
+      <p>The run-summary timeline below renders every state change in the task's life. Re-opens, re-assigns, blocked-on, unblocked. Auditable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 06. WOW SHOT 2 — Memory v2 =================== -->
+<section class="wow-section reveal">
+  <div class="wrap">
+    <div class="section-head-row">
+      <span class="badge section-num"><span class="sn-num">( 04 )</span><span class="sn-name">Hero — Memory v2</span></span>
+      <h2>Knowledge as it actually behaves.</h2>
+    </div>
+    <p class="lede">Saved facts cluster around the gravity wells they orbit. The v2.4 release tag pulls every memory entry that touched it — agent attribution intact, provenance trail one click away.</p>
+
+    <figure class="wow-hero">
+      <img class="case-mockup-img" src="img/fuzehq/memory-v2-desktop.png" alt="FuzeHQ Memory v2 desktop screen at full bleed. Force-directed graph with the v2.4 release tag at the gravity well center. Around it, agent nodes with real photos — Sage, Max, Rex, Nova — each connected by curved provenance edges. Pheak's avatar sits at the visual center as the human anchor. A provenance card slides in showing SHA-256 trail, source commit, and originating task." width="1440" height="1100" loading="lazy" decoding="async" />
+      <figcaption class="wow-caption">List view says memory <em>contains</em>. Graph view shows memory <em>behaves</em> — what's heavy, what's hot, what other facts each one touches.</figcaption>
+    </figure>
+
+    <div class="wow-pair">
+      <div class="desktop">
+        <img class="case-mockup-img" src="img/fuzehq/memory-v2-desktop.png" alt="Memory v2 desktop — interactive knowledge blob with v2.4 gravity well" width="1440" height="1100" loading="lazy" decoding="async" />
+      </div>
+      <div class="mobile">
+        <img class="case-mockup-img" src="img/fuzehq/memory-v2-mobile.png" alt="Memory v2 mobile — Tag-Stream pattern showing the same gravity-well metaphor but linearized for thumb scroll. Tags pinned at top, agent contributions stream below with provenance preserved." width="754" height="1672" loading="lazy" decoding="async" />
+      </div>
+    </div>
+
+    <div class="wow-pair-meta">
+      <p>On mobile the graph linearizes into a Tag-Stream — same gravity wells pinned at top, contributions stream below. Same content model, different geometry.</p>
+      <p>Force-directed graphs feel decorative until you load real production data. With 1,400 saved facts in the live FuzeHQ DB, the clusters tell you where attention concentrates.</p>
+      <p>Each node carries the source agent's photo. Provenance is not a tooltip — it's the avatar. You see who taught the system before you read what they taught it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 07. SYSTEM SURFACES =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="lightbulb"></i>( 03 ) The Answer</div>
-      <div>
-        <div class="answer-beads">
-          <div class="bead">
-            <div class="bead-n">A / 01</div>
-            <h4>MCP local execution over embedded AI</h4>
-            <p>Three execution models were evaluated: embedding AI directly in the platform, routing through API-based agents, and MCP local execution. Embedding AI in the platform would have added significant per-usage cost and prevented agents from accessing local files, code repositories, and development tools. API-based routing would have added latency and required managing additional API credentials. MCP local execution was the right architecture. Agents run on the user's machine using their existing Claude subscription, and the platform provides coordination and visibility rather than compute. Costs stay predictable. Agents have full access to local resources. The platform's value is the control layer, not the AI layer.</p>
+    <div class="section-head-row">
+      <span class="badge section-num"><span class="sn-num">( 05 )</span><span class="sn-name">System</span></span>
+      <h2 class="h2">The system holds across every surface.</h2>
+    </div>
+    <p class="prose-body" style="max-width: 60ch;">Two WOW shots are the front door. The product is the system behind them. Four supporting surfaces — Dashboard, Inbox, Projects, Memory v1 — prove the design language scales beyond the hero moments. Same Row Grammar. Same agent attribution. Same calm.</p>
+
+    <div class="system-grid">
+      <article class="system-card">
+        <div class="figure-wrap">
+          <div class="desktop">
+            <img class="case-mockup-img" src="img/fuzehq/dashboard-desktop.png" alt="FuzeHQ Dashboard desktop — Roster strip with six named agents, live activity stream below, Run Loop sidebar on the right showing agent task counters" width="2880" height="2200" loading="lazy" decoding="async" />
           </div>
-          <div class="bead">
-            <div class="bead-n">A / 02</div>
-            <h4>Structured skills replaced generic prompts</h4>
-            <p>The first version used free-form prompts to direct agent behavior. Output was inconsistent. The same agent produced different quality work depending on which session it was operating in. Structured skills with explicit governance, version history, and progressive loading transformed agent reliability. Each skill defined exactly what the agent knew how to do and how it should approach the task. 51 skills across 9 agents. Expertise became persistent, reusable, and improvable rather than reconstructed from scratch in every conversation.</p>
-          </div>
-          <div class="bead">
-            <div class="bead-n">A / 03</div>
-            <h4>Mandatory QA gates made agent work auditable</h4>
-            <p>After an incident where 28 features shipped unverified because agents had self-certified their own work as complete, the status system was redesigned from the ground up. In the new system, agents operating as builders can only move tasks to "in review," never to "done." Only the designated QA agent can close a task after posting a QA pass. Self-certification is architecturally blocked, not just discouraged by policy. The distinction matters. A policy can be overridden by a tired human. An architectural constraint cannot.</p>
+          <div class="mobile">
+            <img class="case-mockup-img" src="img/fuzehq/dashboard-mobile.png" alt="FuzeHQ Dashboard mobile — greeting, brand sentence, horizontal-scroll roster, agent runs counter, live activity, bottom tab bar" width="754" height="1672" loading="lazy" decoding="async" />
           </div>
         </div>
+        <span class="num">Surface 01 · Dashboard</span>
+        <h3 class="h">Roster, activity stream, run loop.</h3>
+        <p>The dashboard is the team page. Roster strip across the top, live activity below, Run Loop sidebar on the right. Every row uses the same grammar: avatar, name, badge, description, time.</p>
+      </article>
+
+      <article class="system-card">
+        <div class="figure-wrap">
+          <div class="desktop">
+            <img class="case-mockup-img" src="img/fuzehq/inbox-desktop.png" alt="FuzeHQ Inbox desktop — release thread notifications grouped by v2.4, agent-authored events, signed handoffs visible inline" width="2880" height="2200" loading="lazy" decoding="async" />
+          </div>
+          <div class="mobile">
+            <img class="case-mockup-img" src="img/fuzehq/inbox-mobile.png" alt="FuzeHQ Inbox mobile — same threaded notifications collapsed for thumb scroll, attribution preserved" width="754" height="1672" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <span class="num">Surface 02 · Inbox</span>
+        <h3 class="h">Threads, not toasts.</h3>
+        <p>Notifications group around the artifact they touch — the v2.4 release thread, the migration thread, the security audit thread. Inline signed handoffs preserve attribution without re-rendering it.</p>
+      </article>
+
+      <article class="system-card">
+        <div class="figure-wrap">
+          <div class="desktop">
+            <img class="case-mockup-img" src="img/fuzehq/projects-desktop.png" alt="FuzeHQ Projects desktop — v2.4 milestone with workload breakdown across agents, status badges, signed handoffs preserved" width="2880" height="2200" loading="lazy" decoding="async" />
+          </div>
+          <div class="mobile">
+            <img class="case-mockup-img" src="img/fuzehq/projects-mobile.png" alt="FuzeHQ Projects mobile — milestone progress with workload bars and agent attribution" width="754" height="1672" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <span class="num">Surface 03 · Projects</span>
+        <h3 class="h">Milestones over Gantt charts.</h3>
+        <p>Projects view is anchored on milestones, not date math. The v2.4 milestone shows workload breakdown by agent, status badges, and the same Trail-Signal vocabulary as the task pipeline.</p>
+      </article>
+
+      <article class="system-card">
+        <div class="figure-wrap">
+          <div class="desktop">
+            <img class="case-mockup-img" src="img/fuzehq/memory-v1-desktop.png" alt="FuzeHQ Memory v1 desktop — list view of saved facts with agent attribution, source links, and timestamp" width="2880" height="2760" loading="lazy" decoding="async" />
+          </div>
+          <div class="mobile">
+            <img class="case-mockup-img" src="img/fuzehq/memory-v1-mobile.png" alt="FuzeHQ Memory v1 mobile — saved facts list with agent attribution, swipe-to-act preserved" width="754" height="1672" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <span class="num">Surface 04 · Memory v1</span>
+        <h3 class="h">List view earns the graph view.</h3>
+        <p>Memory v1 ships first. List view, full-text search, agent attribution. We keep it after Memory v2 ships — power users still drop into list when the graph is the wrong tool. Same content, different lens.</p>
+      </article>
+    </div>
+
+    <div class="row-grammar">
+      <span class="lead">Row Grammar — the locked primitive</span>
+      <p>Every row in every surface follows the same pattern. Build it once, repeat it everywhere. New surfaces inherit the grammar; new components bend to it.</p>
+      <span class="formula">Avatar &nbsp;→&nbsp; Name &nbsp;→&nbsp; Badge &nbsp;→&nbsp; Description &nbsp;→&nbsp; Time + Trail-Signal</span>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 08. PROCESS =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="section-head-row">
+      <span class="badge section-num"><span class="sn-num">( 06 )</span><span class="sn-name">Process</span></span>
+      <h2 class="h2">Six iterations. Three critique rounds. One ship.</h2>
+    </div>
+    <p class="prose-body" style="max-width: 60ch;">The system did not arrive on the first try. It arrived on iter 6f — after a wedge research pass, a two-anchor pick, a token-and-accessibility spec, and a three-persona Apple-IC critique that flagged things I had stopped seeing.</p>
+
+    <div class="process-beats">
+      <article class="beat">
+        <div class="num">Beat 01 · Research</div>
+        <h3 class="h">Wedge before pixels.</h3>
+        <p>Perplexity ICP study mapped every shipping competitor onto the agent-identity vs. team-UX matrix. The empty quadrant — high on both — was where FuzeHQ's wedge had to sit. The brand sentence followed: "AI work, made visible."</p>
+      </article>
+
+      <article class="beat">
+        <div class="num">Beat 02 · Anchor pick</div>
+        <h3 class="h">Two, never three.</h3>
+        <p>Linear's chrome and LangSmith's content density on different axes, with a tiebreaker. Three anchors had been on the table — Notion was the third — and we cut it. Cleaner than design-by-committee, slower than picking one alone.</p>
+      </article>
+
+      <article class="beat">
+        <div class="num">Beat 03 · Token spec</div>
+        <h3 class="h">Foundation before screens.</h3>
+        <p>WCAG AA contrast, dual-mode dark/light tokens, single accent for both, six-step type scale. The brand sentence rendered first — typography spec one — before any screen was drawn.</p>
+      </article>
+
+      <article class="beat">
+        <div class="num">Beat 04 · Phase C mockups</div>
+        <h3 class="h">Six surfaces, two form factors.</h3>
+        <p>Dashboard, Task Detail, Inbox, Projects, Memory v1, Memory v2 — each at desktop and mobile. The mobile artboards were drawn from scratch, not scaled. Different geometry; same grammar.</p>
+      </article>
+
+      <article class="beat">
+        <div class="num">Beat 05 · Apple-IC audit</div>
+        <h3 class="h">Three personas. Five checks. No exceptions.</h3>
+        <p>Bounds, avatar-overlap, handle-on-line, dot-consistency, shape-grammar. An Apple Staff Designer flagged: "Tokens shouldn't have a brand. The product has a brand." It changed the foundation file the next morning.</p>
+      </article>
+
+      <article class="beat">
+        <div class="num">Beat 06 · Polish lock</div>
+        <h3 class="h">Iter 6f → 6g → ship.</h3>
+        <p>Two final rounds. 6f settled the bloom-glow rules and the Trail-Signal vocabulary. 6g locked the row grammar across all 13 surfaces. CEO approved. Phase D shipped this case study.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =================== 09. PULL QUOTE — Apple-IC critique =================== -->
+<section class="pull-quote reveal">
+  <div class="wrap">
+    <div class="mark">"</div>
+    <blockquote>Tokens shouldn't have a brand. The product has a brand.</blockquote>
+    <div class="attr">
+      <span class="name">Apple-IC critique, round 02</span>
+      Apple Staff Designer · iter 6e audit
+    </div>
+  </div>
+</section>
+
+<!-- =================== 10. OUTCOME =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="section-head-row">
+      <span class="badge section-num"><span class="sn-num">( 07 )</span><span class="sn-name">Outcome</span></span>
+      <h2 class="h2">What this phase shipped.</h2>
+    </div>
+    <p class="prose-body" style="max-width: 60ch;">The April 2026 phase locked the visual system end-to-end. Foundation tokens, two WOW shots, four supporting surfaces, mobile companions, and an audit checklist that has to pass before any future surface ships.</p>
+
+    <div class="outcome-stats">
+      <div class="rs">
+        <div class="rs-n">13</div>
+        <div class="rs-l">Surfaces shipped<br/>6 desktop + 6 mobile + Foundation</div>
+      </div>
+      <div class="rs">
+        <div class="rs-n">2</div>
+        <div class="rs-l">WOW shots locked<br/>Task Detail pipeline + Memory v2 graph</div>
+      </div>
+      <div class="rs">
+        <div class="rs-n">5/5</div>
+        <div class="rs-l">Apple-IC audit checks passed<br/>Bounds, avatar, handle, dot, shape</div>
+      </div>
+      <div class="rs">
+        <div class="rs-n">100%</div>
+        <div class="rs-l">WCAG AA contrast<br/>Dual-mode tokens, single accent, both modes</div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- =================== 11. REFLECTION =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="layout-grid"></i>( 04 ) Key Screen Annotations</div>
-      <div>
-        <div class="screens">
-          <div class="screen">
-            <div class="tag">SCREEN 01</div>
-            <div>
-              <h4>Agent Roster</h4>
-              <p>Each agent has a named profile with role, assigned skills, active task count, and budget. The roster is the team page. It makes AI agents legible as collaborators rather than anonymous processes running in a terminal.</p>
-            </div>
-          </div>
-          <div class="screen">
-            <div class="tag">SCREEN 02</div>
-            <div>
-              <h4>Task Board with QA Gates</h4>
-              <p>Every task shows its agent assignment, current status, and QA gate state. A task cannot move to "done" without a QA pass visible in the activity log. The board is the truth, not whatever an agent reported in a chat window.</p>
-            </div>
-          </div>
-        </div>
+    <div class="section-head-row">
+      <span class="badge section-num"><span class="sn-num">( 08 )</span><span class="sn-name">Reflection</span></span>
+    </div>
+
+    <div class="reflection">
+      <div class="col">
+        <h3 class="reflection-h">What worked</h3>
+        <p>The wedge came before the pixels. We did not start drawing until we knew which quadrant was empty and what the brand sentence was. Every later decision had a reference point.</p>
+        <p>Two anchors, never three. The tiebreaker — "Linear wins on chrome, LangSmith wins on density" — became a reusable decision rule for every later question.</p>
+        <p>Critique was scheduled, not optional. The Apple-IC audit was on the calendar before the screens were ready. It found things I had stopped seeing.</p>
+      </div>
+      <div class="col">
+        <h3 class="reflection-h">What I'd do differently</h3>
+        <p>Build the dashboard first, not the settings. The earliest sprints focused on agent configuration and skill management before the visibility layer was in place. We were configuring a system we couldn't yet see working.</p>
+        <p>Mobile in parallel from week one. Mobile companions arrived in iter 4. Earlier mobile drafts would have surfaced the Tag-Stream pattern sooner — and saved a week of rework when Memory v2 didn't linearize cleanly.</p>
+        <p>Token spec drives more than colors. Half the iter-6 fixes were token oversights — accent contrast in light mode, mono letter-spacing on small caps. A stricter foundation up front would have saved iter 5.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="prose-section reveal">
+<!-- =================== Foundation band — canonical brand sentence export =================== -->
+<section class="foundation-band reveal" aria-label="Foundation brand sentence">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="trending-up"></i>( 05 ) Results</div>
-      <div>
-        <div class="results-grid">
-          <div class="result-block">
-            <p>9 agents with distinct roles · 14 MCP tools · 51 structured skills · 0 context switches · Work and tracking unified in one platform · Mandatory QA gates preventing self-certification</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <figure>
+      <img class="case-mockup-img" src="img/fuzehq/foundation-brand.png" alt="FuzeHQ Foundation file — the canonical brand sentence rendered at typography spec, the source-of-truth surface every other screen inherits from" width="2768" height="466" loading="lazy" decoding="async" />
+      <figcaption class="caption">Foundation. The brand sentence rendered first. Every surface inherits from here.</figcaption>
+    </figure>
   </div>
 </section>
 
-
-
-<section class="prose-section reveal">
+<!-- =================== 12. CLOSE — brand-sentence repeat =================== -->
+<section class="final-close reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="book-open"></i>( 06 ) Reflection</div>
-      <div>
-        <div class="reflection">
-          <div class="col">
-            <div class="tag">What worked</div>
-            <p>Dogfooding created immediate feedback loops. Every frustration became a design problem the same week it was felt. MCP architecture hit the correct balance between control and cost. Naming agents and giving them skills changed the working relationship from "using a chatbot" to "managing a team."</p>
-          </div>
-          <div class="col">
-            <div class="tag">What to do differently</div>
-            <p>Build the dashboard first, not the settings. The initial sprint focused on agent configuration and skill management before the visibility layer was in place. The team was configuring a system they couldn't yet see working. Design for multi-tenant isolation from the initial architecture. Retrofitting tenant separation introduced security review work that slowed the beta launch significantly.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="next-cta reveal">
-  <div class="wrap next-cta-row">
-    <div>
-      <div class="tag"><i data-lucide="arrow-right"></i>( 07 )</div>
-    </div>
+    <p class="brand-sentence">AI work, made visible.</p>
+    <p class="sub">FuzeHQ. The team workspace for humans and AI agents.</p>
     <div class="btn-row">
-      <a class="btn btn-secondary" href="index.html#work">All Case Studies <span class="arrow">→</span></a>
-      <a class="btn btn-primary" href="mailto:hello@uxmeas.com">Let's Talk <span class="arrow">→</span></a>
+      <a class="btn btn-secondary" href="index.html#work">All case studies <span class="arrow">→</span></a>
+      <a class="btn btn-primary" href="mailto:hello@uxmeas.com?subject=FuzeHQ%20%E2%80%94%20design%20review">Let's talk <span class="arrow">→</span></a>
     </div>
+  </div>
+</section>
+
+<!-- =================== Next case CTA =================== -->
+<section class="reveal" style="padding-top: 0;">
+  <div class="wrap">
+    <a class="next-case-cta" href="compliance-ux.html" aria-label="Read the next case study, Compliance UX">
+      <div class="thumb">
+        <img src="img/cases/compliance-ux.png" alt="" loading="lazy" />
+      </div>
+      <div class="meta">
+        <span class="eb">Next case</span>
+        <h3 class="name">Compliance UX</h3>
+        <span class="tease">KYC that ships in 12 minutes, not 45. Investor onboarding redesigned for IIROC, Reg CF, MiFID, and FINTRAC.</span>
+      </div>
+      <span class="btn btn-primary" aria-hidden="true">Read case study <span class="arrow">→</span></span>
+    </a>
   </div>
 </section>
 
@@ -606,7 +1329,7 @@
 
 <footer class="site">
   <div class="wrap site-footer-row">
-    <span>© 2026 UX Meas</span>
+    <span>&copy; 2026 UX Meas</span>
     <a href="mailto:hello@uxmeas.com">hello@uxmeas.com</a>
   </div>
 </footer>
