@@ -1,642 +1,850 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pheak Meas — Product Designer</title>
-  <meta name="description" content="I design products. Then I build them. 18 years in product design — fintech, compliance, and enterprise software. Co-founded a company that went from 3 people to TSX-V IPO.">
-  <meta property="og:title" content="Pheak Meas — Product Designer">
-  <meta property="og:description" content="I design products. Then I build them. 18 years designing fintech platforms, Figma plugins, and AI-native tools.">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/base.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Pheak Meas",
-    "alternateName": ["UX Meas", "Pheak Meas, Product Designer"],
-    "jobTitle": "Product Designer & Founder",
-    "url": "https://uxmeas.com",
-    "image": "https://uxmeas.com/images/og-image.png",
-    "description": "18 years shipping product design across fintech, developer tools, and AI-native products. Co-founded a fintech company from 3-person startup to TSX-V public company.",
-    "knowsAbout": [
-      "Product Design",
-      "Fintech",
-      "Developer Tools",
-      "AI-native Products",
-      "KYC/AML Compliance",
-      "Design Systems",
-      "Founder Operations",
-      "0 to 1 Product Design",
-      "Scale-Stage Redesign"
-    ],
-    "worksFor": {"@type": "Organization", "name": "MZM Labs", "url": "https://mzmlabs.com"},
-    "alumniOf": [{"@type": "Organization", "name": "Katipult", "description": "TSX-V public fintech, co-founder, Head of Product Design"}],
-    "knowsLanguage": ["en", "km"]
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>UX Meas. Founding designer → TSX-V IPO. $2B+ processed.</title>
+<meta name="description" content="Founding designer of a TSX-V public fintech. $2B+ processed across 20+ jurisdictions. 18 years across fintech, developer tools, and AI-native products. Senior product design roles, Calgary plus remote." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
+<link rel="stylesheet" href="shared.css" />
+<script src="theme.js"></script>
+
+<!-- Schema.org structured data: machine-readable identity + contact for crawlers, recruiters, LinkedIn indexers -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "UX Meas",
+  "jobTitle": "Senior Product Designer",
+  "description": "Founding designer of a TSX-V public fintech. $2B+ processed across 20+ jurisdictions. 18 years across fintech, developer tools, and AI-native products.",
+  "email": "hello@uxmeas.com",
+  "url": "https://uxmeas.com",
+  "sameAs": [
+    "https://linkedin.com/in/uxmeas"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Calgary",
+    "addressRegion": "AB",
+    "addressCountry": "CA"
+  },
+  "knowsAbout": [
+    "Product Design",
+    "Design Systems",
+    "Fintech UX",
+    "Developer Tools",
+    "AI Agents",
+    "KYC/AML Compliance",
+    "Investor Onboarding"
+  ],
+  "award": [
+    "EY Entrepreneur of the Year Finalist, 2017",
+    "RBC Emerging Enterprise of the Year"
+  ]
+}
+</script>
+
+<style>
+  /* =========================================================
+     Index-only styles
+     ========================================================= */
+
+  /* hero */
+  .hero {
+    padding: clamp(80px, 12vw, 160px) 0 clamp(56px, 8vw, 112px);
   }
-  </script>
-  <script src="/js/copy-rotation.js" defer></script>
-  <style>
-    /* === HOMEPAGE-SPECIFIC (MZM-621: 2-col hero, left-aligned) === */
-    .hero {
-      min-height: 72vh;
+  .hero .eyebrow { margin-bottom: 40px; }
+  .hero h1 { margin-bottom: 32px; }
+  .hero h1 .ln { display: block; }
+  .hero h1 .ln-2 { color: var(--accent); }
+  .hero .lede { margin-bottom: 36px; max-width: 52ch; }
+
+  /* hero-grid: headline column on the left, narrower stats rail on the right.
+     align-items: stretch — stats column fills full height of headline column,
+     internal hairlines align top to bottom.
+     Collapses to single column below 900px, then 2x2 grid. */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(290px, 320px);
+    gap: clamp(24px, 3vw, 48px);
+    align-items: stretch;
+  }
+
+  /* stats column inside hero. 4 rows distribute evenly across full column height.
+     Hairlines between rows. Number stacks above label so column stays narrow.
+     Slides in from the right on first view. */
+  .hero-stats {
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+  }
+  .hstat {
+    position: relative;
+    padding: 16px 0;
+    border-top: 1px solid var(--rule-soft);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity .55s ease-out, transform .55s ease-out;
+  }
+  .hstat:first-child { border-top: 0; }
+  .hstat.in { opacity: 1; transform: translateX(0); }
+
+  .hstat-n {
+    font-family: var(--f-sans);
+    font-size: var(--t-stat-n);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--fg);
+    min-width: 4ch;
+  }
+  .hstat-l {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+    line-height: 1.4;
+  }
+
+  /* tablet + mobile: stack column below text, then 2x2 grid */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 56px; }
+    .hero-stats {
+      grid-template-columns: 1fr 1fr;
+    }
+    .hstat {
+      padding: 18px 18px 18px 18px;
+      border-left: 1px solid var(--rule-soft);
+      border-top: 1px solid var(--rule-soft);
+      grid-template-columns: 1fr;
+      gap: 12px;
+      min-height: 110px;
+      align-content: space-between;
+    }
+    .hstat:nth-child(odd) { border-left: 0; padding-left: 0; }
+    .hstat:nth-child(-n+2) { border-top: 0; }
+  }
+
+  /* respect reduced-motion: skip both reveal and count-up */
+  @media (prefers-reduced-motion: reduce) {
+    .hstat { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* =========================================================
+     Case switcher: tabbed on desktop, linear scroll on mobile.
+     Rail (left) drives which panel (right) is visible via JS.
+     ========================================================= */
+  /* Section needs overflow-x:clip to contain the right-bleed visuals without
+     creating a horizontal page scroll. `clip` (not `hidden`) doesn't break
+     the sticky rail's positioning context the way `hidden` would. */
+  #work { overflow-x: clip; }
+
+  .case-switcher {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: clamp(48px, 6vw, 96px);
+  }
+
+  /* Section-head column widths matched to the case-switcher below, so the
+     badge sits over the rail and the heading sits over the case content
+     (same left edge). Scoped to this index page; case studies use default
+     section-head proportions. */
+  .section-head.section-head-aligned {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: clamp(48px, 6vw, 96px);
+  }
+
+  /* sticky vertical rail — section-scoped, not page-scoped */
+  .case-rail {
+    position: sticky;
+    /* 60px sticky-nav height + 32px buffer so Compliance UX clears the nav */
+    top: 92px;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .case-rail-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    font-family: var(--f-mono);
+    font-size: 14px;
+    color: var(--fg-3);
+    text-decoration: none;
+    transition: color .15s ease;
+  }
+  .case-rail-item:hover { color: var(--fg-2); }
+  .case-rail-item.is-active { color: var(--accent); }
+  .case-rail-item:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+  .case-rail-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--fg-4);
+    flex-shrink: 0;
+    transition: background .2s, border-color .2s, transform .2s;
+  }
+  .case-rail-item.is-active .case-rail-dot {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.15);
+  }
+
+  /* panels stack vertically — all 4 always visible. scroll-margin-top
+     accounts for breathing room when anchor-scrolled. */
+  .case-panels {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(96px, 12vw, 160px);
+  }
+  .case-panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(40px, 4vw, 72px);
+    align-items: start;
+    scroll-margin-top: 32px;
+  }
+
+  /* slide-in animation: content fades in from below, visual slides in from
+     the right as each panel enters view. IntersectionObserver toggles
+     `.is-visible` once per panel; transition handles the rest. */
+  .case-content,
+  .case-visual {
+    opacity: 0;
+    transition: opacity .7s ease-out, transform .7s ease-out;
+  }
+  .case-content { transform: translateY(16px); }
+  .case-visual { transform: translateX(48px); }
+  .case-panel.is-visible .case-content,
+  .case-panel.is-visible .case-visual {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .case-content,
+    .case-visual {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  /* center column anatomy */
+  .case-content { max-width: 52ch; }
+  .case-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .case-eyebrow {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .case-headline {
+    font-size: var(--t-h-sub);
+    font-weight: 500;
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+    margin: 0 0 24px;
+    color: var(--fg);
+  }
+  .case-body {
+    font-size: var(--t-lede);
+    line-height: 1.5;
+    color: var(--fg-2);
+    margin: 0 0 28px;
+  }
+  .case-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 36px;
+    display: grid;
+    gap: 12px;
+  }
+  .case-bullets li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--fg-2);
+    font-variant-numeric: tabular-nums;
+  }
+  .case-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* right visual: desktop screenshot pinned to the right side of the viewport,
+     bleeding off the right edge so only the left portion is visible. No frame,
+     no rounded corners — the cut is the affordance.
+     - Sticky to viewport top while its panel is in view (60px nav + 32px buffer)
+     - Width extends past the wrap's right gutter all the way to the viewport
+       edge via `calc(100% + gutter + outside-wrap space)`
+     - Image at full height with `object-position: left` so the left portion of
+       the desktop UI is shown; right portion clips off-screen. */
+  .case-visual {
+    position: sticky;
+    top: 92px;
+    width: calc(100% + var(--gutter) + max(0px, (100vw - var(--max)) / 2));
+    height: clamp(360px, 56vh, 540px);
+    overflow: hidden;
+    background: var(--placeholder-bg);
+    border: 0;
+    border-radius: 0;
+  }
+  .case-visual img {
+    height: 100%;
+    width: 200%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+  }
+
+
+  /* =========================================================
+     Mobile: rail vanishes, every panel renders as long scroll
+     ========================================================= */
+  @media (max-width: 900px) {
+    .case-switcher {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .case-rail { display: none; }
+    .case-panel,
+    .case-panel.is-active {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: var(--space-3xl);
-      align-items: center;
-      text-align: left;
-      padding: 80px var(--section-padding-x) var(--section-padding-y);
-      max-width: var(--max-width);
-      margin: 0 auto;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 72px;
+      animation: none;
     }
+    .case-panel:last-child { margin-bottom: 0; }
+    .case-panel[hidden] { display: grid; }
+  }
 
-    .hero__content {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
+  @media (prefers-reduced-motion: reduce) {
+    .case-panel.is-active { animation: none; }
+  }
 
-    .hero__title {
-      font-size: clamp(2.5rem, 6vw, var(--text-4xl));
-      font-weight: 400;
-      letter-spacing: var(--tracking-tight);
-      line-height: var(--leading-tight);
-      color: var(--text-primary);
-      margin-bottom: var(--space-lg);
-      max-width: 640px;
-    }
+  /* about */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-grid p { margin: 0 0 18px; color: var(--fg-2); font-size: 17px; line-height: 1.55; max-width: 48ch; }
+  .about-grid p:last-child { color: var(--fg-3); font-size: 14px; font-family: var(--f-mono); margin-top: 14px; }
+  .about-grid .about-lede {
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    max-width: 24ch;
+    margin-bottom: 24px;
+  }
+  .about-grid .about-name-tag {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+    max-width: none;
+  }
 
-    .hero__subtitle {
-      font-size: 1.125rem;
-      color: var(--text-secondary);
-      max-width: 520px;
-      line-height: 1.6;
-      margin-bottom: var(--space-2xl);
-    }
+  /* 2x2 stats in narrow column */
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .about-stats .stat {
+    padding: 24px 20px 22px;
+    border-left: 1px solid var(--rule-soft);
+    min-height: 128px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .about-stats .stat:nth-child(odd) { border-left: 0; }
+  .about-stats .stat:nth-child(n+3) { border-top: 1px solid var(--rule-soft); }
+  .about-stats .stat-n {
+    font-family: var(--f-sans);
+    font-size: clamp(28px, 3.2vw, 40px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .about-stats .stat-l {
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-top: 16px;
+    line-height: 1.4;
+  }
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  }
 
-    /* MZM-621: right-side placeholder for future hero visual */
-    .hero__visual {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      max-height: 520px;
-      border: 1px solid var(--glow-border);
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
-      box-shadow: var(--glow-shadow);
-    }
+  .about-role {
+    font-family: var(--f-mono);
+    font-size: 11px; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 16px;
+  }
 
-    /* MZM-621: horizontal divider below hero */
-    .hero-divider {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 var(--section-padding-x);
-    }
-    .hero-divider hr {
-      border: none;
-      border-top: 1px solid var(--divider);
-      margin: 0;
-    }
-
-    /* === PROJECT GRID === */
-    .projects {
-      padding: var(--section-padding-y) var(--section-padding-x);
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    /* MZM-623: centered section header (icon + heading + subtext) */
-    .section-header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: var(--space-md);
-      margin-bottom: var(--space-3xl);
-    }
-
-    .section-header__icon {
-      width: 80px;
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--glow-border);
-      border-radius: var(--radius-lg);
-      background: var(--glow-fill-subtle);
-      color: var(--text-primary);
-    }
-
-    .section-header__icon svg {
-      width: 36px;
-      height: 36px;
-    }
-
-    .section-header__title {
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 4vw, var(--text-3xl));
-      font-weight: 400;
-      letter-spacing: var(--tracking-tight);
-      color: var(--text-primary);
-      margin: 0;
-    }
-
-    .section-header__subtext {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      max-width: 560px;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .projects__grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-lg);
-    }
-
-    .project-card {
-      background: var(--bg-card);
-      border: 1px solid var(--glow-border);
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      box-shadow: var(--glow-shadow), 0 1px 3px rgba(0, 0, 0, 0.3);
-      transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .project-card:hover {
-      border-color: var(--glow-border-hover);
-      transform: translateY(-2px);
-      box-shadow: var(--glow-shadow-hover), 0 4px 16px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Audit N: image bg shift on hover */
-    .project-card:hover .project-card__image {
-      background-color: #2C2C30;
-    }
-
-    .project-card__image {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: var(--bg-elevated);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-size: var(--text-sm);
-      transition: background-color var(--transition-base);
-    }
-
-    /* MZM-342: uniform 2-column grid — let content differentiate */
-
-    .project-card__content {
-      padding: 20px 24px 24px;  /* Audit G: tighter top */
-      display: flex;
-      flex-direction: column;
-      gap: 6px;                 /* Audit H: tighter rhythm */
-    }
-
-    .project-card__tags {
-      display: flex;
-      gap: var(--space-sm);
-      flex-wrap: wrap;
-    }
-
-    .project-card__tag {
-      font-size: var(--text-xs);
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);  /* Audit B: was accent — tags should be quiet */
-    }
-
-    .project-card__tag + .project-card__tag::before {
-      content: " · ";
-      color: var(--text-muted);
-    }
-
-    .project-card__title {
-      font-size: var(--text-lg);
-      font-weight: 500;          /* Audit K: was 700 — too heavy for cards */
-      color: var(--text-primary);
-    }
-
-    .project-card__desc {
-      font-size: var(--text-sm);
-      color: var(--text-secondary);
-      line-height: var(--leading-normal);
-    }
-
-    /* === ABOUT (MZM-624: centered header + left bio + 4-col stat cards) === */
-    .about {
-      padding: var(--section-padding-y) var(--section-padding-x);
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    .about__grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: var(--space-3xl);
-      align-items: start;
-      margin-top: var(--space-2xl);
-    }
-
-    .about__content {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-lg);
-      max-width: 640px;
-    }
-
-    .about__visual {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      max-height: 520px;
-      border: 1px solid var(--glow-border);
-      border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
-      box-shadow: var(--glow-shadow);
-    }
-
-    .about__stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--space-lg);
-      margin-top: var(--space-3xl);
-    }
-
-    .about__stat {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .about__stat-box {
-      aspect-ratio: 1 / 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: var(--space-xl);
-      background: var(--glow-fill-subtle);
-      border: 1px solid var(--glow-border);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--glow-shadow);
-      transition: border-color var(--transition-base);
-      text-align: center;
-    }
-
-    .about__stat:hover .about__stat-box {
-      border-color: var(--glow-border-hover);
-    }
-
-    .about__stat-number {
-      font-family: var(--font-display);
-      font-size: clamp(2.25rem, 5vw, 3.5rem);
-      font-weight: 400;
-      letter-spacing: var(--tracking-tight);
-      line-height: 1;
-      color: var(--text-primary);
-    }
-
-    .about__stat-label {
-      display: block;
-      margin-top: var(--space-md);
-      font-size: var(--text-xs);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-align: center;
-    }
-
-    @media (max-width: 1024px) {
-      .about__stats { grid-template-columns: repeat(2, 1fr); }
-      .about__grid { grid-template-columns: 1fr; }
-      .about__visual { display: none; }
-    }
-    @media (max-width: 560px) {
-      .about__stats { grid-template-columns: 1fr; }
-    }
-
-    /* === RESPONSIVE === */
-    @media (max-width: 1024px) {
-      .hero { min-height: 64vh; padding-top: 60px; gap: var(--space-2xl); }
-      .hero__title { font-size: clamp(2rem, 5vw, 3.5rem); }
-    }
-
-    @media (max-width: 768px) {
-      .projects__grid { grid-template-columns: 1fr; }
-      .hero {
-        min-height: auto;
-        grid-template-columns: 1fr;
-        gap: var(--space-xl);
-        padding-top: 48px;
-      }
-      .hero__visual { display: none; }
-      .hero__title { font-size: 2rem; }
-      .hero__subtitle { font-size: 1rem; max-width: 100%; }
-      .project-card__content { padding: 16px; }
-      .project-card__title { font-size: var(--text-base); }
-    }
-  </style>
+  /* contact */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .contact-h {
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    margin-bottom: 24px;
+    max-width: 16ch;
+  }
+  .contact-sub {
+    color: var(--fg-3);
+    font-size: 17px;
+    margin-bottom: 40px;
+    max-width: 46ch;
+  }
+  .contact-table {
+    font-family: var(--f-mono);
+    font-size: 13px;
+    border-top: 1px solid var(--rule);
+  }
+  .contact-table .r {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule-soft);
+    gap: 16px;
+  }
+  .contact-table .k {
+    color: var(--fg-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 10.5px;
+    padding-top: 2px;
+  }
+  .contact-table .v { color: var(--fg); }
+  .contact-table .v a { border-bottom: 1px solid var(--rule); padding-bottom: 1px; }
+  .contact-table .v a:hover { border-color: var(--fg); }
+  @media (max-width: 768px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav class="nav">
-    <a href="index.html" class="nav__brand"><img src="images/logo.svg" alt="UX Meas"></a>
-    <div class="flex gap-xl">
-      <a href="#work" class="nav__link link-animated">Work</a>
-      <a href="#about" class="nav__link link-animated">About</a>
-      <a data-u="hello" data-d="uxmeas.com" href="#" class="nav__link--accent link-animated">Contact</a>
-    </div>
-  </nav>
+<a href="#main" class="skip">Skip to content</a>
 
-  <!-- HERO (MZM-621: 2-col, left-aligned, primary+secondary CTA, divider) -->
-  <section class="hero reveal">
-    <div class="hero__content">
-      <h1 class="hero__title" data-rotate-slot="hero_h1">I design products. <br>Then I build them.</h1>
-      <p class="hero__subtitle" data-rotate-slot="hero_subtitle">18 years designing fintech platforms, developer tools, and AI-native products. From 3-person startup to TSX-V IPO.</p>
-      <div class="cta-pair">
-        <a href="#work" class="btn-primary">View Case Studies</a>
-        <a data-u="hello" data-d="uxmeas.com" href="#" class="btn-secondary">Contact</a>
+<!-- =================== NAV =================== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="wordmark" href="#top" aria-label="UX Meas, home">
+      <span class="dot" aria-hidden="true"></span>
+      UX/MEAS
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle theme">
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- =================== HERO =================== -->
+<!-- Stats live inside the hero now: claim + proof at the same fixation. -->
+<section class="hero reveal" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <h1 class="h-display">
+          <span class="ln ln-1">Founding designer → TSX-V IPO.</span>
+          <span class="ln ln-2">$2B+ processed across 20+ jurisdictions.</span>
+        </h1>
+        <p class="lede">Senior product designer. 18 years across fintech, developer tools, and AI-native products. Calgary plus remote.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#work">View Case Studies <span class="arrow">→</span></a>
+          <a class="btn btn-secondary" href="#contact">Let's Talk <span class="arrow">→</span></a>
+        </div>
       </div>
+
+      <aside class="hero-stats" aria-label="Career stats">
+        <div class="hstat" data-stagger="0">
+          <div class="hstat-n" data-count="18" data-suffix="">18</div>
+          <div class="hstat-l">Years shipping products</div>
+        </div>
+        <div class="hstat" data-stagger="1">
+          <div class="hstat-n" data-count="2" data-prefix="$" data-suffix="B+">$2B+</div>
+          <div class="hstat-l">Capital processed on shipped platforms</div>
+        </div>
+        <div class="hstat" data-stagger="2">
+          <div class="hstat-n">TSX-V</div>
+          <div class="hstat-l">Public company co-founded</div>
+        </div>
+        <div class="hstat" data-stagger="3">
+          <div class="hstat-n" data-count="20" data-suffix="+">20+</div>
+          <div class="hstat-l">Jurisdictions served</div>
+        </div>
+      </aside>
     </div>
-    <div class="hero__visual" aria-hidden="true">
-      <!-- v3 hero visual placeholder — TODO graphic/animation -->
+  </div>
+</section>
+
+<!-- =================== SELECTED WORK =================== -->
+<!-- No `.reveal` on this section: its `transform` creates a containing block
+     that breaks `position: sticky` on the case-switcher rail. The 4 case panels
+     have their own per-section slide-in via `.case-panel.is-visible` instead. -->
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head section-head-aligned">
+      <span class="badge section-num">01 / Work</span>
+      <h2 class="h-section scroll-lit">Selected Work. Four anchor cases. Fintech depth, AI-native systems, and design tools that ship.</h2>
     </div>
-  </section>
 
-  <div class="hero-divider" aria-hidden="true"><hr></div>
+    <!-- Case switcher: 4 sections always visible, stacked. Sticky left rail
+         is a TOC-style nav that smooth-scrolls to each section and tracks
+         which one is in view via IntersectionObserver. Rail vanishes on mobile. -->
+    <div class="case-switcher">
+      <nav class="case-rail" aria-label="Case study navigation">
+        <a class="case-rail-item is-active" href="#case-compliance-ux" data-target="compliance-ux">
+          <span class="case-rail-dot" aria-hidden="true"></span>
+          <span>Compliance UX</span>
+        </a>
+        <a class="case-rail-item" href="#case-dealflow" data-target="dealflow">
+          <span class="case-rail-dot" aria-hidden="true"></span>
+          <span>Katipult</span>
+        </a>
+        <!-- Pre-launch: FuzeHQ + Docs to Design rail items hidden until cases are polished.
+             Re-enable when ready. -->
+      </nav>
 
-  <!-- WORK -->
-  <section class="projects" id="work">
-    <!-- MZM-623: centered icon + heading + subtext -->
-    <header class="section-header">
-      <div class="section-header__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="7" height="7" rx="1"/>
-          <rect x="14" y="3" width="7" height="7" rx="1"/>
-          <rect x="3" y="14" width="7" height="7" rx="1"/>
-          <rect x="14" y="14" width="7" height="7" rx="1"/>
-        </svg>
-      </div>
-      <h2 class="section-header__title">Selected Work</h2>
-      <p class="section-header__subtext" data-rotate-slot="selected_work_subtext">Case studies across fintech, compliance, developer tools, and AI-native products.</p>
-    </header>
+      <div class="case-panels">
 
-    <div class="projects__grid">
-
-      <!-- KATIPULT GROUP -->
-      <a href="case-study/compliance-ux/" class="project-card reveal">
-        <div class="project-card__image">Compliance UX — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Fintech</span>
-            <span class="project-card__tag">Enterprise</span>
-            <span class="project-card__tag">Compliance</span>
+        <!-- 01 — Compliance UX -->
+        <article class="case-panel" id="case-compliance-ux">
+          <div class="case-content">
+            <div class="case-header">
+              <span class="icon-tile"><i data-lucide="shield-check"></i></span>
+              <span class="case-eyebrow">Compliance UX</span>
+            </div>
+            <h3 class="case-headline">KYC that ships in 12 minutes, not 45.</h3>
+            <p class="case-body">Compliance was the bottleneck for every fintech we built. So we made it the fastest part. One investor onboarding flow that adapts to IIROC, Reg CF, MiFID, and FINTRAC without forcing investors to know the difference.</p>
+            <ul class="case-bullets">
+              <li>45 minutes to 12. Average completion time, cut by 73%.</li>
+              <li>85% completion rate, up from 47%.</li>
+              <li>20+ jurisdictions on a single white-label engine.</li>
+              <li>Shipped to Canaccord Genuity, Raymond James, Sprott Capital.</li>
+            </ul>
+            <a class="btn btn-secondary case-cta" href="compliance-ux.html">How we built it <span class="arrow">→</span></a>
           </div>
-          <h3 class="project-card__title">Investor Onboarding — KYC/AML</h3>
-          <p class="project-card__desc">Reduced onboarding from 45 to 12 minutes with 85% completion across 20+ jurisdictions.</p>
-        </div>
-      </a>
-
-      <a href="case-study/dealflow/" class="project-card reveal">
-        <div class="project-card__image">DealFlow — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Fintech</span>
-            <span class="project-card__tag">Enterprise</span>
-            <span class="project-card__tag">Deal Management</span>
+          <div class="case-visual" aria-hidden="true">
+            <img src="img/cases/compliance-ux.png" alt="" loading="lazy" />
           </div>
-          <h3 class="project-card__title">Deal Management Platform</h3>
-          <p class="project-card__desc">$2B+ processed. 48% faster deal close. Used by Canaccord Genuity, Raymond James, Echelon.</p>
-        </div>
-      </a>
+        </article>
 
-      <a href="case-study/donations-rewards/" class="project-card reveal">
-        <div class="project-card__image">Donations — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">SaaS</span>
-            <span class="project-card__tag">Crowdfunding</span>
+        <!-- 02 — Katipult (white-label deal platform) -->
+        <article class="case-panel" id="case-dealflow">
+          <div class="case-content">
+            <div class="case-header">
+              <span class="icon-tile"><i data-lucide="layers"></i></span>
+              <span class="case-eyebrow">Katipult</span>
+            </div>
+            <h3 class="case-headline">Three products. One engine. $2B+ in regulated transactions.</h3>
+            <p class="case-body">Co-founded and designed Katipult — the white-label compliance and deal platform. DealFlow (equity), Lending, and Donations &amp; Rewards all ship on one configurable engine. 17 enterprise tenants, 6 continents, 20+ regulatory jurisdictions, zero per-tenant codebase overhead.</p>
+            <ul class="case-bullets">
+              <li>$2B+ moved across 17 enterprise tenants.</li>
+              <li>$647M facilitated in 2023 alone (DealFlow vertical, 71% YoY).</li>
+              <li>Three product verticals on one engine.</li>
+              <li>From co-founder to TSX-V IPO. Design at the leadership table.</li>
+            </ul>
+            <a class="btn btn-secondary case-cta" href="katipult.html">Read the case study <span class="arrow">→</span></a>
           </div>
-          <h3 class="project-card__title">Donations &amp; Rewards Platform</h3>
-          <p class="project-card__desc">White-label crowdfunding SaaS. Clients included InvestYYC, ATB Booster, and others. $500K+ raised.</p>
-        </div>
-      </a>
-
-      <a href="case-study/lending/" class="project-card reveal">
-        <div class="project-card__image">Lending — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Fintech</span>
-            <span class="project-card__tag">Lending</span>
+          <div class="case-visual" aria-hidden="true">
+            <img src="img/cases/dealflow.webp" alt="" loading="lazy" />
           </div>
-          <h3 class="project-card__title">Private Lending Platform</h3>
-          <p class="project-card__desc">Extended platform from equity-only to full debt support — unified admin for both.</p>
-        </div>
-      </a>
+        </article>
 
-      <!-- NEW PRODUCTS -->
-      <a href="case-study/fuzehq/" class="project-card reveal">
-        <div class="project-card__image">FuzeHQ — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">SaaS</span>
-            <span class="project-card__tag">AI Agents</span>
+        <!-- Pre-launch: FuzeHQ + Docs to Design panels hidden until cases are polished.
+             Re-enable by uncommenting (and restoring matching case-rail items above). -->
+        <!--
+        <article class="case-panel" id="case-fuzehq">
+          <div class="case-content">
+            <div class="case-header">
+              <span class="icon-tile"><i data-lucide="bot"></i></span>
+              <span class="case-eyebrow">FuzeHQ</span>
+            </div>
+            <h3 class="case-headline">Where humans and AI agents ship side by side.</h3>
+            <p class="case-body">Co-designed FuzeHQ from blank canvas to daily driver. Tasks, agents, skills, and runtime in one workspace, with zero context-switching between human and agent work. Shipped to mobile, desktop, and Slack on the same control plane.</p>
+            <ul class="case-bullets">
+              <li>9 specialized agents shipping production work today.</li>
+              <li>14 MCP tools. Any Claude Code session is a co-worker.</li>
+              <li>Multi-tenant from day one. No rewrites.</li>
+              <li>Mobile, desktop, and Slack surfaces. One workspace.</li>
+            </ul>
+            <a class="btn btn-secondary case-cta" href="fuzehq.html">Inside the build <span class="arrow">→</span></a>
           </div>
-          <h3 class="project-card__title">FuzeHQ — AI Team Management</h3>
-          <p class="project-card__desc">Where humans and AI agents ship together. 9 agents, 14 MCP tools, zero context switches.</p>
-        </div>
-      </a>
-
-      <a href="case-study/multipaste/" class="project-card reveal">
-        <div class="project-card__image">MultiPaste — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Figma Plugin</span>
-            <span class="project-card__tag">Developer Tool</span>
+          <div class="case-visual" aria-hidden="true">
+            <img src="img/cases/fuzehq.png" alt="" loading="lazy" />
           </div>
-          <h3 class="project-card__title">MultiPaste — Text Distribution</h3>
-          <p class="project-card__desc">Paste structured data into 50+ Figma layers in one action. 15 min → 1 min.</p>
-        </div>
-      </a>
+        </article>
 
-      <a href="case-study/mockupkit/" class="project-card reveal">
-        <div class="project-card__image">MockupKit — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Figma Plugin</span>
-            <span class="project-card__tag">Freemium</span>
+        <article class="case-panel" id="case-docs-to-design">
+          <div class="case-content">
+            <div class="case-header">
+              <span class="icon-tile"><i data-lucide="file-text"></i></span>
+              <span class="case-eyebrow">Docs to Design</span>
+            </div>
+            <h3 class="case-headline">Word docs to Figma frames in 60 seconds.</h3>
+            <p class="case-body">A Figma plugin that detects heading hierarchy, maps to design tokens, and outputs native editable frames. What used to take an afternoon now takes a paste.</p>
+            <ul class="case-bullets">
+              <li>Under 60 seconds per document.</li>
+              <li>H1 through H6 hierarchy auto-detected.</li>
+              <li>Maps directly to your design tokens.</li>
+              <li>Native Figma frames. Editable, no flat exports.</li>
+            </ul>
+            <a class="btn btn-secondary case-cta" href="docs-to-design.html">How the plugin works <span class="arrow">→</span></a>
           </div>
-          <h3 class="project-card__title">MockupKit — Device Mockups</h3>
-          <p class="project-card__desc">Perspective-accurate device mockups in Figma. DLT homography engine. 30 seconds per mockup.</p>
-        </div>
-      </a>
-
-      <a href="case-study/docs-to-design/" class="project-card reveal">
-        <div class="project-card__image">Docs to Design — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Figma Plugin</span>
-            <span class="project-card__tag">SaaS</span>
+          <div class="case-visual" aria-hidden="true">
+            <img src="img/cases/docs-to-design.png" alt="" loading="lazy" />
           </div>
-          <h3 class="project-card__title">Docs to Design — Document Wizard</h3>
-          <p class="project-card__desc">Transform documents into Figma frames in under 60 seconds. Auto-detection + brand system.</p>
-        </div>
-      </a>
+        </article>
+        -->
 
-      <a href="case-study/mypick/" class="project-card reveal">
-        <div class="project-card__image">MyPick — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Web App</span>
-            <span class="project-card__tag">Randomizer</span>
-          </div>
-          <h3 class="project-card__title">MyPick.io — Visual Randomizer</h3>
-          <p class="project-card__desc">Elimination race mechanic for random selection. 25 teams, multiplayer, 24 sound effects.</p>
-        </div>
-      </a>
-
-      <a href="case-study/relationsync/" class="project-card reveal">
-        <div class="project-card__image">RelationSync — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Mobile App</span>
-            <span class="project-card__tag">AI</span>
-          </div>
-          <h3 class="project-card__title">RelationSync — AI Voice Journal</h3>
-          <p class="project-card__desc">Voice-first therapy documentation. AI structures spoken reflections into searchable records.</p>
-        </div>
-      </a>
-
-      <a href="case-study/akmsecure/" class="project-card reveal">
-        <div class="project-card__image">AKMSecure — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Brand Identity</span>
-            <span class="project-card__tag">Website</span>
-          </div>
-          <h3 class="project-card__title">AKMSecure — Brand &amp; Web</h3>
-          <p class="project-card__desc">Industrial cybersecurity brand identity + responsive website + CMS. Startup to enterprise-ready.</p>
-        </div>
-      </a>
-
-      <a href="case-study/isoblock/" class="project-card reveal">
-        <div class="project-card__image">IsoBlock — Hero</div>
-        <div class="project-card__content">
-          <div class="project-card__tags">
-            <span class="project-card__tag">Blender Plugin</span>
-            <span class="project-card__tag">3D</span>
-          </div>
-          <h3 class="project-card__title">IsoBlock — Isometric Design</h3>
-          <p class="project-card__desc">Blender add-on for isometric 3D scenes. Shape primitives + surface presets = polished art in minutes.</p>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- ABOUT (MZM-624: centered header + left bio + 4-col stat cards) -->
-  <section class="about reveal" id="about">
-    <header class="section-header">
-      <div class="section-header__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="8" r="4"/>
-          <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
-        </svg>
-      </div>
-      <h2 class="section-header__title">About</h2>
-      <p class="section-header__subtext">Product designer and founder. I design systems, not screens — then I ship them.</p>
-    </header>
-
-    <div class="about__grid">
-      <div class="about__content">
-        <p><span data-rotate-slot="about_bio_lede">18 years of product design across fintech, developer tools, and AI-native products.</span> I co-founded a company that grew from 3 people to a TSX-V IPO — scaling design practice from solo founder-designer to Head of Product Design at a 45-person public company.</p>
-        <p>Our team designed every investor-facing screen across a $2B+ platform used by enterprise clients including Canaccord Genuity, Raymond James, and Sprott Capital. Now I build tools that make designers and developers more productive — Figma plugins, AI agent management, and design systems.</p>
-        <p>EY Entrepreneur of the Year Finalist (2017). RBC Emerging Enterprise of the Year. I think in systems, not screens.</p>
-      </div>
-      <div class="about__visual" aria-hidden="true">
-        <!-- v3 about visual placeholder — TODO portrait/graphic -->
       </div>
     </div>
 
-    <div class="about__stats">
-      <div class="about__stat">
-        <div class="about__stat-box"><span class="about__stat-number">18</span></div>
-        <span class="about__stat-label">Years in product design</span>
+  </div>
+</section>
+
+<!-- =================== ABOUT =================== -->
+<section class="section reveal" id="about">
+  <div class="wrap">
+    <div class="section-head section-head-solo">
+      <span class="badge section-num">02 / About</span>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <p class="about-name-tag">Pheak Meas · Lead Product Designer</p>
+        <p class="about-lede">Founding designer of a fintech that went from 3 people to a TSX-V public company.</p>
+        <p>Scaled from founder-designer to Head of Product Design across a 45-person org. The team designed every investor-facing screen on a $2B+ platform used by Canaccord Genuity, Raymond James, and Sprott Capital. 18 years across fintech, developer tools, and AI-native products.</p>
+        <p>Now building tools that make designers and developers faster. Figma plugins, AI agent management, and design systems that ship.</p>
+        <div class="badge-row">
+          <span class="badge">EY Entrepreneur Finalist · 2017</span>
+          <span class="badge">RBC Emerging Enterprise of the Year</span>
+        </div>
       </div>
-      <div class="about__stat">
-        <!-- TODO confirm $2B claim -->
-        <div class="about__stat-box"><span class="about__stat-number">$2B+</span></div>
-        <span class="about__stat-label">In funded products</span>
-      </div>
-      <div class="about__stat">
-        <div class="about__stat-box"><span class="about__stat-number">3 → 45</span></div>
-        <span class="about__stat-label">Team scaled</span>
-      </div>
-      <div class="about__stat">
-        <div class="about__stat-box"><span class="about__stat-number">IPO</span></div>
-        <span class="about__stat-label">TSX-V public company</span>
+
+      <div>
+        <div class="about-stats">
+          <div class="stat"><div class="stat-n">18</div><div class="stat-l">Years</div></div>
+          <div class="stat"><div class="stat-n">$2B+</div><div class="stat-l">Processed</div></div>
+          <div class="stat"><div class="stat-n">3 to 45</div><div class="stat-l">Team scale, founder to IPO</div></div>
+          <div class="stat"><div class="stat-n">TSX-V</div><div class="stat-l">Public listing</div></div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CLOSING CTA (MZM-625: large centered headline + paired CTAs) -->
-  <section class="closing-cta reveal">
-    <h2 class="closing-cta__title" data-rotate-slot="closing_cta_headline">Hire a designer who builds.<br>Available now.</h2>
-    <div class="cta-pair closing-cta__actions">
-      <a data-u="hello" data-d="uxmeas.com" href="#" class="btn-primary">Let's Talk</a>
-      <a href="#work" class="btn-secondary">View Work</a>
+<!-- =================== CONTACT =================== -->
+<section class="section reveal" id="contact">
+  <div class="wrap">
+    <div class="section-head section-head-solo">
+      <span class="badge section-num">03 / Contact</span>
     </div>
-  </section>
 
-  <style>
-    .closing-cta {
-      padding: var(--space-5xl) var(--section-padding-x);
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: var(--space-2xl);
-      border-top: 1px solid var(--divider);
-      background: var(--bg);
-    }
-    .closing-cta__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.25rem, 5vw, var(--text-3xl));
-      font-weight: 400;
-      letter-spacing: var(--tracking-tight);
-      line-height: 1.15;
-      color: var(--text-primary);
-      max-width: 720px;
-      margin: 0;
-    }
-    .closing-cta__actions { justify-content: center; }
-    @media (max-width: 768px) {
-      .closing-cta { padding: var(--space-4xl) var(--section-padding-x); }
-    }
-  </style>
+    <div class="contact-grid">
+      <div>
+        <h3 class="contact-h">18 years. Startup to IPO. Ready for the next team.</h3>
+        <p class="contact-sub">Senior, Lead, or Head of Product Design. Fintech, developer tools, or AI-native products. Calgary plus remote.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="mailto:hello@uxmeas.com">Let's Talk <span class="arrow">→</span></a>
+          <a class="btn btn-secondary" href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener" aria-label="View LinkedIn profile">View LinkedIn <span class="arrow">→</span></a>
+        </div>
+      </div>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="flex justify-center gap-xl footer-links">
-      <a href="https://linkedin.com/in/uxmeas" class="nav__link link-animated">LinkedIn</a>
-      <a href="https://uxmeas.com" class="nav__link link-animated">Portfolio</a>
+      <div class="contact-table">
+        <div class="r"><div class="k">Location</div><div class="v">Calgary, AB. Open to remote.</div></div>
+        <div class="r"><div class="k">Email</div><div class="v"><a href="mailto:hello@uxmeas.com">hello@uxmeas.com</a></div></div>
+        <div class="r"><div class="k">LinkedIn</div><div class="v"><a href="https://linkedin.com/in/uxmeas" target="_blank" rel="noopener">linkedin.com/in/uxmeas</a></div></div>
+      </div>
     </div>
-    <p class="footer-copyright">&copy; 2026 Pheak Meas. All rights reserved.</p>
-  </footer>
+  </div>
+</section>
 
-  <script src="js/main.js" defer></script>
+</main>
+
+<!-- Lucide icons: hydrates all <i data-lucide="..."> elements on DOMContentLoaded -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+<script>document.addEventListener('DOMContentLoaded', () => window.lucide && window.lucide.createIcons());</script>
+<script src="scroll-reveal.js" defer></script>
+<script src="scroll-lit.js" defer></script>
+
+<!-- Case switcher (scroll-anchored):
+     - Rail anchors smooth-scroll to each section
+     - IntersectionObserver tracks which panel is in view → sets active rail item
+     - Same observer triggers slide-in animation per panel (one-shot via `.is-visible`) -->
+<script>
+(function () {
+  const rail = Array.from(document.querySelectorAll('.case-rail-item'));
+  const panels = Array.from(document.querySelectorAll('.case-panel'));
+  if (!rail.length || !panels.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Active rail tracking: pick the panel currently centered in viewport.
+     rootMargin biases the trigger zone toward the upper-third of the screen
+     so the rail flips as soon as a section starts dominating the view. */
+  const activeIo = new IntersectionObserver((entries) => {
+    let best = null;
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      if (!best || entry.intersectionRatio > best.intersectionRatio) best = entry;
+    });
+    if (!best) return;
+    const id = best.target.id;
+    rail.forEach((r) => {
+      r.classList.toggle('is-active', 'case-' + r.dataset.target === id);
+    });
+  }, {
+    rootMargin: '-30% 0px -55% 0px',
+    threshold: [0, 0.25, 0.5, 0.75, 1]
+  });
+  panels.forEach((p) => activeIo.observe(p));
+
+  /* Slide-in reveal: one-shot per panel as it enters view */
+  if (reduced) {
+    panels.forEach((p) => p.classList.add('is-visible'));
+  } else {
+    const revealIo = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealIo.unobserve(entry.target);
+      });
+    }, { threshold: 0.15 });
+    panels.forEach((p) => revealIo.observe(p));
+  }
+
+  /* Smooth scroll on rail click. Native anchor would jump; we override
+     to honor scroll-margin-top and avoid layout-shift jank. */
+  rail.forEach((r) => {
+    r.addEventListener('click', (e) => {
+      const id = r.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({
+        behavior: reduced ? 'auto' : 'smooth',
+        block: 'start'
+      });
+      history.replaceState(null, '', '#' + id);
+    });
+  });
+})();
+</script>
+
+<!-- Hero stats: stagger reveal + count-up. Triggers once when in view. Skips on prefers-reduced-motion. -->
+<script>
+(function () {
+  const stats = document.querySelectorAll('.hero-stats .hstat');
+  if (!stats.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const STAGGER_MS = 120;
+  const COUNT_DURATION = 900;
+
+  const animateNumber = (el) => {
+    const target = parseInt(el.dataset.count, 10);
+    if (isNaN(target)) return;
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    if (reduced) { el.textContent = prefix + target + suffix; return; }
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / COUNT_DURATION);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = prefix + Math.round(target * eased) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (reduced) {
+    stats.forEach((el) => {
+      el.classList.add('in');
+      const num = el.querySelector('.hstat-n');
+      if (num && num.dataset.count) animateNumber(num);
+    });
+    return;
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const idx = parseInt(el.dataset.stagger || '0', 10);
+      setTimeout(() => {
+        el.classList.add('in');
+        const num = el.querySelector('.hstat-n');
+        if (num && num.dataset.count) animateNumber(num);
+      }, idx * STAGGER_MS);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+
+  stats.forEach((el) => io.observe(el));
+})();
+</script>
+
+<footer class="site">
+  <div class="wrap site-footer-row">
+    <span>© 2026 UX Meas</span>
+    <a href="mailto:hello@uxmeas.com">hello@uxmeas.com</a>
+  </div>
+</footer>
+
 </body>
 </html>
