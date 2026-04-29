@@ -43,6 +43,9 @@
   --t-h-display: clamp(36px, 5.8vw, 72px); /* hero H1 + case study H1 (consistent) */
   --t-h-section: clamp(26px, 3.6vw, 44px); /* section-level H2 */
   --t-h-sub:     clamp(22px, 2.8vw, 34px); /* sub-display, preview headings */
+  --t-stat-n:    clamp(34px, 4.5vw, 52px); /* big stat number (hero hstat-n + about-stats stat-n) */
+  --t-mono-label: 11px;                    /* small mono uppercase label (hstat-l etc.) */
+  --ls-mono:     0.06em;                   /* mono label letter-spacing */
 
   --radius: 0px;
 
