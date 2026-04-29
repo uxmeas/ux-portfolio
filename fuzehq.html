@@ -49,7 +49,7 @@
      ========================================================= */
 
   /* ---------- Page-level dark anchor ----------
-     The case study leans dark by default (Apple-keynote / Linear convention)
+     The case study leans dark by default (Apple-keynote convention for the operator persona)
      so the bloom glow on each mockup PNG reads correctly. Tokens already
      adapt via shared.css [data-theme="dark"] — we just tilt sections. */
   .cs-fzh main {
@@ -255,14 +255,14 @@
   /* ---------- 03 Problem — quadrant + body ---------- */
   .problem-grid {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     gap: clamp(40px, 5vw, 72px);
     align-items: center;
   }
   .problem-left { display: flex; flex-direction: column; gap: 24px; }
   .quadrant-figure {
     width: 100%;
-    max-width: 480px;
+    max-width: 600px;
     justify-self: center;
   }
   /* Quadrant SVG sizing + label typography */
@@ -315,7 +315,7 @@
   /* ---------- 04 Approach — two anchors + body ---------- */
   .approach-grid {
     display: grid;
-    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     gap: clamp(40px, 5vw, 72px);
     align-items: center;
   }
@@ -427,7 +427,7 @@
     position: relative;
   }
   .wow-hero .case-mockup-img {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
   }
   .wow-caption {
@@ -444,7 +444,22 @@
     letter-spacing: -0.005em;
   }
 
-  /* WOW form-factor pair (desktop + mobile companion) */
+  /* WOW mobile companion — separate single-form-factor block (per CEO: never mix mobile + desktop in same block) */
+  .wow-mobile {
+    margin: clamp(48px, 6vw, 72px) auto 0;
+    text-align: center;
+    max-width: 320px;
+  }
+  .wow-mobile-img {
+    max-width: 280px !important;
+    margin: 0 auto !important;
+  }
+  .wow-mobile .wow-caption {
+    margin-top: clamp(20px, 2.5vw, 28px);
+    max-width: 36ch;
+  }
+
+  /* WOW form-factor pair (legacy — kept for system-card use) */
   .wow-pair {
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
@@ -467,7 +482,7 @@
   .wow-pair-meta {
     margin-top: clamp(24px, 3vw, 36px);
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: clamp(28px, 3vw, 48px);
   }
   .wow-pair-meta p {
@@ -894,7 +909,7 @@
       </div>
       <div class="s">
         <div class="n">2</div>
-        <div class="l">Anchors locked: Linear chrome and LangSmith content density</div>
+        <div class="l">Design forces locked: calm chrome wrapping dense agent-activity content</div>
       </div>
       <div class="s">
         <div class="n">5/5</div>
@@ -903,8 +918,8 @@
     </div>
 
     <figure class="cs-hero-visual">
-      <img class="case-mockup-img" src="img/fuzehq/taskdetail-desktop.png" alt="FuzeHQ Task Detail screen — pipeline widget with Build, Review, QA, and Ship stages each signed by a named agent with timestamps and a horizontal run-summary timeline below" loading="eager" decoding="async" width="1440" height="1440" />
-      <figcaption class="caption">Task detail. Pipeline widget. Audit-trail showcase.</figcaption>
+      <img class="case-mockup-img" src="img/fuzehq/dashboard-desktop.png" alt="FuzeHQ Dashboard screen — Roster strip with six named agents, live activity stream below showing signed handoffs in real time, Run Loop sidebar on the right" loading="eager" decoding="async" width="2880" height="2200" />
+      <figcaption class="caption">Dashboard. Six agents. One live system.</figcaption>
     </figure>
   </div>
 </section>
@@ -938,18 +953,18 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><span class="sn-num">( 01 )</span><span class="sn-name">Problem</span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="alert-triangle"></i><span class="sn-text"><span class="sn-num">( 01 )</span><span class="sn-name">Problem</span></span></span>
     </div>
 
     <div class="problem-grid">
       <div class="problem-left">
         <p class="section-lede">Every unverified AI handoff is a breach in motion.</p>
         <p class="prose-body">When an agent finishes a task, the team has two options today. Trust the agent's word. Or pause to re-check the work themselves. Neither scales.</p>
-        <p class="prose-body">LangSmith built the developer-facing answer — a run-tree that engineers love. Generic GRC tools built the auditor-facing answer — a compliance log nobody reads. The empty quadrant is the operator: the senior PM, the head of design, the founder running a small team. They need to <em>see</em> what their AI team shipped without having to read XML.</p>
+        <p class="prose-body">The developer-facing answer exists — a run-tree that engineers love. The auditor-facing answer exists — a compliance log nobody reads. The empty quadrant is the operator: the senior PM, the head of design, the founder running a small team. They need to <em>see</em> what their AI team shipped without having to read XML.</p>
       </div>
 
       <figure class="quadrant-figure">
-        <svg class="quadrant-svg" viewBox="0 0 480 360" role="img" aria-label="Two-by-two quadrant chart. X-axis: Team UX, low to high. Y-axis: Agent Identity, low to high. The high-Identity high-UX quadrant is highlighted in the accent color and labeled FuzeHQ. The other three cells contain LangSmith (high Identity, low UX), generic project tools, and generic compliance logs.">
+        <svg class="quadrant-svg" viewBox="0 0 480 360" role="img" aria-label="Two-by-two quadrant chart. X-axis: Team UX, low to high. Y-axis: Agent Identity, low to high. The high-Identity high-UX quadrant is highlighted in the accent color and labeled FuzeHQ. The other three cells contain developer run-tree tools, generic project tools, and generic compliance logs.">
           <!-- Background grid -->
           <rect x="60" y="40" width="380" height="260" fill="none" stroke="none"/>
           <line class="grid" x1="60" y1="170" x2="440" y2="170"/>
@@ -964,8 +979,8 @@
 
           <!-- Cell content -->
           <text class="cell-label" x="70" y="60">LOW UX · HIGH IDENTITY</text>
-          <text class="cell-name" x="70" y="80">LangSmith</text>
-          <text class="cell-name" x="70" y="98">(developer run-tree)</text>
+          <text class="cell-name" x="70" y="80">Developer run-tree tools</text>
+          <text class="cell-name" x="70" y="98">(engineer-facing)</text>
 
           <text class="cell-label empty-name" x="260" y="60">FUZEHQ — empty until now</text>
           <text class="cell-name empty-name" x="260" y="80">High UX + High Identity</text>
@@ -976,8 +991,8 @@
           <text class="cell-name" x="70" y="238">(SOC 2 evidence buckets)</text>
 
           <text class="cell-label" x="260" y="200">HIGH UX · LOW IDENTITY</text>
-          <text class="cell-name" x="260" y="220">Linear, Notion, Plane</text>
-          <text class="cell-name" x="260" y="238">(humans only)</text>
+          <text class="cell-name" x="260" y="220">Generic project tools</text>
+          <text class="cell-name" x="260" y="238">(humans only — no agent identity)</text>
 
           <!-- Axis labels -->
           <text class="axis-label" x="60" y="320">LOW</text>
@@ -1000,28 +1015,28 @@
     <div class="approach-grid approach-grid--reverse">
       <div>
         <div class="section-head-row">
-          <span class="badge section-num"><span class="sn-num">( 02 )</span><span class="sn-name">Approach</span></span>
+          <span class="badge section-num"><i class="sn-icon" data-lucide="compass"></i><span class="sn-text"><span class="sn-num">( 02 )</span><span class="sn-name">Approach</span></span></span>
           <h2 class="h2">Two anchors. Different axes. One seam document.</h2>
         </div>
         <p class="prose-body">Every system needs a frame of reference. We picked two — exactly two — on different axes, with an explicit tiebreaker. Three anchors becomes design-by-committee. Two becomes a system.</p>
-        <p class="prose-body">Linear's chrome is the operator-persona pattern proven across thousands of teams. Calm, monochromatic, deeply restrained. LangSmith's run-tree is the closest public reference to FuzeHQ's content model — agent runs, signed handoffs, threaded subtasks. Linear teaches us how to <em>frame</em> the workspace. LangSmith teaches us how to <em>fill</em> it.</p>
+        <p class="prose-body">The first force is calm chrome — operator-persona restraint, monochromatic surfaces, quiet typography. The second is dense audit-trail content — agent runs, signed handoffs, threaded subtasks. The first frames the workspace. The second fills it.</p>
 
         <div class="anchor-tiebreak">
           <span class="lead">Tiebreaker</span>
-          When the two anchors conflict, Linear wins on chrome and structure. LangSmith wins on content density and provenance display. The seam document is FuzeHQ.
+          When the two forces conflict, calm chrome wins on structure. Dense content wins on provenance and density. The seam document is FuzeHQ.
         </div>
       </div>
 
       <div class="anchor-pair" aria-hidden="false">
         <div class="anchor-cell">
-          <span class="label">Anchor 01 · Aesthetic</span>
-          <span class="name">Linear</span>
-          <span class="axis">Operator chrome. Restrained surfaces. Calm typography.</span>
+          <span class="label">Force 01 · Chrome</span>
+          <span class="name">Calm chrome</span>
+          <span class="axis">Operator restraint. Restrained surfaces. Calm typography.</span>
         </div>
         <div class="anchor-plus" aria-hidden="true">+</div>
         <div class="anchor-cell">
-          <span class="label">Anchor 02 · Content</span>
-          <span class="name">LangSmith</span>
+          <span class="label">Force 02 · Content</span>
+          <span class="name">Audit-trail content</span>
           <span class="axis">Run-tree density. Signed handoffs. Provenance fluent.</span>
         </div>
       </div>
@@ -1033,7 +1048,7 @@
 <section class="wow-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><span class="sn-num">( 03 )</span><span class="sn-name">Hero — Task Detail</span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="git-merge"></i><span class="sn-text"><span class="sn-num">( 03 )</span><span class="sn-name">Hero — Task Detail</span></span></span>
       <h2>Every action signed. Every handoff visible. Every shipment proven.</h2>
     </div>
     <p class="lede">A task in FuzeHQ is a pipeline, not a card. Each stage is signed by a named agent at a real timestamp. The audit trail is not a footer — it <em>is</em> the surface.</p>
@@ -1043,18 +1058,13 @@
       <figcaption class="wow-caption">"Done" stops being a checkbox. It becomes a signed receipt with timestamps, attribution, and a SHA-256 trail back to the commit.</figcaption>
     </figure>
 
-    <div class="wow-pair">
-      <div class="desktop">
-        <img class="case-mockup-img" src="img/fuzehq/taskdetail-desktop.png" alt="Task detail desktop — horizontal pipeline + run-summary timeline" width="1440" height="1440" loading="lazy" decoding="async" />
-      </div>
-      <div class="mobile">
-        <img class="case-mockup-img" src="img/fuzehq/taskdetail-mobile.png" alt="Task detail mobile — vertical pipeline showing the same Build, Review, QA, and Ship stages stacked, with each agent's signature, timestamp, and trail-signal preserved at small scale" width="754" height="1672" loading="lazy" decoding="async" />
-      </div>
-    </div>
+    <figure class="wow-mobile">
+      <img class="case-mockup-img wow-mobile-img" src="img/fuzehq/taskdetail-mobile.png" alt="Task detail mobile — vertical pipeline showing the same Build, Review, QA, and Ship stages stacked, with each agent's signature, timestamp, and trail-signal preserved at small scale" width="754" height="1672" loading="lazy" decoding="async" />
+      <figcaption class="wow-caption">The horizontal pipeline becomes a vertical pipeline on mobile. Same data, same attribution, same trail. The Row Grammar holds.</figcaption>
+    </figure>
 
     <div class="wow-pair-meta">
-      <p>The horizontal pipeline becomes a vertical pipeline on mobile. Same data, same attribution, same trail. The Row Grammar holds.</p>
-      <p>Each stage carries a Trail-Signal — a small dot whose color encodes status without color-only meaning. Ana taught me that.</p>
+      <p>Each stage carries a Trail-Signal — a small dot whose color encodes status without color-only meaning.</p>
       <p>The run-summary timeline below renders every state change in the task's life. Re-opens, re-assigns, blocked-on, unblocked. Auditable.</p>
     </div>
   </div>
@@ -1064,27 +1074,22 @@
 <section class="wow-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><span class="sn-num">( 04 )</span><span class="sn-name">Hero — Memory v2</span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="network"></i><span class="sn-text"><span class="sn-num">( 04 )</span><span class="sn-name">Hero — Memory v2</span></span></span>
       <h2>Knowledge as it actually behaves.</h2>
     </div>
     <p class="lede">Saved facts cluster around the gravity wells they orbit. The v2.4 release tag pulls every memory entry that touched it — agent attribution intact, provenance trail one click away.</p>
 
     <figure class="wow-hero">
-      <img class="case-mockup-img" src="img/fuzehq/memory-v2-desktop.png" alt="FuzeHQ Memory v2 desktop screen at full bleed. Force-directed graph with the v2.4 release tag at the gravity well center. Around it, agent nodes with real photos — Sage, Max, Rex, Nova — each connected by curved provenance edges. Pheak's avatar sits at the visual center as the human anchor. A provenance card slides in showing SHA-256 trail, source commit, and originating task." width="1440" height="1100" loading="lazy" decoding="async" />
+      <img class="case-mockup-img" src="img/fuzehq/memory-v2-desktop.png" alt="FuzeHQ Memory v2 desktop screen at full bleed. Force-directed graph with the v2.4 release tag at the gravity well center. Around it, agent nodes with real photos — Sage, Max, Rex, Nova — each connected by curved provenance edges. The human anchor sits at the visual center. A provenance card slides in showing SHA-256 trail, source commit, and originating task." width="1440" height="1100" loading="lazy" decoding="async" />
       <figcaption class="wow-caption">List view says memory <em>contains</em>. Graph view shows memory <em>behaves</em> — what's heavy, what's hot, what other facts each one touches.</figcaption>
     </figure>
 
-    <div class="wow-pair">
-      <div class="desktop">
-        <img class="case-mockup-img" src="img/fuzehq/memory-v2-desktop.png" alt="Memory v2 desktop — interactive knowledge blob with v2.4 gravity well" width="1440" height="1100" loading="lazy" decoding="async" />
-      </div>
-      <div class="mobile">
-        <img class="case-mockup-img" src="img/fuzehq/memory-v2-mobile.png" alt="Memory v2 mobile — Tag-Stream pattern showing the same gravity-well metaphor but linearized for thumb scroll. Tags pinned at top, agent contributions stream below with provenance preserved." width="754" height="1672" loading="lazy" decoding="async" />
-      </div>
-    </div>
+    <figure class="wow-mobile">
+      <img class="case-mockup-img wow-mobile-img" src="img/fuzehq/memory-v2-mobile.png" alt="Memory v2 mobile — Tag-Stream pattern showing the same gravity-well metaphor but linearized for thumb scroll. Tags pinned at top, agent contributions stream below with provenance preserved." width="754" height="1672" loading="lazy" decoding="async" />
+      <figcaption class="wow-caption">On mobile the graph linearizes into a Tag-Stream — same gravity wells pinned at top, contributions stream below. Same content model, different geometry.</figcaption>
+    </figure>
 
     <div class="wow-pair-meta">
-      <p>On mobile the graph linearizes into a Tag-Stream — same gravity wells pinned at top, contributions stream below. Same content model, different geometry.</p>
       <p>Force-directed graphs feel decorative until you load real production data. With 1,400 saved facts in the live FuzeHQ DB, the clusters tell you where attention concentrates.</p>
       <p>Each node carries the source agent's photo. Provenance is not a tooltip — it's the avatar. You see who taught the system before you read what they taught it.</p>
     </div>
@@ -1095,7 +1100,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><span class="sn-num">( 05 )</span><span class="sn-name">System</span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="layout-template"></i><span class="sn-text"><span class="sn-num">( 05 )</span><span class="sn-name">System</span></span></span>
       <h2 class="h2">The system holds across every surface.</h2>
     </div>
     <p class="prose-body" style="max-width: 60ch;">Two WOW shots are the front door. The product is the system behind them. Four supporting surfaces — Dashboard, Inbox, Projects, Memory v1 — prove the design language scales beyond the hero moments. Same Row Grammar. Same agent attribution. Same calm.</p>
@@ -1170,7 +1175,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><span class="sn-num">( 06 )</span><span class="sn-name">Process</span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="list-checks"></i><span class="sn-text"><span class="sn-num">( 06 )</span><span class="sn-name">Process</span></span></span>
       <h2 class="h2">Six iterations. Three critique rounds. One ship.</h2>
     </div>
     <p class="prose-body" style="max-width: 60ch;">The system did not arrive on the first try. It arrived on iter 6f — after a wedge research pass, a two-anchor pick, a token-and-accessibility spec, and a three-persona Apple-IC critique that flagged things I had stopped seeing.</p>
@@ -1185,7 +1190,7 @@
       <article class="beat">
         <div class="num">Beat 02 · Anchor pick</div>
         <h3 class="h">Two, never three.</h3>
-        <p>Linear's chrome and LangSmith's content density on different axes, with a tiebreaker. Three anchors had been on the table — Notion was the third — and we cut it. Cleaner than design-by-committee, slower than picking one alone.</p>
+        <p>Calm chrome + dense audit-trail content on different axes, with a tiebreaker. A third surface vocabulary had been on the table and we cut it. Cleaner than design-by-committee, slower than picking one alone.</p>
       </article>
 
       <article class="beat">
@@ -1231,7 +1236,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><span class="sn-num">( 07 )</span><span class="sn-name">Outcome</span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="trending-up"></i><span class="sn-text"><span class="sn-num">( 07 )</span><span class="sn-name">Outcome</span></span></span>
       <h2 class="h2">What this phase shipped.</h2>
     </div>
     <p class="prose-body" style="max-width: 60ch;">The April 2026 phase locked the visual system end-to-end. Foundation tokens, two WOW shots, four supporting surfaces, mobile companions, and an audit checklist that has to pass before any future surface ships.</p>
@@ -1261,14 +1266,14 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><span class="sn-num">( 08 )</span><span class="sn-name">Reflection</span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="pencil-line"></i><span class="sn-text"><span class="sn-num">( 08 )</span><span class="sn-name">Reflection</span></span></span>
     </div>
 
     <div class="reflection">
       <div class="col">
         <h3 class="reflection-h">What worked</h3>
         <p>The wedge came before the pixels. We did not start drawing until we knew which quadrant was empty and what the brand sentence was. Every later decision had a reference point.</p>
-        <p>Two anchors, never three. The tiebreaker — "Linear wins on chrome, LangSmith wins on density" — became a reusable decision rule for every later question.</p>
+        <p>Two forces, never three. The tiebreaker — "calm chrome wins on structure, dense content wins on density" — became a reusable decision rule for every later question.</p>
         <p>Critique was scheduled, not optional. The Apple-IC audit was on the calendar before the screens were ready. It found things I had stopped seeing.</p>
       </div>
       <div class="col">
