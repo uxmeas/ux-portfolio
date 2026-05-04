@@ -470,6 +470,13 @@
         .panel-toggle.open { left: 232px; }
 
         .panel-section { margin-bottom: 14px; }
+        .panel-section.panel-meta { margin-top: 6px; opacity: 0.7; }
+        .panel-meta-date {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 11px;
+            color: #888892;
+            letter-spacing: 0.02em;
+        }
 
         .panel-title {
             font-size: 9px;
@@ -704,6 +711,11 @@
         </div>
     </div>
 
+    <div class="panel-section panel-meta">
+        <div class="panel-title">Last updated</div>
+        <div class="panel-meta-date" id="lastUpdated">&mdash;</div>
+    </div>
+
 </div>
 
 <script>
@@ -833,6 +845,18 @@ function togglePanel() {
     toggle.classList.toggle('open');
     document.body.classList.toggle('panel-closed');
 }
+
+/* Last-updated stamp — sourced from document.lastModified (file mtime via file://, Last-Modified header via HTTP) */
+(function setLastUpdated() {
+    var el = document.getElementById('lastUpdated');
+    if (!el) return;
+    var d = new Date(document.lastModified);
+    if (isNaN(d.getTime())) return;
+    var iso = d.getFullYear() + '-' +
+              String(d.getMonth() + 1).padStart(2, '0') + '-' +
+              String(d.getDate()).padStart(2, '0');
+    el.textContent = iso;
+})();
 </script>
 
 <!-- ═══════════ PAGE 1 ═══════════ -->
@@ -852,10 +876,10 @@ function togglePanel() {
     </header>
 
     <div class="summary">
-        <strong>Co-founded a fintech company that went from 3&nbsp;people to a TSX-V&nbsp;IPO.</strong>
+        <strong>Co-founded a fintech and designed it from 3&#8209;person startup to TSX-V&nbsp;IPO.</strong>
         18 years shipping products across fintech, compliance, and enterprise&nbsp;software.
-        Owned product design through every stage, from first wireframe to public&nbsp;market.
-        Now consulting on product design and building tools with AI-integrated&nbsp;workflows.
+        Designed every screen, system, and component from first wireframe to public&nbsp;market.
+        Now consulting on product design and building AI-integrated&nbsp;tools.
         <span class="stats">
             <b>18</b> years &nbsp;&middot;&nbsp;
             <b>IPO</b> (TSX-V) &nbsp;&middot;&nbsp;
@@ -943,7 +967,7 @@ function togglePanel() {
                     <div class="entry-dates">2008 &ndash; 2025</div>
                 </div>
                 <div class="entry-org">Katipult Technology Corp. (formerly JOI Media Inc.), Calgary, AB</div>
-                <div class="entry-lead">Co-founded and led product design from 3&nbsp;employees to TSX-V IPO over 9&nbsp;years. Transitioned company from service agency to B2B SaaS platform for private capital&nbsp;markets.</div>
+                <div class="entry-lead">Co-founded Katipult and designed every product from 3&#8209;person startup to TSX-V IPO over 9&nbsp;years. Pivoted the company from service agency to B2B SaaS platform for private capital&nbsp;markets.</div>
                 <ul class="bullets">
                     <li><strong>Compliance-first design:</strong> Shipped KYC/AML onboarding, accreditation verification, and electronic signature flows across 20+ regulatory jurisdictions. Reduced investor onboarding from 45&nbsp;minutes to 12&nbsp;minutes with 85% completion&nbsp;rate</li>
                     <li><strong>Design system:</strong> Architected and maintained the component library used across the product organization, with standardized patterns, tokens, and documentation that supported rapid&nbsp;scaling</li>
@@ -997,7 +1021,7 @@ function togglePanel() {
                     <div class="entry-dates">2020 &ndash; 2025</div>
                 </div>
                 <ul class="bullets">
-                    <li>Led strategic UX initiatives for B2B SaaS platform serving enterprise clients across capital&nbsp;markets</li>
+                    <li>Designed UX strategy for the B2B SaaS platform across 17&nbsp;enterprise tenants and 20+&nbsp;regulatory jurisdictions &mdash; set patterns adopted across DealFlow, Lending, and Donations &amp; Rewards&nbsp;verticals</li>
                     <li>Facilitated cross-functional workshops and co-creation sessions, embedding UX early in product planning and business&nbsp;decisions</li>
                     <li>Created comprehensive user journeys, information architectures, and ecosystem maps across 20+ platform&nbsp;touchpoints</li>
                 </ul>
@@ -1009,9 +1033,9 @@ function togglePanel() {
                     <div class="entry-dates">2014 &ndash; 2020</div>
                 </div>
                 <ul class="bullets">
-                    <li>Established product vision and led MVP development for SaaS platform&nbsp;transformation</li>
+                    <li>Wrote the product vision and shipped the MVP that transitioned Katipult from service agency to&nbsp;SaaS</li>
                     <li>Created holistic design foundations (UX strategy, UI systems, brand guidelines) supporting rapid&nbsp;scaling</li>
-                    <li>Led user interviews, usability testing, and customer insights programs to guide product roadmap&nbsp;prioritization</li>
+                    <li>Ran user interviews, usability tests, and the customer insights program &mdash; findings shaped roadmap prioritization across DealFlow, Lending, and Donations &amp; Rewards&nbsp;verticals</li>
                 </ul>
             </div>
 
