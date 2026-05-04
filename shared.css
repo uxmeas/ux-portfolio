@@ -372,6 +372,38 @@ p { text-wrap: pretty; }
   color: var(--fg);
 }
 
+/* ---------- section-num badge — icon + ( N ) + Name on ONE row ---------- */
+.badge.section-num {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.badge.section-num .sn-icon,
+.badge.section-num svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.badge.section-num .sn-text {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+.badge.section-num .sn-num {
+  color: var(--fg-3);
+  font-weight: 400;
+}
+.badge.section-num .sn-name {
+  color: var(--fg);
+  font-weight: 500;
+}
+
 /* ---------- section header ---------- */
 .section {
   padding: clamp(72px, 10vw, 140px) 0;
