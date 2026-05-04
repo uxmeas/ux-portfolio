@@ -261,6 +261,36 @@
     font-variant-numeric: tabular-nums;
   }
 
+  /* ---------- 03 Direct contributions — bulleted carve-out ---------- */
+  .direct-contributions {
+    list-style: none;
+    padding: 0;
+    margin: clamp(28px, 3vw, 40px) 0 0;
+    max-width: 70ch;
+  }
+  .direct-contributions li {
+    padding: clamp(14px, 1.6vw, 20px) 0;
+    border-top: 1px solid var(--rule-soft);
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.55;
+    color: var(--fg);
+  }
+  .direct-contributions li:last-child {
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .direct-contributions li strong {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .contribution-disclaimer {
+    margin-top: clamp(20px, 2vw, 28px);
+    max-width: 70ch;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg-2);
+    font-style: italic;
+  }
+
   /* ---------- 04 Problem — 2-column visuals row ----------
      LEFT col: chart (constrained to column width) + lede + body stacked
      RIGHT col: 2 mobile screens side-by-side (horizontal pair)
@@ -1039,11 +1069,29 @@
   </div>
 </section>
 
+<!-- =================== 03. DIRECT CONTRIBUTIONS =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="section-head-row">
+      <span class="badge section-num"><i class="sn-icon" data-lucide="user-check"></i><span class="sn-text"><span class="sn-num">( 01 )</span><span class="sn-name">Direct contributions</span></span></span>
+      <h2 class="h2">What I personally designed.</h2>
+    </div>
+    <ul class="direct-contributions">
+      <li><strong>Investor onboarding flow.</strong> Cut KYC from 45 &rarr; 12 minutes; lifted completion 47% &rarr; 85%.</li>
+      <li><strong>Jurisdiction-rules engine UX.</strong> 20+ regulatory states (IIROC, Reg CF, MiFID, FINTRAC) on one configuration surface.</li>
+      <li><strong>Compliance-officer dashboard.</strong> Human-side governance that dropped NIGO submissions and let automation handle high-confidence cases.</li>
+      <li><strong>State-machine pattern</strong> replacing the wizard &mdash; the load-bearing design lever; same engine later shipped to Lending and Donations &amp; Rewards verticals.</li>
+      <li><strong>Design system architecture.</strong> Component library used across 17 enterprise tenants; scaled the design practice solo &rarr; team of 6.</li>
+    </ul>
+    <p class="contribution-disclaimer">Cross-functional collaboration with engineering (backend implementation), compliance officers (regulatory interpretation), and the institutional dealers (user research observation on their floors) informed the work &mdash; but the design ownership was mine.</p>
+  </div>
+</section>
+
 <!-- =================== 04. THE PROBLEM =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><i class="sn-icon" data-lucide="alert-triangle"></i><span class="sn-text"><span class="sn-num">( 01 )</span><span class="sn-name">Problem</span></span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="alert-triangle"></i><span class="sn-text"><span class="sn-num">( 02 )</span><span class="sn-name">Problem</span></span></span>
     </div>
     <div class="problem-grid">
       <!-- LEFT col: live CSS chart, then lede, then body text -->
@@ -1109,7 +1157,7 @@
     <div class="approach-grid approach-grid--reverse">
       <div>
         <div class="section-head-row">
-          <span class="badge section-num"><i class="sn-icon" data-lucide="compass"></i><span class="sn-text"><span class="sn-num">( 02 )</span><span class="sn-name">Approach</span></span></span>
+          <span class="badge section-num"><i class="sn-icon" data-lucide="compass"></i><span class="sn-text"><span class="sn-num">( 03 )</span><span class="sn-name">Approach</span></span></span>
           <h2 class="h2">Two ways into the investor experience.</h2>
         </div>
         <p class="prose-body">Investors didn't abandon because the process was hard. They abandoned because it gave them no information, no progress, and no way to pause.</p>
@@ -1131,7 +1179,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><i class="sn-icon" data-lucide="git-branch"></i><span class="sn-text"><span class="sn-num">( 03 )</span><span class="sn-name">Decisions</span></span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="git-branch"></i><span class="sn-text"><span class="sn-num">( 04 )</span><span class="sn-name">Decisions</span></span></span>
       <h2 class="h2">KYC is a state machine, not a form.</h2>
     </div>
     <p class="section-lede" style="max-width: 65ch; margin-top: -8px; margin-bottom: clamp(28px, 3vw, 40px);">Regulators think in states. Users think in steps. The product's job is to translate between the two.</p>
@@ -1183,7 +1231,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><i class="sn-icon" data-lucide="list-checks"></i><span class="sn-text"><span class="sn-num">( 04 )</span><span class="sn-name">Process</span></span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="list-checks"></i><span class="sn-text"><span class="sn-num">( 05 )</span><span class="sn-name">Process</span></span></span>
       <h2 class="h2">Three principles that shaped the shipped flow.</h2>
     </div>
     <div class="process-moments">
@@ -1223,7 +1271,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><i class="sn-icon" data-lucide="layout-template"></i><span class="sn-text"><span class="sn-num">( 05 )</span><span class="sn-name">Final flows</span></span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="layout-template"></i><span class="sn-text"><span class="sn-num">( 06 )</span><span class="sn-name">Final flows</span></span></span>
       <h2 class="h2">Three screens that defined the system.</h2>
     </div>
     <div class="screens">
@@ -1267,7 +1315,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><i class="sn-icon" data-lucide="trending-up"></i><span class="sn-text"><span class="sn-num">( 06 )</span><span class="sn-name">Results</span></span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="trending-up"></i><span class="sn-text"><span class="sn-num">( 07 )</span><span class="sn-name">Results</span></span></span>
     </div>
     <div class="results-block">
       <p class="section-lede">Ran for 11 years across 20+ regulatory jurisdictions.</p>
@@ -1299,7 +1347,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="section-head-row">
-      <span class="badge section-num"><i class="sn-icon" data-lucide="pencil-line"></i><span class="sn-text"><span class="sn-num">( 07 )</span><span class="sn-name">Reflection</span></span></span>
+      <span class="badge section-num"><i class="sn-icon" data-lucide="pencil-line"></i><span class="sn-text"><span class="sn-num">( 08 )</span><span class="sn-name">Reflection</span></span></span>
     </div>
     <div class="reflection">
       <div class="col">

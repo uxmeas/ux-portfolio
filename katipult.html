@@ -352,6 +352,36 @@
     margin: 16px 0 0;
   }
 
+  /* ---------- Direct contributions — bulleted carve-out ---------- */
+  .direct-contributions {
+    list-style: none;
+    padding: 0;
+    margin: clamp(28px, 3vw, 40px) 0 0;
+    max-width: 70ch;
+  }
+  .direct-contributions li {
+    padding: clamp(14px, 1.6vw, 20px) 0;
+    border-top: 1px solid var(--rule-soft);
+    font-size: clamp(15px, 1.5vw, 17px);
+    line-height: 1.55;
+    color: var(--fg);
+  }
+  .direct-contributions li:last-child {
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .direct-contributions li strong {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .contribution-disclaimer {
+    margin-top: clamp(20px, 2vw, 28px);
+    max-width: 70ch;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg-2);
+    font-style: italic;
+  }
+
   /* ---------- TL;DR card ---------- */
   .tldr {
     border-top: 1px solid var(--rule);
@@ -1753,8 +1783,27 @@
 
 <section class="prose-section reveal">
   <div class="wrap">
+    <div class="section-head-row">
+      <span class="badge section-num"><i class="sn-icon" data-lucide="user-check"></i><span class="sn-text"><span class="sn-num">( 01 )</span><span class="sn-name">Direct contributions</span></span></span>
+      <h2 class="h2">What I personally designed.</h2>
+    </div>
+    <ul class="direct-contributions">
+      <li><strong>Configuration engine.</strong> Designed the system that lets ONE codebase serve three revenue verticals (Debt &amp; Lending · Canadian Equity · Global Equity) with no per-tenant code overhead.</li>
+      <li><strong>Multi-tenant configuration UX.</strong> 17 enterprise tenants across 6 continents white-label the platform without engineering touching the codebase.</li>
+      <li><strong>Platform-level pattern library.</strong> Design system spanning DealFlow, Lending, and Donations &amp; Rewards verticals.</li>
+      <li><strong>DealFlow product depth (2014&ndash;2020).</strong> Investor onboarding, deal management, portfolio views. Vertical facilitated $647M in 2023 alone (71% YoY).</li>
+      <li><strong>Lending vertical UX.</strong> Singapore, Mexico, UK, US deployments.</li>
+      <li><strong>Donations &amp; Rewards vertical UX.</strong> InvestYYC + Alberta BoostR (Calgary Arts Development, ATB Financial).</li>
+      <li><strong>Founded and scaled the design practice.</strong> Solo &rarr; team of six across Calgary, Vancouver, Prague.</li>
+    </ul>
+    <p class="contribution-disclaimer">Co-founded the company with two others. Cross-functional collaboration with engineering, compliance, legal, and the design team informed the work &mdash; but the platform-level design ownership across DealFlow, Lending, and Donations &amp; Rewards was mine.</p>
+  </div>
+</section>
+
+<section class="prose-section reveal">
+  <div class="wrap">
     <div class="prose-grid prose-grid--stack">
-      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="alert-triangle"></i><span class="sn-text"><span class="sn-num">( 01 )</span><span class="sn-name">Problem</span></span></span></div>
+      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="alert-triangle"></i><span class="sn-text"><span class="sn-num">( 02 )</span><span class="sn-name">Problem</span></span></span></div>
       <div>
         <p class="section-lede"><em>"Everything was done through email, so there was just a lot of room for error and things took way longer than they needed to."</em> A senior dealer in my research, describing the pre-platform state.</p>
         <p>Wrong amounts. Missing signatures. Expired accreditation. Investment dealers were managing private placements through email chains and spreadsheets. ECM teams spent weeks chasing documents instead of closing deals. Every handoff across the deal lifecycle was a manual spreadsheet, an email, or both. Ten stakeholders, twelve handoffs, no source of truth.</p>
@@ -1781,7 +1830,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="prose-grid prose-grid--stack">
-      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="target"></i><span class="sn-text"><span class="sn-num">( 02 )</span><span class="sn-name">Framing</span></span></span></div>
+      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="target"></i><span class="sn-text"><span class="sn-num">( 03 )</span><span class="sn-name">Framing</span></span></span></div>
       <div>
         <p class="section-lede">Research surfaced the pattern across every dealer: the platform's value wasn't any single feature.</p>
         <p>It was the elimination of every handoff. Dealers weren't paying for subscription agreement software or for offering wizards. They were paying for one source of truth that every stakeholder (ECM team, compliance, wealth management, legal, issuer, investor) could trust. The team framed the problem across three structural needs: issuers needed to launch offerings without waiting weeks for legal setup. Investors needed transparency into deal status and portfolio performance. Compliance needed every transaction auditable end to end.</p>
@@ -1799,7 +1848,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="prose-grid prose-grid--stack">
-      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="lightbulb"></i><span class="sn-text"><span class="sn-num">( 03 )</span><span class="sn-name">Solution</span></span></span></div>
+      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="lightbulb"></i><span class="sn-text"><span class="sn-num">( 04 )</span><span class="sn-name">Solution</span></span></span></div>
       <div>
         <p class="section-lede">Katipult is a single configurable engine — multi-tenant, multi-jurisdiction, white-label by default. Three product verticals ship on it.</p>
 
@@ -1853,7 +1902,7 @@
   <div class="wrap">
     <div class="sm-split">
       <div class="sm-copy">
-        <span class="badge section-num"><i class="sn-icon" data-lucide="grid-2x2"></i><span class="sn-text"><span class="sn-num">( 03.3 )</span><span class="sn-name">Capabilities</span></span></span>
+        <span class="badge section-num"><i class="sn-icon" data-lucide="grid-2x2"></i><span class="sn-text"><span class="sn-num">( 04.3 )</span><span class="sn-name">Capabilities</span></span></span>
         <p class="section-lede">Every primitive a regulated deal needs — built into one platform with shared identity, shared audit, shared payments. Investors, issuers, broker/dealers, and legal teams operate from the same source of truth.</p>
       </div>
       <div class="sm-visual">
@@ -1868,7 +1917,7 @@
 <!-- ===== Platform proof: 4-tenant theme demo + Tenant Studio ===== -->
 <section class="platform-proof reveal" aria-label="Multi-tenant white-label proof">
   <div class="wrap">
-    <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="layers"></i><span class="sn-text"><span class="sn-num">( 03.5 )</span><span class="sn-name">The Moat</span></span></span></div>
+    <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="layers"></i><span class="sn-text"><span class="sn-num">( 04.5 )</span><span class="sn-name">The Moat</span></span></span></div>
     <h2 class="proof-h">Same engine. Four tenant brands. Zero forks.</h2>
     <p class="proof-sub">The same operator surface, configured for four enterprise tenants. Brand color, type system, corner radius, accent saturation — all swap per deployment via design tokens. Underlying data model, validation gates, audit trail, and compliance rules engine stay unified. This is what shipped to 17 enterprise tenants on one Katipult codebase.</p>
 
@@ -2232,7 +2281,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="prose-grid prose-grid--stack">
-      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="smartphone"></i><span class="sn-text"><span class="sn-num">( 03.7 )</span><span class="sn-name">Process</span></span></span></div>
+      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="smartphone"></i><span class="sn-text"><span class="sn-num">( 04.7 )</span><span class="sn-name">Process</span></span></span></div>
       <div>
         <p class="section-lede">Three decisions on mobile. Same compliance flow, three different jurisdictional contexts. The platform routes investors through only the steps their jurisdiction and accreditation status actually require.</p>
         <div class="process-moments">
@@ -2275,7 +2324,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="prose-grid prose-grid--stack">
-      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="layout-grid"></i><span class="sn-text"><span class="sn-num">( 04 )</span><span class="sn-name">Key Screens</span></span></span></div>
+      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="layout-grid"></i><span class="sn-text"><span class="sn-num">( 05 )</span><span class="sn-name">Key Screens</span></span></span></div>
       <div>
         <div class="screens">
           <div class="screen v-image-right">
@@ -2317,7 +2366,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="prose-grid prose-grid--stack">
-      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="trending-up"></i><span class="sn-text"><span class="sn-num">( 05 )</span><span class="sn-name">Results</span></span></span></div>
+      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="trending-up"></i><span class="sn-text"><span class="sn-num">( 06 )</span><span class="sn-name">Results</span></span></span></div>
       <div>
         <div class="results-grid">
           <div class="result-block">
@@ -2365,7 +2414,7 @@
 <section class="prose-section reveal">
   <div class="wrap">
     <div class="prose-grid prose-grid--stack">
-      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="book-open"></i><span class="sn-text"><span class="sn-num">( 06 )</span><span class="sn-name">Reflection</span></span></span></div>
+      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="book-open"></i><span class="sn-text"><span class="sn-num">( 07 )</span><span class="sn-name">Reflection</span></span></span></div>
       <div>
         <div class="reflection">
           <div class="col">
