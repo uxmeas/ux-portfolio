@@ -1,30 +1,84 @@
-# Case Rewrite Brief — FuzeHQ
+# Case Rewrite Brief — FuzeHQ (THESIS-ALIGNED, supersedes prior brief)
 
 **For:** Vendy (UXMEAS COO) + delegated rewrite agent
 **Created:** 2026-05-04 by Pheak's session agent
-**Status:** Brief ready for rewrite. This case got the MOST session edits — V2 hero, new Foundation section, Outcome rewrite, Reflection rewrite, voice surgery, light-mode kill, I-balance pass. The rewriter inherits a much-improved baseline; the room is in narrative tightness + screenshot inventory.
+**Status:** Brief realigned to the new FuzeHQ thesis. Replaces the prior fuzehq.md (operator-facing-trust-layer positioning).
+**Primary reference:** `/Users/pheakmeas/Documents/Development/_handoff/2026-05-04-fuzehq-case-study-thesis-handoff.md` — read this first; it's the canonical source of truth for FuzeHQ positioning.
 
 ## Source
 
 - **HTML file:** `/Users/pheakmeas/Documents/Development/uxmeas/fuzehq.html`
 - **Live preview:** https://dev.uxmeas.pages.dev/fuzehq.html
-- **Branch:** `dev` (current SHA `a67dbbd`)
-- **Voice contract (must read first):** `/Users/pheakmeas/Documents/Development/_copy/uxmeas.com/scriptwriter-contract.md`
+- **Branch:** `dev` (current SHA `c4d24d5`)
+- **Thesis handoff (must read):** `/Users/pheakmeas/Documents/Development/_handoff/2026-05-04-fuzehq-case-study-thesis-handoff.md`
+- **Voice contract (must read):** `/Users/pheakmeas/Documents/Development/_copy/uxmeas.com/scriptwriter-contract.md`
 - **Source design file (.pen):** `/Users/pheakmeas/Documents/Development/Pencil/fuzehq-dashboard.pen` — open via Pencil MCP, NOT Read/Grep (encrypted)
 
 ## Mission
 
-Tighten narrative density without losing personal voice. FuzeHQ is the only case where Pheak is also the CEO + Tenant-Zero — Origin and Reflection sections deliberately carry personal voice. Don't flatten them in the name of verb-first discipline. The reshape opportunity is in System surfaces breadth (rich .pen inventory underused) and Process narrative tightness.
+The FuzeHQ case study currently positions FuzeHQ as **the operator-facing trust layer** (defensive: audit/visibility framing). The new thesis positions it as **the human-collaboration-with-AI workspace** (offensive: enabling team work in the AI era). Realign the case study to the new thesis without losing the underlying evidence (449 tasks, 51% fake-done, 13 agents) or the design-rigor sections (Foundation, Approach, Process, Reflection).
 
-**Triggered by:** 2026-05-04 Feroot rejection. Recruiter feedback (verbatim): *"You struggled to give direct answers and generally spoke in terms of 'we' (the team) rather than focusing on your individual actions."*
+The thesis is more universal — operator-trust framing limited the case to people who already cared about audit visibility. Human-collaboration framing speaks to every hiring manager who's wondering how teams ship work in 2026.
+
+## The thesis (LOCKED — verbatim, do not paraphrase)
+
+> **"I built FuzeHQ to allow human collaboration while working with AI agents."**
+
+This is the design intent. Center of gravity for the entire case study.
+
+**What it means:**
+- AI tools today work for solo users (one human + AI).
+- 2026's question is how TEAMS work together when AI is in the loop.
+- FuzeHQ is the missing layer — the workspace where humans + humans + AI can actually ship together.
+
+**What it does NOT mean:**
+- Not "an agent runtime." (Too narrow.)
+- Not "a PM tool." (Wrong category.)
+- Not "an AI orchestrator." (Already exists; FuzeHQ is the human-collaboration layer ON TOP of orchestration.)
+
+## The era frame (cold-open visual concept)
+
+```
+2025: humans + AI
+2026: humans + humans + AI
+```
+
+The case study can use this as a §00 cold-open visual (paralleling the video). Math-equation visual treatment. Generational framing. Universalizes in 5 seconds.
+
+## The 4 pillars (FuzeHQ's design-system model for AI work — LOCKED)
+
+FuzeHQ packages four scattered open-source-tooling categories into ONE workspace. Frame as a "design system for AI work":
+
+| FuzeHQ pillar | Design-system equivalent | What it does |
+|---|---|---|
+| **Skills** | Tokens (atoms) | Atomic capabilities — 51 of them shipping |
+| **Playbooks** | Patterns / component compositions | Multi-step task pipelines that capture HOW to run common work |
+| **Memory** | Theme tokens / state | Persistent context across sessions, projects, agents |
+| **Gates** | Linting / system rules | Governance enforcement — no agent self-certifies; every comment author-attributed |
+
+These four pillars work together as ONE workspace — **the integration is the lever**. Hiring managers should walk away thinking: *"This person packaged scattered open-source AI tooling into a coherent product."*
+
+This 4-pillar framing should be a **prominent section** in the case study (likely §03 or §04). Not optional.
+
+## Hiring-manager signal hierarchy (every section earns its space by sending one of these)
+
+1. **Strategic vision** — sees the 2026 paradigm shift (era frame)
+2. **Pain recognition** — knows what AI tools today fail at (compressed pain visual)
+3. **Builder execution** — built the missing layer (thesis line)
+4. **Integration thinking** — packaged, didn't reinvent (4 pillars reveal)
+5. **Daily-use proof** — relies on what was built (workflow demo / Tenant Zero)
+6. **Scale at conviction** — system has shipped at scale (number cascade)
+7. **Universalize on exit** — built for anyone, not just self ("now anyone can collaborate")
+
+That's the hire-this-person stack.
 
 ## Case identity
 
 | Field | Value |
 |---|---|
 | Eyebrow | CS-03 · FUZEHQ · SAAS · HUMAN + AI TEAMS |
-| Tagline | "AI moved faster than trust." |
-| Hero h1 (LOCKED) | "AI work, made visible." |
+| Tagline | "AI moved faster than trust." (current — may be revisited against new thesis) |
+| Hero h1 (LOCKED) | "AI work, made visible." (slogan locked by Pheak; matches the design intent) |
 | Brand sentence (LOCKED) | "AI work, made visible." (repeats at top + close) |
 | Role | Founding Designer + CEO, MZM Labs |
 | Timeline | 2025–present (case study covers iter 6f-6g, April 2026) |
@@ -34,10 +88,9 @@ Tighten narrative density without losing personal voice. FuzeHQ is the only case
 
 ## Voice metrics — current
 
-- **"I" count in body:** 19 (down from 24 after I-balance pass on 2026-05-04)
+- **"I" count in body:** 19 (after I-balance pass on 2026-05-04)
 - **"me / my" count:** 5
-- **"we / our / us" in body:** 0 except 1 literal CEO quote in pull-quote (LOCKED — attributed to "CEO directive, 2026-04-17")
-- **Density distribution:** Most *"I"*s cluster in §01.5 Origin (deliberately personal narrative voice — Pheak as Tenant Zero) and §09 Reflection (personal anchors at decision points). These sections EARN the personal voice. Don't flatten them.
+- **"we / our / us" in body:** 0 except 1 literal CEO quote (LOCKED — attributed)
 
 ## Voice contract — every rewrite must satisfy these 7 rules
 
@@ -51,85 +104,140 @@ Tighten narrative density without losing personal voice. FuzeHQ is the only case
 
 ## What's LOCKED (do not change)
 
-- **Hero h1 / brand sentence:** *"AI work, made visible."* — locked by Pheak. Appears at top h1 + final-close. Both repetitions stay.
-- **Hero sub (V2 contrarian opener, approved 2026-05-04):** *"Most agent platforms were built for the developer who debugs them. I built FuzeHQ for the operator who has to trust them. Every action signed. Every handoff visible. Every shipment proven."*
-- **§01 Foundation paragraph 1 (locked by Pheak 2026-05-04):** *"Three foundations shaped how I built FuzeHQ. Paperclip gave me a working agent runtime. LangSmith taught me that AI work, traced honestly, is legible. Linear proved calm chrome can hold dense activity. The empty quadrant they all left open was the operator surface — the trust layer for everyone who isn't the engineer."*
-- **§02 Problem 2×2 quadrant chart:** Inline SVG with axis labels (Team UX × Agent Identity). Don't break the chart structure; copy edits OK.
-- **HMW callout** at end of Problem (between §02 and §03). Standard design-thinking phrase — *"How might we"* exempt from the *"we"* ban.
-- **Pull quote in §08:** Literal CEO quote *"Hard rule: QA has to comment, or I have to confirm if it's visual. This is a fail if we cannot control fake-done."* Attributed to CEO directive 2026-04-17. Verbatim — do not edit.
+### Thesis-level (from new handoff)
+- **The thesis line itself:** *"I built FuzeHQ to allow human collaboration while working with AI agents."* — verbatim, no paraphrase.
+- **The 4 pillars framing:** Skills · Playbooks · Memory · Gates with the design-system analogies (tokens / patterns / state / linting). Don't add a 5th pillar. Don't merge two.
+- **Era frame:** 2025: humans + AI. 2026: humans + humans + AI.
+- **Universalize-on-exit close:** *"Now anyone can collaborate."*
+- **Brand name:** `FuzeHQ` consistently — never `Fuse` or `Fuze`.
+- **The system-scale numbers (where evidence-backed):** 51 skills · `[N]` playbooks · 9 agents · 14+ projects shipping.
+
+### From prior session locks (still hold)
+- **Hero h1 / brand sentence:** *"AI work, made visible."* — locked by Pheak.
+- **Foundation paragraph 1 (Paperclip / LangSmith / Linear credit):** Pheak signed off on this exact phrasing 2026-05-04. Still aligned with the new thesis (they shaped how FuzeHQ was built; the empty quadrant they all left is the human-collaboration layer).
+- **Quadrant chart structure** (axis labels may be reframed; see "Reshape targets" below).
+- **HMW callout** at end of Problem.
+- **Pull quote in §08** (literal CEO quote — verbatim).
 - **CS-03 eyebrow** + Up next chain *"Up next · 01 / 03 → Compliance UX"*.
-- **Section badge sequence:** ( 00 ) Origin · ( 01 ) Foundation · ( 02 ) Problem · ( 03 ) Approach · ( 04 ) Hero–Task Detail · ( 05 ) Hero–Memory v2 · ( 06 ) System · ( 07 ) Process · ( 08 ) Outcome · ( 09 ) Reflection. Don't renumber.
-- **Hero stats block:** 449 (tasks audited) · 51% (fake-done caught) · 13 (agents shipping daily). Reordering done; numbers locked.
-- **Light mode disabled** as of SHA 59052f1. Don't reintroduce *"data-theme=light"* logic — case-study screens have black backgrounds baked in.
+- **Section badge sequence** ( 00 ) Origin · ( 01 ) Foundation · ( 02 ) Problem · ( 03 ) Approach · ( 04 ) Hero–Task Detail · ( 05 ) Hero–Memory v2 · ( 06 ) System · ( 07 ) Process · ( 08 ) Outcome · ( 09 ) Reflection. *(Note: a new "4 Pillars" section may need to slot in — see reshape targets.)*
+- **Hero stats block:** 449 (tasks audited) · 51% (fake-done caught) · 13 (agents shipping daily) — keep current; consider supplementing with system-scale numbers.
+- **Light mode disabled** (don't reintroduce data-theme=light logic).
+
+### From thesis handoff §11 (HARD RULES — do not break)
+- ❌ NO competitor logos in case (Cursor / Windsurf / Lovable / Figma Make — rejected from video; same applies here)
+- ❌ NO named individuals (Vendy / Sage / Max / etc.) as on-screen subjects in the case copy. They may appear as authors of comments in real screen captures, but no spotlight.
+- ❌ NEVER paraphrase the thesis line. Verbatim only.
+- ❌ DO NOT relitigate the thesis-handoff §5 locked decisions. Re-read the rationale; if you genuinely have new info, surface it to Pheak before changing.
 
 ## Reshape targets (where the rewriter has room)
 
-### 🎯 PRIMARY TARGET — Screenshot inventory expansion
-**Current:** 7 unique screens used (Dashboard desktop, Task Detail desktop, Memory v2 desktop, Inbox mobile, Projects desktop, Memory v1 mobile, Foundation). Mix of desktop + mobile per CEO rule "don't combine desktop+mobile in one shot."
-**Available in `.pen` (50+ frames):**
-- **Tier A (highest hiring-manager value):** OPERATOR DASHBOARD (LangSmith-governed, LOCKED 2026-05-02) `z0uvD` · PROJECT DETAIL multi-view `VvXOl` · RECAP `A2qFY` · QUICK-ADD ⌘J overlay `K6uXIU` · MEMORY v3 (Obsidian + RAG) `tvGIk`
-- **Tier B:** APPROVALS queue `pTYkC` · APPROVAL DETAIL `MzS4a` · PIPELINE `ty4oX` · AUDIT LOG `F7XGpP` · ROUTINES `r4Tv75` · EVAL COMPARISON `dK0oi` · USAGE/COSTS/BILLING `Z1kKNa`
-- **Tier C (design rigor):** MOTION SPEC `H0YAPA` · STATE VARIANTS `Kszg3` · GOVERNANCE OVERLAY `SwTW4`
-**Reshape direction:** Pick 4–8 additional screens. Add a *"System extent"* gallery section between §06 System and §07 Process — 4-col grid of desktop-only thumbnails with one-line captions. Or replace the existing System §06 cards with a denser gallery. Either way, **prove coverage without adding word count**. Use Pencil MCP `export_nodes` to render PNGs from the .pen.
+### 🎯 PRIMARY TARGET — Hero sub-line realignment
+**Current (V2 contrarian opener, dated 2026-05-04):** *"Most agent platforms were built for the developer who debugs them. I built FuzeHQ for the operator who has to trust them. Every action signed. Every handoff visible. Every shipment proven."*
+**Issue:** Operator-facing-trust framing — defensive. Doesn't carry the new thesis.
+**Reshape direction:** Replace with the thesis line + universalize close. Pattern:
+> *"I built FuzeHQ to allow human collaboration while working with AI agents. Skills, playbooks, memory, gates — packaged into one workspace. So humans + humans + AI can ship together."*
+Or hold the V2 sub for the chart-relative-positioning section and put the thesis line as the H2 above the empty-quadrant chart. The rewriter's call — both work.
 
-### Origin §01.5 (line ~1015–1052)
-**Current:** 5 *"I"*s, 1 *"me"*, 0 *"my"*. Strong personal voice — Pheak as Tenant Zero. Reads well.
-**Issue:** Not over-corrected, not under-anchored. Densest "I" use in the case but appropriate.
-**Reshape direction:** Light touch. Tighten line 1048 final sentence if it reads redundant. Otherwise leave the personal narrative.
+### 🎯 PRIMARY TARGET — Add 4 Pillars section
+**Current:** No dedicated 4-pillars section. The case currently goes Origin → Foundation → Problem → Approach → WOW shots → System → Process → Outcome → Reflection.
+**Reshape direction:** Add a new section between §02 Problem and §03 Approach (or between Approach and the WOW shots). Frame it as "the design system for AI work":
+> *§03 (or §04) Pillars — Four open-source-tooling categories, packaged into one workspace.*
+> Skills · Playbooks · Memory · Gates — each with the design-system equivalent (tokens / patterns / state / linting) and what it does in 2 lines.
 
-### §03 Approach (anchor pair Force 01 / Force 02)
-**Current:** *"Calm chrome wins on structure. Dense content wins on density."* + 1 *"I"* (*"and I cut it"*).
-**Issue:** Strong. The two-anchor pair component is load-bearing.
-**Reshape direction:** Optionally name a 3rd anchor that was rejected (instead of vague *"a third surface vocabulary had been on the table"*). Specificity always wins.
+This section IS the integration-thinking signal. Without it, the case reads as feature-list; with it, the case reads as system-design.
 
-### §04–§06 WOW shots + System (lines ~1200–1340)
-**Current:** Two WOW shots (Task Detail, Memory v2) + System grid (4 surfaces, alternating desktop/mobile per shot per CEO rule).
-**Reshape direction:** This is where the screenshot inventory expansion lands. Consider adding 1-2 WOW shots from Tier A (Operator Dashboard or Memory v3 Reflections). Or add a 4-col system gallery for breadth.
+### Era frame as cold-open OR §02 Problem opener
+**Reshape direction:** Optionally add the era equation visual at the top of §02 Problem (or as a preamble between Origin and Foundation). Pattern:
+> ```
+> 2025: humans + AI
+> 2026: humans + humans + AI
+> ```
+> *"AI tools today are built for solo users. The 2026 question is how teams ship work when AI is in the loop. That's the gap I built FuzeHQ to fill."*
 
-### §07 Process beats
-**Current:** Read the HTML for current beats.
-**Reshape direction:** Each beat should have a date-bounded action + an artifact + a learning. If any beat reads as vague (*"refined the design system"*) — name a specific token, decision, or critique outcome.
+### §02 Problem — Reframe the empty-quadrant chart
+**Current:** 2×2 with axes Team UX × Agent Identity. The empty quadrant labeled "FuzeHQ — empty until now."
+**Reshape direction:** The new thesis lets you reframe the axes more universally. Consider:
+- Y-axis: "Solo workflow ←→ Team workflow"
+- X-axis: "Human-only tools ←→ AI-integrated tools"
+- The empty quadrant: "Team workflow + AI-integrated tools" = FuzeHQ
+This makes the chart match the thesis. The current axes (Team UX × Agent Identity) work too — but slightly more academic. Rewriter's call.
 
-### §08 Outcome (line ~1360)
-**Current (post-compress):** 4 stat blocks with 1-line bold metric + 1 short sentence each.
-- 449 tasks audited
-- 51% fake-done caught
-- 1,400 facts in memory graph
-- 13/13 surfaces shipped
-**Reshape direction:** Solid. Could push the *Why it matters* line per stat (1-2 words at the end, not a paragraph): *"449 tasks audited. The audit trail is the surface, not a footer. **Why it matters:** operators stopped re-checking AI work."*
+### §01 Foundation — verify alignment with new thesis
+**Current:** Credits Paperclip / LangSmith / Linear. Closes with *"The empty quadrant they all left open was the operator surface — the trust layer for everyone who isn't the engineer."*
+**Issue:** The close mentions *"operator surface"* which was the OLD framing.
+**Reshape direction:** Update the close to align with the new thesis:
+> *"The empty quadrant they all left open was the human-collaboration layer — the workspace where humans + humans + AI ship together."*
+Same evidence base (Paperclip/LangSmith/Linear), updated diagnosis.
 
-### §09 Reflection (line ~1380)
-**Current (post-compress):** 3 paragraphs each side (What worked / What I'd do differently). Personal voice with specific numbers (3 weeks → 8 weeks rework saved, hour 3 catch, 6 weeks before constraint, ~10 days rework).
-**Reshape direction:** Audit the numbers — Pheak flagged some as approximations needing real iter-log true-up. Replace any that don't match real iter logs.
+### §04+ WOW shots — verify alignment with new thesis
+**Current:** Task Detail (signed pipeline) + Memory v2 (knowledge graph).
+**Reshape direction:** These two screens still earn their slot — they're the proof of "ship together with audit trail." Add captions that tie to the thesis: *"How two humans + 13 agents track who did what."*
+
+### §06 System — verify form-factor discipline
+Per CEO rule from earlier session: don't combine desktop+mobile in one shot. Each system card uses ONE form factor. Current state should already comply; verify.
+
+### §07 Process beats — narrative tightness
+**Reshape direction:** Each beat should name a date-bounded action + an artifact + a learning. Vague beats *("refined the design system")* must name a specific token, decision, or critique outcome.
+
+### §08 Outcome — supplement with system-scale numbers
+**Current:** 449 tasks audited · 51% fake-done · 1,400 facts · 13/13 surfaces.
+**Reshape direction:** Optionally add the thesis-handoff system-scale numbers (51 skills · `[N]` playbooks · 9 agents · 14+ projects). They prove the design-system has shipped at scale, which is the "scale at conviction" hiring-manager signal.
+
+### §09 Reflection — light touch
+**Current:** 3 paragraphs each side with specific numbers (3 weeks → 8 weeks rework saved, hour 3 catch, 6 weeks before constraint).
+**Reshape direction:** Audit numbers against real iter logs. Personal voice OK here — Reflection earns *"I"*.
+
+### Final close — universalize-on-exit
+**Reshape direction:** Mirror the video close. Final sentence before brand-sentence repeat:
+> *"Now anyone can collaborate."* + brand sentence + *"FuzeHQ. The team workspace for humans and AI agents."*
 
 ## Acceptance criteria (Vendy validates)
 
+- [ ] Thesis line appears verbatim somewhere prominent (hero sub OR §03 lede)
+- [ ] 4 Pillars section present (Skills/Playbooks/Memory/Gates with design-system analogies)
+- [ ] Era frame visual or text reference present (cold-open or §02 opener)
+- [ ] Foundation §01 close updated to align with new thesis (drop *"operator surface"* phrasing)
 - [ ] All 7 voice contract rules pass on every paragraph
 - [ ] *"I"* count stays 14–20 (don't trim further; Origin + Reflection earn personal voice)
-- [ ] *"we / our / us"* count = 0 in body (HMW callout phrase + literal CEO pull quote exempt)
-- [ ] At least 4 additional screens added from Tier A/B inventory
-- [ ] All screen exports = single form factor per shot (desktop OR mobile, never both)
-- [ ] All screen img alt text claims a specific design pattern, not generic ("Dashboard with roster strip" not "FuzeHQ screen")
-- [ ] Locked items unchanged (hero h1, brand sentence, hero sub, Foundation §01, quadrant chart, HMW, pull quote, eyebrow, badge sequence, hero stats, light-mode-disabled)
+- [ ] *"we / our / us"* count = 0 in body (HMW callout + literal CEO pull quote exempt)
+- [ ] Universalize-on-exit close present (*"Now anyone can collaborate"*)
+- [ ] No competitor logos
+- [ ] No named individuals as case-copy subjects (real screen captures showing comment authors are OK)
+- [ ] System-scale numbers added where evidence-backed (51 skills · N playbooks · 9 agents · 14+ projects)
+- [ ] Locked items unchanged (hero h1, brand sentence, Foundation §01 paragraph 1, quadrant chart structure, HMW, pull quote, eyebrow, badge sequence, hero stats, light-mode-disabled)
 - [ ] Up next eyebrow still reads *"Up next · 01 / 03"* pointing to Compliance UX
-- [ ] Origin §01.5 retains personal narrative voice (this section earns *"I"*)
-- [ ] Reflection §09 retains personal anchors at decision points
-- [ ] Voice contract Rule 7 satisfied at close (brand sentence + ROI line, not personal sign-off)
+- [ ] Voice contract Rule 7 satisfied at close (universalize line + brand sentence + ROI consequence)
 
 ## Vendy cold-read validation
 
-After the rewrite lands, read the case fresh and answer:
-1. **In 30 seconds, what did Pheak do?** (target: built FuzeHQ on Paperclip MIT runtime; designed for the operator surface; caught 51% fake-done on his own team via Tenant Zero discipline; shipped 13 surfaces — desktop + mobile + Foundation — across 6 iters in April 2026)
-2. **What's the strongest single number?** (target: 51% fake-done caught at hour 3 OR 13 named agents shipping daily)
-3. **Does this read as senior IC or senior manager?** (target: senior IC who happens to also be CEO of a 6-month-old SaaS — design rigor + Tenant Zero discipline must dominate)
-4. **Any sentence trip the "I-I-I" or "we / team" alarm?** (target: zero, except deliberate Origin and Reflection personal voice which is the case's strongest beat)
+After the rewrite lands, read fresh and answer:
+1. **In 30 seconds, what did Pheak do?** (target: built FuzeHQ to allow human collaboration while working with AI agents — packaged Skills + Playbooks + Memory + Gates as a design system for AI work — uses it daily with 13 named agents shipping 449 tasks across 14+ projects)
+2. **What's the strongest single line?** (target: the thesis verbatim — *"I built FuzeHQ to allow human collaboration while working with AI agents."*)
+3. **Does this read as senior IC or senior manager?** (target: senior IC who packaged scattered open-source AI tooling into a coherent product — design rigor + Tenant Zero discipline must dominate)
+4. **Any sentence trip the "I-I-I" or "we / team" alarm?** (target: zero, except deliberate Origin + Reflection personal voice)
+5. **Does the hire-this-person sentence land?** *"This person saw the 2026 paradigm shift. Identified that AI tools don't yet support team collaboration. Packaged scattered open-source AI tooling into a coherent design-system-shaped product. Uses it daily themselves. Built it so anyone can collaborate."*
 
-If all 4 land cleanly, ship via dev → staging → main. Otherwise iterate.
+If all 5 land cleanly, ship via dev → staging → main. Otherwise iterate.
 
 ## Hand-off / questions
 
-- Pheak's known facts (use these, don't invent): 449 tasks audited (Jan 1 – April 30, 2026 window), 51% fake-done (audit ran 2026-04-17, 230 of 449 lacked QA proof), 1,400 facts in Memory v2, 13 named agents (2 founders + 11 AI), 13/13 surfaces shipped (6 desktop + 6 mobile + Foundation), Apple-IC critique 5/5, WCAG AA, dual mode (now disabled).
-- Iter dates approximate ("3 weeks at start saved 8 weeks rework", "11 days before screens ready", "6 weeks before constraint was in", "~10 days rework", "iter 4 mobile arrived") — verify against real iter logs OR replace with conservative phrasing if uncertain.
-- Foundation credits (Paperclip, LangSmith, Linear) — don't add or subtract; Pheak signed off on exactly three.
-- For new claims or design moves not on this list, post `[QUESTION for @Pheak]` on FuzeHQ or comment in `case-rewrites/QUESTIONS.md`.
-- For .pen exports: use Pencil MCP `export_nodes` against `/Users/pheakmeas/Documents/Development/Pencil/fuzehq-dashboard.pen`. Don't Read/Grep .pen files (encrypted).
+- **Pheak's known facts (use these, don't invent):**
+  - Tasks audited: 449 (Jan 1 – April 30, 2026 window)
+  - Fake-done rate: 51% (audit ran 2026-04-17, 230 of 449 lacked QA proof)
+  - Memory facts: 1,400 in Memory v2
+  - Agents: 13 named (2 founders + 11 AI)
+  - Surfaces shipped: 13/13 (6 desktop + 6 mobile + Foundation)
+  - Skills: 51 shipping (per pitch deck)
+  - Projects: 14+
+  - Apple-IC critique: 5/5
+  - WCAG AA, dual mode (now disabled)
+- **Open question for Pheak:** real `[N]` for playbook count. Pitch deck says 51 "skill playbooks" — clarify if 51 is skills+playbooks combined or just skills. Mine `mzm-orchestrator/server/src/playbooks/` if accessible.
+- **Foundation credits (Paperclip, LangSmith, Linear):** Don't add or subtract; locked at three.
+- **For new claims or design moves not on this list:** post `[QUESTION for @Pheak]` on FuzeHQ or comment in `case-rewrites/QUESTIONS.md`.
+- **For .pen exports:** use Pencil MCP `export_nodes` against `/Users/pheakmeas/Documents/Development/Pencil/fuzehq-dashboard.pen`. Don't Read/Grep .pen (encrypted).
+
+## The hire-this-person sentence (the case study distilled)
+
+> **"This person saw the 2026 paradigm shift. Identified that AI tools don't yet support team collaboration. Packaged scattered open-source AI tooling into a coherent design-system-shaped product. Uses it daily themselves. Built it so anyone can collaborate."**
+
+That's the hiring-manager takeaway. The case study earns it across the page.
