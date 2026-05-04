@@ -261,33 +261,42 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* ---------- 03 Direct contributions — 2-column carve-out grid ---------- */
+  /* ---------- 03 Direct contributions — 4-column card grid ---------- */
   .direct-contributions {
     list-style: none;
     padding: 0;
     margin: clamp(28px, 3vw, 40px) 0 0;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(16px, 2vw, 24px) clamp(28px, 3vw, 40px);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(14px, 1.6vw, 20px);
   }
   .direct-contributions li {
-    padding: clamp(16px, 1.8vw, 22px) 0;
-    border-top: 1px solid var(--rule-soft);
-    font-size: clamp(14px, 1.4vw, 16px);
+    padding: clamp(20px, 2.2vw, 28px);
+    background: var(--bg-2, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--rule-soft);
+    border-radius: 8px;
+    font-size: 14px;
     line-height: 1.55;
-    color: var(--fg);
+    color: var(--fg-2);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .direct-contributions li:hover {
+    border-color: var(--rule);
+    transform: translateY(-1px);
   }
   .direct-contributions li strong {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     color: var(--fg);
     font-weight: 600;
-    font-size: clamp(15px, 1.5vw, 17px);
+    font-size: 15px;
     letter-spacing: -0.005em;
   }
-  @media (max-width: 720px) {
-    .direct-contributions { grid-template-columns: 1fr; gap: 0; }
-    .direct-contributions li:last-child { border-bottom: 1px solid var(--rule-soft); }
+  @media (max-width: 1100px) {
+    .direct-contributions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    .direct-contributions { grid-template-columns: 1fr; }
   }
   .contribution-disclaimer {
     margin-top: clamp(28px, 3vw, 40px);
