@@ -191,7 +191,10 @@ a:focus-visible, button:focus-visible {
   display: inline-flex; align-items: center; gap: 8px;
 }
 
+/* Theme toggle hidden 2026-05-04 — light mode disabled until transparent PNG screens ship.
+   Restore by removing `display: none` once case-study assets render cleanly on cream bg. */
 .theme-toggle {
+  display: none !important;
   appearance: none;
   background: transparent; border: 1px solid var(--rule);
   width: 28px; height: 28px; display: inline-grid; place-items: center;

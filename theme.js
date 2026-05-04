@@ -1,21 +1,6 @@
-// Minimal theme toggle. Respects system by default; toggle persists.
+// Forced dark mode (2026-05-04 — case study screens have black backgrounds baked in;
+// light mode is disabled until transparent PNG exports are available).
+// Reverse: restore the previous theme.js from git history when transparent screens ship.
 (function () {
-  const KEY = 'uxmeas-theme';
-  const root = document.documentElement;
-  const stored = localStorage.getItem(KEY);
-  if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.querySelector('.theme-toggle');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      const current = root.getAttribute('data-theme');
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      let next;
-      if (!current) next = systemDark ? 'light' : 'dark';
-      else next = current === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      localStorage.setItem(KEY, next);
-    });
-  });
+  document.documentElement.setAttribute('data-theme', 'dark');
 })();
