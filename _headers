@@ -4,6 +4,9 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
 
+/careers/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
 /images/*
   Cache-Control: public, max-age=31536000, immutable
 
