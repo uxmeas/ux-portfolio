@@ -352,30 +352,37 @@
     margin: 16px 0 0;
   }
 
-  /* ---------- Direct contributions — bulleted carve-out ---------- */
+  /* ---------- Direct contributions — 2-column carve-out grid ---------- */
   .direct-contributions {
     list-style: none;
     padding: 0;
     margin: clamp(28px, 3vw, 40px) 0 0;
-    max-width: 70ch;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 24px) clamp(28px, 3vw, 40px);
   }
   .direct-contributions li {
-    padding: clamp(14px, 1.6vw, 20px) 0;
+    padding: clamp(16px, 1.8vw, 22px) 0;
     border-top: 1px solid var(--rule-soft);
-    font-size: clamp(15px, 1.5vw, 17px);
+    font-size: clamp(14px, 1.4vw, 16px);
     line-height: 1.55;
     color: var(--fg);
   }
-  .direct-contributions li:last-child {
-    border-bottom: 1px solid var(--rule-soft);
-  }
   .direct-contributions li strong {
+    display: block;
+    margin-bottom: 4px;
     color: var(--fg);
     font-weight: 600;
+    font-size: clamp(15px, 1.5vw, 17px);
+    letter-spacing: -0.005em;
+  }
+  @media (max-width: 720px) {
+    .direct-contributions { grid-template-columns: 1fr; gap: 0; }
+    .direct-contributions li:last-child { border-bottom: 1px solid var(--rule-soft); }
   }
   .contribution-disclaimer {
-    margin-top: clamp(20px, 2vw, 28px);
-    max-width: 70ch;
+    margin-top: clamp(28px, 3vw, 40px);
+    max-width: 80ch;
     font-size: 14px;
     line-height: 1.55;
     color: var(--fg-2);
@@ -1788,8 +1795,8 @@
       <h2 class="h2">What I personally designed.</h2>
     </div>
     <ul class="direct-contributions">
-      <li><strong>Configuration engine.</strong> Designed the system that lets ONE codebase serve three revenue verticals (Debt &amp; Lending · Canadian Equity · Global Equity) with no per-tenant code overhead.</li>
-      <li><strong>Multi-tenant configuration UX.</strong> 17 enterprise tenants across 6 continents white-label the platform without engineering touching the codebase.</li>
+      <li><strong>Configuration engine.</strong> Designed the architecture &mdash; feature flags, tenant tokens, jurisdiction rules &mdash; that lets ONE codebase serve three revenue verticals (Debt &amp; Lending · Canadian Equity · Global Equity) with no per-tenant code overhead.</li>
+      <li><strong>Tenant admin UX.</strong> Designed the white-label configuration interface so 17 enterprise tenants across 6 continents could set their own branding, jurisdictional rules, and feature toggles &mdash; without engineering touching the codebase.</li>
       <li><strong>Platform-level pattern library.</strong> Design system spanning DealFlow, Lending, and Donations &amp; Rewards verticals.</li>
       <li><strong>DealFlow product depth (2014&ndash;2020).</strong> Investor onboarding, deal management, portfolio views. Vertical facilitated $647M in 2023 alone (71% YoY).</li>
       <li><strong>Lending vertical UX.</strong> Singapore, Mexico, UK, US deployments.</li>
@@ -1857,7 +1864,7 @@
             <div class="bead-n">A / 01 · The platform</div>
             <h4>Katipult: white-label compliance and deal infrastructure</h4>
             <p>One codebase, 17 enterprise tenants, 6 continents. Brand settings, jurisdictional rules, and feature toggles swap per deployment. The engine stays unified. Migrating off Katipult meant rebuilding five separate vendor stacks — dealers stayed because the platform had absorbed the coordination problem.</p>
-            <p><strong>My contribution:</strong> Designed the multi-tenant configuration UX, brand-token pipeline, and platform-level pattern library.</p>
+            <p>Designed the multi-tenant configuration UX, brand-token pipeline, and platform-level pattern library.</p>
           </div>
           <figure class="bead-visual">
             <img src="img/dealflow/katipult-queue.png" alt="Operator queue — cross-tenant compliance triage with severity-tagged alerts, SLA timers, and per-investor status across the deal lifecycle" loading="lazy" />
@@ -1869,7 +1876,7 @@
             <div class="bead-n">A / 02 · The flagship product</div>
             <h4>DealFlow — equity and capital markets on Katipult</h4>
             <p>Private placement deal management for institutional broker-dealers. Issuer onboarding, allocations, e-signature, and compliance reporting in one workflow. DealFlow Mesh launched 2023 as the industry's first private capital network — real-time book building across ECM, wealth management, law firms, and issuers. Backed by $510K NRC IRAP funding.</p>
-            <p><strong>My contribution:</strong> Lead PD on DealFlow 2014–2020. Designed the lifecycle state machine, operator triage queue, and Mesh book-building canvas.</p>
+            <p>Lead PD on DealFlow 2014–2020. Designed the lifecycle state machine, operator triage queue, and Mesh book-building canvas.</p>
           </div>
           <div class="bead-visual bead-visual--phones-2">
             <figure class="bead-phone">
@@ -1886,7 +1893,7 @@
             <div class="bead-n">A / 03 · Three vertical instances of one engine</div>
             <h4>Debt &amp; Lending · Canadian Equity · Global Equity</h4>
             <p>Three revenue segments, one codebase. <strong>Debt &amp; Lending</strong> (small business + microfinance + P2P real-estate, e.g. <em>Asterlend Singapore</em>, <em>BridgeKey Property</em> Ireland). <strong>Canadian Equity</strong> (institutional placements + impact crowdfunding, e.g. <em>Northpoint Impact</em>). <strong>Global Equity</strong> (international land + impact + accredited cross-border, e.g. <em>Hartwell Crowdvest</em> UK, <em>Pinevale Impact</em> US, <em>Pacific Crossing</em> APAC). Compliance, identity, audit, and payments primitives shared across all three.</p>
-            <p><strong>My contribution:</strong> Designed the cross-vertical pattern library so a new vertical reused 80%+ of the existing primitives. Configurable rules engine + shared design tokens + tenant-scoped audit trail were the load-bearing decisions.</p>
+            <p>Designed the cross-vertical pattern library so a new vertical reused 80%+ of the existing primitives. Configurable rules engine + shared design tokens + tenant-scoped audit trail were the load-bearing decisions.</p>
           </div>
           <figure class="bead-visual">
             <img src="img/dealflow/katipult-loan-browse.png" alt="Lending product on Katipult — loan marketplace with 6-column listings showing asset type, term, rate of return, LTV, days left, and raised progress. Mirrors the LendR (ATB Financial) platform specification." loading="lazy" />
@@ -2334,7 +2341,7 @@
             <div class="screen-meta">
               <h4>Operator queue — cross-deal triage</h4>
               <p>One inbox per reviewer across every active deal. Investors awaiting action sorted by SLA, with status grids that show identity, jurisdiction, accreditation, source-of-funds, and signature posture in one row. Replaced a wall of spreadsheets that operators had been maintaining by hand.</p>
-              <p><strong>My contribution:</strong> Designed the cross-dimensional status grid pattern, the SLA-breach pill system, and the per-row decision affordance. Multi-tenant by default — the same queue ships to every Katipult deployment.</p>
+              <p>Designed the cross-dimensional status grid pattern, the SLA-breach pill system, and the per-row decision affordance. Multi-tenant by default — the same queue ships to every Katipult deployment.</p>
             </div>
           </div>
           <div class="screen v-image-left">
@@ -2344,7 +2351,7 @@
             <div class="screen-meta">
               <h4>Investor profile — decision in one screen</h4>
               <p>Cross-section view of a single investor showing every compliance dimension, all evidence, and the decision controls that route the deal forward. Operator no longer hops between five vendor consoles to assemble context.</p>
-              <p><strong>My contribution:</strong> Designed the five-dimension compliance grid, the evidence-stitching pattern across vendor sources (Trulioo, Onfido, internal AML), and the decision control with audit-by-default.</p>
+              <p>Designed the five-dimension compliance grid, the evidence-stitching pattern across vendor sources (Trulioo, Onfido, internal AML), and the decision control with audit-by-default.</p>
             </div>
           </div>
           <div class="screen v-image-right">
@@ -2354,7 +2361,7 @@
             <div class="screen-meta">
               <h4>Operator alerts — runtime triage</h4>
               <p>Sanctions hits, expiring accreditations, stalled signatures, anomalous transactions — filtered by severity and SLA, with audit-closed flow on every action. The runtime monitoring layer underneath the platform.</p>
-              <p><strong>My contribution:</strong> Designed the alert→evidence→remediation→audit flow, the severity tiering (Critical/High/Medium with SLA breach pills), and the four-eyes approval gate for consequential actions.</p>
+              <p>Designed the alert→evidence→remediation→audit flow, the severity tiering (Critical/High/Medium with SLA breach pills), and the four-eyes approval gate for consequential actions.</p>
             </div>
           </div>
         </div>
