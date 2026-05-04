@@ -56,6 +56,24 @@ Transform the case from a **product description** into a **case study about a de
 - **Up next chain:** Currently the LAST in the chain. Consider where it points — likely back to "Let's talk" or to Compliance UX.
 - **Plugin name + capability claims:** 98% reduction, H1–H6 hierarchy detection, native Figma frames, design-token mapping, two UX modes (Wizard/Compact Pro). Don't invent new capabilities.
 
+## "Direct contributions" section — solo affirmation (per attribution-boundary rule)
+
+Per the credit-attribution-boundary HARD RULE codified 2026-05-04 (`feedback_uxmeas_credit_attribution_boundary.md`): every case study includes a Direct contributions section. **Docs to Design is solo ownership** — Pheak as Product Designer AND Developer. No team, no co-founder, no collaborators.
+
+**Slot:** between the cs-meta block (Role / Timeline / Type) and the first narrative section.
+
+**Format:** 1–2 line affirmation. Short — solo-ness is implicit from the role line ("Product Designer and Developer") but the explicit statement is the structural Feroot fix.
+
+**Proposed content:**
+
+```
+Direct contributions — solo ownership
+
+Designed the plugin. Wrote the hierarchy-detection algorithm. Built the Wizard and Compact Pro UX modes. Mapped output to user design tokens. Shipped to the Figma Community. Concept, design, code, deploy — all mine.
+```
+
+This signals to hiring managers: senior IC product designer who ALSO ships code. That's the IC sweet spot for the role Pheak is going for.
+
 ## Reshape targets (where the rewriter has room)
 
 ### 🎯 PRIMARY TARGET — Add a Pheak-as-IC origin paragraph

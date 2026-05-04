@@ -58,6 +58,34 @@ Rewrite the case study to pass the senior-PD hiring-manager scan in 30–90 seco
 - **Up next chain:** Currently *"Up next · 03 / 03 → FuzeHQ"*. Don't break the chain.
 - **All evidence numbers:** $2B+, $647M (DealFlow 2023), 71% YoY, 17 tenants, 6 continents, TSX-V IPO 2017, 3→45 team, 11-year role span. Don't invent new numbers; if you need one not on this list, post a question to Pheak.
 
+## 🎯 PRIMARY MANDATE — Add "Direct contributions" section (Feroot structural fix)
+
+Per the credit-attribution-boundary HARD RULE codified 2026-05-04 (`feedback_uxmeas_credit_attribution_boundary.md`):
+
+**Slot:** new section between the cs-meta block (Role / Timeline / Team / Scale) and the first numbered narrative section. Right after the existing intro paragraph, OR replaces it.
+
+**Why this case needs it MORE than any other:** Katipult is the heaviest collaboration burden — Pheak was **co-founder + founding designer** for 17 years (2008–2025). The case scope spans an entire company arc, not just a design project. Without explicit carve-out, hiring managers will bucket this as a "founder's company story" not a "senior IC's design portfolio." This is exactly what Feroot rejected.
+
+**Format:** bulleted list of 5–7 specific design contributions with **mechanical lever + measurable outcome** each. Honest one-line disclaimer about co-founder + team scope at the bottom.
+
+**Proposed content (rewriter can adopt or refine — verify each line is factually Pheak's personal work):**
+
+```
+( 02 ) — Direct contributions
+
+- Designed the configuration engine that lets ONE codebase serve three revenue verticals (Debt & Lending · Canadian Equity · Global Equity) — no per-tenant code overhead.
+- Designed multi-tenant configuration UX — 17 enterprise tenants across 6 continents white-labeled the platform without engineering touching the codebase.
+- Designed the platform-level pattern library — design system spanning DealFlow, Lending, Donations & Rewards.
+- Designed DealFlow product depth (2014–2020) — investor onboarding, deal management, portfolio views. Vertical facilitated $647M in 2023 alone (71% YoY).
+- Designed Lending vertical UX — Singapore, Mexico, UK, US deployments.
+- Designed Donations & Rewards vertical UX — InvestYYC + Alberta BoostR (Calgary Arts Development, ATB Financial).
+- Founded + scaled the design practice — solo → team of 6 across Calgary, Vancouver, Prague.
+
+Co-founded the company with two others. Cross-functional collaboration with engineering, compliance, legal, and the design team informed the work — but the platform-level design ownership across DealFlow, Lending, and Donations & Rewards was mine.
+```
+
+**Renumber:** existing badges shift +1 if Direct contributions takes ( 02 ). Or skip a number — Direct contributions can stay un-numbered as a callout block. Rewriter's call.
+
 ## Reshape targets (where the rewriter has room)
 
 ### 🎯 PRIMARY TARGET — Hero sub (line 1691)

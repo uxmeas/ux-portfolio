@@ -129,6 +129,27 @@ That's the hire-this-person stack.
 - ❌ NEVER paraphrase the thesis line. Verbatim only.
 - ❌ DO NOT relitigate the thesis-handoff §5 locked decisions. Re-read the rationale; if you genuinely have new info, surface it to Pheak before changing.
 
+## "Direct contributions" section — solo affirmation (per attribution-boundary rule)
+
+Per the credit-attribution-boundary HARD RULE codified 2026-05-04 (`feedback_uxmeas_credit_attribution_boundary.md`): every case study includes a Direct contributions section. **FuzeHQ is solo ownership** — Pheak's full design, code, and decision authority. The section is short and explicit.
+
+**Slot:** between the cs-meta block (Role / Timeline / Team / Stack) and §01 Foundation. Optional in §00 Origin if cleaner — rewriter's call.
+
+**Format:** 1–2 line affirmation + scope summary.
+
+**Proposed content:**
+
+```
+Direct contributions — solo ownership
+
+Concept, design, code, deploy. Every surface, every decision, every shipped iteration was mine.
+13 surfaces shipped (6 desktop + 6 mobile + Foundation) · 51 skills · [N] playbooks · 9 agents · 14+ projects · 449 tasks audited in production.
+```
+
+No collaborator disclaimer needed — co-founders + 11 named AI agents are USERS of FuzeHQ, not co-designers. The 13 surfaces, the design system, the 4-pillar framing, the operator-facing audit trail — all Pheak.
+
+This section reinforces the thesis: "**I built FuzeHQ to allow human collaboration while working with AI agents**" — the *building* was solo; the *collaboration* the product enables is the deliverable.
+
 ## Reshape targets (where the rewriter has room)
 
 ### 🎯 PRIMARY TARGET — Hero sub-line realignment

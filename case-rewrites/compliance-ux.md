@@ -65,6 +65,32 @@ Rewrite the case study to pass the senior-PD hiring-manager scan in 30–90 seco
 - **Foundation file path:** Don't rename images or break image refs.
 - **Approved hero sub (most recent rewrite):** *"I redesigned investor onboarding from a six-document, 45-minute paper trail into one 12-minute adaptive flow — collapsed jurisdiction branching, replaced wizards with a state machine, surfaced compliance status in real time. Shipped to Canaccord, Raymond James, and Sprott across $2B+ in regulated transactions."* — Pheak signed off on this exact phrasing on 2026-05-04. Only change if you have a strictly stronger version.
 
+## 🎯 PRIMARY MANDATE — Add "Direct contributions" section (Feroot structural fix)
+
+Per the credit-attribution-boundary HARD RULE codified 2026-05-04 (`feedback_uxmeas_credit_attribution_boundary.md`):
+
+**Slot:** new section between the cs-meta block (Role / Timeline / Team / Clients) and the §02 first numbered narrative section. Goes right after the existing intro paragraph, OR replaces it.
+
+**Why this case needs it:** Compliance UX is **collaborative** work — Pheak was Head of Product Design at Katipult, not the sole contributor. Without explicit carve-out, the case reads as either narcissistic (claiming sole credit for what was actually team work) or diffuse (the original Feroot complaint). This section threads the needle.
+
+**Format:** bulleted list of 4–7 specific design contributions with **mechanical lever + measurable outcome** each. Honest one-line disclaimer at the bottom.
+
+**Proposed content (rewriter can adopt or refine — verify each line is factually Pheak's personal work):**
+
+```
+( 02 ) — Direct contributions
+
+- Designed the investor onboarding flow that cut KYC from 45 → 12 minutes (47% → 85% completion).
+- Designed the jurisdiction-rules engine UX — 20+ regulatory states (IIROC, Reg CF, MiFID, FINTRAC) on one configuration surface.
+- Designed the compliance-officer dashboard — human-side governance that dropped NIGO submissions and let automation handle high-confidence cases.
+- Designed the state-machine pattern that replaced the wizard — the load-bearing design lever; same engine later shipped to Lending and Donations & Rewards verticals.
+- Architected the design system — component library used across 17 enterprise tenants, scaled solo → team of 6.
+
+Cross-functional collaboration with engineering (backend implementation), compliance officers (regulatory interpretation), and the institutional dealers (user research observation on their floors) informed the work — but the design ownership was mine.
+```
+
+**Renumber:** existing badges shift +1 if Direct contributions takes ( 02 ). Current ( 01 ) Problem becomes ( 03 ) Problem, etc. Or skip a number — Direct contributions can stay un-numbered as a callout block instead of a section badge. Rewriter's call.
+
 ## Reshape targets (where the rewriter has room)
 
 ### §02 Context paragraph (line ~1038 in HTML)
