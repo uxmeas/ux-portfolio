@@ -170,7 +170,7 @@ a:focus-visible, button:focus-visible {
 }
 .wordmark {
   display: inline-flex; align-items: center;
-  color: var(--fg);
+  color: var(--accent);    /* brand blue — both inline SVGs use fill="currentColor" so they pick this up */
   text-decoration: none;
   line-height: 1;
   flex-shrink: 0;          /* prevent the global svg{max-width:100%} from crushing the mark in tight nav containers */

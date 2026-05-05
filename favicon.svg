@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 273.1 128">
-  <!-- UX Meas brand mark — adapts to browser light/dark theme via prefers-color-scheme -->
-  <style>
-    .mark { fill: #111; }
-    @media (prefers-color-scheme: dark) {
-      .mark { fill: #fff; }
-    }
-  </style>
-  <g class="mark">
+  <!-- UX Meas brand mark — accent blue (#7fc8ff) — visible on both light and dark browser tabs -->
+  <g fill="#7fc8ff">
     <path d="M140.8,0h-44.2s0,75.4,0,75.4c-1.3,23.8-26.1,23.6-44.2,22.1-11.7-.8-20.2-9.6-20.9-21.2V0s-31.5,0-31.5,0c0,0,0,81.9,0,81.9.6,16.2,8.7,30.5,22.6,38.7,13.5,9.9,40.3,6.3,56,6.9,27.4,0,50.8-24.3,49.9-51.6,0,0,0-45.2,0-45.2l37.1,39.7c-10.4,10.8-43.2,46-53.9,57.5h39.7c12.1-12.8,43.1-45.5,54.7-58C198.1,61.7,149.7,9.5,140.8,0Z"/>
     <polygon points="189.6 93.9 221.1 128 260.7 127.9 209.1 73.1 189.6 93.9"/>
     <path d="M206.2,63.7h0c1.2,1.3,2.3,2.5,3.3,3.6h0S273.1,0,273.1,0h-6.7l-60.3,63.7Z"/>
