@@ -177,7 +177,7 @@ a:focus-visible, button:focus-visible {
 }
 .wordmark__svg {
   height: 22px;
-  width: 92px;             /* explicit width overrides global svg{max-width:100%} */
+  width: 97px;             /* matches inline SVG (viewBox 563.1x128, scaled to 22px tall) */
   display: block;
   flex-shrink: 0;
   /* fill is currentColor on inline paths so it inherits .wordmark color */
@@ -189,7 +189,7 @@ a:focus-visible, button:focus-visible {
   .wordmark__svg { display: none; }       /* hide full logo on mobile */
   .wordmark__mark {
     display: block;
-    width: 28px;
+    width: 60px;            /* viewBox 273.1x128 scaled to 28px tall */
     height: 28px;
     flex-shrink: 0;
   }
