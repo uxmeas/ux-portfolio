@@ -1,3 +1,43 @@
-# Filename rename 2026-04-28 — case study renamed dealflow → katipult to match case identity.
-# 301 preserves any inbound link equity from the prior URL.
-/dealflow.html  /katipult.html  301
+# Cloudflare Pages / Netlify-compatible redirects
+# Layout migrated from /case-study/<slug>/ to root-level <slug>.html (v3.x).
+# 8 hidden case studies (akmsecure, donations-rewards, isoblock, lending,
+# mockupkit, multipaste, mypick, relationsync) removed per CEO 2026-05-04.
+
+# 4 retained — old /case-study/ paths -> new root-level
+/case-study/compliance-ux/    /compliance-ux.html      301
+/case-study/compliance-ux     /compliance-ux.html      301
+/case-study/dealflow/         /katipult.html           301
+/case-study/dealflow          /katipult.html           301
+/case-study/katipult/         /katipult.html           301
+/case-study/fuzehq/           /fuzehq.html             301
+/case-study/fuzehq            /fuzehq.html             301
+/case-study/docs-to-design/   /docs-to-design.html     301
+/case-study/docs-to-design    /docs-to-design.html     301
+
+# Lending folded into Katipult per CEO direction
+/lending.html                 /katipult.html           301
+/case-study/lending/          /katipult.html           301
+/case-study/lending           /katipult.html           301
+
+# 7 other removed case studies -> home
+/akmsecure.html               /                        301
+/donations-rewards.html       /                        301
+/isoblock.html                /                        301
+/mockupkit.html               /                        301
+/multipaste.html              /                        301
+/mypick.html                  /                        301
+/relationsync.html            /                        301
+/case-study/akmsecure/        /                        301
+/case-study/akmsecure         /                        301
+/case-study/donations-rewards/ /                       301
+/case-study/donations-rewards /                        301
+/case-study/isoblock/         /                        301
+/case-study/isoblock          /                        301
+/case-study/mockupkit/        /                        301
+/case-study/mockupkit         /                        301
+/case-study/multipaste/       /                        301
+/case-study/multipaste        /                        301
+/case-study/mypick/           /                        301
+/case-study/mypick            /                        301
+/case-study/relationsync/     /                        301
+/case-study/relationsync      /                        301

@@ -2,20 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://uxmeas.com/</loc>
-    <changefreq>daily</changefreq>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  <url><loc>https://uxmeas.com/case-study/compliance-ux/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/dealflow/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/akmsecure/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/docs-to-design/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/donations-rewards/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/fuzehq/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/isoblock/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/lending/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/mockupkit/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/multipaste/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/mypick/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://uxmeas.com/case-study/relationsync/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxmeas.com/compliance-ux.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxmeas.com/katipult.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxmeas.com/fuzehq.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxmeas.com/docs-to-design.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://uxmeas.com/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://uxmeas.com/cookies.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://uxmeas.com/llms.txt</loc><priority>0.5</priority></url>
 </urlset>
