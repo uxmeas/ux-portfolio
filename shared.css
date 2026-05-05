@@ -69,7 +69,7 @@
     --fg-3:      oklch(62.0% 0.004 60);
     --fg-4:      oklch(55.0% 0.004 60);
     /* scroll-lit resting color in dark: cool blue-grey (CEO spec) */
-    --scroll-lit-resting: #2e4054;
+    --scroll-lit-resting: #6a7d9e;
     --accent:    #7fc8ff;
     --accent-soft: color-mix(in oklab, var(--accent) 18%, transparent);
   }
@@ -87,7 +87,7 @@
   --fg-2:      oklch(78.0% 0.004 60);
   --fg-3:      oklch(62.0% 0.004 60);
   --fg-4:      oklch(55.0% 0.004 60);
-  --scroll-lit-resting: #2e4054;
+  --scroll-lit-resting: #6a7d9e;
   --accent:    #7fc8ff;
   --accent-soft: color-mix(in oklab, var(--accent) 18%, transparent);
 }
