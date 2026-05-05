@@ -174,18 +174,25 @@ a:focus-visible, button:focus-visible {
   text-decoration: none;
   line-height: 1;
   flex-shrink: 0;          /* prevent the global svg{max-width:100%} from crushing the mark in tight nav containers */
-  min-width: 92px;         /* desktop: matches the inline svg width attr; min-width keeps the box reserved */
 }
 .wordmark__svg {
   height: 22px;
-  width: 92px;             /* explicit width overrides global svg{max-width:100%} (mobile nav was squeezing this to ~9px) */
+  width: 92px;             /* explicit width overrides global svg{max-width:100%} */
   display: block;
   flex-shrink: 0;
   /* fill is currentColor on inline paths so it inherits .wordmark color */
 }
+.wordmark__mark {
+  display: none;           /* desktop: full mark+wordtype shows, icon-only is hidden */
+}
 @media (max-width: 600px) {
-  .wordmark { min-width: 72px; }
-  .wordmark__svg { width: 72px; height: 17px; }
+  .wordmark__svg { display: none; }       /* hide full logo on mobile */
+  .wordmark__mark {
+    display: block;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
 }
 /* Legacy .wordmark .dot rule removed — replaced by inline logo SVG (commit replacing 'UX/MEAS' text wordmark with new uxmeas mark + wordtype). */
 .nav-links {
