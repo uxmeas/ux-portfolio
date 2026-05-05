@@ -169,16 +169,18 @@ a:focus-visible, button:focus-visible {
   height: 60px;
 }
 .wordmark {
-  font-family: var(--f-mono);
-  font-size: 13px;
-  letter-spacing: 0.02em;
+  display: inline-flex; align-items: center;
   color: var(--fg);
-  display: inline-flex; align-items: baseline; gap: 8px;
+  text-decoration: none;
+  line-height: 1;
 }
-.wordmark .dot {
-  width: 6px; height: 6px; background: var(--fg);
-  display: inline-block; transform: translateY(-2px);
+.wordmark__svg {
+  height: 22px;
+  width: auto;
+  display: block;
+  /* fill is currentColor on inline paths so it inherits .wordmark color */
 }
+/* Legacy .wordmark .dot rule removed — replaced by inline logo SVG (commit replacing 'UX/MEAS' text wordmark with new uxmeas mark + wordtype). */
 .nav-links {
   display: flex; align-items: center; gap: 28px;
   font-family: var(--f-mono);
