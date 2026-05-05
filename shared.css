@@ -170,17 +170,20 @@ a:focus-visible, button:focus-visible {
 }
 .wordmark {
   display: inline-flex; align-items: center;
-  color: var(--accent);    /* brand blue — both inline SVGs use fill="currentColor" so they pick this up */
+  color: var(--fg);        /* foreground default for .logo-word (wordmark) */
   text-decoration: none;
   line-height: 1;
   flex-shrink: 0;          /* prevent the global svg{max-width:100%} from crushing the mark in tight nav containers */
 }
+/* Two-tone brand: icon (blue) + wordmark (foreground). Inline SVG paths are split into
+   <g class="logo-mark"> + <g class="logo-word"> so each receives its own fill. */
+.wordmark .logo-mark { fill: var(--accent); }
+.wordmark .logo-word { fill: currentColor; }
 .wordmark__svg {
   height: 22px;
-  width: 97px;             /* matches inline SVG (viewBox 563.1x128, scaled to 22px tall) */
+  width: 97px;             /* matches inline SVG (viewBox 607.5x128, scaled to 22px tall) */
   display: block;
   flex-shrink: 0;
-  /* fill is currentColor on inline paths so it inherits .wordmark color */
 }
 .wordmark__mark {
   display: none;           /* desktop: full mark+wordtype shows, icon-only is hidden */
