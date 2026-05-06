@@ -3,13 +3,18 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- has-js gate runs synchronously before stylesheet loads, so .has-js
+     CSS rules apply on first paint. Lets us hide donut arcs / reset countup
+     text only when JS is actually available — no-JS visitors see correct
+     values without flicker (2026-05-06 fix for the JS-gated visibility class). -->
+<script>document.documentElement.classList.add('has-js');</script>
 <title>Docs to Design. Word to Figma in 60 seconds. UX Meas.</title>
 <meta name="description" content="Figma plugin that turns Word documents into polished, multi-page Figma deliverables in 60 seconds. Built solo, end-to-end. Cover, headers, footers, page numbers, logo upload — baked in. Free tier sized to a real client deliverable, not a demo." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
-<link rel="stylesheet" href="shared.css?v=20260506e" />
-<script src="theme.js?v=20260506e"></script>
+<link rel="stylesheet" href="shared.css?v=20260506f" />
+<script src="theme.js?v=20260506f"></script>
 
 <!-- Schema.org structured data -->
 <script type="application/ld+json">
@@ -856,13 +861,17 @@
   .metric-chart .donut--neutral .donut-graphic .arc { stroke: var(--fg-3); }
   .metric-chart .donut--accent .donut-graphic .arc { stroke: var(--accent); }
   /* Arc fills to its --arc-offset target by default (visible without JS).
-     Same fix pattern as opacity:1 today — load-bearing visual never depends on JS. */
+     With .has-js (set by early head script), the arc starts empty and animates
+     to target only after the IntersectionObserver adds .is-visible. */
   .metric-chart .donut-graphic .arc {
     stroke-dasharray: 282.74;
     stroke-dashoffset: var(--arc-offset, 282.74);
     transition: stroke-dashoffset 1.1s ease-out;
   }
-  .metric-chart.is-visible .donut-graphic .arc {
+  html.has-js .metric-chart:not(.is-visible) .donut-graphic .arc {
+    stroke-dashoffset: 282.74;
+  }
+  html.has-js .metric-chart.is-visible .donut-graphic .arc {
     stroke-dashoffset: var(--arc-offset, 282.74);
   }
   .metric-chart .donut-value {
@@ -1506,6 +1515,21 @@
     requestAnimationFrame(tick);
   };
 
+  // Reset countup text to "0" before observer fires (skip when reduced motion;
+  // animateNumber handles the reduced case directly to the target). HTML inner
+  // text holds the target as the no-JS fallback; with JS we need to reset so
+  // the scroll-triggered animation runs from 0 to target. Runs synchronously
+  // at the inline script tag near end of body — before first paint, no flicker.
+  if (!reduced) {
+    charts.forEach((chart) => {
+      chart.querySelectorAll('.donut-value, .delta-value').forEach((el) => {
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        el.textContent = prefix + '0' + suffix;
+      });
+    });
+  }
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -1514,7 +1538,7 @@
       chart.querySelectorAll('.donut-value, .delta-value').forEach(animateNumber);
       io.unobserve(chart);
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.15 });
 
   charts.forEach((c) => io.observe(c));
 })();

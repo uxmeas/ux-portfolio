@@ -3,13 +3,18 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- has-js gate runs synchronously before stylesheet loads, so .has-js
+     CSS rules apply on first paint. Lets us hide donut arcs / reset countup
+     text only when JS is actually available — no-JS visitors see correct
+     values without flicker (2026-05-06 fix for the JS-gated visibility class). -->
+<script>document.documentElement.classList.add('has-js');</script>
 <title>Compliance UX. KYC that ships in 12 minutes, not 45. UX Meas.</title>
 <meta name="description" content="Investor onboarding redesigned for IIROC, Reg CF, MiFID, and FINTRAC. 45 minutes to 12. 85% completion. $2B+ processed. Shipped to Canaccord Genuity, Raymond James, and Sprott Capital." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
-<link rel="stylesheet" href="shared.css?v=20260506e" />
-<script src="theme.js?v=20260506e"></script>
+<link rel="stylesheet" href="shared.css?v=20260506f" />
+<script src="theme.js?v=20260506f"></script>
 
 <!-- Schema.org structured data: page = CreativeWork, author = Person -->
 <script type="application/ld+json">
@@ -389,16 +394,19 @@
     stroke: var(--accent);
   }
   /* Arc fills to its --arc-offset target by default (visible without JS).
-     JS-added .is-visible was original animation trigger but observer threshold
-     0.4 wasn't reliable; donuts stayed empty when observer didn't fire.
-     Fix 2026-05-06: same pattern as opacity:1 fixes — load-bearing visual
-     never depends on JS. The transition stays for any future animation work. */
+     With .has-js (set by early head script), the arc starts empty and animates
+     to target only after the IntersectionObserver adds .is-visible — that's
+     the scroll-triggered animation. No-JS visitors see filled donuts as
+     fallback (2026-05-06 fix). */
   .metric-chart .donut-graphic .arc {
     stroke-dasharray: 282.74;
     stroke-dashoffset: var(--arc-offset, 282.74);
     transition: stroke-dashoffset 1.1s ease-out;
   }
-  .metric-chart.is-visible .donut-graphic .arc {
+  html.has-js .metric-chart:not(.is-visible) .donut-graphic .arc {
+    stroke-dashoffset: 282.74;
+  }
+  html.has-js .metric-chart.is-visible .donut-graphic .arc {
     stroke-dashoffset: var(--arc-offset, 282.74);
   }
   .metric-chart .donut-value {
@@ -1465,6 +1473,18 @@
     return;
   }
 
+  // Reset countup text to "0" before observer fires. HTML inner text holds
+  // the target value as the no-JS fallback; with JS we need to reset so the
+  // scroll-triggered animation runs from 0 to target. Runs synchronously at
+  // the inline script tag near end of body — before first paint, no flicker.
+  charts.forEach((chart) => {
+    chart.querySelectorAll('[data-count]').forEach((el) => {
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      el.textContent = prefix + '0' + suffix;
+    });
+  });
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
@@ -1472,7 +1492,7 @@
       entry.target.querySelectorAll('[data-count]').forEach(animateNumber);
       io.unobserve(entry.target);
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.15 });
 
   charts.forEach((c) => io.observe(c));
 })();
