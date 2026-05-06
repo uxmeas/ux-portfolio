@@ -38,8 +38,7 @@
   document.head.appendChild(styleEl);
 
   // --- Microsoft Clarity loader (only after analytics consent) ---
-  // TODO: Pheak provide Clarity project ID for uxmeas
-  var CLARITY_ID = '';
+  var CLARITY_ID = 'waeobadji5';
 
   function initClarity() {
     if (!CLARITY_ID) return; // No-op until Clarity ID is supplied
