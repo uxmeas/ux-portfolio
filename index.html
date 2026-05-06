@@ -218,19 +218,21 @@
     scroll-margin-top: 32px;
   }
 
-  /* slide-in animation: content fades in from below, visual slides in from
-     the right as each panel enters view. IntersectionObserver toggles
-     `.is-visible` once per panel; transition handles the rest. */
+  /* slide-in enhancement: content + visual gently translate into place as each
+     panel enters view. IntersectionObserver toggles `.is-visible` once per panel.
+     IMPORTANT: opacity is 1 by default (not 0) so content is ALWAYS visible
+     even if JS / observer fails — the animation is enhancement, not load-bearing.
+     Previous opacity:0 default caused all 4 case studies to appear missing on
+     production when the observer didn't fire reliably (2026-05-06 incident). */
   .case-content,
   .case-visual {
-    opacity: 0;
-    transition: opacity .7s ease-out, transform .7s ease-out;
+    opacity: 1;
+    transition: transform .7s ease-out;
   }
-  .case-content { transform: translateY(16px); }
-  .case-visual { transform: translateX(48px); }
+  .case-panel:not(.is-visible) .case-content { transform: translateY(16px); }
+  .case-panel:not(.is-visible) .case-visual { transform: translateX(48px); }
   .case-panel.is-visible .case-content,
   .case-panel.is-visible .case-visual {
-    opacity: 1;
     transform: translateX(0) translateY(0);
   }
   @media (prefers-reduced-motion: reduce) {
