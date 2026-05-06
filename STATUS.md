@@ -227,11 +227,41 @@ Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
 - [x] /forms/ orphaned intake forms removed (intake-form.html, intake-form-v2.html, modal-trigger.js, thank-you.html — none linked from any main page, confirmed dead code)
 - [x] STATUS.md refreshed: stale GA4 ID corrected, "No MZM Labs mentions" rule retired in favor of agency-context allowance, "No Solo anywhere" rule softened to repetition-aware, og:image and contact-form known issues resolved
 
-### Current state
-- Branch: dev
-- Commits ahead of origin/main: 29 (cadence rule allows ≤20; CEO decision pending: override or split for staging→main promote)
-- Files modified: docs-to-design.html, fuzehq.html, js/compliance.js, STATUS.md
-- Files removed: forms/* (4 files + empty dir)
+### v3 SHIPPED TO PRODUCTION (2026-05-06)
+- **Production SHA:** `661a3e7e335eebbc34a2fd474465fa173f098961` ✓ live at https://uxmeas.com
+- **Rollback target:** `88851aa67e497c5ef5fe8c476457cd078cf82393` (pre-merge main HEAD)
+- **CEO approval:** "go all" (this session, 2026-05-06) — satisfies M3 production-deploy-checklist
+- **Promote chain:** dev → staging → main (fast-forward, no conflicts after correct ancestor sync)
+- **33-commit batch:** override authorized — single-batch promote acceptable for static portfolio (no auth, no DB, no active users)
+
+### Tier 1 preflight verdict
+- **Staging (staging.uxmeas.pages.dev):** 9/10 PASS — pre-existing favicon.ico 404 only fail
+- **Production (uxmeas.com):** 9/10 PASS — same profile, no regression
+- All 6 items confirmed live on production: GA4 + Clarity + OG + Twitter + cookie consent + security headers + JSON-LD + branded 404 + robots/sitemap + favicon.svg
+- Reframe content verified live: FuzeHQ "MZM Labs needed to ship" 2×, "human-collaboration layer" 2×, "Now anyone can collaborate" 2×; D2D "MZM Labs's client deliverables" 1×, "off the agency's plate" 1×
+- No 500s, no cascading errors
+
+### Compliance readiness: PASS — Tier 1
+- Privacy Policy: https://uxmeas.com/privacy ✓
+- Cookie Policy: https://uxmeas.com/cookies ✓
+- Cookie consent banner: js/cookie-consent.js loaded on all 5 pages, blocks GA4+Clarity until accept (per js/compliance.js)
+- WCAG: axe-core fixes per commit 2e83052 (re-verify on next round)
+- DSR: contact via mailto:hello@uxmeas.com per privacy policy
+
+### Cloudflare readiness: PASS
+- Security headers verified on production URL: HSTS, CSP (incl. clarity.ms allowlist), X-Frame-Options DENY, X-Content-Type-Options nosniff, Referrer-Policy, Permissions-Policy
+- DNS pointing at healthy CF Pages services (uxmeas.com, dev.uxmeas.pages.dev, staging.uxmeas.pages.dev all 200)
+- _headers file in repo root governs response headers
+- robots.txt + sitemap.xml live and current
+
+### Browser-only checks Pheak/Chloe still owe (not curl-verifiable)
+- [ ] GA4 DebugView fires page_view (analytics.google.com/analytics/debugview)
+- [ ] Clarity session lands in clarity.microsoft.com dashboard within 5 min (project waeobadji5)
+- [ ] Cookie consent banner blocks GA4+Clarity until accept (DevTools Network tab on first visit)
+- [ ] Cookie consent persists choice in localStorage on revisit
+
+### Known minor gap (carry-over, not new regression)
+- /favicon.ico → 404 (also 404 on previous production state). Tooling for proper .ico generation not available this session (Pillow blocked by PEP 668). Defer to next round with proper imaging tooling. Modern browsers use favicon.svg; impact limited to Windows shortcuts / older RSS readers / specific social embed contexts.
 
 ---
 
