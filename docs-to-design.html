@@ -8,8 +8,8 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
-<link rel="stylesheet" href="shared.css?v=20260506d" />
-<script src="theme.js?v=20260506d"></script>
+<link rel="stylesheet" href="shared.css?v=20260506e" />
+<script src="theme.js?v=20260506e"></script>
 
 <!-- Schema.org structured data -->
 <script type="application/ld+json">
@@ -855,9 +855,11 @@
   .metric-chart .donut-graphic .track { stroke: var(--bg); }
   .metric-chart .donut--neutral .donut-graphic .arc { stroke: var(--fg-3); }
   .metric-chart .donut--accent .donut-graphic .arc { stroke: var(--accent); }
+  /* Arc fills to its --arc-offset target by default (visible without JS).
+     Same fix pattern as opacity:1 today — load-bearing visual never depends on JS. */
   .metric-chart .donut-graphic .arc {
     stroke-dasharray: 282.74;
-    stroke-dashoffset: 282.74;
+    stroke-dashoffset: var(--arc-offset, 282.74);
     transition: stroke-dashoffset 1.1s ease-out;
   }
   .metric-chart.is-visible .donut-graphic .arc {
