@@ -1,6 +1,6 @@
 # UX Meas — Project Status
 
-**Last updated**: 2026-04-16
+**Last updated**: 2026-05-06
 **Priority**: #1a (job hunting + portfolio)
 **Stage**: LIVE (v2 production) — v3 in progress on dev
 **Owners**: Ana (delivery gates), Rio (job hunting status + marketing), Kai (design QA)
@@ -31,7 +31,8 @@
 ### Portfolio Site (LIVE)
 - https://uxmeas.com (Cloudflare Pages, auto-deploys from main)
 - Static HTML/CSS/JS
-- GA4: G-9HVVW1GBEC
+- GA4: G-87HSHMKCBH (canonical per CLAUDE.md)
+- Microsoft Clarity: waeobadji5 (wired 2026-05-06 via js/compliance.js)
 
 ### Case Studies (3 LIVE, 5 COMING SOON)
 Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
@@ -200,6 +201,40 @@ Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
 
 ---
 
+## What's DONE (May 6 session — v3 promote prep)
+
+### Case study agency-frame reframe (FuzeHQ + D2D only)
+**Triggered by:** CEO insight 2026-05-06 — case studies were framed as "I solved my own pain point" (indie-maker tilt) when the work was actually done under MZM Labs the agency. LinkedIn says "Product Design Consultant — MZM Labs Inc. • Freelance" — case studies should reflect that.
+
+- [x] HM Cold Read baseline run on current FuzeHQ + D2D — both scored 7/10, advance Y/Y
+- [x] Side-by-side opener drafts (current vs reframe) — CEO approved frame
+- [x] Lex full rewrite applied to FuzeHQ: hero sub, Origin lede, Origin body, Tenant Zero block, Foundation §01 close ("operator surface" → "human-collaboration layer"), universalize close added before brand sentence
+- [x] Lex full rewrite applied to D2D: hero sub, Context body, footer note — re-anchored to MZM Labs's client deliverables eating 4-8 hr per project
+- [x] Operator-persona seam closure on FuzeHQ — retired "operator" body-copy mentions across §02 Problem, quadrant SVG label, §03 Approach calm-chrome, anchor card, Origin §01, Foundation §01 paragraph 2, HMW callout (CEO explicitly lifted HMW lock for one edit)
+- [x] D2D state reconciliation — pre-submission canonical state confirmed (no external users, only user has been Pheak on MZM Labs work); reflection language "real users on a real design surface within months" reframed to MZM Labs dogfood; "first week" claim retired in favor of demand-signal waitlists
+- [x] Sage opener-body QA — both PASS WITH FLAGS; no must-fix contradictions
+- [x] HM Cold Read post-test: FuzeHQ 7/Y, D2D 7/Y — bar held same-or-better
+- [x] CEO decision: ship at 7/Y (Path 1) — defer remaining HM credibility items to next round
+
+### Tier 1 compliance + tracking baseline wiring
+- [x] Microsoft Clarity wired: project ID `waeobadji5` filled into [js/compliance.js](js/compliance.js#L41) (was empty TODO)
+- [x] Per-page coverage verified: all 5 main pages (index, fuzehq, compliance-ux, docs-to-design, katipult) have GA4 (G-87HSHMKCBH) + cookie-consent.js + JSON-LD + og:image + Twitter card
+- [x] _headers file confirmed: HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, comprehensive CSP
+- [x] robots.txt + sitemap.xml + custom 404.html present and current
+- [x] /careers Disallow present in robots.txt
+
+### Cleanup
+- [x] /forms/ orphaned intake forms removed (intake-form.html, intake-form-v2.html, modal-trigger.js, thank-you.html — none linked from any main page, confirmed dead code)
+- [x] STATUS.md refreshed: stale GA4 ID corrected, "No MZM Labs mentions" rule retired in favor of agency-context allowance, "No Solo anywhere" rule softened to repetition-aware, og:image and contact-form known issues resolved
+
+### Current state
+- Branch: dev
+- Commits ahead of origin/main: 29 (cadence rule allows ≤20; CEO decision pending: override or split for staging→main promote)
+- Files modified: docs-to-design.html, fuzehq.html, js/compliance.js, STATUS.md
+- Files removed: forms/* (4 files + empty dir)
+
+---
+
 ## What's DONE (April 14 session)
 
 ### Folder Consolidation (MZM-609)
@@ -231,25 +266,40 @@ Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
 
 ## What's NEXT
 
-### Immediate
-- [ ] Pheak: Final print review of resume
-- [ ] Execute sprint tasks (2, 7, 1, 4)
-- [ ] Pheak: Update LinkedIn profile manually
-- [ ] Apply collaborative tone to live case study HTML (dev branch)
-- [ ] Apply Play 1 language changes to live case studies
+### Immediate (v3 promote chain — in flight)
+- [ ] Local QA browser spot-check at localhost:8000
+- [ ] Push dev → origin/dev (commits the May 6 work)
+- [ ] Promote dev → staging (auto-deploys to staging.uxmeas.pages.dev or staging.uxmeas.com)
+- [ ] Tier 1 compliance + tracking baseline preflight on staging URL (10-item gate per `staging-deploy-checklist.md` #4.5)
+- [ ] CEO decision: 29-commit batch — override or split for staging→main promote
+- [ ] Promote staging → main (fresh CEO confirm, rollback SHA documented)
+- [ ] Tier 1 + tracking baseline preflight on production URL (uxmeas.com)
+- [ ] Done-gate completion comments per done-gate-enforcement.md
 
-### Portfolio — Next Sprint
+### Next round (post-v3 ship)
+- [ ] Pheak: Final print review of resume
+- [ ] Pheak: Update LinkedIn profile manually
+- [ ] Address remaining HM cold read items (D2D donut chart numbers, waitlist counts; FuzeHQ outcome metrics when externally bound)
+- [ ] Add a Direct Contributions section to fuzehq.html per credit-attribution-boundary rule (currently missing)
+
+### Portfolio — Future Sprint
 - [ ] Build remaining 4 case studies (Lending, White-Label, Donations, 3 to IPO — enriched research ready)
-- [ ] Create og:image
-- [ ] Fix NB2 MCP server connection
 - [ ] Add Playwright performance/file size tests
+- [ ] Add Playwright tracking-baseline check script (auto-validate the 10-item gate)
 
 ---
 
 ## Known Issues
-- og:image missing
-- Contact form untested (was Netlify Forms — needs replacement on Cloudflare Pages)
 - Hero laptop images in case studies may need dark/light swap (compliance-ux currently shows light dashboard, dealflow shows dark — verify against .pen intent)
+- D2D `+75% creative craft` donut metric (lines ~1398-1421) is unsourced personal estimate — flagged by HM cold read 2026-05-06; either anchor to a documented MZM Labs measurement or replace with honest estimate framing in next round
+- D2D Canva + InDesign demand-signal waitlists referenced 3× in body without signup counts — quantify or rephrase next round
+- FuzeHQ outcome stats (449 / 51% / 13) are inputs measured in own workspace, not external user-impact metrics — acceptable for solo-tenant pre-launch but flag for when externally-bound metrics become available
+
+## Resolved (2026-05-06)
+- og:image now present on all 5 main pages (index + 4 case studies) ✓
+- Contact form: confirmed `mailto:hello@uxmeas.com` on every page — no backend, no Netlify Forms dependency, works identically on CF Pages ✓
+- /forms/ orphaned intake forms removed as dead code ✓
+- Microsoft Clarity wired with project ID waeobadji5 ✓
 
 ---
 
@@ -259,8 +309,9 @@ Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
 - Case studies built FROM .pen designs
 - Pheak = "Product Design Consultant" at MZM Labs — never "Co-Founder"
 - Katipult "Co-founder" is fine everywhere — company no longer exists (historical credential)
-- No MZM Labs mentions on uxmeas.com
-- No "Solo" anywhere
+- MZM Labs business context IS allowed in case studies (per agency-frame reframe 2026-05-06) — frames the work as "MZM Labs needed X to deliver client work, I led design"; do NOT promote MZM Labs as a separate company entity / standalone product
+- "Solo" allowed as a stat label (D2D hero) and one-time ownership claim per case study; do NOT repeat "Solo, end-to-end" or similar 4+ times in any single case study (HM cold read flagged repetition as defensive)
+- Light mode disabled (commit 59052f1, 2026-05-06) — do NOT reintroduce data-theme=light logic until transparent-PNG screens ship
 - main branch = live site — never push without Sage QA + Pheak approval
 - Review gate: Nothing submitted without Pheak's approval
 - Resume accuracy: Every fact verified with Pheak (AMTC incident)
