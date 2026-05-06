@@ -8,8 +8,8 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
-<link rel="stylesheet" href="shared.css?v=20260506b" />
-<script src="theme.js?v=20260506b"></script>
+<link rel="stylesheet" href="shared.css?v=20260506c" />
+<script src="theme.js?v=20260506c"></script>
 
 <!-- Schema.org structured data: machine-readable identity + contact for crawlers, recruiters, LinkedIn indexers -->
 <script type="application/ld+json">
@@ -87,7 +87,11 @@
     flex-direction: column;
     justify-content: center;
     gap: 12px;
-    opacity: 0;
+    /* opacity:1 default — stats always visible. JS-driven slide-in via .in class
+       remains as enhancement; if observer fails, stats render at +20px x-offset
+       but remain readable. Mirrors the .case-content/.case-visual fix from the
+       same incident (2026-05-06): never let JS gate load-bearing visibility. */
+    opacity: 1;
     transform: translateX(20px);
     transition: opacity .55s ease-out, transform .55s ease-out;
   }
