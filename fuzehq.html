@@ -607,55 +607,88 @@
   }
 
   /* ---------- 07 System surfaces — 2x2 grid of supporting mockups ---------- */
+  /* System surfaces — zigzag rows (image alternating left/right, like compliance-ux .screens).
+     Replaces the prior 2x2 grid which mismatched desktop+mobile screen scales.
+     CEO directive 2026-05-05: zig-zag, glow visible past card edge. */
   .system-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(40px, 5vw, 64px);
-    margin-top: clamp(40px, 5vw, 64px);
-  }
-  .system-card {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: clamp(72px, 9vw, 120px);
+    margin-top: clamp(40px, 5vw, 64px);
+    border-top: 1px solid var(--rule-soft);
+    padding-top: clamp(56px, 7vw, 88px);
   }
+  .system-card {
+    display: grid;
+    grid-template-columns: 0.45fr 0.55fr;
+    gap: clamp(24px, 3vw, 48px);
+    align-items: center;
+  }
+  /* Tighter pairing for mobile-format screens — narrower image needs less breathing room */
+  .system-card:has(.figure-wrap--mobile) {
+    grid-template-columns: 0.42fr 0.58fr;
+    gap: clamp(20px, 2.4vw, 40px);
+  }
+  /* Default (odd cards: 1st, 3rd) — image right, text left.
+     Text wrapped in .system-meta so num/h/p stay tight as a group, vertically centered against the figure. */
   .system-card .figure-wrap {
-    padding: clamp(28px, 4vw, 48px) clamp(20px, 3vw, 32px);
-    background: var(--bg-2);
-    border: 1px solid var(--rule-soft);
-    border-radius: 8px;
-    overflow: hidden;
+    grid-column: 2;
+    padding: clamp(20px, 3vw, 32px);
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  .system-card .system-meta {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Even cards (2nd, 4th) — flip: image left, text right */
+  .system-card:nth-child(even) .figure-wrap { grid-column: 1; }
+  .system-card:nth-child(even) .system-meta { grid-column: 2; }
+
   .system-card .figure-wrap img { width: 100%; height: auto; display: block; }
   .system-card .figure-wrap--desktop img { max-width: 100%; }
-  .system-card .figure-wrap--mobile img { max-width: 280px; }
+  .system-card .figure-wrap--mobile img { max-width: 380px; margin: 0 auto; }
   .system-card .num {
     font-family: var(--f-mono);
     font-size: var(--t-mono-label);
     letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--fg-3);
+    margin: 0 0 12px;
   }
   .system-card .h {
     font-family: var(--f-sans);
-    font-size: clamp(18px, 2vw, 22px);
+    font-size: clamp(20px, 2.4vw, 28px);
     font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
     color: var(--fg);
-    margin: 0;
+    margin: 0 0 16px;
+    max-width: 22ch;
   }
   .system-card p {
-    font-size: 15px;
+    font-size: 16px;
     color: var(--fg-2);
     line-height: 1.6;
     margin: 0;
-    max-width: 48ch;
+    max-width: 52ch;
   }
-  @media (max-width: 800px) {
-    .system-grid { grid-template-columns: 1fr; }
+
+  @media (max-width: 900px) {
+    .system-card,
+    .system-card:nth-child(even) {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .system-card .figure-wrap,
+    .system-card:nth-child(even) .figure-wrap { grid-column: 1; order: 1; }
+    .system-card .system-meta,
+    .system-card:nth-child(even) .system-meta { grid-column: 1; order: 2; }
+    .system-card .figure-wrap--desktop img { max-width: 600px; margin: 0 auto; }
   }
 
   .row-grammar {
@@ -1248,36 +1281,44 @@
         <div class="figure-wrap figure-wrap--desktop">
           <img class="case-mockup-img" src="img/fuzehq/dashboard-desktop.png" alt="FuzeHQ Dashboard desktop — Roster strip with six named agents, live activity stream below, Run Loop sidebar on the right" width="2880" height="2200" loading="lazy" decoding="async" />
         </div>
-        <span class="num">Surface 01 · Dashboard</span>
-        <h3 class="h">Roster, activity stream, run loop.</h3>
-        <p>The team page. Same Row Grammar as the task pipeline: avatar, name, badge, description, time.</p>
+        <div class="system-meta">
+          <span class="num">Surface 01 · Dashboard</span>
+          <h3 class="h">Roster, activity stream, run loop.</h3>
+          <p>The team page. Same Row Grammar as the task pipeline: avatar, name, badge, description, time.</p>
+        </div>
       </article>
 
       <article class="system-card">
         <div class="figure-wrap figure-wrap--mobile">
           <img class="case-mockup-img" src="img/fuzehq/inbox-mobile.png" alt="FuzeHQ Inbox mobile — threaded release notifications collapsed for thumb scroll, agent attribution preserved" width="754" height="1672" loading="lazy" decoding="async" />
         </div>
-        <span class="num">Surface 02 · Inbox</span>
-        <h3 class="h">Threads, not toasts.</h3>
-        <p>Notifications group around the artifact they touch. Inline signed handoffs preserve attribution without re-rendering it.</p>
+        <div class="system-meta">
+          <span class="num">Surface 02 · Inbox</span>
+          <h3 class="h">Threads, not toasts.</h3>
+          <p>Notifications group around the artifact they touch. Inline signed handoffs preserve attribution without re-rendering it.</p>
+        </div>
       </article>
 
       <article class="system-card">
         <div class="figure-wrap figure-wrap--desktop">
           <img class="case-mockup-img" src="img/fuzehq/projects-desktop.png" alt="FuzeHQ Projects desktop — v2.4 milestone with workload breakdown across agents, status badges, signed handoffs" width="2880" height="2200" loading="lazy" decoding="async" />
         </div>
-        <span class="num">Surface 03 · Projects</span>
-        <h3 class="h">Milestones over Gantt charts.</h3>
-        <p>Anchored on milestones, not date math. Workload by agent. Same Trail-Signal vocabulary.</p>
+        <div class="system-meta">
+          <span class="num">Surface 03 · Projects</span>
+          <h3 class="h">Milestones over Gantt charts.</h3>
+          <p>Anchored on milestones, not date math. Workload by agent. Same Trail-Signal vocabulary.</p>
+        </div>
       </article>
 
       <article class="system-card">
         <div class="figure-wrap figure-wrap--mobile">
           <img class="case-mockup-img" src="img/fuzehq/memory-v1-mobile.png" alt="FuzeHQ Memory v1 mobile — saved facts list with agent attribution, swipe-to-act" width="754" height="1672" loading="lazy" decoding="async" />
         </div>
-        <span class="num">Surface 04 · Memory v1</span>
-        <h3 class="h">List earns the graph.</h3>
-        <p>Memory v1 ships first. List view stays after v2 — power users drop into it when the graph is the wrong tool.</p>
+        <div class="system-meta">
+          <span class="num">Surface 04 · Memory v1</span>
+          <h3 class="h">List earns the graph.</h3>
+          <p>Memory v1 ships first. List view stays after v2 — power users drop into it when the graph is the wrong tool.</p>
+        </div>
       </article>
     </div>
 

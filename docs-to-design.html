@@ -3,396 +3,1088 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Docs to Design. Document to Figma in Under 60 Seconds. UX Meas.</title>
-<meta name="description" content="Docs to Design case study. Auto-detects document hierarchy. Maps to design tokens. Generates Figma layers. 98% reduction in translation time." />
+<title>Docs to Design. Word to Figma in 60 seconds. UX Meas.</title>
+<meta name="description" content="Figma plugin that turns Word documents into polished, multi-page Figma deliverables in 60 seconds. Built solo, end-to-end. Cover, headers, footers, page numbers, logo upload — baked in. Free tier sized to a real client deliverable, not a demo." />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
 <meta name="theme-color" content="#1D1B17" media="(prefers-color-scheme: dark)" />
 <link rel="stylesheet" href="shared.css" />
 <script src="theme.js"></script>
 
-<!-- Schema.org structured data: page = CreativeWork, author = Person (email exposed for crawlers) -->
+<!-- Schema.org structured data -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
-  "name": "Docs to Design: Document to Figma in Under 60 Seconds",
-  "headline": "Document to Figma in Under 60 Seconds",
-  "description": "Docs to Design case study. Auto-detects document hierarchy. Maps to design tokens. Generates Figma layers. 98% reduction in translation time.",
+  "name": "Docs to Design: Word to Figma in 60 seconds",
+  "headline": "Word to Figma in 60 seconds",
+  "description": "Figma plugin that turns .docx into multi-page polished Figma deliverables. Built solo, end-to-end.",
   "url": "https://uxmeas.com/docs-to-design.html",
   "author": {
     "@type": "Person",
     "name": "UX Meas",
     "jobTitle": "Senior Product Designer",
     "email": "hello@uxmeas.com",
-    "url": "https://uxmeas.com"
+    "url": "https://uxmeas.com",
+    "sameAs": ["https://linkedin.com/in/uxmeas"]
   },
-  "about": ["Figma Plugin", "SaaS", "Document Translation"]
+  "about": ["Figma Plugin", "Document Translation", "Design Tooling"]
 }
 </script>
 
 <style>
   /* =========================================================
-     Case study styles (shared across all case studies)
+     Docs to Design — case study (mirrors compliance-ux v2)
      ========================================================= */
 
-  .cs-hero {
-    padding: clamp(56px, 9vw, 112px) 0 clamp(40px, 6vw, 80px);
-  }
-  .cs-hero .eyebrow { margin-bottom: 32px; }
-  .cs-hero h1 { margin-bottom: 28px; max-width: 18ch; }
+  /* ---------- 01 hero ---------- */
+  .cs-hero { padding: clamp(56px, 8vw, 96px) 0 clamp(40px, 6vw, 64px); }
+  .cs-hero .eyebrow { margin-bottom: 28px; }
+  .cs-hero h1 { margin-bottom: 28px; max-width: 22ch; }
+  .cs-hero h1 .ln { display: block; }
+  .cs-hero h1 .ln-2,
+  .cs-hero h1 .ln-3 { color: var(--accent); }
   .cs-hero .sub {
     font-size: var(--t-lede);
     color: var(--fg-2);
-    max-width: 50ch;
+    line-height: 1.5;
+    max-width: 64ch;
     font-variant-numeric: tabular-nums;
+    margin-bottom: 36px;
   }
-
-  .cs-meta {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  .cs-hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(28px, 4vw, 56px);
+    padding-top: 28px;
     border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
   }
-  .cs-meta .m {
-    padding: 22px 20px 24px;
-    border-left: 1px solid var(--rule-soft);
+  .cs-hero-stats .s { display: flex; flex-direction: column; gap: 10px; }
+  .cs-hero-stats .n {
+    font-family: var(--f-sans);
+    font-size: var(--t-stat-n);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: var(--fg);
   }
-  .cs-meta .m:first-child { border-left: 0; }
-  .cs-meta .k {
+  .cs-hero-stats .l {
     font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.08em;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--fg-3);
-    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .cs-hero-visual {
+    position: relative;
+    margin-top: clamp(40px, 6vw, 72px);
+  }
+  .cs-hero-visual::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 5%; bottom: -12%;
+    background: radial-gradient(ellipse 60% 50% at 50% 60%, var(--accent) 0%, var(--accent) 20%, transparent 70%);
+    opacity: 0.6;
+    filter: blur(75px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .cs-hero-visual img {
+    position: relative;
+    z-index: 1;
+    width: auto;
+    max-width: 480px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    /* Layered drop-shadow + cyan brand glow so the modal lifts off the page bg */
+    filter:
+      drop-shadow(0 0 32px rgba(6, 182, 212, 0.28))
+      drop-shadow(0 24px 56px rgba(0, 0, 0, 0.42))
+      drop-shadow(0 8px 16px rgba(0, 0, 0, 0.26));
+  }
+  @media (max-width: 700px) {
+    .cs-hero-visual img { max-width: 100%; }
+    .cs-hero-visual::before { left: -4%; right: -4%; top: 8%; bottom: -8%; filter: blur(50px); }
+  }
+
+  /* ---------- 02 context strip ---------- */
+  .cs-meta { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .cs-meta .m {
+    padding: 24px 24px 26px;
+    border-left: 1px solid var(--rule-soft);
+  }
+  .cs-meta .m:first-child { border-left: 0; padding-left: 0; }
+  .cs-meta .k {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 12px;
   }
   .cs-meta .v {
     font-size: 14px;
     color: var(--fg);
-    line-height: 1.45;
+    line-height: 1.5;
     font-variant-numeric: tabular-nums;
   }
   @media (max-width: 900px) {
     .cs-meta { grid-template-columns: 1fr 1fr; }
-    .cs-meta .m:nth-child(odd) { border-left: 0; }
+    .cs-meta .m:nth-child(odd) { border-left: 0; padding-left: 0; }
     .cs-meta .m:nth-child(n+3) { border-top: 1px solid var(--rule-soft); }
   }
   @media (max-width: 560px) {
     .cs-meta { grid-template-columns: 1fr; }
-    .cs-meta .m { border-left: 0; border-top: 1px solid var(--rule-soft); }
+    .cs-meta .m { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-soft); }
     .cs-meta .m:first-child { border-top: 0; }
   }
 
+  /* ---------- prose-section shared ---------- */
   .prose-section {
-    padding: clamp(64px, 9vw, 120px) 0;
+    padding: clamp(56px, 8vw, 104px) 0;
     border-top: 1px solid var(--rule);
   }
-  .prose-grid {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 48px;
-    align-items: baseline;
+  .prose-section .section-head-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 36px;
   }
-  .prose-grid > .label {
+  .prose-section .section-head-row .badge { flex-shrink: 0; }
+  .prose-section .section-head-row .h2 {
+    font-family: var(--f-sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    color: var(--fg);
+    margin: 0;
+  }
+  .section-lede {
+    font-size: clamp(22px, 2.4vw, 28px);
+    line-height: 1.25;
+    font-weight: 500;
+    color: var(--fg);
+    letter-spacing: -0.01em;
+    max-width: 30ch;
+    margin: 0 0 20px;
+  }
+  .prose-body {
+    font-size: 16px;
+    color: var(--fg-2);
+    line-height: 1.65;
+    margin: 0 0 16px;
+    max-width: 64ch;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Problem input figure (Word doc — modest evidence size) ---------- */
+  .problem-input-figure {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .problem-input-figure img {
+    width: 100%;
+    max-width: 460px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+
+  /* ---------- Approach style-guide figure (Figma canvas — wider, matches Step 04 fig-desktop) ---------- */
+  .approach-style-figure {
+    margin: 0;
+  }
+  .approach-style-figure img {
+    width: 100%;
+    max-width: 760px;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Approach before/after concept (Word doc → Figma canvas) ----------
+     Two real artifacts stacked with an accent arrow between them, captioned with
+     mono labels. Same fundamental document, two states. */
+  .ba-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .ba-stack figure {
+    margin: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  .ba-stack figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .ba-stack figcaption {
+    padding: 10px 14px;
     font-family: var(--f-mono);
-    font-size: 12px;
-    letter-spacing: 0.04em;
-    color: var(--accent);
-    display: inline-flex;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+    background: var(--bg);
+    border-top: 1px solid var(--rule-soft);
+    display: flex;
     align-items: center;
     gap: 10px;
   }
-  .prose-grid > .label svg {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    stroke: var(--accent);
-    stroke-width: 2;
+  .ba-stack figcaption .ba-tag {
+    font-weight: 700;
+    letter-spacing: 0.12em;
   }
-  .prose-grid .h {
-    font-size: clamp(28px, 3.6vw, 44px);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin: 0 0 28px;
-    max-width: 22ch;
-  }
-  .prose-grid p {
-    font-size: 17px;
-    color: var(--fg-2);
-    line-height: 1.6;
-    margin: 0 0 20px;
-    max-width: 62ch;
-    font-variant-numeric: tabular-nums;
-  }
-  .prose-grid .pullquote {
-    font-size: clamp(20px, 2.4vw, 26px);
-    font-weight: 500;
-    line-height: 1.3;
-    color: var(--fg);
-    letter-spacing: -0.01em;
-    margin: 0 0 24px;
-    max-width: 30ch;
-  }
-  .prose-grid .cite {
+  .ba-stack figure.ba-before figcaption .ba-tag { color: var(--fg-3); }
+  .ba-stack figure.ba-after figcaption .ba-tag { color: var(--accent); }
+  .ba-stack .ba-arrow {
+    text-align: center;
     font-family: var(--f-mono);
     font-size: 11px;
-    letter-spacing: 0.06em;
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
+    color: var(--accent);
+    padding: 4px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .ba-stack .ba-arrow::before,
+  .ba-stack .ba-arrow::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    max-width: 40px;
+  }
+
+  /* ---------- placeholder visual (shared, from compliance-ux) ---------- */
+  .ph {
+    position: relative;
+    background: var(--bg-2);
+    border: 1px dashed var(--rule);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px 20px;
     color: var(--fg-3);
-    margin-bottom: 24px;
-  }
-  .prose-grid .hmw {
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    padding: 28px 0;
-    margin-top: 36px;
-  }
-  .prose-grid .hmw .tag {
     font-family: var(--f-mono);
-    font-size: 10.5px;
+    font-size: 11px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    line-height: 1.6;
+    width: 100%;
+  }
+  .ph::before {
+    content: 'PLACEHOLDER';
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 9px;
     letter-spacing: 0.12em;
+    color: var(--fg-3);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 3px 6px;
+    line-height: 1;
+    background: var(--bg);
+  }
+  .ph-laptop { aspect-ratio: 16 / 10; }
+  .ph-modal { aspect-ratio: 4 / 5; }
+
+  /* ---------- 03 Direct contributions ---------- */
+  .direct-contributions {
+    list-style: none;
+    padding: 0;
+    margin: clamp(28px, 3vw, 40px) 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(14px, 1.6vw, 20px);
+  }
+  .direct-contributions li {
+    padding: clamp(20px, 2.2vw, 28px);
+    background: var(--bg-2, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--rule-soft);
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg-2);
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .direct-contributions li:hover { border-color: var(--rule); transform: translateY(-1px); }
+  .direct-contributions li strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--fg);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.005em;
+  }
+  @media (max-width: 1100px) { .direct-contributions { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .direct-contributions { grid-template-columns: 1fr; } }
+  .contribution-disclaimer {
+    margin-top: clamp(28px, 3vw, 40px);
+    max-width: 80ch;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--fg-2);
+    font-style: italic;
+  }
+
+  /* ---------- HMW ---------- */
+  .hmw {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--bg-2);
+    padding: 24px 28px;
+    margin-top: 28px;
+  }
+  .hmw .tag {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 12px;
   }
-  .prose-grid .hmw p {
-    font-size: 20px;
+  .hmw p {
+    font-size: 19px;
     color: var(--fg);
     margin: 0;
     line-height: 1.4;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.005em;
     max-width: 60ch;
   }
 
-  @media (max-width: 900px) {
-    .prose-grid { grid-template-columns: 1fr; gap: 20px; }
-  }
-
-  .answer-beads { display: flex; flex-direction: column; gap: 0; }
-  .bead { padding: 40px 0; border-top: 1px solid var(--rule-soft); }
-  .bead:first-child { border-top: 0; padding-top: 8px; }
-  .bead-n {
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--fg-3);
-    margin-bottom: 16px;
-  }
-  .bead h4 {
-    font-size: clamp(24px, 2.8vw, 32px);
-    letter-spacing: -0.015em;
-    font-weight: 500;
-    margin: 0 0 18px;
-    max-width: 22ch;
-  }
-  .bead p {
-    font-size: 16px;
-    color: var(--fg-2);
-    line-height: 1.6;
-    margin: 0 0 12px;
-    max-width: 62ch;
-    font-variant-numeric: tabular-nums;
-  }
-  .bead p:last-child { margin-bottom: 0; }
-
-  .screens { display: grid; gap: 0; border-top: 1px solid var(--rule-soft); }
-  .screen {
+  /* ---------- 2-col copy + graphic grid (zigzag) ---------- */
+  .copy-graphic-grid {
     display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 48px;
-    padding: 36px 0;
-    border-bottom: 1px solid var(--rule-soft);
+    grid-template-columns: 0.5fr 0.5fr;
+    gap: clamp(40px, 5vw, 72px);
+    align-items: center;
+  }
+  .copy-graphic-grid--reverse { direction: rtl; }
+  .copy-graphic-grid--reverse > * { direction: ltr; }
+  @media (max-width: 900px) {
+    .copy-graphic-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- 04 Workflow Shift diagram (transparent, theme-agnostic) ---------- */
+  .workflow-diagram {
+    margin: clamp(20px, 3vw, 40px) 0 0;
+    width: 100%;
+  }
+  .workflow-diagram img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ---------- 05 Decisions / The Build ---------- */
+  .decisions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  .decision-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .decision-text .num {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .decision-text .h {
+    font-family: var(--f-sans);
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--fg);
+    margin: 0;
+  }
+  .decision-text dl {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .decision-text dl > div {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 4px 16px;
     align-items: start;
   }
-  .screen .tag {
+  .decision-text dt {
     font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
     color: var(--fg-3);
-    padding-top: 8px;
+  }
+  .decision-text dd {
+    margin: 0;
+    color: var(--fg-2);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (max-width: 1100px) { .decisions { grid-template-columns: 1fr; gap: 56px; } }
+
+  /* ---------- Decision graphics ---------- */
+  .decision-graphic {
+    margin: 0 0 4px;
+    padding: 22px 18px;
+    background: var(--bg-2);
+    border: 1px solid var(--rule-soft);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-height: 200px;
+  }
+  /* Engine fan diagram (Decision 01) */
+  .dg-engine .dg-input {
+    padding: 4px 12px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--bg);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-2);
+  }
+  .dg-engine .dg-flow-arrow {
+    color: var(--fg-3);
+    font-size: 14px;
+    line-height: 1;
+  }
+  .dg-engine .dg-engine-core {
+    padding: 8px 18px;
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    background: rgba(196, 113, 75, 0.08);
+    color: var(--accent);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+  }
+  .dg-engine .dg-flow-fan {
+    color: var(--fg-3);
+    font-size: 14px;
+    letter-spacing: 30px;
+    margin-right: -30px;
+    line-height: 1;
+  }
+  .dg-engine .dg-surfaces {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .dg-engine .dg-surface {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--bg);
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--fg-2);
+  }
+  .dg-engine .dg-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dg-engine .dg-surface.live .dg-dot { background: #34D399; box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.20); }
+  .dg-engine .dg-surface.waitlist .dg-dot { background: #F59E0B; box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.20); }
+
+  /* Auto vs Ask split (Decision 02) */
+  .dg-auto-ask {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 14px;
+    padding: 20px 16px;
+  }
+  .dg-auto-ask .dg-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+  .dg-auto-ask .dg-col-label {
+    font-family: var(--f-mono);
+    font-size: 9.5px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .dg-auto-ask .dg-col-label.label-auto { color: #34D399; }
+  .dg-auto-ask .dg-col-label.label-ask { color: var(--accent); }
+  .dg-auto-ask .dg-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: var(--f-sans);
+    font-size: 11.5px;
+    color: var(--fg-2);
+    line-height: 1.4;
+  }
+  .dg-auto-ask .dg-list li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .dg-auto-ask .dg-list li::before {
+    content: '✓';
+    color: #34D399;
+    font-weight: 700;
+    font-size: 11px;
+    flex-shrink: 0;
+  }
+  .dg-auto-ask .dg-list-ask li::before {
+    content: '◌';
+    color: var(--accent);
+    font-size: 12px;
+  }
+
+  /* Pricing tiers (Decision 03) */
+  .dg-pricing {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 10px;
+    padding: 16px;
+  }
+  .dg-pricing .dg-tier {
+    flex: 1;
+    padding: 16px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dg-pricing .dg-tier.dg-pro {
+    border-color: var(--accent);
+    border-width: 1.5px;
+  }
+  .dg-pricing .dg-tier-name {
+    font-family: var(--f-mono);
+    font-size: 9.5px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .dg-pricing .dg-tier.dg-pro .dg-tier-name { color: var(--accent); }
+  .dg-pricing .dg-tier-price {
+    font-family: var(--f-sans);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--fg);
+    line-height: 1;
+  }
+  .dg-pricing .dg-tier-price .dg-per {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--fg-3);
+    letter-spacing: 0;
+  }
+  .dg-pricing .dg-tier-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-family: var(--f-sans);
+    font-size: 11px;
+    color: var(--fg-2);
+    line-height: 1.4;
+  }
+
+  /* ---------- 06 Plugin Flow zigzag screens ---------- */
+  .screens {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .screen {
+    padding: 56px 0 60px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .screen:last-child { border-bottom: 0; }
+  .screen-fig { margin: 0; }
+  .screen-fig img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+  }
+  /* 2-up modal grid for plugin states (each modal is ~480×600 native) */
+  .screen-fig.modals-2 {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    background: transparent;
+    border: 0;
+    overflow: visible;
+    padding: 24px 0;
+  }
+  /* Cyan-tinted radial glow behind modals — matches D2D brand accent so dark
+     modals don't blend into a dark page background. Sits behind both modals,
+     not bound to either individually. */
+  .screen-fig.modals-2::before {
+    content: '';
+    position: absolute;
+    left: -2%;
+    right: -2%;
+    top: 5%;
+    bottom: 5%;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(6, 182, 212, 0.32) 0%, rgba(6, 182, 212, 0.16) 35%, transparent 70%);
+    filter: blur(60px);
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 24px;
+  }
+  .screen-fig.modals-2 img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    /* Layered drop-shadow: cyan glow tint + standard elevation shadow */
+    filter:
+      drop-shadow(0 0 24px rgba(6, 182, 212, 0.20))
+      drop-shadow(0 18px 36px rgba(0, 0, 0, 0.35))
+      drop-shadow(0 4px 12px rgba(0, 0, 0, 0.22));
+    transition: filter 0.3s ease;
+  }
+  .screen-fig.modals-2 img:hover {
+    filter:
+      drop-shadow(0 0 32px rgba(6, 182, 212, 0.32))
+      drop-shadow(0 22px 44px rgba(0, 0, 0, 0.42))
+      drop-shadow(0 6px 14px rgba(0, 0, 0, 0.28));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .screen-fig.modals-2 img { transition: none; }
+  }
+  .screen-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 58ch;
+  }
+  .screen-meta .step-num {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--accent);
   }
   .screen h4 {
-    font-size: clamp(22px, 2.6vw, 30px);
+    font-family: var(--f-sans);
+    font-size: clamp(20px, 2.4vw, 26px);
     letter-spacing: -0.015em;
     font-weight: 500;
-    margin: 0 0 14px;
+    margin: 0 0 6px;
+    color: var(--fg);
   }
   .screen p {
     font-size: 16px;
     color: var(--fg-2);
     line-height: 1.6;
     margin: 0;
-    max-width: 58ch;
     font-variant-numeric: tabular-nums;
   }
-  @media (max-width: 700px) {
-    .screen { grid-template-columns: 1fr; gap: 12px; padding: 28px 0; }
+  .screen-fig.fig-desktop { max-width: 760px; }
+  .screen.v-image-right {
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+    gap: clamp(40px, 5vw, 72px);
+    align-items: center;
+  }
+  .screen.v-image-right > .screen-meta { order: 1; }
+  .screen.v-image-right > .screen-fig { order: 2; justify-self: center; aspect-ratio: auto; width: 100%; }
+  .screen.v-image-left {
+    display: grid;
+    grid-template-columns: 0.6fr 0.4fr;
+    gap: clamp(40px, 5vw, 72px);
+    align-items: center;
+  }
+  .screen.v-image-left > .screen-fig { order: 1; justify-self: center; aspect-ratio: auto; width: 100%; }
+  .screen.v-image-left > .screen-meta { order: 2; }
+  @media (max-width: 900px) {
+    .screen.v-image-right,
+    .screen.v-image-left {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .screen.v-image-right > .screen-fig,
+    .screen.v-image-left > .screen-fig { order: 0; max-width: 640px; }
+    .screen.v-image-right > .screen-meta,
+    .screen.v-image-left > .screen-meta { order: 1; }
   }
 
+  /* ---------- 07 Results — 2-col with donut chart ---------- */
   .results-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border-top: 1px solid var(--rule-soft);
+    grid-template-columns: 0.55fr 0.45fr;
+    gap: clamp(40px, 5vw, 72px);
+    align-items: center;
   }
-  .result-block {
-    padding: 36px 36px 36px 0;
+  .results-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    margin-top: clamp(28px, 3vw, 40px);
+    border-top: 1px solid var(--rule-soft);
     border-bottom: 1px solid var(--rule-soft);
   }
-  .result-block:nth-child(even) {
+  .results-stats .rs {
+    padding: clamp(20px, 2vw, 28px);
     border-left: 1px solid var(--rule-soft);
-    padding-left: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
-  .result-block .tag {
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--fg-3);
-    margin-bottom: 16px;
-  }
-  .result-block p {
-    font-size: 15.5px;
-    color: var(--fg-2);
-    line-height: 1.55;
-    margin: 0;
+  .results-stats .rs:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .results-stats .rs:nth-child(n+3) { border-top: 1px solid var(--rule-soft); }
+  .results-stats .rs-n {
+    font-family: var(--f-sans);
+    font-size: clamp(24px, 2.8vw, 36px);
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--fg);
+    line-height: 1;
     font-variant-numeric: tabular-nums;
   }
-  @media (max-width: 700px) {
-    .results-grid { grid-template-columns: 1fr; }
-    .result-block, .result-block:nth-child(even) {
-      padding: 28px 0;
-      border-left: 0;
-      padding-left: 0;
-    }
-  }
-
-  .quotes {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-  }
-  .quote { padding: 48px 40px 40px 0; }
-  .quote + .quote {
-    padding-left: 40px;
-    border-left: 1px solid var(--rule-soft);
-    padding-right: 0;
-  }
-  .quote .mark {
+  .results-stats .rs-l {
     font-family: var(--f-mono);
-    font-size: 28px;
-    color: var(--fg-3);
-    line-height: 1;
-    margin-bottom: 20px;
-  }
-  .quote blockquote {
-    margin: 0 0 28px;
-    font-size: clamp(18px, 2vw, 22px);
-    line-height: 1.45;
-    letter-spacing: -0.005em;
-    color: var(--fg);
-    max-width: 38ch;
-  }
-  .quote .attr {
-    font-family: var(--f-mono);
-    font-size: 11.5px;
-    letter-spacing: 0.04em;
-    color: var(--fg-3);
-    line-height: 1.5;
-  }
-  .quote .attr .n {
-    color: var(--fg);
-    display: block;
-    margin-bottom: 2px;
-  }
-  @media (max-width: 768px) {
-    .quotes { grid-template-columns: 1fr; }
-    .quote { padding: 36px 0; border-bottom: 1px solid var(--rule-soft); }
-    .quote + .quote { padding-left: 0; border-left: 0; }
-    .quote:last-child { border-bottom: 0; }
-  }
-
-  .reflection {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-  }
-  .reflection .col { border-top: 1px solid var(--rule-soft); padding-top: 24px; }
-  .reflection .tag {
-    font-family: var(--f-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
     text-transform: uppercase;
     color: var(--fg-3);
-    margin-bottom: 18px;
+    line-height: 1.4;
   }
+  @media (max-width: 900px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .results-stats { grid-template-columns: 1fr; }
+    .results-stats .rs { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule-soft); }
+    .results-stats .rs:first-child { border-top: 0; }
+  }
+
+  /* ---------- Donut metric chart (from compliance-ux) ---------- */
+  .metric-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 28px 24px;
+    background: var(--bg-2);
+  }
+  .metric-chart .chart-title {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin: 0;
+  }
+  .metric-chart .donuts {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .metric-chart .donut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .metric-chart .donut-graphic {
+    position: relative;
+    width: 100%;
+    max-width: 132px;
+  }
+  .metric-chart .donut-graphic svg {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .metric-chart .donut-graphic .track { stroke: var(--bg); }
+  .metric-chart .donut--neutral .donut-graphic .arc { stroke: var(--fg-3); }
+  .metric-chart .donut--accent .donut-graphic .arc { stroke: var(--accent); }
+  .metric-chart .donut-graphic .arc {
+    stroke-dasharray: 282.74;
+    stroke-dashoffset: 282.74;
+    transition: stroke-dashoffset 1.1s ease-out;
+  }
+  .metric-chart.is-visible .donut-graphic .arc {
+    stroke-dashoffset: var(--arc-offset, 282.74);
+  }
+  .metric-chart .donut-value {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--f-sans);
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--fg);
+  }
+  .metric-chart .donut-label {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .metric-chart .donut-delta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px;
+    text-align: center;
+  }
+  .metric-chart .donut-delta .delta-value {
+    font-family: var(--f-sans);
+    font-size: clamp(22px, 2.6vw, 30px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .metric-chart .donut-delta .delta-label {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+    line-height: 1.4;
+    max-width: 14ch;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .metric-chart .donut-graphic .arc {
+      stroke-dashoffset: var(--arc-offset, 282.74);
+      transition: none;
+    }
+  }
+  .metric-chart .chart-footnote {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 0;
+    border-top: 1px solid var(--rule-soft);
+    padding-top: 14px;
+  }
+  .metric-chart .chart-footnote span {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+    text-align: center;
+    line-height: 1.4;
+  }
+  @media (max-width: 600px) {
+    .metric-chart .donuts { grid-template-columns: 1fr; gap: 20px; }
+    .metric-chart .chart-footnote { grid-template-columns: 1fr; gap: 6px; }
+    .metric-chart .chart-footnote span { text-align: left; }
+  }
+
+  /* ---------- Roadmap (3-column platform card grid) ---------- */
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 24px);
+    margin-top: clamp(28px, 3vw, 40px);
+  }
+  .roadmap-card {
+    padding: clamp(24px, 2.4vw, 32px);
+    background: var(--bg-2);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: border-color .2s ease, transform .2s ease;
+  }
+  .roadmap-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .roadmap-card .rm-platform {
+    font-family: var(--f-sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    line-height: 1.1;
+  }
+  .roadmap-card .rm-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .roadmap-card .rm-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .roadmap-card.live .rm-dot { background: #34D399; box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.18); }
+  .roadmap-card.waitlist .rm-dot { background: #F59E0B; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18); }
+  .roadmap-card.live .rm-status-text { color: #34D399; }
+  .roadmap-card.waitlist .rm-status-text { color: #F59E0B; }
+  .roadmap-card .rm-tease {
+    font-size: 14px;
+    color: var(--fg-2);
+    line-height: 1.5;
+    margin: 0;
+    max-width: 32ch;
+  }
+  @media (max-width: 900px) { .roadmap-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- 08 Reflection ---------- */
+  .reflection { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .reflection .col { border-top: 1px solid var(--rule); padding-top: 28px; }
+  .reflection .reflection-h {
+    font-family: var(--f-sans);
+    font-size: clamp(20px, 2.4vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    margin: 0 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reflection .reflection-h svg { width: 20px; height: 20px; flex-shrink: 0; stroke: var(--accent); stroke-width: 2; }
   .reflection p {
     font-size: 16px;
     color: var(--fg-2);
     line-height: 1.6;
-    margin: 0 0 16px;
-    max-width: 58ch;
-    font-variant-numeric: tabular-nums;
+    margin: 0;
+    max-width: 56ch;
   }
-  .reflection p:last-child { margin-bottom: 0; }
-  @media (max-width: 768px) {
-    .reflection { grid-template-columns: 1fr; gap: 32px; }
+  @media (max-width: 768px) { .reflection { grid-template-columns: 1fr; gap: 32px; } }
+
+  /* ---------- 09 Next case CTA ---------- */
+  .next-case-cta {
+    display: grid;
+    grid-template-columns: minmax(240px, 320px) 1fr auto;
+    gap: 32px;
+    align-items: center;
+    padding: 32px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .next-case-cta .thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    background: var(--placeholder-bg);
+    border-radius: 4px;
+  }
+  .next-case-cta .thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left center;
+    display: block;
+  }
+  .next-case-cta .meta { display: flex; flex-direction: column; gap: 8px; }
+  .next-case-cta .meta .eb {
+    font-family: var(--f-mono);
+    font-size: var(--t-mono-label);
+    letter-spacing: var(--ls-mono);
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .next-case-cta .meta .name {
+    font-family: var(--f-sans);
+    font-size: clamp(22px, 2.4vw, 30px);
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--fg);
+    margin: 0;
+  }
+  .next-case-cta .meta .tease {
+    font-size: 14px;
+    color: var(--fg-2);
+    line-height: 1.5;
+    max-width: 50ch;
+  }
+  @media (max-width: 900px) {
+    .next-case-cta { grid-template-columns: 1fr; gap: 20px; padding: 28px 0; }
+    .next-case-cta .btn { justify-self: start; }
   }
 
-  .next-cta {
-    padding: clamp(64px, 9vw, 120px) 0;
-    border-top: 1px solid var(--rule);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 32px;
-    align-items: end;
-  }
-  .next-cta h3 {
-    font-size: clamp(28px, 4vw, 48px);
-    letter-spacing: -0.02em;
-    font-weight: 500;
-    margin: 0;
-    max-width: 16ch;
-  }
-  .next-cta .tag {
-    font-family: var(--f-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .next-cta .tag svg {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    stroke: var(--accent);
-    stroke-width: 2;
-  }
-  @media (max-width: 700px) {
-    .next-cta { grid-template-columns: 1fr; align-items: start; }
-  }
+  /* ---------- final close ---------- */
+  .final-close { padding: clamp(48px, 7vw, 80px) 0 clamp(64px, 9vw, 96px); }
+  .final-close .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
 </style>
 <!-- Open Graph / Twitter card -->
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://uxmeas.com/docs-to-design.html" />
-<meta property="og:title" content="Docs to Design — Document-to-Design Wizard — UX Meas" />
-<meta property="og:description" content="Figma plugin + SaaS that turns documents into structured design files." />
-<meta property="og:image" content="https://uxmeas.com/images/og/docs-to-design.png" />
+<meta property="og:title" content="Docs to Design — Word to Figma in 60 seconds — UX Meas" />
+<meta property="og:description" content="Figma plugin that turns .docx into multi-page polished Figma deliverables. Built solo, end-to-end." />
+<meta property="og:image" content="https://uxmeas.com/img/cases/docs-to-design.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Docs to Design — Document-to-Design Wizard — UX Meas" />
-<meta name="twitter:description" content="Figma plugin + SaaS that turns documents into structured design files." />
-<meta name="twitter:image" content="https://uxmeas.com/images/og/docs-to-design.png" />
+<meta name="twitter:title" content="Docs to Design — Word to Figma in 60 seconds — UX Meas" />
+<meta name="twitter:description" content="Figma plugin that turns .docx into multi-page polished Figma deliverables. Built solo, end-to-end." />
+<meta name="twitter:image" content="https://uxmeas.com/img/cases/docs-to-design.png" />
 <link rel="canonical" href="https://uxmeas.com/docs-to-design.html" />
-<!-- GA4 + Consent Mode v2 (default-deny; granted on consent) -->
+<!-- GA4 + Consent Mode v2 -->
 <script src="/js/ga4-bootstrap.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-87HSHMKCBH"></script>
 
@@ -427,6 +1119,7 @@
 
 <main id="main">
 
+<!-- =================== 01. HERO =================== -->
 <section class="cs-hero reveal">
   <div class="wrap">
     <div class="eyebrow">
@@ -435,174 +1128,344 @@
       <span>DOCS TO DESIGN</span>
       <span class="sep">·</span>
       <span>FIGMA PLUGIN</span>
-      <span class="sep">·</span>
-      <span>SAAS</span>
     </div>
-    <h1 class="h-case">Document to Figma in Under 60 Seconds</h1>
-    <p class="sub">Auto-detects document hierarchy. Maps to design tokens. Generates Figma layers. 98% reduction in translation time.</p>
+    <h1 class="h-case">
+      <span class="ln ln-1">Word to Figma.</span>
+      <span class="ln ln-2">In 60 seconds.</span>
+      <span class="ln ln-3">Down from 4 to 8 hours.</span>
+    </h1>
+    <p class="sub">I built Docs to Design because the time math wasn't working — for me first as a designer, and for every brand team, marketing ops, and agency turning Word documents into polished Figma, Canva, or InDesign deliverables every week. Figma plugin shipped first; the same parser is portable in spirit, and public demand-signal waitlists for Canva and InDesign track whether the broader audience would actually use it.</p>
+    <div class="cs-hero-stats">
+      <div class="s">
+        <div class="n">~60 sec</div>
+        <div class="l">Plugin run on a typical 8-page client deliverable</div>
+      </div>
+      <div class="s">
+        <div class="n">4 to 8 hr</div>
+        <div class="l">Manual transcription replaced per polish deliverable</div>
+      </div>
+      <div class="s">
+        <div class="n">Solo</div>
+        <div class="l">End-to-end build: plugin, parser, UI, brand</div>
+      </div>
+    </div>
+    <div class="cs-hero-visual">
+      <img src="img/d2d/configure-details.png" alt="Docs to Design plugin — Step 02 Document Details modal: page list with 8 of 10 pages selected, document type, classification, and continue control. Dark plugin UI with cyan accent." loading="eager" decoding="async" />
+    </div>
   </div>
 </section>
 
-<section class="reveal">
+<!-- =================== 02. CONTEXT =================== -->
+<section class="prose-section reveal" style="padding-top: clamp(40px, 5vw, 64px); border-top: 0;">
   <div class="wrap">
     <div class="cs-meta">
       <div class="m">
         <div class="k">Role</div>
-        <div class="v">Product Designer and Developer</div>
+        <div class="v">Product Designer<br/>+ Developer</div>
       </div>
       <div class="m">
         <div class="k">Timeline</div>
-        <div class="v">2025 to 2026</div>
+        <div class="v">2025 – 2026</div>
       </div>
       <div class="m">
         <div class="k">Type</div>
-        <div class="v">Figma Plugin and SaaS</div>
+        <div class="v">Figma Plugin<br/>(docstodesign.com)</div>
+      </div>
+      <div class="m">
+        <div class="k">Format</div>
+        <div class="v">Test case for solo<br/>product thinking<br/>(pre-submission to<br/>Figma Community)</div>
       </div>
     </div>
+    <p class="prose-body" style="max-width: 70ch; margin-top: clamp(28px, 3vw, 40px);">I was doing design work where every client project came with stacks of documents — Word files I had to clean up, structure, and turn into polished deliverables with cover pages, logos, photos, callout notes. The transcription work — copy, paste, page break, auto-layout, type spec — ate the hours I should have been spending on the imagery and craft decisions that actually move clients. Built Docs to Design to take that part off my plate. Plugin code, .docx parser, Figma node generation, UI bridge, brand identity, marketing site — all me.</p>
+    <p class="prose-body" style="max-width: 70ch; color: var(--fg-3); font-size: 14px;">Built as a test case for shipping a real product solo, end-to-end — alongside client work, not as a business pursuit. The design proof is the point.</p>
   </div>
 </section>
 
-<section aria-label="Hero stats" class="reveal">
-  <div class="wrap">
-    <div class="stats three">
-      <div class="stat">
-        <div class="stat-n">60 to 1 min</div>
-        <div class="stat-l">Document-to-design translation time reduced by 98%.</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">2</div>
-        <div class="stat-l">UX modes: Wizard for beginners, Compact Pro for power users.</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">Auto-detect</div>
-        <div class="stat-l">Hierarchy detected from document structure without manual mapping.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- =================== PROBLEM =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="octagon-alert"></i>( 01 ) The Problem</div>
+    <div class="copy-graphic-grid">
       <div>
-        <p>30 to 60 minutes per document. Zero creative output. Every designer converting content from documents into layouts does the same invisible labor. Open the Word doc, read the heading hierarchy, manually create an H1 in Figma, set the style, type the text, create an H2, set that style, add body text. Repeat for every heading, paragraph, list item, and table. The content already has structure. It's there in the document, expressed as heading levels and paragraph styles. But there's no bridge between document formats and design formats, so designers ignore the structure entirely and recreate it by hand. Universal invisible cost that nobody talks about because it's just how it's done.</p>
+        <div class="section-head-row">
+          <span class="badge section-num"><i class="sn-icon" data-lucide="alert-triangle"></i><span class="sn-text"><span class="sn-num">( 01 )</span><span class="sn-name">Problem</span></span></span>
+        </div>
+        <p class="section-lede">Clients paid for the polish, not the transcription. So the math broke.</p>
+        <p class="prose-body">Every client project followed the same rhythm. Client sends a Word document — meeting notes, a strategy memo, an investor update, a research brief. My job was to turn it into a polished deliverable: cover page, logo, brand-consistent typography, headers and footers, page numbers, callout notes, photos that reinforced the message. Half the work was the polish. The other half was just <em>getting the content into Figma in the right shape</em> — copying paragraph by paragraph, recreating the heading hierarchy by hand, building auto-layout frames, applying type styles, paginating into US Letter pages, adding cover and footer chrome.</p>
+        <p class="prose-body">An 8 to 10 page document took 4 to 8 hours of transcription work before I could touch the parts that actually justified the rate — imagery, photo selection, callout placement, the design decisions clients pay for. And it wasn't just my problem. The same 4-to-8-hour transcription tax shows up for every brand team, marketing ops crew, and agency that ends a meeting with "we'll polish that up in Figma" — or in Canva, or in InDesign. Different tools, same broken math.</p>
       </div>
+      <figure class="problem-input-figure">
+        <img src="img/d2d/approach-word-doc.png" alt="Microsoft Word document open at 120% — 'ACME CORP Q3 2026 PRODUCT LAUNCH PLAN' Version 3.2 (FINAL). Author Sarah Chen, Product Manager. Contributors across Marketing (Jake), Engineering (Priya), Finance (Tom), Legal (Dana). Body shows Executive Summary, Goals & Success Metrics with bullets, Key Performance Indicators. Page 1 of 9, 1637 words. The kind of structured client document that turns into 4–8 hours of Figma transcription work." loading="lazy" />
+      </figure>
     </div>
   </div>
 </section>
 
+<!-- =================== 05. WORKFLOW SHIFT (DIAGRAM, transparent) =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="compass"></i>( 02 ) How It Was Framed</div>
-      <div>
-        <p>The observation was simple. Every designer does this translation. It's not a niche workflow or a pain point specific to a particular domain. It's structural work that happens before any creative work can begin. Invisible labor that every design team has factored into timelines so thoroughly that nobody questions it anymore.</p>
+    <div class="section-head-row">
+      <span class="badge section-num"><i class="sn-icon" data-lucide="git-pull-request-arrow"></i><span class="sn-text"><span class="sn-num">( 02 )</span><span class="sn-name">The workflow shift</span></span></span>
+      <h2 class="h2">Four manual stops collapse into one upload.</h2>
+    </div>
+    <p class="prose-body" style="margin-top: -8px;">Same client deliverable, different time pool. The plugin doesn't speed up transcription — it absorbs it.</p>
+    <figure class="workflow-diagram" aria-label="Workflow shift diagram. BEFORE — manual workflow, 4 to 8 hours: Client .docx → Copy + paste page by page → Build auto-layout frames + pages → Style headings, body, bullets → Cover, headers, footers, page numbers, logo → Polished deliverable. AFTER — Docs to Design, ~60 seconds: Client .docx → Upload to plugin (handles parse, paginate, auto-layout, style, cover, headers, footers, page numbers, logo) → Polished deliverable.">
+      <img src="img/d2d/workflow-shift.png" alt="" loading="lazy" decoding="async" />
+    </figure>
+  </div>
+</section>
 
+<!-- =================== 06. APPROACH (2-col with placeholder graphic) =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="copy-graphic-grid copy-graphic-grid--reverse">
+      <div>
+        <div class="section-head-row">
+          <span class="badge section-num"><i class="sn-icon" data-lucide="compass"></i><span class="sn-text"><span class="sn-num">( 03 )</span><span class="sn-name">Approach</span></span></span>
+          <h2 class="h2">Build the engine once. Distribute across the surfaces designers already work in.</h2>
+        </div>
+        <p class="prose-body">The decisions that mattered weren't about features — they were about <em>where the time saved would land</em>, and <em>which design surface to validate the engine on first</em>. Build the .docx parser once. Pick the design tool with the most direct path to real users for v1. Use that signal to read whether the broader audience — across Canva and InDesign — would actually want it before building either. If the plugin saved 4 hours but I spent those 4 hours configuring the plugin — or shipping three brittle plugins on launch day — I'd built the wrong thing. So the defaults had to be opinionated, the wizard short, the polish chrome (cover, headers, footers, logo) generated automatically. And the engine had to be portable.</p>
         <div class="hmw">
-          <div class="tag">HMW</div>
-          <p>How might we go from document to design structure in under 60 seconds, with hierarchy auto-detection that maps document structure directly to design tokens?</p>
+          <div class="tag">How might I</div>
+          <p>Move the document-transcription phase off the clock for designers everywhere — Figma first, Canva and InDesign next — so the hours saved land in the imagery, photo selection, and craft that justifies the deliverable.</p>
         </div>
       </div>
+      <figure class="approach-style-figure">
+        <img src="img/d2d/approach-style-guide.png" alt="Figma canvas after Docs to Design plugin run — Style Guide companion page on the left showing the full type spec (Cover Title, Cover Subtitle, Heading 1, Heading 2, Heading 3, Body) and the brand Color Palette swatches; Cover page on the right with 'ACME CORP Q3 2026 PRODUCT LAUNCH PLAN — Version 3.2 (FINAL)'. Layers panel left shows named structure: ACME CORP Q3 2026 PRODUCT LAUNCH PLAN > Page 7 > Page Content > H2 — Team Photo > Body — Figure 1 Project > Body Text > Ordered List — Engineer. Text Styles + Color Styles panels right show the design system the plugin links into the canvas. Evidence that the polish chrome — type spec, color palette, layer naming — generates as part of the engine, not as designer follow-up." loading="lazy" />
+      </figure>
     </div>
   </div>
 </section>
 
+<!-- =================== 07. THE BUILD (decisions matched to PRODUCT-SPEC) =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="lightbulb"></i>( 03 ) The Answer</div>
-      <div>
-        <div class="answer-beads">
-          <div class="bead">
-            <div class="bead-n">A / 01</div>
-            <h4>Auto-detection over manual configuration</h4>
-            <p>The plugin reads the document's heading structure: H1, H2, H3, body text, lists, tables. It maps each level to the corresponding design token automatically. Designers don't configure the mapping from scratch on each import. They review what was detected, confirm or adjust style assignments, and generate. The shift from "configure the tool" to "review the output" removes the cognitive burden that makes this kind of translation work exhausting. Correct defaults mean most imports require no adjustments at all.</p>
-          </div>
-          <div class="bead">
-            <div class="bead-n">A / 02</div>
-            <h4>Dual mode served two distinct user types without compromise</h4>
-            <p>Early testing revealed two fundamentally different user approaches. Designers new to the workflow wanted to be walked through every step, understand what was happening, and feel confident before generating output. Power users wanted to skip every explanation and apply their saved settings in under 10 seconds. Building a single interface for both groups would have failed both. The wizard mode walks through 4 structured steps: import, structure review, style mapping, preview, before generating. Compact Pro condenses the entire flow into a single panel. Both modes produce identical output. Neither forces a compromise.</p>
-          </div>
-          <div class="bead">
-            <div class="bead-n">A / 03</div>
-            <h4>Structure-first shipped a useful product faster</h4>
-            <p>The first planning discussion debated whether to build full pixel-perfect content rendering. Preserving not just hierarchy but exact formatting, tables, and complex layouts. This would have taken months and produced a brittle product that broke on edge cases. The decision to focus on hierarchy detection first meant the plugin was useful from day one. Designers got their H1s, H2s, and body text blocks into Figma in the correct hierarchy within 60 seconds. Content formatting could be refined after. The structural skeleton was 80% of the work.</p>
-          </div>
-        </div>
-      </div>
+    <div class="section-head-row">
+      <span class="badge section-num"><i class="sn-icon" data-lucide="git-branch"></i><span class="sn-text"><span class="sn-num">( 04 )</span><span class="sn-name">The build</span></span></span>
+      <h2 class="h2">Three trade-offs that shaped what got cut, what got automated, and what got priced.</h2>
+    </div>
+
+    <div class="decisions">
+
+      <article class="decision-text">
+        <div class="num">Decision 01</div>
+        <h3 class="h">.docx in. One parser, three target surfaces.</h3>
+        <dl>
+          <div><dt>Was tempted</dt><dd>Three plugins on day one — Figma, Canva, and InDesign in parallel — to maximize launch surface.</dd></div>
+          <div><dt>Chose</dt><dd>Build the .docx parser engine once. Ship the Figma plugin first. Public demand-signal waitlists for Canva and InDesign collect interest data without committing to ship either.</dd></div>
+          <div><dt>Because</dt><dd>Figma's plugin marketplace was the most direct path to real users on a real design surface — engine validation in months, not a year. The waitlist data tells me whether the broader audience would even use a Canva or InDesign port before I'd build either one. Three brittle plugins on day one would have been worse than one designed product with honest demand-signal.</dd></div>
+        </dl>
+      </article>
+
+      <article class="decision-text">
+        <div class="num">Decision 02</div>
+        <h3 class="h">Polish chrome auto-generated. Wizard asks only what the designer knows.</h3>
+        <dl>
+          <div><dt>Was tempted</dt><dd>Maximum configuration surface — every setting exposed, every micro-decision in the wizard.</dd></div>
+          <div><dt>Chose</dt><dd>Cover page, headers, footers, page numbers, US Letter dimensions, hierarchical type spec — auto. Wizard asks for heading font (with fallback chain), 1-col vs 2-col layout, brand color, logo upload, classification text. Sensible defaults for everything else (margins, bullet style, table lines, footer format).</dd></div>
+          <div><dt>Because</dt><dd>The whole pitch was "save my time." A configuration surface IS time. Defaults match how a polish deliverable already looks.</dd></div>
+        </dl>
+      </article>
+
+      <article class="decision-text">
+        <div class="num">Decision 03</div>
+        <h3 class="h">Free tier sized to my own pain. Monetization architecturally modeled, not yet pursued.</h3>
+        <dl>
+          <div><dt>Was tempted</dt><dd>Skip the tier work entirely (free forever) or model an elaborate pricing matrix on day one.</dd></div>
+          <div><dt>Chose</dt><dd>Two-tier model — Free (8 pages per doc, 5 imports per 30 days) + Pro (unlimited). Pricing logic coded but kept gated until launch.</dd></div>
+          <div><dt>Because</dt><dd>Shipping a real designer-tooling product means engaging with the monetization design, not avoiding it. The 8-page free tier exists because that's exactly the unit eating my time as a designer on real client work — sized so other designers feel the win on a real document, not on a demo. Specific pricing held until launch — the design proof is the point.</dd></div>
+        </dl>
+      </article>
+
     </div>
   </div>
 </section>
 
+<!-- =================== PLUGIN FLOW (4 steps, 2-up modal grids) =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="layout-grid"></i>( 04 ) Key Screen Annotations</div>
+    <div class="section-head-row">
+      <span class="badge section-num"><i class="sn-icon" data-lucide="layout-template"></i><span class="sn-text"><span class="sn-num">( 05 )</span><span class="sn-name">Plugin flow</span></span></span>
+      <h2 class="h2">Four steps. Sub-minute. End-to-end.</h2>
+    </div>
+    <div class="screens">
+
+      <!-- Step 01: Upload (2-up: empty + dropped) -->
+      <div class="screen v-image-right">
+        <div class="screen-meta">
+          <div class="step-num">Step 01 · Upload</div>
+          <h4>Drag the .docx in.</h4>
+          <p>Plugin opens inside Figma at 480×600 px. Empty drop zone on first launch — the only valid input is .docx, so the UI doesn't pretend otherwise. Drop the Word file, the parser runs, page count + file size resolved within a second. No file dialog, no format prompts.</p>
+        </div>
+        <figure class="screen-fig modals-2">
+          <img src="img/d2d/upload-empty.png" alt="Plugin upload screen — empty state with cyan dashed drop-zone, 'Drag your .docx file here' instruction, and Choose File secondary action." loading="lazy" />
+          <img src="img/d2d/upload-dropped.png" alt="Plugin upload screen — file dropped state with the Word document mid-drop, drop-zone activated cyan, and progress on the way to parse." loading="lazy" />
+        </figure>
+      </div>
+
+      <!-- Step 02: Configure (2-up: Document details + Style) -->
+      <div class="screen v-image-left">
+        <figure class="screen-fig modals-2">
+          <img src="img/d2d/configure-details.png" alt="Plugin Document Details screen — page list with 8 of 10 pages selected, doc-type field, classification text, and continue control." loading="lazy" />
+          <img src="img/d2d/configure-style.png" alt="Plugin Style screen — searchable font picker for heading font, brand color swatch row, layout toggles for portrait/landscape and 1-col/2-col, and logo upload affordance." loading="lazy" />
+        </figure>
+        <div class="screen-meta">
+          <div class="step-num">Step 02 · Configure</div>
+          <h4>Pick what only the designer knows. Skip the rest.</h4>
+          <p>Document Details: page count detected, doc type, classification, optional cover-page fields. Style: heading font (searchable picker over Figma's full font list, with Bold→SemiBold→Regular fallback), 1-col or 2-col layout, portrait or landscape, brand color, logo upload. Margins, bullet style, table line treatment — sensible defaults. Skip-able if the brand stack is already remembered.</p>
+        </div>
+      </div>
+
+      <!-- Step 03: Creating (2-up: loading + complete) -->
+      <div class="screen v-image-right">
+        <div class="screen-meta">
+          <div class="step-num">Step 03 · Creating</div>
+          <h4>Watch the pages land. Then a clean exit.</h4>
+          <p>Plugin generates each page in sequence — cover, body pages with hierarchical typography, lists and tables preserved, headers and footers with page numbers and document type, US Letter dimensions throughout. Progress arc shows percent complete. About 30–60 seconds for 8 pages. Then a clear "Document created successfully" state with a QA card showing source-vs-output word match.</p>
+        </div>
+        <figure class="screen-fig modals-2">
+          <img src="img/d2d/creating-loading.png" alt="Plugin progress screen — cyan progress arc mid-fill, 'Creating content pages…' status, and animated page thumbnails appearing as each generated page completes." loading="lazy" />
+          <img src="img/d2d/creating-complete.png" alt="Plugin complete screen — green checkmark, 'Document created successfully' message, and View Document primary action ready to focus the new Figma frames." loading="lazy" />
+        </figure>
+      </div>
+
+      <!-- Step 04: Done — actual Figma canvas with generated multi-page deliverable -->
+      <div class="screen v-image-left">
+        <figure class="screen-fig fig-desktop">
+          <img src="img/d2d/step-04-figma-canvas.png" alt="Figma canvas after Docs to Design plugin run — 7-page generated deliverable for 'ACME CORP Q3 2026 PRODUCT LAUNCH PLAN'. Cover page on the left, six body pages right. Layers panel shows named structure: Page Content, H2 headings, Body paragraphs, Image frames, Body Text, Ordered Lists. Text Styles panel shows the full hierarchy applied: Cover Title 44/110, Cover Subtitle 18/120, H1, H2, H3, Body 10/140, Code, Table Header, Table Body, Footer, Header Label, Caption, Blockquote. Color Styles panel shows the brand-color palette: Black, Charcoal, Dark Gray, Medium Gray, Light Gray, Off White, White." loading="lazy" />
+        </figure>
+        <div class="screen-meta">
+          <div class="step-num">Step 04 · Done</div>
+          <h4>Designer-time begins here.</h4>
+          <p>Pages land in the Figma canvas as editable frames — every layer named (Page Content, H2 — Team Photo, Body — Figure 1 Project, Ordered List — Engineer), every text style applied (13-step type scale from Cover Title down to Caption), every page sized to US Letter, the brand color palette already linked. The polish chrome is in. Now I can do the actual creative work — swap in real photos, place callout notes, refine imagery, push the visual language. The transcription part is over before it started.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =================== 09. RESULTS (2-col with donut chart) =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <div class="section-head-row">
+      <span class="badge section-num"><i class="sn-icon" data-lucide="trending-up"></i><span class="sn-text"><span class="sn-num">( 06 )</span><span class="sn-name">Results</span></span></span>
+    </div>
+    <div class="results-grid">
+
+      <!-- LEFT: lede + stats + body -->
       <div>
-        <div class="screens">
-          <div class="screen">
-            <div class="tag">SCREEN 01</div>
-            <div>
-              <h4>Structure Detection Panel</h4>
-              <p>Shows the detected hierarchy as a tree. Each node labeled with its document role and the Figma design token it will map to. Designers can override any assignment before generating. The panel makes the auto-detection logic visible rather than opaque.</p>
+        <p class="section-lede">Transcription time collapsed. Creative time expanded.</p>
+        <div class="results-stats">
+          <div class="rs">
+            <div class="rs-n">~60 sec</div>
+            <div class="rs-l">Plugin run on a typical 8-page deliverable</div>
+          </div>
+          <div class="rs">
+            <div class="rs-n">4 to 8 hr</div>
+            <div class="rs-l">Manual transcription absorbed per deliverable</div>
+          </div>
+          <div class="rs">
+            <div class="rs-n">8 pages</div>
+            <div class="rs-l">Free tier, sized to a typical client deliverable</div>
+          </div>
+          <div class="rs">
+            <div class="rs-n">4 steps</div>
+            <div class="rs-l">Upload → Configure → Creating → Done</div>
+          </div>
+        </div>
+        <p class="prose-body" style="margin-top: clamp(28px, 3vw, 40px);">The bigger result wasn't the time saved — it was where the time landed. Hours that used to disappear into copy-paste-format work now go into imagery, photo selection, callout placement, the decisions clients actually pay for. Same deliverable, same turnaround, same scope. Different work happening in the time it takes.</p>
+        <p class="prose-body">Live at <a href="https://docstodesign.com" target="_blank" rel="noopener">docstodesign.com</a>. Pre-submission to the Figma Community.</p>
+      </div>
+
+      <!-- RIGHT: donut chart -->
+      <figure class="metric-chart" aria-label="Designer time spent on creative craft per deliverable, before and after Docs to Design">
+        <figcaption class="chart-title">Designer time on creative craft</figcaption>
+        <div class="donuts">
+          <!-- Before: 20% creative. dashoffset = 282.74 × (1 - 0.20) = 226.19 -->
+          <div class="donut donut--neutral">
+            <div class="donut-graphic">
+              <svg viewBox="0 0 100 100" aria-hidden="true">
+                <circle class="track" cx="50" cy="50" r="45" fill="none" stroke-width="10" />
+                <circle class="arc" cx="50" cy="50" r="45" fill="none" stroke-width="10"
+                        stroke-linecap="round" transform="rotate(-90 50 50)"
+                        style="--arc-offset: 226.19;" />
+              </svg>
+              <div class="donut-value" data-count="20" data-suffix="%">0%</div>
             </div>
+            <div class="donut-label">Before</div>
           </div>
-          <div class="screen">
-            <div class="tag">SCREEN 02</div>
-            <div>
-              <h4>Compact Pro Mode</h4>
-              <p>The full import-detect-map-generate flow compressed to a single scrollable panel with inline controls. No steps, no wizards, no explanations. Token mapping saved from previous sessions auto-applies. Import to generation in under 10 seconds for regular users.</p>
+
+          <div class="donut-delta">
+            <div class="delta-value" data-count="75" data-suffix="%" data-prefix="+">0%</div>
+            <div class="delta-label">More time on craft, less on transcription</div>
+          </div>
+
+          <!-- After: 95% creative. dashoffset = 282.74 × (1 - 0.95) = 14.14 -->
+          <div class="donut donut--accent">
+            <div class="donut-graphic">
+              <svg viewBox="0 0 100 100" aria-hidden="true">
+                <circle class="track" cx="50" cy="50" r="45" fill="none" stroke-width="10" />
+                <circle class="arc" cx="50" cy="50" r="45" fill="none" stroke-width="10"
+                        stroke-linecap="round" transform="rotate(-90 50 50)"
+                        style="--arc-offset: 14.14;" />
+              </svg>
+              <div class="donut-value" data-count="95" data-suffix="%">0%</div>
             </div>
+            <div class="donut-label">After</div>
           </div>
         </div>
-      </div>
+        <div class="chart-footnote">
+          <span>Imagery</span>
+          <span>Photo selection</span>
+          <span>Callout craft</span>
+        </div>
+      </figure>
+
     </div>
   </div>
 </section>
 
+<!-- =================== 10. REFLECTION =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="trending-up"></i>( 05 ) Results</div>
-      <div>
-        <div class="results-grid">
-          <div class="result-block">
-            <p>60 to 1 min translation time · 98% time reduction · 2 UX modes · Auto-detect hierarchy · Brand identity system for consistent token mapping across teams</p>
-          </div>
-        </div>
+    <div class="section-head-row">
+      <span class="badge section-num"><i class="sn-icon" data-lucide="pencil-line"></i><span class="sn-text"><span class="sn-num">( 07 )</span><span class="sn-name">Reflection</span></span></span>
+    </div>
+    <div class="reflection">
+      <div class="col">
+        <h4 class="reflection-h"><i data-lucide="circle-check"></i>What worked</h4>
+        <p>Picking Figma first was the right call. The plugin marketplace meant the engine got real users on a real design surface within months — not after a year-long multi-platform build. The .docx parser is portable in spirit; the same engine could be ported to Canva or InDesign, and public demand-signal waitlists for both exist as a sanity check on whether the broader audience would actually use it. And building it as a designer-developer hybrid — every product decision lived in the same head as every implementation decision — meant trade-offs got resolved by the constraints, not by handoff debates.</p>
+      </div>
+      <div class="col">
+        <h4 class="reflection-h"><i data-lucide="pencil-line"></i>What to do differently</h4>
+        <p>Should have built the parser as a portable engine from day one, with platform-specific renderers as thin layers. The .docx parser is currently too coupled to Figma's node API, so the Canva and InDesign ports require parser-refactor work I could have avoided with cleaner separation up front. Also: Google Docs and Markdown support belong in a near-term phase — they were the most-requested input formats in the first week, and forcing users to convert to .docx first is friction the product was built to remove.</p>
       </div>
     </div>
+    <p class="prose-body" style="max-width: 70ch; margin-top: clamp(28px, 3vw, 40px);">Two takeaways. Build the boring part you already do every week — that's where the leverage is. And size the free tier to the user's actual pain unit, not to a demo.</p>
   </div>
 </section>
 
-
-
+<!-- =================== 11. NEXT CASE =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="prose-grid">
-      <div class="label"><i data-lucide="book-open"></i>( 06 ) Reflection</div>
-      <div>
-        <div class="reflection">
-          <div class="col">
-            <div class="tag">What worked</div>
-            <p>Dual-mode UX was the correct call. The wizard captured users who would have bounced from a single-panel interface, while Compact Pro retained power users who would have abandoned a wizard. Structure-first approach meant a useful product launched instead of a perfect product that wasn't ready.</p>
-          </div>
-          <div class="col">
-            <div class="tag">What to do differently</div>
-            <p>Google Docs and Notion support should have been in the first version. Markdown import was the third most-requested feature in the first week. The plugin validated the concept but the web SaaS version, which reaches non-Figma designers and handles more input formats, should have been built in parallel, not as a follow-on phase.</p>
-          </div>
-        </div>
+    <div class="next-case-cta">
+      <a class="thumb" href="compliance-ux.html" aria-label="Open Compliance UX case study">
+        <img src="img/cases/compliance-ux.png" alt="" loading="lazy" />
+      </a>
+      <div class="meta">
+        <div class="eb">Up next · CS-01</div>
+        <h3 class="name">Compliance UX</h3>
+        <p class="tease">KYC that ships in 12 minutes — from 45. Investor onboarding redesigned for IIROC, Reg CF, MiFID, and FINTRAC across $2B+ in regulated transactions.</p>
       </div>
+      <a class="btn btn-secondary" href="compliance-ux.html">Read case study <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
-<section class="next-cta reveal">
-  <div class="wrap next-cta-row">
-    <div>
-      <div class="tag"><i data-lucide="arrow-right"></i>( 07 )</div>
-    </div>
+<!-- =================== FINAL CONTACT CLOSE =================== -->
+<section class="final-close reveal">
+  <div class="wrap">
+    <div class="tag"><i data-lucide="arrow-right"></i>( 08 )</div>
     <div class="btn-row">
       <a class="btn btn-secondary" href="index.html#work">All Case Studies <span class="arrow">→</span></a>
       <a class="btn btn-primary" href="mailto:hello@uxmeas.com">Let's Talk <span class="arrow">→</span></a>
@@ -612,10 +1475,48 @@
 
 </main>
 
-<!-- Lucide icons: hydrates all <i data-lucide="..."> elements on DOMContentLoaded -->
+<!-- Lucide icons -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
 <script>document.addEventListener('DOMContentLoaded', () => window.lucide && window.lucide.createIcons());</script>
 <script src="scroll-reveal.js" defer></script>
+
+<!-- Metric chart reveal: arcs animate from 0 to target dashoffset, numbers count up. -->
+<script>
+(function () {
+  const charts = document.querySelectorAll('.metric-chart');
+  if (!charts.length) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const animateNumber = (el) => {
+    const target = parseFloat(el.dataset.count);
+    if (isNaN(target)) return;
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    if (reduced) { el.textContent = prefix + Math.round(target) + suffix; return; }
+    const duration = 1100;
+    const start = performance.now();
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = prefix + Math.round(target * eased) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const chart = entry.target;
+      chart.classList.add('is-visible');
+      chart.querySelectorAll('.donut-value, .delta-value').forEach(animateNumber);
+      io.unobserve(chart);
+    });
+  }, { threshold: 0.4 });
+
+  charts.forEach((c) => io.observe(c));
+})();
+</script>
 
 <footer class="site">
   <div class="wrap site-footer-row">
