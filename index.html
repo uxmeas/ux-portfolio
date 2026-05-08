@@ -219,7 +219,9 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
     gap: clamp(40px, 4vw, 72px);
     align-items: start;
-    scroll-margin-top: 32px;
+    /* Clear sticky .nav (60px) + breathing room. Without this, panel lands
+       under the nav and the click reads as "nothing happened". */
+    scroll-margin-top: 96px;
   }
 
   /* slide-in enhancement: content + visual gently translate into place as each
@@ -507,6 +509,7 @@
 <!-- =================== HERO =================== -->
 <!-- Stats live inside the hero now: claim + proof at the same fixation. -->
 <section class="hero reveal" id="top">
+  <canvas class="hero-shader" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-left">
@@ -736,6 +739,7 @@
 <script>document.addEventListener('DOMContentLoaded', () => window.lucide && window.lucide.createIcons());</script>
 <script src="scroll-reveal.js" defer></script>
 <script src="scroll-lit.js" defer></script>
+<script src="hero-shader.js" defer></script>
 
 <!-- Case switcher (scroll-anchored):
      - Rail anchors smooth-scroll to each section
