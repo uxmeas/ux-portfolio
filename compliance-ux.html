@@ -1439,64 +1439,10 @@
 <script>document.addEventListener('DOMContentLoaded', () => window.lucide && window.lucide.createIcons());</script>
 <script src="scroll-reveal.js" defer></script>
 
-<!-- Metric chart reveal: arcs animate from 0 to target dashoffset, numbers
-     count up from 0 to target. Triggers once per chart when 40% in view.
-     Skips animation entirely on prefers-reduced-motion. -->
-<script>
-(function () {
-  const charts = document.querySelectorAll('.metric-chart');
-  if (!charts.length) return;
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const animateNumber = (el) => {
-    const target = parseFloat(el.dataset.count);
-    if (isNaN(target)) return;
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    if (reduced) { el.textContent = prefix + Math.round(target) + suffix; return; }
-    const duration = 1100;
-    const start = performance.now();
-    const tick = (now) => {
-      const t = Math.min(1, (now - start) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = prefix + Math.round(target * eased) + suffix;
-      if (t < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-
-  if (reduced) {
-    charts.forEach((c) => {
-      c.classList.add('is-visible');
-      c.querySelectorAll('[data-count]').forEach(animateNumber);
-    });
-    return;
-  }
-
-  // Reset countup text to "0" before observer fires. HTML inner text holds
-  // the target value as the no-JS fallback; with JS we need to reset so the
-  // scroll-triggered animation runs from 0 to target. Runs synchronously at
-  // the inline script tag near end of body — before first paint, no flicker.
-  charts.forEach((chart) => {
-    chart.querySelectorAll('[data-count]').forEach((el) => {
-      const prefix = el.dataset.prefix || '';
-      const suffix = el.dataset.suffix || '';
-      el.textContent = prefix + '0' + suffix;
-    });
-  });
-
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      entry.target.querySelectorAll('[data-count]').forEach(animateNumber);
-      io.unobserve(entry.target);
-    });
-  }, { threshold: 0.15 });
-
-  charts.forEach((c) => io.observe(c));
-})();
-</script>
+<!-- Metric chart reveal: arcs + count-up. External file required —
+     CSP `script-src 'self'` (no 'unsafe-inline') was blocking the inline
+     IIFE so donut arcs and numbers never animated on dev/prod. -->
+<script src="metric-chart.js" defer></script>
 
 <footer class="site">
   <div class="wrap site-footer-row">
