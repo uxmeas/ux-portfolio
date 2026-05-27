@@ -1,0 +1,97 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Default from '../layouts/Default.astro';
+
+export async function getStaticPaths() {
+  const now = new Date();
+  const posts = (await getCollection('insights')).filter(
+    (p) => !p.data.draft && p.data.publishedAt <= now,
+  );
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'insights'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const {
+  title,
+  subtitle,
+  excerpt,
+  category,
+  publishedAt,
+  updatedAt,
+  author,
+  readingTime,
+  coverImage,
+  coverAlt,
+} = post.data;
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Default
+  title={`${title} — UX Meas`}
+  description={excerpt}
+  ogType="article"
+  ogImage={coverImage}
+  publishedTime={publishedAt.toISOString()}
+  modifiedTime={updatedAt?.toISOString()}
+  tags={[category]}
+  author={author}
+>
+  <article class="insight-post">
+    <header class="post-header">
+      <div class="wrap-narrow">
+        <p class="eyebrow post-eyebrow">
+          <a href="/insights/" class="back">← Insights</a>
+          <span class="sep" aria-hidden="true">·</span>
+          <span class="cat">{category}</span>
+        </p>
+        <h1 class="h-display post-title">{title}</h1>
+        {subtitle && <p class="lede post-subtitle">{subtitle}</p>}
+        <p class="post-byline">
+          <span class="author">{author}</span>
+          <span class="sep" aria-hidden="true">·</span>
+          <time datetime={publishedAt.toISOString()}>{dateFmt(publishedAt)}</time>
+          {readingTime && (
+            <>
+              <span class="sep" aria-hidden="true">·</span>
+              <span>{readingTime} min read</span>
+            </>
+          )}
+          {updatedAt && (
+            <>
+              <span class="sep" aria-hidden="true">·</span>
+              <span>Updated {dateFmt(updatedAt)}</span>
+            </>
+          )}
+        </p>
+      </div>
+    </header>
+
+    {coverImage && (
+      <figure class="post-cover">
+        <div class="wrap">
+          <img src={coverImage} alt={coverAlt ?? ''} />
+        </div>
+      </figure>
+    )}
+
+    <div class="post-body wrap-narrow">
+      <Content />
+    </div>
+
+    <footer class="post-footer">
+      <div class="wrap-narrow">
+        <p class="post-footer-back"><a href="/insights/">← All insights</a></p>
+      </div>
+    </footer>
+  </article>
+</Default>

@@ -1,0 +1,346 @@
+/* uxmeas.com /insights — Linear blog as structural reference, uxmeas tokens throughout.
+   Chrome (.wrap, .nav, .site, .eyebrow, .lede, .h-display, .h-section)
+   already lives in /shared.css. This file adds ONLY the layout patterns
+   not covered by canonical classes.
+
+   TOKENS ONLY. All values reference shared.css tokens — no hardcoded hex,
+   no fake-token fallbacks, no parallel scale. */
+
+/* ---- Narrow column for article reading measure ----------------------- */
+.wrap-narrow {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---- Card / eyebrow primitives shared across cards ------------------- */
+.card-eyebrow {
+  font-family: var(--f-sans);
+  font-size: var(--t-eyebrow);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin: 0 0 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.card-eyebrow .cat { color: var(--accent); }
+.card-eyebrow .sep { color: var(--fg-4); }
+
+.card-meta {
+  font-family: var(--f-mono);
+  font-size: var(--t-mono-label);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.card-meta .sep { color: var(--fg-4); }
+
+/* ---- Index hero ------------------------------------------------------ */
+.insights-hero {
+  padding: clamp(80px, 12vw, 160px) 0 clamp(48px, 7vw, 80px);
+}
+.insights-hero .eyebrow { margin-bottom: 28px; }
+.insights-hero .h-display { margin: 0 0 24px; max-width: 18ch; text-wrap: balance; }
+.insights-hero .lede { margin: 0; }
+
+/* ---- Empty state ----------------------------------------------------- */
+.insights-empty-section {
+  padding: clamp(40px, 6vw, 80px) 0 clamp(80px, 12vw, 160px);
+  border-top: 1px solid var(--rule);
+}
+.empty {
+  color: var(--fg-3);
+  font-style: italic;
+  margin: 0;
+}
+
+/* ---- Featured post (Linear-style large card) ------------------------- */
+.insights-featured {
+  padding: clamp(32px, 5vw, 64px) 0 clamp(48px, 6vw, 80px);
+  border-top: 1px solid var(--rule);
+}
+.featured-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+  text-decoration: none;
+  color: inherit;
+  padding: clamp(32px, 4vw, 56px) 0;
+}
+@media (min-width: 900px) {
+  .featured-card {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+.featured-card:focus-visible { outline: none; box-shadow: var(--focus); }
+
+.featured-cover {
+  background: var(--bg-2);
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.featured-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.featured-card:hover .featured-cover img { transform: scale(1.02); }
+
+.featured-meta { display: flex; flex-direction: column; gap: 0; }
+.featured-title {
+  font-family: var(--f-sans);
+  font-size: var(--t-h-section);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.1;
+  color: var(--fg);
+  margin: 0 0 16px;
+  text-wrap: balance;
+  transition: color 0.15s ease;
+}
+.featured-card:hover .featured-title { color: var(--accent); }
+.featured-subtitle {
+  font-family: var(--f-sans);
+  font-size: var(--t-lede);
+  line-height: 1.45;
+  color: var(--fg-2);
+  margin: 0 0 16px;
+  max-width: 52ch;
+}
+.featured-excerpt {
+  font-family: var(--f-sans);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  color: var(--fg-2);
+  margin: 0 0 24px;
+  max-width: 56ch;
+}
+
+/* ---- Post list (Linear-style stacked rows) --------------------------- */
+.insights-list {
+  padding: clamp(32px, 5vw, 64px) 0 clamp(96px, 14vw, 180px);
+  border-top: 1px solid var(--rule);
+}
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.post-row + .post-row { border-top: 1px solid var(--rule); }
+.post-row-link {
+  display: block;
+  padding: clamp(32px, 4vw, 48px) 0;
+  text-decoration: none;
+  color: inherit;
+}
+.post-row-link:focus-visible { outline: none; box-shadow: var(--focus); }
+
+.post-row-meta { max-width: 64ch; }
+.post-row-title {
+  font-family: var(--f-sans);
+  font-size: var(--t-h-sub);
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  line-height: 1.18;
+  color: var(--fg);
+  margin: 0 0 12px;
+  text-wrap: balance;
+  transition: color 0.15s ease;
+}
+.post-row-link:hover .post-row-title { color: var(--accent); }
+.post-row-excerpt {
+  font-family: var(--f-sans);
+  font-size: var(--t-body);
+  line-height: 1.6;
+  color: var(--fg-2);
+  margin: 0 0 18px;
+}
+
+/* ---- Article (post detail — Linear-shaped) --------------------------- */
+.insight-post {
+  padding: clamp(64px, 10vw, 120px) 0 clamp(96px, 14vw, 180px);
+}
+
+.post-header { margin-bottom: clamp(40px, 6vw, 64px); }
+.post-eyebrow {
+  margin-bottom: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.post-eyebrow .back {
+  color: var(--fg-3);
+  text-decoration: none;
+}
+.post-eyebrow .back:hover { color: var(--accent); }
+.post-eyebrow .cat { color: var(--accent); }
+.post-eyebrow .sep { color: var(--fg-4); }
+
+.post-header .post-title {
+  margin: 0 0 20px;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.post-header .post-subtitle {
+  margin: 0 0 28px;
+  max-width: 56ch;
+}
+
+.post-byline {
+  font-family: var(--f-mono);
+  font-size: var(--t-mono-label);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+.post-byline .author { color: var(--fg-2); }
+.post-byline .sep { color: var(--fg-4); }
+
+/* ---- Cover image ----------------------------------------------------- */
+.post-cover {
+  margin: 0 0 clamp(40px, 6vw, 64px);
+  padding: 0;
+}
+.post-cover img {
+  width: 100%;
+  max-height: 560px;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius);
+  background: var(--bg-2);
+}
+
+/* ---- Article body (MDX output) --------------------------------------- */
+.post-body {
+  font-family: var(--f-sans);
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--fg);
+}
+.post-body > * + * { margin-top: 1.4em; }
+.post-body p,
+.post-body ul,
+.post-body ol,
+.post-body blockquote,
+.post-body pre,
+.post-body figure { margin-bottom: 0; }
+
+.post-body h2 {
+  font-family: var(--f-sans);
+  font-size: var(--t-h-section);
+  font-weight: 500;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  color: var(--fg);
+  margin-top: 2.2em;
+  margin-bottom: 0.6em;
+  text-wrap: balance;
+}
+.post-body h3 {
+  font-family: var(--f-sans);
+  font-size: var(--t-h-sub);
+  font-weight: 500;
+  letter-spacing: -0.018em;
+  line-height: 1.22;
+  color: var(--fg);
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+}
+.post-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+.post-body a:hover { text-decoration-thickness: 2px; }
+.post-body strong { font-weight: 600; color: var(--fg); }
+.post-body em { font-style: italic; }
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.5em;
+}
+.post-body li + li { margin-top: 0.4em; }
+
+.post-body blockquote {
+  border-left: 3px solid var(--accent);
+  padding-left: 1.4em;
+  color: var(--fg-2);
+  font-style: italic;
+}
+
+.post-body code {
+  font-family: var(--f-mono);
+  font-size: 0.92em;
+  background: var(--bg-2);
+  padding: 2px 6px;
+  border-radius: var(--radius);
+  color: var(--fg);
+}
+.post-body pre {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.post-body pre code {
+  background: none;
+  padding: 0;
+  font-size: 1em;
+  border-radius: 0;
+}
+
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin: 1.8em 0;
+  background: var(--bg-2);
+}
+.post-body hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 3em auto;
+  max-width: 4em;
+}
+
+/* ---- Article footer -------------------------------------------------- */
+.post-footer {
+  margin-top: clamp(56px, 8vw, 96px);
+  padding-top: clamp(28px, 3vw, 40px);
+  border-top: 1px solid var(--rule);
+}
+.post-footer-back {
+  margin: 0;
+}
+.post-footer-back a {
+  color: var(--fg-3);
+  text-decoration: none;
+  font-family: var(--f-mono);
+  font-size: var(--t-mono-label);
+  letter-spacing: var(--ls-mono);
+  text-transform: uppercase;
+}
+.post-footer-back a:hover { color: var(--accent); }

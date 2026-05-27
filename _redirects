@@ -3,6 +3,12 @@
 # 8 hidden case studies (akmsecure, donations-rewards, isoblock, lending,
 # mockupkit, multipaste, mypick, relationsync) removed per CEO 2026-05-04.
 
+# Internal handoff docs / specs — kept in repo, NOT public.
+/_handoff/*           /404                     404
+/insights-spec.md     /404                     404
+/DESIGN.md            /404                     404
+/STATUS.md            /404                     404
+
 # 4 retained — old /case-study/ paths -> new root-level
 /case-study/compliance-ux/    /compliance-ux.html      301
 /case-study/compliance-ux     /compliance-ux.html      301

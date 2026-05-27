@@ -1,0 +1,27 @@
+{
+  "name": "uxmeas-insights",
+  "version": "0.1.0",
+  "description": "Astro 5 build for uxmeas.com /insights/* — content collections with MDX, RSS, sitemap. Builds into ../insights/ at the portfolio repo root.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "node scripts/check-calendar.mjs && astro build && node scripts/cleanup-output.mjs",
+    "build:nowarn": "astro build && node scripts/cleanup-output.mjs",
+    "clean": "rm -rf .astro node_modules/.astro ../insights && echo '[insights:clean] caches and output cleared'",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/rss": "^4.0.0",
+    "@astrojs/sitemap": "^3.2.0",
+    "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}

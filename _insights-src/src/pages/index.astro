@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import Default from '../layouts/Default.astro';
+
+const now = new Date();
+const all = (await getCollection('insights'))
+  .filter((p) => !p.data.draft && p.data.publishedAt <= now)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+const featured = all.find((p) => p.data.featured);
+const rest = featured ? all.filter((p) => p.slug !== featured.slug) : all;
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const title = 'Insights — UX Meas';
+const description = 'Essays on product design, fintech UX, design systems, and AI-native interfaces from 18 years shipping.';
+---
+
+<Default {title} {description}>
+  <section class="insights-hero">
+    <div class="wrap">
+      <p class="eyebrow">Insights</p>
+      <h1 class="h-display">Essays on design, shipped.</h1>
+      <p class="lede">Levers, patterns, anti-patterns. Drawn from 18 years across fintech, developer tools, and AI-native products.</p>
+    </div>
+  </section>
+
+  {all.length === 0 && (
+    <section class="insights-empty-section">
+      <div class="wrap">
+        <p class="empty">No posts yet. First one ships soon.</p>
+      </div>
+    </section>
+  )}
+
+  {featured && (
+    <section class="insights-featured">
+      <div class="wrap">
+        <a class="featured-card" href={`/insights/${featured.slug}/`}>
+          {featured.data.coverImage && (
+            <div class="featured-cover">
+              <img src={featured.data.coverImage} alt={featured.data.coverAlt ?? ''} loading="eager" />
+            </div>
+          )}
+          <div class="featured-meta">
+            <p class="card-eyebrow">
+              <span class="cat">{featured.data.category}</span>
+              <span class="sep" aria-hidden="true">·</span>
+              <span>Featured</span>
+            </p>
+            <h2 class="featured-title">{featured.data.title}</h2>
+            {featured.data.subtitle && <p class="featured-subtitle">{featured.data.subtitle}</p>}
+            <p class="featured-excerpt">{featured.data.excerpt}</p>
+            <p class="card-meta">
+              <span>{dateFmt(featured.data.publishedAt)}</span>
+              {featured.data.readingTime && (
+                <>
+                  <span class="sep" aria-hidden="true">·</span>
+                  <span>{featured.data.readingTime} min read</span>
+                </>
+              )}
+            </p>
+          </div>
+        </a>
+      </div>
+    </section>
+  )}
+
+  {rest.length > 0 && (
+    <section class="insights-list">
+      <div class="wrap">
+        <ul class="post-list">
+          {rest.map((post) => (
+            <li class="post-row">
+              <a class="post-row-link" href={`/insights/${post.slug}/`}>
+                <div class="post-row-meta">
+                  <p class="card-eyebrow"><span class="cat">{post.data.category}</span></p>
+                  <h2 class="post-row-title">{post.data.title}</h2>
+                  <p class="post-row-excerpt">{post.data.excerpt}</p>
+                  <p class="card-meta">
+                    <span>{dateFmt(post.data.publishedAt)}</span>
+                    {post.data.readingTime && (
+                      <>
+                        <span class="sep" aria-hidden="true">·</span>
+                        <span>{post.data.readingTime} min read</span>
+                      </>
+                    )}
+                  </p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+</Default>

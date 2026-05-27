@@ -1,8 +1,8 @@
 # UX Meas — Project Status
 
-**Last updated**: 2026-05-06
+**Last updated**: 2026-05-26
 **Priority**: #1a (job hunting + portfolio)
-**Stage**: LIVE (v2 production) — v3 in progress on dev
+**Stage**: LIVE (v2 production) — v3 in progress on dev — /insights blog scaffolded on dev (2026-05-26, not yet committed)
 **Owners**: Ana (delivery gates), Rio (job hunting status + marketing), Kai (design QA)
 
 ---
@@ -76,6 +76,17 @@ Designed in Pencil at `Pencil/uxmeas-portfolio.pen`:
 - Content map: `_copy/uxmeas.com/index.md` — source of truth for all copy
 - .pen file: visual source of truth
 - Flow: copy file → .pen → code (never skip steps)
+
+### Insights Blog (SCAFFOLDED 2026-05-26 — not yet committed)
+- Source: `_insights-src/` (Astro 5 + content collections + MDX + RSS + sitemap)
+- Output: `insights/` at repo root (committed, served as static by CF Pages)
+- Spec: `insights-spec.md`
+- Voice: `_copy/uxmeas.com/voice.md` (10 rules; separate from portfolio chrome + scriptwriter-contract)
+- Content calendar: `_copy/uxmeas.com/content-calendar.md` (Mon + Thu, 8-week rolling)
+- Build: `cd _insights-src && npm run build` (runs cadence warning + astro build + cleanup)
+- Routes: `/insights/`, `/insights/<slug>/`, `/insights/rss.xml`, `/insights/sitemap-index.xml`
+- Tracking: inherits portfolio chrome (GA4 + Clarity + GDPR consent via `/js/*`)
+- Status: scaffold + build green; awaiting Pheak voice review + first post (Phase 2)
 
 ---
 
