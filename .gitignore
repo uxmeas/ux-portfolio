@@ -213,3 +213,9 @@ specs/
 *.docx
 *.pptx
 *.csv
+
+# Internal drafting briefs (contain absolute paths + agent identities — never public)
+case-rewrites/
+
+# Pencil export manifests (contain absolute paths to internal Pencil projects)
+img/**/MANIFEST.md
