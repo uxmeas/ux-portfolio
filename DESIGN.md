@@ -104,7 +104,7 @@ Per `feedback_tokens_only_never_hardcode.md`. If a new color is needed: add to `
 | Spoken video / demo / sizzle | `_copy/uxmeas.com/scriptwriter-contract.md` | 7-rule contract for spoken voice. Verb-first. Numbers in first 10 sec. |
 | Insights essays (`/insights/*`) | `_copy/uxmeas.com/voice.md` | 10 rules for written-voice essays. Verb-first default; "I" as agency anchor (not subject). No em-dash, no en-dash. Categories: Lever / Pattern / Anti-Pattern / Tool & Method / Industry. |
 
-**Distinct from MZM Labs studio voice** (`_copy/mzmlabs/voice.md`) — uxmeas is Pheak's personal voice, MZM Labs is studio voice. Different positioning, different surface, different rules. Per `feedback_mzmlabs_pheak_no_ceo_framing.md`.
+**Distinct from MZM Labs studio voice** (`_copy/mzmlabs/voice.md`) — uxmeas is Pheak's personal voice, MZM Labs is studio voice. Different positioning, different surface, different rules.
 
 ## Accessibility
 
@@ -126,7 +126,7 @@ Per `feedback_tokens_only_never_hardcode.md`. If a new color is needed: add to `
 | Don't hardcode hex / px / rem / ms when a token exists. | Same rule. Pre-commit grep: `grep -nE '#[0-9a-fA-F]{3,6}\b' new-css.css` must be empty. |
 | Don't reinvent canonical classes (`.h-display`, `.eyebrow`, `.lede`, `.wrap`, `.nav`). | They already work. Section-specific CSS adds layout only, never replicates type/color scale. |
 | Don't use em-dash (—) or en-dash (–) in body copy. | Hard-banned per voice docs across all uxmeas surfaces. |
-| Don't apply MZM Labs design language to uxmeas. | They're sister sites with deliberately distinct positioning. Per `feedback_mzmlabs_pheak_no_ceo_framing.md`. Insights surface uses Linear-as-structural-reference, NOT MZM Labs templates. |
+| Don't apply MZM Labs design language to uxmeas. | They're sister sites with deliberately distinct positioning. Insights surface uses Linear-as-structural-reference, NOT MZM Labs templates. |
 | Don't ship UI work without reading this file + `shared.css`. | Per `feedback_read_design_sources_before_scaffolding_2026_05_26.md` HARD RULE. |
 | Don't add rounded corners (`border-radius` other than `var(--radius)`). | Sharp corners are a design-system constant. |
 | Don't add new fonts. | Inter Tight + JetBrains Mono only. Serif would be a brand-direction decision, not a one-off addition. |

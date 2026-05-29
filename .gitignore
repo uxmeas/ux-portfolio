@@ -219,3 +219,11 @@ case-rewrites/
 
 # Pencil export manifests (contain absolute paths to internal Pencil projects)
 img/**/MANIFEST.md
+
+# Internal scaffolding / AI session handoff docs (contain absolute paths + agent session transcripts)
+_handoff/
+design-catalog/_handoff/
+docs/DEPLOY-CHECKLIST.md
+docs/MCP_TEST_INSTRUCTIONS.md
+docs/QUICK-START-GUIDE.md
+insights-spec.md

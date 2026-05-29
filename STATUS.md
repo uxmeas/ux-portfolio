@@ -13,7 +13,7 @@
 **Hosting:** Cloudflare Pages (project: `uxmeas`)
 **Build:** Static site — no build command, output directory: `/` (root)
 **DNS:** Cloudflare zone (MZM Labs account)
-**Local path:** `/Users/pheakmeas/Documents/Development/uxmeas`
+**Local path:** (local dev — see CLAUDE.md for machine-specific paths)
 
 | Branch | URL | Version | Auto-deploy |
 |--------|-----|---------|-------------|
