@@ -1,8 +1,10 @@
 # UX Meas — Project Status
 
-**Last updated**: 2026-05-26
+**Last updated**: 2026-06-03
 **Priority**: #1a (job hunting + portfolio)
-**Stage**: LIVE (v2 production) — v3 in progress on dev — /insights blog scaffolded on dev (2026-05-26, not yet committed)
+**Stage**: LIVE (v2 production at af875ed — OG branding refreshed 2026-06-03) — v3 in progress on dev — /insights blog scaffolded on dev (2026-05-26, not yet committed)
+
+**2026-06-03 ship:** Unified OG/Twitter `og:image` across all 7 live pages → `/images/og/home.png` (1200×630, latest two-tone logo on black, 60% banner width, 25,931 bytes). Dropped per-page OG forks (compliance-ux, katipult, docs-to-design, fuzehq-dashboard, logo.svg). Old per-page PNGs left in `/images/og/` as orphans — safe to delete next sweep. **TODO (post-test):** re-scrape uxmeas.com in LinkedIn Post Inspector to bust LinkedIn's CDN cache. Shipped with 2 prior security scrubs (f080e11, b7140fe). Rollback: 4704f48.
 **Owners**: Ana (delivery gates), Rio (job hunting status + marketing), Kai (design QA)
 
 ---
