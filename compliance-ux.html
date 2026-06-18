@@ -1194,34 +1194,89 @@
 </section>
 
 <!-- =================== PLG 120 FRAMEWORK =================== -->
+<style>
+  .plg-timeline-wrap { margin-top: clamp(40px, 5vw, 64px); position: relative; }
+  .plg-timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 2.5vw, 36px);
+    position: relative;
+    z-index: 1;
+  }
+  .plg-timeline-line {
+    position: absolute;
+    top: 5px;
+    left: 6px;
+    right: 6px;
+    height: 1px;
+    background: var(--rule-soft);
+    z-index: 0;
+  }
+  .plg-phase-marker {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-bottom: 22px;
+    position: relative;
+    z-index: 2;
+  }
+  .plg-phase-meta {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  .plg-phase p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--fg-2);
+  }
+  @media (max-width: 900px) {
+    .plg-timeline-grid { grid-template-columns: 1fr; gap: 32px; }
+    .plg-timeline-line { display: none; }
+    .plg-phase-marker { margin-bottom: 12px; }
+  }
+</style>
 <section class="prose-section reveal">
   <div class="wrap">
     <span class="tldr-eyebrow">Framework · PLG 120</span>
     <h2 class="h2" style="margin-bottom: 16px;">A 120-day spine for product-led onboarding.</h2>
     <p class="prose-body" style="max-width: 70ch;">The work mapped to four phases. The same spine I'd use today on any regulated B2B onboarding redesign.</p>
 
-    <div class="plg-phases" style="display: grid; gap: 0; margin-top: clamp(32px, 4vw, 48px); border-top: 1px solid var(--rule-soft);">
+    <div class="plg-timeline-wrap">
+      <div class="plg-timeline-line"></div>
+      <div class="plg-timeline-grid">
 
-      <div class="plg-phase" style="padding: 28px 0; border-bottom: 1px solid var(--rule-soft);">
-        <div class="plg-phase-meta" style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px;">Days 0 to 30 · Discover</div>
-        <p class="prose-body" style="max-width: 70ch; margin: 0;">Designed the research protocol. Canaccord, Raymond James, and Sprott teams observed sessions with real investors on their floors and sent notes weekly. Pulled the funnel drop-off data in parallel. Same pattern from both sides: the activation wall was jurisdictional branching baked into the UI.</p>
+        <div class="plg-phase">
+          <div class="plg-phase-marker"></div>
+          <div class="plg-phase-meta">Days 0 to 30 · Discover</div>
+          <p>Designed the research protocol. Canaccord, Raymond James, and Sprott teams observed sessions with real investors on their floors and sent notes weekly. Pulled the funnel drop-off data in parallel. Same pattern from both sides: the activation wall was jurisdictional branching baked into the UI.</p>
+        </div>
+
+        <div class="plg-phase">
+          <div class="plg-phase-marker"></div>
+          <div class="plg-phase-meta">Days 31 to 60 · Architect</div>
+          <p>The team landed on modeling KYC as a state machine instead of a form. I designed the resulting surface: progressive disclosure, one decision per screen, the 6-document dump broken into single-question steps. Engineering moved jurisdiction logic server-side, which let me design one flow that adapts across IIROC, Reg CF, MiFID, and FINTRAC instead of four parallel flows.</p>
+        </div>
+
+        <div class="plg-phase">
+          <div class="plg-phase-marker"></div>
+          <div class="plg-phase-meta">Days 61 to 90 · Ship</div>
+          <p>Worked with PM and engineering on what to instrument so we could measure activation and TTV per step. Phased rollout to Canaccord first, then Raymond James, then Sprott. Same flow served every jurisdiction. No forks.</p>
+        </div>
+
+        <div class="plg-phase">
+          <div class="plg-phase-marker"></div>
+          <div class="plg-phase-meta">Days 91 to 120 · Measure</div>
+          <p>Activation 47% to 85%. TTV 45 to 12 min. NIGO submissions down 98%. The pattern reused across the Lending and Donations verticals.</p>
+        </div>
+
       </div>
-
-      <div class="plg-phase" style="padding: 28px 0; border-bottom: 1px solid var(--rule-soft);">
-        <div class="plg-phase-meta" style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px;">Days 31 to 60 · Architect</div>
-        <p class="prose-body" style="max-width: 70ch; margin: 0;">The team landed on modeling KYC as a state machine instead of a form. I designed the resulting surface: progressive disclosure, one decision per screen, the 6-document dump broken into single-question steps. Engineering moved jurisdiction logic server-side, which let me design one flow that adapts across IIROC, Reg CF, MiFID, and FINTRAC instead of four parallel flows.</p>
-      </div>
-
-      <div class="plg-phase" style="padding: 28px 0; border-bottom: 1px solid var(--rule-soft);">
-        <div class="plg-phase-meta" style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px;">Days 61 to 90 · Ship</div>
-        <p class="prose-body" style="max-width: 70ch; margin: 0;">Worked with PM and engineering on what to instrument so we could measure activation and TTV per step. Phased rollout to Canaccord first, then Raymond James, then Sprott. Same flow served every jurisdiction. No forks.</p>
-      </div>
-
-      <div class="plg-phase" style="padding: 28px 0;">
-        <div class="plg-phase-meta" style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px;">Days 91 to 120 · Measure</div>
-        <p class="prose-body" style="max-width: 70ch; margin: 0;">Activation 47% to 85%. TTV 45 to 12 min. NIGO submissions down 98%. The pattern reused across the Lending and Donations verticals.</p>
-      </div>
-
     </div>
   </div>
 </section>
