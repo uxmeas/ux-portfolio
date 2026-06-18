@@ -1065,15 +1065,15 @@
       <span class="ln ln-2">From 45.</span>
       <span class="ln ln-3">Across 20+ jurisdictions.</span>
     </h1>
-    <p class="sub">I redesigned investor onboarding from a six-document, 45-minute paper trail into one 12-minute adaptive flow — collapsed jurisdiction branching, replaced wizards with a state machine, surfaced compliance status in real time. Shipped to Canaccord, Raymond James, and Sprott across $2B+ in regulated transactions.</p>
+    <p class="sub">I redesigned investor onboarding using a product-led growth framework. A 45-minute paper trail collapsed into a 12-minute self-serve flow. Activation lifted 47% to 85%. Jurisdiction logic moved server-side. Wizards replaced with a state machine. Shipped to Canaccord, Raymond James, and Sprott across $2B+ in regulated transactions.</p>
     <div class="cs-hero-stats">
       <div class="s">
         <div class="n">45 → 12 min</div>
-        <div class="l">Average completion time, cut by 73%</div>
+        <div class="l">Time-to-value, cut by 73%</div>
       </div>
       <div class="s">
         <div class="n">85%</div>
-        <div class="l">Investor completion rate, up from 47%</div>
+        <div class="l">Activation rate, up from 47%</div>
       </div>
       <div class="s">
         <div class="n">150+</div>
@@ -1189,6 +1189,39 @@
         <img src="img/compliance/problem-katipult-doc-review-mobile.png" alt="Mobile document review state on the legacy Katipult flow — investors stuck reviewing a captured ID with no clear path to fix or retake" loading="lazy" />
         <img src="img/compliance/problem-katipult-followup-mobile.png" alt="Mobile follow-up state on the legacy Katipult flow — system asks for more source-of-funds evidence after the user thought they were done, a major drop-off trigger" loading="lazy" />
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PLG 120 FRAMEWORK =================== -->
+<section class="prose-section reveal">
+  <div class="wrap">
+    <span class="tldr-eyebrow">Framework · PLG 120</span>
+    <h2 class="h2" style="margin-bottom: 16px;">A 120-day spine for product-led onboarding.</h2>
+    <p class="prose-body" style="max-width: 70ch;">The work mapped to four phases. The same spine I'd use today on any regulated B2B onboarding redesign.</p>
+
+    <div class="plg-phases" style="display: grid; gap: 0; margin-top: clamp(32px, 4vw, 48px); border-top: 1px solid var(--rule-soft);">
+
+      <div class="plg-phase" style="padding: 28px 0; border-bottom: 1px solid var(--rule-soft);">
+        <div class="plg-phase-meta" style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px;">Days 0 to 30 · Discover</div>
+        <p class="prose-body" style="max-width: 70ch; margin: 0;">Designed the research protocol. Canaccord, Raymond James, and Sprott teams observed sessions with real investors on their floors and sent notes weekly. Pulled the funnel drop-off data in parallel. Same pattern from both sides: the activation wall was jurisdictional branching baked into the UI.</p>
+      </div>
+
+      <div class="plg-phase" style="padding: 28px 0; border-bottom: 1px solid var(--rule-soft);">
+        <div class="plg-phase-meta" style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px;">Days 31 to 60 · Architect</div>
+        <p class="prose-body" style="max-width: 70ch; margin: 0;">The team landed on modeling KYC as a state machine instead of a form. I designed the resulting surface: progressive disclosure, one decision per screen, the 6-document dump broken into single-question steps. Engineering moved jurisdiction logic server-side, which let me design one flow that adapts across IIROC, Reg CF, MiFID, and FINTRAC instead of four parallel flows.</p>
+      </div>
+
+      <div class="plg-phase" style="padding: 28px 0; border-bottom: 1px solid var(--rule-soft);">
+        <div class="plg-phase-meta" style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px;">Days 61 to 90 · Ship</div>
+        <p class="prose-body" style="max-width: 70ch; margin: 0;">Worked with PM and engineering on what to instrument so we could measure activation and TTV per step. Phased rollout to Canaccord first, then Raymond James, then Sprott. Same flow served every jurisdiction. No forks.</p>
+      </div>
+
+      <div class="plg-phase" style="padding: 28px 0;">
+        <div class="plg-phase-meta" style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 14px;">Days 91 to 120 · Measure</div>
+        <p class="prose-body" style="max-width: 70ch; margin: 0;">Activation 47% to 85%. TTV 45 to 12 min. NIGO submissions down 98%. The pattern reused across the Lending and Donations verticals.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1401,7 +1434,7 @@
         <p>Mobile-first from day one. The platform was retrofitted for mobile years after desktop launch, creating layout debt that took multiple sprints to address. Earlier investor-side usability testing too — research relied heavily on compliance officer observation, and spending equal time with the end investors (not just the admins watching them) would have surfaced friction sooner.</p>
       </div>
     </div>
-    <p class="prose-body" style="max-width: 70ch; margin-top: clamp(28px, 3vw, 40px);">Three takeaways. Compliance isn't a UX blocker. It's the brief. Wizards break when paths split. State machines don't. The people closest to users — dealers, compliance officers — know more than any lab. I use all three now.</p>
+    <p class="prose-body" style="max-width: 70ch; margin-top: clamp(28px, 3vw, 40px);">Three takeaways. Compliance isn't a UX blocker. It's the brief. Wizards break when paths split. State machines don't. The people closest to users (dealers, compliance officers) know more than any lab. I use all three now. The same friction-audit and state-machine methodology applies to any regulated B2B onboarding. Legal SaaS, fintech, healthcare, insurance. Different jurisdiction, same shape of problem.</p>
   </div>
 </section>
 
