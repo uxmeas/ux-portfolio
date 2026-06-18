@@ -303,13 +303,24 @@
   @media (max-width: 640px) {
     .direct-contributions { grid-template-columns: 1fr; }
   }
-  .contribution-disclaimer {
-    margin-top: clamp(28px, 3vw, 40px);
-    max-width: 80ch;
+  .direct-contributions li.contribution-disclaimer {
+    grid-column: span 3;
+    background: transparent;
+    border: 1px solid transparent;
+    font-style: italic;
+    padding: clamp(20px, 2.2vw, 28px);
     font-size: 14px;
     line-height: 1.55;
     color: var(--fg-2);
-    font-style: italic;
+    display: flex;
+    align-items: center;
+  }
+  .direct-contributions li.contribution-disclaimer:hover {
+    border-color: transparent;
+    transform: none;
+  }
+  @media (max-width: 1100px) {
+    .direct-contributions li.contribution-disclaimer { grid-column: span 1; }
   }
 
   /* ---------- 04 Problem — 2-column visuals row ----------
@@ -1122,10 +1133,10 @@
       <li><strong>Investor onboarding flow.</strong> Cut KYC from 45 &rarr; 12 minutes; lifted completion 47% &rarr; 85%.</li>
       <li><strong>Jurisdiction-rules engine UX.</strong> 20+ regulatory states (IIROC, Reg CF, MiFID, FINTRAC) on one configuration surface.</li>
       <li><strong>Compliance-officer dashboard.</strong> Human-side governance that dropped NIGO submissions and let automation handle high-confidence cases.</li>
-      <li><strong>State-machine pattern</strong> replacing the wizard &mdash; the load-bearing design lever; same engine later shipped to Lending and Donations &amp; Rewards verticals.</li>
-      <li><strong>Design system architecture.</strong> Component library used across 17 enterprise tenants. Kept the design practice lean &mdash; 2 full-time designers (Prague, Serbia) + external designers brought in as projects required.</li>
+      <li><strong>State-machine pattern</strong> replacing the wizard. The load-bearing design lever; same engine later shipped to Lending and Donations &amp; Rewards verticals.</li>
+      <li><strong>Design system architecture.</strong> Component library used across 17 enterprise tenants. Kept the design practice lean: 2 full-time designers (Prague, Serbia) plus external designers brought in as projects required.</li>
+      <li class="contribution-disclaimer">Cross-functional collaboration with engineering (backend implementation), compliance officers (regulatory interpretation), and the institutional dealers (user research observation on their floors) informed the work. The design ownership was mine.</li>
     </ul>
-    <p class="contribution-disclaimer">Cross-functional collaboration with engineering (backend implementation), compliance officers (regulatory interpretation), and the institutional dealers (user research observation on their floors) informed the work &mdash; but the design ownership was mine.</p>
   </div>
 </section>
 
