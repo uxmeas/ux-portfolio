@@ -316,11 +316,12 @@
 
   /* ---------- Hero device shots — side-by-side, both at compliance-ux hero scale ---------- */
   .hero-device {
-    margin: clamp(40px, 5vw, 64px) 0 0;
+    margin: clamp(40px, 5vw, 64px) auto 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(16px, 2vw, 28px);
     align-items: start;
+    max-width: 1100px;
   }
   @media (max-width: 800px) {
     .hero-device { grid-template-columns: 1fr; }
@@ -1737,7 +1738,7 @@
     flex-direction: column;
     box-sizing: border-box;
     width: min(100%, 13rem);
-    aspect-ratio: 402 / 874;
+    aspect-ratio: 390 / 1000;
     padding: 0.5rem;
     border-radius: 2.05rem;
     background: linear-gradient(145deg, #0a0a0a, #232323);
