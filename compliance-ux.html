@@ -1187,7 +1187,12 @@
       </div>
     </div>
     <div class="cs-hero-visual">
-      <img src="img/compliance/hero-compliance-overview.png" alt="Katipult compliance command queue showing investor verification statuses across jurisdictions, with queued actions, severity indicators, and operator review controls across IIROC, Reg CF, MiFID, and FINTRAC" loading="eager" decoding="async" />
+      <div class="frame-browser">
+        <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+        <div class="frame-browser__screen">
+          <img src="img/compliance/hero-compliance-overview.png" alt="Katipult compliance command queue showing investor verification statuses across jurisdictions, with queued actions, severity indicators, and operator review controls across IIROC, Reg CF, MiFID, and FINTRAC" loading="eager" decoding="async" />
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1291,8 +1296,18 @@
       </div>
       <!-- RIGHT col: 2 mobile katipult screens showing friction in the legacy flow -->
       <div class="problem-mobiles">
-        <img src="img/compliance/product-audit-2026-06-18/mobile-kyc-start.png" alt="Mobile KYC entry point on Katipult showing where investors land before submitting identity documents, the first point of abandonment in the legacy flow" loading="lazy" />
-        <img src="img/compliance/product-audit-2026-06-18/mobile-documentation-hub.png" alt="Mobile documentation hub on Katipult showing the document list investors had to navigate, a second major friction point driving the 60 percent drop-off at upload" loading="lazy" />
+        <div class="frame-mobile">
+          <div class="frame-mobile__notch" aria-hidden="true"></div>
+          <div class="frame-mobile__screen">
+            <img src="img/compliance/product-audit-2026-06-18/mobile-kyc-start.png" alt="Mobile KYC entry point on Katipult showing where investors land before submitting identity documents, the first point of abandonment in the legacy flow" loading="lazy" />
+          </div>
+        </div>
+        <div class="frame-mobile">
+          <div class="frame-mobile__notch" aria-hidden="true"></div>
+          <div class="frame-mobile__screen">
+            <img src="img/compliance/product-audit-2026-06-18/mobile-documentation-hub.png" alt="Mobile documentation hub on Katipult showing the document list investors had to navigate, a second major friction point driving the 60 percent drop-off at upload" loading="lazy" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1402,7 +1417,22 @@
           <p>Cut investor onboarding from 45 minutes to 12 — without losing compliance across IIROC, Reg CF, MiFID, ISA, and FINTRAC.</p>
         </div>
       </div>
-      <figure class="research-diagram-img" aria-label="Hub-and-spoke research diagram: two research sources flow into a Synthesis hub which fans out to three design decisions">
+      <div class="process-moment-visuals-pair">
+        <div class="frame-mobile">
+          <div class="frame-mobile__notch" aria-hidden="true"></div>
+          <div class="frame-mobile__screen">
+            <img src="img/compliance/product-audit-2026-06-18/mobile-kyc-start.png" alt="Mobile KYC entry point, research starting point showing where investors first encounter identity verification" loading="lazy" />
+          </div>
+        </div>
+        <div class="frame-mobile">
+          <div class="frame-mobile__notch" aria-hidden="true"></div>
+          <div class="frame-mobile__screen">
+            <img src="img/compliance/latest-ui/mobile-compliance-overview.png" alt="Mobile compliance overview, the redesigned flow after research synthesis, progressive disclosure applied" loading="lazy" />
+          </div>
+        </div>
+      </div>
+      <!-- Research loop diagram: supporting context below -->
+      <figure class="research-diagram-img" aria-label="Hub-and-spoke research diagram: two research sources flow into a Synthesis hub which fans out to three design decisions" style="margin-top: clamp(24px, 3vw, 36px);">
         <img class="img-light" src="img/compliance/approach-research-loop.png" alt="Hub-and-spoke diagram. SOURCES: Qualitative — Dealer sessions at Canaccord, Raymond James, Sprott; Quantitative — Platform analytics across 20+ jurisdictions. Both converge at the Synthesis hub. DECISIONS: 01 Progressive disclosure with save-and-resume, 02 Inline contextual jurisdiction rules, 03 Trulioo and Onfido with confidence-threshold fallback." width="780" height="520" loading="lazy" decoding="async" />
         <img class="img-dark" src="img/compliance/approach-research-loop-dark.png" alt="" width="780" height="520" loading="lazy" decoding="async" aria-hidden="true" />
       </figure>
@@ -1419,9 +1449,14 @@
     </div>
     <p class="section-lede" style="max-width: 65ch; margin-top: -8px; margin-bottom: clamp(28px, 3vw, 40px);">Regulators think in states. Users think in steps. The product's job is to translate between the two.</p>
 
-    <!-- Row 1: state machine diagram (full width) -->
-    <figure class="decisions-diagram" aria-label="Jurisdiction state machine diagram showing 11 states (UNVERIFIED → JURISDICTION_SELECTED → KYC_IN_PROGRESS → ACCREDITATION → UNDER_REVIEW → VERIFIED_SINGLE → VERIFIED_MULTI) with exception paths for cross-border blocked, manual review, expired, and re-verification states.">
-      <img class="img-dark" src="img/compliance/jurisdiction-state-machine-dark.png" alt="Jurisdiction state machine: 11 states + exception paths for cross-border blocked, manual review, expired, and re-verification" loading="lazy" decoding="async" />
+    <!-- Row 1: compliance overview desktop (replaces state machine diagram) -->
+    <figure class="decisions-diagram" aria-label="Compliance command queue showing the operator surface where jurisdiction states translate into actionable investor status rows">
+      <div class="frame-browser">
+        <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+        <div class="frame-browser__screen">
+          <img src="img/compliance/latest-ui/desktop-compliance-overview.png" alt="Compliance command queue desktop showing investor verification statuses across jurisdictions, queued actions, and operator review controls. The shipped surface that replaced the spreadsheet workflow." loading="lazy" decoding="async" />
+        </div>
+      </div>
     </figure>
     <h3 class="h3" style="margin-top: clamp(40px, 4vw, 56px); margin-bottom: clamp(16px, 2vw, 24px); font-family: var(--f-sans); font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -0.015em; font-weight: 500;">Three trade-offs along the way.</h3>
 
@@ -1436,6 +1471,20 @@
           <div><dt>Chose</dt><dd>One decision per screen. Persistent state. Return any time.</dd></div>
           <div><dt>Because</dt><dd>Drop-off data: 60% abandoned mid-session. Investors needed permission to leave and finish later.</dd></div>
         </dl>
+        <div class="process-moment-visuals-pair" style="margin-top: clamp(20px, 2.5vw, 28px);">
+          <div class="frame-mobile">
+            <div class="frame-mobile__notch" aria-hidden="true"></div>
+            <div class="frame-mobile__screen">
+              <img src="img/compliance/product-audit-2026-06-18/mobile-kyc-start.png" alt="Mobile KYC start screen showing progressive disclosure entry point. One question to begin, not eight documents at once." loading="lazy" />
+            </div>
+          </div>
+          <div class="frame-mobile">
+            <div class="frame-mobile__notch" aria-hidden="true"></div>
+            <div class="frame-mobile__screen">
+              <img src="img/compliance/product-audit-2026-06-18/mobile-offerings-table.png" alt="Mobile offerings table reached after completing KYC, the activation destination investors reach when progressive disclosure works" loading="lazy" />
+            </div>
+          </div>
+        </div>
       </article>
 
       <article class="decision-text">
@@ -1446,6 +1495,14 @@
           <div><dt>Chose</dt><dd>Rules surfaced inline in the review interface, per investor's jurisdiction.</dd></div>
           <div><dt>Because</dt><dd>Officers reviewing IIROC investors needed IIROC rules visible — not buried in a settings panel they had to navigate to.</dd></div>
         </dl>
+        <figure style="margin-top: clamp(20px, 2.5vw, 28px);">
+          <div class="frame-browser">
+            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+            <div class="frame-browser__screen">
+              <img src="img/dealflow/latest-ui/desktop-settings.png" alt="Desktop settings panel showing jurisdictional rules configuration, where compliance settings live for each tenant deployment" loading="lazy" />
+            </div>
+          </div>
+        </figure>
       </article>
 
       <article class="decision-text">
@@ -1456,6 +1513,14 @@
           <div><dt>Chose</dt><dd>Automated identity verification. Manual fallback only when confidence scores failed.</dd></div>
           <div><dt>Because</dt><dd>20x compliance team headcount wasn't feasible. Automate the high-confidence cases, route the rest to humans.</dd></div>
         </dl>
+        <figure style="margin-top: clamp(20px, 2.5vw, 28px);">
+          <div class="frame-browser">
+            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+            <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
+              <img src="img/compliance/latest-ui/devbox-kyc-dashboard-native-2026-06-18.png" alt="KYC operator dashboard showing automated identity verification results, confidence score breakdown, and manual review queue for low-confidence cases" loading="lazy" />
+            </div>
+          </div>
+        </figure>
       </article>
 
     </div>
@@ -1572,18 +1637,40 @@
       </div>
 
       <div class="screen v-image-left">
-        <figure class="screen-fig fig-desktop">
-          <div class="frame-browser">
-            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-            <div class="frame-browser__screen">
-              <img src="img/compliance/screen-02-katipult-dashboard-queue.png" alt="Compliance officer queue view on the shipped Katipult dashboard — every investor's exact status across every jurisdiction, with status badges, last-active timestamps, and per-row review affordance" loading="lazy" />
-            </div>
-          </div>
-        </figure>
         <div class="screen-meta">
           <h4>Compliance Dashboard</h4>
           <p>Compliance officers see every investor's exact status across every jurisdiction. Not just "complete" or "incomplete" but which step they're on, what's blocking them, when they last logged in, and which framework applies (IIROC, Reg CF, MiFID, ISA). Replaced a spreadsheet workflow that required manual chasing.</p>
         </div>
+        <figure class="screen-fig">
+          <div class="process-moment-visuals-pair">
+            <div class="frame-mobile">
+              <div class="frame-mobile__notch" aria-hidden="true"></div>
+              <div class="frame-mobile__screen">
+                <img src="img/compliance/product-audit-2026-06-18/mobile-kyc-start.png" alt="Mobile KYC start, investor entry point into the compliance flow on mobile" loading="lazy" />
+              </div>
+            </div>
+            <div class="frame-mobile">
+              <div class="frame-mobile__notch" aria-hidden="true"></div>
+              <div class="frame-mobile__screen">
+                <img src="img/compliance/latest-ui/mobile-compliance-overview.png" alt="Mobile compliance overview, the redesigned investor-facing compliance flow on mobile" loading="lazy" />
+              </div>
+            </div>
+          </div>
+          <div class="screens-pair-desktop" style="margin-top: clamp(20px, 2.5vw, 28px);">
+            <div class="frame-browser">
+              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+              <div class="frame-browser__screen">
+                <img src="img/compliance/latest-ui/desktop-compliance-overview.png" alt="Compliance command queue desktop showing investor verification statuses, queued actions, and operator review controls" loading="lazy" />
+              </div>
+            </div>
+            <div class="frame-browser">
+              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+              <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
+                <img src="img/compliance/latest-ui/devbox-kyc-dashboard-native-2026-06-18.png" alt="KYC operator dashboard showing identity verification status breakdown, pending reviews, and cross-jurisdiction investor counts" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </figure>
       </div>
 
       <div class="screen v-image-right">
@@ -1676,6 +1763,20 @@
       </div>
       <p class="prose-body" style="max-width: 70ch; margin-top: clamp(32px, 4vw, 48px);">NIGO (not-in-good-order) submissions dropped enough that ECM teams stopped chasing corrections and started closing deals. The compliance team grew slowly while investor volume kept climbing — automation handled the high-confidence cases, humans owned the exceptions.</p>
       <p class="prose-body" style="max-width: 70ch;">The same engine eventually shipped to two sister products: Lending (Singapore, Mexico, UK, US deployments) and Donations &amp; Rewards (InvestYYC + Alberta BoostR with Calgary Arts Development and ATB Financial).</p>
+      <div class="process-moment-visuals-pair" style="margin-top: clamp(28px, 3.5vw, 40px);">
+        <div class="frame-mobile">
+          <div class="frame-mobile__notch" aria-hidden="true"></div>
+          <div class="frame-mobile__screen">
+            <img src="img/compliance/latest-ui/mobile-compliance-overview.png" alt="Mobile compliance overview showing the redesigned investor flow in production across 20+ jurisdictions" loading="lazy" />
+          </div>
+        </div>
+        <div class="frame-mobile">
+          <div class="frame-mobile__notch" aria-hidden="true"></div>
+          <div class="frame-mobile__screen">
+            <img src="img/compliance/latest-ui/table-fix/mobile-compliance.png" alt="Mobile compliance table-fix iteration showing the refined data presentation on the investor-facing compliance view" loading="lazy" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1705,7 +1806,12 @@
   <div class="wrap">
     <div class="next-case-cta">
       <a class="thumb" href="katipult.html" aria-label="Open Katipult case study">
-        <img src="img/dealflow/katipult-loan-browse.png" alt="" loading="lazy" />
+        <div class="frame-browser">
+          <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+          <div class="frame-browser__screen">
+            <img src="img/dealflow/katipult-loan-browse.png" alt="" loading="lazy" />
+          </div>
+        </div>
       </a>
       <div class="meta">
         <div class="eb">Up next · 02 / 04</div>
