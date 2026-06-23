@@ -658,7 +658,7 @@
   }
   .process-moment .visual {
     width: 100%;
-    max-width: 320px;
+    max-width: 420px;
     margin: 0 auto;
     background: transparent;
     padding: 0;
@@ -1085,8 +1085,26 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top center;
+  }
+  .screens-pair-desktop {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+  }
+  .screens-pair-desktop .screen-fig { width: 100%; max-width: none; }
+  .process-moment-visuals-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+    justify-items: center;
+    width: 100%;
+  }
+  .process-moment-visuals-pair .frame-mobile {
+    width: 100%;
+    max-width: 280px;
   }
 </style>
 <!-- Open Graph / Twitter card -->
@@ -1169,7 +1187,7 @@
       </div>
     </div>
     <div class="cs-hero-visual">
-      <img src="img/compliance/hero-katipult-investor-detail.png" alt="Katipult compliance officer investor detail — single investor view with Identity, Jurisdiction, Accreditation, Source of Funds, and eSign all passed across IIROC, Reg CF, MiFID, and FINTRAC, plus decision panel and audit trail" loading="eager" decoding="async" />
+      <img src="img/compliance/hero-compliance-overview.png" alt="Katipult compliance command queue showing investor verification statuses across jurisdictions, with queued actions, severity indicators, and operator review controls across IIROC, Reg CF, MiFID, and FINTRAC" loading="eager" decoding="async" />
     </div>
   </div>
 </section>
@@ -1273,8 +1291,8 @@
       </div>
       <!-- RIGHT col: 2 mobile katipult screens showing friction in the legacy flow -->
       <div class="problem-mobiles">
-        <img src="img/compliance/problem-katipult-doc-review-mobile.png" alt="Mobile document review state on the legacy Katipult flow — investors stuck reviewing a captured ID with no clear path to fix or retake" loading="lazy" />
-        <img src="img/compliance/problem-katipult-followup-mobile.png" alt="Mobile follow-up state on the legacy Katipult flow — system asks for more source-of-funds evidence after the user thought they were done, a major drop-off trigger" loading="lazy" />
+        <img src="img/compliance/problem-mobile-kyc-start.png" alt="Mobile KYC entry point on Katipult showing where investors land before submitting identity documents, the first point of abandonment in the legacy flow" loading="lazy" />
+        <img src="img/compliance/problem-mobile-documentation-hub.png" alt="Mobile documentation hub on Katipult showing the document list investors had to navigate, a second major friction point driving the 60 percent drop-off at upload" loading="lazy" />
       </div>
     </div>
   </div>
@@ -1455,10 +1473,18 @@
 
       <article class="process-moment">
         <figure class="visual">
-          <div class="frame-mobile">
-            <div class="frame-mobile__notch" aria-hidden="true"></div>
-            <div class="frame-mobile__screen">
-              <img src="img/compliance/process-01-katipult-residence-mobile.png" alt="Mobile residency capture — first step of a three-question jurisdiction flow that separates legal residence, tax residence, and citizenship into one decision per screen." loading="lazy" />
+          <div class="process-moment-visuals-pair">
+            <div class="frame-mobile">
+              <div class="frame-mobile__notch" aria-hidden="true"></div>
+              <div class="frame-mobile__screen">
+                <img src="img/compliance/process-01-katipult-residence-mobile.png" alt="Mobile residency capture showing the first step of a three-question jurisdiction flow that separates legal residence, tax residence, and citizenship into one decision per screen" loading="lazy" />
+              </div>
+            </div>
+            <div class="frame-mobile">
+              <div class="frame-mobile__notch" aria-hidden="true"></div>
+              <div class="frame-mobile__screen">
+                <img src="img/compliance/process-01b-katipult-context-mobile.png" alt="Mobile KYC entry point on Katipult showing the investor verification start screen, establishing context before the first jurisdiction question" loading="lazy" />
+              </div>
             </div>
           </div>
         </figure>
@@ -1469,10 +1495,18 @@
 
       <article class="process-moment">
         <figure class="visual">
-          <div class="frame-mobile">
-            <div class="frame-mobile__notch" aria-hidden="true"></div>
-            <div class="frame-mobile__screen">
-              <img src="img/compliance/process-02-katipult-doc-capture-mobile.png" alt="Mobile document capture — single focused upload zone with clear viewfinder framing, capture affordance, and contextual help instead of a generic file picker." loading="lazy" />
+          <div class="process-moment-visuals-pair">
+            <div class="frame-mobile">
+              <div class="frame-mobile__notch" aria-hidden="true"></div>
+              <div class="frame-mobile__screen">
+                <img src="img/compliance/process-02-katipult-doc-capture-mobile.png" alt="Mobile document capture showing a single focused upload zone with clear viewfinder framing, capture affordance, and contextual help instead of a generic file picker" loading="lazy" />
+              </div>
+            </div>
+            <div class="frame-mobile">
+              <div class="frame-mobile__notch" aria-hidden="true"></div>
+              <div class="frame-mobile__screen">
+                <img src="img/compliance/process-02b-katipult-context-mobile.png" alt="Mobile documentation hub on Katipult showing the document list investors must navigate, providing context for the focused capture redesign" loading="lazy" />
+              </div>
             </div>
           </div>
         </figure>
@@ -1483,16 +1517,24 @@
 
       <article class="process-moment">
         <figure class="visual">
-          <div class="frame-mobile">
-            <div class="frame-mobile__notch" aria-hidden="true"></div>
-            <div class="frame-mobile__screen">
-              <img src="img/compliance/process-03-katipult-funds-category-mobile.png" alt="Mobile source-of-funds category — single decision pick across canonical categories with progressive disclosure, instead of a long-form text-entry field." loading="lazy" />
+          <div class="process-moment-visuals-pair">
+            <div class="frame-mobile">
+              <div class="frame-mobile__notch" aria-hidden="true"></div>
+              <div class="frame-mobile__screen">
+                <img src="img/compliance/process-03-katipult-funds-category-mobile.png" alt="Mobile source-of-funds category showing a single decision pick across canonical categories with progressive disclosure, instead of a long-form text-entry field" loading="lazy" />
+              </div>
+            </div>
+            <div class="frame-mobile">
+              <div class="frame-mobile__notch" aria-hidden="true"></div>
+              <div class="frame-mobile__screen">
+                <img src="img/compliance/process-03b-katipult-context-mobile.png" alt="Mobile offerings table on Katipult showing the investment list investors reach after completing source-of-funds, providing context for the pick-not-write redesign" loading="lazy" />
+              </div>
             </div>
           </div>
         </figure>
         <div class="num">Moment 03</div>
         <h3 class="h">Pick, don't write.</h3>
-        <p>Source-of-funds was free-text before — investors wrote "savings", "work", "inheritance", and compliance had to interpret each one. Replaced it with a category pick. Evidence is only asked for when the category needs it.</p>
+        <p>Source-of-funds was free-text before -- investors wrote "savings", "work", "inheritance", and compliance had to interpret each one. Replaced it with a category pick. Evidence is only asked for when the category needs it.</p>
       </article>
 
     </div>
@@ -1570,55 +1612,27 @@
       <span class="badge section-num"><i class="sn-icon" data-lucide="camera"></i><span class="sn-text"><span class="sn-num">( 06.5 )</span><span class="sn-name">Latest compliance and operator screens</span></span></span>
     </div>
     <p class="section-lede">Recent captures from the live operator surface: compliance command queue, identity verification dashboard, and mobile companion views.</p>
-    <div class="screens">
+    <div class="screens-pair-desktop">
 
-      <div class="screen v-image-right">
-        <figure class="screen-fig fig-desktop">
-          <div class="frame-browser">
-            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-            <div class="frame-browser__screen">
-              <img src="img/compliance/latest-ui/desktop-compliance-overview.png" alt="Latest compliance command queue desktop" loading="lazy" />
-            </div>
+      <figure class="screen-fig fig-desktop">
+        <div class="frame-browser">
+          <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+          <div class="frame-browser__screen">
+            <img src="img/compliance/latest-ui/desktop-compliance-overview.png" alt="Latest compliance command queue desktop showing investor verification statuses, queued actions, and operator review controls" loading="lazy" />
           </div>
-          <figcaption>Latest compliance command queue desktop - 1440 x 1100</figcaption>
-        </figure>
-      </div>
+        </div>
+        <figcaption>Latest compliance command queue desktop - 1440 x 1100</figcaption>
+      </figure>
 
-      <div class="screen v-image-left">
-        <figure class="screen-fig fig-desktop">
-          <div class="frame-browser">
-            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-            <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
-              <img src="img/compliance/latest-ui/devbox-kyc-dashboard-native-2026-06-18.png" alt="Latest identity verification operator desktop" loading="lazy" />
-            </div>
+      <figure class="screen-fig fig-desktop">
+        <div class="frame-browser">
+          <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+          <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
+            <img src="img/compliance/latest-ui/devbox-kyc-dashboard-native-2026-06-18.png" alt="Latest identity verification operator desktop showing KYC status breakdown, pending reviews, and cross-jurisdiction investor counts" loading="lazy" />
           </div>
-          <figcaption>Latest identity verification operator desktop - 1280 x 720</figcaption>
-        </figure>
-      </div>
-
-      <div class="screen v-image-right">
-        <figure class="screen-fig phones-2">
-          <div class="frame-mobile">
-            <div class="frame-mobile__notch" aria-hidden="true"></div>
-            <div class="frame-mobile__screen">
-              <img src="img/compliance/latest-ui/mobile-compliance-overview.png" alt="Latest compliance command queue mobile" loading="lazy" />
-            </div>
-          </div>
-          <figcaption>Latest compliance command queue mobile - 390 x 1000 capture in iPhone 17 Pro frame</figcaption>
-        </figure>
-      </div>
-
-      <div class="screen v-image-left">
-        <figure class="screen-fig phones-2">
-          <div class="frame-mobile">
-            <div class="frame-mobile__notch" aria-hidden="true"></div>
-            <div class="frame-mobile__screen">
-              <img src="img/compliance/latest-ui/mobile-compliance-table-fix.png" alt="Latest mobile compliance table-fix screen" loading="lazy" />
-            </div>
-          </div>
-          <figcaption>Latest mobile compliance table-fix screen - 390 x 1000 capture in iPhone 17 Pro frame</figcaption>
-        </figure>
-      </div>
+        </div>
+        <figcaption>Latest identity verification operator desktop - 1280 x 720</figcaption>
+      </figure>
 
     </div>
   </div>
