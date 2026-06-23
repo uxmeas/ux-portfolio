@@ -1033,7 +1033,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top center;
   }
   .frame-mobile {
@@ -1090,7 +1090,7 @@
   }
   .screens-pair-desktop {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-xl);
     margin-bottom: var(--space-xl);
   }
@@ -1291,8 +1291,8 @@
       </div>
       <!-- RIGHT col: 2 mobile katipult screens showing friction in the legacy flow -->
       <div class="problem-mobiles">
-        <img src="img/compliance/problem-mobile-kyc-start.png" alt="Mobile KYC entry point on Katipult showing where investors land before submitting identity documents, the first point of abandonment in the legacy flow" loading="lazy" />
-        <img src="img/compliance/problem-mobile-documentation-hub.png" alt="Mobile documentation hub on Katipult showing the document list investors had to navigate, a second major friction point driving the 60 percent drop-off at upload" loading="lazy" />
+        <img src="img/compliance/product-audit-2026-06-18/mobile-kyc-start.png" alt="Mobile KYC entry point on Katipult showing where investors land before submitting identity documents, the first point of abandonment in the legacy flow" loading="lazy" />
+        <img src="img/compliance/product-audit-2026-06-18/mobile-documentation-hub.png" alt="Mobile documentation hub on Katipult showing the document list investors had to navigate, a second major friction point driving the 60 percent drop-off at upload" loading="lazy" />
       </div>
     </div>
   </div>
@@ -1632,6 +1632,16 @@
           </div>
         </div>
         <figcaption>Latest identity verification operator desktop - 1280 x 720</figcaption>
+      </figure>
+
+      <figure class="screen-fig">
+        <div class="frame-mobile">
+          <div class="frame-mobile__notch" aria-hidden="true"></div>
+          <div class="frame-mobile__screen">
+            <img src="img/compliance/latest-ui/table-fix/mobile-compliance.png" alt="Latest mobile compliance command queue showing investor verification statuses on the table-fix iteration" loading="lazy" />
+          </div>
+        </div>
+        <figcaption>Latest mobile compliance companion. 390 x 1000</figcaption>
       </figure>
 
     </div>
