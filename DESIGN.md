@@ -85,6 +85,13 @@ Per `feedback_tokens_only_never_hardcode.md`. If a new color is needed: add to `
 
 **Case Studies** (`/case-study/<slug>/index.html`): per-project CSS tokens scope (`cs--compliance`, `cs--dealflow`, etc.) defined in each case-study HTML. Device frames (8px radius — note: predates `--radius: 0` discipline, may refactor).
 
+**Frame chrome** (MZM-2248, 2026-06-23): ported from `mzm-wiki` `ImageViewer.astro`. Two patterns:
+- `.frame-browser` + `.frame-browser__top` (3 dot controls) + `.frame-browser__screen`: browser chrome wrapper for desktop screenshots. Aspect `1440/1100`. Tokens used: `--rule`, `--bg-2`, `--bg`.
+- `.frame-mobile` + `.frame-mobile__notch` + `.frame-mobile__screen`: iPhone 17 Pro bezel (Apple HIG `402 x 874 pt`). Uses physical hardware colors (`linear-gradient(145deg, #0a0a0a, #232323)` for body, `rgba(255,255,255,0.08)` for glass highlight, `rgba(0,0,0,0.78)` for home indicator pill) that are intentionally NOT tokenized as they represent device hardware, not brand color.
+- Both patterns are inside-page CSS blocks (no shared.css addition — patterns are case-study-only). Apply to: `compliance-ux.html` process + final-flows sections; `katipult.html` bead phones, process-card visuals, key-screens section.
+
+**Project-card catalogue** (MZM-2248, 2026-06-23): `.project-card-demo` / `.project-card-grid` / `.project-card` component ported from wiki `TenantMoatGrid`. Uses `--tenant-accent` CSS custom property (per-card inline style) for tenant brand color. Progress bar uses `--progress-width` CSS custom property (per-bar inline style). All other colors via existing tokens (`--rule`, `--rule-soft`, `--bg`, `--bg-2`, `--fg`, `--fg-2`, `--fg-3`, `--accent`). Added to `katipult.html` § 04.6 inline style block. Card metric strong uses `20px` font-size (intentional exception: numeric display size between `--t-lede` and stat token; acceptable one-off).
+
 **Insights** (`/insights/*`): **Linear blog as structural reference** — eyebrow/title/subtitle/byline/cover/body/footer layout, ~720px reading column, category eyebrows (single category, not tag array), reading time + date in mono meta strip. uxmeas tokens throughout — no parallel palette. Source: `_insights-src/` (Astro 5). Output: `insights/` at repo root.
 
 ## Motion

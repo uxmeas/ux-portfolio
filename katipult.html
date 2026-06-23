@@ -1688,6 +1688,215 @@
   @media (max-width: 900px) { .screen.v-image-right, .screen.v-image-left { grid-template-columns: 1fr; gap: 32px; } .screen.v-image-right > .screen-fig, .screen.v-image-left > .screen-fig { order: 0; max-width: 420px; } .screen.v-image-right > .screen-meta, .screen.v-image-left > .screen-meta { order: 1; } }
   @media (max-width: 700px) { .screen { padding: 48px 0 52px; } }
 
+  /* ---------- Frame chrome: browser + iPhone 17 Pro (MZM-2248) ---------- */
+  .frame-browser {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 1px solid var(--rule);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .frame-browser__top {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.32rem;
+    min-height: 1.75rem;
+    padding: 0 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  .frame-browser__dot {
+    display: block;
+    width: 0.46rem;
+    height: 0.46rem;
+    border-radius: 999px;
+    background: var(--fg-3);
+    opacity: 0.5;
+  }
+  .frame-browser__screen {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1440 / 1100;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .frame-browser__screen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .frame-mobile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: min(100%, 13rem);
+    aspect-ratio: 402 / 874;
+    padding: 0.5rem;
+    border-radius: 2.05rem;
+    background: linear-gradient(145deg, #0a0a0a, #232323);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 18px 42px rgba(0, 0, 0, 0.32);
+    justify-self: center;
+  }
+  .frame-mobile__notch {
+    position: absolute;
+    z-index: 2;
+    top: 0.68rem;
+    left: 50%;
+    width: 4.25rem;
+    height: 0.34rem;
+    border-radius: 999px;
+    background: #0a0a0a;
+    transform: translateX(-50%);
+  }
+  .frame-mobile::after {
+    position: absolute;
+    z-index: 2;
+    bottom: 0.68rem;
+    left: 50%;
+    width: 4.3rem;
+    height: 0.16rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.78);
+    content: "";
+    transform: translateX(-50%);
+  }
+  .frame-mobile__screen {
+    flex: 1 1 auto;
+    border-radius: 1.45rem;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    background: var(--bg);
+  }
+  .frame-mobile__screen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  /* ---------- Project-card catalogue (MZM-2248, section 04.6) ---------- */
+  .project-card-demo { margin-top: 2rem; }
+  .project-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--rule);
+    border-radius: 0.625rem;
+    overflow: hidden;
+    background: var(--bg);
+    transition: border-color 160ms ease, transform 160ms ease;
+  }
+  .project-card:hover { border-color: var(--fg-3); transform: translateY(-2px); }
+  .project-card__image {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .project-card__image img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+  .project-card__image > span {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    background: var(--tenant-accent, #1B2D4D);
+    color: #fff;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .project-card__body { display: flex; flex-direction: column; gap: 0.75rem; padding: 1rem; flex: 1; }
+  .project-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+  .project-card__brand { display: flex; align-items: center; gap: 0.5rem; }
+  .project-card__logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 6px;
+    background: var(--tenant-accent, #1B2D4D);
+    color: #fff;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .project-card__brand > div { display: flex; flex-direction: column; }
+  .project-card__brand strong { font-size: 12px; font-weight: 600; color: var(--fg); line-height: 1.3; }
+  .project-card__brand small { font-size: 11px; color: var(--fg-3); line-height: 1.3; }
+  .project-card__top > b {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--fg-3);
+    font-family: var(--f-mono);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--bg-2);
+  }
+  .project-card__title h3 { font-size: 14px; font-weight: 600; color: var(--fg); margin: 0 0 2px; line-height: 1.3; }
+  .project-card__title small { font-size: 12px; color: var(--fg-2); line-height: 1.4; }
+  .project-card__summary { display: flex; flex-direction: column; gap: 0.375rem; }
+  .project-card__metric { display: flex; align-items: baseline; gap: 0.4rem; }
+  .project-card__metric strong { font-size: 20px; font-weight: 600; color: var(--fg); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .project-card__metric span { font-size: 12px; color: var(--fg-3); }
+  .project-card__progress { display: flex; align-items: center; gap: 0.5rem; }
+  .project-card__progress > span {
+    display: block;
+    flex: 1;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--rule);
+    overflow: hidden;
+    position: relative;
+  }
+  .project-card__progress > span::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: var(--progress-width, 50%);
+    background: var(--tenant-accent, #1B2D4D);
+    border-radius: 999px;
+  }
+  .project-card__progress b { font-size: 11px; font-weight: 600; color: var(--fg-2); font-variant-numeric: tabular-nums; }
+  .project-card__details { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .project-card__details li { font-size: 12px; color: var(--fg-2); line-height: 1.4; padding-left: 0.875rem; position: relative; }
+  .project-card__details li::before { content: "·"; position: absolute; left: 0; color: var(--fg-3); }
+  .project-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--rule-soft);
+    margin-top: auto;
+  }
+  .project-card__footer > div { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .project-card__footer > div > span { font-size: 11px; color: var(--fg-3); font-family: var(--f-mono); padding: 0.15rem 0.4rem; border: 1px solid var(--rule-soft); border-radius: 4px; background: var(--bg-2); }
+  .project-card__footer > a { font-size: 12px; color: var(--accent); text-decoration: none; white-space: nowrap; font-weight: 500; }
+  .project-card__footer > a:hover { text-decoration: underline; }
+  @media (max-width: 1024px) { .project-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 600px) { .project-card-grid { grid-template-columns: 1fr; } }
+
 </style>
 <!-- Open Graph / Twitter card -->
 <meta property="og:type" content="article" />
@@ -1903,10 +2112,20 @@
           </div>
           <div class="bead-visual bead-visual--phones-2">
             <figure class="bead-phone">
-              <img src="img/dealflow/mobile/accreditation-evidence.png" alt="Mobile accreditation evidence — investor proves accredited status with progressive disclosure of required documentation" loading="lazy" />
+              <div class="frame-mobile">
+                <div class="frame-mobile__notch" aria-hidden="true"></div>
+                <div class="frame-mobile__screen">
+                  <img src="img/dealflow/mobile/accreditation-evidence.png" alt="Mobile accreditation evidence — investor proves accredited status with progressive disclosure of required documentation" loading="lazy" />
+                </div>
+              </div>
             </figure>
             <figure class="bead-phone">
-              <img src="img/dealflow/mobile/esign-sign.png" alt="Mobile e-signature ceremony — full document preview with signature block, identity bind, and audit trail" loading="lazy" />
+              <div class="frame-mobile">
+                <div class="frame-mobile__notch" aria-hidden="true"></div>
+                <div class="frame-mobile__screen">
+                  <img src="img/dealflow/mobile/esign-sign.png" alt="Mobile e-signature ceremony — full document preview with signature block, identity bind, and audit trail" loading="lazy" />
+                </div>
+              </div>
             </figure>
           </div>
         </div>
@@ -2307,6 +2526,311 @@
   </div>
 </section>
 
+<!-- ===== 04.6 Project-card catalogue: white-label verticals ===== -->
+<section class="prose-section reveal" id="katipult-project-card-catalogue">
+  <div class="wrap">
+    <div class="prose-grid prose-grid--stack">
+      <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="credit-card"></i><span class="sn-text"><span class="sn-num">( 04.6 )</span><span class="sn-name">Project-card catalogue</span></span></span></div>
+      <div>
+        <p class="section-lede">What the white-label project card becomes for each industry vertical. One card component. Six operator contexts. Lending, real estate, capital raising, equity, debt, and donations — each with the nouns, metrics, status, and next action that an operator in that vertical expects.</p>
+        <div class="project-card-demo">
+          <div class="project-card-grid">
+
+            <!-- Card 1: Capital raising — Ridgeline Securities -->
+            <article class="project-card" style="--tenant-accent: #1B2D4D">
+              <div class="project-card__image">
+                <img src="img/dealflow/moat-project-cards/capital-raising-boreal-renewables.jpg" alt="" loading="lazy" decoding="async" />
+                <span>Capital raising</span>
+              </div>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <div class="project-card__brand">
+                    <span class="project-card__logo">RS</span>
+                    <div>
+                      <strong>Ridgeline Securities</strong>
+                      <small>Private markets desk</small>
+                    </div>
+                  </div>
+                  <b>Allocation review</b>
+                </div>
+                <div class="project-card__title">
+                  <div>
+                    <h3>Boreal Renewables III</h3>
+                    <small>Institutional private placement</small>
+                  </div>
+                </div>
+                <div class="project-card__summary">
+                  <div class="project-card__metric">
+                    <strong>$14.2M</strong>
+                    <span>committed of $18M</span>
+                  </div>
+                  <div class="project-card__progress" aria-label="79% complete">
+                    <span style="--progress-width: 79%"></span>
+                    <b>79%</b>
+                  </div>
+                </div>
+                <ul class="project-card__details">
+                  <li>12 institutions</li>
+                  <li>Reg D + NI 31-103</li>
+                  <li>Closing book open</li>
+                </ul>
+                <div class="project-card__footer">
+                  <div>
+                    <span>Equity</span>
+                    <span>Private placement</span>
+                  </div>
+                  <a href="#katipult-white-label-screens">Review allocation</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Lending — Northcap Wealth -->
+            <article class="project-card" style="--tenant-accent: #1F4D3F">
+              <div class="project-card__image">
+                <img src="img/dealflow/moat-project-cards/lending-loan-documents.jpg" alt="" loading="lazy" decoding="async" />
+                <span>Lending</span>
+              </div>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <div class="project-card__brand">
+                    <span class="project-card__logo">NW</span>
+                    <div>
+                      <strong>Northcap Wealth</strong>
+                      <small>Advisor lending portal</small>
+                    </div>
+                  </div>
+                  <b>Collateral review</b>
+                </div>
+                <div class="project-card__title">
+                  <div>
+                    <h3>Lakeside Heights Loan</h3>
+                    <small>Senior secured borrower file</small>
+                  </div>
+                </div>
+                <div class="project-card__summary">
+                  <div class="project-card__metric">
+                    <strong>$7.9M</strong>
+                    <span>principal requested</span>
+                  </div>
+                  <div class="project-card__progress" aria-label="64% complete">
+                    <span style="--progress-width: 64%"></span>
+                    <b>64%</b>
+                  </div>
+                </div>
+                <ul class="project-card__details">
+                  <li>8.4% target yield</li>
+                  <li>LTV 58%</li>
+                  <li>Borrower docs due</li>
+                </ul>
+                <div class="project-card__footer">
+                  <div>
+                    <span>Debt</span>
+                    <span>Secured lending</span>
+                  </div>
+                  <a href="#katipult-white-label-screens">Open loan file</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Real estate — Crestview Property Group -->
+            <article class="project-card" style="--tenant-accent: #0F4F4D">
+              <div class="project-card__image">
+                <img src="img/dealflow/moat-project-cards/real-estate-crestview-reit.jpg" alt="" loading="lazy" decoding="async" />
+                <span>Real estate</span>
+              </div>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <div class="project-card__brand">
+                    <span class="project-card__logo">CP</span>
+                    <div>
+                      <strong>Crestview Property Group</strong>
+                      <small>Property income platform</small>
+                    </div>
+                  </div>
+                  <b>Funding open</b>
+                </div>
+                <div class="project-card__title">
+                  <div>
+                    <h3>Crestview Commercial REIT</h3>
+                    <small>Western Canada income portfolio</small>
+                  </div>
+                </div>
+                <div class="project-card__summary">
+                  <div class="project-card__metric">
+                    <strong>$8.4M</strong>
+                    <span>raised of $12M</span>
+                  </div>
+                  <div class="project-card__progress" aria-label="70% complete">
+                    <span style="--progress-width: 70%"></span>
+                    <b>70%</b>
+                  </div>
+                </div>
+                <ul class="project-card__details">
+                  <li>REIT units</li>
+                  <li>Quarterly distributions</li>
+                  <li>Occupancy 94%</li>
+                </ul>
+                <div class="project-card__footer">
+                  <div>
+                    <span>Real estate</span>
+                    <span>Income</span>
+                  </div>
+                  <a href="#katipult-white-label-screens">View property raise</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Equity — Mossbrook Capital -->
+            <article class="project-card" style="--tenant-accent: #374151">
+              <div class="project-card__image">
+                <img src="img/dealflow/moat-project-cards/equity-apex-logistics.jpg" alt="" loading="lazy" decoding="async" />
+                <span>Equity</span>
+              </div>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <div class="project-card__brand">
+                    <span class="project-card__logo">MC</span>
+                    <div>
+                      <strong>Mossbrook Capital</strong>
+                      <small>Growth equity room</small>
+                    </div>
+                  </div>
+                  <b>IC memo ready</b>
+                </div>
+                <div class="project-card__title">
+                  <div>
+                    <h3>Apex Logistics Series B</h3>
+                    <small>Growth equity subscription room</small>
+                  </div>
+                </div>
+                <div class="project-card__summary">
+                  <div class="project-card__metric">
+                    <strong>$6.8M</strong>
+                    <span>soft circled</span>
+                  </div>
+                  <div class="project-card__progress" aria-label="57% complete">
+                    <span style="--progress-width: 57%"></span>
+                    <b>57%</b>
+                  </div>
+                </div>
+                <ul class="project-card__details">
+                  <li>Lead investor pending</li>
+                  <li>Data room active</li>
+                  <li>Board package attached</li>
+                </ul>
+                <div class="project-card__footer">
+                  <div>
+                    <span>Equity</span>
+                    <span>Growth</span>
+                  </div>
+                  <a href="#katipult-white-label-screens">Approve commitment</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5: Debt — Westbridge Capital -->
+            <article class="project-card" style="--tenant-accent: #6B1B1B">
+              <div class="project-card__image">
+                <img src="img/dealflow/moat-project-cards/debt-credit-product.jpg" alt="" loading="lazy" decoding="async" />
+                <span>Debt</span>
+              </div>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <div class="project-card__brand">
+                    <span class="project-card__logo">WB</span>
+                    <div>
+                      <strong>Westbridge Capital</strong>
+                      <small>Cross-border credit</small>
+                    </div>
+                  </div>
+                  <b>Jurisdiction routing</b>
+                </div>
+                <div class="project-card__title">
+                  <div>
+                    <h3>BridgeKey IE Note</h3>
+                    <small>Cross-border private credit product</small>
+                  </div>
+                </div>
+                <div class="project-card__summary">
+                  <div class="project-card__metric">
+                    <strong>11.2%</strong>
+                    <span>gross coupon</span>
+                  </div>
+                  <div class="project-card__progress" aria-label="42% complete">
+                    <span style="--progress-width: 42%"></span>
+                    <b>42%</b>
+                  </div>
+                </div>
+                <ul class="project-card__details">
+                  <li>Irish borrower</li>
+                  <li>MiFID II track</li>
+                  <li>FX hedge required</li>
+                </ul>
+                <div class="project-card__footer">
+                  <div>
+                    <span>Debt</span>
+                    <span>Cross-border</span>
+                  </div>
+                  <a href="#katipult-white-label-screens">Route exception</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6: Donations — Prairie Arts Foundation -->
+            <article class="project-card" style="--tenant-accent: #7C3F00">
+              <div class="project-card__image">
+                <img src="img/dealflow/moat-project-cards/donations-community-campaign.jpg" alt="" loading="lazy" decoding="async" />
+                <span>Donations</span>
+              </div>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <div class="project-card__brand">
+                    <span class="project-card__logo">PA</span>
+                    <div>
+                      <strong>Prairie Arts Foundation</strong>
+                      <small>Giving campaign portal</small>
+                    </div>
+                  </div>
+                  <b>Match window live</b>
+                </div>
+                <div class="project-card__title">
+                  <div>
+                    <h3>Prairie Voices Campaign</h3>
+                    <small>Donor-funded cultural program</small>
+                  </div>
+                </div>
+                <div class="project-card__summary">
+                  <div class="project-card__metric">
+                    <strong>$92K</strong>
+                    <span>pledged of $150K</span>
+                  </div>
+                  <div class="project-card__progress" aria-label="61% complete">
+                    <span style="--progress-width: 61%"></span>
+                    <b>61%</b>
+                  </div>
+                </div>
+                <ul class="project-card__details">
+                  <li>312 donors</li>
+                  <li>ATB match enabled</li>
+                  <li>Tax receipts ready</li>
+                </ul>
+                <div class="project-card__footer">
+                  <div>
+                    <span>Donations</span>
+                    <span>Matching</span>
+                  </div>
+                  <a href="#katipult-white-label-screens">Review campaign</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== Process moments: shipped flow on mobile ===== -->
 <section class="prose-section reveal">
   <div class="wrap">
@@ -2317,7 +2841,12 @@
         <div class="process-moments">
           <article class="process-card">
             <figure class="process-card-vis-mobile">
-              <img src="img/dealflow/mobile/jurisdiction-residence.png" alt="Mobile residency capture — first step of three-question jurisdiction flow that separates legal residence, tax residence, and citizenship into one decision per screen." loading="lazy" />
+              <div class="frame-mobile">
+                <div class="frame-mobile__notch" aria-hidden="true"></div>
+                <div class="frame-mobile__screen">
+                  <img src="img/dealflow/mobile/jurisdiction-residence.png" alt="Mobile residency capture — first step of three-question jurisdiction flow that separates legal residence, tax residence, and citizenship into one decision per screen." loading="lazy" />
+                </div>
+              </div>
             </figure>
             <div class="process-card-body">
               <span class="process-card-tag">Jurisdiction</span>
@@ -2327,7 +2856,12 @@
           </article>
           <article class="process-card">
             <figure class="process-card-vis-mobile">
-              <img src="img/dealflow/mobile/accreditation-evidence.png" alt="Mobile accreditation evidence — choose proof type with progressive disclosure of required documentation." loading="lazy" />
+              <div class="frame-mobile">
+                <div class="frame-mobile__notch" aria-hidden="true"></div>
+                <div class="frame-mobile__screen">
+                  <img src="img/dealflow/mobile/accreditation-evidence.png" alt="Mobile accreditation evidence — choose proof type with progressive disclosure of required documentation." loading="lazy" />
+                </div>
+              </div>
             </figure>
             <div class="process-card-body">
               <span class="process-card-tag">Accreditation</span>
@@ -2337,7 +2871,12 @@
           </article>
           <article class="process-card">
             <figure class="process-card-vis-mobile">
-              <img src="img/dealflow/mobile/esign-sign.png" alt="Mobile e-signature ceremony — full document preview with signature block and audit-by-default." loading="lazy" />
+              <div class="frame-mobile">
+                <div class="frame-mobile__notch" aria-hidden="true"></div>
+                <div class="frame-mobile__screen">
+                  <img src="img/dealflow/mobile/esign-sign.png" alt="Mobile e-signature ceremony — full document preview with signature block and audit-by-default." loading="lazy" />
+                </div>
+              </div>
             </figure>
             <div class="process-card-body">
               <span class="process-card-tag">E-signature</span>
@@ -2359,7 +2898,12 @@
         <div class="screens">
           <div class="screen v-image-right">
             <figure class="screen-fig fig-desktop">
-              <img src="img/dealflow/katipult-queue.png" alt="Operator queue surface — cross-tenant compliance triage with severity-tagged alerts, SLA timers, and per-investor status across the deal lifecycle" loading="lazy" />
+              <div class="frame-browser">
+                <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+                <div class="frame-browser__screen">
+                  <img src="img/dealflow/katipult-queue.png" alt="Operator queue surface — cross-tenant compliance triage with severity-tagged alerts, SLA timers, and per-investor status across the deal lifecycle" loading="lazy" />
+                </div>
+              </div>
             </figure>
             <div class="screen-meta">
               <h4>Operator queue — cross-deal triage</h4>
@@ -2369,7 +2913,12 @@
           </div>
           <div class="screen v-image-left">
             <figure class="screen-fig fig-desktop">
-              <img src="img/dealflow/katipult-investor.png" alt="Operator investor profile — single investor across the five-dimension compliance grid, evidence panel, and decision controls in one screen" loading="lazy" />
+              <div class="frame-browser">
+                <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+                <div class="frame-browser__screen">
+                  <img src="img/dealflow/katipult-investor.png" alt="Operator investor profile — single investor across the five-dimension compliance grid, evidence panel, and decision controls in one screen" loading="lazy" />
+                </div>
+              </div>
             </figure>
             <div class="screen-meta">
               <h4>Investor profile — decision in one screen</h4>
@@ -2379,7 +2928,12 @@
           </div>
           <div class="screen v-image-right">
             <figure class="screen-fig fig-desktop">
-              <img src="img/dealflow/katipult-alerts.png" alt="Operator alerts surface — cross-dimensional triage view with severity-tagged sanctions, expirations, and stalled-signature flags, with SLA timers and per-row escalation" loading="lazy" />
+              <div class="frame-browser">
+                <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+                <div class="frame-browser__screen">
+                  <img src="img/dealflow/katipult-alerts.png" alt="Operator alerts surface — cross-dimensional triage view with severity-tagged sanctions, expirations, and stalled-signature flags, with SLA timers and per-row escalation" loading="lazy" />
+                </div>
+              </div>
             </figure>
             <div class="screen-meta">
               <h4>Operator alerts — runtime triage</h4>

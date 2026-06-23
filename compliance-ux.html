@@ -992,6 +992,102 @@
     gap: 12px;
     flex-wrap: wrap;
   }
+
+  /* ---------- Frame chrome: browser + iPhone 17 Pro (MZM-2248) ---------- */
+  .frame-browser {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 1px solid var(--rule);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--bg-2);
+  }
+  .frame-browser__top {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 0.32rem;
+    min-height: 1.75rem;
+    padding: 0 0.7rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--bg-2);
+  }
+  .frame-browser__dot {
+    display: block;
+    width: 0.46rem;
+    height: 0.46rem;
+    border-radius: 999px;
+    background: var(--fg-3);
+    opacity: 0.5;
+  }
+  .frame-browser__screen {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1440 / 1100;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .frame-browser__screen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .frame-mobile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: min(100%, 13rem);
+    aspect-ratio: 402 / 874;
+    padding: 0.5rem;
+    border-radius: 2.05rem;
+    background: linear-gradient(145deg, #0a0a0a, #232323);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 18px 42px rgba(0, 0, 0, 0.32);
+    justify-self: center;
+  }
+  .frame-mobile__notch {
+    position: absolute;
+    z-index: 2;
+    top: 0.68rem;
+    left: 50%;
+    width: 4.25rem;
+    height: 0.34rem;
+    border-radius: 999px;
+    background: #0a0a0a;
+    transform: translateX(-50%);
+  }
+  .frame-mobile::after {
+    position: absolute;
+    z-index: 2;
+    bottom: 0.68rem;
+    left: 50%;
+    width: 4.3rem;
+    height: 0.16rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.78);
+    content: "";
+    transform: translateX(-50%);
+  }
+  .frame-mobile__screen {
+    flex: 1 1 auto;
+    border-radius: 1.45rem;
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+    background: var(--bg);
+  }
+  .frame-mobile__screen img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
 </style>
 <!-- Open Graph / Twitter card -->
 <meta property="og:type" content="article" />
@@ -1359,7 +1455,12 @@
 
       <article class="process-moment">
         <figure class="visual">
-          <img src="img/compliance/process-01-katipult-residence-mobile.png" alt="Mobile residency capture — first step of a three-question jurisdiction flow that separates legal residence, tax residence, and citizenship into one decision per screen." loading="lazy" />
+          <div class="frame-mobile">
+            <div class="frame-mobile__notch" aria-hidden="true"></div>
+            <div class="frame-mobile__screen">
+              <img src="img/compliance/process-01-katipult-residence-mobile.png" alt="Mobile residency capture — first step of a three-question jurisdiction flow that separates legal residence, tax residence, and citizenship into one decision per screen." loading="lazy" />
+            </div>
+          </div>
         </figure>
         <div class="num">Moment 01</div>
         <h3 class="h">One decision per screen.</h3>
@@ -1368,7 +1469,12 @@
 
       <article class="process-moment">
         <figure class="visual">
-          <img src="img/compliance/process-02-katipult-doc-capture-mobile.png" alt="Mobile document capture — single focused upload zone with clear viewfinder framing, capture affordance, and contextual help instead of a generic file picker." loading="lazy" />
+          <div class="frame-mobile">
+            <div class="frame-mobile__notch" aria-hidden="true"></div>
+            <div class="frame-mobile__screen">
+              <img src="img/compliance/process-02-katipult-doc-capture-mobile.png" alt="Mobile document capture — single focused upload zone with clear viewfinder framing, capture affordance, and contextual help instead of a generic file picker." loading="lazy" />
+            </div>
+          </div>
         </figure>
         <div class="num">Moment 02</div>
         <h3 class="h">Focused capture, not a file picker.</h3>
@@ -1377,7 +1483,12 @@
 
       <article class="process-moment">
         <figure class="visual">
-          <img src="img/compliance/process-03-katipult-funds-category-mobile.png" alt="Mobile source-of-funds category — single decision pick across canonical categories with progressive disclosure, instead of a long-form text-entry field." loading="lazy" />
+          <div class="frame-mobile">
+            <div class="frame-mobile__notch" aria-hidden="true"></div>
+            <div class="frame-mobile__screen">
+              <img src="img/compliance/process-03-katipult-funds-category-mobile.png" alt="Mobile source-of-funds category — single decision pick across canonical categories with progressive disclosure, instead of a long-form text-entry field." loading="lazy" />
+            </div>
+          </div>
         </figure>
         <div class="num">Moment 03</div>
         <h3 class="h">Pick, don't write.</h3>
@@ -1403,14 +1514,29 @@
           <p>The opening screen doesn't ask for anything. It explains what's needed, how long it takes, and what happens to the data before a single document is uploaded. Trust is established before compliance begins.</p>
         </div>
         <figure class="screen-fig phones-2">
-          <img src="img/compliance/screen-01-katipult-welcome-mobile.png" alt="Mobile KYC welcome screen on the shipped Katipult flow — explains required documents, time estimate, and encrypted data handling before any upload" loading="lazy" />
-          <img src="img/compliance/screen-01-katipult-tax-residence-mobile.png" alt="Mobile tax residence capture on the shipped Katipult flow — single-question step inside a three-screen jurisdiction sequence that separates legal residence, tax residence, and citizenship" loading="lazy" />
+          <div class="frame-mobile">
+            <div class="frame-mobile__notch" aria-hidden="true"></div>
+            <div class="frame-mobile__screen">
+              <img src="img/compliance/screen-01-katipult-welcome-mobile.png" alt="Mobile KYC welcome screen on the shipped Katipult flow — explains required documents, time estimate, and encrypted data handling before any upload" loading="lazy" />
+            </div>
+          </div>
+          <div class="frame-mobile">
+            <div class="frame-mobile__notch" aria-hidden="true"></div>
+            <div class="frame-mobile__screen">
+              <img src="img/compliance/screen-01-katipult-tax-residence-mobile.png" alt="Mobile tax residence capture on the shipped Katipult flow — single-question step inside a three-screen jurisdiction sequence that separates legal residence, tax residence, and citizenship" loading="lazy" />
+            </div>
+          </div>
         </figure>
       </div>
 
       <div class="screen v-image-left">
         <figure class="screen-fig fig-desktop">
-          <img src="img/compliance/screen-02-katipult-dashboard-queue.png" alt="Compliance officer queue view on the shipped Katipult dashboard — every investor's exact status across every jurisdiction, with status badges, last-active timestamps, and per-row review affordance" loading="lazy" />
+          <div class="frame-browser">
+            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+            <div class="frame-browser__screen">
+              <img src="img/compliance/screen-02-katipult-dashboard-queue.png" alt="Compliance officer queue view on the shipped Katipult dashboard — every investor's exact status across every jurisdiction, with status badges, last-active timestamps, and per-row review affordance" loading="lazy" />
+            </div>
+          </div>
         </figure>
         <div class="screen-meta">
           <h4>Compliance Dashboard</h4>
@@ -1424,7 +1550,12 @@
           <p>Compliance officers' triage view. Critical, High, Medium severity, with the regulator rule that fired, who owns it, and how long it's been sitting. The previous workflow was a Slack thread plus a spreadsheet — by the time you found the right investor, half the SLAs had blown. This replaced both, with an audit log attached to every action.</p>
         </div>
         <figure class="screen-fig fig-desktop">
-          <img src="img/compliance/screen-03-katipult-dashboard-alerts.png" alt="Operator alert dashboard on the shipped Katipult system — cross-dimensional triage view with severity-tagged alerts (Critical, High, Medium), AML rule codes, SLA timers, and per-row escalation affordances" loading="lazy" />
+          <div class="frame-browser">
+            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+            <div class="frame-browser__screen">
+              <img src="img/compliance/screen-03-katipult-dashboard-alerts.png" alt="Operator alert dashboard on the shipped Katipult system — cross-dimensional triage view with severity-tagged alerts (Critical, High, Medium), AML rule codes, SLA timers, and per-row escalation affordances" loading="lazy" />
+            </div>
+          </div>
         </figure>
       </div>
 
