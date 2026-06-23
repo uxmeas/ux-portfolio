@@ -316,12 +316,22 @@
 
   /* ---------- Hero device shots — side-by-side, both at compliance-ux hero scale ---------- */
   .hero-device {
-    margin: clamp(40px, 5vw, 64px) auto 0;
+    margin: clamp(40px, 5vw, 64px) 0 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(16px, 2vw, 28px);
     align-items: start;
+  }
+
+  /* ---------- Single-screen utility: caps any lone frame at FuzeHQ hero scale ---------- */
+  .single-screen-frame {
     max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .single-screen-frame .frame-browser,
+  .single-screen-frame .frame-mobile {
+    width: 100%;
   }
   @media (max-width: 800px) {
     .hero-device { grid-template-columns: 1fr; }
@@ -2047,10 +2057,12 @@
       <li><strong>Founded and scaled the design practice.</strong> Kept the in-house team lean &mdash; 2 full-time designers in Prague and Serbia + a handful of external designers brought in as projects required.</li>
     </ul>
     <p class="contribution-disclaimer">Co-founded the company with two others. Cross-functional collaboration with engineering, compliance, legal, and the design team informed the work &mdash; but the platform-level design ownership across DealFlow, Lending, and Donations &amp; Rewards was mine.</p>
-    <div class="frame-browser" style="margin-top: clamp(28px, 3.5vw, 40px);">
-      <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-      <div class="frame-browser__screen">
-        <img src="img/dealflow/latest-ui/desktop-settings.png" alt="Desktop settings panel showing tenant configuration interface: jurisdictional rules, feature toggles, and brand tokens per deployment" loading="lazy" />
+    <div class="single-screen-frame" style="margin-top: clamp(28px, 3.5vw, 40px);">
+      <div class="frame-browser">
+        <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+        <div class="frame-browser__screen">
+          <img src="img/dealflow/latest-ui/desktop-settings.png" alt="Desktop settings panel showing tenant configuration interface: jurisdictional rules, feature toggles, and brand tokens per deployment" loading="lazy" />
+        </div>
       </div>
     </div>
   </div>
@@ -2078,10 +2090,12 @@
             <div class="problem-stat-l">manual handoffs per deal across email, shared drives, and spreadsheets.</div>
           </div>
         </div>
-        <div class="frame-browser" style="margin-top: clamp(28px, 3.5vw, 40px);">
-          <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-          <div class="frame-browser__screen">
-            <img src="img/dealflow/latest-ui/desktop-offerings-table.png" alt="Desktop offerings management table showing the platform that replaced email-based deal management. Deal listings with status, allocation progress, and compliance indicators." loading="lazy" />
+        <div class="single-screen-frame" style="margin-top: clamp(28px, 3.5vw, 40px);">
+          <div class="frame-browser">
+            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+            <div class="frame-browser__screen">
+              <img src="img/dealflow/latest-ui/desktop-offerings-table.png" alt="Desktop offerings management table showing the platform that replaced email-based deal management. Deal listings with status, allocation progress, and compliance indicators." loading="lazy" />
+            </div>
           </div>
         </div>
       </div>
@@ -2102,7 +2116,7 @@
           <div class="tag">How might we</div>
           <p>How might we replace email-based private placement management with an end-to-end platform that reduces close time by 48% and eliminates document errors, for investment dealers operating across multiple regulatory jurisdictions?</p>
         </div>
-        <figure style="margin-top: clamp(28px, 3.5vw, 40px);">
+        <figure class="single-screen-frame" style="margin-top: clamp(28px, 3.5vw, 40px);">
           <div class="frame-browser">
             <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
             <div class="frame-browser__screen">
@@ -2129,7 +2143,7 @@
             <p>One codebase, 17 enterprise tenants, 6 continents. Brand settings, jurisdictional rules, and feature toggles swap per deployment. The engine stays unified. Migrating off Katipult meant rebuilding five separate vendor stacks — dealers stayed because the platform had absorbed the coordination problem.</p>
             <p>Designed the multi-tenant configuration UX, brand-token pipeline, and platform-level pattern library.</p>
           </div>
-          <figure class="bead-visual">
+          <figure class="bead-visual single-screen-frame">
             <div class="frame-browser">
               <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
               <div class="frame-browser__screen">
@@ -2146,7 +2160,7 @@
             <p>Private placement deal management for institutional broker-dealers. Issuer onboarding, allocations, e-signature, and compliance reporting in one workflow. DealFlow Mesh launched 2023 as the industry's first private capital network — real-time book building across ECM, wealth management, law firms, and issuers. Backed by $510K NRC IRAP funding.</p>
             <p>Lead PD on DealFlow 2014–2020. Designed the lifecycle state machine, operator triage queue, and Mesh book-building canvas.</p>
           </div>
-          <figure class="bead-visual">
+          <figure class="bead-visual single-screen-frame">
             <div class="frame-browser">
               <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
               <div class="frame-browser__screen">
@@ -2163,7 +2177,7 @@
             <p>Three revenue segments, one codebase. <strong>Debt &amp; Lending</strong> (small business + microfinance + P2P real-estate, e.g. <em>Asterlend Singapore</em>, <em>BridgeKey Property</em> Ireland). <strong>Canadian Equity</strong> (institutional placements + impact crowdfunding, e.g. <em>Northpoint Impact</em>). <strong>Global Equity</strong> (international land + impact + accredited cross-border, e.g. <em>Hartwell Crowdvest</em> UK, <em>Pinevale Impact</em> US, <em>Pacific Crossing</em> APAC). Compliance, identity, audit, and payments primitives shared across all three.</p>
             <p>Designed the cross-vertical pattern library so a new vertical reused 80%+ of the existing primitives. Configurable rules engine + shared design tokens + tenant-scoped audit trail were the load-bearing decisions.</p>
           </div>
-          <figure class="bead-visual">
+          <figure class="bead-visual single-screen-frame">
             <div class="frame-browser">
               <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
               <div class="frame-browser__screen">
@@ -2740,10 +2754,12 @@
             <p>Same Katipult engine, three segments: <strong>Debt and Lending</strong> (small business + microfinance + P2P real-estate; e.g. <em>Asterlend Singapore</em>, <em>BridgeKey Property</em> Ireland) · <strong>Canadian Equity</strong> (institutional placements + impact crowdfunding; e.g. <em>Northpoint Impact</em>) · <strong>Global Equity</strong> (international land + impact + accredited cross-border; e.g. <em>Hartwell Crowdvest</em> UK, <em>Pinevale Impact</em> US, <em>Pacific Crossing</em> APAC, <em>Stoneferry Wealth</em> Ireland). International deployments still operational years after initial launch.</p>
           </div>
         </div>
-        <div class="frame-browser" style="margin-top: var(--space-6, 2.5rem);">
-          <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-          <div class="frame-browser__screen">
-            <img src="img/dealflow/latest-ui/desktop-portfolio-dashboard.png" alt="Katipult portfolio dashboard showing investor's active deal positions, capital deployed, and return metrics across all holdings." loading="lazy" />
+        <div class="single-screen-frame" style="margin-top: var(--space-6, 2.5rem);">
+          <div class="frame-browser">
+            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+            <div class="frame-browser__screen">
+              <img src="img/dealflow/latest-ui/desktop-portfolio-dashboard.png" alt="Katipult portfolio dashboard showing investor's active deal positions, capital deployed, and return metrics across all holdings." loading="lazy" />
+            </div>
           </div>
         </div>
       </div>

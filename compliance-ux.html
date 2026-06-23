@@ -996,6 +996,17 @@
     flex-wrap: wrap;
   }
 
+  /* ---------- Single-screen utility: caps any lone frame at FuzeHQ hero scale ---------- */
+  .single-screen-frame {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .single-screen-frame .frame-browser,
+  .single-screen-frame .frame-mobile {
+    width: 100%;
+  }
+
   /* ---------- Frame chrome: browser + iPhone 17 Pro (MZM-2248) ---------- */
   .frame-browser {
     position: relative;
@@ -1474,7 +1485,7 @@
           <div><dt>Chose</dt><dd>Automated identity verification. Manual fallback only when confidence scores failed.</dd></div>
           <div><dt>Because</dt><dd>20x compliance team headcount wasn't feasible. Automate the high-confidence cases, route the rest to humans.</dd></div>
         </dl>
-        <figure style="margin-top: clamp(20px, 2.5vw, 28px);">
+        <figure class="single-screen-frame" style="margin-top: clamp(20px, 2.5vw, 28px);">
           <div class="frame-browser">
             <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
             <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
@@ -1631,7 +1642,7 @@
           <h4>Operator Alert Surface</h4>
           <p>Compliance officers' triage view. Critical, High, Medium severity, with the regulator rule that fired, who owns it, and how long it's been sitting. The previous workflow was a Slack thread plus a spreadsheet — by the time you found the right investor, half the SLAs had blown. This replaced both, with an audit log attached to every action.</p>
         </div>
-        <figure class="screen-fig fig-desktop">
+        <figure class="screen-fig fig-desktop single-screen-frame">
           <div class="frame-browser">
             <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
             <div class="frame-browser__screen">
@@ -1716,7 +1727,7 @@
       </div>
       <p class="prose-body" style="max-width: 70ch; margin-top: clamp(32px, 4vw, 48px);">NIGO (not-in-good-order) submissions dropped enough that ECM teams stopped chasing corrections and started closing deals. The compliance team grew slowly while investor volume kept climbing — automation handled the high-confidence cases, humans owned the exceptions.</p>
       <p class="prose-body" style="max-width: 70ch;">The same engine eventually shipped to two sister products: Lending (Singapore, Mexico, UK, US deployments) and Donations &amp; Rewards (InvestYYC + Alberta BoostR with Calgary Arts Development and ATB Financial).</p>
-      <div class="screen-fig" style="margin-top: clamp(28px, 3.5vw, 40px);">
+      <div class="screen-fig single-screen-frame" style="margin-top: clamp(28px, 3.5vw, 40px);">
         <div class="frame-mobile">
           <div class="frame-mobile__notch" aria-hidden="true"></div>
           <div class="frame-mobile__screen">
@@ -1751,7 +1762,7 @@
 <!-- =================== 12. NEXT CASE =================== -->
 <section class="prose-section reveal">
   <div class="wrap">
-    <div class="next-case-cta">
+    <div class="next-case-cta single-screen-frame">
       <a class="thumb" href="katipult.html" aria-label="Open Katipult case study">
         <div class="frame-browser">
           <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
