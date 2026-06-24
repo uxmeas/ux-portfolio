@@ -1908,6 +1908,27 @@
   @media (max-width: 1024px) { .project-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 600px) { .project-card-grid { grid-template-columns: 1fr; } }
 
+  /* ---------- Key screens 2x2 grid (MZM-2248 Sub-P, Q1) ---------- */
+  .key-screen-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8, 2rem);
+  }
+  .key-screen-grid .screen-fig {
+    width: 100%;
+    max-width: none !important;
+    margin: 0;
+  }
+  .key-screen-grid figcaption {
+    margin-top: var(--space-2, 0.5rem);
+    font-size: var(--fs-xs, 12px);
+    line-height: 1.4;
+    color: var(--fg-3);
+  }
+  @media (max-width: 800px) {
+    .key-screen-grid { grid-template-columns: 1fr; }
+  }
+
 </style>
 <!-- Open Graph / Twitter card -->
 <meta property="og:type" content="article" />
@@ -2677,51 +2698,43 @@
     <div class="prose-grid prose-grid--stack">
       <div class="section-head-row"><span class="badge section-num"><i class="sn-icon" data-lucide="layout-grid"></i><span class="sn-text"><span class="sn-num">( 05 )</span><span class="sn-name">Key Screens</span></span></span></div>
       <div>
-        <div class="screens">
-          <div class="screen v-image-right">
-            <figure class="screen-fig fig-desktop">
-              <div class="frame-browser">
-                <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-                <div class="frame-browser__screen">
-                  <img src="img/dealflow/latest-ui/desktop-portfolio-dashboard.png" alt="Latest capital operations cockpit" loading="lazy" />
-                </div>
+        <div class="key-screen-grid">
+          <figure class="screen-fig fig-desktop">
+            <div class="frame-browser">
+              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+              <div class="frame-browser__screen">
+                <img src="img/dealflow/latest-ui/desktop-portfolio-dashboard.png" alt="Latest capital operations cockpit" loading="lazy" />
               </div>
-              <figcaption>Latest capital operations cockpit</figcaption>
-            </figure>
-          </div>
-          <div class="screen v-image-left">
-            <figure class="screen-fig fig-desktop">
-              <div class="frame-browser">
-                <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-                <div class="frame-browser__screen">
-                  <img src="img/dealflow/latest-ui/desktop-offerings-table.png" alt="Latest offerings management table" loading="lazy" />
-                </div>
+            </div>
+            <figcaption>Latest capital operations cockpit</figcaption>
+          </figure>
+          <figure class="screen-fig fig-desktop">
+            <div class="frame-browser">
+              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+              <div class="frame-browser__screen">
+                <img src="img/dealflow/latest-ui/desktop-offerings-table.png" alt="Latest offerings management table" loading="lazy" />
               </div>
-              <figcaption>Latest offerings management table</figcaption>
-            </figure>
-          </div>
-          <div class="screen v-image-right">
-            <figure class="screen-fig fig-desktop">
-              <div class="frame-browser">
-                <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-                <div class="frame-browser__screen">
-                  <img src="img/dealflow/latest-ui/desktop-investor-list.png" alt="Latest investor list" loading="lazy" />
-                </div>
+            </div>
+            <figcaption>Latest offerings management table</figcaption>
+          </figure>
+          <figure class="screen-fig fig-desktop">
+            <div class="frame-browser">
+              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+              <div class="frame-browser__screen">
+                <img src="img/dealflow/latest-ui/desktop-investor-list.png" alt="Latest investor list" loading="lazy" />
               </div>
-              <figcaption>Latest investor list</figcaption>
-            </figure>
-          </div>
-          <div class="screen v-image-left">
-            <figure class="screen-fig fig-desktop">
-              <div class="frame-browser">
-                <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-                <div class="frame-browser__screen">
-                  <img src="img/dealflow/latest-ui/desktop-browse-offerings.png" alt="Latest lending and offerings marketplace" loading="lazy" />
-                </div>
+            </div>
+            <figcaption>Latest investor list</figcaption>
+          </figure>
+          <figure class="screen-fig fig-desktop">
+            <div class="frame-browser">
+              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+              <div class="frame-browser__screen">
+                <img src="img/dealflow/latest-ui/desktop-browse-offerings.png" alt="Latest lending and offerings marketplace" loading="lazy" />
               </div>
-              <figcaption>Latest lending and offerings marketplace</figcaption>
-            </figure>
-          </div>
+            </div>
+            <figcaption>Latest lending and offerings marketplace</figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -2800,22 +2813,6 @@
   </div>
 </section>
 
-<!-- =================== NEXT CASE — Up next FuzeHQ =================== -->
-<section class="prose-section reveal">
-  <div class="wrap">
-    <div class="next-case-cta">
-      <a class="thumb" href="fuzehq.html" aria-label="Open FuzeHQ case study">
-        <img src="img/cases/fuzehq.png" alt="" loading="lazy" />
-      </a>
-      <div class="meta">
-        <div class="eb">Up next · 03 / 04</div>
-        <h3 class="name">FuzeHQ</h3>
-        <p class="tease">AI work, made visible. The team workspace for humans and AI agents — every action signed, every handoff visible, every shipment proven. 13 named agents shipping daily on production.</p>
-      </div>
-      <a class="btn btn-secondary" href="fuzehq.html">Read case study <span class="arrow">→</span></a>
-    </div>
-  </div>
-</section>
 
 <section class="next-cta reveal">
   <div class="wrap">
