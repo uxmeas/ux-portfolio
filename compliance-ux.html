@@ -760,7 +760,7 @@
   .screen-fig.phones-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0;
+    gap: clamp(14px, 1.8vw, 22px);
     background: transparent;
     border: 0;
     overflow: visible;
@@ -1017,6 +1017,9 @@
     border-radius: 0.5rem;
     overflow: hidden;
     background: var(--bg-2);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.18),
+      0 20px 48px rgba(0, 0, 0, 0.32);
   }
   .frame-browser__top {
     display: flex;
@@ -1056,13 +1059,15 @@
     flex-direction: column;
     box-sizing: border-box;
     width: min(100%, 13rem);
-    aspect-ratio: 390 / 1000;
+    aspect-ratio: 402 / 874;
     padding: 0.5rem;
     border-radius: 2.05rem;
     background: linear-gradient(145deg, #0a0a0a, #232323);
     box-shadow:
-      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
-      0 18px 42px rgba(0, 0, 0, 0.32);
+      inset 0 0 0 1.5px rgba(255, 255, 255, 0.12),
+      inset 0 0 0 3px rgba(0, 0, 0, 0.45),
+      0 22px 56px rgba(0, 0, 0, 0.42),
+      0 4px 12px rgba(0, 0, 0, 0.28);
     justify-self: center;
   }
   .frame-mobile__notch {
@@ -1099,8 +1104,37 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: top center;
+  }
+  /* Device combo: browser + mobile pair (Cody Rule 4, MZM-2248 Sub-Q) */
+  .device-combo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: clamp(20px, 2.5vw, 32px);
+    width: 100%;
+  }
+  .device-combo .frame-browser {
+    grid-column: 1;
+    width: 100%;
+  }
+  .device-combo .frame-mobile {
+    grid-column: 2;
+    width: min(13rem, 22vw);
+    margin-bottom: clamp(-32px, -3vw, -16px);
+    z-index: 2;
+  }
+  @media (max-width: 720px) {
+    .device-combo {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+    .device-combo .frame-mobile {
+      grid-column: 1;
+      margin-bottom: 0;
+      justify-self: center;
+    }
   }
   .screens-pair-desktop {
     display: grid;
@@ -1614,24 +1648,18 @@
           <p>Compliance officers see every investor's exact status across every jurisdiction. Not just "complete" or "incomplete" but which step they're on, what's blocking them, when they last logged in, and which framework applies (IIROC, Reg CF, MiFID, ISA). Replaced a spreadsheet workflow that required manual chasing.</p>
         </div>
         <figure class="screen-fig">
-          <div class="process-moment-visuals-pair">
+          <div class="device-combo">
+            <div class="frame-browser">
+              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
+              <div class="frame-browser__screen">
+                <img src="img/compliance/latest-ui/desktop-compliance-overview.png" alt="Compliance command queue desktop showing investor verification statuses, queued actions, and operator review controls" loading="lazy" />
+              </div>
+            </div>
             <div class="frame-mobile">
               <div class="frame-mobile__notch" aria-hidden="true"></div>
               <div class="frame-mobile__screen">
                 <img src="img/compliance/product-audit-2026-06-18/mobile-kyc-start.png" alt="Mobile KYC start, investor entry point into the compliance flow on mobile" loading="lazy" />
               </div>
-            </div>
-            <div class="frame-mobile">
-              <div class="frame-mobile__notch" aria-hidden="true"></div>
-              <div class="frame-mobile__screen">
-                <img src="img/compliance/latest-ui/mobile-compliance-overview.png" alt="Mobile compliance overview, the redesigned investor-facing compliance flow on mobile" loading="lazy" />
-              </div>
-            </div>
-          </div>
-          <div class="frame-browser" style="margin-top: clamp(20px, 2.5vw, 28px);">
-            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-            <div class="frame-browser__screen">
-              <img src="img/compliance/latest-ui/desktop-compliance-overview.png" alt="Compliance command queue desktop showing investor verification statuses, queued actions, and operator review controls" loading="lazy" />
             </div>
           </div>
         </figure>
