@@ -1133,16 +1133,18 @@
   .device-combo .frame-mobile {
     grid-column: 2;
     width: min(13rem, 22vw);
-    margin-bottom: clamp(-32px, -3vw, -16px);
+    margin-bottom: 0;
     z-index: 2;
   }
   @media (max-width: 720px) {
     .device-combo {
-      grid-template-columns: 1fr;
-      align-items: start;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: clamp(12px, 4vw, 18px);
     }
     .device-combo .frame-mobile {
-      grid-column: 1;
+      grid-column: 2;
+      width: clamp(5.75rem, 26vw, 7rem);
       margin-bottom: 0;
       justify-self: center;
     }
