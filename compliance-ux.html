@@ -1125,8 +1125,6 @@
     display: block;
     box-sizing: border-box;
     width: 100%;
-    --_browser-h: calc(100% * (1100 / 1440));
-    --_phone-h: calc(var(--_browser-h) * 0.60);
     padding-right: clamp(6rem, 14vw, 9.5rem);
     overflow: visible;
   }
@@ -1137,7 +1135,7 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    height: var(--_phone-h);
+    height: 60%;
     width: auto;
     z-index: 2;
   }
