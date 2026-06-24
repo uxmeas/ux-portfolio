@@ -324,9 +324,11 @@
   }
   .problem-mobiles {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    max-width: 640px;
+    grid-template-columns: repeat(2, minmax(0, 13rem));
+    gap: clamp(16px, 2vw, 24px);
+    width: min(100%, calc(26rem + 24px));
+    max-width: 100%;
+    justify-content: center;
     justify-self: center;
   }
   .problem-mobiles img {
@@ -759,11 +761,13 @@
      dominate the desktop screens in zigzag layout. Each phone ~180-200px. */
   .screen-fig.phones-2 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 13rem));
     gap: clamp(14px, 1.8vw, 22px);
+    width: min(100%, calc(26rem + 22px));
     background: transparent;
     border: 0;
     overflow: visible;
+    justify-content: center;
     justify-self: center;
   }
   .screen-fig.phones-2 img {
@@ -1055,8 +1059,7 @@
   }
   .frame-mobile {
     position: relative;
-    display: flex;
-    flex-direction: column;
+    display: block;
     box-sizing: border-box;
     width: min(100%, 13rem);
     aspect-ratio: 402 / 874;
@@ -1094,7 +1097,9 @@
     transform: translateX(-50%);
   }
   .frame-mobile__screen {
-    flex: 1 1 auto;
+    position: absolute;
+    inset: 0.5rem;
+    min-height: 0;
     border-radius: 1.45rem;
     overflow: hidden;
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
@@ -1106,6 +1111,12 @@
     height: 100%;
     object-fit: cover;
     object-position: top center;
+  }
+  .problem-mobiles .frame-mobile__screen img,
+  .process-moment .visual .frame-mobile__screen img,
+  .screen-fig.phones-2 .frame-mobile__screen img {
+    height: 100%;
+    object-fit: cover;
   }
   /* Device combo: browser + mobile pair (Cody Rule 4, MZM-2248 Sub-Q) */
   .device-combo {
