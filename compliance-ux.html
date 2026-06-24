@@ -1118,13 +1118,16 @@
     height: 100%;
     object-fit: cover;
   }
-  /* Device combo: browser + mobile pair (Cody Rule 4, MZM-2248 Sub-Q) */
+  /* Device combo: browser + mobile pair (Kai senior-design, MZM-2248 Sub-W) */
+  /* Phone = 60% of browser height, height-anchored, width derived from aspect-ratio */
   .device-combo {
     position: relative;
     display: block;
     box-sizing: border-box;
     width: 100%;
-    padding-right: clamp(7rem, 16vw, 11rem);
+    --_browser-h: calc(100% * (1100 / 1440));
+    --_phone-h: calc(var(--_browser-h) * 0.60);
+    padding-right: clamp(6rem, 14vw, 9.5rem);
     overflow: visible;
   }
   .device-combo .frame-browser {
@@ -1134,15 +1137,16 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    width: clamp(7.5rem, 27vw, 13rem);
+    height: var(--_phone-h);
+    width: auto;
     z-index: 2;
   }
   @media (max-width: 720px) {
     .device-combo {
-      padding-right: clamp(5.5rem, 22vw, 6rem);
+      padding-right: 0;
     }
     .device-combo .frame-mobile {
-      width: clamp(6.25rem, 30vw, 7.25rem);
+      display: none;
     }
   }
   .screens-pair-desktop {
@@ -1152,6 +1156,33 @@
     margin-bottom: var(--space-xl);
   }
   .screens-pair-desktop .screen-fig { width: 100%; max-width: none; }
+  /* § 06.5 Latest Screens: hero-left + two-support-right (Kai senior-design, MZM-2248 Sub-W) */
+  .screens-trio-hero {
+    display: grid;
+    grid-template-columns: 1fr 0.65fr;
+    grid-template-rows: auto auto;
+    gap: var(--space-md);
+    align-items: start;
+  }
+  .screens-trio-hero .screen-hero {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .screens-trio-hero .screen-support {
+    grid-column: 2;
+  }
+  @media (max-width: 800px) {
+    .screens-trio-hero {
+      grid-template-columns: 1fr;
+    }
+    .screens-trio-hero .screen-hero {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .screens-trio-hero .screen-support {
+      grid-column: 1;
+    }
+  }
   .process-moment-visuals-pair {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1528,17 +1559,26 @@
           <div><dt>Chose</dt><dd>Automated identity verification. Manual fallback only when confidence scores failed.</dd></div>
           <div><dt>Because</dt><dd>20x compliance team headcount wasn't feasible. Automate the high-confidence cases, route the rest to humans.</dd></div>
         </dl>
-        <figure class="single-screen-frame" style="margin-top: clamp(20px, 2.5vw, 28px);">
-          <div class="frame-browser">
-            <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-            <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
-              <img src="img/compliance/latest-ui/devbox-kyc-dashboard-native-2026-06-18.png" alt="KYC operator dashboard showing automated identity verification results, confidence score breakdown, and manual review queue for low-confidence cases" loading="lazy" />
-            </div>
-          </div>
-        </figure>
       </article>
 
-    </div>
+    </div><!-- /.decisions -->
+
+    <figure class="single-screen-frame" style="margin-top: clamp(28px, 3.5vw, 40px);">
+      <div class="frame-browser">
+        <div class="frame-browser__top" aria-hidden="true">
+          <span class="frame-browser__dot"></span>
+          <span class="frame-browser__dot"></span>
+          <span class="frame-browser__dot"></span>
+        </div>
+        <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
+          <img src="img/compliance/latest-ui/devbox-kyc-dashboard-native-2026-06-18.png"
+               alt="KYC operator dashboard. Confidence score breakdown, automated identity verification results, and manual review queue for low-confidence cases"
+               loading="lazy" />
+        </div>
+      </div>
+      <figcaption>Decision 03 in production. Automated verification with manual fallback queue.</figcaption>
+    </figure>
+
   </div>
 </section>
 
@@ -1653,13 +1693,13 @@
       <div class="screen v-image-right">
         <div class="screen-meta">
           <h4>Operator Alert Surface</h4>
-          <p>Compliance officers' triage view. Critical, High, Medium severity, with the regulator rule that fired, who owns it, and how long it's been sitting. The previous workflow was a Slack thread plus a spreadsheet — by the time you found the right investor, half the SLAs had blown. This replaced both, with an audit log attached to every action.</p>
+          <p>Compliance officers' triage view. Critical, High, Medium severity, with the regulator rule that fired, who owns it, and how long it's been sitting. The previous workflow was a Slack thread plus a spreadsheet; by the time you found the right investor, half the SLAs had blown. This replaced both, with an audit log attached to every action.</p>
         </div>
         <figure class="screen-fig fig-desktop single-screen-frame">
           <div class="frame-browser">
             <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-            <div class="frame-browser__screen">
-              <img src="img/compliance/latest-ui/desktop-compliance-overview.png" alt="Operator compliance overview desktop on the shipped Katipult system. Cross-dimensional triage view with severity-tagged alerts, AML rule codes, SLA timers, and per-row escalation affordances" loading="lazy" />
+            <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
+              <img src="img/compliance/latest-ui/devbox-kyc-dashboard-native-2026-06-18.png" alt="KYC operator triage view showing severity-tagged compliance alerts, automated verification results, SLA timers, and per-investor escalation affordances" loading="lazy" />
             </div>
           </div>
         </figure>
@@ -1676,9 +1716,9 @@
       <span class="badge section-num"><i class="sn-icon" data-lucide="camera"></i><span class="sn-text"><span class="sn-num">( 06.5 )</span><span class="sn-name">Latest compliance and operator screens</span></span></span>
     </div>
     <p class="section-lede">Recent captures from the live operator surface: compliance command queue, identity verification dashboard, and mobile companion views.</p>
-    <div class="screens-pair-desktop">
+    <div class="screens-trio-hero">
 
-      <figure class="screen-fig fig-desktop">
+      <figure class="screen-fig fig-desktop screen-hero">
         <div class="frame-browser">
           <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
           <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
@@ -1688,7 +1728,7 @@
         <figcaption>Latest compliance command queue desktop - 1440 × 1100</figcaption>
       </figure>
 
-      <figure class="screen-fig fig-desktop">
+      <figure class="screen-fig fig-desktop screen-support">
         <div class="frame-browser">
           <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
           <div class="frame-browser__screen" style="aspect-ratio: 1280/720;">
@@ -1698,7 +1738,7 @@
         <figcaption>Latest identity verification operator desktop - 1280 × 720</figcaption>
       </figure>
 
-      <figure class="screen-fig">
+      <figure class="screen-fig screen-support">
         <div class="frame-mobile">
           <div class="frame-mobile__notch" aria-hidden="true"></div>
           <div class="frame-mobile__screen">

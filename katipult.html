@@ -1801,33 +1801,35 @@
     object-position: top center;
   }
 
-  /* Device combo: browser + mobile pair (Cody Rule 4, MZM-2248 Sub-Q) */
+  /* Device combo: browser + mobile pair (Kai senior-design, MZM-2248 Sub-W) */
+  /* Phone = 60% of browser height, height-anchored, width derived from aspect-ratio */
   .device-combo {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-    gap: clamp(20px, 2.5vw, 32px);
+    position: relative;
+    display: block;
+    box-sizing: border-box;
     width: 100%;
+    --_browser-h: calc(100% * (1100 / 1440));
+    --_phone-h: calc(var(--_browser-h) * 0.60);
+    padding-right: clamp(6rem, 14vw, 9.5rem);
+    overflow: visible;
   }
   .device-combo .frame-browser {
-    grid-column: 1;
     width: 100%;
   }
   .device-combo .frame-mobile {
-    grid-column: 2;
-    width: min(13rem, 22vw);
-    margin-bottom: clamp(-32px, -3vw, -16px);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: var(--_phone-h);
+    width: auto;
     z-index: 2;
   }
   @media (max-width: 720px) {
     .device-combo {
-      grid-template-columns: 1fr;
-      align-items: start;
+      padding-right: 0;
     }
     .device-combo .frame-mobile {
-      grid-column: 1;
-      margin-bottom: 0;
-      justify-self: center;
+      display: none;
     }
   }
   /* ---------- Project-card catalogue (MZM-2248, section 04.6) ---------- */
@@ -2742,24 +2744,6 @@
               </div>
             </div>
             <figcaption>Latest capital operations cockpit</figcaption>
-          </figure>
-          <figure class="screen-fig fig-desktop">
-            <div class="frame-browser">
-              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-              <div class="frame-browser__screen">
-                <img src="img/dealflow/latest-ui/desktop-offerings-table.png" alt="Latest offerings management table" loading="lazy" />
-              </div>
-            </div>
-            <figcaption>Latest offerings management table</figcaption>
-          </figure>
-          <figure class="screen-fig fig-desktop">
-            <div class="frame-browser">
-              <div class="frame-browser__top" aria-hidden="true"><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span><span class="frame-browser__dot"></span></div>
-              <div class="frame-browser__screen">
-                <img src="img/dealflow/latest-ui/desktop-investor-list.png" alt="Latest investor list" loading="lazy" />
-              </div>
-            </div>
-            <figcaption>Latest investor list</figcaption>
           </figure>
           <figure class="screen-fig fig-desktop">
             <div class="frame-browser">
