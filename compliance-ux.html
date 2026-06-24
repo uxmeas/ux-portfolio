@@ -1120,33 +1120,29 @@
   }
   /* Device combo: browser + mobile pair (Cody Rule 4, MZM-2248 Sub-Q) */
   .device-combo {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: end;
-    gap: clamp(20px, 2.5vw, 32px);
+    position: relative;
+    display: block;
+    box-sizing: border-box;
     width: 100%;
+    padding-right: clamp(7rem, 16vw, 11rem);
+    overflow: visible;
   }
   .device-combo .frame-browser {
-    grid-column: 1;
     width: 100%;
   }
   .device-combo .frame-mobile {
-    grid-column: 2;
-    width: min(13rem, 22vw);
-    margin-bottom: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: clamp(7.5rem, 27vw, 13rem);
     z-index: 2;
   }
   @media (max-width: 720px) {
     .device-combo {
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: end;
-      gap: clamp(12px, 4vw, 18px);
+      padding-right: clamp(5.5rem, 22vw, 6rem);
     }
     .device-combo .frame-mobile {
-      grid-column: 2;
-      width: clamp(5.75rem, 26vw, 7rem);
-      margin-bottom: 0;
-      justify-self: center;
+      width: clamp(6.25rem, 30vw, 7.25rem);
     }
   }
   .screens-pair-desktop {
