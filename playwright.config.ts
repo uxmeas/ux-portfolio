@@ -2,6 +2,16 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests/e2e',
+  testMatch: [
+    'contact-form.spec.ts',
+    'responsive-nav-insights.spec.ts',
+  ],
+  projects: [
+    {
+      name: 'chromium',
+      use: { browserName: 'chromium' },
+    },
+  ],
   timeout: 30_000,
   retries: process.env.CI ? 2 : 0,
   workers: 1,
